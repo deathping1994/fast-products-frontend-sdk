@@ -5,9 +5,13 @@
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
-		"dev:start": "vite build && vite preview"
+		"build:watch": "vite build --watch",
+		"serve": "http-server dist -c-1",
+		"start": "concurrently \"npm run build:watch\" \"npm run serve\""
 	},
 	"dependencies": {
+		"concurrently": "^8.2.2",
+		"http-server": "^14.1.1",
 		"preact": "^10.13.1"
 	},
 	"devDependencies": {
