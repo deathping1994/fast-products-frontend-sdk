@@ -45,7 +45,7 @@ export function Main(props) {
   return (
     <>
       {customerDetails?.customerID ? (
-        <ApplyWallet />
+        <ApplyWallet customerDetails={customerDetails} />
       ) : (
         <Login themeDetails={themeDetails} />
       )}

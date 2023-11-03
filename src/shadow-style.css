@@ -20,9 +20,15 @@ body {
 	min-height: 100vh;
 } */
 
-.fc-wallet-cart-widget-19212-root a{
+.fc-wallet-cart-widget-19212-root * {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.fc-wallet-cart-widget-19212-root a {
 	text-decoration: none;
-    color: inherit;
+	color: inherit;
 }
 
 .fc-wallet-cart-widget-19212-root {
@@ -36,10 +42,20 @@ body {
 	padding: 10px 10px;
 }
 
-.fc-wallet-cart-widget-19212-root .checkbox-container {
+.fc-wallet-cart-widget-19212-root .wallet-box-container {
 	background-color: #ebebeb;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+	padding: 14px 8px;
+}
+
+.fc-wallet-cart-widget-19212-root .point-details {
+	font-weight: bolder;
+	margin-left: 6px;
+}
+
+.fc-wallet-cart-widget-19212-root .checkbox-container {
 	padding: 0px 10px;
 }
 
@@ -96,4 +112,73 @@ body {
 	border-width: 0 0.15em 0.15em 0;
 	border-radius: 0em;
 	transform: rotate(45deg);
+}
+
+.fc-wallet-cart-widget-19212-root .circularloader {
+	width: 20px;
+	transform-origin: center;
+	animation: rotate4 2s linear infinite;
+	margin-left: 8px;
+}
+
+.fc-wallet-cart-widget-19212-root .circularloader circle {
+	fill: none;
+	stroke: hsl(3, 0%, 0%);
+	stroke-width: 5;
+	stroke-dasharray: 1, 200;
+	stroke-dashoffset: 0;
+	stroke-linecap: round;
+	animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes dash4 {
+	0% {
+		stroke-dasharray: 1, 200;
+		stroke-dashoffset: 0;
+	}
+
+	50% {
+		stroke-dasharray: 90, 200;
+		stroke-dashoffset: -35px;
+	}
+
+	100% {
+		stroke-dashoffset: -125px;
+	}
+}
+
+.fc-wallet-cart-widget-19212-root .skeletonloader {
+	background-image: linear-gradient(90deg,
+			#ccc 0px,
+			rgb(229 229 229 / 90%) 40px,
+			#ccc 80px);
+	background-size: 300%;
+	background-position: 100% 0;
+	border-radius: inherit;
+	animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+	to {
+		background-position: -100% 0;
+	}
+}
+
+
+.fc-wallet-cart-widget-19212-root .wallet-applied-details-container {
+	background-color: #ebebeb;
+    margin-top: 8px;
+    padding: 4px 8px;
+}
+
+.fc-wallet-cart-widget-19212-root .wallet-applied-details-container .wallet-applied-details {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
