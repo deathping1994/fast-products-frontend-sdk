@@ -17,6 +17,9 @@ export function AppCSS() {
   return <style>{style}</style>;
 }
 
+export const WALLET_API_URI = import.meta.env.VITE_APP_BASE_URL;
+
+function renderWalletBox(){
 // Load the App content into the shadow DOM
 let shadowTarget = document.createElement("div");
 shadowTarget.className = "fc-wallet-cart-widget-19212-target";
@@ -31,6 +34,7 @@ shadow.appendChild(shadowRoot);
 
 render(<App />, shadowRoot);
 render(<AppCSS />, shadowRoot?.querySelector(".widget-styles"));
+}
 
-//render(<App />, document.getElementById('fc-wallet-cart-widget-19212'));
-//render(<AppCSS />, document.getElementById('fc-wallet-cart-widget-19212')?.querySelector(".widget-styles"));
+window.fc_loyalty_render_wallet_box = renderWalletBox; //Exposing for external use
+renderWalletBox(); // Calling on first load
