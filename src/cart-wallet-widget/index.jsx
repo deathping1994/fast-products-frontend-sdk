@@ -36,5 +36,6 @@ render(<App />, shadowRoot);
 render(<AppCSS />, shadowRoot?.querySelector(".widget-styles"));
 }
 
+// @ts-ignore
 window.fc_loyalty_render_wallet_box = renderWalletBox; //Exposing for external use
 renderWalletBox(); // Calling on first load
