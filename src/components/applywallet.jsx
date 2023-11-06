@@ -23,20 +23,25 @@ export function ApplyWallet({ customerDetails }) {
 
   const getUserPoints = async () => {
     setLoadingWalletBal(true);
-    const response = await fetch(`${WALLET_API_URI}/user-walletlogs`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        customer_id: customerDetails?.customerID,
-        user_hash: customerDetails?.customerTags,
-        client_id: customerDetails?.clientID,
-      }),
-    });
-    let walletData = await response.json();
-    let walletAmount = walletData?.data?.data?.wallet?.wallet?.amount || 0;
-    setUserPoints(walletAmount);
+    try {
+      const response = await fetch(`${WALLET_API_URI}/user-walletlogs`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customer_id: customerDetails?.customerID,
+          user_hash: customerDetails?.customerTags,
+          client_id: customerDetails?.clientID,
+        }),
+      });
+      let walletData = await response.json();
+      let walletAmount = walletData?.data?.data?.wallet?.wallet?.amount || 0;
+      setUserPoints(walletAmount);
+    } catch (err) {
+      setUserPoints(0);
+      setLoadingWalletBal(false);
+    }
     setLoadingWalletBal(false);
   };
 
@@ -53,7 +58,7 @@ export function ApplyWallet({ customerDetails }) {
         }
       );
     } else {
-      const cartRes = await fetch(`/cart.json`);
+      const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
       const cartDetails = await cartRes.json();
       const prevWalletAmountApplied =
         cartDetails?.cart_level_discount_applications?.find((item) => {
@@ -69,10 +74,28 @@ export function ApplyWallet({ customerDetails }) {
         Number(totalPrice)
       );
 
-      //TODO: sending walletPointsToApply to backend api to get the couponcode
-      await timeout(1300); //TODO: REMOVE, DONE FOR TESTING
+      try{
+        const walletCouponResponse = await fetch(
+          `${WALLET_API_URI}/loyalty/get-wallet-coupon`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              client_id: customerDetails?.clientID,
+              customer_id: customerDetails?.customerID,
+              wallet_points: walletPointsToApply,
+            }),
+          }
+        );
+        const walletCouponData = await walletCouponResponse.json();
 
-      const walletCouponCode = "WALLETAPPLIED_HAGAKBSK";
+        var walletCouponCode = walletCouponData?.data?.coupon_code;
+
+      }catch(err){
+        setLoadingWalletBal(false);
+      }
 
       fetch(`/discount/${walletCouponCode}`);
       const checkoutResponse = await fetch(
@@ -82,10 +105,9 @@ export function ApplyWallet({ customerDetails }) {
         }
       );
       const checkoutURL = checkoutResponse?.url;
-
       //TODO: check if discount was indeed applied by fetching checkoutURL
 
-      const cartResUpdated = await fetch(`/cart.json`);
+      const cartResUpdated = await fetch(`/cart.json?v=${Date.now()}`);
       const cartDetailsUpdated = await cartResUpdated.json();
 
       const walletAppliedFromUpdatedCart =
