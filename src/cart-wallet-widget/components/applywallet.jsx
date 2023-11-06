@@ -3,10 +3,7 @@ import { Checkbox } from "./checkbox";
 import { WALLET_API_URI } from "..";
 import { CircularLoader } from "./circularloader";
 import { SkeletonLoader } from "./skeletonloader";
-
-function timeout(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+import { debounce } from "../../global/utils";
 
 export function ApplyWallet({ customerDetails }) {
   const [userPoints, setUserPoints] = useState(null);
@@ -74,7 +71,7 @@ export function ApplyWallet({ customerDetails }) {
         Number(totalPrice)
       );
 
-      try{
+      try {
         const walletCouponResponse = await fetch(
           `${WALLET_API_URI}/loyalty/get-wallet-coupon`,
           {
@@ -92,8 +89,7 @@ export function ApplyWallet({ customerDetails }) {
         const walletCouponData = await walletCouponResponse.json();
 
         var walletCouponCode = walletCouponData?.data?.coupon_code;
-
-      }catch(err){
+      } catch (err) {
         setLoadingWalletBal(false);
       }
 
@@ -129,9 +125,14 @@ export function ApplyWallet({ customerDetails }) {
     setLoadingWalletBal(false);
   };
 
+  const debouncedToggleUserWalletApplied = debounce(
+    (prevWalletApplied) => toggleUserWalletApplied(prevWalletApplied),
+    200
+  );
+
   const toggleUserWallet = () => {
     setWalletApplied((prev) => {
-      toggleUserWalletApplied(prev);
+      debouncedToggleUserWalletApplied(prev);
       try {
         localStorage.setItem("fc-wallet-cart-applied", `${!prev}`);
       } catch (err) {
