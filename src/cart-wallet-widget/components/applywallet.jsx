@@ -3,7 +3,15 @@ import { Checkbox } from "./checkbox";
 import { WALLET_API_URI } from "..";
 import { CircularLoader } from "./circularloader";
 import { SkeletonLoader } from "./skeletonloader";
-import { debounce } from "../../global/utils";
+let debounceTimer;
+const returnDebouncedFunc = (mainFunction, delay) => {
+  return function (...args) {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      mainFunction(...args);
+    }, delay);
+  };
+};
 
 export function ApplyWallet({ customerDetails }) {
   const [userPoints, setUserPoints] = useState(null);
@@ -125,7 +133,7 @@ export function ApplyWallet({ customerDetails }) {
     setLoadingWalletBal(false);
   };
 
-  const debouncedToggleUserWalletApplied = debounce(
+  const debouncedToggleUserWalletApplied = returnDebouncedFunc(
     (prevWalletApplied) => toggleUserWalletApplied(prevWalletApplied),
     200
   );

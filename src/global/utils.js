@@ -1,5 +1,5 @@
 let debounceTimer;
-export const debounce = (mainFunction, delay) => {
+export const returnDebouncedFunc = (mainFunction, delay) => {
   return function (...args) {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {

@@ -16,6 +16,7 @@ export default defineConfig({
 			chunkFileNames: `scripts/[name].js`,
 			assetFileNames: `scripts/[name].[ext]`
 		  }
-		}
+		},
+		minify: false
 	}
 });
