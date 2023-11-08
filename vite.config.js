@@ -14,7 +14,8 @@ export default defineConfig({
 		  output: {
 			entryFileNames: `scripts/[name].js`,
 			chunkFileNames: `scripts/[name].js`,
-			assetFileNames: `scripts/[name].[ext]`
+			assetFileNames: `scripts/[name].[ext]`,
+			format: 'iife',
 		  }
 		},
 		minify: false
