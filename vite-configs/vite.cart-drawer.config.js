@@ -8,13 +8,12 @@ export default defineConfig({
 	build: {
 		rollupOptions: {
 		  input: {
-			"cart-wallet-widget": resolve(__dirname, 'src/cart-wallet-widget/index.jsx'),
-			// "second-script": resolve(__dirname, 'src/second-script/index.jsx'),
+			"cart-drawer": resolve(__dirname, '../src/cart-drawer/index.jsx'),
 			},
 		  output: {
-			entryFileNames: `scripts/[name].js`,
-			chunkFileNames: `scripts/[name].js`,
-			assetFileNames: `scripts/[name].[ext]`,
+			entryFileNames: `cart-drawer/[name].js`,
+			chunkFileNames: `cart-drawer/[name].js`,
+			assetFileNames: `cart-drawer/[name].[ext]`,
 			format: 'iife',
 		  }
 		},
