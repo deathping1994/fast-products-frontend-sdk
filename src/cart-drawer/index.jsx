@@ -5,7 +5,7 @@ import { Main } from "./components/main";
 export function App() {
   return (
     <>
-      <div class="widget-container">
+      <div class="widget-container cart-drawer">
         <Main/>
       </div>
       <div class="widget-styles"></div>
