@@ -39,3 +39,22 @@ function renderWalletBox() {
 // @ts-ignore
 window.fc_loyalty_render_wallet_box = renderWalletBox; //Exposing for external use
 renderWalletBox(); // Calling on first load
+
+//function to check and render only if not present already
+function checkWalletBox() {
+  setInterval(() => {
+    if (
+      document.querySelector(
+        "#fc-wallet-cart-widget-19212 .fc-wallet-cart-widget-19212-target"
+      )
+    ) {
+      //already rendered
+    } else {
+      //trigger render
+      renderWalletBox();
+    }
+  }, 300);
+}
+// @ts-ignore
+window.fc_loyalty_check_wallet_box = checkWalletBox;
+checkWalletBox();

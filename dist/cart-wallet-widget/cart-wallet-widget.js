@@ -746,4 +746,15 @@
   }
   window.fc_loyalty_render_wallet_box = renderWalletBox;
   renderWalletBox();
+  function checkWalletBox() {
+    setInterval(() => {
+      if (document.querySelector("#fc-wallet-cart-widget-19212 .fc-wallet-cart-widget-19212-target"))
+        ;
+      else {
+        renderWalletBox();
+      }
+    }, 300);
+  }
+  window.fc_loyalty_check_wallet_box = checkWalletBox;
+  checkWalletBox();
 })();
