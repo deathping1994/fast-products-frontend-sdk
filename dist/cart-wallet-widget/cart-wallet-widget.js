@@ -452,6 +452,15 @@
       })
     });
   }
+  function setCookie(name, value, daysToExpire) {
+    var expires = "";
+    if (daysToExpire) {
+      var date = /* @__PURE__ */ new Date();
+      date.setTime(date.getTime() + daysToExpire * 24 * 60 * 60 * 1e3);
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+  }
   let debounceTimer;
   const returnDebouncedFunc = (mainFunction, delay) => {
     return function(...args) {
@@ -507,6 +516,7 @@
         await fetch(`/checkout/?discount=${walletCouponCode2}`, {
           method: "POST"
         });
+        setCookie("discount_code", "", 7);
       } else {
         const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
         const cartDetails = await cartRes.json();

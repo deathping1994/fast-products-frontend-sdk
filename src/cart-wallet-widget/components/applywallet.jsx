@@ -3,6 +3,7 @@ import { Checkbox } from "./checkbox";
 import { WALLET_API_URI } from "..";
 import { CircularLoader } from "./circularloader";
 import { SkeletonLoader } from "./skeletonloader";
+import { setCookie } from "../../global/utils";
 let debounceTimer;
 const returnDebouncedFunc = (mainFunction, delay) => {
   return function (...args) {
@@ -62,6 +63,7 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
           method: "POST",
         }
       );
+      setCookie("discount_code", "", 7);// Remove discount code from cookie for GoKwik checkout
     } else {
       const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
       const cartDetails = await cartRes.json();
