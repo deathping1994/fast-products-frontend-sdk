@@ -10,6 +10,10 @@ export function Main(props) {
     clientID: "",
   });
   const [themeDetails, setThemeDetails] = useState(null);
+  const [checkoutTarget, setCheckoutTarget] = useState({
+    enable: false,
+    isSet: false
+  });
 
   const getThemedetails = async ({ client_id }) => {
     const themeDetailsRes = await fetch(`${WALLET_API_URI}/get-theme-details`, {
@@ -33,6 +37,20 @@ export function Main(props) {
     const customer_tags = mainScript.getAttribute("data-customer-tag")?.trim();
     const client_id = mainScript.getAttribute("data-client-id");
 
+    const checkout_target = mainScript.getAttribute("data-checkout-target");
+
+    if (checkout_target) {
+      setCheckoutTarget({
+        enable: true,
+        isSet: true
+      });
+    }else{
+      setCheckoutTarget({
+        enable: false,
+        isSet: true
+      });
+    }
+
     setCustomerDetails({
       customerID: customer_id,
       customerTags: customer_tags,
@@ -45,7 +63,10 @@ export function Main(props) {
   return (
     <>
       {customerDetails?.customerID ? (
-        <ApplyWallet customerDetails={customerDetails} />
+        <ApplyWallet
+          customerDetails={customerDetails}
+          checkoutTarget={checkoutTarget}
+        />
       ) : (
         <Login themeDetails={themeDetails} />
       )}

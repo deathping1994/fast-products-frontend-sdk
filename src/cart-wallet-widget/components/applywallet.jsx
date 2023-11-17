@@ -13,7 +13,7 @@ const returnDebouncedFunc = (mainFunction, delay) => {
   };
 };
 
-export function ApplyWallet({ customerDetails }) {
+export function ApplyWallet({ customerDetails, checkoutTarget }) {
   const [userPoints, setUserPoints] = useState(null);
   const [walletApplied, setWalletApplied] = useState(
     localStorage.getItem("fc-wallet-cart-applied") === "true" || false
@@ -108,27 +108,45 @@ export function ApplyWallet({ customerDetails }) {
           method: "POST",
         }
       );
-      const checkoutURL = checkoutResponse?.url;
-      //TODO: check if discount was indeed applied by fetching checkoutURL
+      if (checkoutTarget?.enable) {
+        const checkoutURL = checkoutResponse?.url;
+        const updatedCheckoutRes = await fetch(checkoutURL);
+        const updatedCheckout = await updatedCheckoutRes.text();
+        let updatedCheckoutContainer = document.createElement("div");
+        updatedCheckoutContainer.innerHTML = updatedCheckout;
+        const totalFinalPrice =
+          Number(
+            updatedCheckoutContainer
+              ?.querySelector("[data-checkout-payment-due-target]")
+              .getAttribute("data-checkout-payment-due-target")
+          ) / 100;
 
-      const cartResUpdated = await fetch(`/cart.json?v=${Date.now()}`);
-      const cartDetailsUpdated = await cartResUpdated.json();
+        setWalletAppliedDetails({
+          remainingWalletBalance: Number(userPoints) - walletPointsToApply,
+          walletDiscountApplied: walletPointsToApply,
+          currency: cartDetails?.currency,
+          totalPayablePrice: totalFinalPrice,
+        });
+      } else {
+        const cartResUpdated = await fetch(`/cart.json?v=${Date.now()}`);
+        const cartDetailsUpdated = await cartResUpdated.json();
 
-      const walletAppliedFromUpdatedCart =
-        cartDetailsUpdated?.cart_level_discount_applications?.find((item) => {
-          return item?.title?.includes("WALLETAPPLIED");
-        })?.total_allocated_amount;
+        const walletAppliedFromUpdatedCart =
+          cartDetailsUpdated?.cart_level_discount_applications?.find((item) => {
+            return item?.title?.includes("WALLETAPPLIED");
+          })?.total_allocated_amount;
 
-      const walletPointsApplied = walletAppliedFromUpdatedCart
-        ? walletAppliedFromUpdatedCart / 100
-        : 0;
+        const walletPointsApplied = walletAppliedFromUpdatedCart
+          ? walletAppliedFromUpdatedCart / 100
+          : 0;
 
-      setWalletAppliedDetails({
-        remainingWalletBalance: Number(userPoints) - walletPointsApplied,
-        walletDiscountApplied: walletPointsApplied,
-        currency: cartDetailsUpdated?.currency,
-        totalPayablePrice: cartDetailsUpdated?.total_price / 100,
-      });
+        setWalletAppliedDetails({
+          remainingWalletBalance: Number(userPoints) - walletPointsApplied,
+          walletDiscountApplied: walletPointsApplied,
+          currency: cartDetailsUpdated?.currency,
+          totalPayablePrice: cartDetailsUpdated?.total_price / 100,
+        });
+      }
     }
     setLoadingWalletBal(false);
   };
@@ -155,10 +173,10 @@ export function ApplyWallet({ customerDetails }) {
   }, []);
 
   useEffect(() => {
-    if (userPoints !== null) {
+    if (userPoints !== null && checkoutTarget?.isSet) {
       toggleUserWalletApplied(!walletApplied);
     }
-  }, [userPoints]);
+  }, [userPoints, checkoutTarget?.isSet]);
 
   return (
     <>

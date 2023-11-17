@@ -7,7 +7,8 @@
 		"preview": "vite preview",
 		"build:watch": "concurrently \"vite build --config vite-configs/vite.cart-wallet-widget.config.js --watch\" \"vite build --config vite-configs/vite.cart-drawer.config.js --watch\"",
 		"serve": "http-server dist -c-1",
-		"start": "concurrently \"npm run build:watch\" \"npm run serve\""
+		"start": "concurrently \"npm run build:watch\" \"npm run serve\"",
+		"build:cart-wallet-widget": "vite build --config vite-configs/vite.cart-wallet-widget.config.js"
 	},
 	"dependencies": {
 		"concurrently": "^8.2.2",

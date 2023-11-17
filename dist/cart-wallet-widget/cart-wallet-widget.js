@@ -462,7 +462,8 @@
     };
   };
   function ApplyWallet({
-    customerDetails
+    customerDetails,
+    checkoutTarget
   }) {
     const [userPoints, setUserPoints] = h(null);
     const [walletApplied, setWalletApplied] = h(localStorage.getItem("fc-wallet-cart-applied") === "true" || false);
@@ -537,20 +538,34 @@
         const checkoutResponse = await fetch(`/checkout/?discount=${walletCouponCode}`, {
           method: "POST"
         });
-        checkoutResponse == null ? void 0 : checkoutResponse.url;
-        const cartResUpdated = await fetch(`/cart.json?v=${Date.now()}`);
-        const cartDetailsUpdated = await cartResUpdated.json();
-        const walletAppliedFromUpdatedCart = (_e = (_d = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _d.find((item) => {
-          var _a2;
-          return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes("WALLETAPPLIED");
-        })) == null ? void 0 : _e.total_allocated_amount;
-        const walletPointsApplied = walletAppliedFromUpdatedCart ? walletAppliedFromUpdatedCart / 100 : 0;
-        setWalletAppliedDetails({
-          remainingWalletBalance: Number(userPoints) - walletPointsApplied,
-          walletDiscountApplied: walletPointsApplied,
-          currency: cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.currency,
-          totalPayablePrice: (cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.total_price) / 100
-        });
+        if (checkoutTarget == null ? void 0 : checkoutTarget.enable) {
+          const checkoutURL = checkoutResponse == null ? void 0 : checkoutResponse.url;
+          const updatedCheckoutRes = await fetch(checkoutURL);
+          const updatedCheckout = await updatedCheckoutRes.text();
+          let updatedCheckoutContainer = document.createElement("div");
+          updatedCheckoutContainer.innerHTML = updatedCheckout;
+          const totalFinalPrice = Number(updatedCheckoutContainer == null ? void 0 : updatedCheckoutContainer.querySelector("[data-checkout-payment-due-target]").getAttribute("data-checkout-payment-due-target")) / 100;
+          setWalletAppliedDetails({
+            remainingWalletBalance: Number(userPoints) - walletPointsToApply,
+            walletDiscountApplied: walletPointsToApply,
+            currency: cartDetails == null ? void 0 : cartDetails.currency,
+            totalPayablePrice: totalFinalPrice
+          });
+        } else {
+          const cartResUpdated = await fetch(`/cart.json?v=${Date.now()}`);
+          const cartDetailsUpdated = await cartResUpdated.json();
+          const walletAppliedFromUpdatedCart = (_e = (_d = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _d.find((item) => {
+            var _a2;
+            return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes("WALLETAPPLIED");
+          })) == null ? void 0 : _e.total_allocated_amount;
+          const walletPointsApplied = walletAppliedFromUpdatedCart ? walletAppliedFromUpdatedCart / 100 : 0;
+          setWalletAppliedDetails({
+            remainingWalletBalance: Number(userPoints) - walletPointsApplied,
+            walletDiscountApplied: walletPointsApplied,
+            currency: cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.currency,
+            totalPayablePrice: (cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.total_price) / 100
+          });
+        }
       }
       setLoadingWalletBal(false);
     };
@@ -570,10 +585,10 @@
       getUserPoints();
     }, []);
     p(() => {
-      if (userPoints !== null) {
+      if (userPoints !== null && (checkoutTarget == null ? void 0 : checkoutTarget.isSet)) {
         toggleUserWalletApplied(!walletApplied);
       }
-    }, [userPoints]);
+    }, [userPoints, checkoutTarget == null ? void 0 : checkoutTarget.isSet]);
     return o(k$1, {
       children: [o("div", {
         class: "wallet-box-container",
@@ -674,6 +689,10 @@
       clientID: ""
     });
     const [themeDetails, setThemeDetails] = h(null);
+    const [checkoutTarget, setCheckoutTarget] = h({
+      enable: false,
+      isSet: false
+    });
     const getThemedetails = async ({
       client_id
     }) => {
@@ -695,6 +714,18 @@
       const customer_id = mainScript.getAttribute("data-customer-id");
       const customer_tags = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
       const client_id = mainScript.getAttribute("data-client-id");
+      const checkout_target = mainScript.getAttribute("data-checkout-target");
+      if (checkout_target) {
+        setCheckoutTarget({
+          enable: true,
+          isSet: true
+        });
+      } else {
+        setCheckoutTarget({
+          enable: false,
+          isSet: true
+        });
+      }
       setCustomerDetails({
         customerID: customer_id,
         customerTags: customer_tags,
@@ -706,7 +737,8 @@
     }, []);
     return o(k$1, {
       children: (customerDetails == null ? void 0 : customerDetails.customerID) ? o(ApplyWallet, {
-        customerDetails
+        customerDetails,
+        checkoutTarget
       }) : o(Login, {
         themeDetails
       })
