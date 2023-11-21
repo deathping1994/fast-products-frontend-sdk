@@ -771,20 +771,24 @@
   }
   const WALLET_API_URI = "https://boat-api.farziengineer.co";
   function renderWalletBox() {
-    const targetDiv = document.getElementById("fc-wallet-cart-widget-19212");
-    targetDiv.innerHTML = "";
-    let shadowTarget = document.createElement("div");
-    shadowTarget.className = "fc-wallet-cart-widget-19212-target";
-    shadowTarget.style.display = "block";
-    targetDiv.appendChild(shadowTarget);
-    let shadow = shadowTarget.attachShadow({
-      mode: "open"
-    });
-    let shadowRoot = document.createElement("div");
-    shadowRoot.className = "fc-wallet-cart-widget-19212-root";
-    shadow.appendChild(shadowRoot);
-    B$1(o(App, {}), shadowRoot);
-    B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
+    try {
+      const targetDiv = document.getElementById("fc-wallet-cart-widget-19212");
+      targetDiv.innerHTML = "";
+      let shadowTarget = document.createElement("div");
+      shadowTarget.className = "fc-wallet-cart-widget-19212-target";
+      shadowTarget.style.display = "block";
+      targetDiv.appendChild(shadowTarget);
+      let shadow = shadowTarget.attachShadow({
+        mode: "open"
+      });
+      let shadowRoot = document.createElement("div");
+      shadowRoot.className = "fc-wallet-cart-widget-19212-root";
+      shadow.appendChild(shadowRoot);
+      B$1(o(App, {}), shadowRoot);
+      B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
+    } catch (err) {
+      console.log("error", err);
+    }
   }
   window.fc_loyalty_render_wallet_box = renderWalletBox;
   renderWalletBox();
