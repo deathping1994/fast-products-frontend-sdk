@@ -63,7 +63,7 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
           method: "POST",
         }
       );
-      setCookie("discount_code", "", 7);// Remove discount code from cookie for GoKwik checkout
+      setCookie("discount_code", "", 7); // Remove discount code from cookie for GoKwik checkout
     } else {
       const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
       const cartDetails = await cartRes.json();
@@ -243,8 +243,15 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
                 <SkeletonLoader width="50px" height="16px" />
               ) : walletAppliedDetails?.walletDiscountApplied ? (
                 <>
-                  {"- "}&#8377;
-                  {` ${walletAppliedDetails?.walletDiscountApplied}`}
+                  {"- "}
+                  {` ${Number(
+                    walletAppliedDetails?.walletDiscountApplied
+                  ).toLocaleString("en-IN", {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                    style: "currency",
+                    currency: "INR",
+                  })}`}
                 </>
               ) : (
                 0
@@ -258,7 +265,14 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
               {loadingWalletBal ? (
                 <SkeletonLoader width="50px" height="16px" />
               ) : (
-                <>&#8377;{` ${walletAppliedDetails?.totalPayablePrice}`}</>
+                <>{` ${Number(
+                  walletAppliedDetails?.totalPayablePrice
+                ).toLocaleString("en-IN", {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                  style: "currency",
+                  currency: "INR",
+                })}`}</>
               )}
             </p>
           </div>

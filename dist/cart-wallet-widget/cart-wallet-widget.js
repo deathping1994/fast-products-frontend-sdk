@@ -658,7 +658,12 @@
               width: "50px",
               height: "16px"
             }) : (walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied) ? o(k$1, {
-              children: ["- ", "₹", ` ${walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied}`]
+              children: ["- ", ` ${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied).toLocaleString("en-IN", {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+                style: "currency",
+                currency: "INR"
+              })}`]
             }) : 0
           })]
         }), o("div", {
@@ -671,7 +676,12 @@
               width: "50px",
               height: "16px"
             }) : o(k$1, {
-              children: ["₹", ` ${walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice}`]
+              children: ` ${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice).toLocaleString("en-IN", {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+                style: "currency",
+                currency: "INR"
+              })}`
             })
           })]
         })]
