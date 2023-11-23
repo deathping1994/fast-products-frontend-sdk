@@ -54,6 +54,19 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
   const toggleUserWalletApplied = async (prevWalletApplied) => {
     setLoadingWalletBal(true);
     if (prevWalletApplied) {
+      if (checkoutTarget?.enable) {
+        setCookie("discount_code", "", 7);
+        const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
+        const cartDetails = await cartRes.json();
+        const totalPrice = cartDetails?.total_price / 100;
+        setWalletAppliedDetails({
+          remainingWalletBalance: Number(userPoints),
+          walletDiscountApplied: 0,
+          currency: cartDetails?.currency,
+          totalPayablePrice: Number(totalPrice),
+        });
+        setLoadingWalletBal(false);
+      }
       const walletCouponCode = "WALLET_REMOVED19212";
 
       fetch(`/discount/${walletCouponCode}`);
@@ -64,6 +77,19 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
         }
       );
       setCookie("discount_code", "", 7); // Remove discount code from cookie for GoKwik checkout
+      if (!checkoutTarget?.enable) {
+        const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
+        const cartDetails = await cartRes.json();
+
+        const totalPrice = cartDetails?.total_price / 100;
+        setWalletAppliedDetails({
+          remainingWalletBalance: Number(userPoints),
+          walletDiscountApplied: 0,
+          currency: cartDetails?.currency,
+          totalPayablePrice: Number(totalPrice),
+        });
+        setLoadingWalletBal(false);
+      }
     } else {
       const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
       const cartDetails = await cartRes.json();
@@ -103,14 +129,23 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
         setLoadingWalletBal(false);
       }
 
-      fetch(`/discount/${walletCouponCode}`);
-      const checkoutResponse = await fetch(
-        `/checkout/?discount=${walletCouponCode}`,
-        {
-          method: "POST",
-        }
-      );
       if (checkoutTarget?.enable) {
+        setCookie("discount_code", walletCouponCode, 7);
+        fetch(`/discount/${walletCouponCode}`);
+        setWalletAppliedDetails({
+          remainingWalletBalance: Number(userPoints) - walletPointsToApply,
+          walletDiscountApplied: walletPointsToApply,
+          currency: cartDetails?.currency,
+          totalPayablePrice: Number(totalPrice) - walletPointsToApply,
+        });
+        setLoadingWalletBal(false);
+        const checkoutResponse = await fetch(
+          `/checkout/?discount=${walletCouponCode}`,
+          {
+            method: "POST",
+          }
+        );
+
         const checkoutURL = checkoutResponse?.url;
         const updatedCheckoutRes = await fetch(checkoutURL);
         const updatedCheckout = await updatedCheckoutRes.text();
@@ -130,6 +165,13 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
           totalPayablePrice: totalFinalPrice,
         });
       } else {
+        fetch(`/discount/${walletCouponCode}`);
+        const checkoutResponse = await fetch(
+          `/checkout/?discount=${walletCouponCode}`,
+          {
+            method: "POST",
+          }
+        );
         const cartResUpdated = await fetch(`/cart.json?v=${Date.now()}`);
         const cartDetailsUpdated = await cartResUpdated.json();
 
@@ -224,62 +266,64 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
         </p>
       </div>
 
-      {walletApplied ? (
-        <div class="wallet-applied-details-container">
-          <div class="wallet-applied-details">
-            <p>Remaining Wallet Balance</p>
-            <p class="point-details">
-              {loadingWalletBal ? (
-                <SkeletonLoader width="50px" height="16px" />
-              ) : (
-                walletAppliedDetails?.remainingWalletBalance
-              )}
-            </p>
-          </div>
-          <div class="wallet-applied-details">
-            <p>Wallet Discount Applied</p>
-            <p class="point-details">
-              {loadingWalletBal ? (
-                <SkeletonLoader width="50px" height="16px" />
-              ) : walletAppliedDetails?.walletDiscountApplied ? (
-                <>
-                  {"- "}
-                  {` ${Number(
-                    walletAppliedDetails?.walletDiscountApplied
-                  ).toLocaleString("en-IN", {
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                    style: "currency",
-                    currency: "INR",
-                  })}`}
-                </>
-              ) : (
-                0
-              )}
-            </p>
-          </div>
+      <div class="wallet-applied-details-container">
+        {walletApplied ? (
+          <>
+            <div class="wallet-applied-details">
+              <p>Remaining Wallet Balance</p>
+              <p class="point-details">
+                {loadingWalletBal ? (
+                  <SkeletonLoader width="50px" height="16px" />
+                ) : (
+                  walletAppliedDetails?.remainingWalletBalance
+                )}
+              </p>
+            </div>
+            <div class="wallet-applied-details">
+              <p>Wallet Discount Applied</p>
+              <p class="point-details">
+                {loadingWalletBal ? (
+                  <SkeletonLoader width="50px" height="16px" />
+                ) : walletAppliedDetails?.walletDiscountApplied ? (
+                  <>
+                    {"- "}
+                    {` ${Number(
+                      walletAppliedDetails?.walletDiscountApplied
+                    ).toLocaleString("en-IN", {
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2,
+                      style: "currency",
+                      currency: "INR",
+                    })}`}
+                  </>
+                ) : (
+                  0
+                )}
+              </p>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
 
-          <div class="wallet-applied-details">
-            <p>Total Payable Amount</p>
-            <p class="point-details">
-              {loadingWalletBal ? (
-                <SkeletonLoader width="50px" height="16px" />
-              ) : (
-                <>{` ${Number(
-                  walletAppliedDetails?.totalPayablePrice
-                ).toLocaleString("en-IN", {
-                  maximumFractionDigits: 2,
-                  minimumFractionDigits: 2,
-                  style: "currency",
-                  currency: "INR",
-                })}`}</>
-              )}
-            </p>
-          </div>
+        <div class="wallet-applied-details">
+          <p>Total Payable Amount</p>
+          <p class="point-details">
+            {loadingWalletBal ? (
+              <SkeletonLoader width="50px" height="16px" />
+            ) : (
+              <>{` ${Number(
+                walletAppliedDetails?.totalPayablePrice
+              ).toLocaleString("en-IN", {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+                style: "currency",
+                currency: "INR",
+              })}`}</>
+            )}
+          </p>
         </div>
-      ) : (
-        <></>
-      )}
+      </div>
     </>
   );
 }

@@ -511,12 +511,37 @@
       var _a, _b, _c, _d, _e;
       setLoadingWalletBal(true);
       if (prevWalletApplied) {
+        if (checkoutTarget == null ? void 0 : checkoutTarget.enable) {
+          setCookie("discount_code", "", 7);
+          const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
+          const cartDetails = await cartRes.json();
+          const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100;
+          setWalletAppliedDetails({
+            remainingWalletBalance: Number(userPoints),
+            walletDiscountApplied: 0,
+            currency: cartDetails == null ? void 0 : cartDetails.currency,
+            totalPayablePrice: Number(totalPrice)
+          });
+          setLoadingWalletBal(false);
+        }
         const walletCouponCode2 = "WALLET_REMOVED19212";
         fetch(`/discount/${walletCouponCode2}`);
         await fetch(`/checkout/?discount=${walletCouponCode2}`, {
           method: "POST"
         });
         setCookie("discount_code", "", 7);
+        if (!(checkoutTarget == null ? void 0 : checkoutTarget.enable)) {
+          const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
+          const cartDetails = await cartRes.json();
+          const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100;
+          setWalletAppliedDetails({
+            remainingWalletBalance: Number(userPoints),
+            walletDiscountApplied: 0,
+            currency: cartDetails == null ? void 0 : cartDetails.currency,
+            totalPayablePrice: Number(totalPrice)
+          });
+          setLoadingWalletBal(false);
+        }
       } else {
         const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
         const cartDetails = await cartRes.json();
@@ -544,11 +569,19 @@
         } catch (err) {
           setLoadingWalletBal(false);
         }
-        fetch(`/discount/${walletCouponCode}`);
-        const checkoutResponse = await fetch(`/checkout/?discount=${walletCouponCode}`, {
-          method: "POST"
-        });
         if (checkoutTarget == null ? void 0 : checkoutTarget.enable) {
+          setCookie("discount_code", walletCouponCode, 7);
+          fetch(`/discount/${walletCouponCode}`);
+          setWalletAppliedDetails({
+            remainingWalletBalance: Number(userPoints) - walletPointsToApply,
+            walletDiscountApplied: walletPointsToApply,
+            currency: cartDetails == null ? void 0 : cartDetails.currency,
+            totalPayablePrice: Number(totalPrice) - walletPointsToApply
+          });
+          setLoadingWalletBal(false);
+          const checkoutResponse = await fetch(`/checkout/?discount=${walletCouponCode}`, {
+            method: "POST"
+          });
           const checkoutURL = checkoutResponse == null ? void 0 : checkoutResponse.url;
           const updatedCheckoutRes = await fetch(checkoutURL);
           const updatedCheckout = await updatedCheckoutRes.text();
@@ -562,6 +595,10 @@
             totalPayablePrice: totalFinalPrice
           });
         } else {
+          fetch(`/discount/${walletCouponCode}`);
+          await fetch(`/checkout/?discount=${walletCouponCode}`, {
+            method: "POST"
+          });
           const cartResUpdated = await fetch(`/cart.json?v=${Date.now()}`);
           const cartDetailsUpdated = await cartResUpdated.json();
           const walletAppliedFromUpdatedCart = (_e = (_d = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _d.find((item) => {
@@ -635,38 +672,40 @@
             }) : userPoints]
           })]
         })]
-      }), walletApplied ? o("div", {
+      }), o("div", {
         class: "wallet-applied-details-container",
-        children: [o("div", {
-          class: "wallet-applied-details",
-          children: [o("p", {
-            children: "Remaining Wallet Balance"
-          }), o("p", {
-            class: "point-details",
-            children: loadingWalletBal ? o(SkeletonLoader, {
-              width: "50px",
-              height: "16px"
-            }) : walletAppliedDetails == null ? void 0 : walletAppliedDetails.remainingWalletBalance
+        children: [walletApplied ? o(k$1, {
+          children: [o("div", {
+            class: "wallet-applied-details",
+            children: [o("p", {
+              children: "Remaining Wallet Balance"
+            }), o("p", {
+              class: "point-details",
+              children: loadingWalletBal ? o(SkeletonLoader, {
+                width: "50px",
+                height: "16px"
+              }) : walletAppliedDetails == null ? void 0 : walletAppliedDetails.remainingWalletBalance
+            })]
+          }), o("div", {
+            class: "wallet-applied-details",
+            children: [o("p", {
+              children: "Wallet Discount Applied"
+            }), o("p", {
+              class: "point-details",
+              children: loadingWalletBal ? o(SkeletonLoader, {
+                width: "50px",
+                height: "16px"
+              }) : (walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied) ? o(k$1, {
+                children: ["- ", ` ${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied).toLocaleString("en-IN", {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                  style: "currency",
+                  currency: "INR"
+                })}`]
+              }) : 0
+            })]
           })]
-        }), o("div", {
-          class: "wallet-applied-details",
-          children: [o("p", {
-            children: "Wallet Discount Applied"
-          }), o("p", {
-            class: "point-details",
-            children: loadingWalletBal ? o(SkeletonLoader, {
-              width: "50px",
-              height: "16px"
-            }) : (walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied) ? o(k$1, {
-              children: ["- ", ` ${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied).toLocaleString("en-IN", {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-                style: "currency",
-                currency: "INR"
-              })}`]
-            }) : 0
-          })]
-        }), o("div", {
+        }) : o(k$1, {}), o("div", {
           class: "wallet-applied-details",
           children: [o("p", {
             children: "Total Payable Amount"
@@ -685,7 +724,7 @@
             })
           })]
         })]
-      }) : o(k$1, {})]
+      })]
     });
   }
   function Login({
