@@ -741,32 +741,18 @@
       })
     });
   }
-  function Main(props) {
+  function Main({
+    themeDetailsData
+  }) {
     const [customerDetails, setCustomerDetails] = h({
       customerID: "",
       customerTags: "",
       clientID: ""
     });
-    const [themeDetails, setThemeDetails] = h(null);
     const [checkoutTarget, setCheckoutTarget] = h({
       enable: false,
       isSet: false
     });
-    const getThemedetails = async ({
-      client_id
-    }) => {
-      const themeDetailsRes = await fetch(`${WALLET_API_URI}/get-theme-details`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          client_id
-        })
-      });
-      const themeDetailsData = await themeDetailsRes.json();
-      setThemeDetails(themeDetailsData);
-    };
     p(() => {
       var _a;
       const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
@@ -790,26 +776,29 @@
         customerTags: customer_tags,
         clientID: client_id
       });
-      getThemedetails({
-        client_id
-      });
     }, []);
     return o(k$1, {
       children: (customerDetails == null ? void 0 : customerDetails.customerID) ? o(ApplyWallet, {
         customerDetails,
         checkoutTarget
       }) : o(Login, {
-        themeDetails
+        themeDetails: themeDetailsData
       })
     });
   }
-  function App() {
+  function App({
+    themeDetailsData
+  }) {
     return o(k$1, {
       children: [o("div", {
         class: "widget-container",
-        children: o(Main, {})
+        children: o(Main, {
+          themeDetailsData
+        })
       }), o("div", {
         class: "widget-styles"
+      }), o("div", {
+        class: "widget-custom-styles"
       })]
     });
   }
@@ -818,8 +807,16 @@
       children: style
     });
   }
+  function AppCustomCSS({
+    customStyles
+  }) {
+    return o("style", {
+      children: customStyles
+    });
+  }
   const WALLET_API_URI = "https://boat-api.farziengineer.co";
-  function renderWalletBox() {
+  async function renderWalletBox() {
+    var _a, _b;
     try {
       const targetDiv = document.getElementById("fc-wallet-cart-widget-19212");
       targetDiv.innerHTML = "";
@@ -833,8 +830,34 @@
       let shadowRoot = document.createElement("div");
       shadowRoot.className = "fc-wallet-cart-widget-19212-root";
       shadow.appendChild(shadowRoot);
-      B$1(o(App, {}), shadowRoot);
+      let themeDetailsData;
+      if ((_a = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _a.theme_details) {
+        themeDetailsData = window.fc_loyalty_vars.theme_details;
+      } else {
+        const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
+        const client_id = mainScript.getAttribute("data-client-id");
+        const themeDetailsRes = await fetch(`${WALLET_API_URI}/get-theme-details`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            client_id
+          })
+        });
+        themeDetailsData = await themeDetailsRes.json();
+        window.fc_loyalty_vars = {
+          theme_details: themeDetailsData
+        };
+      }
+      const clientCustomStyleData = ((_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.apply_wallet_snippet_css) || "";
+      B$1(o(App, {
+        themeDetailsData
+      }), shadowRoot);
       B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
+      B$1(o(AppCustomCSS, {
+        customStyles: clientCustomStyleData
+      }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
     } catch (err) {
       console.log("error", err);
     }

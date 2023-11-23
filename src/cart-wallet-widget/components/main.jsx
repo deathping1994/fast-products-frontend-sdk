@@ -3,31 +3,16 @@ import { ApplyWallet } from "./applywallet";
 import { Login } from "./login";
 import { WALLET_API_URI } from "..";
 
-export function Main(props) {
+export function Main({ themeDetailsData }) {
   const [customerDetails, setCustomerDetails] = useState({
     customerID: "",
     customerTags: "",
     clientID: "",
   });
-  const [themeDetails, setThemeDetails] = useState(null);
   const [checkoutTarget, setCheckoutTarget] = useState({
     enable: false,
-    isSet: false
+    isSet: false,
   });
-
-  const getThemedetails = async ({ client_id }) => {
-    const themeDetailsRes = await fetch(`${WALLET_API_URI}/get-theme-details`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        client_id: client_id,
-      }),
-    });
-    const themeDetailsData = await themeDetailsRes.json();
-    setThemeDetails(themeDetailsData);
-  };
 
   useEffect(() => {
     const mainScript = document.querySelector(
@@ -42,12 +27,12 @@ export function Main(props) {
     if (checkout_target) {
       setCheckoutTarget({
         enable: true,
-        isSet: true
+        isSet: true,
       });
-    }else{
+    } else {
       setCheckoutTarget({
         enable: false,
-        isSet: true
+        isSet: true,
       });
     }
 
@@ -56,8 +41,6 @@ export function Main(props) {
       customerTags: customer_tags,
       clientID: client_id,
     });
-
-    getThemedetails({ client_id: client_id });
   }, []);
 
   return (
@@ -68,7 +51,7 @@ export function Main(props) {
           checkoutTarget={checkoutTarget}
         />
       ) : (
-        <Login themeDetails={themeDetails} />
+        <Login themeDetails={themeDetailsData} />
       )}
     </>
   );

@@ -2,13 +2,14 @@ import { render } from "preact";
 import style from "./shadow-style.css?inline";
 import { Main } from "./components/main";
 
-export function App() {
+export function App({ themeDetailsData }) {
   return (
     <>
       <div class="widget-container">
-        <Main />
+        <Main themeDetailsData={themeDetailsData} />
       </div>
       <div class="widget-styles"></div>
+      <div class="widget-custom-styles"></div>
     </>
   );
 }
@@ -17,9 +18,13 @@ export function AppCSS() {
   return <style>{style}</style>;
 }
 
+export function AppCustomCSS({ customStyles }) {
+  return <style>{customStyles}</style>;
+}
+
 export const WALLET_API_URI = import.meta.env.VITE_APP_BASE_URL;
 
-function renderWalletBox() {
+async function renderWalletBox() {
   try {
     const targetDiv = document.getElementById("fc-wallet-cart-widget-19212");
     targetDiv.innerHTML = "";
@@ -33,8 +38,41 @@ function renderWalletBox() {
     shadowRoot.className = "fc-wallet-cart-widget-19212-root";
     shadow.appendChild(shadowRoot);
 
-    render(<App />, shadowRoot);
+    let themeDetailsData;
+    // @ts-ignore
+    if (window?.fc_loyalty_vars?.theme_details) {
+      // @ts-ignore
+      themeDetailsData = window.fc_loyalty_vars.theme_details;
+    } else {
+      const mainScript = document.querySelector(
+        "#fc-wallet-cart-widget-script-19212"
+      );
+      const client_id = mainScript.getAttribute("data-client-id");
+      const themeDetailsRes = await fetch(
+        `${WALLET_API_URI}/get-theme-details`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            client_id: client_id,
+          }),
+        }
+      );
+      themeDetailsData = await themeDetailsRes.json();
+      // @ts-ignore
+      window.fc_loyalty_vars = { theme_details: themeDetailsData };
+    }
+    const clientCustomStyleData =
+      themeDetailsData?.data?.apply_wallet_snippet_css || "";
+
+    render(<App themeDetailsData={themeDetailsData} />, shadowRoot);
     render(<AppCSS />, shadowRoot?.querySelector(".widget-styles"));
+    render(
+      <AppCustomCSS customStyles={clientCustomStyleData} />,
+      shadowRoot?.querySelector(".widget-custom-styles")
+    );
   } catch (err) {
     console.log("error", err);
   }
