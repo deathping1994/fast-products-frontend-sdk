@@ -14,27 +14,40 @@
 	}
 
 .fc-cart-drawer-19212--root .cart-container{
-	background-color: red;
-    position: absolute;
+	background-color: white;
+    position: fixed;
     top: 0;
-    right: 0;
+    right: -100%;
     height: 100vh;
     width: 90vw;
     max-width: 400px;
-    z-index: 200;
+    transition: ease-out 0.3s;
+    z-index: 2000;
+    cursor: default;
 }
-.fc-cart-drawer-19212--root .cart-container .side-drawer { 
-    height: 100%;
-    background: white;
+.fc-cart-drawer-19212--root .cart-container.open{
+
+    right: 0;
+
+}
+.fc-cart-drawer-19212--root .cart-overlay{
+    background-color: #01010194;
+    width: 100vw;
+    height: 100vh;
     position: fixed;
     top: 0;
-    right: 0;
-    width: 40%;
-    z-index: 200;
-    box-shadow: 1px 0px 7px rgba(0,0,0,0.5); 
-    transform: translateX(100%);
-    transition: transform 0.3s ease-out;
- }
- .fc-cart-drawer-19212--root .cart-container .side-drawer.open {
-    transform: translateX(0);
- }
+    left:-100vw;
+    z-index: 999;
+    opacity: 0;
+    cursor: url(//www.vilvahstore.com/cdn/shop/t/162/assets/cursor-close.svg?v=1471745…),auto;
+    
+}
+.fc-cart-drawer-19212--root .cart-overlay.open{
+    opacity: 1;
+    left:0;
+}
+.cart-container h1.fc-cart-drawer-title{
+    font-size:25px;
+    color:black;
+    background-color: rgb(231, 158, 158);
+}

@@ -6,7 +6,7 @@ export function App() {
     return (
     <>
       <div class="widget-container">
-        <Main/>
+        <Main title='My Cart'/>
       </div>
       <div class="widget-styles"></div>
     </>
