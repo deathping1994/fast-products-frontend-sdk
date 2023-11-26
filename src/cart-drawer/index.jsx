@@ -3,7 +3,7 @@ import style from "./shadow-style.css?inline";
 import { Main } from "./components/main";
 
 export function App() {
-  return (
+    return (
     <>
       <div class="widget-container">
         <Main/>
