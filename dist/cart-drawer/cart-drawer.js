@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = ".fc-cart-drawer-19212--root * {\r\n	padding: 0;\r\n	margin: 0;\r\n	box-sizing: border-box;\r\n}\r\n\r\n.fc-cart-drawer-19212--root a {\r\n	text-decoration: none;\r\n	color: inherit;\r\n}\r\n\r\n.fc-cart-drawer-19212--root {\r\n	width: 100%;\r\n	}\r\n\r\n.fc-cart-drawer-19212--root .cart-container{\r\n	background-color: white;\r\n    position: fixed;\r\n    top: 0;\r\n    right: -100%;\r\n    height: 100vh;\r\n    width: 90vw;\r\n    max-width: 400px;\r\n    transition: ease-out 0.3s;\r\n    z-index: 2000;\r\n    cursor: default;\r\n}\r\n.fc-cart-drawer-19212--root .cart-container.open{\r\n\r\n    right: 0;\r\n\r\n}\r\n.fc-cart-drawer-19212--root .cart-overlay{\r\n    background-color: #01010194;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    position: fixed;\r\n    top: 0;\r\n    left:-100vw;\r\n    z-index: 999;\r\n    opacity: 0;\r\n    cursor: url(//www.vilvahstore.com/cdn/shop/t/162/assets/cursor-close.svg?v=1471745…),auto;\r\n    \r\n}\r\n.fc-cart-drawer-19212--root .cart-overlay.open{\r\n    opacity: 1;\r\n    left:0;\r\n}\r\n.cart-container h1.fc-cart-drawer-title{\r\n    font-size:25px;\r\n    color:black;\r\n    background-color: rgb(231, 158, 158);\r\n}\r\n";
+  const style = ".fc-cart-drawer-19212--root * {\r\n	padding: 0;\r\n	margin: 0;\r\n	box-sizing: border-box;\r\n}\r\n\r\n.fc-cart-drawer-19212--root a {\r\n	text-decoration: none;\r\n	color: inherit;\r\n}\r\n\r\n.fc-cart-drawer-19212--root {\r\n	width: 100%;\r\n	}\r\n\r\n.fc-cart-drawer-19212--root .cart-container{\r\n	background-color: white;\r\n    position: fixed;\r\n    top: 0;\r\n    right: -100%;\r\n    height: 100vh;\r\n    width: 90vw;\r\n    max-width: 400px;\r\n    transition: ease-out 0.3s;\r\n    z-index: 2000;\r\n    cursor: default;\r\n}\r\n.fc-cart-drawer-19212--root .cart-container.open{\r\n\r\n    right: 0;\r\n\r\n}\r\n.fc-cart-drawer-19212--root .cart-overlay{\r\n    background-color: #01010194;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    position: fixed;\r\n    top: 0;\r\n    left:-100vw;\r\n    z-index: 999;\r\n    opacity: 0;\r\n    cursor: url(//www.vilvahstore.com/cdn/shop/t/162/assets/cursor-close.svg?v=1471745…),auto;\r\n    \r\n}\r\n.fc-cart-drawer-19212--root .cart-overlay.open{\r\n    opacity: 1;\r\n    left:0;\r\n}\r\n.cart-container h1.fc-cart-drawer-title{\r\n    font-size: 25px;\r\n    color: black;\r\n    background-color: rgb(231, 158, 158);\r\n    position: fixed;\r\n    width: 100%;\r\n    top: 0;\r\n    padding: 1rem;\r\n}\r\n.fc-close-slider{\r\n    height: 40px;\r\n    position: fixed;\r\n    width: 40px;\r\n    border: none;\r\n    outline: none;\r\n    right: 1rem;\r\n    top: 12px;\r\n    background: none;\r\n    cursor: pointer;\r\n    z-index: 99999;\r\n    opacity:0;\r\n}\r\n.fc-close-slider.open{\r\n    opacity: 1;\r\n}\r\n";
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -407,10 +407,17 @@
     const [open, setOpen] = h("");
     p(() => {
       let cartSvgButton = document.querySelector("#cart-icon-bubble");
-      cartSvgButton.addEventListener("click", (event) => {
+      const addToCartButton = document.querySelector(".product-form__submit");
+      function openSlider(event) {
         event.preventDefault();
         setOpen("open");
-      });
+      }
+      function openSliderAtc(event) {
+        document.querySelector("#cart-notification").style.display = "none";
+        setOpen("open");
+      }
+      cartSvgButton.addEventListener("click", openSlider);
+      addToCartButton.addEventListener("click", openSliderAtc);
     }, []);
     function handleOutsideClick(event) {
       if (event.target.closest(".cart-container")) {
@@ -419,8 +426,11 @@
         setOpen("");
       }
     }
+    function handleCloseSlider(event) {
+      setOpen("");
+    }
     return o(k$1, {
-      children: o("div", {
+      children: [o("div", {
         class: `cart-overlay ${open !== "" ? "open" : ""}`,
         onClick: handleOutsideClick,
         children: o("div", {
@@ -430,7 +440,19 @@
             children: props.title
           })
         })
-      })
+      }), o("button", {
+        class: `fc-close-slider ${open !== "" ? "open" : ""}`,
+        onClick: handleCloseSlider,
+        children: o("svg", {
+          width: "12",
+          viewBox: "0 0 10 10",
+          children: o("path", {
+            d: "M9.677 8.118a1.102 1.102 0 11-1.559 1.56L5 6.558 1.882 9.677a1.102 1.102 0 11-1.56-1.559L3.442 5 .323 1.882A1.102 1.102 0 111.882.322L5 3.442 8.118.323a1.102 1.102 0 111.56 1.559L6.558 5l3.118 3.118z",
+            fill: "#000",
+            "fill-rule": "nonzero"
+          })
+        })
+      })]
     });
   }
   function App() {

@@ -47,7 +47,27 @@
     left:0;
 }
 .cart-container h1.fc-cart-drawer-title{
-    font-size:25px;
-    color:black;
+    font-size: 25px;
+    color: black;
     background-color: rgb(231, 158, 158);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 1rem;
+}
+.fc-close-slider{
+    height: 40px;
+    position: fixed;
+    width: 40px;
+    border: none;
+    outline: none;
+    right: 1rem;
+    top: 12px;
+    background: none;
+    cursor: pointer;
+    z-index: 99999;
+    opacity:0;
+}
+.fc-close-slider.open{
+    opacity: 1;
 }
