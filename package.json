@@ -5,7 +5,7 @@
 		"dev": "vite",
 		"build": "concurrently \"vite build --config vite-configs/vite.cart-wallet-widget.config.js \" \"vite build --config vite-configs/vite.cart-drawer.config.js \"",
 		"preview": "vite preview",
-		"build:watch": "concurrently \"vite build --config vite-configs/vite.cart-wallet-widget.config.js --watch\" \"vite build --config vite-configs/vite.cart-drawer.config.js --watch\"",
+		"build:watch": "concurrently \"vite build --config vite-configs/vite.cart-wallet-widget.config.js --watch\" \"vite build --config vite-configs/vite.cart-drawer.config.js --watch\" \"vite build --config vite-configs/vite.wallet-activity-snippet.config.js --watch\"",
 		"serve": "http-server dist -c-1",
 		"start": "concurrently \"npm run build:watch\" \"npm run serve\"",
 		"build:cart-wallet-widget": "vite build --config vite-configs/vite.cart-wallet-widget.config.js --watch",
