@@ -24,6 +24,7 @@
     transition: ease-out 0.3s;
     z-index: 2000;
     cursor: default;
+    overflow-y: scroll;
 }
 .fc-cart-drawer-19212--root .cart-container.open{
 
@@ -54,6 +55,7 @@
     width: 100%;
     top: 0;
     padding: 1rem;
+    z-index: 9999;
 }
 .fc-close-slider{
     height: 40px;
@@ -70,4 +72,86 @@
 }
 .fc-close-slider.open{
     opacity: 1;
+}
+.cart-drawer-cart-items-container{
+    width: 100%;
+    min-height: 100%;
+    background: white;
+    position: relative;
+    top: 60px;
+    margin-bottom: 10rem;
+
+}
+.single-item-box{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem;
+    gap: 3rem;
+    border-bottom: 1px solid #00000052;
+    border-width: thin;
+}
+
+img.cart-item-image{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+.item-details-containing-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+.item-details-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+p.item-title-cart-drawer{
+    font-size: 16px;
+    font-weight: 700;
+    max-width: 90%;
+    color: black;
+}
+button.item-remove-button{
+    border: none;
+    background: white;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.item-details-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.item-quantity-tracking{
+    display: flex;
+}
+button.minusBtn{
+    width: 38px;
+    height: 38px;
+   
+    cursor: pointer;
+}
+button.plusBtn{
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+}
+input.current-quantity{
+    height: 38px;
+    width: 38px;
+    display: flex;
+    text-align: center;
+    
+}
+div.item-price-wrapper{
+    display: flex;
+    gap: 1rem;
 }

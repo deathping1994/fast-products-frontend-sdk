@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-
+import { CartItems } from "./CartItems"
 export function Main(props) {
   const [open, setOpen] = useState("")
   useEffect(()=>{
@@ -14,8 +14,8 @@ export function Main(props) {
       document.querySelector("#cart-notification").style.display = "none"
        setOpen("open")
     }
-    cartSvgButton.addEventListener("click",openSlider)
-    addToCartButton.addEventListener("click",openSliderAtc)
+    cartSvgButton?.addEventListener("click",openSlider)
+    addToCartButton?.addEventListener("click",openSliderAtc)
   },[])
 
   
@@ -36,7 +36,7 @@ function handleCloseSlider(event){
       <div class={`cart-overlay ${open !== "" ? "open" :""}`} onClick={handleOutsideClick}>
         <div class={`cart-container ${open !== "" ? "open" :""}`}>
           <h1 class="fc-cart-drawer-title">{props.title}</h1>
-          
+          <CartItems/>
         </div>
       </div>
       <button class={`fc-close-slider ${open !== "" ? "open" :""}`} onClick={handleCloseSlider}>

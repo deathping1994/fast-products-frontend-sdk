@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = ".fc-cart-drawer-19212--root * {\r\n	padding: 0;\r\n	margin: 0;\r\n	box-sizing: border-box;\r\n}\r\n\r\n.fc-cart-drawer-19212--root a {\r\n	text-decoration: none;\r\n	color: inherit;\r\n}\r\n\r\n.fc-cart-drawer-19212--root {\r\n	width: 100%;\r\n	}\r\n\r\n.fc-cart-drawer-19212--root .cart-container{\r\n	background-color: white;\r\n    position: fixed;\r\n    top: 0;\r\n    right: -100%;\r\n    height: 100vh;\r\n    width: 90vw;\r\n    max-width: 400px;\r\n    transition: ease-out 0.3s;\r\n    z-index: 2000;\r\n    cursor: default;\r\n}\r\n.fc-cart-drawer-19212--root .cart-container.open{\r\n\r\n    right: 0;\r\n\r\n}\r\n.fc-cart-drawer-19212--root .cart-overlay{\r\n    background-color: #01010194;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    position: fixed;\r\n    top: 0;\r\n    left:-100vw;\r\n    z-index: 999;\r\n    opacity: 0;\r\n    cursor: url(//www.vilvahstore.com/cdn/shop/t/162/assets/cursor-close.svg?v=1471745…),auto;\r\n    \r\n}\r\n.fc-cart-drawer-19212--root .cart-overlay.open{\r\n    opacity: 1;\r\n    left:0;\r\n}\r\n.cart-container h1.fc-cart-drawer-title{\r\n    font-size: 25px;\r\n    color: black;\r\n    background-color: rgb(231, 158, 158);\r\n    position: fixed;\r\n    width: 100%;\r\n    top: 0;\r\n    padding: 1rem;\r\n}\r\n.fc-close-slider{\r\n    height: 40px;\r\n    position: fixed;\r\n    width: 40px;\r\n    border: none;\r\n    outline: none;\r\n    right: 1rem;\r\n    top: 12px;\r\n    background: none;\r\n    cursor: pointer;\r\n    z-index: 99999;\r\n    opacity:0;\r\n}\r\n.fc-close-slider.open{\r\n    opacity: 1;\r\n}\r\n";
+  const style = ".fc-cart-drawer-19212--root * {\r\n	padding: 0;\r\n	margin: 0;\r\n	box-sizing: border-box;\r\n}\r\n\r\n.fc-cart-drawer-19212--root a {\r\n	text-decoration: none;\r\n	color: inherit;\r\n}\r\n\r\n.fc-cart-drawer-19212--root {\r\n	width: 100%;\r\n	}\r\n\r\n.fc-cart-drawer-19212--root .cart-container{\r\n	background-color: white;\r\n    position: fixed;\r\n    top: 0;\r\n    right: -100%;\r\n    height: 100vh;\r\n    width: 90vw;\r\n    max-width: 400px;\r\n    transition: ease-out 0.3s;\r\n    z-index: 2000;\r\n    cursor: default;\r\n    overflow-y: scroll;\r\n}\r\n.fc-cart-drawer-19212--root .cart-container.open{\r\n\r\n    right: 0;\r\n\r\n}\r\n.fc-cart-drawer-19212--root .cart-overlay{\r\n    background-color: #01010194;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    position: fixed;\r\n    top: 0;\r\n    left:-100vw;\r\n    z-index: 999;\r\n    opacity: 0;\r\n    cursor: url(//www.vilvahstore.com/cdn/shop/t/162/assets/cursor-close.svg?v=1471745…),auto;\r\n    \r\n}\r\n.fc-cart-drawer-19212--root .cart-overlay.open{\r\n    opacity: 1;\r\n    left:0;\r\n}\r\n.cart-container h1.fc-cart-drawer-title{\r\n    font-size: 25px;\r\n    color: black;\r\n    background-color: rgb(231, 158, 158);\r\n    position: fixed;\r\n    width: 100%;\r\n    top: 0;\r\n    padding: 1rem;\r\n    z-index: 9999;\r\n}\r\n.fc-close-slider{\r\n    height: 40px;\r\n    position: fixed;\r\n    width: 40px;\r\n    border: none;\r\n    outline: none;\r\n    right: 1rem;\r\n    top: 12px;\r\n    background: none;\r\n    cursor: pointer;\r\n    z-index: 99999;\r\n    opacity:0;\r\n}\r\n.fc-close-slider.open{\r\n    opacity: 1;\r\n}\r\n.cart-drawer-cart-items-container{\r\n    width: 100%;\r\n    min-height: 100%;\r\n    background: white;\r\n    position: relative;\r\n    top: 60px;\r\n    margin-bottom: 10rem;\r\n\r\n}\r\n.single-item-box{\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    padding: 2rem;\r\n    gap: 3rem;\r\n    border-bottom: 1px solid #00000052;\r\n    border-width: thin;\r\n}\r\n\r\nimg.cart-item-image{\r\n    width: 100px;\r\n    height: 100px;\r\n    object-fit: contain;\r\n}\r\n.item-details-containing-div{\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 1rem;\r\n\r\n}\r\n.item-details-top{\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\np.item-title-cart-drawer{\r\n    font-size: 16px;\r\n    font-weight: 700;\r\n    max-width: 90%;\r\n    color: black;\r\n}\r\nbutton.item-remove-button{\r\n    border: none;\r\n    background: white;\r\n    width: 20px;\r\n    height: 20px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n}\r\n.item-details-bottom{\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n}\r\n.item-quantity-tracking{\r\n    display: flex;\r\n}\r\nbutton.minusBtn{\r\n    width: 38px;\r\n    height: 38px;\r\n   \r\n    cursor: pointer;\r\n}\r\nbutton.plusBtn{\r\n    width: 38px;\r\n    height: 38px;\r\n    cursor: pointer;\r\n}\r\ninput.current-quantity{\r\n    height: 38px;\r\n    width: 38px;\r\n    display: flex;\r\n    text-align: center;\r\n    \r\n}\r\ndiv.item-price-wrapper{\r\n    display: flex;\r\n    gap: 1rem;\r\n}\r\n";
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -403,6 +403,116 @@
         void 0 === a2[u2] && (a2[u2] = s2[u2]);
     return l$1.vnode && l$1.vnode(i2), i2;
   }
+  function CartItems() {
+    const [listItem, setListItem] = h([]);
+    p(() => {
+      async function GetDataAboutItem() {
+        const response = await fetch("https://farziteststore.myshopify.com/cart.json");
+        console.log("data", response);
+        const data = await response.json();
+        console.log("result", data.items);
+        setListItem(data.items);
+        const comparePricesPromises = data.items.map(async (item) => {
+          const handle = item.handle;
+          const compResponse = await fetch(`https://farziteststore.myshopify.com/products/${handle}.json`);
+          const compData = await compResponse.json();
+          const variant = compData.product.variants.find((v2) => v2.id === item.variant_id);
+          return variant ? variant.compare_at_price : null;
+        });
+        Promise.all(comparePricesPromises).then((comparePrices) => {
+          setListItem((prevItems) => prevItems.map((item, index) => ({
+            ...item,
+            compare_at_price: comparePrices[index]
+          })));
+        }).catch((error) => console.error("Error fetching compare_at_prices:", error));
+      }
+      GetDataAboutItem();
+    }, []);
+    return o("div", {
+      class: "cart-drawer-cart-items-container",
+      children: listItem.map((item) => {
+        return o(k$1, {
+          children: o("div", {
+            className: "single-item-box",
+            "data-variant-id": item.variant_id,
+            children: [o("div", {
+              className: "image-containing-div",
+              children: o("img", {
+                class: "cart-item-image",
+                src: item.featured_image.url
+              })
+            }), o("div", {
+              className: "item-details-containing-div",
+              children: [o("div", {
+                className: "item-details-top",
+                children: [o("p", {
+                  className: "item-title-cart-drawer",
+                  children: item.product_title
+                }), o("button", {
+                  class: "item-remove-button",
+                  children: o("svg", {
+                    width: "10",
+                    viewBox: "0 0 10 10",
+                    children: o("path", {
+                      d: "M9.677 8.118a1.102 1.102 0 11-1.559 1.56L5 6.558 1.882 9.677a1.102 1.102 0 11-1.56-1.559L3.442 5 .323 1.882A1.102 1.102 0 111.882.322L5 3.442 8.118.323a1.102 1.102 0 111.56 1.559L6.558 5l3.118 3.118z",
+                      fill: "#A1A1A1",
+                      "fill-rule": "nonzero"
+                    })
+                  })
+                })]
+              }), o("div", {
+                className: "item-details-bottom",
+                children: [o("div", {
+                  className: "item-quantity-tracking",
+                  children: [o("button", {
+                    className: "minusBtn",
+                    children: o("svg", {
+                      width: "10",
+                      viewBox: "0 0 12 2",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      children: o("path", {
+                        d: "M11.25 0H.75C.3 0 0 .4 0 1s.3 1 .75 1h10.5c.45 0 .75-.4.75-1s-.3-1-.75-1z",
+                        fill: "#7A7A7A",
+                        "fill-rule": "nonzero"
+                      })
+                    })
+                  }), o("input", {
+                    type: "text",
+                    className: "current-quantity",
+                    value: item.quantity
+                  }), o("button", {
+                    className: "plusBtn",
+                    children: o("svg", {
+                      width: "10",
+                      viewBox: "0 0 12 12",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      children: o("path", {
+                        d: "M11 5H7V1a1 1 0 00-2 0v4H1a1 1 0 000 2h4v4a1 1 0 002 0V7h4a1 1 0 000-2z",
+                        fill: "currentColor",
+                        "fill-rule": "nonzero"
+                      })
+                    })
+                  })]
+                }), o("div", {
+                  className: "item-price-wrapper",
+                  children: [o("span", {
+                    className: "compare-at-price",
+                    children: item.compare_at_price
+                  }), o("span", {
+                    className: "original-price",
+                    children: (item.final_price / 100).toLocaleString("en-IN", {
+                      style: "currency",
+                      currency: "INR"
+                    })
+                  })]
+                })]
+              })]
+            })]
+          })
+        });
+      })
+    });
+  }
   function Main(props) {
     const [open, setOpen] = h("");
     p(() => {
@@ -416,8 +526,8 @@
         document.querySelector("#cart-notification").style.display = "none";
         setOpen("open");
       }
-      cartSvgButton.addEventListener("click", openSlider);
-      addToCartButton.addEventListener("click", openSliderAtc);
+      cartSvgButton == null ? void 0 : cartSvgButton.addEventListener("click", openSlider);
+      addToCartButton == null ? void 0 : addToCartButton.addEventListener("click", openSliderAtc);
     }, []);
     function handleOutsideClick(event) {
       if (event.target.closest(".cart-container")) {
@@ -435,10 +545,10 @@
         onClick: handleOutsideClick,
         children: o("div", {
           class: `cart-container ${open !== "" ? "open" : ""}`,
-          children: o("h1", {
+          children: [o("h1", {
             class: "fc-cart-drawer-title",
             children: props.title
-          })
+          }), o(CartItems, {})]
         })
       }), o("button", {
         class: `fc-close-slider ${open !== "" ? "open" : ""}`,

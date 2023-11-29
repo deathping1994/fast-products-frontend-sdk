@@ -1,6 +1,6 @@
 import { render } from "preact";
 import style from "./shadow-style.css?inline";
-import { Main } from "./components/main";
+import { Main } from "./components/Main";
 
 export function App() {
     return (
