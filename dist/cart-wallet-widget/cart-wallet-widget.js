@@ -483,6 +483,7 @@
       currency: null,
       totalPayablePrice: 0
     });
+    const [walletRedemptionLimit, setWalletRedemptionLimit] = h(null);
     const getUserPoints = async () => {
       var _a, _b, _c, _d;
       setLoadingWalletBal(true);
@@ -506,6 +507,27 @@
         setLoadingWalletBal(false);
       }
       setLoadingWalletBal(false);
+    };
+    const getWalletRemeptionLimit = async () => {
+      var _a;
+      try {
+        const response = await fetch(`${WALLET_API_URI}/client-wallet-limit`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            // customer_id: customerDetails?.customerID,
+            // user_hash: customerDetails?.customerTags,
+            client_id: customerDetails == null ? void 0 : customerDetails.clientID
+          })
+        });
+        let walletData = await response.json();
+        const walletRemeptionLimitAmount = Number(((_a = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a.limit_amount) || "0");
+        setWalletRedemptionLimit(walletRemeptionLimitAmount || null);
+      } catch (err) {
+        setWalletRedemptionLimit(null);
+      }
     };
     const toggleUserWalletApplied = async (prevWalletApplied) => {
       var _a, _b, _c, _d, _e;
@@ -551,7 +573,8 @@
         })) == null ? void 0 : _b.total_allocated_amount;
         const alreadyAppliedWalletDiscount = prevWalletAmountApplied ? prevWalletAmountApplied / 100 : 0;
         const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100 + alreadyAppliedWalletDiscount;
-        const walletPointsToApply = Math.min(Number(userPoints), Number(totalPrice));
+        const walletPointsToApplyBeforeLimit = Math.min(Number(userPoints), Number(totalPrice));
+        const walletPointsToApply = walletRedemptionLimit ? Math.min(Number(walletPointsToApplyBeforeLimit), Number(walletRedemptionLimit)) : walletPointsToApplyBeforeLimit;
         try {
           const walletCouponResponse = await fetch(`${WALLET_API_URI}/loyalty/get-wallet-coupon`, {
             method: "POST",
@@ -630,6 +653,7 @@
     };
     p(() => {
       getUserPoints();
+      getWalletRemeptionLimit();
     }, []);
     p(() => {
       if (userPoints !== null && (checkoutTarget == null ? void 0 : checkoutTarget.isSet)) {
@@ -814,7 +838,7 @@
       children: customStyles
     });
   }
-  const WALLET_API_URI = "https://boat-api.farziengineer.co";
+  const WALLET_API_URI = "https://fastloyalty-api.farziengineer.co";
   async function renderWalletBox() {
     var _a, _b;
     try {

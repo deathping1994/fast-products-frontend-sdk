@@ -26,6 +26,7 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
     currency: null,
     totalPayablePrice: 0,
   });
+  const [walletRedemptionLimit, setWalletRedemptionLimit] = useState(null);
 
   const getUserPoints = async () => {
     setLoadingWalletBal(true);
@@ -49,6 +50,29 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
       setLoadingWalletBal(false);
     }
     setLoadingWalletBal(false);
+  };
+
+  const getWalletRemeptionLimit = async () => {
+    try {
+      const response = await fetch(`${WALLET_API_URI}/client-wallet-limit`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // customer_id: customerDetails?.customerID,
+          // user_hash: customerDetails?.customerTags,
+          client_id: customerDetails?.clientID,
+        }),
+      });
+      let walletData = await response.json();
+      const walletRemeptionLimitAmount = Number(
+        walletData?.data?.limit_amount || "0"
+      );
+      setWalletRedemptionLimit(walletRemeptionLimitAmount || null);
+    } catch (err) {
+      setWalletRedemptionLimit(null);
+    }
   };
 
   const toggleUserWalletApplied = async (prevWalletApplied) => {
@@ -102,10 +126,16 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
         : 0;
       const totalPrice =
         cartDetails?.total_price / 100 + alreadyAppliedWalletDiscount;
-      const walletPointsToApply = Math.min(
+      const walletPointsToApplyBeforeLimit = Math.min(
         Number(userPoints),
         Number(totalPrice)
       );
+      const walletPointsToApply = walletRedemptionLimit
+        ? Math.min(
+            Number(walletPointsToApplyBeforeLimit),
+            Number(walletRedemptionLimit)
+          )
+        : walletPointsToApplyBeforeLimit;
 
       try {
         const walletCouponResponse = await fetch(
@@ -214,6 +244,7 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
 
   useEffect(() => {
     getUserPoints();
+    getWalletRemeptionLimit();
   }, []);
 
   useEffect(() => {

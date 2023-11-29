@@ -3,12 +3,15 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build",
+		"build": "concurrently \"vite build --config vite-configs/vite.cart-wallet-widget.config.js \" \"vite build --config vite-configs/vite.cart-drawer.config.js \"",
 		"preview": "vite preview",
 		"build:watch": "concurrently \"vite build --config vite-configs/vite.cart-wallet-widget.config.js --watch\" \"vite build --config vite-configs/vite.cart-drawer.config.js --watch\"",
 		"serve": "http-server dist -c-1",
 		"start": "concurrently \"npm run build:watch\" \"npm run serve\"",
-		"build:cart-wallet-widget": "vite build --config vite-configs/vite.cart-wallet-widget.config.js"
+		"build:cart-wallet-widget": "vite build --config vite-configs/vite.cart-wallet-widget.config.js --watch",
+		"start:cart-wallet-widget": "concurrently \"npm run build:cart-wallet-widget\" \"npm run serve\"",
+		"build:cart-drawer": "vite build --config vite-configs/vite.cart-drawer.config.js --watch",
+		"start:cart-drawer": "concurrently \"npm run build:cart-drawer\" \"npm run serve\""
 	},
 	"dependencies": {
 		"concurrently": "^8.2.2",
