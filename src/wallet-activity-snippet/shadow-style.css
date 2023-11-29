@@ -1,0 +1,19 @@
+.fc-wallet-activity-snippet-19212--root * {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.fc-wallet-activity-snippet-19212--root a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.fc-wallet-activity-snippet-19212--root {
+	width: 100%;
+}
+
+.fc-wallet-activity-snippet-19212--root .snippet-container{
+    height: 100vh;
+    width: 100vw;
+}
