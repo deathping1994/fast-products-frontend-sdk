@@ -50,10 +50,22 @@ export function WalletScreen({ customerDetails }) {
   return (
     <>
       {loading ? (
-        <>
-          <SkeletonLoader width="20%" height="50px" />
-          <SkeletonLoader width="80%" height="100px" />
-        </>
+        <div class="skeleton-loader-container">
+          <SkeletonLoader
+            width="22%"
+            height="35px"
+            styles={{ marginLeft: 0 }}
+          />
+          <SkeletonLoader width="100%" height="100px" />
+          <SkeletonLoader
+            width="28%"
+            height="30px"
+            styles={{ marginLeft: 0, marginTop: "36px" }}
+          />
+          <SkeletonLoader width="100%" height="100px" />
+          <SkeletonLoader width="100%" height="100px" />
+          <SkeletonLoader width="100%" height="100px" />
+        </div>
       ) : (
         <>
           <h1>Wallet Points</h1>

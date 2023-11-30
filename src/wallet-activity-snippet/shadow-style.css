@@ -110,3 +110,14 @@
 	margin: 10px auto;
 	border-radius: 3px;
 }
+
+.skeleton-loader-container {
+	width: 80%;
+	margin: auto;
+}
+
+@media screen and (max-width: 480px) {
+	.skeleton-loader-container {
+		width: 92%;
+	}
+}

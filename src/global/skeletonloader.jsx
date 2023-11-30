@@ -1,4 +1,4 @@
-export function SkeletonLoader({ width = "30px", height = "10px" }) {
+export function SkeletonLoader({ width = "30px", height = "10px", styles={} }) {
   return (
     <>
       <div
@@ -11,7 +11,8 @@ export function SkeletonLoader({ width = "30px", height = "10px" }) {
           backgroundSize: "300%",
           backgroundPosition: "100% 0",
           borderRadius: "inherit",
-          animation: "shimmer 1.5s infinite",
+          animation: "shimmer 1.4s infinite",
+          ...styles
         }}
       ></div>
     </>
