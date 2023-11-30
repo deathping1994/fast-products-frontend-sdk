@@ -682,6 +682,13 @@
       })
     });
   }
+  const parseJson = (jsonString) => {
+    try {
+      return JSON.parse(jsonString);
+    } catch {
+      return jsonString;
+    }
+  };
   function App() {
     return o(k$1, {
       children: [o("div", {
@@ -689,6 +696,8 @@
         children: o(Main, {})
       }), o("div", {
         class: "widget-styles"
+      }), o("div", {
+        class: "widget-custom-styles"
       })]
     });
   }
@@ -697,9 +706,18 @@
       children: style
     });
   }
+  function AppCustomCSS({
+    customStyles
+  }) {
+    return o("style", {
+      children: customStyles
+    });
+  }
   const WALLET_API_URI = "https://fastloyalty-api.farziengineer.co";
-  function renderwalletActivitySnippet() {
+  async function renderwalletActivitySnippet() {
+    var _a, _b;
     const targetDiv = document.getElementById("fc-wallet-activity-snippet-19212");
+    targetDiv.innerHTML = "";
     let shadowTarget = document.createElement("div");
     shadowTarget.className = "fc-wallet-activity-snippet-19212-target";
     shadowTarget.style.display = "block";
@@ -710,8 +728,41 @@
     let shadowRoot = document.createElement("div");
     shadowRoot.className = "fc-wallet-activity-snippet-19212--root";
     shadow.appendChild(shadowRoot);
+    let themeDetailsData;
+    if ((_a = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _a.wallet_snippet_theme_details) {
+      themeDetailsData = window.fc_loyalty_vars.wallet_snippet_theme_details;
+    } else {
+      const mainScript = document.querySelector("#fc-wallet-activity-snippet-script-19212");
+      const client_id = mainScript.getAttribute("data-client-id");
+      const themeDetailsRes = await fetch(`${WALLET_API_URI}/wallet-page-theme-details`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          client_id
+        })
+      });
+      const themeData = await themeDetailsRes.json();
+      themeDetailsData = parseJson((_b = themeData == null ? void 0 : themeData.data) == null ? void 0 : _b.theme_data);
+      if (window.fc_loyalty_vars) {
+        window.fc_loyalty_vars = {
+          // @ts-ignore
+          ...window.fc_loyalty_vars,
+          wallet_snippet_theme_details: themeDetailsData
+        };
+      } else {
+        window.fc_loyalty_vars = {
+          wallet_snippet_theme_details: themeDetailsData
+        };
+      }
+    }
+    const clientCustomStyleData = (themeDetailsData == null ? void 0 : themeDetailsData.custom_css) || "";
     B$1(o(App, {}), shadowRoot);
     B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
+    B$1(o(AppCustomCSS, {
+      customStyles: clientCustomStyleData
+    }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
   }
   window.fc_render_wallet_activity_snippet = renderwalletActivitySnippet;
   renderwalletActivitySnippet();
