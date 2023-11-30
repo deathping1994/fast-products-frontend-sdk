@@ -17,6 +17,8 @@ export function AppCSS() {
   return <style>{style}</style>;
 }
 
+export const WALLET_API_URI = import.meta.env.VITE_APP_BASE_URL;
+
 function renderwalletActivitySnippet() {
   const targetDiv = document.getElementById("fc-wallet-activity-snippet-19212");
   // Load the App content into the shadow DOM
