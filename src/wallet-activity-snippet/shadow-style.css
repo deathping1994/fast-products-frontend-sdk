@@ -58,6 +58,35 @@
 	margin-top: 36px;
 }
 
+.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	flex-direction: column;
+	gap: 10px;
+	margin: 18px;
+}
+
+.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn p {
+	text-align: center;
+	color: #fff;
+	font-size: 16px;
+	background: #000;
+	border-radius: 4px;
+	padding: 8px 16px;
+}
+
+.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn .circular-loader {
+	border: 3px solid #000;
+	border-left-color: transparent;
+	width: 30px;
+	height: 30px;
+	animation: spin89345 0.7s linear infinite;
+	border-radius: 50%;
+	margin: 0px 8px;
+}
+
 .fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .transaction-log-container {
 	margin: 14px 0px;
 	padding: 0px;
@@ -119,5 +148,15 @@
 @media screen and (max-width: 480px) {
 	.skeleton-loader-container {
 		width: 92%;
+	}
+}
+
+@keyframes spin89345 {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
 	}
 }

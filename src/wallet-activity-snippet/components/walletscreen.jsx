@@ -5,8 +5,13 @@ import { SkeletonLoader } from "../../global/skeletonloader";
 
 export function WalletScreen({ customerDetails }) {
   const [totalWalletAmount, setTotalWalletAmount] = useState(null);
-  const [walletLogs, setWalletLogs] = useState(null);
+  const [walletLogs, setWalletLogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [pageInfo, setpageInfo] = useState({
+    endCursor: null,
+  });
+  const [triggerLoadMore, setTriggerLoadMore] = useState(false);
+  const [loadingPaginatedResults, setLoadingPaginatedResults] = useState(false);
 
   const fetchWalletdetails = async ({
     customer_id,
@@ -22,16 +27,29 @@ export function WalletScreen({ customerDetails }) {
         customer_id: customer_id,
         user_hash: customer_tags,
         client_id: client_id,
+        page_info: {
+          first: 20,
+          after: pageInfo?.endCursor,
+        },
       }),
     });
     let walletData = await response.json();
     let walletAmount = walletData?.data?.data?.wallet?.wallet?.amount || 0;
     setTotalWalletAmount(walletAmount);
-    setWalletLogs(
-      walletData?.data?.data?.wallet?.wallet?.logs?.edges?.map((item) => {
-        return item.node;
-      })
-    );
+    setWalletLogs((prev) => {
+      const newWalletLogs =
+        walletData?.data?.data?.wallet?.wallet?.logs?.edges?.map((item) => {
+          return item.node;
+        });
+      return [...prev, ...newWalletLogs];
+    });
+    setpageInfo({
+      ...pageInfo,
+      endCursor:
+        walletData?.data?.data?.wallet?.wallet?.logs?.pageInfo?.hasNextPage &&
+        walletData?.data?.data?.wallet?.wallet?.logs?.pageInfo?.endCursor,
+    });
+    setLoadingPaginatedResults(false);
   };
 
   useEffect(() => {
@@ -45,7 +63,7 @@ export function WalletScreen({ customerDetails }) {
         setLoading(false);
       })();
     }
-  }, [customerDetails?.customerID]);
+  }, [customerDetails?.customerID, triggerLoadMore]);
 
   return (
     <>
@@ -118,6 +136,24 @@ export function WalletScreen({ customerDetails }) {
                 />
               );
             })}
+            {pageInfo?.endCursor ? (
+              <div
+                class="show-more-btn"
+                onClick={() => {
+                  setLoadingPaginatedResults(true);
+                  setTriggerLoadMore((prev) => !prev);
+                }}
+              >
+                <p>Show More</p>
+                {loadingPaginatedResults ? (
+                  <div class="circular-loader"></div>
+                ) : (
+                  <></>
+                )}
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </>
       )}
