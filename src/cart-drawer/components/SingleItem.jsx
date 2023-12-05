@@ -1,9 +1,4 @@
 import { useEffect, useState } from "preact/hooks";
-// interface SingleItemProps {
-//   details: any;
-//   subtotalPrice: number;
-//   updateSubtotalPrice: (newSubtotalPrice: number) => void;
-// }
 
 export function SingleItem({ details,subtotalPrice,updateSubtotalPrice }) {
   console.log("props me aaya kya", details);

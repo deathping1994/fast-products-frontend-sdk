@@ -5,7 +5,7 @@ export function CartItems(){
  const [subtotalPrice,setSubtotalPrice] = useState(10)
 
  async function GetDataAboutItem(){
-   const response = await fetch('https://farziteststore.myshopify.com/cart.json')
+   const response = await fetch('/cart.json')
    console.log("data",response)
    const data = await response.json()
    console.log("result",data)
@@ -15,7 +15,7 @@ export function CartItems(){
     // Fetch compare_at_price for each item
       const comparePricesPromises = data.items.map(async (item) => {
       const handle = item.handle;
-      const compResponse = await fetch(`https://farziteststore.myshopify.com/products/${handle}.json`);
+      const compResponse = await fetch(`/products/${handle}.json`);
       const compData = await compResponse.json();
       const variant = compData.product.variants.find((v) => v.id === item.variant_id);
       return variant ? variant.compare_at_price : null;
