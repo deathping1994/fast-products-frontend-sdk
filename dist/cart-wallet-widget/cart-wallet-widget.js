@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = '/* :root {\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\n	line-height: 1.5;\n	font-weight: 400;\n\n	color: #222;\n	background-color: #ffffff;\n\n	font-synthesis: none;\n	text-rendering: optimizeLegibility;\n	-webkit-font-smoothing: antialiased;\n	-moz-osx-font-smoothing: grayscale;\n	-webkit-text-size-adjust: 100%;\n}\n\nbody {\n	margin: 0;\n	display: flex;\n	align-items: center;\n	min-height: 100vh;\n} */\n\n.fc-wallet-cart-widget-19212-root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n\n.fc-wallet-cart-widget-19212-root a {\n	text-decoration: none;\n	color: inherit;\n}\n\n.fc-wallet-cart-widget-19212-root {\n	width: 100%;\n}\n\n.fc-wallet-cart-widget-19212-root .login-container {\n	background-color: #ebebeb;\n	display: flex;\n	justify-content: center;\n	padding: 10px 10px;\n}\n\n.fc-wallet-cart-widget-19212-root .wallet-box-container {\n	background-color: #ebebeb;\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n	padding: 14px 8px;\n}\n\n.fc-wallet-cart-widget-19212-root .point-details {\n	font-weight: bolder;\n	margin-left: 6px;\n}\n\n.fc-wallet-cart-widget-19212-root .checkbox-container {\n	padding: 0px 10px;\n}\n\n.fc-wallet-cart-widget-19212-root .checkbox-container .container input {\n	display: none;\n}\n\n.fc-wallet-cart-widget-19212-root .checkbox-container .container {\n	display: block;\n	position: relative;\n	cursor: pointer;\n	font-size: 20px;\n	user-select: none;\n	-webkit-tap-highlight-color: transparent;\n}\n\n.fc-wallet-cart-widget-19212-root .checkbox-container .checkmark {\n	position: relative;\n	top: 0;\n	left: 0;\n	height: 25px;\n	width: 25px;\n	background-color: #2196F300;\n	border-radius: 5px;\n	transition: all 0.25s;\n}\n\n/* When the checkbox is checked, add a blue background */\n.fc-wallet-cart-widget-19212-root .checkbox-container .container input:checked~.checkmark {\n	background-color: #000000;\n}\n\n/* Create the checkmark/indicator (hidden when not checked) */\n.fc-wallet-cart-widget-19212-root .checkbox-container .checkmark:after {\n	content: "";\n	position: absolute;\n	transform: rotate(0deg);\n	border: 0.1em solid black;\n	left: 0;\n	top: 0;\n	width: 25px;\n	height: 25px;\n	border-radius: 5px;\n	transition: all 0.25s, border-width 0.1s;\n}\n\n/* Show the checkmark when checked */\n.fc-wallet-cart-widget-19212-root .checkbox-container .container input:checked~.checkmark:after {\n	left: 0.45em;\n	top: 0.25em;\n	width: 0.25em;\n	height: 0.5em;\n	border-color: #fff0 white white #fff0;\n	border-width: 0 0.15em 0.15em 0;\n	border-radius: 0em;\n	transform: rotate(45deg);\n}\n\n.fc-wallet-cart-widget-19212-root .circularloader {\n	width: 20px;\n	transform-origin: center;\n	animation: rotate4 2s linear infinite;\n	margin-left: 8px;\n}\n\n.fc-wallet-cart-widget-19212-root .circularloader circle {\n	fill: none;\n	stroke: hsl(3, 0%, 0%);\n	stroke-width: 5;\n	stroke-dasharray: 1, 200;\n	stroke-dashoffset: 0;\n	stroke-linecap: round;\n	animation: dash4 1.5s ease-in-out infinite;\n}\n\n@keyframes rotate4 {\n	100% {\n		transform: rotate(360deg);\n	}\n}\n\n@keyframes dash4 {\n	0% {\n		stroke-dasharray: 1, 200;\n		stroke-dashoffset: 0;\n	}\n\n	50% {\n		stroke-dasharray: 90, 200;\n		stroke-dashoffset: -35px;\n	}\n\n	100% {\n		stroke-dashoffset: -125px;\n	}\n}\n\n.fc-wallet-cart-widget-19212-root .skeletonloader {\n	background-image: linear-gradient(90deg,\n			#ccc 0px,\n			rgb(229 229 229 / 90%) 40px,\n			#ccc 80px);\n	background-size: 300%;\n	background-position: 100% 0;\n	border-radius: inherit;\n	animation: shimmer 1.5s infinite;\n}\n\n@keyframes shimmer {\n	to {\n		background-position: -100% 0;\n	}\n}\n\n\n.fc-wallet-cart-widget-19212-root .wallet-applied-details-container {\n	background-color: #ebebeb;\n    margin-top: 8px;\n    padding: 4px 8px;\n}\n\n.fc-wallet-cart-widget-19212-root .wallet-applied-details-container .wallet-applied-details {\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n}';
+  const style = '/* :root {\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\n	line-height: 1.5;\n	font-weight: 400;\n\n	color: #222;\n	background-color: #ffffff;\n\n	font-synthesis: none;\n	text-rendering: optimizeLegibility;\n	-webkit-font-smoothing: antialiased;\n	-moz-osx-font-smoothing: grayscale;\n	-webkit-text-size-adjust: 100%;\n}\n\nbody {\n	margin: 0;\n	display: flex;\n	align-items: center;\n	min-height: 100vh;\n} */\n\n.fc-wallet-cart-widget-19212-root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n\n.fc-wallet-cart-widget-19212-root a {\n	text-decoration: none;\n	color: inherit;\n}\n\n.fc-wallet-cart-widget-19212-root {\n	width: 100%;\n}\n\n.fc-wallet-cart-widget-19212-root .login-container {\n	background-color: #ebebeb;\n	display: flex;\n	justify-content: center;\n	padding: 10px 10px;\n}\n\n.fc-wallet-cart-widget-19212-root .wallet-box-container {\n	background-color: #ebebeb;\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n	padding: 14px 8px;\n}\n\n.fc-wallet-cart-widget-19212-root .point-details {\n	font-weight: bolder;\n	margin-left: 6px;\n}\n\n.fc-wallet-cart-widget-19212-root .checkbox-container {\n	padding: 0px 10px;\n}\n\n.fc-wallet-cart-widget-19212-root .checkbox-container .container input {\n	display: none;\n}\n\n.fc-wallet-cart-widget-19212-root .checkbox-container .container {\n	display: block;\n	position: relative;\n	cursor: pointer;\n	font-size: 20px;\n	user-select: none;\n	-webkit-tap-highlight-color: transparent;\n}\n\n.fc-wallet-cart-widget-19212-root .checkbox-container .checkmark {\n	position: relative;\n	top: 0;\n	left: 0;\n	height: 25px;\n	width: 25px;\n	background-color: #2196F300;\n	border-radius: 5px;\n	transition: all 0.25s;\n}\n\n/* When the checkbox is checked, add a blue background */\n.fc-wallet-cart-widget-19212-root .checkbox-container .container input:checked~.checkmark {\n	background-color: #000000;\n}\n\n/* Create the checkmark/indicator (hidden when not checked) */\n.fc-wallet-cart-widget-19212-root .checkbox-container .checkmark:after {\n	content: "";\n	position: absolute;\n	transform: rotate(0deg);\n	border: 0.1em solid black;\n	left: 0;\n	top: 0;\n	width: 25px;\n	height: 25px;\n	border-radius: 5px;\n	transition: all 0.25s, border-width 0.1s;\n}\n\n/* Show the checkmark when checked */\n.fc-wallet-cart-widget-19212-root .checkbox-container .container input:checked~.checkmark:after {\n	left: 0.45em;\n	top: 0.25em;\n	width: 0.25em;\n	height: 0.5em;\n	border-color: #fff0 white white #fff0;\n	border-width: 0 0.15em 0.15em 0;\n	border-radius: 0em;\n	transform: rotate(45deg);\n}\n\n.fc-wallet-cart-widget-19212-root .circularloader {\n	width: 20px;\n	transform-origin: center;\n	animation: rotate4 2s linear infinite;\n	margin-left: 8px;\n}\n\n.fc-wallet-cart-widget-19212-root .circularloader circle {\n	fill: none;\n	stroke: hsl(3, 0%, 0%);\n	stroke-width: 5;\n	stroke-dasharray: 1, 200;\n	stroke-dashoffset: 0;\n	stroke-linecap: round;\n	animation: dash4 1.5s ease-in-out infinite;\n}\n\n@keyframes rotate4 {\n	100% {\n		transform: rotate(360deg);\n	}\n}\n\n@keyframes dash4 {\n	0% {\n		stroke-dasharray: 1, 200;\n		stroke-dashoffset: 0;\n	}\n\n	50% {\n		stroke-dasharray: 90, 200;\n		stroke-dashoffset: -35px;\n	}\n\n	100% {\n		stroke-dashoffset: -125px;\n	}\n}\n\n.fc-wallet-cart-widget-19212-root .skeletonloader {\n	background-image: linear-gradient(90deg,\n			#ccc 0px,\n			rgb(229 229 229 / 90%) 40px,\n			#ccc 80px);\n	background-size: 300%;\n	background-position: 100% 0;\n	border-radius: inherit;\n	animation: shimmer 1.5s infinite;\n}\n\n@keyframes shimmer {\n	to {\n		background-position: -100% 0;\n	}\n}\n\n\n.fc-wallet-cart-widget-19212-root .wallet-applied-details-container {\n	background-color: #ebebeb;\n	margin-top: 8px;\n	padding: 4px 8px;\n}\n\n.fc-wallet-cart-widget-19212-root .wallet-applied-details-container .wallet-applied-details {\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n}\n\n.fc-wallet-cart-widget-19212-root .apply-code-container {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	margin: 10px auto;\n}\n\n.fc-wallet-cart-widget-19212-root .apply-code-container .input-container {\n	width: 100%;\n}\n\n.fc-wallet-cart-widget-19212-root .apply-code-container .input-container input {\n	width: 95%;\n	padding: 10px;\n}\n\n.fc-wallet-cart-widget-19212-root .apply-code-container .apply-btn {\n	background: #000;\n	color: #fff;\n	padding: 6px 16px;\n}\n\n.fc-wallet-cart-widget-19212-root .apply-btn .circularloader {\n	width: 22px;\n}\n\n.fc-wallet-cart-widget-19212-root .apply-btn .circularloader circle {\n	stroke: hsl(0, 0%, 100%);\n}';
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -772,31 +772,32 @@
       })
     });
   }
-  function LoggedoutCartSummary() {
-    const [loadingWalletBal, setLoadingWalletBal] = h(false);
-    const [walletAppliedDetails, setWalletAppliedDetails] = h({
-      currency: null,
-      totalPayablePrice: 0
-    });
-    const loadCartSummary = async () => {
-      setLoadingWalletBal(true);
-      const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
-      const cartDetails = await cartRes.json();
-      const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100;
-      setWalletAppliedDetails({
-        currency: cartDetails == null ? void 0 : cartDetails.currency,
-        totalPayablePrice: Number(totalPrice)
-      });
-      setLoadingWalletBal(false);
-      setLoadingWalletBal(false);
-    };
-    p(() => {
-      loadCartSummary();
-    }, []);
+  function LoggedoutCartSummary({
+    loadingWalletBal,
+    walletAppliedDetails
+  }) {
     return o(k$1, {
       children: o("div", {
         class: "wallet-applied-details-container",
-        children: o("div", {
+        children: [(walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalDiscount) ? o("div", {
+          class: "wallet-applied-details",
+          children: [o("p", {
+            children: "Discount Applied"
+          }), o("p", {
+            class: "point-details",
+            children: loadingWalletBal ? o(SkeletonLoader, {
+              width: "50px",
+              height: "16px"
+            }) : (walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalDiscount) ? o(k$1, {
+              children: ["- ", ` ${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalDiscount).toLocaleString("en-IN", {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+                style: "currency",
+                currency: "INR"
+              })}`]
+            }) : 0
+          })]
+        }) : o(k$1, {}), o("div", {
           class: "wallet-applied-details",
           children: [o("p", {
             children: "Total Payable Amount"
@@ -814,7 +815,69 @@
               })}`
             })
           })]
-        })
+        })]
+      })
+    });
+  }
+  function ApplyDiscountCode({
+    setRefetchSummary,
+    appliedDiscountCode
+  }) {
+    const [loadingWalletBal, setLoadingWalletBal] = h(false);
+    const [couponInputValue, setCouponInputValue] = h(appliedDiscountCode || "");
+    const applyCouponDiscount = async () => {
+      setLoadingWalletBal(true);
+      fetch(`/discount/${couponInputValue}`);
+      await fetch(`/checkout/?discount=${couponInputValue}`, {
+        method: "POST"
+      });
+      setRefetchSummary((prev) => !prev);
+      setLoadingWalletBal(false);
+    };
+    const removeCouponDiscount = async () => {
+      setLoadingWalletBal(true);
+      const clearDiscountCode = "FC_REMOVE_CODE";
+      fetch(`/discount/${clearDiscountCode}`);
+      await fetch(`/checkout/?discount=${clearDiscountCode}`, {
+        method: "POST"
+      });
+      setRefetchSummary((prev) => !prev);
+      setLoadingWalletBal(false);
+    };
+    p(() => {
+      setCouponInputValue(appliedDiscountCode);
+    }, [appliedDiscountCode]);
+    return o(k$1, {
+      children: o("div", {
+        class: "apply-code-container",
+        children: [o("div", {
+          class: "input-container",
+          children: o("input", {
+            type: "text",
+            name: "temp-discount",
+            class: "docapp-coupon-input--input",
+            placeholder: "Discount Code",
+            value: couponInputValue,
+            readonly: appliedDiscountCode ? true : false,
+            onChange: (e2) => {
+              if (appliedDiscountCode) {
+                setCouponInputValue(appliedDiscountCode);
+              } else {
+                setCouponInputValue(e2.target.value);
+              }
+            }
+          })
+        }), appliedDiscountCode ? o("div", {
+          class: "apply-btn",
+          onClick: removeCouponDiscount,
+          children: loadingWalletBal ? o(k$1, {
+            children: o(CircularLoader, {})
+          }) : "Remove"
+        }) : o("div", {
+          class: "apply-btn",
+          onClick: applyCouponDiscount,
+          children: loadingWalletBal ? o(CircularLoader, {}) : "Apply"
+        })]
       })
     });
   }
@@ -830,6 +893,33 @@
       enable: false,
       isSet: false
     });
+    const [refetchCartSummary, setRefetchSummary] = h(false);
+    const [renderApplyCouponCodeBox, setRenderApplyCouponCodeBox] = h(false);
+    const [loadingWalletBal, setLoadingWalletBal] = h(false);
+    const [walletAppliedDetails, setWalletAppliedDetails] = h({
+      currency: null,
+      totalPayablePrice: 0,
+      totalDiscount: 0
+    });
+    const [appliedDiscountCode, setAppliedDiscountCode] = h("");
+    const loadCartSummary = async () => {
+      var _a, _b;
+      setLoadingWalletBal(true);
+      const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
+      const cartDetails = await cartRes.json();
+      const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100;
+      const totalDiscount = (cartDetails == null ? void 0 : cartDetails.total_discount) / 100;
+      const appliedDiscountCode2 = ((_b = (_a = cartDetails == null ? void 0 : cartDetails.cart_level_discount_applications) == null ? void 0 : _a.find((item) => {
+        return item.type === "discount_code";
+      })) == null ? void 0 : _b.title) || "";
+      setWalletAppliedDetails({
+        currency: cartDetails == null ? void 0 : cartDetails.currency,
+        totalPayablePrice: Number(totalPrice),
+        totalDiscount: Number(totalDiscount)
+      });
+      setAppliedDiscountCode(appliedDiscountCode2);
+      setLoadingWalletBal(false);
+    };
     p(() => {
       var _a;
       const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
@@ -837,6 +927,10 @@
       const customer_tags = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
       const client_id = mainScript.getAttribute("data-client-id");
       const checkout_target = mainScript.getAttribute("data-checkout-target");
+      const coupon_code_box = mainScript.getAttribute("data-coupon-code-box");
+      if (coupon_code_box) {
+        setRenderApplyCouponCodeBox(true);
+      }
       if (checkout_target) {
         setCheckoutTarget({
           enable: true,
@@ -854,15 +948,24 @@
         clientID: client_id
       });
     }, []);
+    p(() => {
+      loadCartSummary();
+    }, [refetchCartSummary]);
     return o(k$1, {
-      children: (customerDetails == null ? void 0 : customerDetails.customerID) ? o(ApplyWallet, {
+      children: [renderApplyCouponCodeBox ? o(ApplyDiscountCode, {
+        setRefetchSummary,
+        appliedDiscountCode
+      }) : o(k$1, {}), (customerDetails == null ? void 0 : customerDetails.customerID) ? o(ApplyWallet, {
         customerDetails,
         checkoutTarget
       }) : o(k$1, {
         children: [o(Login, {
           themeDetails: themeDetailsData
-        }), o(LoggedoutCartSummary, {})]
-      })
+        }), o(LoggedoutCartSummary, {
+          loadingWalletBal,
+          walletAppliedDetails
+        })]
+      })]
     });
   }
   function App({

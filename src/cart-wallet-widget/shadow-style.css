@@ -173,12 +173,42 @@ body {
 
 .fc-wallet-cart-widget-19212-root .wallet-applied-details-container {
 	background-color: #ebebeb;
-    margin-top: 8px;
-    padding: 4px 8px;
+	margin-top: 8px;
+	padding: 4px 8px;
 }
 
 .fc-wallet-cart-widget-19212-root .wallet-applied-details-container .wallet-applied-details {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+.fc-wallet-cart-widget-19212-root .apply-code-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px auto;
+}
+
+.fc-wallet-cart-widget-19212-root .apply-code-container .input-container {
+	width: 100%;
+}
+
+.fc-wallet-cart-widget-19212-root .apply-code-container .input-container input {
+	width: 95%;
+	padding: 10px;
+}
+
+.fc-wallet-cart-widget-19212-root .apply-code-container .apply-btn {
+	background: #000;
+	color: #fff;
+	padding: 6px 16px;
+}
+
+.fc-wallet-cart-widget-19212-root .apply-btn .circularloader {
+	width: 22px;
+}
+
+.fc-wallet-cart-widget-19212-root .apply-btn .circularloader circle {
+	stroke: hsl(0, 0%, 100%);
 }
