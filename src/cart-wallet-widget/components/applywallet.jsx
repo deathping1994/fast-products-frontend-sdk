@@ -91,6 +91,15 @@ export function ApplyWallet({ customerDetails, checkoutTarget }) {
         });
         setLoadingWalletBal(false);
       }
+      //TEMP: reset other app discounts 
+      setCookie("docapp-coupon", "", 7); 
+      setCookie("docapp-auto-coupon", "", 7); 
+      try {
+        localStorage.removeItem("docapp-coupon");
+      } catch (err) {
+        console.log(err);
+      }
+
       const walletCouponCode = "WALLET_REMOVED19212";
 
       fetch(`/discount/${walletCouponCode}`);

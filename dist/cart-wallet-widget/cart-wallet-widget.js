@@ -546,6 +546,13 @@
           });
           setLoadingWalletBal(false);
         }
+        setCookie("docapp-coupon", "", 7);
+        setCookie("docapp-auto-coupon", "", 7);
+        try {
+          localStorage.removeItem("docapp-coupon");
+        } catch (err) {
+          console.log(err);
+        }
         const walletCouponCode2 = "WALLET_REMOVED19212";
         fetch(`/discount/${walletCouponCode2}`);
         await fetch(`/checkout/?discount=${walletCouponCode2}`, {
