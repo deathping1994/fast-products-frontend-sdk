@@ -772,6 +772,52 @@
       })
     });
   }
+  function LoggedoutCartSummary() {
+    const [loadingWalletBal, setLoadingWalletBal] = h(false);
+    const [walletAppliedDetails, setWalletAppliedDetails] = h({
+      currency: null,
+      totalPayablePrice: 0
+    });
+    const loadCartSummary = async () => {
+      setLoadingWalletBal(true);
+      const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
+      const cartDetails = await cartRes.json();
+      const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100;
+      setWalletAppliedDetails({
+        currency: cartDetails == null ? void 0 : cartDetails.currency,
+        totalPayablePrice: Number(totalPrice)
+      });
+      setLoadingWalletBal(false);
+      setLoadingWalletBal(false);
+    };
+    p(() => {
+      loadCartSummary();
+    }, []);
+    return o(k$1, {
+      children: o("div", {
+        class: "wallet-applied-details-container",
+        children: o("div", {
+          class: "wallet-applied-details",
+          children: [o("p", {
+            children: "Total Payable Amount"
+          }), o("p", {
+            class: "point-details",
+            children: loadingWalletBal ? o(SkeletonLoader, {
+              width: "50px",
+              height: "16px"
+            }) : o(k$1, {
+              children: ` ${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice).toLocaleString("en-IN", {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+                style: "currency",
+                currency: "INR"
+              })}`
+            })
+          })]
+        })
+      })
+    });
+  }
   function Main({
     themeDetailsData
   }) {
@@ -812,8 +858,10 @@
       children: (customerDetails == null ? void 0 : customerDetails.customerID) ? o(ApplyWallet, {
         customerDetails,
         checkoutTarget
-      }) : o(Login, {
-        themeDetails: themeDetailsData
+      }) : o(k$1, {
+        children: [o(Login, {
+          themeDetails: themeDetailsData
+        }), o(LoggedoutCartSummary, {})]
       })
     });
   }

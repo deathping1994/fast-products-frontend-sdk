@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import { ApplyWallet } from "./applywallet";
 import { Login } from "./login";
-import { WALLET_API_URI } from "..";
+import { LoggedoutCartSummary } from "./loggedoutcartsummary";
 
 export function Main({ themeDetailsData }) {
   const [customerDetails, setCustomerDetails] = useState({
@@ -51,7 +51,10 @@ export function Main({ themeDetailsData }) {
           checkoutTarget={checkoutTarget}
         />
       ) : (
-        <Login themeDetails={themeDetailsData} />
+        <>
+          <Login themeDetails={themeDetailsData} />
+          <LoggedoutCartSummary />
+        </>
       )}
     </>
   );
