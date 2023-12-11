@@ -94,6 +94,10 @@ export function Main({ themeDetailsData }) {
         isSet: true,
       });
     } else {
+      setInterval(() => {
+        // @ts-ignore
+        syncCartSummary(window.fc_cart_details || walletAppliedDetails);
+      }, 10000);
       setCheckoutTarget({
         enable: false,
         isSet: true,
@@ -110,13 +114,6 @@ export function Main({ themeDetailsData }) {
   useEffect(() => {
     loadCartSummary();
   }, [refetchCartSummary]);
-
-  useEffect(() => {
-    setInterval(() => {
-      // @ts-ignore
-      syncCartSummary(window.fc_cart_details || walletAppliedDetails);
-    }, 10000);
-  }, []);
 
   return (
     <>

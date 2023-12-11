@@ -623,7 +623,7 @@
           });
           setLoadingWalletBal(false);
           const appliedDiscountCode = localStorage.getItem("fc-coupon-applied-code");
-          const checkoutResponse = await fetch(`/checkout/?discount=${walletCouponCode},${appliedDiscountCode}`, {
+          const checkoutResponse = await fetch(appliedDiscountCode ? `/checkout/?discount=${walletCouponCode},${appliedDiscountCode}` : `/checkout/?discount=${walletCouponCode}`, {
             method: "POST"
           });
           const checkoutURL = checkoutResponse == null ? void 0 : checkoutResponse.url;
@@ -999,6 +999,9 @@
           isSet: true
         });
       } else {
+        setInterval(() => {
+          syncCartSummary(window.fc_cart_details || walletAppliedDetails);
+        }, 1e4);
         setCheckoutTarget({
           enable: false,
           isSet: true
@@ -1013,11 +1016,6 @@
     p(() => {
       loadCartSummary();
     }, [refetchCartSummary]);
-    p(() => {
-      setInterval(() => {
-        syncCartSummary(window.fc_cart_details || walletAppliedDetails);
-      }, 1e4);
-    }, []);
     return o(k$1, {
       children: [renderApplyCouponCodeBox ? o(ApplyDiscountCode, {
         setRefetchSummary,

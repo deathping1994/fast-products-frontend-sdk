@@ -206,7 +206,9 @@ export function ApplyWallet({
           "fc-coupon-applied-code"
         );
         const checkoutResponse = await fetch(
-          `/checkout/?discount=${walletCouponCode},${appliedDiscountCode}`,
+          appliedDiscountCode
+            ? `/checkout/?discount=${walletCouponCode},${appliedDiscountCode}`
+            : `/checkout/?discount=${walletCouponCode}`,
           {
             method: "POST",
           }
