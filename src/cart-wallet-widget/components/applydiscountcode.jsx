@@ -1,7 +1,11 @@
 import { useEffect, useState } from "preact/hooks";
 import { CircularLoader } from "./circularloader";
 
-export function ApplyDiscountCode({ setRefetchSummary, appliedDiscountCode }) {
+export function ApplyDiscountCode({
+  setRefetchSummary,
+  appliedDiscountCode,
+  appliedDiscountsList,
+}) {
   const [loadingWalletBal, setLoadingWalletBal] = useState(false);
 
   const [couponInputValue, setCouponInputValue] = useState(
@@ -11,9 +15,18 @@ export function ApplyDiscountCode({ setRefetchSummary, appliedDiscountCode }) {
   const applyCouponDiscount = async () => {
     setLoadingWalletBal(true);
 
-    fetch(`/discount/${couponInputValue}`);
+    //fetch(`/discount/${couponInputValue}`);
+
+    const isWalletAppliedCode =
+      localStorage.getItem("fc-wallet-cart-applied") === "true" || false;
+    const walletAppliedCode = isWalletAppliedCode
+      ? localStorage.getItem("fc-wallet-applied-code") || ""
+      : "";
+
+    localStorage.setItem("fc-coupon-applied-code", couponInputValue);
+
     const checkoutResponse = await fetch(
-      `/checkout/?discount=${couponInputValue}`,
+      `/checkout/?discount=${couponInputValue},${walletAppliedCode}`,
       {
         method: "POST",
       }
@@ -29,9 +42,17 @@ export function ApplyDiscountCode({ setRefetchSummary, appliedDiscountCode }) {
 
     const clearDiscountCode = "FC_REMOVE_CODE";
 
-    fetch(`/discount/${clearDiscountCode}`);
+    //fetch(`/discount/${clearDiscountCode}`);
+    const isWalletAppliedCode =
+      localStorage.getItem("fc-wallet-cart-applied") === "true" || false;
+    const walletAppliedCode = isWalletAppliedCode
+      ? localStorage.getItem("fc-wallet-applied-code") || ""
+      : "";
+
+    localStorage.removeItem("fc-coupon-applied-code");
+
     const checkoutResponse = await fetch(
-      `/checkout/?discount=${clearDiscountCode}`,
+      `/checkout/?discount=${clearDiscountCode},${walletAppliedCode}`,
       {
         method: "POST",
       }

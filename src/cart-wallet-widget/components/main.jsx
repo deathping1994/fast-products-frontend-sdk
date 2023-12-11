@@ -25,6 +25,7 @@ export function Main({ themeDetailsData }) {
     totalDiscount: 0,
   });
   const [appliedDiscountCode, setAppliedDiscountCode] = useState("");
+  const [appliedDiscountsList, setAppliedDiscountsList] = useState(null);
 
   const loadCartSummary = async () => {
     setLoadingWalletBal(true);
@@ -35,15 +36,41 @@ export function Main({ themeDetailsData }) {
     const totalDiscount = cartDetails?.total_discount / 100;
     const appliedDiscountCode =
       cartDetails?.cart_level_discount_applications?.find((item) => {
-        return item.type === "discount_code";
+        return (
+          item.type === "discount_code" && !item.title.includes("WALLETAPPLIED")
+        );
       })?.title || "";
+
+    setAppliedDiscountsList(cartDetails?.cart_level_discount_applications);
     setWalletAppliedDetails({
       currency: cartDetails?.currency,
       totalPayablePrice: Number(totalPrice),
       totalDiscount: Number(totalDiscount),
     });
+    // @ts-ignore
+    window.fc_cart_details = {
+      totalPayablePrice: Number(totalPrice),
+      totalDiscount: Number(totalDiscount),
+    };
     setAppliedDiscountCode(appliedDiscountCode);
     setLoadingWalletBal(false);
+  };
+
+  const syncCartSummary = async (walletAppliedDetails) => {
+    const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
+    const cartDetails = await cartRes.json();
+
+    const totalPrice = cartDetails?.total_price / 100;
+    const totalDiscount = cartDetails?.total_discount / 100;
+
+    if (
+      totalPrice === walletAppliedDetails?.totalPayablePrice &&
+      totalDiscount === walletAppliedDetails?.totalDiscount
+    ) {
+      //already updated
+    } else {
+      setRefetchSummary((prev) => !prev);
+    }
   };
 
   useEffect(() => {
@@ -84,12 +111,20 @@ export function Main({ themeDetailsData }) {
     loadCartSummary();
   }, [refetchCartSummary]);
 
+  useEffect(() => {
+    setInterval(() => {
+      // @ts-ignore
+      syncCartSummary(window.fc_cart_details || walletAppliedDetails);
+    }, 10000);
+  }, []);
+
   return (
     <>
       {renderApplyCouponCodeBox ? (
         <ApplyDiscountCode
           setRefetchSummary={setRefetchSummary}
           appliedDiscountCode={appliedDiscountCode}
+          appliedDiscountsList={appliedDiscountsList}
         />
       ) : (
         <></>
@@ -98,6 +133,8 @@ export function Main({ themeDetailsData }) {
         <ApplyWallet
           customerDetails={customerDetails}
           checkoutTarget={checkoutTarget}
+          renderApplyCouponCodeBox={renderApplyCouponCodeBox}
+          refetchCartSummary={refetchCartSummary}
         />
       ) : (
         <>
