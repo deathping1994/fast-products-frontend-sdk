@@ -19,6 +19,7 @@ export function ApplyWallet({
   checkoutTarget,
   renderApplyCouponCodeBox,
   refetchCartSummary,
+  calculateCashback,
 }) {
   const [userPoints, setUserPoints] = useState(null);
   const [walletApplied, setWalletApplied] = useState(
@@ -303,6 +304,14 @@ export function ApplyWallet({
       toggleUserWalletApplied(!walletApplied);
     }
   }, [userPoints, checkoutTarget?.isSet, refetchCartSummary]);
+
+  useEffect(() => {
+    if (walletAppliedDetails?.totalPayablePrice) {
+      calculateCashback({
+        totalPrice: walletAppliedDetails?.totalPayablePrice,
+      });
+    }
+  }, [walletAppliedDetails]);
 
   return (
     <>

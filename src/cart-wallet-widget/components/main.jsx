@@ -3,6 +3,7 @@ import { ApplyWallet } from "./applywallet";
 import { Login } from "./login";
 import { LoggedoutCartSummary } from "./loggedoutcartsummary";
 import { ApplyDiscountCode } from "./applydiscountcode";
+import { WALLET_API_URI } from "..";
 
 export function Main({ themeDetailsData }) {
   const [customerDetails, setCustomerDetails] = useState({
@@ -26,6 +27,12 @@ export function Main({ themeDetailsData }) {
   });
   const [appliedDiscountCode, setAppliedDiscountCode] = useState("");
   const [appliedDiscountsList, setAppliedDiscountsList] = useState(null);
+  const [loadingCashbackDetails, setLoadingCashbackDetails] = useState(true);
+  const [cashbackDetails, setCashbackDetails] = useState({
+    amount: 0,
+    type: null,
+  });
+  const [cashbackAmount, setCashbackAmount] = useState(0);
 
   const loadCartSummary = async () => {
     setLoadingWalletBal(true);
@@ -53,6 +60,9 @@ export function Main({ themeDetailsData }) {
       totalDiscount: Number(totalDiscount),
     };
     setAppliedDiscountCode(appliedDiscountCode);
+    calculateCashback({
+      totalPrice: Number(totalPrice),
+    });
     setLoadingWalletBal(false);
   };
 
@@ -70,6 +80,45 @@ export function Main({ themeDetailsData }) {
       //already updated
     } else {
       setRefetchSummary((prev) => !prev);
+    }
+  };
+
+  const getCashbackDetails = async ({ customerID, customerTags, clientID }) => {
+    setLoadingCashbackDetails(true);
+    const cashbackRes = await fetch(
+      `${WALLET_API_URI}/loyalty/cashback-detail`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customer_id: customerID,
+          user_hash: customerTags,
+          client_id: clientID,
+        }),
+      }
+    );
+    const cashbackResDetails = await cashbackRes.json();
+    setCashbackDetails({
+      type: cashbackResDetails?.data?.cashback_data?.type,
+      amount: Number(cashbackResDetails?.data?.cashback_data?.amount),
+    });
+
+    setLoadingCashbackDetails(false);
+  };
+
+  const calculateCashback = ({ totalPrice }) => {
+    if (cashbackDetails?.type === "percent") {
+      // @ts-ignore
+      const cartAmount = window.fc_cart_details?.totalPayablePrice;
+      const finalAmount =
+        (cashbackDetails?.amount / 100) * (totalPrice || cartAmount);
+      setCashbackAmount(finalAmount);
+      return finalAmount;
+    } else {
+      setCashbackAmount(cashbackDetails?.amount);
+      return cashbackDetails?.amount;
     }
   };
 
@@ -109,11 +158,17 @@ export function Main({ themeDetailsData }) {
       customerTags: customer_tags,
       clientID: client_id,
     });
+
+    getCashbackDetails({
+      customerID: customer_id,
+      customerTags: customer_tags,
+      clientID: client_id,
+    });
   }, []);
 
   useEffect(() => {
     loadCartSummary();
-  }, [refetchCartSummary]);
+  }, [refetchCartSummary, cashbackDetails?.type]);
 
   return (
     <>
@@ -126,12 +181,21 @@ export function Main({ themeDetailsData }) {
       ) : (
         <></>
       )}
+      {!loadingCashbackDetails && cashbackAmount !== 0 && (
+        <div class="cashback-strip-container">
+          <p>
+            You'll get&nbsp;<span>Rs. {cashbackAmount} cashback</span>
+            &nbsp;with this order
+          </p>
+        </div>
+      )}
       {customerDetails?.customerID ? (
         <ApplyWallet
           customerDetails={customerDetails}
           checkoutTarget={checkoutTarget}
           renderApplyCouponCodeBox={renderApplyCouponCodeBox}
           refetchCartSummary={refetchCartSummary}
+          calculateCashback={calculateCashback}
         />
       ) : (
         <>

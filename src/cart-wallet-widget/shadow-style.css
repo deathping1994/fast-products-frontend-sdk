@@ -212,3 +212,31 @@ body {
 .fc-wallet-cart-widget-19212-root .apply-btn .circularloader circle {
 	stroke: hsl(0, 0%, 100%);
 }
+
+.fc-wallet-cart-widget-19212-root .cashback-strip-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0, 0, 0, 1);
+	color: white;
+}
+
+.fc-wallet-cart-widget-19212-root .cashback-strip-container p {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+}
+.fc-wallet-cart-widget-19212-root .cashback-strip-container p span {
+	font-weight: 600;
+}
+
+.fc-wallet-cart-widget-19212-root .cashback-strip-container p::before {
+	content: '';
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url('https://media.farziengineer.co/farziwallet/get-cashback.png');
+	background-size: 100%;
+	margin-right: 8px;
+}
