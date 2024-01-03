@@ -14,6 +14,24 @@ const returnDebouncedFunc = (mainFunction, delay) => {
   };
 };
 
+const calculateWalletRedemptionLimit = ({
+  walletRedemptionLimitDetails,
+  cartTotalPrice,
+}) => {
+  let walletLimitAmount;
+
+  if (walletRedemptionLimitDetails?.type === "CART_PERCENT") {
+    walletLimitAmount =
+      (walletRedemptionLimitDetails?.amount / 100) * cartTotalPrice;
+  } else if (walletRedemptionLimitDetails?.type === "FIXED") {
+    walletLimitAmount = Number(walletRedemptionLimitDetails?.amount || "0");
+  } else {
+    walletLimitAmount = Number(walletRedemptionLimitDetails?.amount || "0");
+  }
+
+  return walletLimitAmount;
+};
+
 export function ApplyWallet({
   customerDetails,
   checkoutTarget,
@@ -33,7 +51,12 @@ export function ApplyWallet({
     totalPayablePrice: 0,
     couponDiscountApplied: 0,
   });
-  const [walletRedemptionLimit, setWalletRedemptionLimit] = useState(null);
+
+  const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] =
+    useState({
+      amount: 0,
+      type: null,
+    });
 
   const getUserPoints = async () => {
     setLoadingWalletBal(true);
@@ -73,12 +96,15 @@ export function ApplyWallet({
         }),
       });
       let walletData = await response.json();
-      const walletRemeptionLimitAmount = Number(
-        walletData?.data?.limit_amount || "0"
-      );
-      setWalletRedemptionLimit(walletRemeptionLimitAmount || null);
+      setWalletRedemptionLimitDetails({
+        type: walletData?.data?.limit_details?.type,
+        amount: Number(walletData?.data?.limit_details?.amount),
+      });
     } catch (err) {
-      setWalletRedemptionLimit(null);
+      setWalletRedemptionLimitDetails({
+        type: "FIXED",
+        amount: 0,
+      });
     }
   };
 
@@ -161,6 +187,10 @@ export function ApplyWallet({
         Number(userPoints),
         Number(totalPrice)
       );
+      const walletRedemptionLimit = calculateWalletRedemptionLimit({
+        walletRedemptionLimitDetails,
+        cartTotalPrice: Number(totalPrice),
+      });
       const walletPointsToApply = walletRedemptionLimit
         ? Math.min(
             Number(walletPointsToApplyBeforeLimit),
@@ -179,7 +209,7 @@ export function ApplyWallet({
             body: JSON.stringify({
               client_id: customerDetails?.clientID,
               customer_id: customerDetails?.customerID,
-              wallet_points: walletPointsToApply,
+              wallet_points: Math.round(walletPointsToApply),
             }),
           }
         );

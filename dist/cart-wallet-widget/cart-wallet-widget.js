@@ -711,6 +711,20 @@ body {
       }, delay);
     };
   };
+  const calculateWalletRedemptionLimit = ({
+    walletRedemptionLimitDetails,
+    cartTotalPrice
+  }) => {
+    let walletLimitAmount;
+    if ((walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT") {
+      walletLimitAmount = (walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount) / 100 * cartTotalPrice;
+    } else if ((walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "FIXED") {
+      walletLimitAmount = Number((walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount) || "0");
+    } else {
+      walletLimitAmount = Number((walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount) || "0");
+    }
+    return walletLimitAmount;
+  };
   function ApplyWallet({
     customerDetails,
     checkoutTarget,
@@ -728,7 +742,10 @@ body {
       totalPayablePrice: 0,
       couponDiscountApplied: 0
     });
-    const [walletRedemptionLimit, setWalletRedemptionLimit] = h(null);
+    const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] = h({
+      amount: 0,
+      type: null
+    });
     const getUserPoints = async () => {
       var _a, _b, _c, _d;
       setLoadingWalletBal(true);
@@ -754,7 +771,7 @@ body {
       setLoadingWalletBal(false);
     };
     const getWalletRemeptionLimit = async () => {
-      var _a;
+      var _a, _b, _c, _d;
       try {
         const response = await fetch(`${WALLET_API_URI}/client-wallet-limit`, {
           method: "POST",
@@ -768,10 +785,15 @@ body {
           })
         });
         let walletData = await response.json();
-        const walletRemeptionLimitAmount = Number(((_a = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a.limit_amount) || "0");
-        setWalletRedemptionLimit(walletRemeptionLimitAmount || null);
+        setWalletRedemptionLimitDetails({
+          type: (_b = (_a = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a.limit_details) == null ? void 0 : _b.type,
+          amount: Number((_d = (_c = walletData == null ? void 0 : walletData.data) == null ? void 0 : _c.limit_details) == null ? void 0 : _d.amount)
+        });
       } catch (err) {
-        setWalletRedemptionLimit(null);
+        setWalletRedemptionLimitDetails({
+          type: "FIXED",
+          amount: 0
+        });
       }
     };
     const toggleUserWalletApplied = async (prevWalletApplied) => {
@@ -834,6 +856,10 @@ body {
         const alreadyAppliedWalletDiscount = prevWalletAmountApplied ? prevWalletAmountApplied / 100 : 0;
         const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100 + alreadyAppliedWalletDiscount;
         const walletPointsToApplyBeforeLimit = Math.min(Number(userPoints), Number(totalPrice));
+        const walletRedemptionLimit = calculateWalletRedemptionLimit({
+          walletRedemptionLimitDetails,
+          cartTotalPrice: Number(totalPrice)
+        });
         const walletPointsToApply = walletRedemptionLimit ? Math.min(Number(walletPointsToApplyBeforeLimit), Number(walletRedemptionLimit)) : walletPointsToApplyBeforeLimit;
         try {
           const walletCouponResponse = await fetch(`${WALLET_API_URI}/loyalty/get-wallet-coupon`, {
@@ -844,7 +870,7 @@ body {
             body: JSON.stringify({
               client_id: customerDetails == null ? void 0 : customerDetails.clientID,
               customer_id: customerDetails == null ? void 0 : customerDetails.customerID,
-              wallet_points: walletPointsToApply
+              wallet_points: Math.round(walletPointsToApply)
             })
           });
           const walletCouponData = await walletCouponResponse.json();
