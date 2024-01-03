@@ -1353,7 +1353,7 @@ body {
         class: "cashback-strip-container",
         children: o("p", {
           children: ["You'll get ", o("span", {
-            children: ["Rs. ", cashbackAmount, " cashback"]
+            children: ["Rs. ", parseFloat(`${cashbackAmount}`).toFixed(2), " cashback"]
           }), " with this order"]
         })
       }), (customerDetails == null ? void 0 : customerDetails.customerID) ? o(ApplyWallet, {

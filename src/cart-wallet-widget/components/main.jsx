@@ -184,7 +184,7 @@ export function Main({ themeDetailsData }) {
       {!loadingCashbackDetails && cashbackAmount !== 0 && (
         <div class="cashback-strip-container">
           <p>
-            You'll get&nbsp;<span>Rs. {cashbackAmount} cashback</span>
+            You'll get&nbsp;<span>Rs. {parseFloat(`${cashbackAmount}`).toFixed(2)} cashback</span>
             &nbsp;with this order
           </p>
         </div>
