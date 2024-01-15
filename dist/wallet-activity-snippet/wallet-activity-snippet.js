@@ -570,11 +570,11 @@
                 children: [o("path", {
                   fill: "#ffffff",
                   d: "M31.881 51.541C14.523 56.615 1.854 38.046 5.642 23.722 9.928 7.503 24.254 2.195 39.504 6.507 47.408 8.74 53.302 19.502 52.89 27.633c-.644 12.486-9.98 22.994-21.009 23.908z",
-                  style: "\r\n"
+                  style: "\n"
                 }), o("path", {
                   fill: "#121212",
                   d: "M34.909 16.739c.767-.137 1.566.42 1.703 1.188a1.478 1.478 0 01-1.188 1.703l-16.622 2.963c-.406.072-.658.49-.594.851a.725.725 0 00.852.594l16.622-2.963a2.957 2.957 0 013.406 2.376l1.803 10.117a2.927 2.927 0 01-2.375 3.406L21.17 40.066a2.899 2.899 0 01-3.406-2.376L15.19 23.237a2.927 2.927 0 012.375-3.406l17.345-3.092zm1.002 13.989a1.478 1.478 0 001.188-1.703c-.137-.768-.936-1.325-1.703-1.188a1.478 1.478 0 00-1.188 1.703 1.45 1.45 0 001.703 1.188z",
-                  style: "\r\n"
+                  style: "\n"
                 })]
               })
             }), o("p", {
@@ -742,7 +742,7 @@
       children: customStyles
     });
   }
-  const WALLET_API_URI = "https://fastloyalty-api.farziengineer.co";
+  const WALLET_API_URI = "https://fastloyaltyapi.farziengineer.co";
   async function renderwalletActivitySnippet() {
     var _a, _b;
     const targetDiv = document.getElementById("fc-wallet-activity-snippet-19212");

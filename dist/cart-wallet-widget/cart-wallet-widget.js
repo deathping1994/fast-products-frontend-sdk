@@ -1400,7 +1400,7 @@ body {
       children: customStyles
     });
   }
-  const WALLET_API_URI = "https://fastloyalty-api.farziengineer.co";
+  const WALLET_API_URI = "https://fastloyaltyapi.farziengineer.co";
   async function renderWalletBox() {
     var _a, _b;
     try {
