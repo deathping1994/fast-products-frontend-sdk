@@ -357,11 +357,7 @@ export function ApplyWallet({
             walletApplied={walletApplied}
             setWalletApplied={setWalletApplied}
           />
-          <span
-            style={{
-              fontSize: "18px",
-            }}
-          >
+          <span class="walletCreditText">
             Use Wallet Credit
           </span>
           {loadingWalletBal ? (
