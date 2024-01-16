@@ -234,8 +234,8 @@ body {
 .fc-wallet-cart-widget-19212-root .cashback-strip-container p::before {
 	content: '';
 	display: block;
-	width: 20px;
-	height: 20px;
+	width: 16px;
+	height: 16px;
 	background: url('https://media.farziengineer.co/farziwallet/get-cashback.png');
 	background-size: 100%;
 	margin-right: 8px;
