@@ -357,7 +357,9 @@ export function ApplyWallet({
             walletApplied={walletApplied}
             setWalletApplied={setWalletApplied}
           />
-          <span>Use Wallet Credit</span>
+          <span class="walletCreditText">
+            Use Wallet Credit
+          </span>
           {loadingWalletBal ? (
             <span>
               <CircularLoader />
