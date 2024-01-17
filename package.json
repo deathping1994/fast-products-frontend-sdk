@@ -1,32 +1,34 @@
 {
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"dev": "vite",
-		"build": "concurrently \"vite build --config vite-configs/vite.cart-wallet-widget.config.js \" \"vite build --config vite-configs/vite.cart-drawer.config.js \"",
-		"preview": "vite preview",
-		"build:watch": "concurrently \"vite build --config vite-configs/vite.cart-wallet-widget.config.js --watch\" \"vite build --config vite-configs/vite.cart-drawer.config.js --watch\" \"vite build --config vite-configs/vite.wallet-activity-snippet.config.js --watch\"",
-		"serve": "http-server dist -c-1",
-		"start": "concurrently \"npm run build:watch\" \"npm run serve\"",
-		"build:cart-wallet-widget": "vite build --config vite-configs/vite.cart-wallet-widget.config.js --watch",
-		"start:cart-wallet-widget": "concurrently \"npm run build:cart-wallet-widget\" \"npm run serve\"",
-		"build:cart-drawer": "vite build --config vite-configs/vite.cart-drawer.config.js --watch",
-		"start:cart-drawer": "concurrently \"npm run build:cart-drawer\" \"npm run serve\"",
-		"build:wallet-activity-snippet": "vite build --config vite-configs/vite.wallet-activity-snippet.config.js --watch",
-		"start:wallet-activity-snippet": "concurrently \"npm run build:wallet-activity-snippet\" \"npm run serve\""
-	},
-	"dependencies": {
-		"concurrently": "^8.2.2",
-		"http-server": "^14.1.1",
-		"preact": "^10.13.1"
-	},
-	"devDependencies": {
-		"@preact/preset-vite": "^2.5.0",
-		"eslint": "^8.52.0",
-		"eslint-config-preact": "^1.3.0",
-		"vite": "^4.3.2"
-	},
-	"eslintConfig": {
-		"extends": "preact"
-	}
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "concurrently \"vite build --config vite-configs/vite.cart-wallet-widget.config.js \" \"vite build --config vite-configs/vite.cart-drawer.config.js \"",
+    "preview": "vite preview",
+    "serve": "http-server dist -c-1",
+    "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
+    "build:cart-wallet-widget": "vite build --config vite-configs/vite.cart-wallet-widget.config.js --watch",
+    "start:cart-wallet-widget": "concurrently \"npm run build:cart-wallet-widget\" \"npm run serve\"",
+    "build:cart-drawer": "vite build --config vite-configs/vite.cart-drawer.config.js --watch",
+    "start:cart-drawer": "concurrently \"npm run build:cart-drawer\" \"npm run serve\"",
+    "build:wallet-activity-snippet": "vite build --config vite-configs/vite.wallet-activity-snippet.config.js --watch",
+    "start:wallet-activity-snippet": "concurrently \"npm run build:wallet-activity-snippet\" \"npm run serve\"",
+    "build:loyalty-popup": "vite build --config vite-configs/vite.loyalty-popup.config.js --watch",
+    "start:loyalty-popup": "concurrently \"npm run build:wallet-activity-snippet\" \"npm run serve\"",
+    "build:watch": "concurrently \"npm run build:cart-drawer\" \" npm run build:cart-wallet-widget\" \" npm run build:wallet-activity-snippet\" \" npm run build:loyalty-popup\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "http-server": "^14.1.1",
+    "preact": "^10.13.1"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.5.0",
+    "eslint": "^8.52.0",
+    "eslint-config-preact": "^1.3.0",
+    "vite": "^4.3.2"
+  },
+  "eslintConfig": {
+    "extends": "preact"
+  }
 }
