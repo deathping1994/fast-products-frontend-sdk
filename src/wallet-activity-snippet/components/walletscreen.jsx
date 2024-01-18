@@ -87,7 +87,6 @@ export function WalletScreen({ customerDetails }) {
       ) : (
         <>
           <h1>Wallet Points</h1>
-
           <div class="total-points-wrapper">
             <div class="total-points-container">
               <div class="points-svg-container">

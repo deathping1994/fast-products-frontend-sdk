@@ -1,8 +1,12 @@
 import { useEffect, useState } from "preact/hooks";
 import { WALLET_API_URI } from "..";
+import WalletCard from "./WalletCard";
+import InviteCard from "./InviteCard";
+import CouponCard from "./CouponCard";
+import GamesCard from "./GamesCard";
 
 export function Main({ themeDetailsData }) {
-  const [visibilty, setVisibility] = useState(false)
+  const [visibilty, setVisibility] = useState(true)
   const handleViewPopup = ()=>{
       setVisibility(!visibilty)
   }
@@ -13,14 +17,18 @@ export function Main({ themeDetailsData }) {
         <>
           <div class="mainPopup">
             <div class="header">
-                <div>
+                <div class="leftHeader">
                     <p>Welcome to</p>
                     <h6>Loyality</h6>
                 </div>
-                <div>
+                <div class="rightHeader">
                     <img class="closePopup" onClick={handleViewPopup} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
                 </div>
             </div>
+          <WalletCard/>
+          <CouponCard/>
+          <InviteCard/>
+          <GamesCard/>
           </div>
         </>
       )}

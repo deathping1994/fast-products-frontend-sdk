@@ -1,5 +1,5 @@
 import { render } from "preact";
-import style from "./shadow-style.css?inline";
+import style from "./loyalty-popup.css";
 import { Main } from "./components/main";
 
 export function App({ themeDetailsData }) {
