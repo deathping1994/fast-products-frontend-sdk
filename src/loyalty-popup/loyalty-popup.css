@@ -324,6 +324,7 @@ body {
 	border-radius: 8px;
 	position: relative;
 	bottom: 20px;
+	min-width: 120px;
 	}
 
 .gamesCardImg {
@@ -344,6 +345,7 @@ body {
 	margin-bottom: 8px;
 	color: black;
 	font-size: 14px;
+	gap: 4px;
 }
 
 .gamesCardBtn {
@@ -373,7 +375,134 @@ body {
 
 .gamesHorizontalList {
 	height: fit-content;
-	padding: 0 16px;
+	padding: 8px 16px;
 	display: flex;
 	gap: 16px;
+	width: 100%;
+}
+
+/* Invite and Earn */
+
+.inviteWhatsappBtn {
+	height: 40px;
+    width: 96%;
+    background-color: #faa;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border: none;
+}
+
+.inviteRoundedBtn {
+	width: 40px;
+    height: 40px;
+    background-color: #faa;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border: none;
+}
+
+.inviteAndEarnContainer {
+	width: 100%;
+	padding: 22px;
+}
+
+.dashedDivider {
+	border: none;
+    height: 1px;
+    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
+    margin: 20px 0;
+}
+
+.inviteEarnTextContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 400;
+    font-size: 14px;
+    color: #acacac;
+    margin: 14px;
+    text-align: center;
+}
+
+.inviteAndEarn {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 16px;
+}
+
+.inviteAndEarn h2 {
+	font-weight: 700;
+    font-size: 30px;
+}
+
+.inviteAndEarnMessage h4 {
+	text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 30px;
+    margin: 20px 0!important;
+}
+
+.inviteLinkContainer {
+	padding: 12px;
+    background: #faa;
+    border-radius: 4px;
+    border: 1px dashed #000;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+	justify-content: space-between;
+    align-items: center;
+}
+
+.inviteLinkContainer p {
+	font-size: 14px;
+}
+
+.inviteLinkContainer img {
+	max-width: 16px;
+	cursor: pointer;
+}
+
+.sendInvitesBtnContainer, .inviteWhatsappBtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.closeInviteContainer {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.couponUnlockBtn {
+	background-color: black;
+    color: #fff;
+    padding: 11px 0;
+    border-radius: 8px;
+    font-family: Inter,sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+	border: none;
+}
+
+.unlockCouponContainer {
+	width: 100%;
+	padding: 16px;
+}
+
+.couponOverlayContainer {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 8px;
 }

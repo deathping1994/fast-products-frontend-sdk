@@ -4,6 +4,7 @@ import WalletCard from "./WalletCard";
 import InviteCard from "./InviteCard";
 import ShowCoupons from "./ShowCoupons";
 import GamesArena from "./GamesArena";
+import CouponOverlay from "./CouponOverlay";
 
 export function Main({ themeDetailsData }) {
   const [visibilty, setVisibility] = useState(true)
@@ -31,6 +32,7 @@ export function Main({ themeDetailsData }) {
               <ShowCoupons/>
               <GamesArena/>
               <InviteCard/>
+              {/* <CouponOverlay/> */}
             </div>
           </div>
         </>
