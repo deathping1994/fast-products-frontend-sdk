@@ -1,12 +1,18 @@
-const CouponCard = () => {
+const CouponCard = ({couponImgLink, couponPrice, couponDesc, coinImgLink}) => {
   return (
     <>
         <div class="couponCard">
-            <img src="https://media.farziengineer.co/farziwallet/coupon-image-top.png" alt="" />
+          <img class="couponImg" src={couponImgLink} alt="" />
             <div class="couponCardDesc">
-                <p>Rs. 10 off on Striped Silk Blouse</p>
+                <div class="couponFloatingLabel">
+                  &#8377; {couponPrice}
+                </div>
+                <p class="couponText">{couponDesc}</p>
+                <div className="couponCardPrice">
+                  <img src={coinImgLink}/>
+                  <p>{couponPrice}</p>
+                </div>
             </div>
-            <p class="couponPriceCard">&#8377; 10</p>
         </div>
     </>
   )

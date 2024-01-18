@@ -1,14 +1,19 @@
-const GamesCard = () => {
+const GamesCard = ({cardImage, coinImage, gameTitle, btnText, gamePrice}) => {
   return (
     <>
-        <div class="">
-            <img src="" alt="" />
-            <p>Wheel of Fortune</p>
-            <p>Start at</p>
-            <div class="coinCard">
-                <img src="https://media.farziengineer.co/farziwallet/coin-icon.png" alt="" />
-                <h1>575</h1>
+        <div class="gamesMainContainer">
+          <div class="gamesCardImg">
+            <img src={cardImage} alt="" />
+          </div>
+          <div class="gamesCard">
+              <p class="gamesCardTitle">{gameTitle}</p>
+              <p class="gamesCardDesc">Start at</p>
+            <div class="coinBox">
+              <img src={coinImage} alt="" />
+              <p>{gamePrice}</p>
             </div>
+            <button class="gamesCardBtn">{btnText}</button>
+          </div>
         </div>
     </>
   )
