@@ -4,11 +4,15 @@ import WalletCard from "./WalletCard";
 import InviteCard from "./InviteCard";
 import CouponCard from "./CouponCard";
 import GamesCard from "./GamesCard";
+import { PointsActivity } from "./pointsActivity";
 
 export function Main({ themeDetailsData }) {
   const [visibilty, setVisibility] = useState(true)
   const handleViewPopup = ()=>{
       setVisibility(!visibilty)
+  }
+  const  transactionLog = () => {
+      return <PointsActivity/>
   }
   return (
     <>
@@ -25,7 +29,8 @@ export function Main({ themeDetailsData }) {
                     <img class="closePopup" onClick={handleViewPopup} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
                 </div>
             </div>
-          <WalletCard/>
+          <div onClick={transactionLog}><WalletCard/></div>
+          <PointsActivity/>
           <CouponCard/>
           <InviteCard/>
           <GamesCard/>
