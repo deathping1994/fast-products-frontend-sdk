@@ -1,4 +1,4 @@
-const InviteCard = () => {
+const InviteCard = ({onClick}) => {
   return (
     <>
         <div class="inviteCard">
@@ -11,7 +11,7 @@ const InviteCard = () => {
                     <p>Get 200 FC coins every time you invite a friend to try loyalty</p>
                 </div>
             </div>
-            <button class="invitebtn">Share Invite</button>
+            <button onClick={onClick} class="invitebtn">Share Invite</button>
         </div>
     </>
   )

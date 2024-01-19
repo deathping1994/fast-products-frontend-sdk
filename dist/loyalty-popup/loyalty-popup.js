@@ -1,7 +1,10 @@
 (function() {
   "use strict";
-  var n, l$1, u$1, i$1, o$1, r$1, f$1, c$1 = {}, s = [], a$1 = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i, v$1 = Array.isArray;
-  function h(n2, l2) {
+  var __vite_style__ = document.createElement("style");
+  __vite_style__.textContent = "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');\r\n\n/* :root {\r\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\r\n	line-height: 1.5;\r\n	font-weight: 400;\r\n	\r\n	color: #222;\r\n	background-color: #ffffff;\r\n	\r\n	font-synthesis: none;\r\n	text-rendering: optimizeLegibility;\r\n	-webkit-font-smoothing: antialiased;\r\n	-moz-osx-font-smoothing: grayscale;\r\n	-webkit-text-size-adjust: 100%;\r\n}\r\n*/\nbody {\r\n	margin: 0;\r\n	padding: 0;\r\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\r\n}\n.fc-loyalty-popup-19212-root * {\r\n	padding: 0;\r\n	margin: 0;\r\n	box-sizing: border-box;\r\n}\n.fc-loyalty-popup-19212-root a {\r\n	text-decoration: none;\r\n	color: inherit;\r\n}\n.fc-loyalty-popup-19212-root {\r\n	width: 100%;\r\n}\n/* Loyality popup styles */\n.floatingPopup {\r\n    background-color: black;\r\n	padding: 1rem;\r\n	display: flex;\r\n	position: fixed;\r\n	width: 60px;\r\n	height: 60px;\r\n	bottom: 3%;\r\n    right: 3%;\r\n	justify-content: center;\r\n	align-items: center;\r\n	border-radius: 100%;\r\n	z-index: 9999;\r\n	cursor: pointer;\r\n	\r\n}\n.mainPopup {\r\n	background-color: white;\r\n	scrollbar-width: none;\r\n	z-index: 999;\r\n	position: fixed;\r\n	gap: 16px;\r\n	bottom: 13%;\r\n	right: 7%;\r\n	max-width: 360px;\r\n	max-height: 580px;\r\n	width: 85vw;\r\n    height: 80vh;\r\n	border-radius: 15px;\r\n	overflow-x: hidden;\r\n	overflow-y: scroll;\r\n	padding-bottom: 16px;\r\n	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);\r\n}\n.mainContent {\r\n	display: flex;\r\n	flex-direction: column;\r\n	justify-content: start;\r\n	align-items: start;\r\n	padding-bottom: 16px;\r\n}\n.header {\r\n	display: flex;\r\n	justify-content: space-between;\r\n  	align-items: flex-start;\r\n	height: 10vh;\r\n	padding: 14px;\r\n	margin-bottom: 10px;\r\n}\n.header p {\r\n	color: #0c0c0c;\r\n    font-size: 12px;\r\n}\n.header h6 {\r\n	color: #0c0c0c;\r\n    font-size: 20px;\r\n	margin: 0;\r\n}\n.closePopup {\r\n	cursor: pointer;\r\n	width: 30px;\r\n	height: 30px;\r\n}\n.walletCard {\r\n	background-color: black;\r\n    padding: 12px 13px;\r\n    border-radius: 16px;\r\n    box-shadow: none;\r\n    margin: 0 14px;\r\n    width: calc(100% - 32px);\r\n	display: flex;\r\n	justify-content: space-between;\r\n}\n.coinCard img {\r\n	width: 20px;\r\n	height: 20px;\r\n}\n.coinCard {\r\n	background-color: #fff;\r\n    border-radius: 4px;\r\n    margin: 0 6px;\r\n    padding: 5px 10px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n	gap: 8px;\r\n}\n.coinCard h1 {\r\n    font-size: 18px;\r\n	font-weight: 600;\r\n	color: black;\r\n}\n.badgeCard img {\r\n	height: 12px;\r\n	width: 12px;\r\n}\n.badgeCard p {\r\n	font-size: 11px;\r\n}\n.badgeCard {\r\n	display: flex;\r\n	justify-content: left;\r\n	align-items: center;\r\n	color: white;\r\n	gap: 4px;\r\n}\n.walletCardText {\r\n	color: white;\r\n	font-size: 14px;\r\n	font-weight: bold;\r\n}\n.inviteCard {\r\n	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);\r\n    margin: 0 20px;\r\n    border-radius: 8px;\r\n    padding: 12px;\r\n}\n.inviteTextSection {\r\n	color: white;\r\n	display: flex;\r\n	align-items: center;\r\n	margin-bottom: 18px;\r\n	gap: 8px;\r\n}\n.inviteTextContainer h2 {\r\n	font-weight: 700;\r\n	font-size: 20px;\r\n	margin-bottom: 6px;\r\n	line-height: 16px;\r\n}\n.inviteTextContainer p {\r\n	font-weight: 400;\r\n    font-size: 12px;\r\n	line-height: 14px;\r\n}\n.invitebtn {\r\n	width: 100%;\r\n    background: #fff;\r\n    border-radius: 4px;\r\n    border: none;\r\n    padding: 8px;\r\n    color: #3e56d2;\r\n    font-weight: 700;\r\n    font-size: 12px;\r\n    text-align: center;\r\n    cursor: pointer;\r\n	line-height: normal;\r\n	font-family: Inter, sans-serif;\r\n}\n.couponCard {\r\n	border-radius: 12px;\r\n	color: #000;\r\n	font-size: 14px;\r\n	line-height: 20px;\r\n	cursor: pointer;\r\n	width: 120px;\r\n}\n.couponCardDesc {\r\n	padding: 8px;\r\n	background: #f4f4f4;\r\n	border-radius: 8px;\r\n	box-shadow: 0 -4px 10px rgba(0,0,0,.1);\r\n	position: relative;\r\n	top: -12px;\r\n	min-width: 120px;\r\n	font-size: 13px;\r\n	font-weight: normal;\r\n	display: flex;\r\n	flex-direction: column;\r\n	gap: 4px;\r\n}\n.couponImg {\r\n	border-radius: 8px 8px 0 0;\r\n	width: 120px;\r\n}\n.couponCardPrice {\r\n	display: flex;\r\n	align-items: center;\r\n	justify-content: start;\r\n	gap: 4px;\r\n	font-size: 14px;\r\n	font-weight: 400;\r\n	margin-top: 8px;\r\n}\n.couponFloatingLabel {\r\n	position: absolute;\r\n	top: -10px;\r\n  	right: 10px;\r\n    background: var(--loyalty_popup_theme_background,#000);\r\n    color: #fff;\r\n    width: 40px;\r\n    height: 24px;\r\n    text-align: center;\r\n    line-height: 24px;\r\n    font-weight: 600;\r\n    font-size: 12px;\r\n    border-radius: 4px;\r\n}\n.couponText {\r\n	padding-top: 8px;\r\n	font-family: Inter, sans-serif;\r\n	font-weight: 500;\r\n}\n.couponCardPrice img {\r\n	width: 14px;\r\n	height: 14px;\r\n}\n.viewAllCouponsContainer {\r\n	display: flex;\r\n	justify-content: space-between;\r\n	align-items: center;\r\n	padding: 8px 16px;\r\n	width: 100%;\r\n}\n.viewAllCouponsContainer h1 {\r\n	font-size: 20px;\r\n    font-weight: 700;\r\n}\n.viewAllCouponsContainer a {\r\n	cursor: pointer;\r\n    font-weight: 500;\r\n    font-size: 12px;\r\n}\n.gamesArenaContainer {\r\n	padding: 8px 16px;\r\n	margin-top: 16px;\r\n}\n.gamesArenaContainer h1 {\r\n	font-size: 20px;\r\n    font-weight: 700;\r\n}\n.gamesArenaContainer p {\r\n	font-size: 12px;\r\n    font-weight: 500;\r\n	line-height: 14px;\r\n}\n.gamesCard {\r\n	width: fit-content;\r\n	background-color: #efefef;\r\n	display: flex;\r\n	flex-direction: column;\r\n	justify-content: center;\r\n	align-items: center;\r\n	padding: 8px;\r\n	padding-top: 8px;\r\n	padding-top: 30px;\r\n	border-radius: 8px;\r\n	position: relative;\r\n	bottom: 20px;\r\n	min-width: 120px;\r\n	}\n.gamesCardImg {\r\n	display: flex;\r\n	justify-content: center;\r\n	align-items: center;\r\n	z-index: 2;\r\n	position: relative;\r\n}\n.coinBox {\r\n	background: #fff;\r\n	border-radius: 4px;\r\n	display: flex;\r\n	justify-content: center;\r\n	padding: 4px 14px;\r\n	align-items: center;\r\n	margin-bottom: 8px;\r\n	color: black;\r\n	font-size: 14px;\r\n	gap: 4px;\r\n}\n.gamesCardBtn {\r\n	background: black;\r\n    border-radius: 4px;\r\n    font-weight: 700;\r\n    font-size: 12px;\r\n    text-align: center;\r\n    color: #fff;\r\n    width: 100%;\r\n    padding: 8px;\r\n    cursor: pointer;\r\n	border: none;\r\n}\n.gamesCardTitle {\r\n	font-weight: 700;\r\n    font-size: 12px;\r\n	text-align: center;\r\n}\n.gamesCardDesc {\r\n	font-weight: 500;\r\n    font-size: 10px;\r\n    margin-bottom: 8px;\r\n}\n.gamesHorizontalList {\r\n	height: fit-content;\r\n	padding: 8px 16px;\r\n	display: flex;\r\n	gap: 16px;\r\n	width: 100%;\r\n}\n/* Invite and Earn */\n.inviteWhatsappBtn {\r\n	height: 40px;\r\n    width: 96%;\r\n    background-color: #faa;\r\n    border-radius: 4px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n	border: none;\r\n}\n.inviteRoundedBtn {\r\n	width: 40px;\r\n    height: 40px;\r\n    background-color: #faa;\r\n    border-radius: 50%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n	border: none;\r\n}\n.inviteAndEarnContainer {\r\n	width: 100%;\r\n	padding: 22px;\r\n}\n.dashedDivider {\r\n	border: none;\r\n    height: 1px;\r\n    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);\r\n    margin: 20px 0;\r\n}\n.inviteEarnTextContainer {\r\n	display: flex;\r\n	justify-content: center;\r\n	align-items: center;\r\n	font-weight: 400;\r\n    font-size: 14px;\r\n    color: #acacac;\r\n    margin: 14px;\r\n    text-align: center;\r\n}\n.inviteAndEarn {\r\n	display: flex;\r\n	justify-content: flex-start;\r\n	align-items: center;\r\n	gap: 16px;\r\n}\n.inviteAndEarn h2 {\r\n	font-weight: 700;\r\n    font-size: 30px;\r\n}\n.inviteAndEarnMessage h4 {\r\n	text-align: center;\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 30px;\r\n    margin: 20px 0!important;\r\n}\n.inviteLinkContainer {\r\n	padding: 12px;\r\n    background: #faa;\r\n    border-radius: 4px;\r\n    border: 1px dashed #000;\r\n    font-size: 16px;\r\n    font-weight: 700;\r\n    display: flex;\r\n	justify-content: space-between;\r\n    align-items: center;\r\n}\n.inviteLinkContainer p {\r\n	font-size: 14px;\r\n}\n.inviteLinkContainer img {\r\n	max-width: 16px;\r\n	cursor: pointer;\r\n}\n.sendInvitesBtnContainer, .inviteWhatsappBtn {\r\n	display: flex;\r\n	justify-content: center;\r\n	align-items: center;\r\n	gap: 8px;\r\n}\n.closeInviteContainer {\r\n	display: flex;\r\n	justify-content: end;\r\n	align-items: center;\r\n}\n.couponUnlockBtn {\r\n	background-color: black;\r\n    color: #fff;\r\n    padding: 11px 0;\r\n    border-radius: 8px;\r\n    font-family: Inter,sans-serif;\r\n    font-weight: 700;\r\n    cursor: pointer;\r\n    width: 100%;\r\n    font-size: 14px;\r\n	border: none;\r\n}\n.unlockCouponContainer {\r\n	width: 100%;\r\n	padding: 16px;\r\n}\n.couponOverlayContainer {\r\n	display: flex;\r\n	justify-content: start;\r\n	align-items: center;\r\n	gap: 8px;\r\n}\n.showAllCouponsList {\r\n	display: flex;\r\n	justify-content: start;\r\n	align-items: start;\r\n	gap: 16px;\r\n	scrollbar-width: none;\r\n	overflow-x: scroll;\r\n	overflow-y: hidden;\r\n	padding: 0 16px;\r\n}\n.overlay {\r\n	position: absolute;\r\n	z-index: 999;\r\n}";
+  document.head.appendChild(__vite_style__);
+  var n, l$1, u$1, i$1, o$2, r$1, f$1, c$1 = {}, s$1 = [], a$1 = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i, v$1 = Array.isArray;
+  function h$1(n2, l2) {
     for (var u2 in l2)
       n2[u2] = l2[u2];
     return n2;
@@ -10,17 +13,17 @@
     var l2 = n2.parentNode;
     l2 && l2.removeChild(n2);
   }
-  function y(l2, u2, t) {
+  function y(l2, u2, t2) {
     var i2, o2, r2, f2 = {};
     for (r2 in u2)
       "key" == r2 ? i2 = u2[r2] : "ref" == r2 ? o2 = u2[r2] : f2[r2] = u2[r2];
-    if (arguments.length > 2 && (f2.children = arguments.length > 3 ? n.call(arguments, 2) : t), "function" == typeof l2 && null != l2.defaultProps)
+    if (arguments.length > 2 && (f2.children = arguments.length > 3 ? n.call(arguments, 2) : t2), "function" == typeof l2 && null != l2.defaultProps)
       for (r2 in l2.defaultProps)
         void 0 === f2[r2] && (f2[r2] = l2.defaultProps[r2]);
-    return d(l2, f2, i2, o2, null);
+    return d$1(l2, f2, i2, o2, null);
   }
-  function d(n2, t, i2, o2, r2) {
-    var f2 = { type: n2, props: t, key: i2, ref: o2, __k: null, __: null, __b: 0, __e: null, __d: void 0, __c: null, __h: null, constructor: void 0, __v: null == r2 ? ++u$1 : r2 };
+  function d$1(n2, t2, i2, o2, r2) {
+    var f2 = { type: n2, props: t2, key: i2, ref: o2, __k: null, __: null, __b: 0, __e: null, __d: void 0, __c: null, __h: null, constructor: void 0, __v: null == r2 ? ++u$1 : r2 };
     return null == r2 && null != l$1.vnode && l$1.vnode(f2), f2;
   }
   function k$1(n2) {
@@ -49,34 +52,34 @@
     }
   }
   function w$1(n2) {
-    (!n2.__d && (n2.__d = true) && i$1.push(n2) && !x.__r++ || o$1 !== l$1.debounceRendering) && ((o$1 = l$1.debounceRendering) || r$1)(x);
+    (!n2.__d && (n2.__d = true) && i$1.push(n2) && !x.__r++ || o$2 !== l$1.debounceRendering) && ((o$2 = l$1.debounceRendering) || r$1)(x);
   }
   function x() {
-    var n2, l2, u2, t, o2, r2, e2, c2, s2;
+    var n2, l2, u2, t2, o2, r2, e2, c2, s2;
     for (i$1.sort(f$1); n2 = i$1.shift(); )
-      n2.__d && (l2 = i$1.length, t = void 0, o2 = void 0, r2 = void 0, c2 = (e2 = (u2 = n2).__v).__e, (s2 = u2.__P) && (t = [], o2 = [], (r2 = h({}, e2)).__v = e2.__v + 1, z(s2, e2, r2, u2.__n, void 0 !== s2.ownerSVGElement, null != e2.__h ? [c2] : null, t, null == c2 ? g$1(e2) : c2, e2.__h, o2), L(t, e2, o2), e2.__e != c2 && m$1(e2)), i$1.length > l2 && i$1.sort(f$1));
+      n2.__d && (l2 = i$1.length, t2 = void 0, o2 = void 0, r2 = void 0, c2 = (e2 = (u2 = n2).__v).__e, (s2 = u2.__P) && (t2 = [], o2 = [], (r2 = h$1({}, e2)).__v = e2.__v + 1, z(s2, e2, r2, u2.__n, void 0 !== s2.ownerSVGElement, null != e2.__h ? [c2] : null, t2, null == c2 ? g$1(e2) : c2, e2.__h, o2), L(t2, e2, o2), e2.__e != c2 && m$1(e2)), i$1.length > l2 && i$1.sort(f$1));
     x.__r = 0;
   }
-  function P(n2, l2, u2, t, i2, o2, r2, f2, e2, a2, h2) {
-    var p2, y2, _2, b2, m2, w2, x2, P2, C, D2 = 0, H2 = t && t.__k || s, I2 = H2.length, T2 = I2, j2 = l2.length;
+  function P(n2, l2, u2, t2, i2, o2, r2, f2, e2, a2, h2) {
+    var p2, y2, _2, b2, m2, w2, x2, P2, C, D2 = 0, H2 = t2 && t2.__k || s$1, I2 = H2.length, T2 = I2, j2 = l2.length;
     for (u2.__k = [], p2 = 0; p2 < j2; p2++)
-      null != (b2 = u2.__k[p2] = null == (b2 = l2[p2]) || "boolean" == typeof b2 || "function" == typeof b2 ? null : "string" == typeof b2 || "number" == typeof b2 || "bigint" == typeof b2 ? d(null, b2, null, null, b2) : v$1(b2) ? d(k$1, { children: b2 }, null, null, null) : b2.__b > 0 ? d(b2.type, b2.props, b2.key, b2.ref ? b2.ref : null, b2.__v) : b2) ? (b2.__ = u2, b2.__b = u2.__b + 1, -1 === (P2 = A(b2, H2, x2 = p2 + D2, T2)) ? _2 = c$1 : (_2 = H2[P2] || c$1, H2[P2] = void 0, T2--), z(n2, b2, _2, i2, o2, r2, f2, e2, a2, h2), m2 = b2.__e, (y2 = b2.ref) && _2.ref != y2 && (_2.ref && N(_2.ref, null, b2), h2.push(y2, b2.__c || m2, b2)), null != m2 && (null == w2 && (w2 = m2), (C = _2 === c$1 || null === _2.__v) ? -1 == P2 && D2-- : P2 !== x2 && (P2 === x2 + 1 ? D2++ : P2 > x2 ? T2 > j2 - x2 ? D2 += P2 - x2 : D2-- : D2 = P2 < x2 && P2 == x2 - 1 ? P2 - x2 : 0), x2 = p2 + D2, "function" != typeof b2.type || P2 === x2 && _2.__k !== b2.__k ? "function" == typeof b2.type || P2 === x2 && !C ? void 0 !== b2.__d ? (e2 = b2.__d, b2.__d = void 0) : e2 = m2.nextSibling : e2 = S(n2, m2, e2) : e2 = $(b2, e2, n2), "function" == typeof u2.type && (u2.__d = e2))) : (_2 = H2[p2]) && null == _2.key && _2.__e && (_2.__e == e2 && (_2.__ = t, e2 = g$1(_2)), O(_2, _2, false), H2[p2] = null);
+      null != (b2 = u2.__k[p2] = null == (b2 = l2[p2]) || "boolean" == typeof b2 || "function" == typeof b2 ? null : "string" == typeof b2 || "number" == typeof b2 || "bigint" == typeof b2 ? d$1(null, b2, null, null, b2) : v$1(b2) ? d$1(k$1, { children: b2 }, null, null, null) : b2.__b > 0 ? d$1(b2.type, b2.props, b2.key, b2.ref ? b2.ref : null, b2.__v) : b2) ? (b2.__ = u2, b2.__b = u2.__b + 1, -1 === (P2 = A(b2, H2, x2 = p2 + D2, T2)) ? _2 = c$1 : (_2 = H2[P2] || c$1, H2[P2] = void 0, T2--), z(n2, b2, _2, i2, o2, r2, f2, e2, a2, h2), m2 = b2.__e, (y2 = b2.ref) && _2.ref != y2 && (_2.ref && N(_2.ref, null, b2), h2.push(y2, b2.__c || m2, b2)), null != m2 && (null == w2 && (w2 = m2), (C = _2 === c$1 || null === _2.__v) ? -1 == P2 && D2-- : P2 !== x2 && (P2 === x2 + 1 ? D2++ : P2 > x2 ? T2 > j2 - x2 ? D2 += P2 - x2 : D2-- : D2 = P2 < x2 && P2 == x2 - 1 ? P2 - x2 : 0), x2 = p2 + D2, "function" != typeof b2.type || P2 === x2 && _2.__k !== b2.__k ? "function" == typeof b2.type || P2 === x2 && !C ? void 0 !== b2.__d ? (e2 = b2.__d, b2.__d = void 0) : e2 = m2.nextSibling : e2 = S(n2, m2, e2) : e2 = $(b2, e2, n2), "function" == typeof u2.type && (u2.__d = e2))) : (_2 = H2[p2]) && null == _2.key && _2.__e && (_2.__e == e2 && (_2.__ = t2, e2 = g$1(_2)), O(_2, _2, false), H2[p2] = null);
     for (u2.__e = w2, p2 = I2; p2--; )
       null != H2[p2] && ("function" == typeof u2.type && null != H2[p2].__e && H2[p2].__e == u2.__d && (u2.__d = H2[p2].__e.nextSibling), O(H2[p2], H2[p2]));
   }
   function $(n2, l2, u2) {
-    for (var t, i2 = n2.__k, o2 = 0; i2 && o2 < i2.length; o2++)
-      (t = i2[o2]) && (t.__ = n2, l2 = "function" == typeof t.type ? $(t, l2, u2) : S(u2, t.__e, l2));
+    for (var t2, i2 = n2.__k, o2 = 0; i2 && o2 < i2.length; o2++)
+      (t2 = i2[o2]) && (t2.__ = n2, l2 = "function" == typeof t2.type ? $(t2, l2, u2) : S(u2, t2.__e, l2));
     return l2;
   }
   function S(n2, l2, u2) {
     return null == u2 || u2.parentNode !== n2 ? n2.insertBefore(l2, null) : l2 == u2 && null != l2.parentNode || n2.insertBefore(l2, u2), l2.nextSibling;
   }
-  function A(n2, l2, u2, t) {
+  function A(n2, l2, u2, t2) {
     var i2 = n2.key, o2 = n2.type, r2 = u2 - 1, f2 = u2 + 1, e2 = l2[u2];
     if (null === e2 || e2 && i2 == e2.key && o2 === e2.type)
       return u2;
-    if (t > (null != e2 ? 1 : 0))
+    if (t2 > (null != e2 ? 1 : 0))
       for (; r2 >= 0 || f2 < l2.length; ) {
         if (r2 >= 0) {
           if ((e2 = l2[r2]) && i2 == e2.key && o2 === e2.type)
@@ -91,32 +94,32 @@
       }
     return -1;
   }
-  function D(n2, l2, u2, t, i2) {
+  function D(n2, l2, u2, t2, i2) {
     var o2;
     for (o2 in u2)
-      "children" === o2 || "key" === o2 || o2 in l2 || I(n2, o2, null, u2[o2], t);
+      "children" === o2 || "key" === o2 || o2 in l2 || I(n2, o2, null, u2[o2], t2);
     for (o2 in l2)
-      i2 && "function" != typeof l2[o2] || "children" === o2 || "key" === o2 || "value" === o2 || "checked" === o2 || u2[o2] === l2[o2] || I(n2, o2, l2[o2], u2[o2], t);
+      i2 && "function" != typeof l2[o2] || "children" === o2 || "key" === o2 || "value" === o2 || "checked" === o2 || u2[o2] === l2[o2] || I(n2, o2, l2[o2], u2[o2], t2);
   }
   function H(n2, l2, u2) {
     "-" === l2[0] ? n2.setProperty(l2, null == u2 ? "" : u2) : n2[l2] = null == u2 ? "" : "number" != typeof u2 || a$1.test(l2) ? u2 : u2 + "px";
   }
-  function I(n2, l2, u2, t, i2) {
+  function I(n2, l2, u2, t2, i2) {
     var o2;
     n:
       if ("style" === l2)
         if ("string" == typeof u2)
           n2.style.cssText = u2;
         else {
-          if ("string" == typeof t && (n2.style.cssText = t = ""), t)
-            for (l2 in t)
+          if ("string" == typeof t2 && (n2.style.cssText = t2 = ""), t2)
+            for (l2 in t2)
               u2 && l2 in u2 || H(n2.style, l2, "");
           if (u2)
             for (l2 in u2)
-              t && u2[l2] === t[l2] || H(n2.style, l2, u2[l2]);
+              t2 && u2[l2] === t2[l2] || H(n2.style, l2, u2[l2]);
         }
       else if ("o" === l2[0] && "n" === l2[1])
-        o2 = l2 !== (l2 = l2.replace(/(PointerCapture)$|Capture$/, "$1")), l2 = l2.toLowerCase() in n2 ? l2.toLowerCase().slice(2) : l2.slice(2), n2.l || (n2.l = {}), n2.l[l2 + o2] = u2, u2 ? t ? u2.u = t.u : (u2.u = Date.now(), n2.addEventListener(l2, o2 ? j$1 : T, o2)) : n2.removeEventListener(l2, o2 ? j$1 : T, o2);
+        o2 = l2 !== (l2 = l2.replace(/(PointerCapture)$|Capture$/, "$1")), l2 = l2.toLowerCase() in n2 ? l2.toLowerCase().slice(2) : l2.slice(2), n2.l || (n2.l = {}), n2.l[l2 + o2] = u2, u2 ? t2 ? u2.u = t2.u : (u2.u = Date.now(), n2.addEventListener(l2, o2 ? j$1 : T, o2)) : n2.removeEventListener(l2, o2 ? j$1 : T, o2);
       else if ("dangerouslySetInnerHTML" !== l2) {
         if (i2)
           l2 = l2.replace(/xlink(H|:h)/, "h").replace(/sName$/, "s");
@@ -141,19 +144,19 @@
   function j$1(n2) {
     return this.l[n2.type + true](l$1.event ? l$1.event(n2) : n2);
   }
-  function z(n2, u2, t, i2, o2, r2, f2, e2, c2, s2) {
+  function z(n2, u2, t2, i2, o2, r2, f2, e2, c2, s2) {
     var a2, p2, y2, d2, _2, g2, m2, w2, x2, $2, C, S2, A2, D2, H2, I2 = u2.type;
     if (void 0 !== u2.constructor)
       return null;
-    null != t.__h && (c2 = t.__h, e2 = u2.__e = t.__e, u2.__h = null, r2 = [e2]), (a2 = l$1.__b) && a2(u2);
+    null != t2.__h && (c2 = t2.__h, e2 = u2.__e = t2.__e, u2.__h = null, r2 = [e2]), (a2 = l$1.__b) && a2(u2);
     n:
       if ("function" == typeof I2)
         try {
-          if (w2 = u2.props, x2 = (a2 = I2.contextType) && i2[a2.__c], $2 = a2 ? x2 ? x2.props.value : a2.__ : i2, t.__c ? m2 = (p2 = u2.__c = t.__c).__ = p2.__E : ("prototype" in I2 && I2.prototype.render ? u2.__c = p2 = new I2(w2, $2) : (u2.__c = p2 = new b$1(w2, $2), p2.constructor = I2, p2.render = q), x2 && x2.sub(p2), p2.props = w2, p2.state || (p2.state = {}), p2.context = $2, p2.__n = i2, y2 = p2.__d = true, p2.__h = [], p2._sb = []), null == p2.__s && (p2.__s = p2.state), null != I2.getDerivedStateFromProps && (p2.__s == p2.state && (p2.__s = h({}, p2.__s)), h(p2.__s, I2.getDerivedStateFromProps(w2, p2.__s))), d2 = p2.props, _2 = p2.state, p2.__v = u2, y2)
+          if (w2 = u2.props, x2 = (a2 = I2.contextType) && i2[a2.__c], $2 = a2 ? x2 ? x2.props.value : a2.__ : i2, t2.__c ? m2 = (p2 = u2.__c = t2.__c).__ = p2.__E : ("prototype" in I2 && I2.prototype.render ? u2.__c = p2 = new I2(w2, $2) : (u2.__c = p2 = new b$1(w2, $2), p2.constructor = I2, p2.render = q), x2 && x2.sub(p2), p2.props = w2, p2.state || (p2.state = {}), p2.context = $2, p2.__n = i2, y2 = p2.__d = true, p2.__h = [], p2._sb = []), null == p2.__s && (p2.__s = p2.state), null != I2.getDerivedStateFromProps && (p2.__s == p2.state && (p2.__s = h$1({}, p2.__s)), h$1(p2.__s, I2.getDerivedStateFromProps(w2, p2.__s))), d2 = p2.props, _2 = p2.state, p2.__v = u2, y2)
             null == I2.getDerivedStateFromProps && null != p2.componentWillMount && p2.componentWillMount(), null != p2.componentDidMount && p2.__h.push(p2.componentDidMount);
           else {
-            if (null == I2.getDerivedStateFromProps && w2 !== d2 && null != p2.componentWillReceiveProps && p2.componentWillReceiveProps(w2, $2), !p2.__e && (null != p2.shouldComponentUpdate && false === p2.shouldComponentUpdate(w2, p2.__s, $2) || u2.__v === t.__v)) {
-              for (u2.__v !== t.__v && (p2.props = w2, p2.state = p2.__s, p2.__d = false), u2.__e = t.__e, u2.__k = t.__k, u2.__k.forEach(function(n3) {
+            if (null == I2.getDerivedStateFromProps && w2 !== d2 && null != p2.componentWillReceiveProps && p2.componentWillReceiveProps(w2, $2), !p2.__e && (null != p2.shouldComponentUpdate && false === p2.shouldComponentUpdate(w2, p2.__s, $2) || u2.__v === t2.__v)) {
+              for (u2.__v !== t2.__v && (p2.props = w2, p2.state = p2.__s, p2.__d = false), u2.__e = t2.__e, u2.__k = t2.__k, u2.__k.forEach(function(n3) {
                 n3 && (n3.__ = u2);
               }), C = 0; C < p2._sb.length; C++)
                 p2.__h.push(p2._sb[C]);
@@ -172,17 +175,17 @@
             do {
               p2.__d = false, S2 && S2(u2), a2 = p2.render(p2.props, p2.state, p2.context), p2.state = p2.__s;
             } while (p2.__d && ++A2 < 25);
-          p2.state = p2.__s, null != p2.getChildContext && (i2 = h(h({}, i2), p2.getChildContext())), y2 || null == p2.getSnapshotBeforeUpdate || (g2 = p2.getSnapshotBeforeUpdate(d2, _2)), P(n2, v$1(H2 = null != a2 && a2.type === k$1 && null == a2.key ? a2.props.children : a2) ? H2 : [H2], u2, t, i2, o2, r2, f2, e2, c2, s2), p2.base = u2.__e, u2.__h = null, p2.__h.length && f2.push(p2), m2 && (p2.__E = p2.__ = null);
+          p2.state = p2.__s, null != p2.getChildContext && (i2 = h$1(h$1({}, i2), p2.getChildContext())), y2 || null == p2.getSnapshotBeforeUpdate || (g2 = p2.getSnapshotBeforeUpdate(d2, _2)), P(n2, v$1(H2 = null != a2 && a2.type === k$1 && null == a2.key ? a2.props.children : a2) ? H2 : [H2], u2, t2, i2, o2, r2, f2, e2, c2, s2), p2.base = u2.__e, u2.__h = null, p2.__h.length && f2.push(p2), m2 && (p2.__E = p2.__ = null);
         } catch (n3) {
-          u2.__v = null, (c2 || null != r2) && (u2.__e = e2, u2.__h = !!c2, r2[r2.indexOf(e2)] = null), l$1.__e(n3, u2, t);
+          u2.__v = null, (c2 || null != r2) && (u2.__e = e2, u2.__h = !!c2, r2[r2.indexOf(e2)] = null), l$1.__e(n3, u2, t2);
         }
       else
-        null == r2 && u2.__v === t.__v ? (u2.__k = t.__k, u2.__e = t.__e) : u2.__e = M(t.__e, u2, t, i2, o2, r2, f2, c2, s2);
+        null == r2 && u2.__v === t2.__v ? (u2.__k = t2.__k, u2.__e = t2.__e) : u2.__e = M(t2.__e, u2, t2, i2, o2, r2, f2, c2, s2);
     (a2 = l$1.diffed) && a2(u2);
   }
-  function L(n2, u2, t) {
-    for (var i2 = 0; i2 < t.length; i2++)
-      N(t[i2], t[++i2], t[++i2]);
+  function L(n2, u2, t2) {
+    for (var i2 = 0; i2 < t2.length; i2++)
+      N(t2[i2], t2[++i2], t2[++i2]);
     l$1.__c && l$1.__c(u2, n2), n2.some(function(u3) {
       try {
         n2 = u3.__h, u3.__h = [], n2.some(function(n3) {
@@ -193,8 +196,8 @@
       }
     });
   }
-  function M(l2, u2, t, i2, o2, r2, f2, e2, s2) {
-    var a2, h2, y2, d2 = t.props, _2 = u2.props, k2 = u2.type, b2 = 0;
+  function M(l2, u2, t2, i2, o2, r2, f2, e2, s2) {
+    var a2, h2, y2, d2 = t2.props, _2 = u2.props, k2 = u2.type, b2 = 0;
     if ("svg" === k2 && (o2 = true), null != r2) {
       for (; b2 < r2.length; b2++)
         if ((a2 = r2[b2]) && "setAttribute" in a2 == !!k2 && (k2 ? a2.localName === k2 : 3 === a2.nodeType)) {
@@ -210,7 +213,7 @@
     if (null === k2)
       d2 === _2 || e2 && l2.data === _2 || (l2.data = _2);
     else {
-      if (r2 = r2 && n.call(l2.childNodes), h2 = (d2 = t.props || c$1).dangerouslySetInnerHTML, y2 = _2.dangerouslySetInnerHTML, !e2) {
+      if (r2 = r2 && n.call(l2.childNodes), h2 = (d2 = t2.props || c$1).dangerouslySetInnerHTML, y2 = _2.dangerouslySetInnerHTML, !e2) {
         if (null != r2)
           for (d2 = {}, b2 = 0; b2 < l2.attributes.length; b2++)
             d2[l2.attributes[b2].name] = l2.attributes[b2].value;
@@ -218,21 +221,21 @@
       }
       if (D(l2, _2, d2, o2, e2), y2)
         u2.__k = [];
-      else if (P(l2, v$1(b2 = u2.props.children) ? b2 : [b2], u2, t, i2, o2 && "foreignObject" !== k2, r2, f2, r2 ? r2[0] : t.__k && g$1(t, 0), e2, s2), null != r2)
+      else if (P(l2, v$1(b2 = u2.props.children) ? b2 : [b2], u2, t2, i2, o2 && "foreignObject" !== k2, r2, f2, r2 ? r2[0] : t2.__k && g$1(t2, 0), e2, s2), null != r2)
         for (b2 = r2.length; b2--; )
           null != r2[b2] && p(r2[b2]);
       e2 || ("value" in _2 && void 0 !== (b2 = _2.value) && (b2 !== l2.value || "progress" === k2 && !b2 || "option" === k2 && b2 !== d2.value) && I(l2, "value", b2, d2.value, false), "checked" in _2 && void 0 !== (b2 = _2.checked) && b2 !== l2.checked && I(l2, "checked", b2, d2.checked, false));
     }
     return l2;
   }
-  function N(n2, u2, t) {
+  function N(n2, u2, t2) {
     try {
       "function" == typeof n2 ? n2(u2) : n2.current = u2;
     } catch (n3) {
-      l$1.__e(n3, t);
+      l$1.__e(n3, t2);
     }
   }
-  function O(n2, u2, t) {
+  function O(n2, u2, t2) {
     var i2, o2;
     if (l$1.unmount && l$1.unmount(n2), (i2 = n2.ref) && (i2.current && i2.current !== n2.__e || N(i2, null, u2)), null != (i2 = n2.__c)) {
       if (i2.componentWillUnmount)
@@ -245,21 +248,21 @@
     }
     if (i2 = n2.__k)
       for (o2 = 0; o2 < i2.length; o2++)
-        i2[o2] && O(i2[o2], u2, t || "function" != typeof n2.type);
-    t || null == n2.__e || p(n2.__e), n2.__ = n2.__e = n2.__d = void 0;
+        i2[o2] && O(i2[o2], u2, t2 || "function" != typeof n2.type);
+    t2 || null == n2.__e || p(n2.__e), n2.__ = n2.__e = n2.__d = void 0;
   }
   function q(n2, l2, u2) {
     return this.constructor(n2, u2);
   }
-  function B(u2, t, i2) {
+  function B$1(u2, t2, i2) {
     var o2, r2, f2, e2;
-    l$1.__ && l$1.__(u2, t), r2 = (o2 = "function" == typeof i2) ? null : i2 && i2.__k || t.__k, f2 = [], e2 = [], z(t, u2 = (!o2 && i2 || t).__k = y(k$1, null, [u2]), r2 || c$1, c$1, void 0 !== t.ownerSVGElement, !o2 && i2 ? [i2] : r2 ? null : t.firstChild ? n.call(t.childNodes) : null, f2, !o2 && i2 ? i2 : r2 ? r2.__e : t.firstChild, o2, e2), L(f2, u2, e2);
+    l$1.__ && l$1.__(u2, t2), r2 = (o2 = "function" == typeof i2) ? null : i2 && i2.__k || t2.__k, f2 = [], e2 = [], z(t2, u2 = (!o2 && i2 || t2).__k = y(k$1, null, [u2]), r2 || c$1, c$1, void 0 !== t2.ownerSVGElement, !o2 && i2 ? [i2] : r2 ? null : t2.firstChild ? n.call(t2.childNodes) : null, f2, !o2 && i2 ? i2 : r2 ? r2.__e : t2.firstChild, o2, e2), L(f2, u2, e2);
   }
-  n = s.slice, l$1 = { __e: function(n2, l2, u2, t) {
+  n = s$1.slice, l$1 = { __e: function(n2, l2, u2, t2) {
     for (var i2, o2, r2; l2 = l2.__; )
       if ((i2 = l2.__c) && !i2.__)
         try {
-          if ((o2 = i2.constructor) && null != o2.getDerivedStateFromError && (i2.setState(o2.getDerivedStateFromError(n2)), r2 = i2.__d), null != i2.componentDidCatch && (i2.componentDidCatch(n2, t || {}), r2 = i2.__d), r2)
+          if ((o2 = i2.constructor) && null != o2.getDerivedStateFromError && (i2.setState(o2.getDerivedStateFromError(n2)), r2 = i2.__d), null != i2.componentDidCatch && (i2.componentDidCatch(n2, t2 || {}), r2 = i2.__d), r2)
             return i2.__E = i2;
         } catch (l3) {
           n2 = l3;
@@ -267,293 +270,96 @@
     throw n2;
   } }, u$1 = 0, b$1.prototype.setState = function(n2, l2) {
     var u2;
-    u2 = null != this.__s && this.__s !== this.state ? this.__s : this.__s = h({}, this.state), "function" == typeof n2 && (n2 = n2(h({}, u2), this.props)), n2 && h(u2, n2), null != n2 && this.__v && (l2 && this._sb.push(l2), w$1(this));
+    u2 = null != this.__s && this.__s !== this.state ? this.__s : this.__s = h$1({}, this.state), "function" == typeof n2 && (n2 = n2(h$1({}, u2), this.props)), n2 && h$1(u2, n2), null != n2 && this.__v && (l2 && this._sb.push(l2), w$1(this));
   }, b$1.prototype.forceUpdate = function(n2) {
     this.__v && (this.__e = true, n2 && this.__h.push(n2), w$1(this));
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = `/* :root {\r
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\r
-	line-height: 1.5;\r
-	font-weight: 400;\r
-\r
-	color: #222;\r
-	background-color: #ffffff;\r
-\r
-	font-synthesis: none;\r
-	text-rendering: optimizeLegibility;\r
-	-webkit-font-smoothing: antialiased;\r
-	-moz-osx-font-smoothing: grayscale;\r
-	-webkit-text-size-adjust: 100%;\r
-}\r
-\r
-body {\r
-	margin: 0;\r
-	display: flex;\r
-	align-items: center;\r
-	min-height: 100vh;\r
-} */\r
-\r
-.fc-wallet-cart-widget-19212-root * {\r
-	padding: 0;\r
-	margin: 0;\r
-	box-sizing: border-box;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root a {\r
-	text-decoration: none;\r
-	color: inherit;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root {\r
-	width: 100%;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .login-container {\r
-	background-color: #ebebeb;\r
-	display: flex;\r
-	justify-content: center;\r
-	padding: 10px 10px;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .wallet-box-container {\r
-	background-color: #ebebeb;\r
-	display: flex;\r
-	justify-content: space-between;\r
-	align-items: center;\r
-	padding: 14px 8px;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .point-details {\r
-	font-weight: bolder;\r
-	margin-left: 6px;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .checkbox-container {\r
-	padding: 0px 10px;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .checkbox-container .container input {\r
-	display: none;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .checkbox-container .container {\r
-	display: block;\r
-	position: relative;\r
-	cursor: pointer;\r
-	font-size: 20px;\r
-	user-select: none;\r
-	-webkit-tap-highlight-color: transparent;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .checkbox-container .checkmark {\r
-	position: relative;\r
-	top: 0;\r
-	left: 0;\r
-	height: 25px;\r
-	width: 25px;\r
-	background-color: #2196F300;\r
-	border-radius: 5px;\r
-	transition: all 0.25s;\r
-}\r
-\r
-/* When the checkbox is checked, add a blue background */\r
-.fc-wallet-cart-widget-19212-root .checkbox-container .container input:checked~.checkmark {\r
-	background-color: #000000;\r
-}\r
-\r
-/* Create the checkmark/indicator (hidden when not checked) */\r
-.fc-wallet-cart-widget-19212-root .checkbox-container .checkmark:after {\r
-	content: "";\r
-	position: absolute;\r
-	transform: rotate(0deg);\r
-	border: 0.1em solid black;\r
-	left: 0;\r
-	top: 0;\r
-	width: 25px;\r
-	height: 25px;\r
-	border-radius: 5px;\r
-	transition: all 0.25s, border-width 0.1s;\r
-}\r
-\r
-/* Show the checkmark when checked */\r
-.fc-wallet-cart-widget-19212-root .checkbox-container .container input:checked~.checkmark:after {\r
-	left: 0.45em;\r
-	top: 0.25em;\r
-	width: 0.25em;\r
-	height: 0.5em;\r
-	border-color: #fff0 white white #fff0;\r
-	border-width: 0 0.15em 0.15em 0;\r
-	border-radius: 0em;\r
-	transform: rotate(45deg);\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .circularloader {\r
-	width: 20px;\r
-	transform-origin: center;\r
-	animation: rotate4 2s linear infinite;\r
-	margin-left: 8px;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .circularloader circle {\r
-	fill: none;\r
-	stroke: hsl(3, 0%, 0%);\r
-	stroke-width: 5;\r
-	stroke-dasharray: 1, 200;\r
-	stroke-dashoffset: 0;\r
-	stroke-linecap: round;\r
-	animation: dash4 1.5s ease-in-out infinite;\r
-}\r
-\r
-@keyframes rotate4 {\r
-	100% {\r
-		transform: rotate(360deg);\r
-	}\r
-}\r
-\r
-@keyframes dash4 {\r
-	0% {\r
-		stroke-dasharray: 1, 200;\r
-		stroke-dashoffset: 0;\r
-	}\r
-\r
-	50% {\r
-		stroke-dasharray: 90, 200;\r
-		stroke-dashoffset: -35px;\r
-	}\r
-\r
-	100% {\r
-		stroke-dashoffset: -125px;\r
-	}\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .skeletonloader {\r
-	background-image: linear-gradient(90deg,\r
-			#ccc 0px,\r
-			rgb(229 229 229 / 90%) 40px,\r
-			#ccc 80px);\r
-	background-size: 300%;\r
-	background-position: 100% 0;\r
-	border-radius: inherit;\r
-	animation: shimmer 1.5s infinite;\r
-}\r
-\r
-@keyframes shimmer {\r
-	to {\r
-		background-position: -100% 0;\r
-	}\r
-}\r
-\r
-\r
-.fc-wallet-cart-widget-19212-root .wallet-applied-details-container {\r
-	background-color: #ebebeb;\r
-	margin-top: 8px;\r
-	padding: 4px 8px;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .wallet-applied-details-container .wallet-applied-details {\r
-	display: flex;\r
-	justify-content: space-between;\r
-	align-items: center;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .apply-code-container {\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	margin: 10px auto;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .apply-code-container .input-container {\r
-	width: 100%;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .apply-code-container .input-container input {\r
-	width: 95%;\r
-	padding: 10px;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .apply-code-container .apply-btn {\r
-	background: #000;\r
-	color: #fff;\r
-	padding: 6px 16px;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .apply-btn .circularloader {\r
-	width: 22px;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .apply-btn .circularloader circle {\r
-	stroke: hsl(0, 0%, 100%);\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .cashback-strip-container {\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	background: rgba(0, 0, 0, 1);\r
-	color: white;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .cashback-strip-container p {\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	font-size: 14px;\r
-}\r
-.fc-wallet-cart-widget-19212-root .cashback-strip-container p span {\r
-	font-weight: 600;\r
-}\r
-\r
-.fc-wallet-cart-widget-19212-root .cashback-strip-container p::before {\r
-	content: '';\r
-	display: block;\r
-	width: 16px;\r
-	height: 16px;\r
-	background: url('https://media.farziengineer.co/farziwallet/get-cashback.png');\r
-	background-size: 100%;\r
-	margin-right: 8px;\r
-}`;
-  var r, u, i, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
+  const style = "\r\n@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');\n/* :root {\r\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\r\n	line-height: 1.5;\r\n	font-weight: 400;\r\n	\r\n	color: #222;\r\n	background-color: #ffffff;\r\n	\r\n	font-synthesis: none;\r\n	text-rendering: optimizeLegibility;\r\n	-webkit-font-smoothing: antialiased;\r\n	-moz-osx-font-smoothing: grayscale;\r\n	-webkit-text-size-adjust: 100%;\r\n}\r\n*/\nbody {\r\n	margin: 0;\r\n	padding: 0;\r\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\r\n}\n.fc-loyalty-popup-19212-root * {\r\n	padding: 0;\r\n	margin: 0;\r\n	box-sizing: border-box;\r\n}\n.fc-loyalty-popup-19212-root a {\r\n	text-decoration: none;\r\n	color: inherit;\r\n}\n.fc-loyalty-popup-19212-root {\r\n	width: 100%;\r\n}\n/* Loyality popup styles */\n.floatingPopup {\r\n    background-color: black;\r\n	padding: 1rem;\r\n	display: flex;\r\n	position: fixed;\r\n	width: 60px;\r\n	height: 60px;\r\n	bottom: 3%;\r\n    right: 3%;\r\n	justify-content: center;\r\n	align-items: center;\r\n	border-radius: 100%;\r\n	z-index: 9999;\r\n	cursor: pointer;\r\n	\r\n}\n.mainPopup {\r\n	background-color: white;\r\n	scrollbar-width: none;\r\n	z-index: 999;\r\n	position: fixed;\r\n	gap: 16px;\r\n	bottom: 13%;\r\n	right: 7%;\r\n	max-width: 360px;\r\n	max-height: 580px;\r\n	width: 85vw;\r\n    height: 80vh;\r\n	border-radius: 15px;\r\n	overflow-x: hidden;\r\n	overflow-y: scroll;\r\n	padding-bottom: 16px;\r\n	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);\r\n}\n.mainContent {\r\n	display: flex;\r\n	flex-direction: column;\r\n	justify-content: start;\r\n	align-items: start;\r\n	padding-bottom: 16px;\r\n}\n.header {\r\n	display: flex;\r\n	justify-content: space-between;\r\n  	align-items: flex-start;\r\n	height: 10vh;\r\n	padding: 14px;\r\n	margin-bottom: 10px;\r\n}\n.header p {\r\n	color: #0c0c0c;\r\n    font-size: 12px;\r\n}\n.header h6 {\r\n	color: #0c0c0c;\r\n    font-size: 20px;\r\n	margin: 0;\r\n}\n.closePopup {\r\n	cursor: pointer;\r\n	width: 30px;\r\n	height: 30px;\r\n}\n.walletCard {\r\n	background-color: black;\r\n    padding: 12px 13px;\r\n    border-radius: 16px;\r\n    box-shadow: none;\r\n    margin: 0 14px;\r\n    width: calc(100% - 32px);\r\n	display: flex;\r\n	justify-content: space-between;\r\n}\n.coinCard img {\r\n	width: 20px;\r\n	height: 20px;\r\n}\n.coinCard {\r\n	background-color: #fff;\r\n    border-radius: 4px;\r\n    margin: 0 6px;\r\n    padding: 5px 10px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n	gap: 8px;\r\n}\n.coinCard h1 {\r\n    font-size: 18px;\r\n	font-weight: 600;\r\n	color: black;\r\n}\n.badgeCard img {\r\n	height: 12px;\r\n	width: 12px;\r\n}\n.badgeCard p {\r\n	font-size: 11px;\r\n}\n.badgeCard {\r\n	display: flex;\r\n	justify-content: left;\r\n	align-items: center;\r\n	color: white;\r\n	gap: 4px;\r\n}\n.walletCardText {\r\n	color: white;\r\n	font-size: 14px;\r\n	font-weight: bold;\r\n}\n.inviteCard {\r\n	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);\r\n    margin: 0 20px;\r\n    border-radius: 8px;\r\n    padding: 12px;\r\n}\n.inviteTextSection {\r\n	color: white;\r\n	display: flex;\r\n	align-items: center;\r\n	margin-bottom: 18px;\r\n	gap: 8px;\r\n}\n.inviteTextContainer h2 {\r\n	font-weight: 700;\r\n	font-size: 20px;\r\n	margin-bottom: 6px;\r\n	line-height: 16px;\r\n}\n.inviteTextContainer p {\r\n	font-weight: 400;\r\n    font-size: 12px;\r\n	line-height: 14px;\r\n}\n.invitebtn {\r\n	width: 100%;\r\n    background: #fff;\r\n    border-radius: 4px;\r\n    border: none;\r\n    padding: 8px;\r\n    color: #3e56d2;\r\n    font-weight: 700;\r\n    font-size: 12px;\r\n    text-align: center;\r\n    cursor: pointer;\r\n	line-height: normal;\r\n	font-family: Inter, sans-serif;\r\n}\n.couponCard {\r\n	border-radius: 12px;\r\n	color: #000;\r\n	font-size: 14px;\r\n	line-height: 20px;\r\n	cursor: pointer;\r\n	width: 120px;\r\n}\n.couponCardDesc {\r\n	padding: 8px;\r\n	background: #f4f4f4;\r\n	border-radius: 8px;\r\n	box-shadow: 0 -4px 10px rgba(0,0,0,.1);\r\n	position: relative;\r\n	top: -12px;\r\n	min-width: 120px;\r\n	font-size: 13px;\r\n	font-weight: normal;\r\n	display: flex;\r\n	flex-direction: column;\r\n	gap: 4px;\r\n}\n.couponImg {\r\n	border-radius: 8px 8px 0 0;\r\n	width: 120px;\r\n}\n.couponCardPrice {\r\n	display: flex;\r\n	align-items: center;\r\n	justify-content: start;\r\n	gap: 4px;\r\n	font-size: 14px;\r\n	font-weight: 400;\r\n	margin-top: 8px;\r\n}\n.couponFloatingLabel {\r\n	position: absolute;\r\n	top: -10px;\r\n  	right: 10px;\r\n    background: var(--loyalty_popup_theme_background,#000);\r\n    color: #fff;\r\n    width: 40px;\r\n    height: 24px;\r\n    text-align: center;\r\n    line-height: 24px;\r\n    font-weight: 600;\r\n    font-size: 12px;\r\n    border-radius: 4px;\r\n}\n.couponText {\r\n	padding-top: 8px;\r\n	font-family: Inter, sans-serif;\r\n	font-weight: 500;\r\n}\n.couponCardPrice img {\r\n	width: 14px;\r\n	height: 14px;\r\n}\n.viewAllCouponsContainer {\r\n	display: flex;\r\n	justify-content: space-between;\r\n	align-items: center;\r\n	padding: 8px 16px;\r\n	width: 100%;\r\n}\n.viewAllCouponsContainer h1 {\r\n	font-size: 20px;\r\n    font-weight: 700;\r\n}\n.viewAllCouponsContainer a {\r\n	cursor: pointer;\r\n    font-weight: 500;\r\n    font-size: 12px;\r\n}\n.gamesArenaContainer {\r\n	padding: 8px 16px;\r\n	margin-top: 16px;\r\n}\n.gamesArenaContainer h1 {\r\n	font-size: 20px;\r\n    font-weight: 700;\r\n}\n.gamesArenaContainer p {\r\n	font-size: 12px;\r\n    font-weight: 500;\r\n	line-height: 14px;\r\n}\n.gamesCard {\r\n	width: fit-content;\r\n	background-color: #efefef;\r\n	display: flex;\r\n	flex-direction: column;\r\n	justify-content: center;\r\n	align-items: center;\r\n	padding: 8px;\r\n	padding-top: 8px;\r\n	padding-top: 30px;\r\n	border-radius: 8px;\r\n	position: relative;\r\n	bottom: 20px;\r\n	min-width: 120px;\r\n	}\n.gamesCardImg {\r\n	display: flex;\r\n	justify-content: center;\r\n	align-items: center;\r\n	z-index: 2;\r\n	position: relative;\r\n}\n.coinBox {\r\n	background: #fff;\r\n	border-radius: 4px;\r\n	display: flex;\r\n	justify-content: center;\r\n	padding: 4px 14px;\r\n	align-items: center;\r\n	margin-bottom: 8px;\r\n	color: black;\r\n	font-size: 14px;\r\n	gap: 4px;\r\n}\n.gamesCardBtn {\r\n	background: black;\r\n    border-radius: 4px;\r\n    font-weight: 700;\r\n    font-size: 12px;\r\n    text-align: center;\r\n    color: #fff;\r\n    width: 100%;\r\n    padding: 8px;\r\n    cursor: pointer;\r\n	border: none;\r\n}\n.gamesCardTitle {\r\n	font-weight: 700;\r\n    font-size: 12px;\r\n	text-align: center;\r\n}\n.gamesCardDesc {\r\n	font-weight: 500;\r\n    font-size: 10px;\r\n    margin-bottom: 8px;\r\n}\n.gamesHorizontalList {\r\n	height: fit-content;\r\n	padding: 8px 16px;\r\n	display: flex;\r\n	gap: 16px;\r\n	width: 100%;\r\n}\n/* Invite and Earn */\n.inviteWhatsappBtn {\r\n	height: 40px;\r\n    width: 96%;\r\n    background-color: #faa;\r\n    border-radius: 4px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n	border: none;\r\n}\n.inviteRoundedBtn {\r\n	width: 40px;\r\n    height: 40px;\r\n    background-color: #faa;\r\n    border-radius: 50%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n	border: none;\r\n}\n.inviteAndEarnContainer {\r\n	width: 100%;\r\n	padding: 22px;\r\n}\n.dashedDivider {\r\n	border: none;\r\n    height: 1px;\r\n    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);\r\n    margin: 20px 0;\r\n}\n.inviteEarnTextContainer {\r\n	display: flex;\r\n	justify-content: center;\r\n	align-items: center;\r\n	font-weight: 400;\r\n    font-size: 14px;\r\n    color: #acacac;\r\n    margin: 14px;\r\n    text-align: center;\r\n}\n.inviteAndEarn {\r\n	display: flex;\r\n	justify-content: flex-start;\r\n	align-items: center;\r\n	gap: 16px;\r\n}\n.inviteAndEarn h2 {\r\n	font-weight: 700;\r\n    font-size: 30px;\r\n}\n.inviteAndEarnMessage h4 {\r\n	text-align: center;\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 30px;\r\n    margin: 20px 0!important;\r\n}\n.inviteLinkContainer {\r\n	padding: 12px;\r\n    background: #faa;\r\n    border-radius: 4px;\r\n    border: 1px dashed #000;\r\n    font-size: 16px;\r\n    font-weight: 700;\r\n    display: flex;\r\n	justify-content: space-between;\r\n    align-items: center;\r\n}\n.inviteLinkContainer p {\r\n	font-size: 14px;\r\n}\n.inviteLinkContainer img {\r\n	max-width: 16px;\r\n	cursor: pointer;\r\n}\n.sendInvitesBtnContainer, .inviteWhatsappBtn {\r\n	display: flex;\r\n	justify-content: center;\r\n	align-items: center;\r\n	gap: 8px;\r\n}\n.closeInviteContainer {\r\n	display: flex;\r\n	justify-content: end;\r\n	align-items: center;\r\n}\n.couponUnlockBtn {\r\n	background-color: black;\r\n    color: #fff;\r\n    padding: 11px 0;\r\n    border-radius: 8px;\r\n    font-family: Inter,sans-serif;\r\n    font-weight: 700;\r\n    cursor: pointer;\r\n    width: 100%;\r\n    font-size: 14px;\r\n	border: none;\r\n}\n.unlockCouponContainer {\r\n	width: 100%;\r\n	padding: 16px;\r\n}\n.couponOverlayContainer {\r\n	display: flex;\r\n	justify-content: start;\r\n	align-items: center;\r\n	gap: 8px;\r\n}\n.showAllCouponsList {\r\n	display: flex;\r\n	justify-content: start;\r\n	align-items: start;\r\n	gap: 16px;\r\n	scrollbar-width: none;\r\n	overflow-x: scroll;\r\n	overflow-y: hidden;\r\n	padding: 0 16px;\r\n}\n.overlay {\r\n	position: absolute;\r\n	z-index: 999;\r\n}";
+  var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
+  function d(t2, u2) {
+    l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
+    var i2 = r.__H || (r.__H = { __: [], __h: [] });
+    return t2 >= i2.__.length && i2.__.push({ __V: c }), i2.__[t2];
+  }
+  function h(n2) {
+    return o$1 = 1, s(B, n2);
+  }
+  function s(n2, u2, i2) {
+    var o2 = d(t++, 2);
+    if (o2.t = n2, !o2.__c && (o2.__ = [i2 ? i2(u2) : B(void 0, u2), function(n3) {
+      var t2 = o2.__N ? o2.__N[0] : o2.__[0], r2 = o2.t(t2, n3);
+      t2 !== r2 && (o2.__N = [r2, o2.__[1]], o2.__c.setState({}));
+    }], o2.__c = r, !r.u)) {
+      var f2 = function(n3, t2, r2) {
+        if (!o2.__c.__H)
+          return true;
+        var u3 = o2.__c.__H.__.filter(function(n4) {
+          return n4.__c;
+        });
+        if (u3.every(function(n4) {
+          return !n4.__N;
+        }))
+          return !c2 || c2.call(this, n3, t2, r2);
+        var i3 = false;
+        return u3.forEach(function(n4) {
+          if (n4.__N) {
+            var t3 = n4.__[0];
+            n4.__ = n4.__N, n4.__N = void 0, t3 !== n4.__[0] && (i3 = true);
+          }
+        }), !(!i3 && o2.__c.props === n3) && (!c2 || c2.call(this, n3, t2, r2));
+      };
+      r.u = true;
+      var c2 = r.shouldComponentUpdate, e2 = r.componentWillUpdate;
+      r.componentWillUpdate = function(n3, t2, r2) {
+        if (this.__e) {
+          var u3 = c2;
+          c2 = void 0, f2(n3, t2, r2), c2 = u3;
+        }
+        e2 && e2.call(this, n3, t2, r2);
+      }, r.shouldComponentUpdate = f2;
+    }
+    return o2.__N || o2.__;
+  }
   function b() {
-    for (var t; t = f.shift(); )
-      if (t.__P && t.__H)
+    for (var t2; t2 = f.shift(); )
+      if (t2.__P && t2.__H)
         try {
-          t.__H.__h.forEach(k), t.__H.__h.forEach(w), t.__H.__h = [];
+          t2.__H.__h.forEach(k), t2.__H.__h.forEach(w), t2.__H.__h = [];
         } catch (r2) {
-          t.__H.__h = [], l$1.__e(r2, t.__v);
+          t2.__H.__h = [], l$1.__e(r2, t2.__v);
         }
   }
   l$1.__b = function(n2) {
     r = null, e && e(n2);
   }, l$1.__r = function(n2) {
-    a && a(n2);
+    a && a(n2), t = 0;
     var i2 = (r = n2.__c).__H;
     i2 && (u === r ? (i2.__h = [], r.__h = [], i2.__.forEach(function(n3) {
       n3.__N && (n3.__ = n3.__N), n3.__V = c, n3.__N = n3.i = void 0;
-    })) : (i2.__h.forEach(k), i2.__h.forEach(w), i2.__h = [], 0)), u = r;
-  }, l$1.diffed = function(t) {
-    v && v(t);
-    var o2 = t.__c;
+    })) : (i2.__h.forEach(k), i2.__h.forEach(w), i2.__h = [], t = 0)), u = r;
+  }, l$1.diffed = function(t2) {
+    v && v(t2);
+    var o2 = t2.__c;
     o2 && o2.__H && (o2.__H.__h.length && (1 !== f.push(o2) && i === l$1.requestAnimationFrame || ((i = l$1.requestAnimationFrame) || j)(b)), o2.__H.__.forEach(function(n2) {
       n2.i && (n2.__H = n2.i), n2.__V !== c && (n2.__ = n2.__V), n2.i = void 0, n2.__V = c;
     })), u = r = null;
-  }, l$1.__c = function(t, r2) {
-    r2.some(function(t2) {
+  }, l$1.__c = function(t2, r2) {
+    r2.some(function(t3) {
       try {
-        t2.__h.forEach(k), t2.__h = t2.__h.filter(function(n2) {
+        t3.__h.forEach(k), t3.__h = t3.__h.filter(function(n2) {
           return !n2.__ || w(n2);
         });
       } catch (u2) {
         r2.some(function(n2) {
           n2.__h && (n2.__h = []);
-        }), r2 = [], l$1.__e(u2, t2.__v);
+        }), r2 = [], l$1.__e(u2, t3.__v);
       }
-    }), l && l(t, r2);
-  }, l$1.unmount = function(t) {
-    m && m(t);
-    var r2, u2 = t.__c;
+    }), l && l(t2, r2);
+  }, l$1.unmount = function(t2) {
+    m && m(t2);
+    var r2, u2 = t2.__c;
     u2 && u2.__H && (u2.__H.__.forEach(function(n2) {
       try {
         k(n2);
@@ -564,21 +370,24 @@ body {\r
   };
   var g = "function" == typeof requestAnimationFrame;
   function j(n2) {
-    var t, r2 = function() {
-      clearTimeout(u2), g && cancelAnimationFrame(t), setTimeout(n2);
+    var t2, r2 = function() {
+      clearTimeout(u2), g && cancelAnimationFrame(t2), setTimeout(n2);
     }, u2 = setTimeout(r2, 100);
-    g && (t = requestAnimationFrame(r2));
+    g && (t2 = requestAnimationFrame(r2));
   }
   function k(n2) {
-    var t = r, u2 = n2.__c;
-    "function" == typeof u2 && (n2.__c = void 0, u2()), r = t;
+    var t2 = r, u2 = n2.__c;
+    "function" == typeof u2 && (n2.__c = void 0, u2()), r = t2;
   }
   function w(n2) {
-    var t = r;
-    n2.__c = n2.__(), r = t;
+    var t2 = r;
+    n2.__c = n2.__(), r = t2;
+  }
+  function B(n2, t2) {
+    return "function" == typeof t2 ? t2(n2) : t2;
   }
   var _ = 0;
-  function o(o2, e2, n2, t, f2, l2) {
+  function o(o2, e2, n2, t2, f2, l2) {
     var s2, u2, a2 = {};
     for (u2 in e2)
       "ref" == u2 ? s2 = e2[u2] : a2[u2] = e2[u2];
@@ -588,11 +397,323 @@ body {\r
         void 0 === a2[u2] && (a2[u2] = s2[u2]);
     return l$1.vnode && l$1.vnode(i2), i2;
   }
+  const WalletCard = () => {
+    return o(k$1, {
+      children: o("div", {
+        class: "walletCard",
+        children: [o("div", {
+          children: [o("p", {
+            class: "walletCardText",
+            children: "My FC Coins"
+          }), o("div", {
+            class: "badgeCard",
+            children: [o("img", {
+              src: "https://media.farziengineer.co/farziwallet/silver-tier-icon.png",
+              alt: ""
+            }), o("p", {
+              children: "Silver"
+            })]
+          })]
+        }), o("div", {
+          class: "coinCard",
+          children: [o("img", {
+            src: "https://media.farziengineer.co/farziwallet/coin-icon.png",
+            alt: ""
+          }), o("h1", {
+            children: "575"
+          })]
+        })]
+      })
+    });
+  };
+  const InviteCard = ({
+    onClick
+  }) => {
+    return o(k$1, {
+      children: o("div", {
+        class: "inviteCard",
+        children: [o("div", {
+          class: "inviteTextSection",
+          children: [o("div", {
+            children: o("img", {
+              src: "https://media.farziengineer.co/farziwallet/rupee-icon.png",
+              alt: ""
+            })
+          }), o("div", {
+            class: "inviteTextContainer",
+            children: [o("h2", {
+              children: "Invite & Earn"
+            }), o("p", {
+              children: "Get 200 FC coins every time you invite a friend to try loyalty"
+            })]
+          })]
+        }), o("button", {
+          onClick,
+          class: "invitebtn",
+          children: "Share Invite"
+        })]
+      })
+    });
+  };
+  const CouponCard = ({
+    couponImgLink,
+    couponPrice,
+    couponDesc,
+    coinImgLink
+  }) => {
+    return o(k$1, {
+      children: o("div", {
+        class: "couponCard",
+        children: [o("img", {
+          class: "couponImg",
+          src: couponImgLink,
+          alt: ""
+        }), o("div", {
+          class: "couponCardDesc",
+          children: [o("div", {
+            class: "couponFloatingLabel",
+            children: ["₹ ", couponPrice]
+          }), o("p", {
+            class: "couponText",
+            children: couponDesc
+          }), o("div", {
+            className: "couponCardPrice",
+            children: [o("img", {
+              src: coinImgLink
+            }), o("p", {
+              children: couponPrice
+            })]
+          })]
+        })]
+      })
+    });
+  };
+  const ShowCoupons = () => {
+    const couponCardResp = [{
+      couponPrice: 30,
+      couponDesc: "Enjoy a 20% off on your next order!",
+      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
+      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png"
+    }, {
+      couponPrice: 15,
+      couponDesc: "Get a special gift with your next order!",
+      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
+      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png"
+    }, {
+      couponPrice: 50,
+      couponDesc: "Free shipping on orders over $50!",
+      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
+      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png"
+    }];
+    return o(k$1, {
+      children: [o("div", {
+        class: "viewAllCouponsContainer",
+        children: [o("h1", {
+          children: "Coupons"
+        }), o("a", {
+          children: "View All"
+        })]
+      }), o("div", {
+        class: "showAllCouponsList",
+        children: couponCardResp.map((card, index) => o(CouponCard, {
+          couponPrice: card.couponPrice,
+          couponDesc: card.couponDesc,
+          couponImgLink: card.couponImgLink,
+          coinImgLink: card.coinImgLink
+        }, index))
+      })]
+    });
+  };
+  const GamesCard = ({
+    cardImage,
+    coinImage,
+    gameTitle,
+    btnText,
+    gamePrice
+  }) => {
+    return o(k$1, {
+      children: o("div", {
+        class: "gamesMainContainer",
+        children: [o("div", {
+          class: "gamesCardImg",
+          children: o("img", {
+            src: cardImage,
+            alt: ""
+          })
+        }), o("div", {
+          class: "gamesCard",
+          children: [o("p", {
+            class: "gamesCardTitle",
+            children: gameTitle
+          }), o("p", {
+            class: "gamesCardDesc",
+            children: "Start at"
+          }), o("div", {
+            class: "coinBox",
+            children: [o("img", {
+              src: coinImage,
+              alt: ""
+            }), o("p", {
+              children: gamePrice
+            })]
+          }), o("button", {
+            class: "gamesCardBtn",
+            children: btnText
+          })]
+        })]
+      })
+    });
+  };
+  const GamesArena = () => {
+    const gamesData = [{
+      gameTitle: "Wheel of Fortune",
+      cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
+      gamePrice: "10",
+      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
+      btnText: "Explore"
+    }, {
+      gameTitle: "Scratch Card",
+      cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
+      gamePrice: "20",
+      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
+      btnText: "Explore"
+    }];
+    return o(k$1, {
+      children: [o("div", {
+        class: "gamesArenaContainer",
+        children: [o("h1", {
+          children: "Games Arena"
+        }), o("p", {
+          children: "Play games to win FC coins, coupons & rewards"
+        })]
+      }), o("div", {
+        class: "gamesHorizontalList",
+        children: gamesData.map((card, idx) => o(GamesCard, {
+          gameTitle: card.gameTitle,
+          cardImage: card.cardImage,
+          gamePrice: card.gamePrice,
+          coinImage: card.coinImage,
+          btnText: card.btnText
+        }, idx))
+      })]
+    });
+  };
+  const InviteAndEarnOverlay = () => {
+    const referralLink = "https://0b92a5.myshopify.com/account/register?fc_refer_hash=83a24c";
+    return o(k$1, {
+      children: o("div", {
+        class: "inviteAndEarnContainer",
+        children: [o("div", {
+          class: "closeInviteContainer",
+          children: o("img", {
+            width: 30,
+            src: "https://media.farziengineer.co/farziwallet/cross.png",
+            alt: ""
+          })
+        }), o("div", {
+          class: "inviteAndEarn",
+          children: [o("img", {
+            src: "https://media.farziengineer.co/farziwallet/invite-earn.png",
+            alt: ""
+          }), o("h2", {
+            children: "Invite & Earn"
+          })]
+        }), o("div", {
+          class: "inviteAndEarnMessage",
+          children: o("h4", {
+            children: "Every time you successfully refer friend. You get 200 FC Coins & they get 100 FC Coins"
+          })
+        }), o("div", {
+          class: "inviteEarnTextContainer",
+          children: o("p", {
+            children: "copy referral link"
+          })
+        }), o("div", {
+          class: "inviteLinkContainer",
+          children: [o("p", {
+            children: [referralLink.substring(0, 29), "..."]
+          }), o("img", {
+            src: "https://media.farziengineer.co/farziwallet/copy-icon.png",
+            alt: ""
+          })]
+        }), o("div", {
+          children: o("hr", {
+            class: "dashedDivider"
+          })
+        }), o("div", {
+          class: "inviteTextContainer",
+          children: o("p", {
+            children: "or share with"
+          })
+        }), o("div", {
+          class: "sendInvitesBtnContainer",
+          children: [o("button", {
+            class: "inviteWhatsappBtn",
+            children: [o("img", {
+              src: "https://media.farziengineer.co/farziwallet/whatsapp-icon.png",
+              alt: ""
+            }), o("p", {
+              children: "Send on whatsapp"
+            })]
+          }), o("button", {
+            class: "inviteRoundedBtn",
+            children: o("img", {
+              src: "https://media.farziengineer.co/farziwallet/share-icon.png",
+              alt: ""
+            })
+          })]
+        })]
+      })
+    });
+  };
   function Main({
     themeDetailsData
   }) {
+    const [visibilty, setVisibility] = h(true);
+    const [overlayVisibility, setOverlayVisibility] = h(false);
+    const handleViewPopup = () => {
+      setVisibility(!visibilty);
+    };
+    const handleOverlayVisibility = () => {
+      setOverlayVisibility(!overlayVisibility);
+    };
     return o(k$1, {
-      children: "hello"
+      children: [o("img", {
+        onClick: handleViewPopup,
+        class: "floatingPopup",
+        src: "https://media.farziengineer.co/farziwallet/gift-icon.png",
+        width: 30,
+        height: 30,
+        alt: "gift icon"
+      }), visibilty && o(k$1, {
+        children: o("div", {
+          class: "mainPopup",
+          children: [o("div", {
+            class: "header",
+            children: [o("div", {
+              class: "leftHeader",
+              children: [o("p", {
+                children: "Welcome to"
+              }), o("h6", {
+                children: "Loyality"
+              })]
+            }), o("div", {
+              class: "rightHeader",
+              children: o("img", {
+                class: "closePopup",
+                onClick: handleViewPopup,
+                src: "https://media.farziengineer.co/farziwallet/cross.png",
+                alt: ""
+              })
+            })]
+          }), o(WalletCard, {}), o(ShowCoupons, {}), o(GamesArena, {}), o(InviteCard, {
+            onClick: handleOverlayVisibility
+          }), overlayVisibility && o("div", {
+            class: "overlay",
+            children: o(InviteAndEarnOverlay, {})
+          })]
+        })
+      })]
     });
   }
   function App({
@@ -661,11 +782,11 @@ body {\r
         }
       }
       const clientCustomStyleData = ((_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.apply_wallet_snippet_css) || "";
-      B(o(App, {
+      B$1(o(App, {
         themeDetailsData
       }), shadowRoot);
-      B(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
-      B(o(AppCustomCSS, {
+      B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
+      B$1(o(AppCustomCSS, {
         customStyles: clientCustomStyleData
       }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
     } catch (err) {

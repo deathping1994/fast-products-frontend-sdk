@@ -508,3 +508,8 @@ body {
 	overflow-y: hidden;
 	padding: 0 16px;
 }
+
+.overlay {
+	position: absolute;
+	z-index: 999;
+}

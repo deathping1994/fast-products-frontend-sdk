@@ -6,44 +6,17 @@ import ShowCoupons from "./ShowCoupons";
 import GamesArena from "./GamesArena";
 import CouponOverlay from "./CouponOverlay";
 import CouponCard from "./CouponCard";
+import InviteAndEarnOverlay from "./InviteAndEarnOverlay";
 
 export function Main({ themeDetailsData }) {
   const [visibilty, setVisibility] = useState(true)
+  const [overlayVisibility, setOverlayVisibility] = useState(false)
   const handleViewPopup = ()=>{
       setVisibility(!visibilty)
   }
-  const couponCardResp = [
-    {
-      couponPrice: 30,
-      couponDesc: "Enjoy a 20% off on your next order!",
-      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-    },
-    {
-      couponPrice: 15,
-      couponDesc: "Get a special gift with your next order!",
-      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-    },
-    {
-      couponPrice: 50,
-      couponDesc: "Free shipping on orders over $50!",
-      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-    },
-    {
-      couponPrice: 50,
-      couponDesc: "Free shipping on orders over $50!",
-      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-    },
-    {
-      couponPrice: 50,
-      couponDesc: "Free shipping on orders over $50!",
-      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-    },
-  ];
+  const handleOverlayVisibility = ()=>{
+      setOverlayVisibility(!overlayVisibility)
+  }
   return (
     <>
       <img onClick={handleViewPopup} class="floatingPopup" src="https://media.farziengineer.co/farziwallet/gift-icon.png" width={30} height={30} alt="gift icon" />
@@ -62,7 +35,14 @@ export function Main({ themeDetailsData }) {
             <WalletCard/>
             <ShowCoupons/>
             <GamesArena/>
-            <InviteCard/>
+            <InviteCard onClick={handleOverlayVisibility}/>
+            {
+              overlayVisibility && (
+                <div class="overlay">
+                  <InviteAndEarnOverlay/>
+                </div>
+              )
+            }
           </div>
         </>
       )}
