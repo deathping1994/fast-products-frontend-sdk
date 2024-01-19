@@ -509,7 +509,59 @@ body {
 	padding: 0 16px;
 }
 .pointsActivityClass {
-	height: 200px;
-	width: 200px;
-	background-color: yellow;
+    height: fit-content;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    top: 20px;
+    z-index: 10;
+}
+
+.pointsActivityClass h4 {
+	margin-left: 22px;
+    font-size: 20px;
+}
+
+.transaction-log-container {
+	margin: 24px 20px;
+    padding: 6px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid rgb(231, 231, 231);
+    border-radius: 6px;
+    box-shadow: 1px 2px 2px rgb(231, 231, 231);
+}
+
+.transaction-log-container .log-body {
+    padding: 8px 18px;
+}
+
+.transaction-log-container .log-body .amount {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.transaction-log-container .log-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid rgb(231, 231, 231);
+	padding: 8px 18px;
+	font-size: 16px;
+}
+
+.transaction-log-container .log-header .log-type {
+	border-radius: 4px;
+	padding: 4px 8px;
+	font-weight: 600;
+}
+
+.transaction-log-container .log-header .log-type.credited {
+	background-color: rgb(209, 255, 217);
+	color: rgb(30, 175, 109);
+}
+
+.transaction-log-container .log-header .log-type.debited {
+	background-color: rgba(181, 0, 0, 0.1);
+	color: rgb(181, 0, 0);
 }

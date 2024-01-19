@@ -10,8 +10,7 @@ export default function PointsActivity({ id, reason, created, amount, type }) {
           </div>
           <div class="log-body">
             <p class="amount">
-              <span>{type === "ADD" ? "+" : "-"}</span>
-              <span>{` ${Number(amount).toLocaleString("en-IN", {
+              <span>{type === "ADD" ? "+" : "-"} {` ${Number(amount).toLocaleString("en-IN", {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
               })}`}</span>

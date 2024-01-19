@@ -95,6 +95,7 @@ export function Main({ themeDetailsData }) {
             <GamesArena/>
             <InviteCard/>
             <div class="pointsActivityClass">
+              <h4>Points activity</h4>
               {
                 PointsActivityArray.map((points, pointIndex)=>(<PointsActivity 
                   id={points.id} reason={points.reason} created={points.created} amount={points.amount} type={points.type}
