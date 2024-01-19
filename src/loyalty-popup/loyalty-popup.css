@@ -57,6 +57,7 @@ body {
 
 .mainPopup {
 	background-color: white;
+	scrollbar-width: none;
 	z-index: 999;
 	position: fixed;
 	gap: 16px;
@@ -69,6 +70,7 @@ body {
 	border-radius: 15px;
 	overflow-x: hidden;
 	overflow-y: scroll;
+	padding-bottom: 16px;
 	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);
 }
 
@@ -266,17 +268,6 @@ body {
 .couponCardPrice img {
 	width: 14px;
 	height: 14px;
-}
-
-.horizontalCouponsList {
-	padding: 0 16px;
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: start;
-	gap: 16px;
-	overflow-x: auto;
-	overflow-y: hidden;
 }
 
 .viewAllCouponsContainer {
@@ -505,4 +496,15 @@ body {
 	justify-content: start;
 	align-items: center;
 	gap: 8px;
+}
+
+.showAllCouponsList {
+	display: flex;
+	justify-content: start;
+	align-items: start;
+	gap: 16px;
+	scrollbar-width: none;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	padding: 0 16px;
 }

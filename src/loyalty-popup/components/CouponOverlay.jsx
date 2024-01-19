@@ -21,7 +21,7 @@ const CouponOverlay = () => {
             <div>
                 <button class="couponUnlockBtn">Tap to Unlock</button>
             </div>    
-        </div> 
+        </div>
     </>
   )
 }

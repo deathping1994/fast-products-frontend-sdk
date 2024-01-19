@@ -24,19 +24,19 @@ const ShowCoupons = () => {
   return (
     <>
         <div class="viewAllCouponsContainer">
-              <h1>Coupons</h1>
-              <a>View All</a>
+          <h1>Coupons</h1>
+          <a>View All</a>
         </div>
-        <div class="horizontalCouponsList">
+        <div class="showAllCouponsList">
           {couponCardResp.map((card, index)=>(
-            <CouponCard
-              key={index}
-              couponPrice={card.couponPrice}
-              couponDesc={card.couponDesc}
-              couponImgLink={card.couponImgLink}
-              coinImgLink={card.coinImgLink}
-            />
-            ))}
+          <CouponCard
+            key={index}
+            couponPrice={card.couponPrice}
+            couponDesc={card.couponDesc}
+            couponImgLink={card.couponImgLink}
+            coinImgLink={card.coinImgLink}
+          />
+          ))}
         </div>
     </>
   )
