@@ -6,7 +6,7 @@ import ShowCoupons from "./ShowCoupons";
 import GamesArena from "./GamesArena";
 import CouponOverlay from "./CouponOverlay";
 import CouponCard from "./CouponCard";
-import PointsActivity from "./PointsActivity"
+import PointsActivity from "./WalletPointsActivity"
 
 export function Main({ themeDetailsData }) {
   const [visibilty, setVisibility] = useState(true)
