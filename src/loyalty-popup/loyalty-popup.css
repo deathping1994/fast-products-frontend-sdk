@@ -13,6 +13,8 @@
 	-webkit-text-size-adjust: 100%;
 }
 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 body {
 	margin: 0;
 	padding: 0;
@@ -43,7 +45,7 @@ body {
 	position: fixed;
 	width: 60px;
 	height: 60px;
-	bottom: 2%;
+	bottom: 3%;
     right: 3%;
 	justify-content: center;
 	align-items: center;
@@ -55,16 +57,29 @@ body {
 
 .mainPopup {
 	background-color: white;
-	z-index: 9999;
+	scrollbar-width: none;
+	z-index: 999;
 	position: fixed;
-	bottom: 10%;
-	right: 8%;
-	max-width: 330px;
+	gap: 16px;
+	bottom: 13%;
+	right: 7%;
+	max-width: 360px;
 	max-height: 580px;
 	width: 85vw;
     height: 80vh;
 	border-radius: 15px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	padding-bottom: 16px;
 	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);
+}
+
+.mainContent {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+	padding-bottom: 16px;
 }
 
 .header {
@@ -93,13 +108,12 @@ body {
 }
 
 .walletCard {
-	background-color: var(--loyalty_popup_theme_background,#000);
+	background-color: black;
     padding: 12px 13px;
     border-radius: 16px;
     box-shadow: none;
     margin: 0 14px;
-    width: auto;
-	height: fit-content;
+    width: calc(100% - 32px);
 	display: flex;
 	justify-content: space-between;
 }
@@ -110,17 +124,18 @@ body {
 }
 
 .coinCard {
-	background-color: white;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	background-color: #fff;
+    border-radius: 4px;
+    margin: 0 6px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 	gap: 8px;
-	padding: 8px;
-	border-radius: 10px;
 }
 
 .coinCard h1 {
-    font-size: 20px;
+    font-size: 18px;
 	font-weight: 600;
 	color: black;
 }
@@ -172,6 +187,7 @@ body {
 .inviteTextContainer p {
 	font-weight: 400;
     font-size: 12px;
+	line-height: 14px;
 }
 
 .invitebtn {
@@ -186,6 +202,7 @@ body {
     text-align: center;
     cursor: pointer;
 	line-height: normal;
+	font-family: Inter, sans-serif;
 }
 
 .couponCard {
@@ -207,6 +224,14 @@ body {
 	min-width: 120px;
 	font-size: 13px;
 	font-weight: normal;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.couponImg {
+	border-radius: 8px 8px 0 0;
+	width: 120px;
 }
 
 .couponCardPrice {
@@ -216,4 +241,275 @@ body {
 	gap: 4px;
 	font-size: 14px;
 	font-weight: 400;
+	margin-top: 8px;
+}
+
+.couponFloatingLabel {
+	position: absolute;
+	top: -10px;
+  	right: 10px;
+    background: var(--loyalty_popup_theme_background,#000);
+    color: #fff;
+    width: 40px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.couponText {
+	padding-top: 8px;
+	font-family: Inter, sans-serif;
+	font-weight: 500;
+}
+
+.couponCardPrice img {
+	width: 14px;
+	height: 14px;
+}
+
+.viewAllCouponsContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+	width: 100%;
+}
+
+.viewAllCouponsContainer h1 {
+	font-size: 20px;
+    font-weight: 700;
+}
+
+.viewAllCouponsContainer a {
+	cursor: pointer;
+    font-weight: 500;
+    font-size: 12px;
+}
+.gamesArenaContainer {
+	padding: 8px 16px;
+	margin-top: 16px;
+}
+.gamesArenaContainer h1 {
+	font-size: 20px;
+    font-weight: 700;
+}
+.gamesArenaContainer p {
+	font-size: 12px;
+    font-weight: 500;
+	line-height: 14px;
+}
+
+.gamesCard {
+	width: fit-content;
+	background-color: #efefef;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 8px;
+	padding-top: 8px;
+	padding-top: 30px;
+	border-radius: 8px;
+	position: relative;
+	bottom: 20px;
+	min-width: 120px;
+	}
+
+.gamesCardImg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 2;
+	position: relative;
+}
+
+.coinBox {
+	background: #fff;
+	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	padding: 4px 14px;
+	align-items: center;
+	margin-bottom: 8px;
+	color: black;
+	font-size: 14px;
+	gap: 4px;
+}
+
+.gamesCardBtn {
+	background: black;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    padding: 8px;
+    cursor: pointer;
+	border: none;
+}
+
+.gamesCardTitle {
+	font-weight: 700;
+    font-size: 12px;
+	text-align: center;
+}
+
+.gamesCardDesc {
+	font-weight: 500;
+    font-size: 10px;
+    margin-bottom: 8px;
+}
+
+.gamesHorizontalList {
+	height: fit-content;
+	padding: 8px 16px;
+	display: flex;
+	gap: 16px;
+	width: 100%;
+}
+
+/* Invite and Earn */
+
+.inviteWhatsappBtn {
+	height: 40px;
+    width: 96%;
+    background-color: #faa;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border: none;
+}
+
+.inviteRoundedBtn {
+	width: 40px;
+    height: 40px;
+    background-color: #faa;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border: none;
+}
+
+.inviteAndEarnContainer {
+	width: 100%;
+	padding: 22px;
+}
+
+.dashedDivider {
+	border: none;
+    height: 1px;
+    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
+    margin: 20px 0;
+}
+
+.inviteEarnTextContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 400;
+    font-size: 14px;
+    color: #acacac;
+    margin: 14px;
+    text-align: center;
+}
+
+.inviteAndEarn {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 16px;
+}
+
+.inviteAndEarn h2 {
+	font-weight: 700;
+    font-size: 30px;
+}
+
+.inviteAndEarnMessage h4 {
+	text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 30px;
+    margin: 20px 0!important;
+}
+
+.inviteLinkContainer {
+	padding: 12px;
+    background: #faa;
+    border-radius: 4px;
+    border: 1px dashed #000;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+	justify-content: space-between;
+    align-items: center;
+}
+
+.inviteLinkContainer p {
+	font-size: 14px;
+}
+
+.inviteLinkContainer img {
+	max-width: 16px;
+	cursor: pointer;
+}
+
+.sendInvitesBtnContainer, .inviteWhatsappBtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.closeInviteContainer {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.couponUnlockBtn {
+	background-color: black;
+    color: #fff;
+    padding: 11px 0;
+    border-radius: 8px;
+    font-family: Inter,sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+	border: none;
+}
+
+.unlockCouponContainer {
+	width: 100%;
+	padding: 16px;
+}
+
+.couponOverlayContainer {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 8px;
+}
+
+.showAllCouponsList {
+	display: flex;
+	justify-content: start;
+	align-items: start;
+	gap: 16px;
+	scrollbar-width: none;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	padding: 0 16px;
+}
+.pointsActivityClass {
+	height: 200px;
+	width: 200px;
+	background-color: yellow;
 }

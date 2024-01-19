@@ -1,7 +1,7 @@
 (function() {
   "use strict";
   var __vite_style__ = document.createElement("style");
-  __vite_style__.textContent = "/* :root {\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\n	line-height: 1.5;\n	font-weight: 400;\n	\n	color: #222;\n	background-color: #ffffff;\n	\n	font-synthesis: none;\n	text-rendering: optimizeLegibility;\n	-webkit-font-smoothing: antialiased;\n	-moz-osx-font-smoothing: grayscale;\n	-webkit-text-size-adjust: 100%;\n}\n*/\nbody {\n	margin: 0;\n	padding: 0;\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\n} \n\n\n.fc-loyalty-popup-19212-root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n\n.fc-loyalty-popup-19212-root a {\n	text-decoration: none;\n	color: inherit;\n}\n\n.fc-loyalty-popup-19212-root {\n	width: 100%;\n}\n/* Loyality popup styles */\n\n.floatingPopup {\n    background-color: black;\n	padding: 1rem;\n	display: flex;\n	position: fixed;\n	width: 60px;\n	height: 60px;\n	bottom: 2%;\n    right: 3%;\n	justify-content: center;\n	align-items: center;\n	border-radius: 100%;\n	z-index: 9999;\n	cursor: pointer;\n	\n}\n\n.mainPopup {\n	background-color: white;\n	z-index: 9999;\n	position: fixed;\n	bottom: 10%;\n	right: 8%;\n	max-width: 330px;\n	max-height: 580px;\n	width: 85vw;\n    height: 80vh;\n	border-radius: 15px;\n	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);\n}\n\n.header {\n	display: flex;\n	justify-content: space-between;\n  	align-items: flex-start;\n	height: 10vh;\n	padding: 14px;\n	margin-bottom: 10px;\n}\n\n.header p {\n	color: #0c0c0c;\n    font-size: 12px;\n}\n.header h6 {\n	color: #0c0c0c;\n    font-size: 20px;\n	margin: 0;\n}\n\n.closePopup {\n	cursor: pointer;\n	width: 30px;\n	height: 30px;\n}\n\n.walletCard {\n	background-color: var(--loyalty_popup_theme_background,#000);\n    padding: 12px 13px;\n    border-radius: 16px;\n    box-shadow: none;\n    margin: 0 14px;\n    width: auto;\n	height: fit-content;\n	display: flex;\n	justify-content: space-between;\n}\n\n.coinCard img {\n	width: 20px;\n	height: 20px;\n}\n\n.coinCard {\n	background-color: white;\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n	padding: 8px;\n	border-radius: 10px;\n}\n\n.coinCard h1 {\n    font-size: 20px;\n	font-weight: 600;\n	color: black;\n}\n\n.badgeCard img {\n	height: 12px;\n	width: 12px;\n}\n\n.badgeCard p {\n	font-size: 11px;\n}\n.badgeCard {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n	color: white;\n	gap: 4px;\n}\n\n.walletCardText {\n	color: white;\n	font-size: 14px;\n	font-weight: bold;\n}\n\n.inviteCard {\n	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);\n    margin: 0 20px;\n    border-radius: 8px;\n    padding: 12px;\n}\n\n.inviteTextSection {\n	color: white;\n	display: flex;\n	align-items: center;\n	margin-bottom: 18px;\n	gap: 8px;\n}\n\n.inviteTextContainer h2 {\n	font-weight: 700;\n	font-size: 20px;\n	margin-bottom: 6px;\n	line-height: 16px;\n}\n\n.inviteTextContainer p {\n	font-weight: 400;\n    font-size: 12px;\n}\n\n.invitebtn {\n	width: 100%;\n    background: #fff;\n    border-radius: 4px;\n    border: none;\n    padding: 8px;\n    color: #3e56d2;\n    font-weight: 700;\n    font-size: 12px;\n    text-align: center;\n    cursor: pointer;\n	line-height: normal;\n}\n\n.couponCard {\n	border-radius: 12px;\n	color: #000;\n	font-size: 14px;\n	line-height: 20px;\n	cursor: pointer;\n	width: 120px;\n}\n\n.couponCardDesc {\n	padding: 8px;\n	background: #f4f4f4;\n	border-radius: 8px;\n	box-shadow: 0 -4px 10px rgba(0,0,0,.1);\n	position: relative;\n	top: -12px;\n	min-width: 120px;\n	font-size: 13px;\n	font-weight: normal;\n}\n\n.couponCardPrice {\n	display: flex;\n	align-items: center;\n	justify-content: start;\n	gap: 4px;\n	font-size: 14px;\n	font-weight: 400;\n}\n";
+  __vite_style__.textContent = "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');\n\n/* :root {\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\n	line-height: 1.5;\n	font-weight: 400;\n	\n	color: #222;\n	background-color: #ffffff;\n	\n	font-synthesis: none;\n	text-rendering: optimizeLegibility;\n	-webkit-font-smoothing: antialiased;\n	-moz-osx-font-smoothing: grayscale;\n	-webkit-text-size-adjust: 100%;\n}\n*/\nbody {\n	margin: 0;\n	padding: 0;\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\n}\n.fc-loyalty-popup-19212-root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n.fc-loyalty-popup-19212-root a {\n	text-decoration: none;\n	color: inherit;\n}\n.fc-loyalty-popup-19212-root {\n	width: 100%;\n}\n/* Loyality popup styles */\n.floatingPopup {\n    background-color: black;\n	padding: 1rem;\n	display: flex;\n	position: fixed;\n	width: 60px;\n	height: 60px;\n	bottom: 3%;\n    right: 3%;\n	justify-content: center;\n	align-items: center;\n	border-radius: 100%;\n	z-index: 9999;\n	cursor: pointer;\n	\n}\n.mainPopup {\n	background-color: white;\n	scrollbar-width: none;\n	z-index: 999;\n	position: fixed;\n	gap: 16px;\n	bottom: 13%;\n	right: 7%;\n	max-width: 360px;\n	max-height: 580px;\n	width: 85vw;\n    height: 80vh;\n	border-radius: 15px;\n	overflow-x: hidden;\n	overflow-y: scroll;\n	padding-bottom: 16px;\n	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);\n}\n.mainContent {\n	display: flex;\n	flex-direction: column;\n	justify-content: start;\n	align-items: start;\n	padding-bottom: 16px;\n}\n.header {\n	display: flex;\n	justify-content: space-between;\n  	align-items: flex-start;\n	height: 10vh;\n	padding: 14px;\n	margin-bottom: 10px;\n}\n.header p {\n	color: #0c0c0c;\n    font-size: 12px;\n}\n.header h6 {\n	color: #0c0c0c;\n    font-size: 20px;\n	margin: 0;\n}\n.closePopup {\n	cursor: pointer;\n	width: 30px;\n	height: 30px;\n}\n.walletCard {\n	background-color: black;\n    padding: 12px 13px;\n    border-radius: 16px;\n    box-shadow: none;\n    margin: 0 14px;\n    width: calc(100% - 32px);\n	display: flex;\n	justify-content: space-between;\n}\n.coinCard img {\n	width: 20px;\n	height: 20px;\n}\n.coinCard {\n	background-color: #fff;\n    border-radius: 4px;\n    margin: 0 6px;\n    padding: 5px 10px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	gap: 8px;\n}\n.coinCard h1 {\n    font-size: 18px;\n	font-weight: 600;\n	color: black;\n}\n.badgeCard img {\n	height: 12px;\n	width: 12px;\n}\n.badgeCard p {\n	font-size: 11px;\n}\n.badgeCard {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n	color: white;\n	gap: 4px;\n}\n.walletCardText {\n	color: white;\n	font-size: 14px;\n	font-weight: bold;\n}\n.inviteCard {\n	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);\n    margin: 0 20px;\n    border-radius: 8px;\n    padding: 12px;\n}\n.inviteTextSection {\n	color: white;\n	display: flex;\n	align-items: center;\n	margin-bottom: 18px;\n	gap: 8px;\n}\n.inviteTextContainer h2 {\n	font-weight: 700;\n	font-size: 20px;\n	margin-bottom: 6px;\n	line-height: 16px;\n}\n.inviteTextContainer p {\n	font-weight: 400;\n    font-size: 12px;\n	line-height: 14px;\n}\n.invitebtn {\n	width: 100%;\n    background: #fff;\n    border-radius: 4px;\n    border: none;\n    padding: 8px;\n    color: #3e56d2;\n    font-weight: 700;\n    font-size: 12px;\n    text-align: center;\n    cursor: pointer;\n	line-height: normal;\n	font-family: Inter, sans-serif;\n}\n.couponCard {\n	border-radius: 12px;\n	color: #000;\n	font-size: 14px;\n	line-height: 20px;\n	cursor: pointer;\n	width: 120px;\n}\n.couponCardDesc {\n	padding: 8px;\n	background: #f4f4f4;\n	border-radius: 8px;\n	box-shadow: 0 -4px 10px rgba(0,0,0,.1);\n	position: relative;\n	top: -12px;\n	min-width: 120px;\n	font-size: 13px;\n	font-weight: normal;\n	display: flex;\n	flex-direction: column;\n	gap: 4px;\n}\n.couponImg {\n	border-radius: 8px 8px 0 0;\n	width: 120px;\n}\n.couponCardPrice {\n	display: flex;\n	align-items: center;\n	justify-content: start;\n	gap: 4px;\n	font-size: 14px;\n	font-weight: 400;\n	margin-top: 8px;\n}\n.couponFloatingLabel {\n	position: absolute;\n	top: -10px;\n  	right: 10px;\n    background: var(--loyalty_popup_theme_background,#000);\n    color: #fff;\n    width: 40px;\n    height: 24px;\n    text-align: center;\n    line-height: 24px;\n    font-weight: 600;\n    font-size: 12px;\n    border-radius: 4px;\n}\n.couponText {\n	padding-top: 8px;\n	font-family: Inter, sans-serif;\n	font-weight: 500;\n}\n.couponCardPrice img {\n	width: 14px;\n	height: 14px;\n}\n.viewAllCouponsContainer {\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n	padding: 8px 16px;\n	width: 100%;\n}\n.viewAllCouponsContainer h1 {\n	font-size: 20px;\n    font-weight: 700;\n}\n.viewAllCouponsContainer a {\n	cursor: pointer;\n    font-weight: 500;\n    font-size: 12px;\n}\n.gamesArenaContainer {\n	padding: 8px 16px;\n	margin-top: 16px;\n}\n.gamesArenaContainer h1 {\n	font-size: 20px;\n    font-weight: 700;\n}\n.gamesArenaContainer p {\n	font-size: 12px;\n    font-weight: 500;\n	line-height: 14px;\n}\n.gamesCard {\n	width: fit-content;\n	background-color: #efefef;\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n	padding: 8px;\n	padding-top: 8px;\n	padding-top: 30px;\n	border-radius: 8px;\n	position: relative;\n	bottom: 20px;\n	min-width: 120px;\n	}\n.gamesCardImg {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	z-index: 2;\n	position: relative;\n}\n.coinBox {\n	background: #fff;\n	border-radius: 4px;\n	display: flex;\n	justify-content: center;\n	padding: 4px 14px;\n	align-items: center;\n	margin-bottom: 8px;\n	color: black;\n	font-size: 14px;\n	gap: 4px;\n}\n.gamesCardBtn {\n	background: black;\n    border-radius: 4px;\n    font-weight: 700;\n    font-size: 12px;\n    text-align: center;\n    color: #fff;\n    width: 100%;\n    padding: 8px;\n    cursor: pointer;\n	border: none;\n}\n.gamesCardTitle {\n	font-weight: 700;\n    font-size: 12px;\n	text-align: center;\n}\n.gamesCardDesc {\n	font-weight: 500;\n    font-size: 10px;\n    margin-bottom: 8px;\n}\n.gamesHorizontalList {\n	height: fit-content;\n	padding: 8px 16px;\n	display: flex;\n	gap: 16px;\n	width: 100%;\n}\n/* Invite and Earn */\n.inviteWhatsappBtn {\n	height: 40px;\n    width: 96%;\n    background-color: #faa;\n    border-radius: 4px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	border: none;\n}\n.inviteRoundedBtn {\n	width: 40px;\n    height: 40px;\n    background-color: #faa;\n    border-radius: 50%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	border: none;\n}\n.inviteAndEarnContainer {\n	width: 100%;\n	padding: 22px;\n}\n.dashedDivider {\n	border: none;\n    height: 1px;\n    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);\n    margin: 20px 0;\n}\n.inviteEarnTextContainer {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	font-weight: 400;\n    font-size: 14px;\n    color: #acacac;\n    margin: 14px;\n    text-align: center;\n}\n.inviteAndEarn {\n	display: flex;\n	justify-content: flex-start;\n	align-items: center;\n	gap: 16px;\n}\n.inviteAndEarn h2 {\n	font-weight: 700;\n    font-size: 30px;\n}\n.inviteAndEarnMessage h4 {\n	text-align: center;\n    font-weight: 500;\n    font-size: 16px;\n    line-height: 30px;\n    margin: 20px 0!important;\n}\n.inviteLinkContainer {\n	padding: 12px;\n    background: #faa;\n    border-radius: 4px;\n    border: 1px dashed #000;\n    font-size: 16px;\n    font-weight: 700;\n    display: flex;\n	justify-content: space-between;\n    align-items: center;\n}\n.inviteLinkContainer p {\n	font-size: 14px;\n}\n.inviteLinkContainer img {\n	max-width: 16px;\n	cursor: pointer;\n}\n.sendInvitesBtnContainer, .inviteWhatsappBtn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n}\n.closeInviteContainer {\n	display: flex;\n	justify-content: end;\n	align-items: center;\n}\n.couponUnlockBtn {\n	background-color: black;\n    color: #fff;\n    padding: 11px 0;\n    border-radius: 8px;\n    font-family: Inter,sans-serif;\n    font-weight: 700;\n    cursor: pointer;\n    width: 100%;\n    font-size: 14px;\n	border: none;\n}\n.unlockCouponContainer {\n	width: 100%;\n	padding: 16px;\n}\n.couponOverlayContainer {\n	display: flex;\n	justify-content: start;\n	align-items: center;\n	gap: 8px;\n}\n.showAllCouponsList {\n	display: flex;\n	justify-content: start;\n	align-items: start;\n	gap: 16px;\n	scrollbar-width: none;\n	overflow-x: scroll;\n	overflow-y: hidden;\n	padding: 0 16px;\n}\n.pointsActivityClass {\n	height: 200px;\n	width: 200px;\n	background-color: yellow;\n}";
   document.head.appendChild(__vite_style__);
   var n, l$1, u$1, i$1, o$2, r$1, f$1, c$1 = {}, s$1 = [], a$1 = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i, v$1 = Array.isArray;
   function h$1(n2, l2) {
@@ -276,7 +276,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = "/* :root {\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\n	line-height: 1.5;\n	font-weight: 400;\n	\n	color: #222;\n	background-color: #ffffff;\n	\n	font-synthesis: none;\n	text-rendering: optimizeLegibility;\n	-webkit-font-smoothing: antialiased;\n	-moz-osx-font-smoothing: grayscale;\n	-webkit-text-size-adjust: 100%;\n}\n*/\nbody {\n	margin: 0;\n	padding: 0;\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\n} \n\n\n.fc-loyalty-popup-19212-root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n\n.fc-loyalty-popup-19212-root a {\n	text-decoration: none;\n	color: inherit;\n}\n\n.fc-loyalty-popup-19212-root {\n	width: 100%;\n}\n/* Loyality popup styles */\n\n.floatingPopup {\n    background-color: black;\n	padding: 1rem;\n	display: flex;\n	position: fixed;\n	width: 60px;\n	height: 60px;\n	bottom: 2%;\n    right: 3%;\n	justify-content: center;\n	align-items: center;\n	border-radius: 100%;\n	z-index: 9999;\n	cursor: pointer;\n	\n}\n\n.mainPopup {\n	background-color: white;\n	z-index: 9999;\n	position: fixed;\n	bottom: 10%;\n	right: 8%;\n	max-width: 330px;\n	max-height: 580px;\n	width: 85vw;\n    height: 80vh;\n	border-radius: 15px;\n	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);\n}\n\n.header {\n	display: flex;\n	justify-content: space-between;\n  	align-items: flex-start;\n	height: 10vh;\n	padding: 14px;\n	margin-bottom: 10px;\n}\n\n.header p {\n	color: #0c0c0c;\n    font-size: 12px;\n}\n.header h6 {\n	color: #0c0c0c;\n    font-size: 20px;\n	margin: 0;\n}\n\n.closePopup {\n	cursor: pointer;\n	width: 30px;\n	height: 30px;\n}\n\n.walletCard {\n	background-color: var(--loyalty_popup_theme_background,#000);\n    padding: 12px 13px;\n    border-radius: 16px;\n    box-shadow: none;\n    margin: 0 14px;\n    width: auto;\n	height: fit-content;\n	display: flex;\n	justify-content: space-between;\n}\n\n.coinCard img {\n	width: 20px;\n	height: 20px;\n}\n\n.coinCard {\n	background-color: white;\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n	padding: 8px;\n	border-radius: 10px;\n}\n\n.coinCard h1 {\n    font-size: 20px;\n	font-weight: 600;\n	color: black;\n}\n\n.badgeCard img {\n	height: 12px;\n	width: 12px;\n}\n\n.badgeCard p {\n	font-size: 11px;\n}\n.badgeCard {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n	color: white;\n	gap: 4px;\n}\n\n.walletCardText {\n	color: white;\n	font-size: 14px;\n	font-weight: bold;\n}\n\n.inviteCard {\n	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);\n    margin: 0 20px;\n    border-radius: 8px;\n    padding: 12px;\n}\n\n.inviteTextSection {\n	color: white;\n	display: flex;\n	align-items: center;\n	margin-bottom: 18px;\n	gap: 8px;\n}\n\n.inviteTextContainer h2 {\n	font-weight: 700;\n	font-size: 20px;\n	margin-bottom: 6px;\n	line-height: 16px;\n}\n\n.inviteTextContainer p {\n	font-weight: 400;\n    font-size: 12px;\n}\n\n.invitebtn {\n	width: 100%;\n    background: #fff;\n    border-radius: 4px;\n    border: none;\n    padding: 8px;\n    color: #3e56d2;\n    font-weight: 700;\n    font-size: 12px;\n    text-align: center;\n    cursor: pointer;\n	line-height: normal;\n}\n\n.couponCard {\n	border-radius: 12px;\n	color: #000;\n	font-size: 14px;\n	line-height: 20px;\n	cursor: pointer;\n	width: 120px;\n}\n\n.couponCardDesc {\n	padding: 8px;\n	background: #f4f4f4;\n	border-radius: 8px;\n	box-shadow: 0 -4px 10px rgba(0,0,0,.1);\n	position: relative;\n	top: -12px;\n	min-width: 120px;\n	font-size: 13px;\n	font-weight: normal;\n}\n\n.couponCardPrice {\n	display: flex;\n	align-items: center;\n	justify-content: start;\n	gap: 4px;\n	font-size: 14px;\n	font-weight: 400;\n}\n";
+  const style = "\n@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');\n/* :root {\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\n	line-height: 1.5;\n	font-weight: 400;\n	\n	color: #222;\n	background-color: #ffffff;\n	\n	font-synthesis: none;\n	text-rendering: optimizeLegibility;\n	-webkit-font-smoothing: antialiased;\n	-moz-osx-font-smoothing: grayscale;\n	-webkit-text-size-adjust: 100%;\n}\n*/\nbody {\n	margin: 0;\n	padding: 0;\n	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\n}\n.fc-loyalty-popup-19212-root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n.fc-loyalty-popup-19212-root a {\n	text-decoration: none;\n	color: inherit;\n}\n.fc-loyalty-popup-19212-root {\n	width: 100%;\n}\n/* Loyality popup styles */\n.floatingPopup {\n    background-color: black;\n	padding: 1rem;\n	display: flex;\n	position: fixed;\n	width: 60px;\n	height: 60px;\n	bottom: 3%;\n    right: 3%;\n	justify-content: center;\n	align-items: center;\n	border-radius: 100%;\n	z-index: 9999;\n	cursor: pointer;\n	\n}\n.mainPopup {\n	background-color: white;\n	scrollbar-width: none;\n	z-index: 999;\n	position: fixed;\n	gap: 16px;\n	bottom: 13%;\n	right: 7%;\n	max-width: 360px;\n	max-height: 580px;\n	width: 85vw;\n    height: 80vh;\n	border-radius: 15px;\n	overflow-x: hidden;\n	overflow-y: scroll;\n	padding-bottom: 16px;\n	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);\n}\n.mainContent {\n	display: flex;\n	flex-direction: column;\n	justify-content: start;\n	align-items: start;\n	padding-bottom: 16px;\n}\n.header {\n	display: flex;\n	justify-content: space-between;\n  	align-items: flex-start;\n	height: 10vh;\n	padding: 14px;\n	margin-bottom: 10px;\n}\n.header p {\n	color: #0c0c0c;\n    font-size: 12px;\n}\n.header h6 {\n	color: #0c0c0c;\n    font-size: 20px;\n	margin: 0;\n}\n.closePopup {\n	cursor: pointer;\n	width: 30px;\n	height: 30px;\n}\n.walletCard {\n	background-color: black;\n    padding: 12px 13px;\n    border-radius: 16px;\n    box-shadow: none;\n    margin: 0 14px;\n    width: calc(100% - 32px);\n	display: flex;\n	justify-content: space-between;\n}\n.coinCard img {\n	width: 20px;\n	height: 20px;\n}\n.coinCard {\n	background-color: #fff;\n    border-radius: 4px;\n    margin: 0 6px;\n    padding: 5px 10px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	gap: 8px;\n}\n.coinCard h1 {\n    font-size: 18px;\n	font-weight: 600;\n	color: black;\n}\n.badgeCard img {\n	height: 12px;\n	width: 12px;\n}\n.badgeCard p {\n	font-size: 11px;\n}\n.badgeCard {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n	color: white;\n	gap: 4px;\n}\n.walletCardText {\n	color: white;\n	font-size: 14px;\n	font-weight: bold;\n}\n.inviteCard {\n	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);\n    margin: 0 20px;\n    border-radius: 8px;\n    padding: 12px;\n}\n.inviteTextSection {\n	color: white;\n	display: flex;\n	align-items: center;\n	margin-bottom: 18px;\n	gap: 8px;\n}\n.inviteTextContainer h2 {\n	font-weight: 700;\n	font-size: 20px;\n	margin-bottom: 6px;\n	line-height: 16px;\n}\n.inviteTextContainer p {\n	font-weight: 400;\n    font-size: 12px;\n	line-height: 14px;\n}\n.invitebtn {\n	width: 100%;\n    background: #fff;\n    border-radius: 4px;\n    border: none;\n    padding: 8px;\n    color: #3e56d2;\n    font-weight: 700;\n    font-size: 12px;\n    text-align: center;\n    cursor: pointer;\n	line-height: normal;\n	font-family: Inter, sans-serif;\n}\n.couponCard {\n	border-radius: 12px;\n	color: #000;\n	font-size: 14px;\n	line-height: 20px;\n	cursor: pointer;\n	width: 120px;\n}\n.couponCardDesc {\n	padding: 8px;\n	background: #f4f4f4;\n	border-radius: 8px;\n	box-shadow: 0 -4px 10px rgba(0,0,0,.1);\n	position: relative;\n	top: -12px;\n	min-width: 120px;\n	font-size: 13px;\n	font-weight: normal;\n	display: flex;\n	flex-direction: column;\n	gap: 4px;\n}\n.couponImg {\n	border-radius: 8px 8px 0 0;\n	width: 120px;\n}\n.couponCardPrice {\n	display: flex;\n	align-items: center;\n	justify-content: start;\n	gap: 4px;\n	font-size: 14px;\n	font-weight: 400;\n	margin-top: 8px;\n}\n.couponFloatingLabel {\n	position: absolute;\n	top: -10px;\n  	right: 10px;\n    background: var(--loyalty_popup_theme_background,#000);\n    color: #fff;\n    width: 40px;\n    height: 24px;\n    text-align: center;\n    line-height: 24px;\n    font-weight: 600;\n    font-size: 12px;\n    border-radius: 4px;\n}\n.couponText {\n	padding-top: 8px;\n	font-family: Inter, sans-serif;\n	font-weight: 500;\n}\n.couponCardPrice img {\n	width: 14px;\n	height: 14px;\n}\n.viewAllCouponsContainer {\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n	padding: 8px 16px;\n	width: 100%;\n}\n.viewAllCouponsContainer h1 {\n	font-size: 20px;\n    font-weight: 700;\n}\n.viewAllCouponsContainer a {\n	cursor: pointer;\n    font-weight: 500;\n    font-size: 12px;\n}\n.gamesArenaContainer {\n	padding: 8px 16px;\n	margin-top: 16px;\n}\n.gamesArenaContainer h1 {\n	font-size: 20px;\n    font-weight: 700;\n}\n.gamesArenaContainer p {\n	font-size: 12px;\n    font-weight: 500;\n	line-height: 14px;\n}\n.gamesCard {\n	width: fit-content;\n	background-color: #efefef;\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n	padding: 8px;\n	padding-top: 8px;\n	padding-top: 30px;\n	border-radius: 8px;\n	position: relative;\n	bottom: 20px;\n	min-width: 120px;\n	}\n.gamesCardImg {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	z-index: 2;\n	position: relative;\n}\n.coinBox {\n	background: #fff;\n	border-radius: 4px;\n	display: flex;\n	justify-content: center;\n	padding: 4px 14px;\n	align-items: center;\n	margin-bottom: 8px;\n	color: black;\n	font-size: 14px;\n	gap: 4px;\n}\n.gamesCardBtn {\n	background: black;\n    border-radius: 4px;\n    font-weight: 700;\n    font-size: 12px;\n    text-align: center;\n    color: #fff;\n    width: 100%;\n    padding: 8px;\n    cursor: pointer;\n	border: none;\n}\n.gamesCardTitle {\n	font-weight: 700;\n    font-size: 12px;\n	text-align: center;\n}\n.gamesCardDesc {\n	font-weight: 500;\n    font-size: 10px;\n    margin-bottom: 8px;\n}\n.gamesHorizontalList {\n	height: fit-content;\n	padding: 8px 16px;\n	display: flex;\n	gap: 16px;\n	width: 100%;\n}\n/* Invite and Earn */\n.inviteWhatsappBtn {\n	height: 40px;\n    width: 96%;\n    background-color: #faa;\n    border-radius: 4px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	border: none;\n}\n.inviteRoundedBtn {\n	width: 40px;\n    height: 40px;\n    background-color: #faa;\n    border-radius: 50%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	border: none;\n}\n.inviteAndEarnContainer {\n	width: 100%;\n	padding: 22px;\n}\n.dashedDivider {\n	border: none;\n    height: 1px;\n    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);\n    margin: 20px 0;\n}\n.inviteEarnTextContainer {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	font-weight: 400;\n    font-size: 14px;\n    color: #acacac;\n    margin: 14px;\n    text-align: center;\n}\n.inviteAndEarn {\n	display: flex;\n	justify-content: flex-start;\n	align-items: center;\n	gap: 16px;\n}\n.inviteAndEarn h2 {\n	font-weight: 700;\n    font-size: 30px;\n}\n.inviteAndEarnMessage h4 {\n	text-align: center;\n    font-weight: 500;\n    font-size: 16px;\n    line-height: 30px;\n    margin: 20px 0!important;\n}\n.inviteLinkContainer {\n	padding: 12px;\n    background: #faa;\n    border-radius: 4px;\n    border: 1px dashed #000;\n    font-size: 16px;\n    font-weight: 700;\n    display: flex;\n	justify-content: space-between;\n    align-items: center;\n}\n.inviteLinkContainer p {\n	font-size: 14px;\n}\n.inviteLinkContainer img {\n	max-width: 16px;\n	cursor: pointer;\n}\n.sendInvitesBtnContainer, .inviteWhatsappBtn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n}\n.closeInviteContainer {\n	display: flex;\n	justify-content: end;\n	align-items: center;\n}\n.couponUnlockBtn {\n	background-color: black;\n    color: #fff;\n    padding: 11px 0;\n    border-radius: 8px;\n    font-family: Inter,sans-serif;\n    font-weight: 700;\n    cursor: pointer;\n    width: 100%;\n    font-size: 14px;\n	border: none;\n}\n.unlockCouponContainer {\n	width: 100%;\n	padding: 16px;\n}\n.couponOverlayContainer {\n	display: flex;\n	justify-content: start;\n	align-items: center;\n	gap: 8px;\n}\n.showAllCouponsList {\n	display: flex;\n	justify-content: start;\n	align-items: start;\n	gap: 16px;\n	scrollbar-width: none;\n	overflow-x: scroll;\n	overflow-y: hidden;\n	padding: 0 16px;\n}\n.pointsActivityClass {\n	height: 200px;\n	width: 200px;\n	background-color: yellow;\n}";
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -452,46 +452,147 @@
       })
     });
   };
-  const CouponCard = () => {
+  const CouponCard = ({
+    couponImgLink,
+    couponPrice,
+    couponDesc,
+    coinImgLink
+  }) => {
     return o(k$1, {
       children: o("div", {
         class: "couponCard",
         children: [o("img", {
-          src: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
+          class: "couponImg",
+          src: couponImgLink,
           alt: ""
         }), o("div", {
           class: "couponCardDesc",
-          children: o("p", {
-            children: "Rs. 10 off on Striped Silk Blouse"
-          })
-        }), o("p", {
-          class: "couponPriceCard",
-          children: "₹ 10"
+          children: [o("div", {
+            class: "couponFloatingLabel",
+            children: ["₹ ", couponPrice]
+          }), o("p", {
+            class: "couponText",
+            children: couponDesc
+          }), o("div", {
+            className: "couponCardPrice",
+            children: [o("img", {
+              src: coinImgLink
+            }), o("p", {
+              children: couponPrice
+            })]
+          })]
         })]
       })
     });
   };
-  const GamesCard = () => {
+  const ShowCoupons = () => {
+    const couponCardResp = [{
+      couponPrice: 30,
+      couponDesc: "Enjoy a 20% off on your next order!",
+      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
+      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png"
+    }, {
+      couponPrice: 15,
+      couponDesc: "Get a special gift with your next order!",
+      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
+      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png"
+    }, {
+      couponPrice: 50,
+      couponDesc: "Free shipping on orders over $50!",
+      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
+      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png"
+    }];
+    return o(k$1, {
+      children: [o("div", {
+        class: "viewAllCouponsContainer",
+        children: [o("h1", {
+          children: "Coupons"
+        }), o("a", {
+          children: "View All"
+        })]
+      }), o("div", {
+        class: "showAllCouponsList",
+        children: couponCardResp.map((card, index) => o(CouponCard, {
+          couponPrice: card.couponPrice,
+          couponDesc: card.couponDesc,
+          couponImgLink: card.couponImgLink,
+          coinImgLink: card.coinImgLink
+        }, index))
+      })]
+    });
+  };
+  const GamesCard = ({
+    cardImage,
+    coinImage,
+    gameTitle,
+    btnText,
+    gamePrice
+  }) => {
     return o(k$1, {
       children: o("div", {
-        class: "",
-        children: [o("img", {
-          src: "",
-          alt: ""
-        }), o("p", {
-          children: "Wheel of Fortune"
-        }), o("p", {
-          children: "Start at"
-        }), o("div", {
-          class: "coinCard",
-          children: [o("img", {
-            src: "https://media.farziengineer.co/farziwallet/coin-icon.png",
+        class: "gamesMainContainer",
+        children: [o("div", {
+          class: "gamesCardImg",
+          children: o("img", {
+            src: cardImage,
             alt: ""
-          }), o("h1", {
-            children: "575"
+          })
+        }), o("div", {
+          class: "gamesCard",
+          children: [o("p", {
+            class: "gamesCardTitle",
+            children: gameTitle
+          }), o("p", {
+            class: "gamesCardDesc",
+            children: "Start at"
+          }), o("div", {
+            class: "coinBox",
+            children: [o("img", {
+              src: coinImage,
+              alt: ""
+            }), o("p", {
+              children: gamePrice
+            })]
+          }), o("button", {
+            class: "gamesCardBtn",
+            children: btnText
           })]
         })]
       })
+    });
+  };
+  const GamesArena = () => {
+    const gamesData = [{
+      gameTitle: "Wheel of Fortune",
+      cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
+      gamePrice: "10",
+      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
+      btnText: "Explore"
+    }, {
+      gameTitle: "Scratch Card",
+      cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
+      gamePrice: "20",
+      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
+      btnText: "Explore"
+    }];
+    return o(k$1, {
+      children: [o("div", {
+        class: "gamesArenaContainer",
+        children: [o("h1", {
+          children: "Games Arena"
+        }), o("p", {
+          children: "Play games to win FC coins, coupons & rewards"
+        })]
+      }), o("div", {
+        class: "gamesHorizontalList",
+        children: gamesData.map((card, idx) => o(GamesCard, {
+          gameTitle: card.gameTitle,
+          cardImage: card.cardImage,
+          gamePrice: card.gamePrice,
+          coinImage: card.coinImage,
+          btnText: card.btnText
+        }, idx))
+      })]
     });
   };
   function PointsActivity({
@@ -540,16 +641,38 @@
     const handleViewPopup = () => {
       setVisibility(!visibilty);
     };
-    const transactionLog = () => {
-      return o(PointsActivity, {});
-    };
+    const PointsActivityArray = [{
+      "id": 1,
+      "reason": "Test credit",
+      "created": "2024-01-19",
+      "amount": 100,
+      "type": "ADD"
+    }, {
+      "id": 2,
+      "reason": "Test credit 200",
+      "created": "2024-01-20",
+      "amount": 150,
+      "type": "ADD"
+    }, {
+      "id": 3,
+      "reason": "Test debite SUB",
+      "created": "2024-01-20",
+      "amount": 50,
+      "type": "SUB"
+    }, {
+      "id": 4,
+      "reason": "Test debite 100",
+      "created": "2024-01-21",
+      "amount": 100,
+      "type": "SUB"
+    }];
     return o(k$1, {
       children: [o("img", {
         onClick: handleViewPopup,
         class: "floatingPopup",
         src: "https://media.farziengineer.co/farziwallet/gift-icon.png",
-        width: 34,
-        height: 34,
+        width: 30,
+        height: 30,
         alt: "gift icon"
       }), visibilty && o(k$1, {
         children: o("div", {
@@ -572,10 +695,16 @@
                 alt: ""
               })
             })]
-          }), o("div", {
-            onClick: transactionLog,
-            children: o(WalletCard, {})
-          }), o(PointsActivity, {}), o(CouponCard, {}), o(InviteCard, {}), o(GamesCard, {})]
+          }), o(WalletCard, {}), o(ShowCoupons, {}), o(GamesArena, {}), o(InviteCard, {}), o("div", {
+            class: "pointsActivityClass",
+            children: PointsActivityArray.map((points, pointIndex) => o(PointsActivity, {
+              id: points.id,
+              reason: points.reason,
+              created: points.created,
+              amount: points.amount,
+              type: points.type
+            }))
+          })]
         })
       })]
     });

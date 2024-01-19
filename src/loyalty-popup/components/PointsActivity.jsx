@@ -1,4 +1,4 @@
-export default function PointsActivity({ id, reason, created, amount, type }) {
+export function PointsActivity({ id, reason, created, amount, type }) {
     return (
       <>
         <div class="transaction-log-container">
