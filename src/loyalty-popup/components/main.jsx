@@ -7,9 +7,11 @@ import GamesArena from "./GamesArena";
 import CouponOverlay from "./CouponOverlay";
 import CouponCard from "./CouponCard";
 import PointsActivity from "./WalletPointsActivity"
+import InviteAndEarnOverlay from "./InviteAndEarnOverlay";
 
 export function Main({ themeDetailsData }) {
   const [visibilty, setVisibility] = useState(true)
+  const [overlayVisibility, setOverlayVisibility] = useState(false)
   const handleViewPopup = ()=>{
       setVisibility(!visibilty)
   }
@@ -75,6 +77,9 @@ export function Main({ themeDetailsData }) {
       coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png",
     },
   ];
+  const handleOverlayVisibility = ()=>{
+      setOverlayVisibility(!overlayVisibility)
+  }
   return (
     <>
       <img onClick={handleViewPopup} class="floatingPopup" src="https://media.farziengineer.co/farziwallet/gift-icon.png" width={30} height={30} alt="gift icon" />
@@ -93,7 +98,6 @@ export function Main({ themeDetailsData }) {
             <WalletCard/>
             <ShowCoupons/>
             <GamesArena/>
-            <InviteCard/>
             <div class="pointsActivityClass">
               <h4>Points activity</h4>
               {
@@ -102,6 +106,14 @@ export function Main({ themeDetailsData }) {
                 />))
               }
             </div>
+            <InviteCard onClick={handleOverlayVisibility}/>
+            {
+              overlayVisibility && (
+                <div class="overlay">
+                  <InviteAndEarnOverlay/>
+                </div>
+              )
+            }
           </div>
         </>
       )}

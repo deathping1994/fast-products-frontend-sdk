@@ -565,3 +565,8 @@ body {
 	background-color: rgba(181, 0, 0, 0.1);
 	color: rgb(181, 0, 0);
 }
+
+.overlay {
+	position: absolute;
+	z-index: 999;
+}
