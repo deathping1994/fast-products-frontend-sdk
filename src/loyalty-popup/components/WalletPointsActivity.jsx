@@ -1,4 +1,4 @@
-export default function PointsActivity({ id, reason, created, amount, type }) {
+const WalletPointsActivity = ({ id, reason, created, amount, type }) => {
     return (
       <>
         <div class="transaction-log-container">
@@ -21,3 +21,5 @@ export default function PointsActivity({ id, reason, created, amount, type }) {
       </>
     );
   }
+
+export default WalletPointsActivity

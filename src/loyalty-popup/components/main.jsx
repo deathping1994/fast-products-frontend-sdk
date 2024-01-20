@@ -1,20 +1,47 @@
 import { useEffect, useState } from "preact/hooks";
 import { WALLET_API_URI } from "..";
-import WalletCard from "./WalletCard";
-import InviteCard from "./InviteCard";
-import ShowCoupons from "./ShowCoupons";
-import GamesArena from "./GamesArena";
-import CouponOverlay from "./CouponOverlay";
-import CouponCard from "./CouponCard";
-import PointsActivity from "./WalletPointsActivity"
-import InviteAndEarnOverlay from "./InviteAndEarnOverlay";
+import WalletPointsActivity from "./WalletPointsActivity";
+import WalletCard from "../components/WalletCard";
+import InviteCard from "../components/InviteCard";
+import ShowCoupons from "../components/ShowCoupons";
+import GamesArena from "../components/GamesArena";
+import CouponOverlay from "../components/CouponOverlay";
+import CouponCard from "../components/CouponCard";
+import PointsActivity from "../components/WalletPointsActivity"
+import InviteAndEarnOverlay from "../components/InviteAndEarnOverlay";
 
 export function Main({ themeDetailsData }) {
   const [visibilty, setVisibility] = useState(true)
   const [overlayVisibility, setOverlayVisibility] = useState(false)
+  const [transactionLogs, setTransactionLogs] = useState(false)
+  const [couponVisibility, setCouponVisibility] = useState(false)
   const handleViewPopup = ()=>{
       setVisibility(!visibilty)
   }
+  const handleOverlayVisibility = ()=>{
+    setOverlayVisibility(!overlayVisibility)
+  }
+
+  const closeOverlay = ()=>{
+    setOverlayVisibility(!overlayVisibility)
+  }
+  const handleTransactionLogs = () => {
+    setTransactionLogs(!transactionLogs);
+  };
+  const handleCouponVisibility = () => {
+    setCouponVisibility(!couponVisibility);
+  };
+  const hideElement = {
+    display: "none"
+  }
+
+  const stopScroll = {
+    overflowY: 'hidden'
+  };
+  
+  // const selectShadowDom = document.querySelector('.fc-loyalty-popup-19212-root')
+  // selectShadowDom.style.overflowY = "hidden"
+
   const  PointsActivityArray = [
     {
       "id": 1,
@@ -45,47 +72,13 @@ export function Main({ themeDetailsData }) {
       "type": "SUB"
     }
 ]
-  const couponCardResp = [
-    {
-      couponPrice: 30,
-      couponDesc: "Enjoy a 20% off on your next order!",
-      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-    },
-    {
-      couponPrice: 15,
-      couponDesc: "Get a special gift with your next order!",
-      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-    },
-    {
-      couponPrice: 50,
-      couponDesc: "Free shipping on orders over $50!",
-      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-    },
-    {
-      couponPrice: 50,
-      couponDesc: "Free shipping on orders over $50!",
-      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-    },
-    {
-      couponPrice: 50,
-      couponDesc: "Free shipping on orders over $50!",
-      couponImgLink: "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      coinImgLink: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-    },
-  ];
-  const handleOverlayVisibility = ()=>{
-      setOverlayVisibility(!overlayVisibility)
-  }
+  
   return (
     <>
       <img onClick={handleViewPopup} class="floatingPopup" src="https://media.farziengineer.co/farziwallet/gift-icon.png" width={30} height={30} alt="gift icon" />
       {visibilty && (
         <>  
-          <div class="mainPopup">
+          <div style={overlayVisibility && stopScroll} class="mainPopup">
             <div class="header">
                 <div class="leftHeader">
                     <p>Welcome to</p>
@@ -95,25 +88,40 @@ export function Main({ themeDetailsData }) {
                     <img class="closePopup" onClick={handleViewPopup} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
                 </div>
             </div>
-            <WalletCard/>
-            <ShowCoupons/>
-            <GamesArena/>
-            <div class="pointsActivityClass">
-              <h4>Points activity</h4>
-              {
-                PointsActivityArray.map((points, pointIndex)=>(<PointsActivity 
-                  id={points.id} reason={points.reason} created={points.created} amount={points.amount} type={points.type}
-                />))
-              }
+            <WalletCard onClick={handleTransactionLogs}/>
+            <ShowCoupons onClick={handleCouponVisibility}/>
+            {
+              couponVisibility && (
+                <CouponOverlay onClick={handleCouponVisibility}/>
+              )
+            }
+
+            <div style={transactionLogs || couponVisibility ? hideElement : ""}>
+              <GamesArena/>
+              <InviteCard onClick={handleOverlayVisibility}/>
             </div>
-            <InviteCard onClick={handleOverlayVisibility}/>
+            
             {
               overlayVisibility && (
-                <div class="overlay">
-                  <InviteAndEarnOverlay/>
+                  <InviteAndEarnOverlay closeOverlay={closeOverlay}/>
+              )
+            }
+            {
+              transactionLogs && (
+                <div class="pointsActivityClass">
+                  <div class="pointsActivityHeader">
+                    <h4>Points activity</h4>
+                    <img onClick={handleTransactionLogs} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
+                  </div>
+                  {
+                    PointsActivityArray.map((points, pointIndex)=>(<PointsActivity 
+                      id={points.id} reason={points.reason} created={points.created} amount={points.amount} type={points.type}
+                    />))
+                  }
                 </div>
               )
             }
+            
           </div>
         </>
       )}

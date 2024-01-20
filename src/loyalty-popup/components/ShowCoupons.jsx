@@ -1,6 +1,6 @@
 import CouponCard from "./CouponCard";
 
-const ShowCoupons = () => {
+const ShowCoupons = ({onClick}) => {
     const couponCardResp = [
         {
           couponPrice: 30,
@@ -30,6 +30,7 @@ const ShowCoupons = () => {
         <div class="showAllCouponsList">
           {couponCardResp.map((card, index)=>(
           <CouponCard
+            onClick={onClick}
             key={index}
             couponPrice={card.couponPrice}
             couponDesc={card.couponDesc}

@@ -1,7 +1,7 @@
-const CouponCard = ({couponImgLink, couponPrice, couponDesc, coinImgLink}) => {
+const CouponCard = ({couponImgLink, couponPrice, couponDesc, coinImgLink,onClick}) => {
   return (
     <>
-        <div class="couponCard">
+        <div onClick={onClick} class="couponCard">
           <img class="couponImg" src={couponImgLink} alt="" />
             <div class="couponCardDesc">
                 <div class="couponFloatingLabel">

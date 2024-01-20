@@ -1,9 +1,8 @@
 
-
-const WalletCard = () => {
+const WalletCard = ({onClick}) => {
   return (
     <>
-        <div class="walletCard">
+        <div onClick={onClick} class="walletCard">
             <div>
                 <p class="walletCardText">My FC Coins</p>
                 <div class="badgeCard">

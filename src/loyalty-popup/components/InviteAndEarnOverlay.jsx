@@ -1,11 +1,11 @@
-const InviteAndEarnOverlay = () => {
+const InviteAndEarnOverlay = ({closeOverlay}) => {
     
     const referralLink = "https://0b92a5.myshopify.com/account/register?fc_refer_hash=83a24c"
 
   return (
     <>
         <div class="inviteAndEarnContainer">
-            <div class="closeInviteContainer">
+            <div onClick={closeOverlay} class="closeInviteContainer">
                 <img width={30} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
             </div>
             <div class="inviteAndEarn">
@@ -25,7 +25,7 @@ const InviteAndEarnOverlay = () => {
             <div>
                 <hr class="dashedDivider" />
             </div>
-            <div class="inviteTextContainer">
+            <div class="shareTextContainer">
                 <p>or share with</p>
             </div>
             <div class="sendInvitesBtnContainer">

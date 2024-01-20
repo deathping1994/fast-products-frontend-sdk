@@ -1,6 +1,10 @@
+import { useState } from "preact/hooks";
 import GamesCard from "./GamesCard"
 
 const GamesArena = () => {
+    const handleShowGames =()=>{
+        
+    }
     const gamesData = [
         {
             gameTitle: "Wheel of Fortune",
@@ -26,7 +30,7 @@ const GamesArena = () => {
         <div class="gamesHorizontalList">
             {
                 gamesData.map((card, idx)=>(
-                    <GamesCard key={idx} gameTitle={card.gameTitle} cardImage={card.cardImage} gamePrice={card.gamePrice} coinImage={card.coinImage} btnText={card.btnText}/>
+                    <GamesCard key={idx} btnClick={handleShowGames} gameTitle={card.gameTitle} cardImage={card.cardImage} gamePrice={card.gamePrice} coinImage={card.coinImage} btnText={card.btnText}/>
                 ))
             }
         </div>

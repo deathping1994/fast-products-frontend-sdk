@@ -18,6 +18,7 @@
     "build:watch": "concurrently \"npm run build:cart-drawer\" \" npm run build:cart-wallet-widget\" \" npm run build:wallet-activity-snippet\" \" npm run build:loyalty-popup\""
   },
   "dependencies": {
+    "axios": "^1.6.5",
     "concurrently": "^8.2.2",
     "http-server": "^14.1.1",
     "preact": "^10.13.1"
