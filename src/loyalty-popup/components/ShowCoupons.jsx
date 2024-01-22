@@ -1,6 +1,9 @@
+import { useState } from "preact/hooks";
 import CouponCard from "./CouponCard";
+import ViewAllCouons from "./ViewAllCouons";
 
-const ShowCoupons = ({onClick}) => {
+const ShowCoupons = ({btnClick, viewAll, isVisible}) => {
+    
     const couponCardResp = [
         {
           couponPrice: 30,
@@ -25,12 +28,12 @@ const ShowCoupons = ({onClick}) => {
     <>
         <div class="viewAllCouponsContainer">
           <h1>Coupons</h1>
-          <a>View All</a>
+          <a onClick={viewAll}>View All</a>
         </div>
         <div class="showAllCouponsList">
           {couponCardResp.map((card, index)=>(
           <CouponCard
-            onClick={onClick}
+            onClick={btnClick}
             key={index}
             couponPrice={card.couponPrice}
             couponDesc={card.couponDesc}
@@ -39,6 +42,11 @@ const ShowCoupons = ({onClick}) => {
           />
           ))}
         </div>
+        {
+          isVisible && (
+            <ViewAllCouons closePopup={viewAll}/>
+          )
+        }
     </>
   )
 }

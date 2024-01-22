@@ -9,12 +9,36 @@ import CouponOverlay from "../components/CouponOverlay";
 import CouponCard from "../components/CouponCard";
 import PointsActivity from "../components/WalletPointsActivity"
 import InviteAndEarnOverlay from "../components/InviteAndEarnOverlay";
+import GamesCard from "./GamesCard";
+import ShowGames from "./ShowGames";
 
 export function Main({ themeDetailsData }) {
   const [visibilty, setVisibility] = useState(true)
   const [overlayVisibility, setOverlayVisibility] = useState(false)
   const [transactionLogs, setTransactionLogs] = useState(false)
   const [couponVisibility, setCouponVisibility] = useState(false)
+  const [gamesVisibility, setGamesVisibility] = useState(false)
+  const [allCouponVisibility, setAllCouponVisibility] = useState(false)
+    const handleAllCouponVisibility = ()=>{
+      setAllCouponVisibility(!allCouponVisibility)
+    }
+  
+  const gamesData = [
+    {
+        gameTitle: "Wheel of Fortune",
+        cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
+        gamePrice: "10",
+        coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
+        btnText: "Explore"
+    },
+    {
+        gameTitle: "Scratch Card",
+        cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
+        gamePrice: "20",
+        coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
+        btnText: "Explore"
+    }
+]
   const handleViewPopup = ()=>{
       setVisibility(!visibilty)
   }
@@ -31,6 +55,14 @@ export function Main({ themeDetailsData }) {
   const handleCouponVisibility = () => {
     setCouponVisibility(!couponVisibility);
   };
+  const handleGamesVisibility = () => {
+    setGamesVisibility(!gamesVisibility);
+  };
+
+  const handleShowGames = ()=>{
+    setGamesVisibility(!gamesVisibility)
+  }
+  
   const hideElement = {
     display: "none"
   }
@@ -89,17 +121,30 @@ export function Main({ themeDetailsData }) {
                 </div>
             </div>
             <WalletCard onClick={handleTransactionLogs}/>
-            <ShowCoupons onClick={handleCouponVisibility}/>
+            <ShowCoupons btnClick={handleCouponVisibility} viewAll={handleAllCouponVisibility} isVisible={allCouponVisibility}/>
             {
               couponVisibility && (
                 <CouponOverlay onClick={handleCouponVisibility}/>
               )
             }
 
-            <div style={transactionLogs || couponVisibility ? hideElement : ""}>
-              <GamesArena/>
+            <div style={transactionLogs || couponVisibility || gamesVisibility || allCouponVisibility ? hideElement : ""}>
+              <div class="gamesArenaContainer">
+                    <h1>Games Arena</h1>
+                    <p>Play games to win FC coins, coupons & rewards</p>
+              </div>
+              <div class="gamesHorizontalList">
+                  {
+                      gamesData.map((card, idx)=>(
+                          <GamesCard key={idx} btnClick={handleGamesVisibility} gameTitle={card.gameTitle} cardImage={card.cardImage} gamePrice={card.gamePrice} coinImage={card.coinImage} btnText={card.btnText}/>
+                      ))
+                  }
+              </div>
               <InviteCard onClick={handleOverlayVisibility}/>
             </div>
+            {gamesVisibility && (
+              <ShowGames handleOverlay={handleShowGames} />
+            )}
             
             {
               overlayVisibility && (

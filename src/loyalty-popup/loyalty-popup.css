@@ -400,6 +400,7 @@ body {
 .inviteAndEarnContainer {
 	width: 100%;
 	padding: 22px;
+	border-radius: 16px;
 }
 
 .dashedDivider {
@@ -626,3 +627,202 @@ body {
 	cursor: pointer;
 }
 
+.showGamesOverlay {
+	background-color: white;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	top: 0;
+}
+
+.unlockTextContainer {
+	font-weight: 700;
+    font-size: 16px;
+    margin: 22px;
+	text-align: center;
+}
+
+.unlockText h5 {
+	font-weight: 700;
+    font-size: 16px;
+    margin: 16px 0;
+}
+
+.crossImg {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.crossImg img {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+
+.unlockDesc p {
+	font-weight: 400;
+    font-size: 14px
+}
+
+.showGamesHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+}
+
+.showGamesHeader img {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+.showGamesHeader h2 {
+	font-size: 20px;
+}
+
+.showGamesTab {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 16px;
+}
+
+.showGamesTab h2 {
+	font-size: 18px;
+}
+
+.gamesTab {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.walletCoinsBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	padding: 2px 8px;
+	border-radius: 50px;
+	gap: 4px;
+}
+
+.walletCoinsBox p {
+	color: white;
+	font-size: 20px;
+}
+
+.walletCoinsBox img {
+	width: 16px;
+	height: 16px;
+}
+
+.showGamesCards {
+	background-color: white;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	padding: 0px 16px;
+	gap: 16px;
+}
+
+.viewAllCoupons {
+	position: absolute;
+	background-color: white;
+	width: 100%;
+	height: 100%;
+	top: 0;
+}
+
+.viewAllCouponsHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+}
+
+.viewAllCouponsHeader h4 {
+	font-size: 20px;
+	font-weight: 700;
+}
+.viewAllCouponsHeader img {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.viewAllCouponTabText h4 {
+	font-size: 20px;
+}
+
+.viewAllCouponTabText {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.viewAllCouponsTab {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+}
+
+.viewAllFeaturedComponent h3 {
+	margin-left: 16px;
+}
+.reedemfcCoins {
+	padding: 16px;
+}
+.reedemfcCoins h5, .exploreCoupons h5{
+	font-weight: 700;
+    font-size: 16px;
+}
+.reedemfcCoins p{
+	/* margin-top: 8px; */
+    font-weight: 400;
+    font-size: 12px;
+	line-height: 14px;
+}
+
+
+.reedemfcCoinsCard {
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	padding: 8px;
+	border-radius: 8px;
+}
+.exploreCouponCard {
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	padding: 16px;
+	border-radius: 8px;
+}
+.exploreCoupons {
+	padding: 16px;
+}
+
+.shipImgBox {
+	border-right: 1px dashed #959595;
+	padding-right: 8px;
+    margin-right: 8px
+}
+
+.exploreCouponCardText {
+	font-weight: 700;
+    font-size: 14px;
+}
+
+.exploreCouponCardText img {
+	width: 12px;
+	height: 12px;
+}
