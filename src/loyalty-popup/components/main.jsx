@@ -18,7 +18,7 @@ export function Main({ themeDetailsData }) {
   const [transactionLogs, setTransactionLogs] = useState(false)
   const [couponVisibility, setCouponVisibility] = useState(false)
   const [gamesVisibility, setGamesVisibility] = useState(false)
-  const [allCouponVisibility, setAllCouponVisibility] = useState(false)
+  const [allCouponVisibility, setAllCouponVisibility] = useState(true)
     const handleAllCouponVisibility = ()=>{
       setAllCouponVisibility(!allCouponVisibility)
     }

@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks";
 import CouponCard from "./CouponCard";
-import ViewAllCouons from "./ViewAllCouons";
+import ViewAllCoupons from "./ViewAllCoupons";
 
 const ShowCoupons = ({btnClick, viewAll, isVisible}) => {
     
@@ -44,7 +44,7 @@ const ShowCoupons = ({btnClick, viewAll, isVisible}) => {
         </div>
         {
           isVisible && (
-            <ViewAllCouons closePopup={viewAll}/>
+            <ViewAllCoupons closePopup={viewAll}/>
           )
         }
     </>
