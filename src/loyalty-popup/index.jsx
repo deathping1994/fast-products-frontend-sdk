@@ -2,11 +2,11 @@ import { render } from "preact";
 import style from "./loyalty-popup.css";
 import { Main } from "./components/main";
 
-export function App({ themeDetailsData }) {
+export function App({ themeDetailsData,shadowRoot }) {
   return (
     <>
       <div class="widget-container">
-        <Main themeDetailsData={themeDetailsData} />
+        <Main themeDetailsData={themeDetailsData} shadowRoot={shadowRoot} />
       </div>
       <div class="widget-styles"></div>
       <div class="widget-custom-styles"></div>
@@ -69,7 +69,7 @@ async function renderLoyaltyPopup() {
     const clientCustomStyleData =
       themeDetailsData?.data?.apply_wallet_snippet_css || "";
 
-    render(<App themeDetailsData={themeDetailsData} />, shadowRoot);
+    render(<App themeDetailsData={themeDetailsData} shadowRoot={shadowRoot} />, shadowRoot);
     render(<AppCSS />, shadowRoot?.querySelector(".widget-styles"));
     render(
       <AppCustomCSS customStyles={clientCustomStyleData} />,

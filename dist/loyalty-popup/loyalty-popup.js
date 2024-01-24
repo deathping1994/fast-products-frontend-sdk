@@ -1068,7 +1068,8 @@
     });
   };
   const ShowGames = ({
-    handleOverlay
+    handleOverlay,
+    showPlayGameScreen
   }) => {
     const [spinWheelOverlay, setSpinWheelOverlay] = h(false);
     const [availableTab, setAvailableTab] = h(true);
@@ -1080,13 +1081,13 @@
       cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
       gamePrice: "10",
       coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-      btnText: "Explore"
+      btnText: "SPIN"
     }, {
       gameTitle: "Spin and Win",
       cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
       gamePrice: "30",
       coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-      btnText: "Explore"
+      btnText: "SPIN"
     }];
     const handleMainTab = (mainTab) => {
       if (mainTab === "available") {
@@ -1121,106 +1122,262 @@
       backgroundColor: "#ff8f8f"
     };
     const showWheelOfFortune = () => {
-      setSpinWheelOverlay(!spinWheelOverlay);
+      showPlayGameScreen(true);
+      handleOverlay();
     };
     return o(k$1, {
-      children: o("div", {
-        class: "showGamesOverlay",
+      children: [o("div", {
+        class: "showGamesTab",
         children: [o("div", {
-          className: "showGamesHeader",
-          children: [o("h2", {
-            children: "Wheel of Fortune"
-          }), o("img", {
-            onClick: handleOverlay,
-            src: "https://media.farziengineer.co/farziwallet/cross.png",
-            alt: ""
+          class: "viewAllCouponTabText",
+          children: [o("h4", {
+            style: availableTab && activeTabStyles,
+            onClick: () => handleMainTab("available"),
+            children: "Available"
+          }), o("h4", {
+            style: yourCouponTab && activeTabStyles,
+            onClick: () => handleMainTab("yourcoupons"),
+            children: "Your Coupons"
           })]
         }), o("div", {
-          class: "showGamesTab",
+          class: "walletCoinsBox",
+          children: [o("img", {
+            src: "https://media.farziengineer.co/farziwallet/coin-icon.png",
+            alt: ""
+          }), o("p", {
+            children: "85"
+          })]
+        })]
+      }), availableTab && o("div", {
+        class: "showGamesCards",
+        children: gamesData.map((game, idx) => o(GamesCard, {
+          btnClick: showWheelOfFortune,
+          gameTitle: game.gameTitle,
+          cardImage: game.cardImage,
+          coinImage: game.coinImage,
+          btnText: game.btnText,
+          gamePrice: game.gamePrice
+        }, idx))
+      }), yourCouponTab && o("div", {
+        class: "yourCouponsCardMainContainer",
+        children: [o("div", {
+          class: "yourCouponsActiveTab",
           children: [o("div", {
-            class: "viewAllCouponTabText",
-            children: [o("h4", {
-              style: availableTab && activeTabStyles,
-              onClick: () => handleMainTab("available"),
-              children: "Available"
-            }), o("h4", {
-              style: yourCouponTab && activeTabStyles,
-              onClick: () => handleMainTab("yourcoupons"),
-              children: "Your Coupons"
+            style: unlockedTab && couponCardTabStyles,
+            onClick: () => handleYourCouponsTab("unlock"),
+            class: "unlockedTab",
+            children: "Unlocked"
+          }), o("div", {
+            style: redeemedTab && couponCardTabStyles,
+            onClick: () => handleYourCouponsTab("redeem"),
+            class: "redeemedTab",
+            children: "Redeemed"
+          })]
+        }), unlockedTab && o("div", {
+          class: "yourCouponsCardContainer",
+          children: [o("div", {
+            class: "youCouponCardLeft",
+            children: [o("h5", {
+              children: "₹30"
+            }), o("p", {
+              children: "Voucher"
             })]
           }), o("div", {
-            class: "walletCoinsBox",
-            children: [o("img", {
-              src: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-              alt: ""
+            class: "youCouponCardRight",
+            children: [o("h4", {
+              children: "Rs. 30 off on Striped Silk Blouse"
             }), o("p", {
-              children: "85"
+              children: ["code: ", o("span", {
+                class: "yourCouponCode",
+                children: "MQFETAJ9XBSK"
+              })]
+            }), o("p", {
+              children: "created on 18th Jan,2024"
             })]
           })]
-        }), availableTab && o("div", {
-          class: "showGamesCards",
-          children: gamesData.map((game, idx) => o(GamesCard, {
-            btnClick: showWheelOfFortune,
-            gameTitle: game.gameTitle,
-            cardImage: game.cardImage,
-            coinImage: game.coinImage,
-            btnText: game.btnText,
-            gamePrice: game.gamePrice
-          }, idx))
-        }), yourCouponTab && o("div", {
-          class: "yourCouponsCardMainContainer",
-          children: [o("div", {
-            class: "yourCouponsActiveTab",
-            children: [o("div", {
-              style: unlockedTab && couponCardTabStyles,
-              onClick: () => handleYourCouponsTab("unlock"),
-              class: "unlockedTab",
-              children: "Unlocked"
-            }), o("div", {
-              style: redeemedTab && couponCardTabStyles,
-              onClick: () => handleYourCouponsTab("redeem"),
-              class: "redeemedTab",
-              children: "Redeemed"
-            })]
-          }), unlockedTab && o("div", {
-            class: "yourCouponsCardContainer",
-            children: [o("div", {
-              class: "youCouponCardLeft",
-              children: [o("h5", {
-                children: "₹30"
-              }), o("p", {
-                children: "Voucher"
-              })]
-            }), o("div", {
-              class: "youCouponCardRight",
-              children: [o("h4", {
-                children: "Rs. 30 off on Striped Silk Blouse"
-              }), o("p", {
-                children: ["code: ", o("span", {
-                  class: "yourCouponCode",
-                  children: "MQFETAJ9XBSK"
-                })]
-              }), o("p", {
-                children: "created on 18th Jan,2024"
-              })]
-            })]
-          }), redeemedTab && o("div", {
-            class: "couponNotFound",
-            children: [o("img", {
-              src: "https://earthrhythm-media.farziengineer.co/hosted/image_24-c96b6aaf23b2.png",
-              alt: ""
-            }), o("h4", {
-              children: "Uh-Oh!"
-            }), o("p", {
-              children: "Looks like you don't have any redeemed coupons"
-            })]
+        }), redeemedTab && o("div", {
+          class: "couponNotFound",
+          children: [o("img", {
+            src: "https://earthrhythm-media.farziengineer.co/hosted/image_24-c96b6aaf23b2.png",
+            alt: ""
+          }), o("h4", {
+            children: "Uh-Oh!"
+          }), o("p", {
+            children: "Looks like you don't have any redeemed coupons"
           })]
-        }), spinWheelOverlay && o(ScratchCard, {})]
+        })]
+      }), spinWheelOverlay && o(ScratchCard, {})]
+    });
+  };
+  const ScreenHeader = ({
+    screenTitle,
+    closeOverlay
+  }) => {
+    return o(k$1, {
+      children: o("div", {
+        className: "showGamesHeader",
+        children: [o("h2", {
+          children: screenTitle
+        }), o("img", {
+          onClick: closeOverlay,
+          src: "https://media.farziengineer.co/farziwallet/cross.png",
+          alt: ""
+        })]
       })
     });
   };
+  const Screen = ({
+    screenTitle,
+    closeOverlay,
+    content
+  }) => {
+    return o(k$1, {
+      children: o("div", {
+        class: "showGamesOverlay screenContainer",
+        children: [o(ScreenHeader, {
+          screenTitle,
+          closeOverlay
+        }), o("div", {
+          children: content
+        })]
+      })
+    });
+  };
+  const PlayGame = ({
+    shadowRoot
+  }) => {
+    const spinWheelRewardData = [15, 20, 25, 30, 35, 40];
+    function splitStringOnLength(inputString, maxLength) {
+      if (typeof inputString !== "string") {
+        return [];
+      }
+      const words = inputString.split(" ");
+      const result = [];
+      let currentSubstring = "";
+      for (const word of words) {
+        if (currentSubstring.length + word.length + 1 <= maxLength) {
+          if (currentSubstring.length > 0) {
+            currentSubstring += " ";
+          }
+          currentSubstring += word;
+        } else {
+          result.push(currentSubstring);
+          currentSubstring = word;
+        }
+      }
+      if (currentSubstring.length > 0) {
+        result.push(currentSubstring);
+      }
+      return result;
+    }
+    function wrap(text, width) {
+      text.each(function() {
+        var text2 = d3.select(this), words = splitStringOnLength(text2.text(), 12).reverse(), word, line = [], lineNumber = 1, x2 = text2.attr("x"), y2 = text2.attr("y"), dy = 0, tspan = text2.text(null).append("tspan").attr("x", x2).attr("y", y2).attr("dy", "-1em");
+        while (word = words.pop()) {
+          line.push(word);
+          tspan.text(line.join(" "));
+          if (tspan.node().getComputedTextLength() > width) {
+            line.pop();
+            tspan.text(line.join(" "));
+            line = [word];
+            tspan = text2.append("tspan").attr("x", x2).attr("y", y2).attr("dy", "1em").attr("dx", "-" + ++lineNumber + dy + "em").text(word);
+          }
+        }
+      });
+    }
+    function drawWheel(shadowRoot2, data, unlock, winningIdx, spinnedCallback) {
+      (function auto() {
+        const chartElement = shadowRoot2.querySelector("#fw-chart-spin-wheel");
+        var padding = {
+          top: 20,
+          right: 40,
+          bottom: 0,
+          left: 0
+        }, w2 = chartElement.offsetWidth - padding.left - padding.right, h2 = chartElement.offsetWidth - padding.top - padding.bottom, r2 = Math.min(w2, h2) / 2, rotation = 0, oldrotation = 0, picked = winningIdx, color = d3.scale.category20();
+        var svg = d3.select(chartElement).append("svg").data([data]).attr("width", w2 + padding.left + padding.right).attr("height", h2 + padding.top + padding.bottom);
+        var container = svg.append("g").attr("class", "chartholder").attr("transform", "translate(" + (w2 / 2 + padding.left) + "," + (h2 / 2 + padding.top) + ")");
+        var vis = container.append("g");
+        var pie = d3.layout.pie().sort(null).value(function(d2) {
+          return 1;
+        });
+        var arc = d3.svg.arc().outerRadius(r2);
+        var arcs = vis.selectAll("g.slice").data(pie).enter().append("g").attr("class", "slice");
+        arcs.append("path").attr("fill", function(d2, i2) {
+          return color(i2);
+        }).attr("d", function(d2) {
+          return arc(d2);
+        });
+        arcs.append("text").attr("transform", function(d2) {
+          d2.innerRadius = 0;
+          d2.outerRadius = r2;
+          d2.angle = (d2.startAngle + d2.endAngle) / 2;
+          return "rotate(" + (d2.angle * 180 / Math.PI - 90) + ")translate(" + (d2.outerRadius - 10) + ")";
+        }).attr("text-anchor", "end").text(function(d2, i2) {
+          return data[i2].label;
+        }).call(wrap, 36);
+        unlock && container.on("click", spin);
+        function spin(d2) {
+          container.on("click", null);
+          var totalValues = data.length;
+          var x2 = winningIdx - 1;
+          var anglePerValue = 360 / totalValues;
+          rotation = -(x2 * anglePerValue + 360 * 3);
+          vis.transition().duration(3e3).attrTween("transform", rotTween).each("end", function() {
+            d3.select(".slice:nth-child(" + (picked + 1) + ") path").attr("fill", "#111");
+            oldrotation = rotation;
+            spinnedCallback();
+          });
+        }
+        svg.append("g").attr("transform", "translate(" + (w2 + padding.left + padding.right) + "," + (h2 / 2 + padding.top) + ")").append("path").attr("d", "M-" + r2 * 0.15 + ",0L0," + r2 * 0.05 + "L0,-" + r2 * 0.05 + "Z").style({
+          "fill": "black"
+        });
+        container.append("circle").attr("cx", 0).attr("cy", 0).attr("r", 45).style({
+          "fill": "white",
+          "cursor": "pointer"
+        });
+        container.append("text").attr("x", 0).attr("y", 15).attr("text-anchor", "middle").text("SPIN").style({
+          "font-weight": "bold",
+          "font-size": "30px",
+          "transform": "rotate(90deg)"
+        });
+        function rotTween(to) {
+          var i2 = d3.interpolate(oldrotation % 360, rotation);
+          return function(t2) {
+            return "rotate(" + i2(t2) + ")";
+          };
+        }
+      })();
+    }
+    const loadD3JS = async () => {
+      const res1 = await fetch("https://d3js.org/d3.v3.min.js");
+      const fileContent1 = await res1.text();
+      var script1 = document.createElement("script");
+      script1.innerHTML = fileContent1;
+      console.log("adding", script1);
+      document.querySelector("body").appendChild(script1);
+      drawWheel(shadowRoot, spinWheelRewardData.map((item, index) => {
+        return {
+          label: item,
+          value: index
+        };
+      }), false);
+    };
+    p(() => {
+      loadD3JS();
+    }, []);
+    return o(k$1, {
+      children: [o("div", {
+        children: "header"
+      }), o("div", {
+        id: "fw-chart-spin-wheel"
+      }), o("div", {
+        children: "footer"
+      })]
+    });
+  };
   function Main({
-    themeDetailsData
+    themeDetailsData,
+    shadowRoot
   }) {
     const [visibilty, setVisibility] = h(true);
     const [overlayVisibility, setOverlayVisibility] = h(false);
@@ -1228,6 +1385,10 @@
     const [couponVisibility, setCouponVisibility] = h(false);
     const [gamesVisibility, setGamesVisibility] = h(false);
     const [allCouponVisibility, setAllCouponVisibility] = h(false);
+    const [screenDetails, setScreenDetails] = h({
+      active: false,
+      screen: "home_screen"
+    });
     const handleAllCouponVisibility = () => {
       setAllCouponVisibility(!allCouponVisibility);
     };
@@ -1260,7 +1421,25 @@
       setCouponVisibility(!couponVisibility);
     };
     const handleGamesVisibility = () => {
-      setGamesVisibility(!gamesVisibility);
+      if (screenDetails == null ? void 0 : screenDetails.active) {
+        setScreenDetails({
+          ...screenDetails,
+          active: false
+        });
+      } else {
+        setScreenDetails({
+          ...screenDetails,
+          active: true,
+          screen: "show_spin_wheel"
+        });
+      }
+    };
+    const showPlayGameScreen = () => {
+      setScreenDetails({
+        ...screenDetails,
+        active: true,
+        screen: "play_spin_wheel"
+      });
     };
     const handleShowGames = () => {
       setGamesVisibility(!gamesVisibility);
@@ -1293,6 +1472,18 @@
       "amount": 100,
       "type": "SUB"
     }];
+    const getScreenComponent = () => {
+      if ((screenDetails == null ? void 0 : screenDetails.screen) === "play_spin_wheel") {
+        return o(PlayGame, {
+          shadowRoot
+        });
+      } else if ((screenDetails == null ? void 0 : screenDetails.screen) === "show_spin_wheel") {
+        return o(ShowGames, {
+          handleOverlay: handleShowGames,
+          showPlayGameScreen
+        });
+      }
+    };
     return o(k$1, {
       children: [o("img", {
         onClick: handleViewPopup,
@@ -1311,7 +1502,7 @@
               children: [o("p", {
                 children: "Welcome to"
               }), o("h6", {
-                children: "Loyality"
+                children: "Loyalty"
               })]
             }), o("div", {
               class: "rightHeader",
@@ -1328,10 +1519,8 @@
             btnClick: handleCouponVisibility,
             viewAll: handleAllCouponVisibility,
             isVisible: allCouponVisibility
-          }), couponVisibility && o(CouponOverlay, {
-            onClick: handleCouponVisibility
           }), o("div", {
-            style: transactionLogs || couponVisibility || gamesVisibility || allCouponVisibility ? hideElement : "",
+            style: transactionLogs || couponVisibility || gamesVisibility || allCouponVisibility || (screenDetails == null ? void 0 : screenDetails.active) ? hideElement : "",
             children: [o("div", {
               class: "gamesArenaContainer",
               children: [o("h1", {
@@ -1352,11 +1541,11 @@
             }), o(InviteCard, {
               onClick: handleOverlayVisibility
             })]
-          }), gamesVisibility && o(ShowGames, {
-            handleOverlay: handleShowGames
-          }), overlayVisibility && o(InviteAndEarnOverlay, {
-            closeOverlay
-          }), transactionLogs && o("div", {
+          }), (screenDetails == null ? void 0 : screenDetails.active) ? o(Screen, {
+            closeOverlay: handleShowGames,
+            screenTitle: "Wheel of Fortune",
+            content: getScreenComponent()
+          }) : o(k$1, {}), transactionLogs && o("div", {
             class: "pointsActivityClass",
             children: [o("div", {
               class: "pointsActivityHeader",
@@ -1374,19 +1563,25 @@
               amount: points.amount,
               type: points.type
             }))]
+          }), couponVisibility && o(CouponOverlay, {
+            onClick: handleCouponVisibility
+          }), overlayVisibility && o(InviteAndEarnOverlay, {
+            closeOverlay
           })]
         })
       })]
     });
   }
   function App({
-    themeDetailsData
+    themeDetailsData,
+    shadowRoot
   }) {
     return o(k$1, {
       children: [o("div", {
         class: "widget-container",
         children: o(Main, {
-          themeDetailsData
+          themeDetailsData,
+          shadowRoot
         })
       }), o("div", {
         class: "widget-styles"
@@ -1446,7 +1641,8 @@
       }
       const clientCustomStyleData = ((_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.apply_wallet_snippet_css) || "";
       B$1(o(App, {
-        themeDetailsData
+        themeDetailsData,
+        shadowRoot
       }), shadowRoot);
       B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
       B$1(o(AppCustomCSS, {

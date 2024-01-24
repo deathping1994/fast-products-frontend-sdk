@@ -11,14 +11,20 @@ import PointsActivity from "../components/WalletPointsActivity"
 import InviteAndEarnOverlay from "../components/InviteAndEarnOverlay";
 import GamesCard from "./GamesCard";
 import ShowGames from "./ShowGames";
+import Screen from "./Screen";
+import PlayGame from "./PlayGame";
 
-export function Main({ themeDetailsData }) {
+export function Main({ themeDetailsData,shadowRoot }) {
   const [visibilty, setVisibility] = useState(true)
   const [overlayVisibility, setOverlayVisibility] = useState(false)
   const [transactionLogs, setTransactionLogs] = useState(false)
   const [couponVisibility, setCouponVisibility] = useState(false)
   const [gamesVisibility, setGamesVisibility] = useState(false)
   const [allCouponVisibility, setAllCouponVisibility] = useState(false)
+  const [screenDetails,setScreenDetails]=useState({
+    active:false,
+    screen:"home_screen"
+  })
     const handleAllCouponVisibility = ()=>{
       setAllCouponVisibility(!allCouponVisibility)
     }
@@ -56,8 +62,27 @@ export function Main({ themeDetailsData }) {
     setCouponVisibility(!couponVisibility);
   };
   const handleGamesVisibility = () => {
-    setGamesVisibility(!gamesVisibility);
+    // setGamesVisibility(!gamesVisibility);
+    if(screenDetails?.active){
+      setScreenDetails({
+        ...screenDetails,
+        active:false
+      })
+    }else{
+      setScreenDetails({
+        ...screenDetails,
+        active:true,
+        screen:"show_spin_wheel"
+      })
+    }
   };
+  const showPlayGameScreen = ()=>{
+    setScreenDetails({
+      ...screenDetails,
+      active:true,
+      screen:"play_spin_wheel"
+    })
+  }
 
   const handleShowGames = ()=>{
     setGamesVisibility(!gamesVisibility)
@@ -104,6 +129,14 @@ export function Main({ themeDetailsData }) {
       "type": "SUB"
     }
 ]
+
+const getScreenComponent = ()=>{
+  if(screenDetails?.screen==="play_spin_wheel"){
+    return <PlayGame shadowRoot={shadowRoot} />;
+  }else if(screenDetails?.screen==="show_spin_wheel"){
+    return <ShowGames handleOverlay={handleShowGames} showPlayGameScreen={showPlayGameScreen}  />;
+  }
+}
   
   return (
     <>
@@ -114,7 +147,7 @@ export function Main({ themeDetailsData }) {
             <div class="header">
                 <div class="leftHeader">
                     <p>Welcome to</p>
-                    <h6>Loyality</h6>
+                    <h6>Loyalty</h6>
                 </div>
                 <div class="rightHeader">
                     <img class="closePopup" onClick={handleViewPopup} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
@@ -122,13 +155,8 @@ export function Main({ themeDetailsData }) {
             </div>
             <WalletCard onClick={handleTransactionLogs}/>
             <ShowCoupons btnClick={handleCouponVisibility} viewAll={handleAllCouponVisibility} isVisible={allCouponVisibility}/>
-            {
-              couponVisibility && (
-                <CouponOverlay onClick={handleCouponVisibility}/>
-              )
-            }
 
-            <div style={transactionLogs || couponVisibility || gamesVisibility || allCouponVisibility ? hideElement : ""}>
+            <div style={transactionLogs || couponVisibility || gamesVisibility || allCouponVisibility || screenDetails?.active ? hideElement : ""}>
               <div class="gamesArenaContainer">
                     <h1>Games Arena</h1>
                     <p>Play games to win FC coins, coupons & rewards</p>
@@ -142,15 +170,14 @@ export function Main({ themeDetailsData }) {
               </div>
               <InviteCard onClick={handleOverlayVisibility}/>
             </div>
-            {gamesVisibility && (
-              <ShowGames handleOverlay={handleShowGames} />
-            )}
+            {/* {gamesVisibility && (
+              <ShowGames handleOverlay={handleShowGames} showPlayGameScreen={setPlayGameScreen} />
+            )} */}
+
+            {screenDetails?.active ? (
+              <Screen closeOverlay={handleShowGames} screenTitle={"Wheel of Fortune"} content={getScreenComponent()} />
+            ):<></>}
             
-            {
-              overlayVisibility && (
-                  <InviteAndEarnOverlay closeOverlay={closeOverlay}/>
-              )
-            }
             {
               transactionLogs && (
                 <div class="pointsActivityClass">
@@ -167,6 +194,16 @@ export function Main({ themeDetailsData }) {
               )
             }
             
+            {
+              couponVisibility && (
+                <CouponOverlay onClick={handleCouponVisibility}/>
+              )
+            }
+            {
+              overlayVisibility && (
+                  <InviteAndEarnOverlay closeOverlay={closeOverlay}/>
+              )
+            }
           </div>
         </>
       )}
