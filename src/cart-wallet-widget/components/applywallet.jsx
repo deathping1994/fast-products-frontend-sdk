@@ -38,6 +38,7 @@ export function ApplyWallet({
   renderApplyCouponCodeBox,
   refetchCartSummary,
   calculateCashback,
+  setUserHash
 }) {
   const [userPoints, setUserPoints] = useState(null);
   const [walletApplied, setWalletApplied] = useState(
@@ -48,7 +49,7 @@ export function ApplyWallet({
     remainingWalletBalance: 0,
     walletDiscountApplied: 0,
     currency: null,
-    totalPayablePrice: 0,
+    totalPayablePrice: 0, 
     couponDiscountApplied: 0,
   });
 
@@ -74,6 +75,14 @@ export function ApplyWallet({
       });
       let walletData = await response.json();
       let walletAmount = walletData?.data?.data?.wallet?.wallet?.amount || 0;
+      let get_user_hash=walletData?.data?.data?.user_hash
+      if (get_user_hash){
+        setUserHash({
+              ...customerDetails,
+              customerTags: get_user_hash,
+            })
+        sessionStorage.setItem("fc_wallet_user_hash",get_user_hash)
+      }
       setUserPoints(walletAmount);
     } catch (err) {
       setUserPoints(0);
@@ -209,7 +218,9 @@ export function ApplyWallet({
             body: JSON.stringify({
               client_id: customerDetails?.clientID,
               customer_id: customerDetails?.customerID,
+              user_hash: customerDetails?.customerTags,
               wallet_points: Math.round(walletPointsToApply),
+
             }),
           }
         );

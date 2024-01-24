@@ -3,12 +3,13 @@ import { TransactionLog } from "./transactionlog";
 import { WALLET_API_URI } from "..";
 import { SkeletonLoader } from "../../global/skeletonloader";
 
-export function WalletScreen({ customerDetails }) {
+export function WalletScreen({ customerDetails,setUserHash }) {
   const [totalWalletAmount, setTotalWalletAmount] = useState(null);
   const [walletLogs, setWalletLogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageInfo, setpageInfo] = useState({
     endCursor: null,
+    
   });
   const [triggerLoadMore, setTriggerLoadMore] = useState(false);
   const [loadingPaginatedResults, setLoadingPaginatedResults] = useState(false);
@@ -17,6 +18,7 @@ export function WalletScreen({ customerDetails }) {
     customer_id,
     customer_tags,
     client_id,
+    
   }) => {
     const response = await fetch(`${WALLET_API_URI}/user-walletlogs`, {
       method: "POST",
@@ -35,6 +37,14 @@ export function WalletScreen({ customerDetails }) {
     });
     let walletData = await response.json();
     let walletAmount = walletData?.data?.data?.wallet?.wallet?.amount || 0;
+    let get_user_hash=walletData?.data?.data?.user_hash
+      if (get_user_hash){
+        setUserHash({
+              ...customerDetails,
+              customerTags: get_user_hash,
+            })
+        sessionStorage.setItem("fc_wallet_user_hash",get_user_hash)
+      }
     setTotalWalletAmount(walletAmount);
     setWalletLogs((prev) => {
       const newWalletLogs =
@@ -57,7 +67,7 @@ export function WalletScreen({ customerDetails }) {
       (async () => {
         await fetchWalletdetails({
           customer_id: customerDetails?.customerID,
-          customer_tags: customerDetails?.customerTags,
+          customer_tags: customerDetails?.customerTags || sessionStorage.getItem('fc_wallet_user_hash') || '',
           client_id: customerDetails?.clientID,
         });
         setLoading(false);
