@@ -1,7 +1,5 @@
 import { useState } from "preact/hooks";
 import GamesCard from "./GamesCard";
-import SpinWheel from "./SpinWheel";
-import ScratchCard from "./ScratchCard";
 
 const ShowGames = ({ handleOverlay, showPlayGameScreen }) => {
   const [spinWheelOverlay, setSpinWheelOverlay] = useState(false);
@@ -149,7 +147,6 @@ const ShowGames = ({ handleOverlay, showPlayGameScreen }) => {
           )}
         </div>
       )}
-      {spinWheelOverlay && <ScratchCard />}
     </>
   );
 };

@@ -2,7 +2,7 @@ import { useState } from "preact/hooks";
 import CouponCard from "./CouponCard";
 import ViewAllCoupons from "./ViewAllCoupons";
 
-const ShowCoupons = ({btnClick, viewAll, isVisible}) => {
+const ShowCoupons = ({btnClick, viewAll}) => {
     
     const couponCardResp = [
         {
@@ -42,11 +42,6 @@ const ShowCoupons = ({btnClick, viewAll, isVisible}) => {
           />
           ))}
         </div>
-        {
-          isVisible && (
-            <ViewAllCoupons closePopup={viewAll}/>
-          )
-        }
     </>
   )
 }

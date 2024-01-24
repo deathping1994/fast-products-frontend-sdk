@@ -1,7 +1,7 @@
 const ScreenHeader = ({ screenTitle, closeOverlay }) => {
   return (
     <>
-      <div className="showGamesHeader">
+      <div className="screenHeader">
         <h2>{screenTitle}</h2>
         <img
           onClick={closeOverlay}

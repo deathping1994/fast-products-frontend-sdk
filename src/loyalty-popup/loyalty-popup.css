@@ -538,7 +538,7 @@ body {
 	padding: 0 16px;
 }
 
-.pointsActivityClass {
+/* .pointsActivityClass {
     height: 100%;
 	width: 100%;
 	background-color: white;
@@ -548,7 +548,7 @@ body {
 	overflow-x: hidden;
 	overflow-y: scroll;
 	scrollbar-width: none;
-}
+} */
 
 .pointsActivityClass h4 {
 	margin-left: 22px;
@@ -724,6 +724,7 @@ body {
 	padding: 2px 8px;
 	border-radius: 50px;
 	gap: 4px;
+	width: fit-content;
 }
 
 .walletCoinsBox p {
@@ -995,4 +996,50 @@ body {
 
 .redeemRangeContainer input {
 	accent-color: #959595;
+}
+
+.screenContainer {
+	background-color: white;
+}
+
+.screenHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+}
+
+.screenHeader h2 {
+	font-weight: 700;
+    font-size: 20px;
+}
+
+.screenHeader img {
+	width: 30px;
+	height: 30px;
+}
+
+.walletCoinContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.walletCoinContainer h4 {
+	font-weight: 700;
+    font-size: 20px
+}
+
+.spinWheelBottom h4 {
+	font-weight: 700;
+	font-size: 16px;
+	text-align: center;
+}
+
+.spinWheelBottom hr {
+	border: none;
+	height: 1px;
+	background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
 }

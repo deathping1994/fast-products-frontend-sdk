@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks";
 import CouponCard from "./CouponCard";
-import CouponOverlay from "./CouponOverlay";
+import CouponOverlay from "./Overlays/CouponOverlay";
 import RedeemCoin from "./RedeemCoin";
 
 const ViewAllCoupons = ({closePopup}) => {

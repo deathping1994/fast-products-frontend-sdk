@@ -3,8 +3,8 @@ import ScreenHeader from "./Screens/ScreenHeader";
 const Screen = ({ screenTitle, closeOverlay, content }) => {
   return (
     <>
-      <div class="showGamesOverlay screenContainer">
-        <ScreenHeader screenTitle={screenTitle} closeOverlay={closeOverlay} />
+      <div class="screenContainer">
+        <ScreenHeader screenTitle={screenTitle || "check title"} closeOverlay={closeOverlay} />
         <div>{content}</div>
       </div>
     </>
