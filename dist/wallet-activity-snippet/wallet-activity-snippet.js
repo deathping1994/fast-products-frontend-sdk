@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = ".fc-wallet-activity-snippet-19212--root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n\n.fc-wallet-activity-snippet-19212--root a {\n	text-decoration: none;\n	color: inherit;\n}\n\n.fc-wallet-activity-snippet-19212--root {\n	width: 100%;\n}\n\n.fc-wallet-activity-snippet-19212--root .login-container {\n	display: flex;\n	justify-content: center;\n	margin: 50px;\n}\n\n.fc-wallet-activity-snippet-19212--root .login-container a {\n	background-color: #ebebeb;\n	padding: 10px 30px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container {\n	width: 95%;\n	margin: auto;\n	max-width: 1000px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-wrapper {\n	background: #ebebeb;\n	border-radius: 8px;\n	padding: 15px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-container {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n	gap: 10px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-container .total-points {\n	font-size: 42px;\n	font-weight: 600;\n}\n\n.fc-wallet-activity-snippet-19212--root .points-svg-container {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper {\n	margin-top: 36px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	margin: auto;\n	flex-direction: column;\n	gap: 10px;\n	margin: 18px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn p {\n	text-align: center;\n	color: #fff;\n	font-size: 16px;\n	background: #000;\n	border-radius: 4px;\n	padding: 8px 16px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn .circular-loader {\n	border: 3px solid #000;\n	border-left-color: transparent;\n	width: 30px;\n	height: 30px;\n	animation: spin89345 0.7s linear infinite;\n	border-radius: 50%;\n	margin: 0px 8px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .transaction-log-container {\n	margin: 14px 0px;\n	padding: 0px;\n	border: 1px solid rgb(231, 231, 231);\n	border-radius: 6px;\n	box-shadow: 1px 2px 2px rgb(231, 231, 231);\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-header {\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n	border-bottom: 1px solid rgb(231, 231, 231);\n	padding: 8px 18px;\n	font-size: 16px;\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type {\n	border-radius: 4px;\n	padding: 4px 8px;\n	font-weight: 600;\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.credited {\n	background-color: rgb(209, 255, 217);\n	color: rgb(30, 175, 109);\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.debited {\n	background-color: rgba(181, 0, 0, 0.1);\n	color: rgb(181, 0, 0);\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body {\n	padding: 8px 18px;\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body .amount {\n	font-size: 20px;\n	font-weight: 600;\n}\n\n@keyframes shimmer {\n	to {\n		background-position: -100% 0;\n	}\n}\n\n.skeletonloader {\n	margin: 10px auto;\n	border-radius: 3px;\n}\n\n.skeleton-loader-container {\n	width: 80%;\n	margin: auto;\n}\n\n@media screen and (max-width: 480px) {\n	.skeleton-loader-container {\n		width: 92%;\n	}\n}\n\n@keyframes spin89345 {\n	0% {\n		transform: rotate(0deg);\n	}\n\n	100% {\n		transform: rotate(360deg);\n	}\n}";
+  const style = ".fc-wallet-activity-snippet-19212--root * {\r\n	padding: 0;\r\n	margin: 0;\r\n	box-sizing: border-box;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root a {\r\n	text-decoration: none;\r\n	color: inherit;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root {\r\n	width: 100%;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .login-container {\r\n	display: flex;\r\n	justify-content: center;\r\n	margin: 50px;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .login-container a {\r\n	background-color: #ebebeb;\r\n	padding: 10px 30px;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .snippet-container {\r\n	width: 95%;\r\n	margin: auto;\r\n	max-width: 1000px;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .total-points-wrapper {\r\n	background: #ebebeb;\r\n	border-radius: 8px;\r\n	padding: 15px;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .total-points-container {\r\n	display: flex;\r\n	justify-content: left;\r\n	align-items: center;\r\n	gap: 10px;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .total-points-container .total-points {\r\n	font-size: 42px;\r\n	font-weight: 600;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .points-svg-container {\r\n	display: flex;\r\n	justify-content: left;\r\n	align-items: center;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper {\r\n	margin-top: 36px;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn {\r\n	display: flex;\r\n	justify-content: center;\r\n	align-items: center;\r\n	margin: auto;\r\n	flex-direction: column;\r\n	gap: 10px;\r\n	margin: 18px;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn p {\r\n	text-align: center;\r\n	color: #fff;\r\n	font-size: 16px;\r\n	background: #000;\r\n	border-radius: 4px;\r\n	padding: 8px 16px;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn .circular-loader {\r\n	border: 3px solid #000;\r\n	border-left-color: transparent;\r\n	width: 30px;\r\n	height: 30px;\r\n	animation: spin89345 0.7s linear infinite;\r\n	border-radius: 50%;\r\n	margin: 0px 8px;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .transaction-log-container {\r\n	margin: 14px 0px;\r\n	padding: 0px;\r\n	border: 1px solid rgb(231, 231, 231);\r\n	border-radius: 6px;\r\n	box-shadow: 1px 2px 2px rgb(231, 231, 231);\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-header {\r\n	display: flex;\r\n	justify-content: space-between;\r\n	align-items: center;\r\n	border-bottom: 1px solid rgb(231, 231, 231);\r\n	padding: 8px 18px;\r\n	font-size: 16px;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .log-header .log-type {\r\n	border-radius: 4px;\r\n	padding: 4px 8px;\r\n	font-weight: 600;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.credited {\r\n	background-color: rgb(209, 255, 217);\r\n	color: rgb(30, 175, 109);\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.debited {\r\n	background-color: rgba(181, 0, 0, 0.1);\r\n	color: rgb(181, 0, 0);\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body {\r\n	padding: 8px 18px;\r\n}\r\n\r\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body .amount {\r\n	font-size: 20px;\r\n	font-weight: 600;\r\n}\r\n\r\n@keyframes shimmer {\r\n	to {\r\n		background-position: -100% 0;\r\n	}\r\n}\r\n\r\n.skeletonloader {\r\n	margin: 10px auto;\r\n	border-radius: 3px;\r\n}\r\n\r\n.skeleton-loader-container {\r\n	width: 80%;\r\n	margin: auto;\r\n}\r\n\r\n@media screen and (max-width: 480px) {\r\n	.skeleton-loader-container {\r\n		width: 92%;\r\n	}\r\n}\r\n\r\n@keyframes spin89345 {\r\n	0% {\r\n		transform: rotate(0deg);\r\n	}\r\n\r\n	100% {\r\n		transform: rotate(360deg);\r\n	}\r\n}";
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -464,7 +464,8 @@
     });
   }
   function WalletScreen({
-    customerDetails
+    customerDetails,
+    setUserHash
   }) {
     const [totalWalletAmount, setTotalWalletAmount] = h(null);
     const [walletLogs, setWalletLogs] = h([]);
@@ -479,7 +480,7 @@
       customer_tags,
       client_id
     }) => {
-      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p;
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
       const response = await fetch(`${WALLET_API_URI}/user-walletlogs`, {
         method: "POST",
         headers: {
@@ -497,6 +498,14 @@
       });
       let walletData = await response.json();
       let walletAmount = ((_d = (_c = (_b = (_a = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a.data) == null ? void 0 : _b.wallet) == null ? void 0 : _c.wallet) == null ? void 0 : _d.amount) || 0;
+      let get_user_hash = (_f = (_e = walletData == null ? void 0 : walletData.data) == null ? void 0 : _e.data) == null ? void 0 : _f.user_hash;
+      if (get_user_hash) {
+        setUserHash({
+          ...customerDetails,
+          customerTags: get_user_hash
+        });
+        sessionStorage.setItem("fc_wallet_user_hash", get_user_hash);
+      }
       setTotalWalletAmount(walletAmount);
       setWalletLogs((prev) => {
         var _a2, _b2, _c2, _d2, _e2, _f2;
@@ -507,7 +516,7 @@
       });
       setpageInfo({
         ...pageInfo,
-        endCursor: ((_j = (_i = (_h = (_g = (_f = (_e = walletData == null ? void 0 : walletData.data) == null ? void 0 : _e.data) == null ? void 0 : _f.wallet) == null ? void 0 : _g.wallet) == null ? void 0 : _h.logs) == null ? void 0 : _i.pageInfo) == null ? void 0 : _j.hasNextPage) && ((_p = (_o = (_n = (_m = (_l = (_k = walletData == null ? void 0 : walletData.data) == null ? void 0 : _k.data) == null ? void 0 : _l.wallet) == null ? void 0 : _m.wallet) == null ? void 0 : _n.logs) == null ? void 0 : _o.pageInfo) == null ? void 0 : _p.endCursor)
+        endCursor: ((_l = (_k = (_j = (_i = (_h = (_g = walletData == null ? void 0 : walletData.data) == null ? void 0 : _g.data) == null ? void 0 : _h.wallet) == null ? void 0 : _i.wallet) == null ? void 0 : _j.logs) == null ? void 0 : _k.pageInfo) == null ? void 0 : _l.hasNextPage) && ((_r = (_q = (_p = (_o = (_n = (_m = walletData == null ? void 0 : walletData.data) == null ? void 0 : _m.data) == null ? void 0 : _n.wallet) == null ? void 0 : _o.wallet) == null ? void 0 : _p.logs) == null ? void 0 : _q.pageInfo) == null ? void 0 : _r.endCursor)
       });
       setLoadingPaginatedResults(false);
     };
@@ -516,7 +525,7 @@
         (async () => {
           await fetchWalletdetails({
             customer_id: customerDetails == null ? void 0 : customerDetails.customerID,
-            customer_tags: customerDetails == null ? void 0 : customerDetails.customerTags,
+            customer_tags: (customerDetails == null ? void 0 : customerDetails.customerTags) || sessionStorage.getItem("fc_wallet_user_hash") || "",
             client_id: customerDetails == null ? void 0 : customerDetails.clientID
           });
           setLoading(false);
@@ -570,11 +579,11 @@
                 children: [o("path", {
                   fill: "#ffffff",
                   d: "M31.881 51.541C14.523 56.615 1.854 38.046 5.642 23.722 9.928 7.503 24.254 2.195 39.504 6.507 47.408 8.74 53.302 19.502 52.89 27.633c-.644 12.486-9.98 22.994-21.009 23.908z",
-                  style: "\n"
+                  style: "\r\n"
                 }), o("path", {
                   fill: "#121212",
                   d: "M34.909 16.739c.767-.137 1.566.42 1.703 1.188a1.478 1.478 0 01-1.188 1.703l-16.622 2.963c-.406.072-.658.49-.594.851a.725.725 0 00.852.594l16.622-2.963a2.957 2.957 0 013.406 2.376l1.803 10.117a2.927 2.927 0 01-2.375 3.406L21.17 40.066a2.899 2.899 0 01-3.406-2.376L15.19 23.237a2.927 2.927 0 012.375-3.406l17.345-3.092zm1.002 13.989a1.478 1.478 0 001.188-1.703c-.137-.768-.936-1.325-1.703-1.188a1.478 1.478 0 00-1.188 1.703 1.45 1.45 0 001.703 1.188z",
-                  style: "\n"
+                  style: "\r\n"
                 })]
               })
             }), o("p", {
@@ -656,7 +665,7 @@
       var _a;
       const mainScript = document.querySelector("#fc-wallet-activity-snippet-script-19212");
       const customer_id = mainScript.getAttribute("data-customer-id");
-      const customer_tags = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
+      const customer_tags = ((_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim()) || sessionStorage.getItem("fc_wallet_user_hash") || "";
       const client_id = mainScript.getAttribute("data-client-id");
       (async () => {
         await getThemeDetails({
@@ -703,7 +712,8 @@
           })]
         }) : o(k$1, {
           children: (customerDetails == null ? void 0 : customerDetails.customerID) ? o(WalletScreen, {
-            customerDetails
+            customerDetails,
+            setUserHash: setCustomerDetails
           }) : o(Login, {
             themeDetails: themeDetailsData
           })
@@ -742,7 +752,7 @@
       children: customStyles
     });
   }
-  const WALLET_API_URI = "https://fastloyaltyapi.farziengineer.co";
+  const WALLET_API_URI = "http://localhost:3002";
   async function renderwalletActivitySnippet() {
     var _a, _b;
     const targetDiv = document.getElementById("fc-wallet-activity-snippet-19212");

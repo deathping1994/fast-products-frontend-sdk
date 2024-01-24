@@ -34,13 +34,13 @@ export function Main(props) {
       "#fc-wallet-activity-snippet-script-19212"
     );
     const customer_id = mainScript.getAttribute("data-customer-id");
-    const customer_tags = mainScript.getAttribute("data-customer-tag")?.trim();
+    const customer_tags = mainScript.getAttribute("data-customer-tag")?.trim() || sessionStorage.getItem('fc_wallet_user_hash') ||  '' ;
     const client_id = mainScript.getAttribute("data-client-id");
 
     (async () => {
       await getThemeDetails({ client_id });
       setCustomerDetails({
-        customerID: customer_id,
+        customerID: customer_id,  
         customerTags: customer_tags,
         clientID: client_id,
       });
@@ -71,7 +71,10 @@ export function Main(props) {
         ) : (
           <>
             {customerDetails?.customerID ? (
-              <WalletScreen customerDetails={customerDetails} />
+              <WalletScreen 
+              customerDetails={customerDetails}
+              setUserHash={setCustomerDetails} 
+              />
             ) : (
               <Login themeDetails={themeDetailsData} />
             )}

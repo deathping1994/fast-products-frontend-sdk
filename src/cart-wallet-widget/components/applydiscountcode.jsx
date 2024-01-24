@@ -15,7 +15,8 @@ export function ApplyDiscountCode({
   const applyCouponDiscount = async () => {
     setLoadingWalletBal(true);
 
-    //fetch(`/discount/${couponInputValue}`);
+    // fetch(`/discount/${couponInputValue}`);
+
 
     const isWalletAppliedCode =
       localStorage.getItem("fc-wallet-cart-applied") === "true" || false;

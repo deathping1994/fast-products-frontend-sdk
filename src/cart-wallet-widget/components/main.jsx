@@ -15,6 +15,7 @@ export function Main({ themeDetailsData }) {
     enable: false,
     isSet: false,
   });
+  console.log("================a======>",customerDetails)
   const [refetchCartSummary, setRefetchSummary] = useState(false);
   const [renderApplyCouponCodeBox, setRenderApplyCouponCodeBox] =
     useState(false);
@@ -82,7 +83,12 @@ export function Main({ themeDetailsData }) {
       setRefetchSummary((prev) => !prev);
     }
   };
-
+  // useEffect(()=>{
+  //   setCustomerDetails({
+  //     ...customerDetails,
+  //     customerTags: i,
+  //   });
+  // },[i])
   const getCashbackDetails = async ({ customerID, customerTags, clientID }) => {
     setLoadingCashbackDetails(true);
     const cashbackRes = await fetch(
@@ -127,7 +133,7 @@ export function Main({ themeDetailsData }) {
       "#fc-wallet-cart-widget-script-19212"
     );
     const customer_id = mainScript.getAttribute("data-customer-id");
-    const customer_tags = mainScript.getAttribute("data-customer-tag")?.trim();
+    const customer_tags = mainScript.getAttribute("data-customer-tag")?.trim() ;
     const client_id = mainScript.getAttribute("data-client-id");
 
     const checkout_target = mainScript.getAttribute("data-checkout-target");
@@ -155,7 +161,7 @@ export function Main({ themeDetailsData }) {
 
     setCustomerDetails({
       customerID: customer_id,
-      customerTags: customer_tags,
+      customerTags: customer_tags || sessionStorage.getItem("fc_wallet_user_hash") || '',
       clientID: client_id,
     });
 
@@ -169,7 +175,7 @@ export function Main({ themeDetailsData }) {
   useEffect(() => {
     loadCartSummary();
   }, [refetchCartSummary, cashbackDetails?.type]);
-
+  
   return (
     <>
       {renderApplyCouponCodeBox ? (
@@ -196,6 +202,7 @@ export function Main({ themeDetailsData }) {
           renderApplyCouponCodeBox={renderApplyCouponCodeBox}
           refetchCartSummary={refetchCartSummary}
           calculateCashback={calculateCashback}
+          setUserHash={setCustomerDetails}
         />
       ) : (
         <>
