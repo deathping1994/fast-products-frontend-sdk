@@ -15,6 +15,15 @@
 */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+@keyframes moveup {
+	0% {
+		transform: translateY(100%);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -498,6 +507,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: end;
+	
 }
 
 .couponOverlayContainer {
@@ -512,6 +522,9 @@ body {
 	width: 100%;
 	padding: 16px;
 	border-radius: 16px;
+	transition: ease;
+	animation-name: moveup;
+	animation-duration: 0.5s;
 }
 
 .showAllCouponsList {
@@ -600,6 +613,8 @@ body {
 	background-color: white;
 	top: 85%;
 	box-shadow: 3px 3px 90px 6px #ccc;
+	/* animation-name: moveup;
+	animation-duration: 0.5s; */
 }
 
 .shareTextContainer {
@@ -759,6 +774,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	gap: 8px;
 }
 
 .viewAllCouponTabText h4 {
@@ -799,6 +815,7 @@ body {
 	gap: 8px;
 	padding: 8px;
 	border-radius: 8px;
+	cursor: pointer;
 }
 .exploreCouponCard {
 	background-color: #f4f4f4;
@@ -947,6 +964,8 @@ body {
 	bottom: 0px;
 	border-radius: 8px;
 	box-shadow: 0px -44px 60px -11px rgba(194,194,194,1);
+	/* animation-name: moveup;
+  	animation-duration: 0.5s; */
 }
 
 .redeemCloseContainer {
@@ -965,4 +984,15 @@ body {
 .redeemVoucherMain h2 {
 	font-weight: 700;
     font-size: 30px;
+}
+.redeemRangeContainer {
+	padding: 0px 32px;
+}
+
+.redeemRangeContainer, .redeemRangeContainer input {
+	width: 100%;
+}
+
+.redeemRangeContainer input {
+	accent-color: #959595;
 }

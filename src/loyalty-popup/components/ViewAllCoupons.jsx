@@ -117,9 +117,9 @@ const ViewAllCoupons = ({closePopup}) => {
                             ))}
                         </div>
                     </div>
-                    <div onClick={handleRedeemFCCoin} class="reedemfcCoins">
+                    <div class="reedemfcCoins">
                         <h3>Redeem FC Coins</h3>
-                        <div class="reedemfcCoinsCard">
+                        <div onClick={handleRedeemFCCoin} class="reedemfcCoinsCard">
                             <div>
                                 <img src="https://media.farziengineer.co/farziwallet/voucher-icon.png" alt="" />
                             </div>

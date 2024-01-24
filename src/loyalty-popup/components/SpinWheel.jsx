@@ -1,4 +1,4 @@
-import WheelOfFortune from "./WheelOfFortune"
+import WheelOfFortune from "./ScratchCard"
 
 const SpinWheel = () => {
   const data = [15, 20, 25, 30, 35, 40]
@@ -13,7 +13,7 @@ const SpinWheel = () => {
             <h4>Spin and Win</h4>
         </div>
         <div id="spinwheelcomp" >
-            <WheelOfFortune/>
+            
         </div>
         <div></div>            
     </div>

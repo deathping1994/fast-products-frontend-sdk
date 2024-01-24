@@ -18,7 +18,7 @@ export function Main({ themeDetailsData }) {
   const [transactionLogs, setTransactionLogs] = useState(false)
   const [couponVisibility, setCouponVisibility] = useState(false)
   const [gamesVisibility, setGamesVisibility] = useState(false)
-  const [allCouponVisibility, setAllCouponVisibility] = useState(true)
+  const [allCouponVisibility, setAllCouponVisibility] = useState(false)
     const handleAllCouponVisibility = ()=>{
       setAllCouponVisibility(!allCouponVisibility)
     }
@@ -110,7 +110,7 @@ export function Main({ themeDetailsData }) {
       <img onClick={handleViewPopup} class="floatingPopup" src="https://media.farziengineer.co/farziwallet/gift-icon.png" width={30} height={30} alt="gift icon" />
       {visibilty && (
         <>  
-          <div style={overlayVisibility && stopScroll} class="mainPopup">
+          <div class="mainPopup">
             <div class="header">
                 <div class="leftHeader">
                     <p>Welcome to</p>

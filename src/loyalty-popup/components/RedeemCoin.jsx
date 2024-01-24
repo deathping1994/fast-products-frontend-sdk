@@ -24,7 +24,7 @@ const RedeemCoin = ({closePopup}) => {
                     <div class="redeemText">
                         <p>{rangeValue} FC Coins for ₹{rangeValue} off</p>
                     </div>
-                    <div>
+                    <div class="redeemRangeContainer">
                         <input type="range"onChange={handleChangeRange} min={0} max={100} name="coinRange" />
                     </div>
                     <button class="couponUnlockBtn">Redeem Coins</button>
