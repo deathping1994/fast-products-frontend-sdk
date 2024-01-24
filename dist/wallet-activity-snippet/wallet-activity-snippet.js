@@ -752,7 +752,7 @@
       children: customStyles
     });
   }
-  const WALLET_API_URI = "http://localhost:3002";
+  const WALLET_API_URI = "https://fastloyaltyapi.farziengineer.co";
   async function renderwalletActivitySnippet() {
     var _a, _b;
     const targetDiv = document.getElementById("fc-wallet-activity-snippet-19212");

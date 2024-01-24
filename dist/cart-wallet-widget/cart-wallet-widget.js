@@ -1224,7 +1224,6 @@ body {\r
       enable: false,
       isSet: false
     });
-    console.log("================a======>", customerDetails);
     const [refetchCartSummary, setRefetchSummary] = h(false);
     const [renderApplyCouponCodeBox, setRenderApplyCouponCodeBox] = h(false);
     const [loadingWalletBal, setLoadingWalletBal] = h(false);
@@ -1413,7 +1412,7 @@ body {\r
       children: customStyles
     });
   }
-  const WALLET_API_URI = "http://localhost:3002";
+  const WALLET_API_URI = "https://fastloyaltyapi.farziengineer.co";
   async function renderWalletBox() {
     var _a, _b;
     try {

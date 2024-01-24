@@ -15,7 +15,6 @@ export function Main({ themeDetailsData }) {
     enable: false,
     isSet: false,
   });
-  console.log("================a======>",customerDetails)
   const [refetchCartSummary, setRefetchSummary] = useState(false);
   const [renderApplyCouponCodeBox, setRenderApplyCouponCodeBox] =
     useState(false);
@@ -83,12 +82,7 @@ export function Main({ themeDetailsData }) {
       setRefetchSummary((prev) => !prev);
     }
   };
-  // useEffect(()=>{
-  //   setCustomerDetails({
-  //     ...customerDetails,
-  //     customerTags: i,
-  //   });
-  // },[i])
+
   const getCashbackDetails = async ({ customerID, customerTags, clientID }) => {
     setLoadingCashbackDetails(true);
     const cashbackRes = await fetch(
