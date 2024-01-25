@@ -1,4 +1,3 @@
-import WheelOfFortune from "./ScratchCard"
 
 const SpinWheel = () => {
   const data = [15, 20, 25, 30, 35, 40]

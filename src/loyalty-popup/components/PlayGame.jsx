@@ -8,8 +8,14 @@ import SpinWheel from "./SpinWheel";
 import ScratchCard from "./ScratchCard";
 
 const PlayGame = ({ shadowRoot }) => {
+  const spinAudio = new Audio('https://media.farziengineer.co/farziwallet/spinwheel.mp3');
   const spinWheelRewardData = [15, 20, 25, 30, 35, 40];
-
+  const [btnVisibility, setBtnVisibility] = useState(false);
+  const [showWinPopup, setShowWinPopup] = useState(false);
+  function winAudio() {
+    const audio = new Audio('https://media.farziengineer.co/farziwallet/success.mp3');
+    audio.play();
+}
   function splitStringOnLength(inputString, maxLength) {
     if (typeof inputString !== "string") {
       return [];
@@ -165,7 +171,7 @@ const PlayGame = ({ shadowRoot }) => {
       unlock && container.on("click", spin);
       // @ts-ignore
       function spin(d) {
-        // spinAudio.play()
+        spinAudio.play()
         container.on("click", null);
 
         var totalValues = data.length;
@@ -266,7 +272,12 @@ const PlayGame = ({ shadowRoot }) => {
       }
     })();
   }
-
+  const spinCB = () => {
+    winAudio()
+    setTimeout(()=>{
+      setShowWinPopup(true)
+    }, 1000)
+  };
   const loadD3JS = async () => {
     const res1 = await fetch("https://d3js.org/d3.v3.min.js");
     const fileContent1 = await res1.text();
@@ -276,7 +287,8 @@ const PlayGame = ({ shadowRoot }) => {
     console.log("adding", script1);
 
     document.querySelector("body").appendChild(script1);
-
+    
+    
     drawWheel(
       shadowRoot,
       spinWheelRewardData.map((item, index) => {
@@ -285,27 +297,66 @@ const PlayGame = ({ shadowRoot }) => {
           value: index,
         };
       }),
-      false
-    );
+      false )
+      
   };
   useEffect(() => {
     loadD3JS();
   }, []);
 
+
+  const closeWinPopup = ()=>{
+      setShowWinPopup(false);
+  }
+   
+  const drawUnlockSpinWheel = ()=>{
+    const unlockSpinWheel = shadowRoot.querySelector("#fw-chart-spin-wheel")
+    unlockSpinWheel.innerHTML = ``
+    setBtnVisibility(true)
+    drawWheel(
+      shadowRoot,
+      spinWheelRewardData.map((item, index) => {
+        return {
+          label: item,
+          value: index,
+        };
+      }),
+      true, 2, spinCB );
+  }
   return (
     <>
-      <div class="walletCoinContainer">
-        <div class="walletCoinsBox">
-          <img src="https://media.farziengineer.co/farziwallet/coin-icon.png" alt="" />
-          <p>85</p>
+      <div class="spinWheelMainContainer">
+        <div class="walletCoinContainer">
+          <div class="walletCoinsBox">
+            <img src="https://media.farziengineer.co/farziwallet/coin-icon.png" alt="" />
+            <p>85</p>
+          </div>
+          <h4>Spin and Win</h4>
         </div>
-        <h4>Spin and Win</h4>
-      </div>
-      <div id="fw-chart-spin-wheel"></div>
-      <div class="spinWheelBottom">
-          <hr />
-          <h4>Unlock for 10 FC Coins</h4>
-          <button class="couponUnlockBtn">Tap to Unlock</button>
+        {
+          !btnVisibility &&
+          <div class="lockedIcon">
+            <img src="https://media.farziengineer.co/farziwallet/lock.png" alt="" />
+          </div>
+        }
+        <div id="fw-chart-spin-wheel"></div>
+        <div class="spinWheelBottom">
+            <hr />
+            {btnVisibility ? <h4>Click 'SPIN' to start</h4> : <h4>Unlock for 10 FC Coins</h4>}
+            {!btnVisibility && <button onClick={drawUnlockSpinWheel} class="couponUnlockBtn">Tap to Unlock</button>}
+        </div>
+        {
+          showWinPopup && 
+          <div class="spinWinContainer">
+              <div class="spinWinPopup">
+                <h3>Congratulations!</h3>
+                <p>You Won</p>
+                <h2>20 Coins</h2>
+                <button class="playagainbtn">Play Again</button>
+                <button onClick={closeWinPopup} class="closebtn">close</button>
+              </div>
+            </div>
+        }
       </div>
     </>
   );

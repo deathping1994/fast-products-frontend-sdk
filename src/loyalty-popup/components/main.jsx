@@ -3,10 +3,7 @@ import { WALLET_API_URI } from "..";
 import WalletCard from "../components/WalletCard";
 import InviteCard from "../components/InviteCard";
 import ShowCoupons from "../components/ShowCoupons";
-import GamesArena from "../components/GamesArena";
 import CouponOverlay from "./Overlays/CouponOverlay";
-import CouponCard from "../components/CouponCard";
-import WalletPointsActivity from "./WalletPointsActivity";
 import InviteAndEarnOverlay from "./Overlays/InviteAndEarnOverlay";
 import GamesCard from "./GamesCard";
 import ShowGames from "./ShowGames";
@@ -14,6 +11,8 @@ import Screen from "./Screen";
 import PlayGame from "./PlayGame";
 import Overlay from "./Overlays/Overlay";
 import TransactionLog from "./TransactionLog";
+import ShowScratchCard from "./ShowScratchCard";
+import ScratchCard from "./ScratchCard";
 
 export function Main({ themeDetailsData, shadowRoot }) {
   const [visibilty, setVisibility] = useState(true);
@@ -84,24 +83,17 @@ export function Main({ themeDetailsData, shadowRoot }) {
     },
   ];
 
-  const handleGamesVisibility = () => {
-    if (screenDetails?.active) {
-      setScreenDetails({
-        ...screenDetails,
-        active: false,
-      });
-    } else {
-      setScreenDetails({
-        ...screenDetails,
-        active: true,
-        screen: "show_spin_wheel",
-      });
-    }
-  };
   const showPlayGameScreen = () => {
     setScreenDetails({
       ...screenDetails,
       screen: "play_spin_wheel",
+      active: true,
+    });
+  };
+  const showScratchCardScreen = () => {
+    setScreenDetails({
+      ...screenDetails,
+      screen: "play_scratch_card",
       active: true,
     });
   };
@@ -116,6 +108,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
 
   const handleShowGames = () => {
     setGamesVisibility(!gamesVisibility);
+    console.log(" handle show games log ");
   };
 
   const handleScreenComponent = (screenname) => {
@@ -128,17 +121,30 @@ export function Main({ themeDetailsData, shadowRoot }) {
 
   const getScreenComponent = (screenname) => {
     console.log("screen changed", screenname);
-    if (screenname === "play_spin_wheel") {
-      return <PlayGame shadowRoot={shadowRoot} />;
-    } else if (screenname === "show_spin_wheel") {
-      return (
-        <ShowGames
-          handleOverlay={handleShowGames}
-          showPlayGameScreen={showPlayGameScreen}
-        />
-      );
-    } else if (screenname === "transaction_log") {
-      return <TransactionLog />;
+
+    switch (screenname) {
+      case "play_spin_wheel":
+        return <PlayGame shadowRoot={shadowRoot} />;
+      case "show_spin_wheel":
+        return (
+          <ShowGames
+            handleOverlay={handleShowGames}
+            showPlayGameScreen={showPlayGameScreen}
+          />
+        );
+      case "transaction_log":
+        return <TransactionLog />;
+      case "play_scratch_card":
+        return <ScratchCard shadowRoot={shadowRoot} />;
+      case "show_scratch_card":
+        return (
+          <ShowScratchCard
+            handleOverlay={handleShowGames}
+            showScratchCardScreen={showScratchCardScreen}
+          />
+        );
+      default:
+        console.warn("Unknown screen:", screenname)
     }
   };
 
@@ -163,59 +169,65 @@ export function Main({ themeDetailsData, shadowRoot }) {
               />
             ) : (
               <>
-                    <div class="header">
-                      <div class="leftHeader">
-                        <p>Welcome to</p>
-                        <h6>Loyalty</h6>
-                      </div>
-                      <div class="rightHeader">
-                        <img
-                          class="closePopup"
-                          onClick={handleViewPopup}
-                          src="https://media.farziengineer.co/farziwallet/cross.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <WalletCard
-                      onClick={() => handleScreenComponent("transaction_log")}
+                <div class="header">
+                  <div class="leftHeader">
+                    <p>Welcome to</p>
+                    <h6>Loyalty</h6>
+                  </div>
+                  <div class="rightHeader">
+                    <img
+                      class="closePopup"
+                      onClick={handleViewPopup}
+                      src="https://media.farziengineer.co/farziwallet/cross.png"
+                      alt=""
                     />
-                    <ShowCoupons
-                      btnClick={() => changeOverlay("coupon")}
-                      viewAll={handleAllCouponVisibility}
-                    />
+                  </div>
+                </div>
+                <WalletCard
+                  onClick={() => handleScreenComponent("transaction_log")}
+                />
+                <ShowCoupons
+                  btnClick={() => changeOverlay("coupon")}
+                  viewAll={handleAllCouponVisibility}
+                />
 
-                    <div>
-                      <div class="gamesArenaContainer">
-                        <h1>Games Arena</h1>
-                        <p>Play games to win FC coins, coupons & rewards</p>
-                      </div>
-                      <div class="gamesHorizontalList">
-                        {gamesData.map((card, idx) => (
-                          <GamesCard
-                            key={idx}
-                            btnClick={handleGamesVisibility}
-                            gameTitle={card.gameTitle}
-                            cardImage={card.cardImage}
-                            gamePrice={card.gamePrice}
-                            coinImage={card.coinImage}
-                            btnText={card.btnText}
-                          />
-                        ))}
-                      </div>
-                      <InviteCard onClick={() => changeOverlay("invite_and_earn")} />
-                    </div>
+                <div>
+                  <div class="gamesArenaContainer">
+                    <h1>Games Arena</h1>
+                    <p>Play games to win FC coins, coupons & rewards</p>
+                  </div>
+                  <div class="gamesHorizontalList">
+                    {gamesData.map((card, idx) => (
+                      <GamesCard
+                        key={idx}
+                        btnClick={() =>
+                          idx === 0
+                            ? handleScreenComponent("show_spin_wheel")
+                            : handleScreenComponent("show_scratch_card")
+                        }
+                        gameTitle={card.gameTitle}
+                        cardImage={card.cardImage}
+                        gamePrice={card.gamePrice}
+                        coinImage={card.coinImage}
+                        btnText={card.btnText}
+                      />
+                    ))}
+                  </div>
+                  <InviteCard
+                    onClick={() => changeOverlay("invite_and_earn")}
+                  />
+                </div>
               </>
             )}
             {overlayVisible?.active ? (
               <Overlay
-              closeOverlay={closeOverlayContainer}
-              content={handleOverlay(overlayVisible?.overlay)}
+                closeOverlay={closeOverlayContainer}
+                content={handleOverlay(overlayVisible?.overlay)}
               />
-              ) : (
-                <></>
-                )}
-            </div>
+            ) : (
+              <></>
+            )}
+          </div>
         </>
       )}
     </>

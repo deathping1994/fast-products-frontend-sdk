@@ -1032,6 +1032,7 @@ body {
     font-size: 20px
 }
 
+
 .spinWheelBottom h4 {
 	font-weight: 700;
 	font-size: 16px;
@@ -1039,7 +1040,100 @@ body {
 }
 
 .spinWheelBottom hr {
+	width: 100%;
 	border: none;
 	height: 1px;
 	background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
+}
+
+.spinWheelBottom {
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+#fw-chart-spin-wheel svg {
+	transform: rotate(-90deg);
+}
+
+.lockedIcon {
+	position: absolute;
+	top: 20px;
+	z-index: 2;
+	top: 51%;
+  	left: 37%;
+}
+	
+.lockedIcon img {
+	height: 115px;
+	width: 115px;
+}
+
+.spinWinContainer {
+	position: absolute;
+    width: 100%;
+	height: 100%;
+    overflow: hidden;
+    transition: height .5s ease;
+    top: 0;
+    left: 0;
+    background: #ffffff7d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	z-index: 2;
+}
+
+.spinWinPopup {
+	background-color: black;
+	background: #000;
+    color: #fff;
+    padding: 30px 25px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,.12);
+    border-radius: 12px;
+    max-width: 90%;
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	gap: 8px;
+}
+
+.spinWinPopup h3 {
+	font-size: 18px;
+    text-align: center;
+}
+.spinWinPopup h3 {
+	font-size: 20px;
+    text-align: center;
+}
+.spinWinPopup p {
+	font-size: 14px;
+}
+
+.playagainbtn {
+	width: 100%;
+    background: #fff;
+    color: #000;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+	border: none;
+}
+
+.closebtn {
+	color: #fff;
+    background: #000;
+    border: 0;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px;
+    margin: 10px;
+    cursor: pointer;
 }

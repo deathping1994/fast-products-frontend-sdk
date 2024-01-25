@@ -1,25 +1,25 @@
 import { useState } from "preact/hooks";
 import GamesCard from "./GamesCard";
 
-const ShowGames = ({ handleOverlay, showPlayGameScreen }) => {
+const ShowScratchCard = ({ handleOverlay, showScratchCardScreen }) => {
   const [availableTab, setAvailableTab] = useState(true);
   const [yourCouponTab, setYourCouponTab] = useState(false);
   const [unlockedTab, setUnlockedTab] = useState(true);
   const [redeemedTab, setRedeemedTab] = useState(false);
   const gamesData = [
     {
-      gameTitle: "Spin and Win",
-      cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
+      gameTitle: "Scratch and Win",
+      cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
       gamePrice: "10",
       coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-      btnText: "SPIN",
+      btnText: "Scratch",
     },
     {
-      gameTitle: "Spin and Win",
-      cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
+      gameTitle: "Scratch and Win",
+      cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
       gamePrice: "30",
       coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-      btnText: "SPIN",
+      btnText: "Scratch",
     },
   ];
 
@@ -57,8 +57,8 @@ const ShowGames = ({ handleOverlay, showPlayGameScreen }) => {
     cursor: "pointer",
     backgroundColor: "#ff8f8f",
   };
-  const showWheelOfFortune = () => {
-    showPlayGameScreen();
+  const showScratchCard = () => {
+    showScratchCardScreen();
     handleOverlay();
   };
   return (
@@ -91,7 +91,7 @@ const ShowGames = ({ handleOverlay, showPlayGameScreen }) => {
           {gamesData.map((game, idx) => (
             <GamesCard
               key={idx}
-              btnClick={showWheelOfFortune}
+              btnClick={showScratchCard}
               gameTitle={game.gameTitle}
               cardImage={game.cardImage}
               coinImage={game.coinImage}
@@ -150,4 +150,4 @@ const ShowGames = ({ handleOverlay, showPlayGameScreen }) => {
   );
 };
 
-export default ShowGames;
+export default ShowScratchCard;
