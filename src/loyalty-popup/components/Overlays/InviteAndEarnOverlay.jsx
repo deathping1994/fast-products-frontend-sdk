@@ -1,7 +1,19 @@
-const InviteAndEarnOverlay = ({closeOverlay}) => {
-    
-    const referralLink = "https://0b92a5.myshopify.com/account/register?fc_refer_hash=83a24c"
+import { useEffect, useState } from "preact/hooks"
+import fetchApi from "../Utils/FetchApi"
 
+const InviteAndEarnOverlay = ({closeOverlay}) => {
+    const [referralData, setReferralData] = useState({
+        referral_code:"",
+        path: ""
+    })
+    useEffect(()=>{
+        const fetchReferralCode = async ()=>{
+            const resp = await fetchApi('/get-referral-code', 'post')
+            console.log(resp?.data?.data);
+            setReferralData(resp?.data?.data)
+        }
+        fetchReferralCode()
+    },[])
   return (
     <>
         <div class="inviteAndEarnContainer">
@@ -19,7 +31,7 @@ const InviteAndEarnOverlay = ({closeOverlay}) => {
                 <p>copy referral link</p>
             </div>
             <div class="inviteLinkContainer">
-                <p>{referralLink.substring(0,29)}...</p>
+                <p>{(window.location.href.slice(0, -1) + referralData.path).substring(0,29)}...</p>
                 <img src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
             </div>
             <div>
@@ -29,13 +41,13 @@ const InviteAndEarnOverlay = ({closeOverlay}) => {
                 <p>or share with</p>
             </div>
             <div class="sendInvitesBtnContainer">
-                <button class="inviteWhatsappBtn">
+                <a href={`https://api.whatsapp.com/send?text=Click%20on%20the%20referral%20link%20below%20and%20get%20rewarded%20with%20100%20FC%20Coins.%20${window.location.href.slice(0, -1) + referralData.path}`} class="inviteWhatsappBtn">
                     <img src="https://media.farziengineer.co/farziwallet/whatsapp-icon.png" alt="" />
                     <p>Send on whatsapp</p>
-                </button>
-                <button class="inviteRoundedBtn">
+                </a>
+                <a href={`sms://18005555555/?body=Click%20on%20the%20referral%20link%20below%20and%20get%20rewarded%20with%20100%20FC%20Coins.%20${window.location.href.slice(0, -1) + referralData.path}`} class="inviteRoundedBtn">
                     <img src="https://media.farziengineer.co/farziwallet/share-icon.png" alt="" />
-                </button>
+                </a>
             </div>
         </div>
     </>

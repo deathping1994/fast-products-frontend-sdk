@@ -1,10 +1,10 @@
-const ScreenHeader = ({ screenTitle, closeOverlay }) => {
+const ScreenHeader = ({ screenTitle, closeScreen }) => {
   return (
     <>
       <div className="screenHeader">
         <h2>{screenTitle}</h2>
         <img
-          onClick={closeOverlay}
+          onClick={closeScreen}
           src="https://media.farziengineer.co/farziwallet/cross.png"
           alt=""
         />

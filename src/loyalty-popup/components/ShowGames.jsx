@@ -1,27 +1,22 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import GamesCard from "./GamesCard";
+import fetchApi from "./Utils/FetchApi";
+import axios from "axios";
 
-const ShowGames = ({ handleOverlay, showPlayGameScreen }) => {
+const ShowGames = ({ fetchSpinWheelReward, handleOverlay, showPlayGameScreen }) => {
   const [availableTab, setAvailableTab] = useState(true);
   const [yourCouponTab, setYourCouponTab] = useState(false);
   const [unlockedTab, setUnlockedTab] = useState(true);
   const [redeemedTab, setRedeemedTab] = useState(false);
-  const gamesData = [
-    {
-      gameTitle: "Spin and Win",
-      cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
-      gamePrice: "10",
-      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-      btnText: "SPIN",
-    },
-    {
-      gameTitle: "Spin and Win",
-      cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
-      gamePrice: "30",
-      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-      btnText: "SPIN",
-    },
-  ];
+  const [gamesData, setGamesData] = useState([])
+  useEffect(()=>{
+    const fetchData = async ()=>{
+        const response = await fetchApi('/get-featured-spin-wheels', 'post')
+        setGamesData(response?.data?.data)
+    }
+    fetchData()
+  },[])
+  
 
   const handleMainTab = (mainTab) => {
     if (mainTab === "available") {
@@ -58,6 +53,7 @@ const ShowGames = ({ handleOverlay, showPlayGameScreen }) => {
     backgroundColor: "#ff8f8f",
   };
   const showWheelOfFortune = () => {
+    fetchSpinWheelReward()
     showPlayGameScreen();
     handleOverlay();
   };
@@ -92,15 +88,17 @@ const ShowGames = ({ handleOverlay, showPlayGameScreen }) => {
             <GamesCard
               key={idx}
               btnClick={showWheelOfFortune}
-              gameTitle={game.gameTitle}
-              cardImage={game.cardImage}
-              coinImage={game.coinImage}
-              btnText={game.btnText}
-              gamePrice={game.gamePrice}
+              gameDesc={game.description}
+              gameTitle={game.title}
+              cardImage={game.image}
+              coinImage={"https://media.farziengineer.co/farziwallet/coin-icon.png"}
+              btnText={"Explore"}
+              gamePrice={game.amount}
             />
           ))}
         </div>
       )}
+      {console.log(gamesData)}
       {yourCouponTab && (
         <div class="yourCouponsCardMainContainer">
           <div class="yourCouponsActiveTab">

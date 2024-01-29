@@ -3,7 +3,7 @@ import CouponCard from "./CouponCard";
 import CouponOverlay from "./Overlays/CouponOverlay";
 import RedeemCoin from "./RedeemCoin";
 
-const ViewAllCoupons = ({closePopup}) => {
+const ViewAllCoupons = () => {
     const [availableTab, setAvailableTab] = useState(true)
     const [yourCouponTab, setYourCouponTab] = useState(false)
     const [unlockedTab, setUnlockedTab] = useState(true)
@@ -85,10 +85,6 @@ const ViewAllCoupons = ({closePopup}) => {
   return (
     <>
         <div class="viewAllCoupons">
-            <div class="viewAllCouponsHeader">
-                <h4>Coupons</h4>
-                <img onClick={closePopup} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
-            </div>
             <div class="viewAllCouponsTab">
                 <div class="viewAllCouponTabText">
                     <h4 style={availableTab && activeTabStyles} onClick={()=> handleMainTab("available")}>Available</h4>

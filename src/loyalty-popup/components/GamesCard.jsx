@@ -1,4 +1,4 @@
-const GamesCard = ({btnClick, cardImage, coinImage, gameTitle, btnText, gamePrice}) => {
+const GamesCard = ({btnClick, cardImage, coinImage, gameTitle, gameDesc, btnText, gamePrice}) => {
   return (
     <>
         <div class="gamesMainContainer">
@@ -7,7 +7,7 @@ const GamesCard = ({btnClick, cardImage, coinImage, gameTitle, btnText, gamePric
           </div>
           <div class="gamesCard">
               <p class="gamesCardTitle">{gameTitle}</p>
-              <p class="gamesCardDesc">Start at</p>
+              <p class="gamesCardDesc">{gameDesc}</p>
             <div class="coinBox">
               <img src={coinImage} alt="" />
               <p>{gamePrice}</p>

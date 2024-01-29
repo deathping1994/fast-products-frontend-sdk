@@ -1,17 +1,15 @@
 // @ts-ignore
 import { useEffect, useState } from "preact/hooks";
-// @ts-ignore
-import GamesCard from "./GamesCard";
-// @ts-ignore
-import SpinWheel from "./SpinWheel";
-// @ts-ignore
-import ScratchCard from "./ScratchCard";
+import axios from "axios";
 
-const PlayGame = ({ shadowRoot }) => {
+const PlayGame = ({ shadowRoot, spinWheelRewardData }) => {
   const spinAudio = new Audio('https://media.farziengineer.co/farziwallet/spinwheel.mp3');
-  const spinWheelRewardData = [15, 20, 25, 30, 35, 40];
   const [btnVisibility, setBtnVisibility] = useState(false);
   const [showWinPopup, setShowWinPopup] = useState(false);
+  const [winData, setWinData] = useState({
+    win_message:"",
+    win_index: ""
+  })
   function winAudio() {
     const audio = new Audio('https://media.farziengineer.co/farziwallet/success.mp3');
     audio.play();
@@ -310,6 +308,24 @@ const PlayGame = ({ shadowRoot }) => {
   }
    
   const drawUnlockSpinWheel = ()=>{
+    const redeemSpinWheel = async ()=>{
+        const response = await axios.post('https://fastloyaltyapi.farziengineer.co/redeem-spin-wheel',
+          {
+            client_id: "Q2xpZW50OjY=",
+            couponAmount: 10,
+            customer_id: "7734670819630",
+            user_hash: "299037b6d401b25374f60cb316c24114"
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json'
+          }
+        }
+      )
+      console.log("wind spinwheel data",response?.data?.data);
+      setWinData(response?.data?.data)
+    }
+    redeemSpinWheel()
     const unlockSpinWheel = shadowRoot.querySelector("#fw-chart-spin-wheel")
     unlockSpinWheel.innerHTML = ``
     setBtnVisibility(true)
@@ -321,7 +337,7 @@ const PlayGame = ({ shadowRoot }) => {
           value: index,
         };
       }),
-      true, 2, spinCB );
+      true, winData.win_index, spinCB );
   }
   return (
     <>
@@ -351,7 +367,7 @@ const PlayGame = ({ shadowRoot }) => {
               <div class="spinWinPopup">
                 <h3>Congratulations!</h3>
                 <p>You Won</p>
-                <h2>20 Coins</h2>
+                <h2>{winData.win_message}</h2>
                 <button class="playagainbtn">Play Again</button>
                 <button onClick={closeWinPopup} class="closebtn">close</button>
               </div>

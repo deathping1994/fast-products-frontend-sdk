@@ -1,5 +1,5 @@
 
-const WalletCard = ({onClick}) => {
+const WalletCard = ({walletAmount, onClick}) => {
   return (
     <>
         <div onClick={onClick} class="walletCard">
@@ -12,7 +12,7 @@ const WalletCard = ({onClick}) => {
             </div>
             <div class="coinCard">
                 <img src="https://media.farziengineer.co/farziwallet/coin-icon.png" alt="" />
-                <h1>575</h1>
+                <h1>{walletAmount}</h1>
             </div>
         </div>
     </>

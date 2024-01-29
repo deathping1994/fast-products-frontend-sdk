@@ -1,14 +1,24 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import GamesCard from "./GamesCard";
+import fetchApi from "./Utils/FetchApi";
 
 const ShowScratchCard = ({ handleOverlay, showScratchCardScreen }) => {
   const [availableTab, setAvailableTab] = useState(true);
   const [yourCouponTab, setYourCouponTab] = useState(false);
   const [unlockedTab, setUnlockedTab] = useState(true);
   const [redeemedTab, setRedeemedTab] = useState(false);
+  const [scratchCardData, setScratchCardData] = useState([])
+  useEffect(()=>{
+    const fetchScratchCard = async ()=>{
+      const response = await fetchApi('/get-featured-scratch-cards', 'post')
+      setScratchCardData(response?.data?.data)
+    }
+    fetchScratchCard()
+  },[])
   const gamesData = [
     {
       gameTitle: "Scratch and Win",
+      gameDesc: "start at 10 coin",
       cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
       gamePrice: "10",
       coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
@@ -16,6 +26,7 @@ const ShowScratchCard = ({ handleOverlay, showScratchCardScreen }) => {
     },
     {
       gameTitle: "Scratch and Win",
+      gameDesc: "start at 10 coin",
       cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
       gamePrice: "30",
       coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
@@ -88,15 +99,16 @@ const ShowScratchCard = ({ handleOverlay, showScratchCardScreen }) => {
       </div>
       {availableTab && (
         <div class="showGamesCards">
-          {gamesData.map((game, idx) => (
+          {scratchCardData.map((game, idx) => (
             <GamesCard
               key={idx}
               btnClick={showScratchCard}
-              gameTitle={game.gameTitle}
-              cardImage={game.cardImage}
-              coinImage={game.coinImage}
-              btnText={game.btnText}
-              gamePrice={game.gamePrice}
+              gameTitle={game.title}
+              gameDesc={game.description}
+              cardImage={game.image}
+              coinImage={"https://media.farziengineer.co/farziwallet/coin-icon.png"}
+              btnText={"Scratch"}
+              gamePrice={game.amount}
             />
           ))}
         </div>

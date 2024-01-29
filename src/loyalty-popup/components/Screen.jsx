@@ -1,11 +1,11 @@
 import ScreenHeader from "./Screens/ScreenHeader";
 
-const Screen = ({ screenTitle, closeOverlay, content }) => {
+const Screen = ({ screenTitle, closeScreen, content }) => {
   return (
     <>
       <div class="screenContainer">
-        <ScreenHeader screenTitle={screenTitle || "check title"} closeOverlay={closeOverlay} />
-        <div>{content}</div>
+        <ScreenHeader screenTitle={screenTitle || "check title"} closeScreen={closeScreen} />
+        <div class="screenContent">{content}</div>
       </div>
     </>
   );

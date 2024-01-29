@@ -747,11 +747,9 @@ body {
 }
 
 .viewAllCoupons {
-	position: absolute;
 	background-color: white;
 	width: 100%;
 	height: 100%;
-	top: 0;
 }
 
 .viewAllCouponsHeader {
@@ -1136,4 +1134,22 @@ body {
     padding: 5px;
     margin: 10px;
     cursor: pointer;
+}
+
+.scratchCardDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.scratchCardDiv canvas {
+	z-index: 2;
+	border-radius: 8px;
+}
+
+.scratchCardDiv h4 {
+	position: absolute;
+	top: 45%;
 }

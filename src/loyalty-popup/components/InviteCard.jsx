@@ -1,4 +1,5 @@
 const InviteCard = ({onClick}) => {
+
   return (
     <>
         <div class="inviteCard">

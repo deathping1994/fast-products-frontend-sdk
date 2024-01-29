@@ -13,24 +13,43 @@ import Overlay from "./Overlays/Overlay";
 import TransactionLog from "./TransactionLog";
 import ShowScratchCard from "./ShowScratchCard";
 import ScratchCard from "./ScratchCard";
+import ViewAllCoupons from "./ViewAllCoupons";
+import fetchApi from "./Utils/FetchApi";
+import axios from "axios";
 
 export function Main({ themeDetailsData, shadowRoot }) {
   const [visibilty, setVisibility] = useState(true);
   const [gamesVisibility, setGamesVisibility] = useState(false);
-  const [allCouponVisibility, setAllCouponVisibility] = useState(false);
-  //
+  const [walletAmount, setWalletAmount] = useState(0)
+  const [walletLogs, setWalletLogs] = useState([])
+  const [spinWheelRewardData, setSpinWheelRewardData] = useState([])
+  // screen
   const [screenDetails, setScreenDetails] = useState({
     screen: "home_screen",
     active: false,
   });
-  const handleAllCouponVisibility = () => {
-    setAllCouponVisibility(!allCouponVisibility);
-  };
+
   // overlay
   const [overlayVisible, setOverlayVisible] = useState({
     overlay: "none",
     active: false,
   });
+  const fetchSpinWheelReward = async ()=>{
+    const response = await axios.post('https://fastloyaltyapi.farziengineer.co/get-spin-wheel-rewards',
+      {
+        client_id : "Q2xpZW50OjY=",
+        couponAmount:10,
+        customer_id: "7734670819630",
+        user_hash: "299037b6d401b25374f60cb316c24114"
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+      }
+    })
+    setSpinWheelRewardData(response?.data?.data)
+}
+
   const handleViewPopup = () => {
     setVisibility(!visibilty);
   };
@@ -42,33 +61,38 @@ export function Main({ themeDetailsData, shadowRoot }) {
     });
   };
 
-  const close = () => {
+  const closeOverlay = () => {
     setOverlayVisible({
       ...overlayVisible,
       overlay: "none",
       active: false,
     });
   };
+
   const handleOverlay = (overlayname) => {
     if (overlayname === "coupon") {
-      return <CouponOverlay onClick={close} />;
+      return <CouponOverlay onClick={closeOverlay} />;
     }
     if (overlayname === "invite_and_earn") {
-      return <InviteAndEarnOverlay closeOverlay={close} />;
+      return <InviteAndEarnOverlay closeOverlay={closeOverlay} />;
     }
   };
 
-  const closeOverlayContainer = () => {
-    setOverlayVisible({
-      ...overlayVisible,
-      overlay: "none",
-      active: false,
-    });
-  };
+  // get wallet amount and logs
+  useEffect(() => {
+    const fetchData = async ()=>{
+      const response = await fetchApi('/user-walletlogs', 'post')
+      console.log("responsedata", response?.data?.data?.data?.wallet?.wallet?.logs?.edges);
+      setWalletAmount(response?.data?.data?.data?.wallet?.wallet?.amount)
+      setWalletLogs(response?.data?.data?.data?.wallet?.wallet?.logs?.edges)
+    }
+    fetchData()
+  }, []);
 
   const gamesData = [
     {
       gameTitle: "Wheel of Fortune",
+      gameDesc: "Start at",
       cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
       gamePrice: "10",
       coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
@@ -76,6 +100,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     },
     {
       gameTitle: "Scratch Card",
+      gameDesc: "Start at",
       cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
       gamePrice: "20",
       coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
@@ -124,16 +149,17 @@ export function Main({ themeDetailsData, shadowRoot }) {
 
     switch (screenname) {
       case "play_spin_wheel":
-        return <PlayGame shadowRoot={shadowRoot} />;
+        return <PlayGame spinWheelRewardData={spinWheelRewardData} shadowRoot={shadowRoot} />;
       case "show_spin_wheel":
         return (
           <ShowGames
+            fetchSpinWheelReward={fetchSpinWheelReward}
             handleOverlay={handleShowGames}
             showPlayGameScreen={showPlayGameScreen}
           />
         );
       case "transaction_log":
-        return <TransactionLog />;
+        return <TransactionLog walletLogs={walletLogs} />;
       case "play_scratch_card":
         return <ScratchCard shadowRoot={shadowRoot} />;
       case "show_scratch_card":
@@ -143,8 +169,10 @@ export function Main({ themeDetailsData, shadowRoot }) {
             showScratchCardScreen={showScratchCardScreen}
           />
         );
+      case "show_all_coupons":
+        return <ViewAllCoupons />;
       default:
-        console.warn("Unknown screen:", screenname)
+        console.warn("Unknown screen:", screenname);
     }
   };
 
@@ -163,7 +191,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
           <div class="mainPopup">
             {screenDetails?.active ? (
               <Screen
-                closeOverlay={closeScreen}
+                closeScreen={closeScreen}
                 screenTitle={screenDetails?.screen || "screentitle"}
                 content={getScreenComponent(screenDetails?.screen)}
               />
@@ -184,11 +212,12 @@ export function Main({ themeDetailsData, shadowRoot }) {
                   </div>
                 </div>
                 <WalletCard
+                  walletAmount={walletAmount}
                   onClick={() => handleScreenComponent("transaction_log")}
                 />
                 <ShowCoupons
                   btnClick={() => changeOverlay("coupon")}
-                  viewAll={handleAllCouponVisibility}
+                  viewAll={()=> handleScreenComponent("show_all_coupons")}
                 />
 
                 <div>
@@ -206,10 +235,12 @@ export function Main({ themeDetailsData, shadowRoot }) {
                             : handleScreenComponent("show_scratch_card")
                         }
                         gameTitle={card.gameTitle}
+                        gameDesc={card.gameDesc}
                         cardImage={card.cardImage}
                         gamePrice={card.gamePrice}
                         coinImage={card.coinImage}
                         btnText={card.btnText}
+                        
                       />
                     ))}
                   </div>
@@ -221,7 +252,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
             )}
             {overlayVisible?.active ? (
               <Overlay
-                closeOverlay={closeOverlayContainer}
+                closeOverlay={closeOverlay}
                 content={handleOverlay(overlayVisible?.overlay)}
               />
             ) : (
