@@ -1,4 +1,5 @@
 const CouponCard = ({couponImgLink, couponPrice, couponDesc, coinImgLink,onClick}) => {
+  
   return (
     <>
         <div onClick={onClick} class="couponCard">

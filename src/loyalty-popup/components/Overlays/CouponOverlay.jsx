@@ -1,4 +1,27 @@
-const CouponOverlay = ({onClick}) => {
+import axios from "axios"
+import { useState } from "preact/hooks"
+
+const CouponOverlay = ({couponData, onClick}) => {
+    const [couponCode, setCouponCode] = useState("")
+    const [isCouponUnlocked, setIsCouponUnlocked] = useState(false)
+    const fetchCouponCode = async ()=>{
+        const response = await axios.post('https://fastloyaltyapi.farziengineer.co/get-code',
+        {
+        
+            customer_id: "7734670819630",
+            user_hash: "299037b6d401b25374f60cb316c24114",
+            couponAmount: 10,
+            client_id: "Q2xpZW50OjY=",
+            coupon_title: "Rs. 10 off on Striped Silk Blouse"
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        setCouponCode(response?.data?.data?.coupon_code)
+        setIsCouponUnlocked(true)
+    }
   return (
     <>
         <div class="unlockCouponContainer">
@@ -8,23 +31,27 @@ const CouponOverlay = ({onClick}) => {
                 </div>
                 <div class="couponOverlayContainer">
                     <img src="https://media.farziengineer.co/farziwallet/voucher-icon.png" alt="" />
-                    <h2>$30 Voucher</h2>
+                    <h2>{couponData?.heading}</h2>
                 </div>
                 <div class="unlockText">
-                    <h5>Rs. 30 off on Striped Silk Blouse</h5>
+                    <h5>{couponData?.title}</h5>
                 </div>
                 <div class="unlockDesc">
-                    <p>The management reserves the right to modify the coupon as they see fit and to adjust the customer's wallet if they determine the event.</p>
+                    <p>{couponData?.description}</p>
                 </div>
                 <div>
                     <hr class="dashedDivider" />
                 </div>
                 <div class="unlockTextContainer">
-                    <h4>Unlock for 30 FC Coins</h4>
+                    <h4>{!isCouponUnlocked ? "Unlock for 30 FC Coins" : "Use this code at checkout"}</h4>
                 </div>
-                <div>
-                    <button class="couponUnlockBtn">Tap to Unlock</button>
-                </div>   
+                {!isCouponUnlocked && <div>
+                    <button onClick={fetchCouponCode} class="couponUnlockBtn">Tap to Unlock</button>
+                </div>}
+                {isCouponUnlocked && <div class="couponCodeContainer">
+                    <p>{couponCode}</p>
+                    <img src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
+                </div>}
             </div> 
         </div>
     </>

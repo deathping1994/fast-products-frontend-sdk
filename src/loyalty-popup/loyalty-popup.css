@@ -462,6 +462,25 @@ body {
     align-items: center;
 }
 
+.couponCodeContainer {
+	padding: 12px;
+    background: #faa;
+    border-radius: 4px;
+    border: 1px dashed #000;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+	width: 100%;
+	justify-content: center;
+    align-items: center;
+	position: relative;
+}
+
+.couponCodeContainer img {
+	position: absolute;
+	right: 20px;
+}
+
 .inviteLinkContainer p {
 	font-size: 14px;
 }
@@ -1152,4 +1171,9 @@ body {
 .scratchCardDiv h4 {
 	position: absolute;
 	top: 45%;
+}
+
+.scratchCardDiv img {
+	position: absolute;
+	z-index: 3;
 }

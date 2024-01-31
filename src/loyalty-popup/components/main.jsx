@@ -16,6 +16,7 @@ import ScratchCard from "./ScratchCard";
 import ViewAllCoupons from "./ViewAllCoupons";
 import fetchApi from "./Utils/FetchApi";
 import axios from "axios";
+import CouponCard from "./CouponCard";
 
 export function Main({ themeDetailsData, shadowRoot }) {
   const [visibilty, setVisibility] = useState(true);
@@ -23,6 +24,26 @@ export function Main({ themeDetailsData, shadowRoot }) {
   const [walletAmount, setWalletAmount] = useState(0)
   const [walletLogs, setWalletLogs] = useState([])
   const [spinWheelRewardData, setSpinWheelRewardData] = useState([])
+  const [scratchCardAmount, setScratchCardAmount] = useState(0)
+
+  const [featuredCoupons, setFeaturedCoupons] = useState([])
+  const [couponCardIdx, setCouponCardIdx] = useState(0)
+  const funcScratchCardAmount = (amount)=>{
+    setScratchCardAmount(amount)
+  }
+  useEffect(()=>{
+    const fetchFetaturedCoupons = async ()=>{
+      const response = await fetchApi('/get-featured-coupons', 'post')
+      console.log(response?.data?.data);
+      setFeaturedCoupons(response?.data?.data)
+    }
+    fetchFetaturedCoupons()
+  },[])
+  
+  const btnClick = (idx)=>{
+    changeOverlay("coupon")
+    setCouponCardIdx(idx)
+  }
   // screen
   const [screenDetails, setScreenDetails] = useState({
     screen: "home_screen",
@@ -34,11 +55,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
     overlay: "none",
     active: false,
   });
-  const fetchSpinWheelReward = async ()=>{
+  const fetchSpinWheelReward = async (amount)=>{
     const response = await axios.post('https://fastloyaltyapi.farziengineer.co/get-spin-wheel-rewards',
       {
         client_id : "Q2xpZW50OjY=",
-        couponAmount:10,
+        couponAmount:amount,
         customer_id: "7734670819630",
         user_hash: "299037b6d401b25374f60cb316c24114"
       },
@@ -48,8 +69,21 @@ export function Main({ themeDetailsData, shadowRoot }) {
       }
     })
     setSpinWheelRewardData(response?.data?.data)
-}
-
+  }
+  const fetchScratchCardReward = async (amount)=>{
+    const response = await axios.post('https://fastloyaltyapi.farziengineer.co/redeem-scratch-card',
+      {
+        client_id : "Q2xpZW50OjY=",
+        couponAmount:amount,
+        customer_id: "7734670819630",
+        user_hash: "299037b6d401b25374f60cb316c24114"
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+      }
+    })
+  }
   const handleViewPopup = () => {
     setVisibility(!visibilty);
   };
@@ -71,7 +105,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
 
   const handleOverlay = (overlayname) => {
     if (overlayname === "coupon") {
-      return <CouponOverlay onClick={closeOverlay} />;
+      return <CouponOverlay couponData={featuredCoupons[couponCardIdx]} onClick={closeOverlay} />;
     }
     if (overlayname === "invite_and_earn") {
       return <InviteAndEarnOverlay closeOverlay={closeOverlay} />;
@@ -102,7 +136,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
       gameTitle: "Scratch Card",
       gameDesc: "Start at",
       cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
-      gamePrice: "20",
+      gamePrice: "10",
       coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
       btnText: "Explore",
     },
@@ -135,6 +169,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     setGamesVisibility(!gamesVisibility);
     console.log(" handle show games log ");
   };
+  
 
   const handleScreenComponent = (screenname) => {
     setScreenDetails({
@@ -165,12 +200,13 @@ export function Main({ themeDetailsData, shadowRoot }) {
       case "show_scratch_card":
         return (
           <ShowScratchCard
+            funcScratchCardAmount={funcScratchCardAmount}
             handleOverlay={handleShowGames}
             showScratchCardScreen={showScratchCardScreen}
           />
         );
       case "show_all_coupons":
-        return <ViewAllCoupons />;
+        return <ViewAllCoupons closeOverlay={closeOverlay} couponCardResponse={featuredCoupons} />;
       default:
         console.warn("Unknown screen:", screenname);
     }
@@ -215,10 +251,26 @@ export function Main({ themeDetailsData, shadowRoot }) {
                   walletAmount={walletAmount}
                   onClick={() => handleScreenComponent("transaction_log")}
                 />
-                <ShowCoupons
-                  btnClick={() => changeOverlay("coupon")}
+                {/* <ShowCoupons
+                  btnClick={()=> btnClick(index)}
                   viewAll={()=> handleScreenComponent("show_all_coupons")}
-                />
+                /> */}
+                <div class="viewAllCouponsContainer">
+                  <h1>Coupons</h1>
+                  <a onClick={()=> handleScreenComponent("show_all_coupons")}>View All</a>
+                </div>
+                <div class="showAllCouponsList">
+                  {featuredCoupons.map((card, index)=>(
+                  <CouponCard
+                    onClick={()=> btnClick(index)}
+                    key={index}
+                    couponPrice={card.amount}
+                    couponDesc={card.title}
+                    couponImgLink={card.image}
+                    coinImgLink={"https://media.farziengineer.co/farziwallet/coin-icon.png"}
+                  />
+                  ))}
+                </div>
 
                 <div>
                   <div class="gamesArenaContainer">
@@ -264,3 +316,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     </>
   );
 }
+function async(arg0) {
+  throw new Error("Function not implemented.");
+}
+

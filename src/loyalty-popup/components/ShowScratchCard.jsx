@@ -2,12 +2,14 @@ import { useEffect, useState } from "preact/hooks";
 import GamesCard from "./GamesCard";
 import fetchApi from "./Utils/FetchApi";
 
-const ShowScratchCard = ({ handleOverlay, showScratchCardScreen }) => {
+const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardScreen }) => {
   const [availableTab, setAvailableTab] = useState(true);
   const [yourCouponTab, setYourCouponTab] = useState(false);
   const [unlockedTab, setUnlockedTab] = useState(true);
   const [redeemedTab, setRedeemedTab] = useState(false);
   const [scratchCardData, setScratchCardData] = useState([])
+  const [yourUnlockedCoupon, setYourUnlockedCoupon] = useState([])
+  const [yourRedeemedCoupon, setYourRedeemedCoupon] = useState([])
   useEffect(()=>{
     const fetchScratchCard = async ()=>{
       const response = await fetchApi('/get-featured-scratch-cards', 'post')
@@ -15,24 +17,12 @@ const ShowScratchCard = ({ handleOverlay, showScratchCardScreen }) => {
     }
     fetchScratchCard()
   },[])
-  const gamesData = [
-    {
-      gameTitle: "Scratch and Win",
-      gameDesc: "start at 10 coin",
-      cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
-      gamePrice: "10",
-      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-      btnText: "Scratch",
-    },
-    {
-      gameTitle: "Scratch and Win",
-      gameDesc: "start at 10 coin",
-      cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
-      gamePrice: "30",
-      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-      btnText: "Scratch",
-    },
-  ];
+
+  const fetchUnlockCoupon = async ()=>{
+    const response = await fetchApi('/get-user-coupons', 'post')
+    setYourUnlockedCoupon(response?.data?.data?.unlocked);
+    setYourRedeemedCoupon(response?.data?.data?.redeemed)
+  }
 
   const handleMainTab = (mainTab) => {
     if (mainTab === "available") {
@@ -42,6 +32,7 @@ const ShowScratchCard = ({ handleOverlay, showScratchCardScreen }) => {
     if (mainTab === "yourcoupons") {
       setAvailableTab(false);
       setYourCouponTab(true);
+      fetchUnlockCoupon()
     }
   };
 
@@ -68,7 +59,8 @@ const ShowScratchCard = ({ handleOverlay, showScratchCardScreen }) => {
     cursor: "pointer",
     backgroundColor: "#ff8f8f",
   };
-  const showScratchCard = () => {
+  const showScratchCard = (amount) => {
+    funcScratchCardAmount(amount)
     showScratchCardScreen();
     handleOverlay();
   };
@@ -102,7 +94,7 @@ const ShowScratchCard = ({ handleOverlay, showScratchCardScreen }) => {
           {scratchCardData.map((game, idx) => (
             <GamesCard
               key={idx}
-              btnClick={showScratchCard}
+              btnClick={()=> showScratchCard(game.amount)}
               gameTitle={game.title}
               gameDesc={game.description}
               cardImage={game.image}
@@ -131,31 +123,48 @@ const ShowScratchCard = ({ handleOverlay, showScratchCardScreen }) => {
               Redeemed
             </div>
           </div>
-          {unlockedTab && (
-            <div class="yourCouponsCardContainer">
-              <div class="youCouponCardLeft">
-                <h5>&#x20B9;30</h5>
-                <p>Voucher</p>
-              </div>
-              <div class="youCouponCardRight">
-                <h4>Rs. 30 off on Striped Silk Blouse</h4>
-                <p>
-                  code: <span class="yourCouponCode">MQFETAJ9XBSK</span>
-                </p>
-                <p>created on 18th Jan,2024</p>
-              </div>
-            </div>
-          )}
-          {redeemedTab && (
-            <div class="couponNotFound">
-              <img
-                src="https://earthrhythm-media.farziengineer.co/hosted/image_24-c96b6aaf23b2.png"
-                alt=""
-              />
-              <h4>Uh-Oh!</h4>
-              <p>Looks like you don't have any redeemed coupons</p>
-            </div>
-          )}
+          {
+              unlockedTab && (
+                  yourUnlockedCoupon.map((ele, idx)=>(
+                      <div key={idx} class="yourCouponsCardContainer">
+                          <div class="youCouponCardLeft">
+                              <h5>&#x20B9;{ele.amount}</h5>
+                              <p>Voucher</p>
+                          </div>
+                          <div class="youCouponCardRight">
+                              <h4>{ele.title}</h4>
+                              <p>code: <span class="yourCouponCode">{ele.coupon}</span></p>
+                              <p>{ele.date}</p>
+                          </div>
+                      </div>
+                  ))
+              )
+          }
+          {
+                        redeemedTab && (
+                            yourRedeemedCoupon.length === 0 ? (
+                                <div class="couponNotFound">
+                                    <img src="https://earthrhythm-media.farziengineer.co/hosted/image_24-c96b6aaf23b2.png" alt="" />
+                                    <h4>Uh-Oh!</h4>
+                                    <p>Looks like you don't have any redeemed coupons</p>
+                                </div>
+                            ) : (
+                                yourRedeemedCoupon.map((ele, idx)=>(
+                                    <div key={idx} class="yourCouponsCardContainer">
+                                        <div class="youCouponCardLeft">
+                                            <h5>&#x20B9;{ele.amount}</h5>
+                                            <p>Voucher</p>
+                                        </div>
+                                        <div class="youCouponCardRight">
+                                            <h4>{ele.title}</h4>
+                                            <p>code: <span class="yourCouponCode">{ele.coupon}</span></p>
+                                            <p>{ele.date}</p>
+                                        </div>
+                                    </div>
+                                ))
+                            )
+                        )
+                    }
         </div>
       )}
     </>
