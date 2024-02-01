@@ -1,11 +1,12 @@
 import axios from "axios"
 import { useState } from "preact/hooks"
+import { WALLET_API_URI } from "../.."
 
 const CouponOverlay = ({couponData, onClick}) => {
     const [couponCode, setCouponCode] = useState("")
     const [isCouponUnlocked, setIsCouponUnlocked] = useState(false)
     const fetchCouponCode = async ()=>{
-        const response = await axios.post('https://fastloyaltyapi.farziengineer.co/get-code',
+        const response = await axios.post(`${WALLET_API_URI}/get-code`,
         {
         
             customer_id: "7734670819630",

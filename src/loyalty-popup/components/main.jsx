@@ -2,7 +2,6 @@ import { useEffect, useState } from "preact/hooks";
 import { WALLET_API_URI } from "..";
 import WalletCard from "../components/WalletCard";
 import InviteCard from "../components/InviteCard";
-import ShowCoupons from "../components/ShowCoupons";
 import CouponOverlay from "./Overlays/CouponOverlay";
 import InviteAndEarnOverlay from "./Overlays/InviteAndEarnOverlay";
 import GamesCard from "./GamesCard";
@@ -15,30 +14,43 @@ import ShowScratchCard from "./ShowScratchCard";
 import ScratchCard from "./ScratchCard";
 import ViewAllCoupons from "./ViewAllCoupons";
 import fetchApi from "./Utils/FetchApi";
-import axios from "axios";
 import CouponCard from "./CouponCard";
+import Loading from "./Utils/Loading";
 
 export function Main({ themeDetailsData, shadowRoot }) {
   const [visibilty, setVisibility] = useState(true);
   const [gamesVisibility, setGamesVisibility] = useState(false);
   const [walletAmount, setWalletAmount] = useState(0)
   const [walletLogs, setWalletLogs] = useState([])
-  const [spinWheelRewardData, setSpinWheelRewardData] = useState([])
+  const [spinWheelAmount, setSpinWheelAmount] = useState(0)
   const [scratchCardAmount, setScratchCardAmount] = useState(0)
-
+  const [loading, setLoading] = useState(true);
   const [featuredCoupons, setFeaturedCoupons] = useState([])
   const [couponCardIdx, setCouponCardIdx] = useState(0)
   const funcScratchCardAmount = (amount)=>{
+    console.log("func scr card===", amount);
     setScratchCardAmount(amount)
   }
-  useEffect(()=>{
-    const fetchFetaturedCoupons = async ()=>{
-      const response = await fetchApi('/get-featured-coupons', 'post')
-      console.log(response?.data?.data);
-      setFeaturedCoupons(response?.data?.data)
-    }
-    fetchFetaturedCoupons()
-  },[])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const walletResponse = await fetchApi('/user-walletlogs', 'post');
+        console.log("responsedata", walletResponse?.data?.data?.data?.wallet?.wallet?.logs?.edges);
+        setWalletAmount(walletResponse?.data?.data?.data?.wallet?.wallet?.amount);
+        setWalletLogs(walletResponse?.data?.data?.data?.wallet?.wallet?.logs?.edges);
+
+        const couponResponse = await fetchApi('/get-featured-coupons', 'post');
+        console.log(couponResponse?.data?.data);
+        setFeaturedCoupons(couponResponse?.data?.data);
+      } catch (error) {
+        console.error("Error fetching wallet data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
   
   const btnClick = (idx)=>{
     changeOverlay("coupon")
@@ -55,34 +67,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
     overlay: "none",
     active: false,
   });
-  const fetchSpinWheelReward = async (amount)=>{
-    const response = await axios.post('https://fastloyaltyapi.farziengineer.co/get-spin-wheel-rewards',
-      {
-        client_id : "Q2xpZW50OjY=",
-        couponAmount:amount,
-        customer_id: "7734670819630",
-        user_hash: "299037b6d401b25374f60cb316c24114"
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-      }
-    })
-    setSpinWheelRewardData(response?.data?.data)
-  }
-  const fetchScratchCardReward = async (amount)=>{
-    const response = await axios.post('https://fastloyaltyapi.farziengineer.co/redeem-scratch-card',
-      {
-        client_id : "Q2xpZW50OjY=",
-        couponAmount:amount,
-        customer_id: "7734670819630",
-        user_hash: "299037b6d401b25374f60cb316c24114"
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-      }
-    })
+
+  const funcSetSpinWheelAmount = (amount)=>{
+    setSpinWheelAmount(amount)
   }
   const handleViewPopup = () => {
     setVisibility(!visibilty);
@@ -111,20 +98,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
       return <InviteAndEarnOverlay closeOverlay={closeOverlay} />;
     }
   };
-
-  // get wallet amount and logs
-  useEffect(() => {
-    const fetchData = async ()=>{
-      const response = await fetchApi('/user-walletlogs', 'post')
-      console.log("responsedata", response?.data?.data?.data?.wallet?.wallet?.logs?.edges);
-      setWalletAmount(response?.data?.data?.data?.wallet?.wallet?.amount)
-      setWalletLogs(response?.data?.data?.data?.wallet?.wallet?.logs?.edges)
-    }
-    fetchData()
-  }, []);
-
   const gamesData = [
     {
+      name:"show_spin_wheel",
       gameTitle: "Wheel of Fortune",
       gameDesc: "Start at",
       cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
@@ -133,6 +109,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
       btnText: "Explore",
     },
     {
+      name:"show_scratch_card",
       gameTitle: "Scratch Card",
       gameDesc: "Start at",
       cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
@@ -184,11 +161,12 @@ export function Main({ themeDetailsData, shadowRoot }) {
 
     switch (screenname) {
       case "play_spin_wheel":
-        return <PlayGame spinWheelRewardData={spinWheelRewardData} shadowRoot={shadowRoot} />;
+        return <PlayGame walletAmount={walletAmount} spinWheelAmount={spinWheelAmount} shadowRoot={shadowRoot} />;
       case "show_spin_wheel":
         return (
           <ShowGames
-            fetchSpinWheelReward={fetchSpinWheelReward}
+            walletAmount={walletAmount}
+            funcSetSpinWheelAmount={funcSetSpinWheelAmount}
             handleOverlay={handleShowGames}
             showPlayGameScreen={showPlayGameScreen}
           />
@@ -196,17 +174,18 @@ export function Main({ themeDetailsData, shadowRoot }) {
       case "transaction_log":
         return <TransactionLog walletLogs={walletLogs} />;
       case "play_scratch_card":
-        return <ScratchCard shadowRoot={shadowRoot} />;
+        return <ScratchCard scratchCardAmount={scratchCardAmount} walletAmount={walletAmount} shadowRoot={shadowRoot} />;
       case "show_scratch_card":
         return (
           <ShowScratchCard
+            walletAmount={walletAmount}
             funcScratchCardAmount={funcScratchCardAmount}
             handleOverlay={handleShowGames}
             showScratchCardScreen={showScratchCardScreen}
           />
         );
       case "show_all_coupons":
-        return <ViewAllCoupons closeOverlay={closeOverlay} couponCardResponse={featuredCoupons} />;
+        return <ViewAllCoupons walletAmount={walletAmount} couponCardResponse={featuredCoupons} />;
       default:
         console.warn("Unknown screen:", screenname);
     }
@@ -232,6 +211,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                 content={getScreenComponent(screenDetails?.screen)}
               />
             ) : (
+              loading ? <div className="loader"><Loading/></div> : 
               <>
                 <div class="header">
                   <div class="leftHeader">
@@ -281,11 +261,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                     {gamesData.map((card, idx) => (
                       <GamesCard
                         key={idx}
-                        btnClick={() =>
-                          idx === 0
-                            ? handleScreenComponent("show_spin_wheel")
-                            : handleScreenComponent("show_scratch_card")
-                        }
+                        btnClick={() => handleScreenComponent(card.name)}
                         gameTitle={card.gameTitle}
                         gameDesc={card.gameDesc}
                         cardImage={card.cardImage}
@@ -304,7 +280,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
             )}
             {overlayVisible?.active ? (
               <Overlay
-                closeOverlay={closeOverlay}
                 content={handleOverlay(overlayVisible?.overlay)}
               />
             ) : (

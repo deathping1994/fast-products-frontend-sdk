@@ -2,38 +2,40 @@ import { useEffect, useState } from "preact/hooks";
 import GamesCard from "./GamesCard";
 import axios from "axios";
 import fetchApi from "./Utils/FetchApi";
+import YourCoupons from "./YourCoupons";
+import Loading from "./Utils/Loading";
 
-const ShowGames = ({ fetchSpinWheelReward, handleOverlay, showPlayGameScreen }) => {
+const ShowGames = ({ funcSetSpinWheelAmount, handleOverlay, showPlayGameScreen, walletAmount }) => {
   const [availableTab, setAvailableTab] = useState(true);
   const [yourCouponTab, setYourCouponTab] = useState(false);
-  const [unlockedTab, setUnlockedTab] = useState(true);
-  const [redeemedTab, setRedeemedTab] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [gamesData, setGamesData] = useState([])
-  const [yourUnlockedCoupon, setYourUnlockedCoupon] = useState([])
-  const [yourRedeemedCoupon, setYourRedeemedCoupon] = useState([])
+  
   useEffect(()=>{
     const fetchData = async ()=>{
-        const response = await fetchApi('/get-featured-spin-wheels', 'post')
-        setGamesData(response?.data?.data)
+        try {
+          setLoading(true)
+            const response = await fetchApi('/get-featured-spin-wheels', 'post')
+            setGamesData(response?.data?.data)
+        } catch (error) {
+          console.error("Error fetching wallet data:", error);
+        } finally {
+          setLoading(false);
+        }
     }
     fetchData()
-  },[])
+  },[availableTab])
   
-  const fetchUnlockCoupon = async ()=>{
-    const response = await fetchApi('/get-user-coupons', 'post')
-    setYourUnlockedCoupon(response?.data?.data?.unlocked);
-    setYourRedeemedCoupon(response?.data?.data?.redeemed)
-  }
 
   const handleMainTab = (mainTab) => {
     if (mainTab === "available") {
       setAvailableTab(true);
       setYourCouponTab(false);
+      setLoading(true)
     }
     if (mainTab === "yourcoupons") {
       setAvailableTab(false);
       setYourCouponTab(true);
-      fetchUnlockCoupon()
     }
   };
 
@@ -41,27 +43,8 @@ const ShowGames = ({ fetchSpinWheelReward, handleOverlay, showPlayGameScreen }) 
     color: "#373737",
     borderBottom: "2px solid #373737",
   };
-  const handleYourCouponsTab = (tab) => {
-    if (tab === "unlock") {
-      setUnlockedTab(true);
-      setRedeemedTab(false);
-    }
-    if (tab === "redeem") {
-      setUnlockedTab(false);
-      setRedeemedTab(true);
-    }
-  };
-
-  const couponCardTabStyles = {
-    borderRadius: "8px",
-    padding: "8px",
-    fontWeight: "700",
-    fontSize: "14px",
-    cursor: "pointer",
-    backgroundColor: "#ff8f8f",
-  };
   const showWheelOfFortune = (amount) => {
-    fetchSpinWheelReward(amount)
+    funcSetSpinWheelAmount(amount)
     showPlayGameScreen();
     handleOverlay();
   };
@@ -87,10 +70,11 @@ const ShowGames = ({ fetchSpinWheelReward, handleOverlay, showPlayGameScreen }) 
             src="https://media.farziengineer.co/farziwallet/coin-icon.png"
             alt=""
           />
-          <p>85</p>
+          <p>{walletAmount}</p>
         </div>
       </div>
       {availableTab && (
+        loading ? <div className="loader"><Loading/></div> :
         <div class="showGamesCards">
           {gamesData.map((game, idx) => (
             <GamesCard
@@ -107,68 +91,8 @@ const ShowGames = ({ fetchSpinWheelReward, handleOverlay, showPlayGameScreen }) 
         </div>
       )}
       {console.log(gamesData)}
-      {yourCouponTab && (
-        <div class="yourCouponsCardMainContainer">
-          <div class="yourCouponsActiveTab">
-            <div
-              style={unlockedTab && couponCardTabStyles}
-              onClick={() => handleYourCouponsTab("unlock")}
-              class="unlockedTab"
-            >
-              Unlocked
-            </div>
-            <div
-              style={redeemedTab && couponCardTabStyles}
-              onClick={() => handleYourCouponsTab("redeem")}
-              class="redeemedTab"
-            >
-              Redeemed
-            </div>
-          </div>
-          {
-              unlockedTab && (
-                  yourUnlockedCoupon.map((ele, idx)=>(
-                      <div key={idx} class="yourCouponsCardContainer">
-                          <div class="youCouponCardLeft">
-                              <h5>&#x20B9;{ele.amount}</h5>
-                              <p>Voucher</p>
-                          </div>
-                          <div class="youCouponCardRight">
-                              <h4>{ele.title}</h4>
-                              <p>code: <span class="yourCouponCode">{ele.coupon}</span></p>
-                              <p>{ele.date}</p>
-                          </div>
-                      </div>
-                  ))
-                  
-              )
-          }
-          {
-              redeemedTab && (
-                  yourRedeemedCoupon.length === 0 ? (
-                      <div class="couponNotFound">
-                          <img src="https://earthrhythm-media.farziengineer.co/hosted/image_24-c96b6aaf23b2.png" alt="" />
-                          <h4>Uh-Oh!</h4>
-                          <p>Looks like you don't have any redeemed coupons</p>
-                      </div>
-                  ) : (
-                      yourRedeemedCoupon.map((ele, idx)=>(
-                          <div key={idx} class="yourCouponsCardContainer">
-                              <div class="youCouponCardLeft">
-                                  <h5>&#x20B9;{ele.amount}</h5>
-                                  <p>Voucher</p>
-                              </div>
-                              <div class="youCouponCardRight">
-                                  <h4>{ele.title}</h4>
-                                  <p>code: <span class="yourCouponCode">{ele.coupon}</span></p>
-                                  <p>{ele.date}</p>
-                              </div>
-                          </div>
-                      ))
-                  )
-              )
-          }
-        </div>
+      { yourCouponTab && (
+                <YourCoupons yourCouponTab={yourCouponTab}/>
       )}
     </>
   );

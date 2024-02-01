@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "preact/hooks"
+import { WALLET_API_URI } from ".."
 
 const RedeemCoin = ({closePopup}) => {
     const [rangeValue, setRangeValue] = useState(0)
@@ -10,7 +11,7 @@ const RedeemCoin = ({closePopup}) => {
     }
 
     const getRedeemCoin = async ()=>{
-        const response = await axios.post('https://fastloyaltyapi.farziengineer.co/get-code',
+        const response = await axios.post(`${WALLET_API_URI}/get-code`,
         {
             customer_id: "7734670819630",
             user_hash: "299037b6d401b25374f60cb316c24114",

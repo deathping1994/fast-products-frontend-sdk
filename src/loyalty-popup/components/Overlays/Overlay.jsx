@@ -1,4 +1,4 @@
-const Overlay = ({closeOverlay, content}) => {
+const Overlay = ({content}) => {
   return (
     <>  
         <div class="overlayContainer">

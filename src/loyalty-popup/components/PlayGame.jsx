@@ -1,15 +1,20 @@
 // @ts-ignore
 import { useEffect, useState } from "preact/hooks";
 import axios from "axios";
+import { WALLET_API_URI } from "..";
+import Loading from "./Utils/Loading";
 
-const PlayGame = ({ shadowRoot, spinWheelRewardData }) => {
+const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount }) => {
   const spinAudio = new Audio('https://media.farziengineer.co/farziwallet/spinwheel.mp3');
   const [btnVisibility, setBtnVisibility] = useState(false);
   const [showWinPopup, setShowWinPopup] = useState(false);
+  const [spinWheelRewardData, setSpinWheelRewardData] = useState([])
+  const [loading, setLoading] = useState(true);
   const [winData, setWinData] = useState({
     win_message:"",
-    win_index: ""
+    win_index: -1
   })
+
   function winAudio() {
     const audio = new Audio('https://media.farziengineer.co/farziwallet/success.mp3');
     audio.play();
@@ -276,6 +281,29 @@ const PlayGame = ({ shadowRoot, spinWheelRewardData }) => {
       setShowWinPopup(true)
     }, 1000)
   };
+  const fetchSpinWheelReward = async ()=>{
+    try {
+      setLoading(true)
+      const response = await axios.post(`${WALLET_API_URI}/get-spin-wheel-rewards`,
+      {
+        client_id : "Q2xpZW50OjY=",
+        couponAmount: spinWheelAmount,
+        customer_id: "7734670819630",
+        user_hash: "299037b6d401b25374f60cb316c24114"
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+      }
+    })
+    console.log("spin wheel reward array",response);
+    setSpinWheelRewardData(response?.data?.data)
+    } catch (error) {
+      console.log("error in Playgame");
+    } finally {
+      setLoading(false)
+    }
+  }
   const loadD3JS = async () => {
     const res1 = await fetch("https://d3js.org/d3.v3.min.js");
     const fileContent1 = await res1.text();
@@ -298,21 +326,34 @@ const PlayGame = ({ shadowRoot, spinWheelRewardData }) => {
       false )
       
   };
+  
   useEffect(() => {
-    loadD3JS();
-  }, []);
+    console.log("spinwheelamt",spinWheelAmount);
+    const func = async ()=>{
+      await fetchSpinWheelReward()
+    }
+    func()
+  }, [spinWheelAmount]);
+
+  useEffect(()=>{
+      const unlockSpinWheel = shadowRoot.querySelector("#fw-chart-spin-wheel")
+      unlockSpinWheel.innerHTML = ``
+      loadD3JS();
+  },[spinWheelRewardData])
 
 
   const closeWinPopup = ()=>{
       setShowWinPopup(false);
   }
    
-  const drawUnlockSpinWheel = ()=>{
+  const drawUnlockSpinWheel = async ()=>{
     const redeemSpinWheel = async ()=>{
-        const response = await axios.post('https://fastloyaltyapi.farziengineer.co/redeem-spin-wheel',
+        try {
+          setLoading(true)
+          const response = await axios.post(`${WALLET_API_URI}/redeem-spin-wheel`,
           {
             client_id: "Q2xpZW50OjY=",
-            couponAmount: 10,
+            couponAmount: spinWheelAmount,
             customer_id: "7734670819630",
             user_hash: "299037b6d401b25374f60cb316c24114"
           },
@@ -322,13 +363,20 @@ const PlayGame = ({ shadowRoot, spinWheelRewardData }) => {
           }
         }
       )
-      console.log("wind spinwheel data",response?.data?.data);
-      setWinData(response?.data?.data)
+        console.log("win spinwheel data",response?.data?.data);
+        setWinData(response?.data?.data)
+        } catch (error) {
+          console.log("error in redeem spinwheel");
+        } finally {
+          setLoading(false)
+        }
     }
-    redeemSpinWheel()
+    await redeemSpinWheel()
     const unlockSpinWheel = shadowRoot.querySelector("#fw-chart-spin-wheel")
     unlockSpinWheel.innerHTML = ``
     setBtnVisibility(true)
+  }
+  useEffect(()=>{
     drawWheel(
       shadowRoot,
       spinWheelRewardData.map((item, index) => {
@@ -338,14 +386,15 @@ const PlayGame = ({ shadowRoot, spinWheelRewardData }) => {
         };
       }),
       true, winData.win_index, spinCB );
-  }
+  },[winData.win_index])
   return (
+    loading ? <div className="loader"><Loading/></div> :
     <>
       <div class="spinWheelMainContainer">
         <div class="walletCoinContainer">
           <div class="walletCoinsBox">
             <img src="https://media.farziengineer.co/farziwallet/coin-icon.png" alt="" />
-            <p>85</p>
+            <p>{walletAmount}</p>
           </div>
           <h4>Spin and Win</h4>
         </div>

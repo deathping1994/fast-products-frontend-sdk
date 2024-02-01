@@ -4,18 +4,18 @@ import CouponOverlay from "./Overlays/CouponOverlay";
 import RedeemCoin from "./RedeemCoin";
 import fetchApi from "./Utils/FetchApi";
 import Overlay from "./Overlays/Overlay";
+import YourCoupons from "./YourCoupons";
+import Loading from "./Utils/Loading";
 
-const ViewAllCoupons = ({couponCardResponse, closeOverlay}) => {
+const ViewAllCoupons = ({couponCardResponse, walletAmount}) => {
     const [availableTab, setAvailableTab] = useState(true)
     const [yourCouponTab, setYourCouponTab] = useState(false)
-    const [unlockedTab, setUnlockedTab] = useState(true)
-    const [redeemedTab, setRedeemedTab] = useState(false)
-    const [overlayVisibilty, setOverlayVisibilty] = useState(false)
+    const [exploreCouponVisibilty, setExploreCouponVisibilty] = useState(false)
     const [redeemCoinOverlay, setRedeemCoinOverlay] = useState(false)
     const [exploreCoupon, setExploreCoupon] = useState([])
+    const [exploreCouponIdx, setExploreCouponIdx] = useState(0)
     const [couponIdx, setCouponIdx] = useState(0)
-    const [yourUnlockedCoupon, setYourUnlockedCoupon] = useState([])
-    const [yourRedeemedCoupon, setYourRedeemedCoupon] = useState([])
+    const [loading, setLoading] = useState(true);
     const [overlayVisible, setOverlayVisible] = useState({
         overlay: "none",
         active: false,
@@ -23,17 +23,28 @@ const ViewAllCoupons = ({couponCardResponse, closeOverlay}) => {
 
       useEffect(()=>{
         const exploreCouponResp = async ()=>{
-            const resp = await fetchApi('/get-coupons-to-explore', 'post')
-            setExploreCoupon(resp.data.data.data)
+            try {
+              const resp = await fetchApi('/get-coupons-to-explore', 'post')
+              setExploreCoupon(resp?.data?.data?.data)
+            } catch (error) {
+              console.log(error);
+            } finally {
+              setLoading(false)
+            }
         }
         exploreCouponResp()
       },[])
 
       const handleOverlay = (overlayname) => {
         if (overlayname === "coupon") {
-          return <CouponOverlay couponData={couponCardResponse[0]} onClick={closeOverlay} />;
+          return <CouponOverlay couponData={couponCardResponse[couponIdx]} onClick={closeOverlay} />;
         }
       };
+      const handleAndShowCouponOverlay = (idx)=>{
+        changeOverlay('coupon')
+        setCouponIdx(idx)
+
+      }
       const changeOverlay = (overlayname) => {
         setOverlayVisible({
           ...overlayVisible,
@@ -42,11 +53,13 @@ const ViewAllCoupons = ({couponCardResponse, closeOverlay}) => {
         });
       };
 
-      const fetchUnlockCoupon = async ()=>{
-        const response = await fetchApi('/get-user-coupons', 'post')
-        setYourUnlockedCoupon(response?.data?.data?.unlocked);
-        setYourRedeemedCoupon(response?.data?.data?.redeemed)
-      }
+      const closeOverlay = () => {
+        setOverlayVisible({
+          ...overlayVisible,
+          overlay: "none",
+          active: false,
+        });
+      };
 
      const handleMainTab = (mainTab)=>{
         if(mainTab === "available") {
@@ -56,23 +69,12 @@ const ViewAllCoupons = ({couponCardResponse, closeOverlay}) => {
         if(mainTab === "yourcoupons") {
             setAvailableTab(false)
             setYourCouponTab(true)
-            fetchUnlockCoupon()
         }
     }
 
-     const handleYourCouponsTab = (tab)=>{
-        if(tab === "unlock"){
-            setUnlockedTab(true)
-            setRedeemedTab(false)
-        }
-        if(tab === "redeem"){
-            setUnlockedTab(false)
-            setRedeemedTab(true)
-        }
-     }
      const handleOverlayVisibility = (idx)=>{
-        setOverlayVisibilty(!overlayVisibilty)
-        setCouponIdx(idx)
+        setExploreCouponVisibilty(!exploreCouponVisibilty)
+        setExploreCouponIdx(idx)
      }
 
      const handleRedeemFCCoin = ()=>{
@@ -107,7 +109,7 @@ const ViewAllCoupons = ({couponCardResponse, closeOverlay}) => {
                 </div>
                 <div class="walletCoinsBox">
                     <img src="https://media.farziengineer.co/farziwallet/coin-icon.png" alt="" />
-                    <p>100</p>
+                    <p>{walletAmount}</p>
                 </div>
             </div>
             { availableTab && (
@@ -118,7 +120,7 @@ const ViewAllCoupons = ({couponCardResponse, closeOverlay}) => {
 
                         {couponCardResponse.map((card, index)=>(
                             <CouponCard
-                                onClick={()=> changeOverlay('coupon')}
+                                onClick={()=> handleAndShowCouponOverlay(index)}
                                 key={index}
                                 couponPrice={card.amount}
                                 couponDesc={card.title}
@@ -160,63 +162,14 @@ const ViewAllCoupons = ({couponCardResponse, closeOverlay}) => {
                                 ))
                             }
                     </div>
-                    {overlayVisibilty && <CouponOverlay couponData={exploreCoupon[couponIdx]} onClick={handleOverlayVisibility}/>}
                 </div>
             )}
+            {exploreCouponVisibilty && <CouponOverlay couponData={exploreCoupon[exploreCouponIdx]} onClick={handleOverlayVisibility}/>}
             { yourCouponTab && (
-                <div class="yourCouponsCardMainContainer">
-                    <div class="yourCouponsActiveTab">
-                        <div style={unlockedTab && couponCardTabStyles} onClick={()=> handleYourCouponsTab("unlock")} class="unlockedTab">Unlocked</div>
-                        <div style={redeemedTab && couponCardTabStyles} onClick={()=> handleYourCouponsTab("redeem")} class="redeemedTab">Redeemed</div>
-                    </div>
-                    {
-                        unlockedTab && (
-                            yourUnlockedCoupon.map((ele, idx)=>(
-                                <div key={idx} class="yourCouponsCardContainer">
-                                    <div class="youCouponCardLeft">
-                                        <h5>&#x20B9;{ele.amount}</h5>
-                                        <p>Voucher</p>
-                                    </div>
-                                    <div class="youCouponCardRight">
-                                        <h4>{ele.title}</h4>
-                                        <p>code: <span class="yourCouponCode">{ele.coupon}</span></p>
-                                        <p>{ele.date}</p>
-                                    </div>
-                                </div>
-                            ))
-                            
-                        )
-                    }
-                    {
-                        redeemedTab && (
-                            yourRedeemedCoupon.length === 0 ? (
-                                <div class="couponNotFound">
-                                    <img src="https://earthrhythm-media.farziengineer.co/hosted/image_24-c96b6aaf23b2.png" alt="" />
-                                    <h4>Uh-Oh!</h4>
-                                    <p>Looks like you don't have any redeemed coupons</p>
-                                </div>
-                            ) : (
-                                yourRedeemedCoupon.map((ele, idx)=>(
-                                    <div key={idx} class="yourCouponsCardContainer">
-                                        <div class="youCouponCardLeft">
-                                            <h5>&#x20B9;{ele.amount}</h5>
-                                            <p>Voucher</p>
-                                        </div>
-                                        <div class="youCouponCardRight">
-                                            <h4>{ele.title}</h4>
-                                            <p>code: <span class="yourCouponCode">{ele.coupon}</span></p>
-                                            <p>{ele.date}</p>
-                                        </div>
-                                    </div>
-                                ))
-                            )
-                        )
-                    }
-                </div>
+                <YourCoupons yourCouponTab={yourCouponTab}/>
             )}
             {overlayVisible?.active ? (
               <Overlay
-                closeOverlay={closeOverlay}
                 content={handleOverlay(overlayVisible?.overlay)}
               />
             ) : (
