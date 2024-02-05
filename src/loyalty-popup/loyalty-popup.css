@@ -13,8 +13,11 @@
 	-webkit-text-size-adjust: 100%;
 }
 */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
+.mainPopup {
+	--loyalty_popup_theme_background: #000000;
+	--coin-svg-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23000000'/%3E%3Cpath d='M11.6003 6.28047C11.6301 6.19829 11.6845 6.12728 11.7561 6.0771C11.8277 6.02692 11.913 6 12.0004 6C12.0879 6 12.1732 6.02692 12.2448 6.0771C12.3164 6.12728 12.3708 6.19829 12.4006 6.28047L12.8076 7.39245C13.1264 8.2644 13.6316 9.05626 14.2881 9.71274C14.9446 10.3692 15.7364 10.8745 16.6084 11.1933L17.7195 11.6003C17.8017 11.6301 17.8727 11.6845 17.9229 11.7561C17.9731 11.8277 18 11.913 18 12.0004C18 12.0879 17.9731 12.1732 17.9229 12.2448C17.8727 12.3164 17.8017 12.3708 17.7195 12.4006L16.6084 12.8076C15.7364 13.1264 14.9446 13.6316 14.2881 14.2881C13.6316 14.9446 13.1264 15.7364 12.8076 16.6084L12.4006 17.7195C12.3708 17.8017 12.3164 17.8727 12.2448 17.9229C12.1732 17.9731 12.0879 18 12.0004 18C11.913 18 11.8277 17.9731 11.7561 17.9229C11.6845 17.8727 11.6301 17.8017 11.6003 17.7195L11.1933 16.6084C10.8745 15.7364 10.3692 14.9446 9.71274 14.2881C9.05626 13.6316 8.2644 13.1264 7.39245 12.8076L6.28047 12.4006C6.19829 12.3708 6.12728 12.3164 6.0771 12.2448C6.02692 12.1732 6 12.0879 6 12.0004C6 11.913 6.02692 11.8277 6.0771 11.7561C6.12728 11.6845 6.19829 11.6301 6.28047 11.6003L7.39245 11.1933C8.2644 10.8745 9.05626 10.3692 9.71274 9.71274C10.3692 9.05626 10.8745 8.2644 11.1933 7.39245L11.6003 6.28047Z' fill='white'/%3E%3C/svg%3E%0A");
+	--coin-svg-inverted-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 19 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9.5' cy='9.5' r='9.5' fill='white'/%3E%3Cpath d='M9.18353 4.97204C9.20715 4.90698 9.25022 4.85076 9.3069 4.81104C9.36358 4.77131 9.43112 4.75 9.50034 4.75C9.56955 4.75 9.63709 4.77131 9.69377 4.81104C9.75045 4.85076 9.79353 4.90698 9.81714 4.97204L10.1393 5.85236C10.3917 6.54265 10.7917 7.16954 11.3114 7.68925C11.8311 8.20896 12.458 8.60897 13.1483 8.86133L14.028 9.18353C14.093 9.20715 14.1492 9.25022 14.189 9.3069C14.2287 9.36358 14.25 9.43112 14.25 9.50034C14.25 9.56955 14.2287 9.63709 14.189 9.69377C14.1492 9.75045 14.093 9.79353 14.028 9.81714L13.1483 10.1393C12.458 10.3917 11.8311 10.7917 11.3114 11.3114C10.7917 11.8311 10.3917 12.458 10.1393 13.1483L9.81714 14.028C9.79353 14.093 9.75045 14.1492 9.69377 14.189C9.63709 14.2287 9.56955 14.25 9.50034 14.25C9.43112 14.25 9.36358 14.2287 9.3069 14.189C9.25022 14.1492 9.20715 14.093 9.18353 14.028L8.86133 13.1483C8.60897 12.458 8.20896 11.8311 7.68925 11.3114C7.16954 10.7917 6.54265 10.3917 5.85236 10.1393L4.97204 9.81714C4.90698 9.79353 4.85076 9.75045 4.81104 9.69377C4.77131 9.63709 4.75 9.56955 4.75 9.50034C4.75 9.43112 4.77131 9.36358 4.81104 9.3069C4.85076 9.25022 4.90698 9.20715 4.97204 9.18353L5.85236 8.86133C6.54265 8.60897 7.16954 8.20896 7.68925 7.68925C8.20896 7.16954 8.60897 6.54265 8.86133 5.85236L9.18353 4.97204Z' fill='%23000000'/%3E%3C/svg%3E%0A")
+}
 @keyframes moveup {
 	0% {
 		transform: translateY(100%);
@@ -50,7 +53,7 @@
 	align-items: center;
 	top: 0;
 	z-index: 999999;
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.61);
 }
 .loaderFullHeight{
 	height: 100vh;
@@ -103,9 +106,9 @@ body {
 /* Loyality popup styles */
 
 .floatingPopup {
-    background-color: black;
+    background-color: var(--loyalty_popup_theme_background, #000);
 	padding: 1rem;
-	display: flex;
+	display: none;
 	position: fixed;
 	width: 60px;
 	height: 60px;
@@ -172,7 +175,7 @@ body {
 }
 
 .walletCard {
-	background-color: black;
+	background-color: var(--loyalty_popup_theme_background, #000);
     padding: 12px 13px;
     border-radius: 16px;
     box-shadow: none;
@@ -202,7 +205,7 @@ body {
 .coinCard h1 {
     font-size: 18px;
 	font-weight: 600;
-	color: black;
+	color: var(--loyalty_popup_theme_background, #000);
 }
 
 .badgeCard img {
@@ -272,7 +275,7 @@ body {
 
 .couponCard {
 	border-radius: 12px;
-	color: #000;
+	color: var(--loyalty_popup_theme_background, #000);
 	font-size: 14px;
 	line-height: 20px;
 	cursor: pointer;
@@ -368,7 +371,6 @@ body {
 }
 
 .gamesCard {
-	width: fit-content;
 	background-color: #efefef;
 	display: flex;
 	flex-direction: column;
@@ -380,7 +382,7 @@ body {
 	border-radius: 8px;
 	position: relative;
 	bottom: 20px;
-	min-width: 120px;
+	min-width: 126px;
 	}
 
 .gamesCardImg {
@@ -391,6 +393,10 @@ body {
 	position: relative;
 }
 
+.gamesCardImg img {
+	min-height: 66px;
+}
+
 .coinBox {
 	background: #fff;
 	border-radius: 4px;
@@ -399,13 +405,13 @@ body {
 	padding: 4px 14px;
 	align-items: center;
 	margin-bottom: 8px;
-	color: black;
+	color: var(--loyalty_popup_theme_background, #000);
 	font-size: 14px;
 	gap: 4px;
 }
 
 .gamesCardBtn {
-	background: black;
+	background: var(--loyalty_popup_theme_background, #000);
     border-radius: 4px;
     font-weight: 700;
     font-size: 12px;
@@ -465,6 +471,9 @@ body {
 	width: 100%;
 	padding: 22px;
 	border-radius: 16px;
+	transition: all 0.5s;
+	animation-name: moveup;
+	animation-duration: 500ms;
 }
 
 .dashedDivider {
@@ -509,7 +518,7 @@ body {
 	padding: 12px;
     background: #faa;
     border-radius: 4px;
-    border: 1px dashed #000;
+    border: 1px dashed var(--loyalty_popup_theme_background, #000);;
     font-size: 16px;
     font-weight: 700;
     display: flex;
@@ -521,7 +530,7 @@ body {
 	padding: 12px;
     background: #faa;
     border-radius: 4px;
-    border: 1px dashed #000;
+    border: 1px dashed var(--loyalty_popup_theme_background, #000);;
     font-size: 16px;
     font-weight: 700;
     display: flex;
@@ -559,7 +568,7 @@ body {
 }
 
 .couponUnlockBtn {
-	background-color: black;
+	background-color: var(--loyalty_popup_theme_background, #000);
     color: #fff;
     padding: 11px 0;
     border-radius: 8px;
@@ -794,7 +803,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: black;
+	background-color: var(--loyalty_popup_theme_background, #000);
 	padding: 2px 8px;
 	border-radius: 50px;
 	gap: 4px;
@@ -958,7 +967,7 @@ body {
 .youCouponCardRight h4, .yourCouponCode {
 	font-weight: bold;
 	font-size: 13px;
-	color: black;
+	color: var(--loyalty_popup_theme_background, #000);
 }
 
 .youCouponCardRight p {
@@ -1162,8 +1171,7 @@ body {
 }
 
 .spinWinPopup {
-	background-color: black;
-	background: #000;
+	background-color: var(--loyalty_popup_theme_background, #000);
     color: #fff;
     padding: 30px 25px;
     box-shadow: 0 -4px 24px rgba(0,0,0,.12);
@@ -1191,7 +1199,7 @@ body {
 .playagainbtn {
 	width: 100%;
     background: #fff;
-    color: #000;
+    color: var(--loyalty_popup_theme_background, #000);;
     font-family: Inter;
     font-size: 14px;
     font-weight: 600;
@@ -1203,7 +1211,7 @@ body {
 
 .closebtn {
 	color: #fff;
-    background: #000;
+    background: var(--loyalty_popup_theme_background, #000);;
     border: 0;
     font-size: 14px;
     font-weight: 500;
@@ -1233,4 +1241,84 @@ body {
 .scratchCardDiv img {
 	position: absolute;
 	z-index: 3;
+}
+
+.copied {
+	background-color: green;
+  padding: 8px;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.coinIcon { 
+    background-image: var(--coin-svg-url);
+	width: 20px;
+	height: 20px;
+	background-size: 100% 100%;
+}
+
+.logoutWalletCard {
+	background-color: var(--loyalty_popup_theme_background, #000);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+    padding: 12px;
+    border-radius: 16px;
+    box-shadow: none;
+    margin: 0 14px;
+    width: auto;
+}
+.walletLogoutBtn {
+	background-color: white;
+    border-radius: 4px;
+    margin: 0 6px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoutWalletCard p {
+	color: var(--loyalty_popup_theme_background, #000);
+}
+
+.exploreCouponText {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 4px;
+}
+
+.exploreCouponText div {
+	width: 16px;
+	height: 16px;
+}
+
+.alert {
+	position: absolute;
+	bottom: 5%;
+	left: 40%;
+	z-index: 999;
+	background: #160b0b;
+	color: #f4c7c7;
+	font-weight: 400;
+	font-size: 14px;
+	border-radius: 4px;
+	padding: 8px 22px;
+	transition: 0.5s all ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.alert svg.fw-wallet-alert-popup-error {
+	width: 22px;
+	height: 22px;
+	fill: rgb(244, 67, 54);
+	margin-right: 8px;
 }

@@ -9,7 +9,7 @@ const GamesCard = ({btnClick, cardImage, coinImage, gameTitle, gameDesc, btnText
               <p class="gamesCardTitle">{gameTitle}</p>
               <p class="gamesCardDesc">{gameDesc}</p>
             <div class="coinBox">
-              <img src={coinImage} alt="" />
+            <div class="coinIcon"></div>
               <p>{gamePrice}</p>
             </div>
             <button onClick={btnClick} class="gamesCardBtn">{btnText}</button>

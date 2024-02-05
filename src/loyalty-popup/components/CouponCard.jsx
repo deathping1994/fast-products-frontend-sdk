@@ -1,4 +1,4 @@
-const CouponCard = ({couponImgLink, couponPrice, couponDesc, coinImgLink,onClick}) => {
+const CouponCard = ({couponImgLink, couponPrice, couponDesc,onClick}) => {
   
   return (
     <>
@@ -10,7 +10,7 @@ const CouponCard = ({couponImgLink, couponPrice, couponDesc, coinImgLink,onClick
                 </div>
                 <p class="couponText">{couponDesc}</p>
                 <div className="couponCardPrice">
-                  <img src={coinImgLink}/>
+                  <div class="coinIcon"></div>
                   <p>{couponPrice}</p>
                 </div>
             </div>

@@ -1,12 +1,16 @@
-import axios from "axios"
+// @ts-nocheck
 import { useState } from "preact/hooks"
-import { WALLET_API_URI } from "../.."
+import Loading from "../Utils/Loading"
+import fetchApi from "../Utils/FetchApi"
 
 const CouponOverlay = ({couponData, onClick}) => {
     const [couponCode, setCouponCode] = useState("")
     const [isCouponUnlocked, setIsCouponUnlocked] = useState(false)
+    const [loading, setLoading] = useState(false);
     const fetchCouponCode = async ()=>{
-        const response = await axios.post(`${WALLET_API_URI}/get-code`,
+        try {
+            setLoading(true)
+        const response = await fetchApi('/get-code', 'post',
         {
         
             customer_id: "7734670819630",
@@ -14,14 +18,14 @@ const CouponOverlay = ({couponData, onClick}) => {
             couponAmount: 10,
             client_id: "Q2xpZW50OjY=",
             coupon_title: "Rs. 10 off on Striped Silk Blouse"
-        },
-        {
-            headers: {
-                'Content-Type': 'application/json'
-            }
         })
-        setCouponCode(response?.data?.data?.coupon_code)
+        setCouponCode(response?.data?.coupon_code)
         setIsCouponUnlocked(true)
+        } catch (error) {
+            console.log("error in coupon card overlay");
+        } finally {
+            setLoading(false)
+        }
     }
   return (
     <>
@@ -44,10 +48,11 @@ const CouponOverlay = ({couponData, onClick}) => {
                     <hr class="dashedDivider" />
                 </div>
                 <div class="unlockTextContainer">
-                    <h4>{!isCouponUnlocked ? "Unlock for 30 FC Coins" : "Use this code at checkout"}</h4>
+                    <h4>{!isCouponUnlocked ? `Unlock for ${couponData?.amount} ${window.fc_loyalty_vars.coin_name} Coins` : "Use this code at checkout"}</h4>
                 </div>
+                
                 {!isCouponUnlocked && <div>
-                    <button onClick={fetchCouponCode} class="couponUnlockBtn">Tap to Unlock</button>
+                    {loading ? <Loading/> : <button onClick={fetchCouponCode} class="couponUnlockBtn">Tap to Unlock</button>}
                 </div>}
                 {isCouponUnlocked && <div class="couponCodeContainer">
                     <p>{couponCode}</p>

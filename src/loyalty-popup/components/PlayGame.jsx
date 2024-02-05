@@ -1,10 +1,11 @@
+// @ts-nocheck
 // @ts-ignore
 import { useEffect, useState } from "preact/hooks";
-import axios from "axios";
 import { WALLET_API_URI } from "..";
 import Loading from "./Utils/Loading";
+import fetchApi from "./Utils/FetchApi";
 
-const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount }) => {
+const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScreen, customerDetails }) => {
   const spinAudio = new Audio('https://media.farziengineer.co/farziwallet/spinwheel.mp3');
   const [btnVisibility, setBtnVisibility] = useState(false);
   const [showWinPopup, setShowWinPopup] = useState(false);
@@ -284,20 +285,13 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount }) => {
   const fetchSpinWheelReward = async ()=>{
     try {
       setLoading(true)
-      const response = await axios.post(`${WALLET_API_URI}/get-spin-wheel-rewards`,
+      const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
       {
-        client_id : "Q2xpZW50OjY=",
+        ...customerDetails,
         couponAmount: spinWheelAmount,
-        customer_id: "7734670819630",
-        user_hash: "299037b6d401b25374f60cb316c24114"
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-      }
-    })
+      })
     console.log("spin wheel reward array",response);
-    setSpinWheelRewardData(response?.data?.data)
+    setSpinWheelRewardData(response?.data)
     } catch (error) {
       console.log("error in Playgame");
     } finally {
@@ -341,30 +335,26 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount }) => {
       loadD3JS();
   },[spinWheelRewardData])
 
-
+  const playAgain = ()=>{
+    setBtnVisibility(false)
+    setShowWinPopup(false)
+    fetchSpinWheelReward()
+  }
   const closeWinPopup = ()=>{
-      setShowWinPopup(false);
+      showSpinGameScreen('show_spin_wheel', "Wheel of Fortune")
   }
    
   const drawUnlockSpinWheel = async ()=>{
     const redeemSpinWheel = async ()=>{
         try {
           setLoading(true)
-          const response = await axios.post(`${WALLET_API_URI}/redeem-spin-wheel`,
-          {
-            client_id: "Q2xpZW50OjY=",
+          const response = await fetchApi(`/redeem-spin-wheel`,'post',
+          { 
+            ...customerDetails,
             couponAmount: spinWheelAmount,
-            customer_id: "7734670819630",
-            user_hash: "299037b6d401b25374f60cb316c24114"
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json'
-          }
-        }
-      )
-        console.log("win spinwheel data",response?.data?.data);
-        setWinData(response?.data?.data)
+          })
+        console.log("win spinwheel data",response?.data);
+        setWinData(response?.data)
         } catch (error) {
           console.log("error in redeem spinwheel");
         } finally {
@@ -393,7 +383,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount }) => {
       <div class="spinWheelMainContainer">
         <div class="walletCoinContainer">
           <div class="walletCoinsBox">
-            <img src="https://media.farziengineer.co/farziwallet/coin-icon.png" alt="" />
+            <div class="coinIcon"></div>
             <p>{walletAmount}</p>
           </div>
           <h4>Spin and Win</h4>
@@ -407,7 +397,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount }) => {
         <div id="fw-chart-spin-wheel"></div>
         <div class="spinWheelBottom">
             <hr />
-            {btnVisibility ? <h4>Click 'SPIN' to start</h4> : <h4>Unlock for 10 FC Coins</h4>}
+            {btnVisibility ? <h4>Click 'SPIN' to start</h4> : <h4>Unlock for 10 {window.fc_loyalty_vars.coin_name} Coins</h4>}
             {!btnVisibility && <button onClick={drawUnlockSpinWheel} class="couponUnlockBtn">Tap to Unlock</button>}
         </div>
         {
@@ -417,7 +407,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount }) => {
                 <h3>Congratulations!</h3>
                 <p>You Won</p>
                 <h2>{winData.win_message}</h2>
-                <button class="playagainbtn">Play Again</button>
+                <button onClick={playAgain} class="playagainbtn">Play Again</button>
                 <button onClick={closeWinPopup} class="closebtn">close</button>
               </div>
             </div>

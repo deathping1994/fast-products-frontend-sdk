@@ -4,7 +4,7 @@ import Loading from "./Utils/Loading"
 // import Loading from "./Utils/Loading"
 
 
-const YourCoupons = ({yourCouponTab}) => {
+const YourCoupons = ({yourCouponTab, customerDetails}) => {
     const [unlockedTab, setUnlockedTab] = useState(true)
     const [redeemedTab, setRedeemedTab] = useState(false)
     const [yourUnlockedCoupon, setYourUnlockedCoupon] = useState([])
@@ -14,9 +14,9 @@ const YourCoupons = ({yourCouponTab}) => {
         const fetchUnlockCoupon = async ()=>{
             try {
                 setLoading(true)
-                const response = await fetchApi('/get-user-coupons', 'post')
-                setYourUnlockedCoupon(response?.data?.data?.unlocked);
-                setYourRedeemedCoupon(response?.data?.data?.redeemed)
+                const response = await fetchApi('/get-user-coupons', 'post', customerDetails)
+                setYourUnlockedCoupon(response?.data?.unlocked);
+                setYourRedeemedCoupon(response?.data?.redeemed)
             } catch (error) {
                 console.log(error);
             } finally{

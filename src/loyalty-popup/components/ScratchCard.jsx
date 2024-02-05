@@ -1,15 +1,17 @@
-import axios from "axios";
+// @ts-nocheck
 import { useEffect, useState } from "preact/hooks";
-import { WALLET_API_URI } from "..";
 import Loading from "./Utils/Loading";
+import fetchApi from "./Utils/FetchApi";
 
-const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount }) => {
+const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount, showScratchCardScreen, customerDetails }) => {
   const [isLocked, setIsLocked] = useState(true);
   const [loading, setLoading] = useState(false);
   const [showWinPopup, setShowWinPopup] = useState(false)
+  const [playAgain, setPlayAgain] = useState(false)
   const [winMessgae, setWinMessgae] = useState({
     win_message: ""
   });
+
   useEffect(() => {
     const screenContent = shadowRoot.querySelector('.screenContent');
     const canvas = screenContent.querySelector('#scratchCardCanvas');
@@ -45,24 +47,69 @@ const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount }) => {
     };
 
     init()
-  }, [shadowRoot]);
+  }, [shadowRoot, playAgain]);
+
+  const handlePlayAgainBtn = () => {
+    setIsLocked(true);
+    setShowWinPopup(false);
+    setPlayAgain(!playAgain);
+    setWinMessgae({
+      win_message: "",
+    });
+  
+    // Clear the canvas
+    const screenContent = shadowRoot.querySelector('.screenContent');
+    const canvas = screenContent.querySelector('#scratchCardCanvas');
+    const context = canvas.getContext("2d");
+
+    const init = () => {
+      console.log("log init");
+      let gradientColor = context.createLinearGradient(0, 0, 135, 135);
+      gradientColor.addColorStop(0, "#AEE7FF");
+      gradientColor.addColorStop(1, "#AEE7FF");
+      context.fillStyle = gradientColor;
+      context.fillRect(0, 0, 300, 300);
+
+      // Adding dots for seats
+      context.fillStyle = "#94DDFF"; // Set the dot color
+
+      const seatSize = 5; // Size of each seat
+      const gap = 40; // Gap between seats
+
+      const rows = 6; // Number of rows
+      const seatsPerRow = 6; // Number of seats per row
+
+      const startX = 30; // Starting X position
+      const startY = 30; // Starting Y position
+
+      for (let row = 0; row < rows; row++) {
+          for (let seat = 0; seat < seatsPerRow; seat++) {
+              const x = startX + seat * (seatSize + gap);
+              const y = startY + row * (seatSize + gap);
+              context.beginPath();
+              context.arc(x, y, seatSize, 0, 2 * Math.PI);
+              context.fill();
+          }
+      }
+    };
+
+    init()
+  };
+  
   const getScratchCardWinData = async ()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
     try {
       setLoading(true)
-      const response = await axios.post(`${WALLET_API_URI}/redeem-scratch-card`,
-        {
-          client_id : "Q2xpZW50OjY=",
+      const response = await fetchApi(`/redeem-scratch-card`, 'post',
+      {
+          ...customerDetails,
           couponAmount: scratchCardAmount,
-          customer_id: "7734670819630",
-          user_hash: "299037b6d401b25374f60cb316c24114"
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json'
-        }
       })
       console.log("scratchc card resp", response.data);
-      setWinMessgae(response?.data?.data)
+      setWinMessgae(response?.data)
     } catch (error) {
       console.log("error inSC");
     } finally {
@@ -76,7 +123,35 @@ const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount }) => {
     const screenContent = shadowRoot.querySelector('.screenContent');
     const canvas = screenContent.querySelector('#scratchCardCanvas');
     const context = canvas.getContext("2d");
-      
+    const init = () => {
+      let gradientColor = context.createLinearGradient(0, 0, 135, 135);
+      gradientColor.addColorStop(0, "#AEE7FF");
+      gradientColor.addColorStop(1, "#AEE7FF");
+      context.fillStyle = gradientColor;
+      context.fillRect(0, 0, 300, 300);
+
+      // Adding dots for seats
+      context.fillStyle = "#94DDFF"; // Set the dot color
+
+      const seatSize = 5; // Size of each seat
+      const gap = 40; // Gap between seats
+
+      const rows = 6; // Number of rows
+      const seatsPerRow = 6; // Number of seats per row
+
+      const startX = 30; // Starting X position
+      const startY = 30; // Starting Y position
+
+      for (let row = 0; row < rows; row++) {
+          for (let seat = 0; seat < seatsPerRow; seat++) {
+              const x = startX + seat * (seatSize + gap);
+              const y = startY + row * (seatSize + gap);
+              context.beginPath();
+              context.arc(x, y, seatSize, 0, 2 * Math.PI);
+              context.fill();
+          }
+      }
+    };
     let mouseX = 0;
     let mouseY = 0;
     let isDragged = false;
@@ -177,6 +252,8 @@ const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount }) => {
             
         }
     };
+
+    init()
   }
 
   return (
@@ -184,7 +261,7 @@ const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount }) => {
       {loading && <div class="loaderFullHeight"><Loading/></div>}
       <div class={!loading ? "walletCoinContainer" : ""}>
         <div class="walletCoinsBox">
-          <img src="https://media.farziengineer.co/farziwallet/coin-icon.png" alt="" />
+          <div class="coinIcon"></div>
           <p>{walletAmount}</p>
         </div>
         <h4>Scratch and Win</h4>
@@ -193,13 +270,10 @@ const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount }) => {
         <h4>{winMessgae.win_message}</h4>
         {isLocked && <img src="https://media.farziengineer.co/farziwallet/lock.png" alt="" />}
         <canvas width={300} height={300} id="scratchCardCanvas"></canvas>
-        {/* {
-          drawUnlockedScratchCard()
-        } */}
       </div>
       <div class="spinWheelBottom">
         <hr />
-        <h4>{isLocked ? `Unlock for ${scratchCardAmount} FC Coin` : `Click and drag your cursor across the card`}</h4>
+        <h4>{isLocked ? `Unlock for ${scratchCardAmount} ${window.fc_loyalty_vars.coin_name} Coin` : `Click and drag your cursor across the card`}</h4>
         {isLocked && <button onClick={getScratchCardWinData} class="couponUnlockBtn">Tap to Unlock</button>}
       </div>
       {
@@ -209,8 +283,8 @@ const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount }) => {
               <h3>Congratulations!</h3>
               <p>You Won</p>
               <h2>{winMessgae.win_message}</h2>
-              <button class="playagainbtn">Play Again</button>
-              <button onClick={()=> setShowWinPopup(false)} class="closebtn">close</button>
+              <button onClick={handlePlayAgainBtn} class="playagainbtn">Play Again</button>
+              <button onClick={()=> showScratchCardScreen('show_scratch_card',"Scratch Card")} class="closebtn">close</button>
             </div>
           </div>
       }

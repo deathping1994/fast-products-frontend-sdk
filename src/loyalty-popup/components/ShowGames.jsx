@@ -1,11 +1,10 @@
 import { useEffect, useState } from "preact/hooks";
 import GamesCard from "./GamesCard";
-import axios from "axios";
 import fetchApi from "./Utils/FetchApi";
 import YourCoupons from "./YourCoupons";
 import Loading from "./Utils/Loading";
 
-const ShowGames = ({ funcSetSpinWheelAmount, handleOverlay, showPlayGameScreen, walletAmount }) => {
+const ShowGames = ({ funcSetSpinWheelAmount, handleOverlay, showPlayGameScreen, walletAmount, customerDetails }) => {
   const [availableTab, setAvailableTab] = useState(true);
   const [yourCouponTab, setYourCouponTab] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -14,9 +13,9 @@ const ShowGames = ({ funcSetSpinWheelAmount, handleOverlay, showPlayGameScreen, 
   useEffect(()=>{
     const fetchData = async ()=>{
         try {
-          setLoading(true)
-            const response = await fetchApi('/get-featured-spin-wheels', 'post')
-            setGamesData(response?.data?.data)
+            setLoading(true)
+            const response = await fetchApi('/get-featured-spin-wheels', 'post', customerDetails)
+            setGamesData(response?.data)
         } catch (error) {
           console.error("Error fetching wallet data:", error);
         } finally {
@@ -67,6 +66,7 @@ const ShowGames = ({ funcSetSpinWheelAmount, handleOverlay, showPlayGameScreen, 
         </div>
         <div class="walletCoinsBox">
           <img
+            class="coinIcon"
             src="https://media.farziengineer.co/farziwallet/coin-icon.png"
             alt=""
           />
@@ -92,7 +92,7 @@ const ShowGames = ({ funcSetSpinWheelAmount, handleOverlay, showPlayGameScreen, 
       )}
       {console.log(gamesData)}
       { yourCouponTab && (
-                <YourCoupons yourCouponTab={yourCouponTab}/>
+                <YourCoupons customerDetails={customerDetails} yourCouponTab={yourCouponTab}/>
       )}
     </>
   );

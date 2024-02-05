@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useState } from "preact/hooks";
 import CouponCard from "./CouponCard";
 import CouponOverlay from "./Overlays/CouponOverlay";
@@ -7,7 +8,7 @@ import Overlay from "./Overlays/Overlay";
 import YourCoupons from "./YourCoupons";
 import Loading from "./Utils/Loading";
 
-const ViewAllCoupons = ({couponCardResponse, walletAmount}) => {
+const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails}) => {
     const [availableTab, setAvailableTab] = useState(true)
     const [yourCouponTab, setYourCouponTab] = useState(false)
     const [exploreCouponVisibilty, setExploreCouponVisibilty] = useState(false)
@@ -15,7 +16,7 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount}) => {
     const [exploreCoupon, setExploreCoupon] = useState([])
     const [exploreCouponIdx, setExploreCouponIdx] = useState(0)
     const [couponIdx, setCouponIdx] = useState(0)
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [overlayVisible, setOverlayVisible] = useState({
         overlay: "none",
         active: false,
@@ -24,8 +25,9 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount}) => {
       useEffect(()=>{
         const exploreCouponResp = async ()=>{
             try {
-              const resp = await fetchApi('/get-coupons-to-explore', 'post')
-              setExploreCoupon(resp?.data?.data?.data)
+              setLoading(true)
+              const resp = await fetchApi('/get-coupons-to-explore', 'post', customerDetails)
+              setExploreCoupon(resp?.data?.data)
             } catch (error) {
               console.log(error);
             } finally {
@@ -108,11 +110,12 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount}) => {
                     <h4 style={yourCouponTab && activeTabStyles} onClick={()=> handleMainTab("yourcoupons")} >Your Coupons</h4>
                 </div>
                 <div class="walletCoinsBox">
-                    <img src="https://media.farziengineer.co/farziwallet/coin-icon.png" alt="" />
+                    <div class="coinIcon"></div>
                     <p>{walletAmount}</p>
                 </div>
             </div>
             { availableTab && (
+              loading ? <div className="loader"><Loading/></div> :
                 <div>
                     <div class="viewAllFeaturedComponent">
                         <h3>Featured Components</h3>
@@ -125,20 +128,19 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount}) => {
                                 couponPrice={card.amount}
                                 couponDesc={card.title}
                                 couponImgLink={card.image}
-                                coinImgLink={"https://media.farziengineer.co/farziwallet/coin-icon.png"}
                             />
                             ))}
                         </div>
                     </div>
                     <div class="reedemfcCoins">
-                        <h3>Redeem FC Coins</h3>
+                        <h3>Redeem {window.fc_loyalty_vars.coin_name} Coins</h3>
                         <div onClick={handleRedeemFCCoin} class="reedemfcCoinsCard">
                             <div>
                                 <img src="https://media.farziengineer.co/farziwallet/voucher-icon.png" alt="" />
                             </div>
                             <div>
-                                <h5>100 FC Coins = ₹100</h5>
-                                <p>Use FC Coins to create a custom discount coupon</p>
+                                <h5>100 {window.fc_loyalty_vars.coin_name} Coins = ₹100</h5>
+                                <p>Use {window.fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
                             </div>
                             <div>
                                 <img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />
@@ -156,7 +158,7 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount}) => {
                                     </div>
                                     <div class="exploreCouponCardText">
                                         <p>{card.heading}</p>
-                                        <p>Unlock for <span><img src="https://media.farziengineer.co/farziwallet/coin-icon.png" alt="" /></span> {card.amount}</p>
+                                        <p class="exploreCouponText">Unlock for <div class="coinIcon"></div> {card.amount}</p>
                                     </div>
                                 </div>
                                 ))
@@ -166,7 +168,7 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount}) => {
             )}
             {exploreCouponVisibilty && <CouponOverlay couponData={exploreCoupon[exploreCouponIdx]} onClick={handleOverlayVisibility}/>}
             { yourCouponTab && (
-                <YourCoupons yourCouponTab={yourCouponTab}/>
+                <YourCoupons customerDetails={customerDetails} yourCouponTab={yourCouponTab}/>
             )}
             {overlayVisible?.active ? (
               <Overlay

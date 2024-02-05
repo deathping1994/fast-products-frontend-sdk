@@ -1,19 +1,32 @@
+// @ts-nocheck
 import { useEffect, useState } from "preact/hooks"
 import fetchApi from "../Utils/FetchApi"
 
-const InviteAndEarnOverlay = ({closeOverlay}) => {
+const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
     const [referralData, setReferralData] = useState({
         referral_code:"",
         path: ""
     })
+    const [showCopied, setShowCopied] = useState(false);
     useEffect(()=>{
-        const fetchReferralCode = async ()=>{
-            const resp = await fetchApi('/get-referral-code', 'post')
-            console.log(resp?.data?.data);
-            setReferralData(resp?.data?.data)
+        try {
+            const fetchReferralCode = async ()=>{
+                const resp = await fetchApi('/get-referral-code', 'post', customerDetails)
+                console.log(resp?.data);
+                setReferralData(resp?.data)
+            }
+            fetchReferralCode()
+        } catch (error) {
+            console.log("error in inviteEarn");
         }
-        fetchReferralCode()
     },[])
+    const copyReferralLinkFunc = ()=>{
+        setShowCopied(true)
+        navigator.clipboard.writeText(window.location.href.slice(0, -1) + referralData.path)
+        setTimeout(()=>{
+            setShowCopied(false)
+        },1000)
+    }
   return (
     <>
         <div class="inviteAndEarnContainer">
@@ -25,14 +38,15 @@ const InviteAndEarnOverlay = ({closeOverlay}) => {
                 <h2>Invite & Earn</h2>
             </div>
             <div class="inviteAndEarnMessage">
-                <h4>Every time you successfully refer friend. You get 200 FC Coins & they get 100 FC Coins</h4>
+                <h4>Every time you successfully refer friend. You get 200 {window.fc_loyalty_vars.coin_name} Coins & they get 100 {window.fc_loyalty_vars.coin_name} Coins</h4>
             </div>
             <div class="inviteEarnTextContainer">
                 <p>copy referral link</p>
             </div>
+            {showCopied && <div class="copied">copied</div>}
             <div class="inviteLinkContainer">
                 <p>{(window.location.href.slice(0, -1) + referralData.path).substring(0,29)}...</p>
-                <img src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
+                <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
             </div>
             <div>
                 <hr class="dashedDivider" />

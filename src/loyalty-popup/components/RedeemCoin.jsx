@@ -1,9 +1,11 @@
-import axios from "axios"
-import { useEffect, useState } from "preact/hooks"
-import { WALLET_API_URI } from ".."
+// @ts-nocheck
+import { useState } from "preact/hooks"
+import Loading from "./Utils/Loading"
+import fetchApi from "./Utils/FetchApi"
 
 const RedeemCoin = ({closePopup}) => {
-    const [rangeValue, setRangeValue] = useState(0)
+    const [rangeValue, setRangeValue] = useState(10)
+    const [loading, setLoading] = useState(false);
     const [redeemCoinCode, setRedeemCoinCode] = useState("")
     const handleChangeRange = (e)=>{
         const {value} = e.target
@@ -11,22 +13,25 @@ const RedeemCoin = ({closePopup}) => {
     }
 
     const getRedeemCoin = async ()=>{
-        const response = await axios.post(`${WALLET_API_URI}/get-code`,
+        try {
+            setLoading(true)
+            const response = await fetchApi(`/get-code`, 'post',
         {
             customer_id: "7734670819630",
             user_hash: "299037b6d401b25374f60cb316c24114",
             couponAmount: rangeValue,
             client_id: "Q2xpZW50OjY=",
-            coupon_title: "Custom Discount: 64 FC Coins for ₹64 off"
-        },
-        {
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            coupon_title: `Custom Discount: 64 ${window.fc_loyalty_vars.coin_name} Coins for ₹64 off`
         })
         setRedeemCoinCode(response?.data?.data?.coupon_code);
+        } catch (error) {
+            console.log("error in redeem coin");
+        } finally {
+            setLoading(false)
+        }
     }
   return (
+    loading ? <div className="loader"><Loading/></div> :
     <>
         <div className="redeemCoinMainContainer">
             <div class="redeemCoinContainer">
@@ -39,13 +44,13 @@ const RedeemCoin = ({closePopup}) => {
                         <h2>Redeem Coins</h2>
                     </div>
                     <div class="redeemHeading">
-                        <h3>Use FC Coins to create a Discount Coupon</h3>
+                        <h3>Use {window.fc_loyalty_vars.coin_name} Coins to create a Discount Coupon</h3>
                     </div>
                     <div class="redeemText">
-                        <p>{rangeValue} FC Coins for ₹{rangeValue} off</p>
+                        <p>{rangeValue} {window.fc_loyalty_vars.coin_name} Coins for ₹{rangeValue} off</p>
                     </div>
                     <div class="redeemRangeContainer">
-                        <input type="range" onChange={handleChangeRange} min={0} max={100} name="coinRange" />
+                        <input type="range" onChange={handleChangeRange} defaultValue={"10"} min={0} max={100} name="coinRange" />
                     </div>
                     {
                         redeemCoinCode === "" 

@@ -4,7 +4,7 @@ import fetchApi from "./Utils/FetchApi";
 import YourCoupons from "./YourCoupons";
 import Loading from "./Utils/Loading";
 
-const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardScreen, walletAmount }) => {
+const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardScreen, walletAmount, customerDetails }) => {
   const [availableTab, setAvailableTab] = useState(true);
   const [yourCouponTab, setYourCouponTab] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -13,8 +13,9 @@ const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardS
     const fetchScratchCard = async ()=>{
       try {
         setLoading(true)
-        const response = await fetchApi('/get-featured-scratch-cards', 'post')
-        setScratchCardData(response?.data?.data)
+        const response = await fetchApi('/get-featured-scratch-cards', 'post', customerDetails)
+        console.log("showscratchCard",response);
+        setScratchCardData(response?.data)
       } catch (error) {
         console.error(error);
       } finally {
@@ -66,10 +67,7 @@ const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardS
           </h4>
         </div>
         <div class="walletCoinsBox">
-          <img
-            src="https://media.farziengineer.co/farziwallet/coin-icon.png"
-            alt=""
-          />
+        <div class="coinIcon"></div>
           <p>{walletAmount}</p>
         </div>
       </div>
@@ -91,7 +89,7 @@ const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardS
         </div>
       )}
       { yourCouponTab && (
-          <YourCoupons yourCouponTab={yourCouponTab}/>
+          <YourCoupons customerDetails={customerDetails} yourCouponTab={yourCouponTab}/>
       )}
     </>
   );
