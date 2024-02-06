@@ -3,7 +3,7 @@ import { useState } from "preact/hooks"
 import Loading from "./Utils/Loading"
 import fetchApi from "./Utils/FetchApi"
 
-const RedeemCoin = ({closePopup}) => {
+const RedeemCoin = ({customerDetails, closePopup}) => {
     const [rangeValue, setRangeValue] = useState(10)
     const [loading, setLoading] = useState(false);
     const [redeemCoinCode, setRedeemCoinCode] = useState("")
@@ -17,13 +17,11 @@ const RedeemCoin = ({closePopup}) => {
             setLoading(true)
             const response = await fetchApi(`/get-code`, 'post',
         {
-            customer_id: "7734670819630",
-            user_hash: "299037b6d401b25374f60cb316c24114",
+            ...customerDetails,
             couponAmount: rangeValue,
-            client_id: "Q2xpZW50OjY=",
-            coupon_title: `Custom Discount: 64 ${window.fc_loyalty_vars.coin_name} Coins for ₹64 off`
+            coupon_title: `Custom Discount: ${rangeValue} ${window.fc_loyalty_vars.coin_name} Coins for ₹${rangeValue} off`
         })
-        setRedeemCoinCode(response?.data?.data?.coupon_code);
+        setRedeemCoinCode(response?.data?.coupon_code);
         } catch (error) {
             console.log("error in redeem coin");
         } finally {

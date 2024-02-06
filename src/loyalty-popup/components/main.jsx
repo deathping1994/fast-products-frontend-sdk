@@ -101,6 +101,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
             }),
           }
         );
+        console.log("fc_refer response", response);
         localStorage.removeItem("fc_refer_hash");
       } catch (err) {
         console.log("error in redeemReferHash", err);
@@ -254,6 +255,15 @@ export function Main({ themeDetailsData, shadowRoot }) {
     setVisibility(!visibilty);
   };
   const changeOverlay = (overlayname) => {
+    const mainPopup = shadowRoot.querySelector(".mainPopup")
+    const scrolledTop = mainPopup.scrollTop
+    mainPopup.style.overflowY = "hidden";
+    const overlay = shadowRoot.querySelector(".overlay")
+    overlay.style.display = "flex"
+    overlay.style.position = "absolute";
+    overlay.style.top = `${scrolledTop}px`;
+    overlay.style.height = "100%";
+    overlay.style.width = "100%";
     setOverlayVisible({
       ...overlayVisible,
       overlay: overlayname,
@@ -262,17 +272,22 @@ export function Main({ themeDetailsData, shadowRoot }) {
   };
 
   const closeOverlay = () => {
-    setOverlayVisible({
-      ...overlayVisible,
-      overlay: "none",
-      active: false,
-    });
+    const mainPopup = shadowRoot.querySelector(".mainPopup")
+    const overlay = shadowRoot.querySelector(".overlay")
+    overlay.style.display = "none"
+    mainPopup.style.overflowY = "scroll";
+      setOverlayVisible({
+        ...overlayVisible,
+        overlay: "none",
+        active: false,
+      });
   };
 
   const handleOverlay = (overlayname) => {
     if (overlayname === "coupon") {
       return (
         <CouponOverlay
+          customerDetails={customerDetails}
           couponData={featuredCoupons[couponCardIdx]}
           onClick={closeOverlay}
         />
@@ -403,6 +418,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
       case "show_all_coupons":
         return (
           <ViewAllCoupons
+          shadowRoot={shadowRoot}
             walletAmount={walletAmount}
             couponCardResponse={featuredCoupons}
             customerDetails={customerDetails}
@@ -520,6 +536,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                 </div>
               </>
             )}
+            <div class="overlay">
             {overlayVisible?.active ? (
               <>
                 <Overlay content={handleOverlay(overlayVisible?.overlay)} />
@@ -527,6 +544,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
             ) : (
               <></>
             )}
+            </div>
           </div>
         </>
       )}

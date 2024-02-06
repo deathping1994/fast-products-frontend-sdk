@@ -3,21 +3,18 @@ import { useState } from "preact/hooks"
 import Loading from "../Utils/Loading"
 import fetchApi from "../Utils/FetchApi"
 
-const CouponOverlay = ({couponData, onClick}) => {
+const CouponOverlay = ({couponData, onClick, customerDetails}) => {
     const [couponCode, setCouponCode] = useState("")
     const [isCouponUnlocked, setIsCouponUnlocked] = useState(false)
     const [loading, setLoading] = useState(false);
     const fetchCouponCode = async ()=>{
         try {
             setLoading(true)
+            console.log("coupon Overlay couponData", couponData);
         const response = await fetchApi('/get-code', 'post',
-        {
-        
-            customer_id: "7734670819630",
-            user_hash: "299037b6d401b25374f60cb316c24114",
-            couponAmount: 10,
-            client_id: "Q2xpZW50OjY=",
-            coupon_title: "Rs. 10 off on Striped Silk Blouse"
+        {   
+            ...customerDetails,
+            couponAmount: couponData?.amount,
         })
         setCouponCode(response?.data?.coupon_code)
         setIsCouponUnlocked(true)
@@ -29,7 +26,7 @@ const CouponOverlay = ({couponData, onClick}) => {
     }
   return (
     <>
-        <div class="unlockCouponContainer">
+        <div class="unlockCouponContainer slide-in-bottom">
             <div class="couponContainer">
                 <div class="crossImg">
                     <img onClick={onClick} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />

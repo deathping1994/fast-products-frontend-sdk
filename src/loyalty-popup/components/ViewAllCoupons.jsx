@@ -8,11 +8,9 @@ import Overlay from "./Overlays/Overlay";
 import YourCoupons from "./YourCoupons";
 import Loading from "./Utils/Loading";
 
-const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails}) => {
+const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shadowRoot}) => {
     const [availableTab, setAvailableTab] = useState(true)
     const [yourCouponTab, setYourCouponTab] = useState(false)
-    const [exploreCouponVisibilty, setExploreCouponVisibilty] = useState(false)
-    const [redeemCoinOverlay, setRedeemCoinOverlay] = useState(false)
     const [exploreCoupon, setExploreCoupon] = useState([])
     const [exploreCouponIdx, setExploreCouponIdx] = useState(0)
     const [couponIdx, setCouponIdx] = useState(0)
@@ -39,15 +37,29 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails}) => 
 
       const handleOverlay = (overlayname) => {
         if (overlayname === "coupon") {
-          return <CouponOverlay couponData={couponCardResponse[couponIdx]} onClick={closeOverlay} />;
+          return <CouponOverlay customerDetails={customerDetails} couponData={couponCardResponse[couponIdx]} onClick={closeOverlay} />;
+        }
+        if(overlayname === "explore"){
+          return <CouponOverlay customerDetails={customerDetails} couponData={exploreCoupon[exploreCouponIdx]} onClick={closeOverlay}/>
+        }
+        if(overlayname === "redeem"){
+          return <RedeemCoin customerDetails={customerDetails} closePopup={closeOverlay}/>
         }
       };
       const handleAndShowCouponOverlay = (idx)=>{
         changeOverlay('coupon')
         setCouponIdx(idx)
-
       }
       const changeOverlay = (overlayname) => {
+        const mainPopup = shadowRoot.querySelector(".mainPopup")
+        const scrolledTop = mainPopup.scrollTop
+        mainPopup.style.overflowY = "hidden";
+        const overlay = shadowRoot.querySelector(".overlay")
+        overlay.style.display = "flex"
+        overlay.style.position = "absolute";
+        overlay.style.top = `${scrolledTop}px`;
+        overlay.style.height = "100%";
+        overlay.style.width = "100%";
         setOverlayVisible({
           ...overlayVisible,
           overlay: overlayname,
@@ -56,6 +68,10 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails}) => 
       };
 
       const closeOverlay = () => {
+        const mainPopup = shadowRoot.querySelector(".mainPopup")
+        const overlay = shadowRoot.querySelector(".overlay")
+        overlay.style.display = "none"
+        mainPopup.style.overflowY = "scroll";
         setOverlayVisible({
           ...overlayVisible,
           overlay: "none",
@@ -74,13 +90,9 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails}) => 
         }
     }
 
-     const handleOverlayVisibility = (idx)=>{
-        setExploreCouponVisibilty(!exploreCouponVisibilty)
+     const handleExploreOverlayVisibility = (idx)=>{
+        changeOverlay("explore")
         setExploreCouponIdx(idx)
-     }
-
-     const handleRedeemFCCoin = ()=>{
-        setRedeemCoinOverlay(!redeemCoinOverlay)
      }
 
       const activeTabStyles = {
@@ -134,7 +146,7 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails}) => 
                     </div>
                     <div class="reedemfcCoins">
                         <h3>Redeem {window.fc_loyalty_vars.coin_name} Coins</h3>
-                        <div onClick={handleRedeemFCCoin} class="reedemfcCoinsCard">
+                        <div onClick={()=> changeOverlay("redeem")} class="reedemfcCoinsCard">
                             <div>
                                 <img src="https://media.farziengineer.co/farziwallet/voucher-icon.png" alt="" />
                             </div>
@@ -147,12 +159,11 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails}) => 
                             </div>
                         </div>
                     </div>
-                    {redeemCoinOverlay && <RedeemCoin closePopup={handleRedeemFCCoin}/>}
                     <div class="exploreCoupons">
                         <h5>Coupons to Explore</h5>
                             {
                                 exploreCoupon.map((card, idx)=>(
-                                <div onClick={()=> handleOverlayVisibility(idx)} class="exploreCouponCard">
+                                <div onClick={()=> handleExploreOverlayVisibility(idx)} class="exploreCouponCard">
                                     <div class="shipImgBox">
                                         <img src={card.image} alt="" />
                                     </div>
@@ -166,17 +177,19 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails}) => 
                     </div>
                 </div>
             )}
-            {exploreCouponVisibilty && <CouponOverlay couponData={exploreCoupon[exploreCouponIdx]} onClick={handleOverlayVisibility}/>}
+            {/* {exploreCouponVisibilty && <div class="overlay"></div>} */}
             { yourCouponTab && (
                 <YourCoupons customerDetails={customerDetails} yourCouponTab={yourCouponTab}/>
             )}
-            {overlayVisible?.active ? (
-              <Overlay
-                content={handleOverlay(overlayVisible?.overlay)}
-              />
-            ) : (
-              <></>
-            )}
+            <div class="overlay">
+              {overlayVisible?.active ? (
+                <>
+                  <Overlay content={handleOverlay(overlayVisible?.overlay)} />
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
         </div>
     </>
   )
