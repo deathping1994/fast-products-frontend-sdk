@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = ".fc-cart-drawer-19212--root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n\n.fc-cart-drawer-19212--root a {\n	text-decoration: none;\n	color: inherit;\n}\n\n.fc-cart-drawer-19212--root {\n	width: 100%;\n}\n\n.fc-cart-drawer-19212--root .cart-container{\n	background-color: red;\n    position: absolute;\n    top: 0;\n    right: 0;\n    height: 100vh;\n    width: 90vw;\n    max-width: 400px;\n}\n";
+  const style = ".fc-cart-drawer-19212--root * {\r\n	padding: 0;\r\n	margin: 0;\r\n	box-sizing: border-box;\r\n}\r\n\r\n.fc-cart-drawer-19212--root a {\r\n	text-decoration: none;\r\n	color: inherit;\r\n}\r\n\r\n.fc-cart-drawer-19212--root {\r\n	width: 100%;\r\n}\r\n\r\n.fc-cart-drawer-19212--root .cart-container{\r\n	background-color: red;\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    height: 100vh;\r\n    width: 90vw;\r\n    max-width: 400px;\r\n}\r\n";
   var r, u, i, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function b() {
     for (var t; t = f.shift(); )

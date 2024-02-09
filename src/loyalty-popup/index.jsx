@@ -1,12 +1,12 @@
 import { render } from "preact";
-import style from "./shadow-style.css?inline";
+import style from "./loyalty-popup.css?inline";
 import { Main } from "./components/main";
 
-export function App({ themeDetailsData }) {
+export function App({ themeDetailsData, shadowRoot }) {
   return (
     <>
       <div class="widget-container">
-        <Main themeDetailsData={themeDetailsData} />
+        <Main themeDetailsData={themeDetailsData} shadowRoot={shadowRoot} />
       </div>
       <div class="widget-styles"></div>
       <div class="widget-custom-styles"></div>
@@ -41,11 +41,9 @@ async function renderLoyaltyPopup() {
     // @ts-ignore
     if (window?.fc_loyalty_vars?.theme_details) {
       // @ts-ignore
-      themeDetailsData = window.fc_loyalty_vars.theme_details;
+      themeDetailsData = window?.fc_loyalty_vars?.theme_details;
     } else {
-      const mainScript = document.querySelector(
-        "#fc-loyalty-popup-script-19212"
-      );
+      const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
       const client_id = mainScript?.getAttribute("data-client-id");
       if(client_id){
         const themeDetailsRes = await fetch(
@@ -62,14 +60,22 @@ async function renderLoyaltyPopup() {
         );
         themeDetailsData = await themeDetailsRes.json();
         // @ts-ignore
-        window.fc_loyalty_vars = { theme_details: themeDetailsData };
+        window.fc_loyalty_vars = {
+          // @ts-ignore
+          ...window.fc_loyalty_vars, 
+          theme_details: themeDetailsData
+        }
+        // @ts-ignore
+        console.log("shadowroot",window.fc_loyalty_vars);
+        
       }
       
     }
+    
     const clientCustomStyleData =
-      themeDetailsData?.data?.apply_wallet_snippet_css || "";
+      themeDetailsData?.data?.custom_css || "";
 
-    render(<App themeDetailsData={themeDetailsData} />, shadowRoot);
+    render(<App themeDetailsData={themeDetailsData} shadowRoot={shadowRoot} />, shadowRoot);
     render(<AppCSS />, shadowRoot?.querySelector(".widget-styles"));
     render(
       <AppCustomCSS customStyles={clientCustomStyleData} />,
