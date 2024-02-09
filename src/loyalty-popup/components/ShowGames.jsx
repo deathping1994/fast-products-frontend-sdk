@@ -4,18 +4,20 @@ import fetchApi from "./Utils/FetchApi";
 import YourCoupons from "./YourCoupons";
 import Loading from "./Utils/Loading";
 
-const ShowGames = ({ funcSetSpinWheelAmount, handleOverlay, showPlayGameScreen, walletAmount, customerDetails }) => {
+const ShowGames = ({ funcSetSpinWheelAmount, handleOverlay, showPlayGameScreen, walletAmount, customerDetails, screenDetails }) => {
   const [availableTab, setAvailableTab] = useState(true);
   const [yourCouponTab, setYourCouponTab] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [gamesData, setGamesData] = useState([])
   
   useEffect(()=>{
     const fetchData = async ()=>{
         try {
+          // setAvailableTab(true)
             setLoading(true)
             const response = await fetchApi('/get-featured-spin-wheels', 'post', customerDetails)
             setGamesData(response?.data)
+            console.log("spin card data", response?.data);
         } catch (error) {
           console.error("Error fetching wallet data:", error);
         } finally {
@@ -30,7 +32,6 @@ const ShowGames = ({ funcSetSpinWheelAmount, handleOverlay, showPlayGameScreen, 
     if (mainTab === "available") {
       setAvailableTab(true);
       setYourCouponTab(false);
-      setLoading(true)
     }
     if (mainTab === "yourcoupons") {
       setAvailableTab(false);
@@ -46,6 +47,7 @@ const ShowGames = ({ funcSetSpinWheelAmount, handleOverlay, showPlayGameScreen, 
     funcSetSpinWheelAmount(amount)
     showPlayGameScreen();
     handleOverlay();
+    setAvailableTab(false)
   };
   return (
     <>

@@ -2,26 +2,46 @@
 import { useState } from "preact/hooks"
 import Loading from "./Utils/Loading"
 import fetchApi from "./Utils/FetchApi"
+import Alert from "./Utils/Alert"
 
 const RedeemCoin = ({customerDetails, closePopup}) => {
+    const [showCopied, setShowCopied] = useState(false)
+    const copyFunc = (code)=>{
+        setShowCopied(true)
+        navigator.clipboard.writeText(code)
+        setTimeout(()=>{
+            setShowCopied(false)
+        },1000)
+    }
     const [rangeValue, setRangeValue] = useState(10)
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false)
     const [redeemCoinCode, setRedeemCoinCode] = useState("")
     const handleChangeRange = (e)=>{
         const {value} = e.target
         setRangeValue(value)
     }
-
+    const showError = ()=>{
+        setError(true)
+        setTimeout(()=>{
+          setError(false)
+        },3000)
+    }
     const getRedeemCoin = async ()=>{
         try {
             setLoading(true)
             const response = await fetchApi(`/get-code`, 'post',
-        {
-            ...customerDetails,
-            couponAmount: rangeValue,
-            coupon_title: `Custom Discount: ${rangeValue} ${window.fc_loyalty_vars.coin_name} Coins for ₹${rangeValue} off`
-        })
-        setRedeemCoinCode(response?.data?.coupon_code);
+            {
+                ...customerDetails,
+                couponAmount: rangeValue,
+                coupon_title: `Custom Discount: ${rangeValue} ${window.fc_loyalty_vars.coin_name} Coins for ₹${rangeValue} off`
+            })
+            if(response?.status !== "success"){
+                console.log("failed overlay");
+                showError()
+                return
+            }
+            setRedeemCoinCode(response?.data?.coupon_code);
         } catch (error) {
             console.log("error in redeem coin");
         } finally {
@@ -29,7 +49,7 @@ const RedeemCoin = ({customerDetails, closePopup}) => {
         }
     }
   return (
-    loading ? <div className="loader"><Loading/></div> :
+    loading ? <div class="loader"><Loading/></div> :
     <>
         <div className="redeemCoinMainContainer">
             <div class="redeemCoinContainer">
@@ -48,18 +68,21 @@ const RedeemCoin = ({customerDetails, closePopup}) => {
                         <p>{rangeValue} {window.fc_loyalty_vars.coin_name} Coins for ₹{rangeValue} off</p>
                     </div>
                     <div class="redeemRangeContainer">
-                        <input type="range" onChange={handleChangeRange} defaultValue={"10"} min={0} max={100} name="coinRange" />
+                        {redeemCoinCode ? <p>Use this code at checkout</p> :<input type="range" onChange={handleChangeRange} defaultValue={"10"} min={0} max={100} name="coinRange" />}
                     </div>
                     {
-                        redeemCoinCode === "" 
-                        ?   <button onClick={getRedeemCoin} class="couponUnlockBtn">Redeem Coins</button> 
-                        :   <div class="couponCodeContainer">
+                        redeemCoinCode === "" ? <button onClick={getRedeemCoin} class="couponUnlockBtn">Redeem Coins</button> :
+                        <>
+                            <div class="couponCodeContainer">
                                 <p>{redeemCoinCode}</p>
-                                <img src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
+                                <img onClick={()=> copyFunc(redeemCoinCode)} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
                             </div>
+                        </>
                     }
+                    {showCopied && <div class="copied">copied</div>}
                 </div>
             </div>
+            {error && <Alert/>}
         </div>
     </>
   )

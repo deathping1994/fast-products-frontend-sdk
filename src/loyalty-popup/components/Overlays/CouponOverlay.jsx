@@ -2,22 +2,35 @@
 import { useState } from "preact/hooks"
 import Loading from "../Utils/Loading"
 import fetchApi from "../Utils/FetchApi"
+import Alert from "../Utils/Alert"
 
 const CouponOverlay = ({couponData, onClick, customerDetails}) => {
     const [couponCode, setCouponCode] = useState("")
     const [isCouponUnlocked, setIsCouponUnlocked] = useState(false)
+    const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false);
+    const showError = ()=>{
+        setError(true)
+        setTimeout(()=>{
+          setError(false)
+        },3000)
+    }
     const fetchCouponCode = async ()=>{
         try {
             setLoading(true)
             console.log("coupon Overlay couponData", couponData);
-        const response = await fetchApi('/get-code', 'post',
-        {   
-            ...customerDetails,
-            couponAmount: couponData?.amount,
-        })
-        setCouponCode(response?.data?.coupon_code)
-        setIsCouponUnlocked(true)
+            const response = await fetchApi('/get-code', 'post',
+            {   
+                ...customerDetails,
+                couponAmount: couponData?.amount,
+            })
+            if(response?.status !== "success"){
+                console.log("failed overlay");
+                showError()
+                return
+            }
+            setCouponCode(response?.data?.coupon_code)
+            setIsCouponUnlocked(true)
         } catch (error) {
             console.log("error in coupon card overlay");
         } finally {
@@ -25,7 +38,8 @@ const CouponOverlay = ({couponData, onClick, customerDetails}) => {
         }
     }
   return (
-    <>
+      loading ? <div className="loader"><Loading/></div> :
+      <>
         <div class="unlockCouponContainer slide-in-bottom">
             <div class="couponContainer">
                 <div class="crossImg">
@@ -49,7 +63,7 @@ const CouponOverlay = ({couponData, onClick, customerDetails}) => {
                 </div>
                 
                 {!isCouponUnlocked && <div>
-                    {loading ? <Loading/> : <button onClick={fetchCouponCode} class="couponUnlockBtn">Tap to Unlock</button>}
+                    {!loading && <button onClick={fetchCouponCode} class="couponUnlockBtn">Tap to Unlock</button>}
                 </div>}
                 {isCouponUnlocked && <div class="couponCodeContainer">
                     <p>{couponCode}</p>
@@ -57,6 +71,7 @@ const CouponOverlay = ({couponData, onClick, customerDetails}) => {
                 </div>}
             </div> 
         </div>
+        {error && <Alert/>}
     </>
   )
 }

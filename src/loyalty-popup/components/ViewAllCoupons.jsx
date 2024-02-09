@@ -99,19 +99,6 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shad
         color: "#373737",
         borderBottom: "2px solid #373737",
     }
-
-    const couponCardTabStyles = {
-        borderRadius: "8px",
-        padding: "8px",
-        fontWeight: "700",
-        fontSize: "14px",
-        cursor: "pointer",
-        backgroundColor: "#ff8f8f"
-    }
-
-    const hideElement = {
-        display: "none"
-    }
     
   return (
     <>

@@ -11,7 +11,7 @@ export function Main(props) {
     clientID: "",
   });
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [themeDetailsData, setThemeDetailsData] = useState({});
 

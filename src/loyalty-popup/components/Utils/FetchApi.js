@@ -13,7 +13,7 @@ const fetchApi = async (route, method, data) => {
   });
 
   const response = await resp.json();
-  console.log("response,", response);
+  // console.log("response,", response);
   return response;
 };
 

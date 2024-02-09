@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { useEffect, useState } from "preact/hooks";
-import { WALLET_API_URI } from "..";
 import WalletCard from "../components/WalletCard";
 import InviteCard from "../components/InviteCard";
 import CouponOverlay from "./Overlays/CouponOverlay";
@@ -20,9 +19,11 @@ import Loading from "./Utils/Loading";
 import Referral from "./Referral";
 import Logout from "./Logout";
 import Alert from "./Utils/Alert";
+import ReferralPopup from "./ReferralPopup";
 
 export function Main({ themeDetailsData, shadowRoot }) {
   const [visibilty, setVisibility] = useState(true);
+  const [referralPopup, setReferralPopup] = useState(false)
   const [gamesVisibility, setGamesVisibility] = useState(false);
   const [walletAmount, setWalletAmount] = useState(0);
   const [walletLogs, setWalletLogs] = useState([]);
@@ -38,7 +39,16 @@ export function Main({ themeDetailsData, shadowRoot }) {
     user_hash: "",
     client_id: "",
   });
-  // console.log("themeDetailData",themeDetailsData);
+  const [screenDetails, setScreenDetails] = useState({
+    screen: "home_screen",
+    screenTitle: "",
+    active: false,
+  });
+  const [overlayVisible, setOverlayVisible] = useState({
+    overlay: "none",
+    active: false,
+  });
+  // console.log("customerDetails",customerDetails);
   const couponCardData = [
 		{
 			"heading": "₹ 10 Voucher",
@@ -67,9 +77,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
 	]
   const handleLogin = ()=>{
     if(!isLoggedIn){
-      setVisibility(false)
-      window.location.href = "/account/login"
+      window.location.href = themeDetailsData?.data?.login_page
     }
+  }
+  const handleCloseReferralPopup = () => {
+    setReferralPopup(false)
   }
   const showError = ()=>{
     setError(true)
@@ -83,29 +95,20 @@ export function Main({ themeDetailsData, shadowRoot }) {
   };
   async function redeemReferHash({ customer_id, user_hash, client_id }) {
     const fc_refer_hash = localStorage.getItem("fc_refer_hash");
+    console.log("fc refer", fc_refer_hash);
     if (fc_refer_hash) {
       try {
         // @ts-ignore
-        const response = await fetch(
-          `${process.env.WALLET_API_URI}/redeem-referral-code`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              customer_id: customer_id,
-              user_hash: user_hash,
-              client_id: client_id,
-              refer_hash: fc_refer_hash,
-            }),
-          }
-        );
+        const response = await fetchApi('/redeem-referral-code', 'post', {
+          ...customerDetails,
+          refer_hash: fc_refer_hash
+        })
+        setReferralPopup(true)
         console.log("fc_refer response", response);
         localStorage.removeItem("fc_refer_hash");
       } catch (err) {
         console.log("error in redeemReferHash", err);
-      }
+      } 
     }
   }
   function setTheme({ themeDetails }) {
@@ -193,10 +196,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
       const fetchData = async () => {
         try {
           setLoading(true);
-          const walletResponse = await fetchApi(
-            "/user-walletlogs",
-            "post",
-            customerDetails
+          const walletResponse = await fetchApi("/user-walletlogs","post",{
+            ...customerDetails
+          }
           );
           console.log(
             "responsedata",
@@ -212,7 +214,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
           const couponResponse = await fetchApi(
             "/get-featured-coupons",
             "post",
-            customerDetails
+            {...customerDetails}
           );
           if(couponResponse?.status !== "success"){
             showError()
@@ -229,24 +231,12 @@ export function Main({ themeDetailsData, shadowRoot }) {
 
       fetchData();
     }
-  }, [customerDetails]);
+  }, [customerDetails, screenDetails?.screen]);
 
   const btnClick = (idx) => {
     changeOverlay("coupon");
     setCouponCardIdx(idx);
   };
-  // screen
-  const [screenDetails, setScreenDetails] = useState({
-    screen: "home_screen",
-    screenTitle: "",
-    active: false,
-  });
-
-  // overlay
-  const [overlayVisible, setOverlayVisible] = useState({
-    overlay: "none",
-    active: false,
-  });
 
   const funcSetSpinWheelAmount = (amount) => {
     setSpinWheelAmount(amount);
@@ -391,6 +381,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
             funcSetSpinWheelAmount={funcSetSpinWheelAmount}
             handleOverlay={handleShowGames}
             showPlayGameScreen={showPlayGameScreen}
+            screenDetails={screenDetails}
           />
         );
       case "transaction_log":
@@ -442,7 +433,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
       />
       {visibilty && (
         <>
-          {error && <Alert/>}
           <div onClick={handleLogin} class="mainPopup">
             {screenDetails?.active ? (
               <Screen
@@ -456,10 +446,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
               </div>
             ) : (
               <>
-              
                 <div class="header">
                   <div class="leftHeader">
-                    <p>Welcome to</p>
+                    <p>Welcome to NEW</p>
                     <h6>Loyalty</h6>
                   </div>
                   <div class="rightHeader">
@@ -496,7 +485,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                   )) :
                   couponCardData.map((card, index) => (
                     <CouponCard
-                      onClick={() => btnClick(index)}
+                      onClick={handleLogin}
                       key={index}
                       couponPrice={card.amount}
                       couponDesc={card.title}
@@ -518,8 +507,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                     {gamesData.map((card, idx) => (
                       <GamesCard
                         key={idx}
-                        btnClick={() =>
-                          handleScreenComponent(card.name, card.gameTitle)
+                        btnClick={() => (isLoggedIn && handleScreenComponent(card.name, card.gameTitle))
                         }
                         gameTitle={card.gameTitle}
                         gameDesc={card.gameDesc}
@@ -531,7 +519,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                     ))}
                   </div>
                   <InviteCard
-                    onClick={() => changeOverlay("invite_and_earn")}
+                    onClick={() => (isLoggedIn && changeOverlay("invite_and_earn"))}
                   />
                 </div>
               </>
@@ -545,9 +533,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
               <></>
             )}
             </div>
+            {error && <Alert/>}
           </div>
         </>
       )}
+      {referralPopup && <ReferralPopup closeReferralPopup={handleCloseReferralPopup}/>}
     </>
   );
 }

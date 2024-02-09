@@ -87,11 +87,36 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
       }
     });
   }
+  const loadD3JS = async () => {
+    const res1 = await fetch("https://d3js.org/d3.v3.min.js");
+    const fileContent1 = await res1.text();
+    var script1 = document.createElement("script");
+    script1.innerHTML = fileContent1;
 
+    console.log("adding", script1);
+
+    document.querySelector("body").appendChild(script1);
+      
+  };
+  useEffect(()=>{
+    loadD3JS().then(()=>{
+      console.log("the script is loaded");
+      console.log(spinWheelRewardData);
+    }).catch((error)=>{
+        console.log("error inlloading d3", error);
+    })
+},[spinWheelRewardData])
   function drawWheel(shadowRoot, data, unlock, winningIdx, spinnedCallback) {
+    console.log("drawwheel", data);
+    console.log("shadowRoot", shadowRoot);
+    console.log("screenContent", shadowRoot.querySelector(".screenContent"));
+    const ggg = shadowRoot.querySelector(".screenContent")
+    const hhh = ggg.querySelector(".spinWheelMainContainer")
+    console.log("mainCOntinaire", hhh);
+    console.log("spinwheel", hhh.querySelector("#fw-chart-spin-wheel"));
     (function auto() {
-      const chartElement = shadowRoot.querySelector("#fw-chart-spin-wheel");
-
+      const chartElement = hhh.querySelector("#fw-chart-spin-wheel")
+      console.log("charele", chartElement);
       var padding = { top: 20, right: 40, bottom: 0, left: 0 },
         w = chartElement.offsetWidth - padding.left - padding.right,
         h = chartElement.offsetWidth - padding.top - padding.bottom,
@@ -109,7 +134,9 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         .data([data])
         .attr("width", w + padding.left + padding.right)
         .attr("height", h + padding.top + padding.bottom);
-      var container = svg
+      console.log(w + padding.left + padding.right);
+      console.log(h + padding.top + padding.bottom);
+        var container = svg
         .append("g")
         .attr("class", "chartholder")
         .attr(
@@ -171,7 +198,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
           return data[i].label;
         })
         .call(wrap, 36);
-
+        console.log("draw comp");
       unlock && container.on("click", spin);
       // @ts-ignore
       function spin(d) {
@@ -283,8 +310,10 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
     }, 1000)
   };
   const fetchSpinWheelReward = async ()=>{
+    const ggg = shadowRoot.querySelector(".screenContent")
+    const hhh = ggg.querySelector(".spinWheelMainContainer")
     try {
-      setLoading(true)
+      // setLoading(true)
       const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
       {
         ...customerDetails,
@@ -292,34 +321,23 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
       })
     console.log("spin wheel reward array",response);
     setSpinWheelRewardData(response?.data)
-    } catch (error) {
-      console.log("error in Playgame");
-    } finally {
-      setLoading(false)
-    }
-  }
-  const loadD3JS = async () => {
-    const res1 = await fetch("https://d3js.org/d3.v3.min.js");
-    const fileContent1 = await res1.text();
-    var script1 = document.createElement("script");
-    script1.innerHTML = fileContent1;
-
-    console.log("adding", script1);
-
-    document.querySelector("body").appendChild(script1);
-    
-    
+    hhh.querySelector("#fw-chart-spin-wheel").innerHTML = ``
     drawWheel(
       shadowRoot,
-      spinWheelRewardData.map((item, index) => {
+      response?.data.map((item, index) => {
         return {
           label: item,
           value: index,
         };
       }),
       false )
-      
-  };
+    } catch (error) {
+      console.log("error in Playgame");
+    } finally {
+      setLoading(false)
+    }
+  }
+  
   
   useEffect(() => {
     console.log("spinwheelamt",spinWheelAmount);
@@ -327,13 +345,10 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
       await fetchSpinWheelReward()
     }
     func()
-  }, [spinWheelAmount]);
+    console.log("amt wala useeffect",  spinWheelRewardData);
+  }, []);
 
-  useEffect(()=>{
-      const unlockSpinWheel = shadowRoot.querySelector("#fw-chart-spin-wheel")
-      unlockSpinWheel.innerHTML = ``
-      loadD3JS();
-  },[spinWheelRewardData])
+  
 
   const playAgain = ()=>{
     setBtnVisibility(false)
@@ -343,7 +358,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
   const closeWinPopup = ()=>{
       showSpinGameScreen('show_spin_wheel', "Wheel of Fortune")
   }
-   
+  
   const drawUnlockSpinWheel = async ()=>{
     const redeemSpinWheel = async ()=>{
         try {
@@ -354,6 +369,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
             couponAmount: spinWheelAmount,
           })
         console.log("win spinwheel data",response?.data);
+        drawWheel
         setWinData(response?.data)
         } catch (error) {
           console.log("error in redeem spinwheel");
@@ -376,9 +392,9 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         };
       }),
       true, winData.win_index, spinCB );
-  },[winData.win_index])
+  },[winData])
   return (
-    loading ? <div className="loader"><Loading/></div> :
+    // loading ? <div className="loader"><Loading/></div> :
     <>
       <div class="spinWheelMainContainer">
         <div class="walletCoinContainer">

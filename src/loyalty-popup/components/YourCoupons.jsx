@@ -9,34 +9,30 @@ const YourCoupons = ({yourCouponTab, customerDetails}) => {
     const [redeemedTab, setRedeemedTab] = useState(false)
     const [yourUnlockedCoupon, setYourUnlockedCoupon] = useState([])
     const [yourRedeemedCoupon, setYourRedeemedCoupon] = useState([])
-    const [loading, setLoading] = useState(true);
-    useEffect(()=>{
-        const fetchUnlockCoupon = async ()=>{
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        const fetchUnlockCoupon = async () => {
             try {
-                setLoading(true)
-                const response = await fetchApi('/get-user-coupons', 'post', customerDetails)
+                setLoading(true);
+                const response = await fetchApi('/get-user-coupons', 'post', customerDetails);
                 setYourUnlockedCoupon(response?.data?.unlocked);
-                setYourRedeemedCoupon(response?.data?.redeemed)
+                setYourRedeemedCoupon(response?.data?.redeemed);
             } catch (error) {
                 console.log(error);
-            } finally{
-                setLoading(false)
+            } finally {
+                setLoading(false);
             }
-        }
-        fetchUnlockCoupon()
-    },[])
+        };
+        fetchUnlockCoupon();
+    }, [customerDetails]);
+    
 
 
-    const handleYourCouponsTab = (tab)=>{
-        if(tab === "unlock"){
-            setUnlockedTab(true)
-            setRedeemedTab(false)
-        }
-        if(tab === "redeem"){
-            setUnlockedTab(false)
-            setRedeemedTab(true)
-        }
-     }
+    const handleYourCouponsTab = (tab) => {
+        setUnlockedTab(tab === "unlock");
+        setRedeemedTab(tab === "redeem");
+    };
+    
 
     const couponCardTabStyles = {
         borderRadius: "8px",
@@ -57,7 +53,7 @@ const YourCoupons = ({yourCouponTab, customerDetails}) => {
                     </div>
                     {
                         unlockedTab && (
-                            loading ? <Loading/> : 
+                            yourUnlockedCoupon.length !== 0 ? 
                             yourUnlockedCoupon.map((ele, idx)=>(
                                 <div key={idx} class="yourCouponsCardContainer">
                                     <div class="youCouponCardLeft">
@@ -70,8 +66,13 @@ const YourCoupons = ({yourCouponTab, customerDetails}) => {
                                         <p>{ele.date}</p>
                                     </div>
                                 </div>
-                            ))
-                            
+                            )) : (
+                                <div class="couponNotFound">
+                                    <img src="https://earthrhythm-media.farziengineer.co/hosted/image_24-c96b6aaf23b2.png" alt="" />
+                                    <h4>Uh-Oh!</h4>
+                                    <p>Looks like you don't have any redeemed coupons</p>
+                                </div>
+                            )
                         )
                     }
                     {

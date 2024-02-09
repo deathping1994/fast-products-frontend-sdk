@@ -7,7 +7,7 @@ import Loading from "./Utils/Loading";
 const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardScreen, walletAmount, customerDetails }) => {
   const [availableTab, setAvailableTab] = useState(true);
   const [yourCouponTab, setYourCouponTab] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [scratchCardData, setScratchCardData] = useState([])
   useEffect(()=>{
     const fetchScratchCard = async ()=>{
@@ -30,7 +30,6 @@ const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardS
     if (mainTab === "available") {
       setAvailableTab(true);
       setYourCouponTab(false);
-      setLoading(true)
     }
     if (mainTab === "yourcoupons") {
       setAvailableTab(false);

@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 const WalletCard = ({walletAmount, onClick}) => {
   return (

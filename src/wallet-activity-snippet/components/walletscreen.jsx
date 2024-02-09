@@ -6,7 +6,7 @@ import { SkeletonLoader } from "../../global/skeletonloader";
 export function WalletScreen({ customerDetails }) {
   const [totalWalletAmount, setTotalWalletAmount] = useState(null);
   const [walletLogs, setWalletLogs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [pageInfo, setpageInfo] = useState({
     endCursor: null,
   });

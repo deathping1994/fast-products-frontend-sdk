@@ -17,7 +17,8 @@
 	--loyalty_popup_theme_background: #000000;
 	--coin-svg-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23000000'/%3E%3Cpath d='M11.6003 6.28047C11.6301 6.19829 11.6845 6.12728 11.7561 6.0771C11.8277 6.02692 11.913 6 12.0004 6C12.0879 6 12.1732 6.02692 12.2448 6.0771C12.3164 6.12728 12.3708 6.19829 12.4006 6.28047L12.8076 7.39245C13.1264 8.2644 13.6316 9.05626 14.2881 9.71274C14.9446 10.3692 15.7364 10.8745 16.6084 11.1933L17.7195 11.6003C17.8017 11.6301 17.8727 11.6845 17.9229 11.7561C17.9731 11.8277 18 11.913 18 12.0004C18 12.0879 17.9731 12.1732 17.9229 12.2448C17.8727 12.3164 17.8017 12.3708 17.7195 12.4006L16.6084 12.8076C15.7364 13.1264 14.9446 13.6316 14.2881 14.2881C13.6316 14.9446 13.1264 15.7364 12.8076 16.6084L12.4006 17.7195C12.3708 17.8017 12.3164 17.8727 12.2448 17.9229C12.1732 17.9731 12.0879 18 12.0004 18C11.913 18 11.8277 17.9731 11.7561 17.9229C11.6845 17.8727 11.6301 17.8017 11.6003 17.7195L11.1933 16.6084C10.8745 15.7364 10.3692 14.9446 9.71274 14.2881C9.05626 13.6316 8.2644 13.1264 7.39245 12.8076L6.28047 12.4006C6.19829 12.3708 6.12728 12.3164 6.0771 12.2448C6.02692 12.1732 6 12.0879 6 12.0004C6 11.913 6.02692 11.8277 6.0771 11.7561C6.12728 11.6845 6.19829 11.6301 6.28047 11.6003L7.39245 11.1933C8.2644 10.8745 9.05626 10.3692 9.71274 9.71274C10.3692 9.05626 10.8745 8.2644 11.1933 7.39245L11.6003 6.28047Z' fill='white'/%3E%3C/svg%3E%0A");
 	--coin-svg-inverted-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 19 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9.5' cy='9.5' r='9.5' fill='white'/%3E%3Cpath d='M9.18353 4.97204C9.20715 4.90698 9.25022 4.85076 9.3069 4.81104C9.36358 4.77131 9.43112 4.75 9.50034 4.75C9.56955 4.75 9.63709 4.77131 9.69377 4.81104C9.75045 4.85076 9.79353 4.90698 9.81714 4.97204L10.1393 5.85236C10.3917 6.54265 10.7917 7.16954 11.3114 7.68925C11.8311 8.20896 12.458 8.60897 13.1483 8.86133L14.028 9.18353C14.093 9.20715 14.1492 9.25022 14.189 9.3069C14.2287 9.36358 14.25 9.43112 14.25 9.50034C14.25 9.56955 14.2287 9.63709 14.189 9.69377C14.1492 9.75045 14.093 9.79353 14.028 9.81714L13.1483 10.1393C12.458 10.3917 11.8311 10.7917 11.3114 11.3114C10.7917 11.8311 10.3917 12.458 10.1393 13.1483L9.81714 14.028C9.79353 14.093 9.75045 14.1492 9.69377 14.189C9.63709 14.2287 9.56955 14.25 9.50034 14.25C9.43112 14.25 9.36358 14.2287 9.3069 14.189C9.25022 14.1492 9.20715 14.093 9.18353 14.028L8.86133 13.1483C8.60897 12.458 8.20896 11.8311 7.68925 11.3114C7.16954 10.7917 6.54265 10.3917 5.85236 10.1393L4.97204 9.81714C4.90698 9.79353 4.85076 9.75045 4.81104 9.69377C4.77131 9.63709 4.75 9.56955 4.75 9.50034C4.75 9.43112 4.77131 9.36358 4.81104 9.3069C4.85076 9.25022 4.90698 9.20715 4.97204 9.18353L5.85236 8.86133C6.54265 8.60897 7.16954 8.20896 7.68925 7.68925C8.20896 7.16954 8.60897 6.54265 8.86133 5.85236L9.18353 4.97204Z' fill='%23000000'/%3E%3C/svg%3E%0A");
-
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	
 }
 
 @keyframes rotate {
@@ -29,7 +30,7 @@
 	}
 }
 
- @-webkit-keyframes slide-in-bottom {
+ @keyframes slide-in-bottom {
 	0% {
 	  -webkit-transform: translateY(calc(100%));
 		ransform: translateY(calc(100%));
@@ -40,7 +41,7 @@
 	}
   }
 
-@-webkit-keyframes slide-in-top {
+  @keyframes slide-in-top {
 	0% {
 	  -webkit-transform: translateY(-1000px);
 			  transform: translateY(-1000px);
@@ -52,16 +53,13 @@
 	  opacity: 1;
 	}
   }
-  @keyframes slide-in-top {
+
+  @keyframes fade-in {
 	0% {
-	  -webkit-transform: translateY(-1000px);
-			  transform: translateY(-1000px);
-	  opacity: 0;
+		opacity: 0;
 	}
 	100% {
-	  -webkit-transform: translateY(0);
-			  transform: translateY(0);
-	  opacity: 1;
+		opacity: 1;
 	}
   }
   
@@ -76,7 +74,7 @@
 	align-items: center;
 	top: 0;
 	z-index: 999999;
-	background-color: rgba(255, 255, 255, 0.61);
+	background-color: rgba(255, 255, 255, 0.6);
 }
 .loaderFullHeight{
 	height: 100vh;
@@ -88,7 +86,7 @@
 	align-items: center;
 	top: 0;
 	z-index: 999999;
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.6);
 }
 .loading-screen {
 	display: flex;
@@ -98,7 +96,7 @@
 }
 
 .loading-screen p {
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .spinner {
@@ -178,7 +176,7 @@ body {
   	align-items: flex-start;
 	height: 10vh;
 	padding: 14px;
-	margin-bottom: 10px;
+	margin-bottom: 14px;
 }
 
 .header p {
@@ -188,7 +186,7 @@ body {
 .header h6 {
 	color: #0c0c0c;
     font-size: 20px;
-	margin: 0;
+	font-weight: 600;
 }
 
 .closePopup {
@@ -199,7 +197,7 @@ body {
 
 .walletCard {
 	background-color: var(--loyalty_popup_theme_background, #000);
-    padding: 12px 13px;
+    padding: 12px;
     border-radius: 16px;
     box-shadow: none;
     margin: 0 14px;
@@ -263,15 +261,19 @@ body {
 .inviteTextSection {
 	color: white;
 	display: flex;
-	align-items: center;
+	align-items: start;
 	margin-bottom: 18px;
 	gap: 8px;
+}
+
+.inviteTextContainer {
+	padding-top: 8px;
 }
 
 .inviteTextContainer h2 {
 	font-weight: 700;
 	font-size: 20px;
-	margin-bottom: 6px;
+	margin-bottom: 10px;
 	line-height: 16px;
 }
 
@@ -352,8 +354,7 @@ body {
 
 .couponText {
 	padding-top: 8px;
-	font-family: Inter, sans-serif;
-	font-weight: 500;
+	font-size: 13px;
 }
 
 .couponCardPrice img {
@@ -365,7 +366,8 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 8px 16px;
+	padding: 16px;
+	padding-bottom: 6px;
 	width: 100%;
 }
 
@@ -447,9 +449,10 @@ body {
 }
 
 .gamesCardTitle {
-	font-weight: 700;
+	font-weight: 600;
     font-size: 12px;
 	text-align: center;
+	color: black;
 }
 
 .gamesCardDesc {
@@ -477,6 +480,11 @@ body {
     justify-content: center;
     align-items: center;
 	border: none;
+}
+
+.inviteWhatsappBtn p {
+	font-size: 14px;
+	font-weight: 500;
 }
 
 .inviteRoundedBtn {
@@ -578,6 +586,7 @@ body {
 .couponCodeContainer img {
 	position: absolute;
 	right: 20px;
+	cursor: pointer;
 }
 
 .inviteLinkContainer p {
@@ -621,13 +630,6 @@ body {
 	animation: slide-in-bottom 0.5s ease-in-out both;
 }
 
-/* .overlayContainer {
-	position: absolute;
-	top: 0;
-	height: 100%;
-	width: 100%;
-} */
-
 .couponOverlayContainer {
 	display: flex;
 	justify-content: start;
@@ -635,17 +637,16 @@ body {
 	gap: 8px;
 }
 
+.couponOverlayContainer h2 {
+	font-size: 30px;
+}
+
 .couponContainer {
 	background-color: white;
 	width: 100%;
 	padding: 16px;
 	border-radius: 16px;
-	/* transition: all 1s ease; */
-	/* animation-name: moveup;
-	animation-duration: 0.5s; */
-	/* -moz-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
-
+	box-shadow: 0 -4px 50px rgba(0,0,0,.25);
 }
 
 .showAllCouponsList {
@@ -795,8 +796,9 @@ body {
 }
 
 .unlockDesc p {
-	font-weight: 400;
-    font-size: 14px
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 16px;
 }
 
 .showGamesHeader {
@@ -1065,10 +1067,6 @@ body {
 	width: 100%;
 	height: 100%;
     background-color: #ffffff8c;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	bottom: -12px;
 }
 
 .redeemCoinContainer {
@@ -1080,8 +1078,8 @@ body {
 	bottom: 0px;
 	border-radius: 8px;
 	box-shadow: 0px -44px 60px -11px rgba(194,194,194,1);
-	/* animation-name: moveup;
-  	animation-duration: 0.5s; */
+	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	
 }
 
 .redeemCloseContainer {
@@ -1103,6 +1101,10 @@ body {
 }
 .redeemRangeContainer {
 	padding: 0px 32px;
+}
+
+.redeemRangeContainer p {
+	text-align: center;
 }
 
 .redeemRangeContainer, .redeemRangeContainer input {
@@ -1311,17 +1313,24 @@ body {
     width: auto;
 }
 .walletLogoutBtn {
-	background-color: white;
+	background-color: #fff;
     border-radius: 4px;
     margin: 0 6px;
     padding: 5px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+	cursor: pointer;
+}
+
+.logoutWallerCardHeading {
+	color: white;
 }
 
 .logoutWalletCard p {
 	color: var(--loyalty_popup_theme_background, #000);
+	font-size: 20px;
+	font-weight: 600;
 }
 
 .exploreCouponText {
@@ -1338,8 +1347,8 @@ body {
 
 .alert {
 	position: absolute;
-	bottom: 5%;
-	left: 40%;
+	bottom: 50%;
+	left: 50%;
 	z-index: 999;
 	background: #160b0b;
 	color: #f4c7c7;
@@ -1351,6 +1360,10 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	animation-name: fade-in;
+	animation-duration: 0.5s;
 }
 
 .alert svg.fw-wallet-alert-popup-error {
@@ -1358,4 +1371,50 @@ body {
 	height: 22px;
 	fill: rgb(244, 67, 54);
 	margin-right: 8px;
+}
+
+.referralPopupContainer {
+	background-color: var(--loyalty_popup_theme_background, #000);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 500px;
+	min-height: fit-content;
+	padding: 16px;
+	border-radius: 16px;
+	z-index: 999;
+	animation-name: fade-in;
+	animation-duration: 1s;
+	margin: 18px;
+	-webkit-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 50px -13px rgba(0,0,0,0.75);
+}
+
+.referralPopupContainer img {
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	background-color: white;
+	border-radius: 8px;
+}
+.referralPopupContainer h2 {
+	font-size: 28px;
+	color: white;
+}
+
+.referralPopupContainer p {
+	font-size: 16px;
+	text-align: center;
+	color: white;
+}
+.referralPopupContainer span {
+	color: gold;
 }

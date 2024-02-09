@@ -1,7 +1,6 @@
 import { render } from "preact";
 import style from "./loyalty-popup.css?inline";
 import { Main } from "./components/main";
-import { useState } from "preact/hooks";
 
 export function App({ themeDetailsData, shadowRoot }) {
   return (

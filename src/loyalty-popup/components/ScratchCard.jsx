@@ -13,6 +13,7 @@
     });
     const init = (context) => {
       let gradientColor = context.createLinearGradient(0, 0, 135, 135);
+      console.log("gradientColor", gradientColor);
       gradientColor.addColorStop(0, "#AEE7FF");
       gradientColor.addColorStop(1, "#AEE7FF");
       context.fillStyle = gradientColor;
@@ -44,26 +45,38 @@
       const screenContent = shadowRoot.querySelector('.screenContent');
       const canvas = screenContent.querySelector('#scratchCardCanvas');
       const context = canvas.getContext("2d");
+      console.log("useeffect", context);
       init(context)
-    }, [shadowRoot]);
-
+    }, [shadowRoot, playAgain]);
 
     const handlePlayAgainBtn = () => {
+      const scratchCardDiv = shadowRoot.querySelector('.scratchCardDiv');
+    
+      const existingCanvas = scratchCardDiv.querySelector('#scratchCardCanvas');
+      if (existingCanvas) {
+        existingCanvas.parentNode.removeChild(existingCanvas);
+      }
+    
+      // Create a new canvas
+      const newCanvas = document.createElement('canvas');
+      newCanvas.setAttribute('id', 'scratchCardCanvas');
+      newCanvas.width = 300;
+      newCanvas.height = 300;
+    
+      // Append the new canvas to the scratchCardDiv element
+      scratchCardDiv.appendChild(newCanvas);
+    
       setPlayAgain(!playAgain);
       setShowWinPopup(false);
       setIsLocked(true);
       setWinMessage({
         win_message: "",
       });
-    
-      // Call the init function after resetting state variables
-      const screenContent = shadowRoot.querySelector('.screenContent');
-      const canvas = screenContent.querySelector('#scratchCardCanvas');
-      canvas.style.backgroundColor = "#AEE7FF"
-      const context = canvas.getContext("2d");
+
+      const context = newCanvas.getContext("2d");    
       init(context);
-    };
     
+    };
     
     const getScratchCardWinData = async ()=>{
       window.scrollTo({
@@ -92,35 +105,8 @@
       const screenContent = shadowRoot.querySelector('.screenContent');
       const canvas = screenContent.querySelector('#scratchCardCanvas');
       const context = canvas.getContext("2d");
-      const init = () => {
-        let gradientColor = context.createLinearGradient(0, 0, 135, 135);
-        gradientColor.addColorStop(0, "#AEE7FF");
-        gradientColor.addColorStop(1, "#AEE7FF");
-        context.fillStyle = gradientColor;
-        context.fillRect(0, 0, 300, 300);
-
-        // Adding dots for seats
-        context.fillStyle = "#94DDFF"; // Set the dot color
-
-        const seatSize = 5; // Size of each seat
-        const gap = 40; // Gap between seats
-
-        const rows = 6; // Number of rows
-        const seatsPerRow = 6; // Number of seats per row
-
-        const startX = 30; // Starting X position
-        const startY = 30; // Starting Y position
-
-        for (let row = 0; row < rows; row++) {
-            for (let seat = 0; seat < seatsPerRow; seat++) {
-                const x = startX + seat * (seatSize + gap);
-                const y = startY + row * (seatSize + gap);
-                context.beginPath();
-                context.arc(x, y, seatSize, 0, 2 * Math.PI);
-                context.fill();
-            }
-        }
-      };
+      console.log("context drawUnlockFunc", context);
+      
       let mouseX = 0;
       let mouseY = 0;
       let isDragged = false;
@@ -221,8 +207,7 @@
               
           }
       };
-
-      init()
+      init(context)
     }
 
     return (
@@ -236,7 +221,7 @@
           <h4>Scratch and Win</h4>
         </div>
         <div class="scratchCardDiv">
-          <h4>{winMessage.win_message}</h4>
+          <h4>{winMessage?.win_message}</h4>
           {isLocked && <img src="https://media.farziengineer.co/farziwallet/lock.png" alt="" />}
           <canvas width={300} height={300} id="scratchCardCanvas"></canvas>
         </div>
@@ -251,7 +236,7 @@
               <div class="spinWinPopup">
                 <h3>Congratulations!</h3>
                 <p>You Won</p>
-                <h2>{winMessage.win_message}</h2>
+                <h2>{winMessage?.win_message}</h2>
                 <button onClick={handlePlayAgainBtn} class="playagainbtn">Play Again</button>
                 <button onClick={()=> showScratchCardScreen('show_scratch_card',"Scratch Card")} class="closebtn">close</button>
               </div>
