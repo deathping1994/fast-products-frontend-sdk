@@ -468,7 +468,7 @@
   }) {
     const [totalWalletAmount, setTotalWalletAmount] = h(null);
     const [walletLogs, setWalletLogs] = h([]);
-    const [loading, setLoading] = h(false);
+    const [loading, setLoading] = h(true);
     const [pageInfo, setpageInfo] = h({
       endCursor: null
     });
@@ -635,7 +635,7 @@
       customerTags: "",
       clientID: ""
     });
-    const [loading, setLoading] = h(false);
+    const [loading, setLoading] = h(true);
     const [themeDetailsData, setThemeDetailsData] = h({});
     const getThemeDetails = async ({
       client_id
