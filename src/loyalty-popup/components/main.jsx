@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useEffect, useState } from "preact/hooks";
 import WalletCard from "../components/WalletCard";
 import InviteCard from "../components/InviteCard";
@@ -24,7 +23,6 @@ import ReferralPopup from "./ReferralPopup";
 export function Main({ themeDetailsData, shadowRoot }) {
   const [visibilty, setVisibility] = useState(true);
   const [referralPopup, setReferralPopup] = useState(false)
-  const [gamesVisibility, setGamesVisibility] = useState(false);
   const [walletAmount, setWalletAmount] = useState(0);
   const [walletLogs, setWalletLogs] = useState([]);
   const [spinWheelAmount, setSpinWheelAmount] = useState(0);
@@ -299,7 +297,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
       gameDesc: "Start at",
       cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
       gamePrice: "10",
-      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
       btnText: "Explore",
     },
     {
@@ -308,7 +305,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
       gameDesc: "Start at",
       cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
       gamePrice: "10",
-      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
       btnText: "Explore",
     },
   ];
@@ -325,7 +321,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     setScreenDetails({
       ...screenDetails,
       screen: "play_spin_wheel",
-      screenTitle: "Wheel of Fortune",
+      screenTitle: "Play Wheel of Fortune",
       active: true,
     });
   };
@@ -333,7 +329,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     setScreenDetails({
       ...screenDetails,
       screen: "play_scratch_card",
-      screenTitle: "Scratch Card",
+      screenTitle: "Scratch Your Card",
       active: true,
     });
   };
@@ -347,11 +343,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
     });
   };
 
-  const handleShowGames = () => {
-    setGamesVisibility(!gamesVisibility);
-    console.log(" handle show games log ");
-  };
-
   const handleScreenComponent = (screenname, screenTitle) => {
     setScreenDetails({
       ...screenDetails,
@@ -360,6 +351,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
       active: true,
     });
   };
+
+
 
   const getScreenComponent = (screenname) => {
     switch (screenname) {
@@ -379,7 +372,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
             customerDetails={customerDetails}
             walletAmount={walletAmount}
             funcSetSpinWheelAmount={funcSetSpinWheelAmount}
-            handleOverlay={handleShowGames}
             showPlayGameScreen={showPlayGameScreen}
             screenDetails={screenDetails}
           />
@@ -402,7 +394,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
             customerDetails={customerDetails}
             walletAmount={walletAmount}
             funcScratchCardAmount={funcScratchCardAmount}
-            handleOverlay={handleShowGames}
             showScratchCardScreen={showScratchCardScreen}
           />
         );
@@ -499,7 +490,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
                   <div class="gamesArenaContainer">
                     <h1>Games Arena</h1>
                     <p>
-                      Play games to win {window.fc_loyalty_vars.coin_name}{" "}
+                      Play games to win {window.
+// @ts-ignore
+                      fc_loyalty_vars.coin_name}{" "}
                       coins, coupons & rewards
                     </p>
                   </div>
@@ -513,7 +506,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
                         gameDesc={card.gameDesc}
                         cardImage={card.cardImage}
                         gamePrice={card.gamePrice}
-                        coinImage={card.coinImage}
                         btnText={card.btnText}
                       />
                     ))}
@@ -533,7 +525,10 @@ export function Main({ themeDetailsData, shadowRoot }) {
               <></>
             )}
             </div>
-            {error && <Alert/>}
+            
+            {error && <
+// @ts-ignore
+            Alert/>}
           </div>
         </>
       )}

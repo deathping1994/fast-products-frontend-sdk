@@ -2172,7 +2172,6 @@ body {\r
   const GamesCard = ({
     btnClick,
     cardImage,
-    coinImage,
     gameTitle,
     gameDesc,
     btnText,
@@ -2215,11 +2214,15 @@ body {\r
     yourCouponTab,
     customerDetails
   }) => {
-    const [unlockedTab, setUnlockedTab] = h(true);
-    const [redeemedTab, setRedeemedTab] = h(false);
+    const [activeTab, setActiveTab] = h("");
     const [yourUnlockedCoupon, setYourUnlockedCoupon] = h([]);
     const [yourRedeemedCoupon, setYourRedeemedCoupon] = h([]);
     const [loading, setLoading] = h(false);
+    if (activeTab === "") {
+      setTimeout(() => {
+        setActiveTab("unlock");
+      }, 0);
+    }
     p(() => {
       const fetchUnlockCoupon = async () => {
         var _a, _b;
@@ -2235,10 +2238,9 @@ body {\r
         }
       };
       fetchUnlockCoupon();
-    }, [customerDetails]);
-    const handleYourCouponsTab = (tab) => {
-      setUnlockedTab(tab === "unlock");
-      setRedeemedTab(tab === "redeem");
+    }, [customerDetails, activeTab]);
+    const handleTab = (tab) => {
+      setActiveTab(tab);
     };
     const couponCardTabStyles = {
       borderRadius: "8px",
@@ -2252,22 +2254,22 @@ body {\r
       className: "loader",
       children: o(Loading, {})
     }) : o(k$1, {
-      children: yourCouponTab && o("div", {
+      children: o("div", {
         class: "yourCouponsCardMainContainer",
         children: [o("div", {
           class: "yourCouponsActiveTab",
           children: [o("div", {
-            style: unlockedTab && couponCardTabStyles,
-            onClick: () => handleYourCouponsTab("unlock"),
+            style: activeTab === "unlock" && couponCardTabStyles,
+            onClick: () => handleTab("unlock"),
             class: "unlockedTab",
             children: "Unlocked"
           }), o("div", {
-            style: redeemedTab && couponCardTabStyles,
-            onClick: () => handleYourCouponsTab("redeem"),
+            style: activeTab === "redeem" && couponCardTabStyles,
+            onClick: () => handleTab("redeem"),
             class: "redeemedTab",
             children: "Redeemed"
           })]
-        }), unlockedTab && (yourUnlockedCoupon.length !== 0 ? yourUnlockedCoupon.map((ele, idx) => o("div", {
+        }), activeTab === "unlock" && (yourUnlockedCoupon.length !== 0 ? yourUnlockedCoupon.map((ele, idx) => o("div", {
           class: "yourCouponsCardContainer",
           children: [o("div", {
             class: "youCouponCardLeft",
@@ -2299,7 +2301,7 @@ body {\r
           }), o("p", {
             children: "Looks like you don't have any redeemed coupons"
           })]
-        })), redeemedTab && (yourRedeemedCoupon.length === 0 ? o("div", {
+        })), activeTab === "redeem" && (yourRedeemedCoupon.length === 0 ? o("div", {
           class: "couponNotFound",
           children: [o("img", {
             src: "https://earthrhythm-media.farziengineer.co/hosted/image_24-c96b6aaf23b2.png",
@@ -2337,16 +2339,19 @@ body {\r
   };
   const ShowGames = ({
     funcSetSpinWheelAmount,
-    handleOverlay,
     showPlayGameScreen,
     walletAmount,
     customerDetails,
     screenDetails
   }) => {
-    const [availableTab, setAvailableTab] = h(true);
-    const [yourCouponTab, setYourCouponTab] = h(false);
+    const [activeTab, setActiveTab] = h("");
     const [loading, setLoading] = h(false);
     const [gamesData, setGamesData] = h([]);
+    if (activeTab === "") {
+      setTimeout(() => {
+        setActiveTab("available");
+      }, 0);
+    }
     p(() => {
       const fetchData = async () => {
         try {
@@ -2361,16 +2366,9 @@ body {\r
         }
       };
       fetchData();
-    }, [availableTab]);
-    const handleMainTab = (mainTab) => {
-      if (mainTab === "available") {
-        setAvailableTab(true);
-        setYourCouponTab(false);
-      }
-      if (mainTab === "yourcoupons") {
-        setAvailableTab(false);
-        setYourCouponTab(true);
-      }
+    }, [customerDetails, activeTab]);
+    const handleTab = (mainTab) => {
+      setActiveTab(mainTab);
     };
     const activeTabStyles = {
       color: "#373737",
@@ -2379,8 +2377,6 @@ body {\r
     const showWheelOfFortune = (amount) => {
       funcSetSpinWheelAmount(amount);
       showPlayGameScreen();
-      handleOverlay();
-      setAvailableTab(false);
     };
     return o(k$1, {
       children: [o("div", {
@@ -2388,25 +2384,23 @@ body {\r
         children: [o("div", {
           class: "viewAllCouponTabText",
           children: [o("h4", {
-            style: availableTab && activeTabStyles,
-            onClick: () => handleMainTab("available"),
+            style: activeTab === "available" && activeTabStyles,
+            onClick: () => handleTab("available"),
             children: "Available"
           }), o("h4", {
-            style: yourCouponTab && activeTabStyles,
-            onClick: () => handleMainTab("yourcoupons"),
+            style: activeTab === "yourcoupons" && activeTabStyles,
+            onClick: () => handleTab("yourcoupons"),
             children: "Your Coupons"
           })]
         }), o("div", {
           class: "walletCoinsBox",
-          children: [o("img", {
-            class: "coinIcon",
-            src: "https://media.farziengineer.co/farziwallet/coin-icon.png",
-            alt: ""
+          children: [o("div", {
+            className: "coinIcon"
           }), o("p", {
             children: walletAmount
           })]
         })]
-      }), availableTab && (loading ? o("div", {
+      }), activeTab === "available" && (loading ? o("div", {
         className: "loader",
         children: o(Loading, {})
       }) : o("div", {
@@ -2416,13 +2410,12 @@ body {\r
           gameDesc: game.description,
           gameTitle: game.title,
           cardImage: game.image,
-          coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
           btnText: "Explore",
           gamePrice: game.amount
         }, idx))
-      })), console.log(gamesData), yourCouponTab && o(YourCoupons, {
+      })), activeTab === "yourcoupons" && o(YourCoupons, {
         customerDetails,
-        yourCouponTab
+        yourCouponTab: activeTab
       })]
     });
   };
@@ -2655,7 +2648,7 @@ body {\r
     const closeWinPopup = () => {
       showSpinGameScreen("show_spin_wheel", "Wheel of Fortune");
     };
-    const drawUnlockSpinWheel = async () => {
+    const drawUnlockSpinWheel = () => {
       const redeemSpinWheel = async () => {
         try {
           setLoading(true);
@@ -2664,87 +2657,89 @@ body {\r
             couponAmount: spinWheelAmount
           });
           console.log("win spinwheel data", response == null ? void 0 : response.data);
-          drawWheel;
           setWinData(response == null ? void 0 : response.data);
+          return response == null ? void 0 : response.data;
         } catch (error) {
           console.log("error in redeem spinwheel");
         } finally {
           setLoading(false);
         }
       };
-      await redeemSpinWheel();
+      redeemSpinWheel().then((data) => {
+        console.log("redepinwheel WIN", data);
+        drawWheel(shadowRoot, spinWheelRewardData.map((item, index) => {
+          return {
+            label: item,
+            value: index
+          };
+        }), true, data == null ? void 0 : data.win_index, spinCB);
+      }).catch((error) => {
+        console.log("error in reddeemo spin wheel");
+      });
       const unlockSpinWheel = shadowRoot.querySelector("#fw-chart-spin-wheel");
       unlockSpinWheel.innerHTML = ``;
       setBtnVisibility(true);
     };
-    p(() => {
-      drawWheel(shadowRoot, spinWheelRewardData.map((item, index) => {
-        return {
-          label: item,
-          value: index
-        };
-      }), true, winData.win_index, spinCB);
-    }, [winData]);
-    return (
-      // loading ? <div className="loader"><Loading/></div> :
-      o(k$1, {
-        children: o("div", {
-          class: "spinWheelMainContainer",
+    return o(k$1, {
+      children: o("div", {
+        class: "spinWheelMainContainer",
+        children: [o("div", {
+          class: "walletCoinContainer",
           children: [o("div", {
-            class: "walletCoinContainer",
+            class: "walletCoinsBox",
             children: [o("div", {
-              class: "walletCoinsBox",
-              children: [o("div", {
-                class: "coinIcon"
-              }), o("p", {
-                children: walletAmount
-              })]
-            }), o("h4", {
-              children: "Spin and Win"
+              class: "coinIcon"
+            }), o("p", {
+              children: walletAmount
             })]
-          }), !btnVisibility && o("div", {
-            class: "lockedIcon",
-            children: o("img", {
-              src: "https://media.farziengineer.co/farziwallet/lock.png",
-              alt: ""
-            })
-          }), o("div", {
-            id: "fw-chart-spin-wheel"
-          }), o("div", {
-            class: "spinWheelBottom",
-            children: [o("hr", {}), btnVisibility ? o("h4", {
-              children: "Click 'SPIN' to start"
-            }) : o("h4", {
-              children: ["Unlock for 10 ", window.fc_loyalty_vars.coin_name, " Coins"]
-            }), !btnVisibility && o("button", {
-              onClick: drawUnlockSpinWheel,
-              class: "couponUnlockBtn",
-              children: "Tap to Unlock"
-            })]
-          }), showWinPopup && o("div", {
-            class: "spinWinContainer",
-            children: o("div", {
-              class: "spinWinPopup",
-              children: [o("h3", {
-                children: "Congratulations!"
-              }), o("p", {
-                children: "You Won"
-              }), o("h2", {
-                children: winData.win_message
-              }), o("button", {
-                onClick: playAgain,
-                class: "playagainbtn",
-                children: "Play Again"
-              }), o("button", {
-                onClick: closeWinPopup,
-                class: "closebtn",
-                children: "close"
-              })]
-            })
+          }), o("h4", {
+            children: "Spin and Win"
           })]
-        })
+        }), !btnVisibility && o("div", {
+          class: "lockedIcon",
+          children: o("img", {
+            src: "https://media.farziengineer.co/farziwallet/lock.png",
+            alt: ""
+          })
+        }), o("div", {
+          id: "fw-chart-spin-wheel"
+        }), o("div", {
+          class: "spinWheelBottom",
+          children: [o("hr", {}), btnVisibility ? o("h4", {
+            children: "Click 'SPIN' to start"
+          }) : o("h4", {
+            children: ["Unlock for 10 ", window.fc_loyalty_vars.coin_name, " Coins"]
+          }), !btnVisibility && o("button", {
+            onClick: drawUnlockSpinWheel,
+            class: "couponUnlockBtn",
+            children: "Tap to Unlock"
+          })]
+        }), loading && o("div", {
+          class: "loader",
+          children: o(Loading, {})
+        }), showWinPopup && o("div", {
+          class: "spinWinContainer",
+          children: o("div", {
+            class: "spinWinPopup",
+            children: [o("h3", {
+              children: "Congratulations!"
+            }), o("p", {
+              children: "You Won"
+            }), o("h2", {
+              children: winData.win_message
+            }), o("button", {
+              onClick: playAgain,
+              class: "playagainbtn",
+              children: "Play Again"
+            }), o("button", {
+              onClick: closeWinPopup,
+              class: "closebtn",
+              children: "close"
+            })]
+          })
+        })]
       })
-    );
+    });
   };
   const Overlay = ({
     content
@@ -2811,15 +2806,18 @@ body {\r
   };
   const ShowScratchCard = ({
     funcScratchCardAmount,
-    handleOverlay,
     showScratchCardScreen,
     walletAmount,
     customerDetails
   }) => {
-    const [availableTab, setAvailableTab] = h(true);
-    const [yourCouponTab, setYourCouponTab] = h(false);
+    const [activeTab, setActiveTab] = h("");
     const [loading, setLoading] = h(false);
     const [scratchCardData, setScratchCardData] = h([]);
+    if (activeTab === "") {
+      setTimeout(() => {
+        setActiveTab("available");
+      }, 0);
+    }
     p(() => {
       const fetchScratchCard = async () => {
         try {
@@ -2834,16 +2832,9 @@ body {\r
         }
       };
       fetchScratchCard();
-    }, [availableTab]);
+    }, [customerDetails, activeTab]);
     const handleMainTab = (mainTab) => {
-      if (mainTab === "available") {
-        setAvailableTab(true);
-        setYourCouponTab(false);
-      }
-      if (mainTab === "yourcoupons") {
-        setAvailableTab(false);
-        setYourCouponTab(true);
-      }
+      setActiveTab(mainTab);
     };
     const activeTabStyles = {
       color: "#373737",
@@ -2852,8 +2843,7 @@ body {\r
     const showScratchCard = (amount) => {
       console.log("scratch card amount ======", amount);
       funcScratchCardAmount(amount);
-      showScratchCardScreen();
-      handleOverlay();
+      showScratchCardScreen("show_scratch_card", "Scratch Card");
     };
     return o(k$1, {
       children: [o("div", {
@@ -2861,11 +2851,11 @@ body {\r
         children: [o("div", {
           class: "viewAllCouponTabText",
           children: [o("h4", {
-            style: availableTab && activeTabStyles,
+            style: activeTab === "available" && activeTabStyles,
             onClick: () => handleMainTab("available"),
             children: "Available"
           }), o("h4", {
-            style: yourCouponTab && activeTabStyles,
+            style: activeTab === "yourcoupons" && activeTabStyles,
             onClick: () => handleMainTab("yourcoupons"),
             children: "Your Coupons"
           })]
@@ -2877,7 +2867,7 @@ body {\r
             children: walletAmount
           })]
         })]
-      }), availableTab && (loading ? o("div", {
+      }), activeTab === "available" && (loading ? o("div", {
         className: "loader",
         children: o(Loading, {})
       }) : o("div", {
@@ -2887,13 +2877,12 @@ body {\r
           gameTitle: game.title,
           gameDesc: game.description,
           cardImage: game.image,
-          coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
           btnText: "Scratch",
           gamePrice: game.amount
         }, idx))
-      })), yourCouponTab && o(YourCoupons, {
+      })), activeTab === "yourcoupons" && o(YourCoupons, {
         customerDetails,
-        yourCouponTab
+        yourCouponTab: activeTab
       })]
     });
   };
@@ -3068,7 +3057,7 @@ body {\r
         class: "loaderFullHeight",
         children: o(Loading, {})
       }), o("div", {
-        class: !loading ? "walletCoinContainer" : "",
+        class: "walletCoinContainer",
         children: [o("div", {
           class: "walletCoinsBox",
           children: [o("div", {
@@ -3547,7 +3536,6 @@ body {\r
   }) {
     const [visibilty, setVisibility] = h(true);
     const [referralPopup, setReferralPopup] = h(false);
-    const [gamesVisibility, setGamesVisibility] = h(false);
     const [walletAmount, setWalletAmount] = h(0);
     const [walletLogs, setWalletLogs] = h([]);
     const [spinWheelAmount, setSpinWheelAmount] = h(0);
@@ -3792,7 +3780,6 @@ body {\r
       gameDesc: "Start at",
       cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
       gamePrice: "10",
-      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
       btnText: "Explore"
     }, {
       name: "show_scratch_card",
@@ -3800,7 +3787,6 @@ body {\r
       gameDesc: "Start at",
       cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
       gamePrice: "10",
-      coinImage: "https://media.farziengineer.co/farziwallet/coin-icon.png",
       btnText: "Explore"
     }];
     p(() => {
@@ -3814,7 +3800,7 @@ body {\r
       setScreenDetails({
         ...screenDetails,
         screen: "play_spin_wheel",
-        screenTitle: "Wheel of Fortune",
+        screenTitle: "Play Wheel of Fortune",
         active: true
       });
     };
@@ -3822,7 +3808,7 @@ body {\r
       setScreenDetails({
         ...screenDetails,
         screen: "play_scratch_card",
-        screenTitle: "Scratch Card",
+        screenTitle: "Scratch Your Card",
         active: true
       });
     };
@@ -3833,10 +3819,6 @@ body {\r
         screenTitle: "",
         active: false
       });
-    };
-    const handleShowGames = () => {
-      setGamesVisibility(!gamesVisibility);
-      console.log(" handle show games log ");
     };
     const handleScreenComponent = (screenname, screenTitle) => {
       setScreenDetails({
@@ -3861,7 +3843,6 @@ body {\r
             customerDetails,
             walletAmount,
             funcSetSpinWheelAmount,
-            handleOverlay: handleShowGames,
             showPlayGameScreen,
             screenDetails
           });
@@ -3882,7 +3863,6 @@ body {\r
             customerDetails,
             walletAmount,
             funcScratchCardAmount,
-            handleOverlay: handleShowGames,
             showScratchCardScreen
           });
         case "show_all_coupons":
@@ -3974,7 +3954,6 @@ body {\r
                   gameDesc: card.gameDesc,
                   cardImage: card.cardImage,
                   gamePrice: card.gamePrice,
-                  coinImage: card.coinImage,
                   btnText: card.btnText
                 }, idx))
               }), o(InviteCard, {
@@ -3988,7 +3967,11 @@ body {\r
                 content: handleOverlay(overlayVisible == null ? void 0 : overlayVisible.overlay)
               })
             }) : o(k$1, {})
-          }), error && o(Alert, {})]
+          }), error && o(
+            // @ts-ignore
+            Alert,
+            {}
+          )]
         })
       }), referralPopup && o(ReferralPopup, {
         closeReferralPopup: handleCloseReferralPopup
