@@ -11,9 +11,7 @@ const ShowGames = ({ funcSetSpinWheelAmount, showPlayGameScreen, walletAmount, c
 
   // forced rendering
   if(activeTab === ""){
-    setTimeout(()=>{
       setActiveTab("available")
-    },0)
   }
   useEffect(() => {
     const fetchData = async () => {
@@ -87,7 +85,7 @@ const ShowGames = ({ funcSetSpinWheelAmount, showPlayGameScreen, walletAmount, c
       )}
 
       {activeTab === "yourcoupons" && (
-        <YourCoupons customerDetails={customerDetails} yourCouponTab={activeTab} />
+        <YourCoupons customerDetails={customerDetails} />
       )}
     </>
   );

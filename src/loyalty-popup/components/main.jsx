@@ -21,7 +21,7 @@ import Alert from "./Utils/Alert";
 import ReferralPopup from "./ReferralPopup";
 
 export function Main({ themeDetailsData, shadowRoot }) {
-  const [visibilty, setVisibility] = useState(true);
+  const [visibilty, setVisibility] = useState(false);
   const [referralPopup, setReferralPopup] = useState(false)
   const [walletAmount, setWalletAmount] = useState(0);
   const [walletLogs, setWalletLogs] = useState([]);
@@ -91,7 +91,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     console.log("func scr card===", amount);
     setScratchCardAmount(amount);
   };
-  async function redeemReferHash({ customer_id, user_hash, client_id }) {
+  async function redeemReferHash() {
     const fc_refer_hash = localStorage.getItem("fc_refer_hash");
     console.log("fc refer", fc_refer_hash);
     if (fc_refer_hash) {
@@ -185,12 +185,12 @@ export function Main({ themeDetailsData, shadowRoot }) {
     // logged in
     if (customer_id) {
       setIsLoggedIn(true);
-      redeemReferHash({ client_id, customer_id, user_hash });
+      redeemReferHash();
     }
   }, []);
 
   useEffect(() => {
-    if (customerDetails.customer_id !== "") {
+    if (customerDetails?.customer_id !== "") {
       const fetchData = async () => {
         try {
           setLoading(true);
@@ -229,7 +229,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
 
       fetchData();
     }
-  }, [customerDetails, screenDetails?.screen]);
+  }, [customerDetails, screenDetails?.screen, referralPopup]);
 
   const btnClick = (idx) => {
     changeOverlay("coupon");
@@ -439,7 +439,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
               <>
                 <div class="header">
                   <div class="leftHeader">
-                    <p>Welcome to NEW</p>
+                    <p>Welcome to</p>
                     <h6>Loyalty</h6>
                   </div>
                   <div class="rightHeader">
@@ -532,7 +532,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
           </div>
         </>
       )}
-      {referralPopup && <ReferralPopup closeReferralPopup={handleCloseReferralPopup}/>}
+      {(referralPopup && customerDetails?.client_id) && <ReferralPopup closeReferralPopup={handleCloseReferralPopup}/>}
     </>
   );
 }

@@ -3,16 +3,14 @@ import fetchApi from "./Utils/FetchApi"
 import Loading from "./Utils/Loading"
 
 
-const YourCoupons = ({yourCouponTab, customerDetails}) => {
+const YourCoupons = ({customerDetails}) => {
     const [activeTab, setActiveTab] = useState("")
     const [yourUnlockedCoupon, setYourUnlockedCoupon] = useState([])
     const [yourRedeemedCoupon, setYourRedeemedCoupon] = useState([])
     const [loading, setLoading] = useState(false);
     // forced rendering
     if(activeTab === ""){
-        setTimeout(()=>{
         setActiveTab("unlock")
-    },0)
     }
     useEffect(() => {
         const fetchUnlockCoupon = async () => {

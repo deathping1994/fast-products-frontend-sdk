@@ -2219,9 +2219,7 @@ body {\r
     const [yourRedeemedCoupon, setYourRedeemedCoupon] = h([]);
     const [loading, setLoading] = h(false);
     if (activeTab === "") {
-      setTimeout(() => {
-        setActiveTab("unlock");
-      }, 0);
+      setActiveTab("unlock");
     }
     p(() => {
       const fetchUnlockCoupon = async () => {
@@ -2348,9 +2346,7 @@ body {\r
     const [loading, setLoading] = h(false);
     const [gamesData, setGamesData] = h([]);
     if (activeTab === "") {
-      setTimeout(() => {
-        setActiveTab("available");
-      }, 0);
+      setActiveTab("available");
     }
     p(() => {
       const fetchData = async () => {
@@ -2814,9 +2810,7 @@ body {\r
     const [loading, setLoading] = h(false);
     const [scratchCardData, setScratchCardData] = h([]);
     if (activeTab === "") {
-      setTimeout(() => {
-        setActiveTab("available");
-      }, 0);
+      setActiveTab("available");
     }
     p(() => {
       const fetchScratchCard = async () => {
@@ -3534,7 +3528,7 @@ body {\r
     themeDetailsData,
     shadowRoot
   }) {
-    const [visibilty, setVisibility] = h(true);
+    const [visibilty, setVisibility] = h(false);
     const [referralPopup, setReferralPopup] = h(false);
     const [walletAmount, setWalletAmount] = h(0);
     const [walletLogs, setWalletLogs] = h([]);
@@ -3600,11 +3594,7 @@ body {\r
       console.log("func scr card===", amount);
       setScratchCardAmount(amount);
     };
-    async function redeemReferHash({
-      customer_id,
-      user_hash,
-      client_id
-    }) {
+    async function redeemReferHash() {
       const fc_refer_hash = localStorage.getItem("fc_refer_hash");
       console.log("fc refer", fc_refer_hash);
       if (fc_refer_hash) {
@@ -3681,15 +3671,11 @@ body {\r
       });
       if (customer_id) {
         setIsLoggedIn(true);
-        redeemReferHash({
-          client_id,
-          customer_id,
-          user_hash
-        });
+        redeemReferHash();
       }
     }, []);
     p(() => {
-      if (customerDetails.customer_id !== "") {
+      if ((customerDetails == null ? void 0 : customerDetails.customer_id) !== "") {
         const fetchData = async () => {
           var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m;
           try {
@@ -3721,7 +3707,7 @@ body {\r
         };
         fetchData();
       }
-    }, [customerDetails, screenDetails == null ? void 0 : screenDetails.screen]);
+    }, [customerDetails, screenDetails == null ? void 0 : screenDetails.screen, referralPopup]);
     const btnClick = (idx) => {
       changeOverlay("coupon");
       setCouponCardIdx(idx);
@@ -3901,7 +3887,7 @@ body {\r
               children: [o("div", {
                 class: "leftHeader",
                 children: [o("p", {
-                  children: "Welcome to NEW"
+                  children: "Welcome to"
                 }), o("h6", {
                   children: "Loyalty"
                 })]
@@ -3973,7 +3959,7 @@ body {\r
             {}
           )]
         })
-      }), referralPopup && o(ReferralPopup, {
+      }), referralPopup && (customerDetails == null ? void 0 : customerDetails.client_id) && o(ReferralPopup, {
         closeReferralPopup: handleCloseReferralPopup
       })]
     });

@@ -10,9 +10,7 @@ const ShowScratchCard = ({funcScratchCardAmount, showScratchCardScreen, walletAm
   const [scratchCardData, setScratchCardData] = useState([])
   // forced rendering
   if(activeTab === ""){
-    setTimeout(()=>{
       setActiveTab("available")
-    },0)
   }
   useEffect(()=>{
     const fetchScratchCard = async ()=>{
@@ -84,7 +82,7 @@ const ShowScratchCard = ({funcScratchCardAmount, showScratchCardScreen, walletAm
         </div>
       )}
       { activeTab === "yourcoupons" && (
-          <YourCoupons customerDetails={customerDetails} yourCouponTab={activeTab}/>
+          <YourCoupons customerDetails={customerDetails} />
       )}
     </>
   );
