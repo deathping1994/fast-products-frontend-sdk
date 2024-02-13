@@ -213,7 +213,7 @@
     return (
       <>
         {loading && <div class="loaderFullHeight"><Loading/></div>}
-        <div class={!loading ? "walletCoinContainer" : ""}>
+        <div class="walletCoinContainer">
           <div class="walletCoinsBox">
             <div class="coinIcon"></div>
             <p>{walletAmount}</p>

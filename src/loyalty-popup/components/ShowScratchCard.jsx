@@ -4,11 +4,14 @@ import fetchApi from "./Utils/FetchApi";
 import YourCoupons from "./YourCoupons";
 import Loading from "./Utils/Loading";
 
-const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardScreen, walletAmount, customerDetails }) => {
-  const [availableTab, setAvailableTab] = useState(true);
-  const [yourCouponTab, setYourCouponTab] = useState(false);
+const ShowScratchCard = ({funcScratchCardAmount, showScratchCardScreen, walletAmount, customerDetails }) => {
+  const [activeTab, setActiveTab] = useState("");
   const [loading, setLoading] = useState(false);
   const [scratchCardData, setScratchCardData] = useState([])
+  // forced rendering
+  if(activeTab === ""){
+      setActiveTab("available")
+  }
   useEffect(()=>{
     const fetchScratchCard = async ()=>{
       try {
@@ -23,18 +26,11 @@ const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardS
       }
     }
     fetchScratchCard()
-  },[availableTab])
+  },[customerDetails, activeTab])
 
 
   const handleMainTab = (mainTab) => {
-    if (mainTab === "available") {
-      setAvailableTab(true);
-      setYourCouponTab(false);
-    }
-    if (mainTab === "yourcoupons") {
-      setAvailableTab(false);
-      setYourCouponTab(true);
-    }
+    setActiveTab(mainTab);
   };
 
   const activeTabStyles = {
@@ -45,21 +41,20 @@ const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardS
   const showScratchCard = (amount) => {
     console.log("scratch card amount ======", amount);
     funcScratchCardAmount(amount)
-    showScratchCardScreen();
-    handleOverlay();
+    showScratchCardScreen("show_scratch_card", "Scratch Card");
   };
   return (
     <>
       <div class="showGamesTab">
         <div class="viewAllCouponTabText">
           <h4
-            style={availableTab && activeTabStyles}
+            style={activeTab === "available" && activeTabStyles}
             onClick={() => handleMainTab("available")}
           >
             Available
           </h4>
           <h4
-            style={yourCouponTab && activeTabStyles}
+            style={activeTab === "yourcoupons" && activeTabStyles}
             onClick={() => handleMainTab("yourcoupons")}
           >
             Your Coupons
@@ -70,7 +65,7 @@ const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardS
           <p>{walletAmount}</p>
         </div>
       </div>
-      {availableTab && (
+      {activeTab === "available" && (
         loading ? <div className="loader"><Loading/></div> :
         <div class="showGamesCards">
           {scratchCardData.map((game, idx) => (
@@ -80,15 +75,14 @@ const ShowScratchCard = ({funcScratchCardAmount, handleOverlay, showScratchCardS
               gameTitle={game.title}
               gameDesc={game.description}
               cardImage={game.image}
-              coinImage={"https://media.farziengineer.co/farziwallet/coin-icon.png"}
               btnText={"Scratch"}
               gamePrice={game.amount}
             />
           ))}
         </div>
       )}
-      { yourCouponTab && (
-          <YourCoupons customerDetails={customerDetails} yourCouponTab={yourCouponTab}/>
+      { activeTab === "yourcoupons" && (
+          <YourCoupons customerDetails={customerDetails} />
       )}
     </>
   );

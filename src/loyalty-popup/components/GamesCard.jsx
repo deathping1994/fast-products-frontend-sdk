@@ -1,4 +1,4 @@
-const GamesCard = ({btnClick, cardImage, coinImage, gameTitle, gameDesc, btnText, gamePrice}) => {
+const GamesCard = ({btnClick, cardImage, gameTitle, gameDesc, btnText, gamePrice}) => {
   return (
     <>
         <div class="gamesMainContainer">

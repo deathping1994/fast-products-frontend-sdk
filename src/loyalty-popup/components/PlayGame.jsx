@@ -1,5 +1,4 @@
-// @ts-nocheck
-// @ts-ignore
+
 import { useEffect, useState } from "preact/hooks";
 import { WALLET_API_URI } from "..";
 import Loading from "./Utils/Loading";
@@ -106,6 +105,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         console.log("error inlloading d3", error);
     })
 },[spinWheelRewardData])
+
   function drawWheel(shadowRoot, data, unlock, winningIdx, spinnedCallback) {
     console.log("drawwheel", data);
     console.log("shadowRoot", shadowRoot);
@@ -348,8 +348,6 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
     console.log("amt wala useeffect",  spinWheelRewardData);
   }, []);
 
-  
-
   const playAgain = ()=>{
     setBtnVisibility(false)
     setShowWinPopup(false)
@@ -359,7 +357,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
       showSpinGameScreen('show_spin_wheel', "Wheel of Fortune")
   }
   
-  const drawUnlockSpinWheel = async ()=>{
+  const drawUnlockSpinWheel = ()=>{
     const redeemSpinWheel = async ()=>{
         try {
           setLoading(true)
@@ -369,32 +367,34 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
             couponAmount: spinWheelAmount,
           })
         console.log("win spinwheel data",response?.data);
-        drawWheel
         setWinData(response?.data)
+        return response?.data
         } catch (error) {
           console.log("error in redeem spinwheel");
         } finally {
           setLoading(false)
         }
     }
-    await redeemSpinWheel()
+    redeemSpinWheel().then((data)=>{
+      console.log("redepinwheel WIN", data);
+      drawWheel(
+        shadowRoot,
+        spinWheelRewardData.map((item, index) => {
+          return {
+            label: item,
+            value: index,
+          };
+        }),
+        true, data?.win_index, spinCB );
+    }).catch((error)=>{
+      console.log("error in reddeemo spin wheel");
+    })
     const unlockSpinWheel = shadowRoot.querySelector("#fw-chart-spin-wheel")
     unlockSpinWheel.innerHTML = ``
     setBtnVisibility(true)
   }
-  useEffect(()=>{
-    drawWheel(
-      shadowRoot,
-      spinWheelRewardData.map((item, index) => {
-        return {
-          label: item,
-          value: index,
-        };
-      }),
-      true, winData.win_index, spinCB );
-  },[winData])
+  
   return (
-    // loading ? <div className="loader"><Loading/></div> :
     <>
       <div class="spinWheelMainContainer">
         <div class="walletCoinContainer">
@@ -413,9 +413,12 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         <div id="fw-chart-spin-wheel"></div>
         <div class="spinWheelBottom">
             <hr />
-            {btnVisibility ? <h4>Click 'SPIN' to start</h4> : <h4>Unlock for 10 {window.fc_loyalty_vars.coin_name} Coins</h4>}
+            {btnVisibility ? <h4>Click 'SPIN' to start</h4> : <h4>Unlock for 10 {window.
+// @ts-ignore
+            fc_loyalty_vars.coin_name} Coins</h4>}
             {!btnVisibility && <button onClick={drawUnlockSpinWheel} class="couponUnlockBtn">Tap to Unlock</button>}
         </div>
+        {loading && <div class="loader"><Loading/></div>}
         {
           showWinPopup && 
           <div class="spinWinContainer">
