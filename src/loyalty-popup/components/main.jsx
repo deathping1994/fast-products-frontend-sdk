@@ -23,6 +23,7 @@ import ReferralPopup from "./ReferralPopup";
 export function Main({ themeDetailsData, shadowRoot }) {
   const [visibilty, setVisibility] = useState(false);
   const [referralPopup, setReferralPopup] = useState(false)
+  const [referedAmount, setReferedAmount] = useState(0)
   const [walletAmount, setWalletAmount] = useState(0);
   const [walletLogs, setWalletLogs] = useState([]);
   const [spinWheelAmount, setSpinWheelAmount] = useState(0);
@@ -46,7 +47,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     overlay: "none",
     active: false,
   });
-  // console.log("customerDetails",customerDetails);
+  console.log("==========running on local===========");
   const couponCardData = [
 		{
 			"heading": "₹ 10 Voucher",
@@ -91,17 +92,21 @@ export function Main({ themeDetailsData, shadowRoot }) {
     console.log("func scr card===", amount);
     setScratchCardAmount(amount);
   };
-  async function redeemReferHash() {
+  async function redeemReferHash({ client_id, customer_id, user_hash }) {
     const fc_refer_hash = localStorage.getItem("fc_refer_hash");
     console.log("fc refer", fc_refer_hash);
     if (fc_refer_hash) {
       try {
+        console.log("hitting redeem referral code");
         // @ts-ignore
         const response = await fetchApi('/redeem-referral-code', 'post', {
-          ...customerDetails,
+          client_id:client_id,
+          customer_id: customer_id,
+          // user_hash: user_hash,
           refer_hash: fc_refer_hash
         })
         setReferralPopup(true)
+        setReferedAmount(response?.data?.referredReward)
         console.log("fc_refer response", response);
         localStorage.removeItem("fc_refer_hash");
       } catch (err) {
@@ -185,7 +190,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
     // logged in
     if (customer_id) {
       setIsLoggedIn(true);
-      redeemReferHash();
+      console.log("reddeem ke upar log", customer_id);
+      redeemReferHash({ client_id, customer_id, user_hash });
     }
   }, []);
 
@@ -532,7 +538,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
           </div>
         </>
       )}
-      {(referralPopup && customerDetails?.client_id) && <ReferralPopup closeReferralPopup={handleCloseReferralPopup}/>}
+      {/* {(referralPopup && customerDetails?.client_id) && <ReferralPopup closeReferralPopup={handleCloseReferralPopup}/>} */}
+      {(referralPopup) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
     </>
   );
 }
