@@ -22,7 +22,7 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
     },[])
     const copyReferralLinkFunc = ()=>{
         setShowCopied(true)
-        navigator.clipboard.writeText(window.location.href.slice(0, -1) + referralData.path)
+        navigator.clipboard.writeText(window.location.origin + referralData.path)
         setTimeout(()=>{
             setShowCopied(false)
         },1000)
