@@ -38,6 +38,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     user_hash: "",
     client_id: "",
   });
+  console.log("customer details", customerDetails);
   const [screenDetails, setScreenDetails] = useState({
     screen: "home_screen",
     screenTitle: "",
@@ -47,7 +48,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     overlay: "none",
     active: false,
   });
-  console.log("==========running on local===========");
+  console.log("========== running on local machine ===========");
   const couponCardData = [
 		{
 			"heading": "₹ 10 Voucher",
@@ -105,10 +106,14 @@ export function Main({ themeDetailsData, shadowRoot }) {
           // user_hash: user_hash,
           refer_hash: fc_refer_hash
         })
-        setReferralPopup(true)
-        setReferedAmount(response?.data?.referredReward)
-        console.log("fc_refer response", response);
-        localStorage.removeItem("fc_refer_hash");
+        if(response?.status === 'success'){
+          setReferralPopup(true)
+          setReferedAmount(response?.data?.referredReward)
+          console.log("fc_refer response", response);
+          localStorage.removeItem("fc_refer_hash");
+          return
+        }
+        console.log("/////////  nhi huva    ///////");
       } catch (err) {
         console.log("error in redeemReferHash", err);
       } 
@@ -538,8 +543,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
           </div>
         </>
       )}
-      {/* {(referralPopup && customerDetails?.client_id) && <ReferralPopup closeReferralPopup={handleCloseReferralPopup}/>} */}
-      {(referralPopup) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
+      {(referralPopup && customerDetails?.client_id) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
+      {/* {(referralPopup) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>} */}
     </>
   );
 }
