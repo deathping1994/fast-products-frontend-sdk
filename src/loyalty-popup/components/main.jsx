@@ -38,7 +38,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     user_hash: "",
     client_id: "",
   });
-  console.log("customer details", customerDetails);
+  // console.log("customer details", customerDetails);
   const [screenDetails, setScreenDetails] = useState({
     screen: "home_screen",
     screenTitle: "",
@@ -48,7 +48,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     overlay: "none",
     active: false,
   });
-  console.log("========== running on local machine ===========");
+  // console.log("========== running on local pr ===========");
   const couponCardData = [
 		{
 			"heading": "₹ 10 Voucher",
@@ -90,15 +90,15 @@ export function Main({ themeDetailsData, shadowRoot }) {
     },3000)
   }
   const funcScratchCardAmount = (amount) => {
-    console.log("func scr card===", amount);
+    // console.log("func scr card===", amount);
     setScratchCardAmount(amount);
   };
   async function redeemReferHash({ client_id, customer_id, user_hash }) {
     const fc_refer_hash = localStorage.getItem("fc_refer_hash");
-    console.log("fc refer", fc_refer_hash);
+    // console.log("fc refer", fc_refer_hash);
     if (fc_refer_hash) {
       try {
-        console.log("hitting redeem referral code");
+        // console.log("hitting redeem referral code");
         // @ts-ignore
         const response = await fetchApi('/redeem-referral-code', 'post', {
           client_id:client_id,
@@ -109,11 +109,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
         if(response?.status === 'success'){
           setReferralPopup(true)
           setReferedAmount(response?.data?.referredReward)
-          console.log("fc_refer response", response);
+          // console.log("fc_refer response", response);
           localStorage.removeItem("fc_refer_hash");
           return
         }
-        console.log("/////////  nhi huva    ///////");
+        // console.log("/////////  nhi huva    ///////");
       } catch (err) {
         console.log("error in redeemReferHash", err);
       } 
@@ -165,7 +165,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   }
   useEffect(() => {
     setTheme({ themeDetails: themeDetailsData });
-    console.log(themeDetailsData);
+    // console.log(themeDetailsData);
   }, [visibilty]);
 
   useEffect(() => {
@@ -195,7 +195,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
     // logged in
     if (customer_id) {
       setIsLoggedIn(true);
-      console.log("reddeem ke upar log", customer_id);
+      // console.log("reddeem ke upar log custID", customer_id);
+      // console.log("reddeem ke userHash", user_hash);
       redeemReferHash({ client_id, customer_id, user_hash });
     }
   }, []);
@@ -209,10 +210,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
             ...customerDetails
           }
           );
-          console.log(
-            "responsedata",
-            walletResponse?.data?.data?.wallet?.wallet?.amount
-          );
+          // console.log("responsedata",walletResponse?.data?.data?.wallet?.wallet?.amount);
           if(walletResponse?.status !== 'success'){
             showError()
           }else{
@@ -228,7 +226,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
           if(couponResponse?.status !== "success"){
             showError()
           }else{
-            console.log(couponResponse?.data);
+            // console.log(couponResponse?.data);
             setFeaturedCoupons(couponResponse?.data);
           }
         } catch (error) {
@@ -544,7 +542,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
         </>
       )}
       {(referralPopup && customerDetails?.client_id) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
-      {/* {(referralPopup) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>} */}
     </>
   );
 }

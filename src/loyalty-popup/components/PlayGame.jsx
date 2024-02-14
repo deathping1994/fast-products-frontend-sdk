@@ -92,31 +92,31 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
     var script1 = document.createElement("script");
     script1.innerHTML = fileContent1;
 
-    console.log("adding", script1);
+    // console.log("adding", script1);
 
     document.querySelector("body").appendChild(script1);
       
   };
   useEffect(()=>{
     loadD3JS().then(()=>{
-      console.log("the script is loaded");
-      console.log(spinWheelRewardData);
+      // console.log("the script is loaded");
+      // console.log(spinWheelRewardData);
     }).catch((error)=>{
         console.log("error inlloading d3", error);
     })
 },[spinWheelRewardData])
 
   function drawWheel(shadowRoot, data, unlock, winningIdx, spinnedCallback) {
-    console.log("drawwheel", data);
-    console.log("shadowRoot", shadowRoot);
-    console.log("screenContent", shadowRoot.querySelector(".screenContent"));
+    // console.log("drawwheel", data);
+    // console.log("shadowRoot", shadowRoot);
+    // console.log("screenContent", shadowRoot.querySelector(".screenContent"));
     const ggg = shadowRoot.querySelector(".screenContent")
     const hhh = ggg.querySelector(".spinWheelMainContainer")
-    console.log("mainCOntinaire", hhh);
-    console.log("spinwheel", hhh.querySelector("#fw-chart-spin-wheel"));
+    // console.log("mainCOntinaire", hhh);
+    // console.log("spinwheel", hhh.querySelector("#fw-chart-spin-wheel"));
     (function auto() {
       const chartElement = hhh.querySelector("#fw-chart-spin-wheel")
-      console.log("charele", chartElement);
+      // console.log("charele", chartElement);
       var padding = { top: 20, right: 40, bottom: 0, left: 0 },
         w = chartElement.offsetWidth - padding.left - padding.right,
         h = chartElement.offsetWidth - padding.top - padding.bottom,
@@ -134,8 +134,8 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         .data([data])
         .attr("width", w + padding.left + padding.right)
         .attr("height", h + padding.top + padding.bottom);
-      console.log(w + padding.left + padding.right);
-      console.log(h + padding.top + padding.bottom);
+      // console.log(w + padding.left + padding.right);
+      // console.log(h + padding.top + padding.bottom);
         var container = svg
         .append("g")
         .attr("class", "chartholder")
@@ -198,7 +198,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
           return data[i].label;
         })
         .call(wrap, 36);
-        console.log("draw comp");
+        // console.log("draw comp");
       unlock && container.on("click", spin);
       // @ts-ignore
       function spin(d) {
@@ -319,7 +319,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         ...customerDetails,
         couponAmount: spinWheelAmount,
       })
-    console.log("spin wheel reward array",response);
+    // console.log("spin wheel reward array",response);
     setSpinWheelRewardData(response?.data)
     hhh.querySelector("#fw-chart-spin-wheel").innerHTML = ``
     drawWheel(
@@ -340,12 +340,12 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
   
   
   useEffect(() => {
-    console.log("spinwheelamt",spinWheelAmount);
+    // console.log("spinwheelamt",spinWheelAmount);
     const func = async ()=>{
       await fetchSpinWheelReward()
     }
     func()
-    console.log("amt wala useeffect",  spinWheelRewardData);
+    // console.log("amt wala useeffect",  spinWheelRewardData);
   }, []);
 
   const playAgain = ()=>{
@@ -366,7 +366,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
             ...customerDetails,
             couponAmount: spinWheelAmount,
           })
-        console.log("win spinwheel data",response?.data);
+        // console.log("win spinwheel data",response?.data);
         setWinData(response?.data)
         return response?.data
         } catch (error) {
@@ -376,7 +376,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         }
     }
     redeemSpinWheel().then((data)=>{
-      console.log("redepinwheel WIN", data);
+      // console.log("redepinwheel WIN", data);
       drawWheel(
         shadowRoot,
         spinWheelRewardData.map((item, index) => {
@@ -387,7 +387,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         }),
         true, data?.win_index, spinCB );
     }).catch((error)=>{
-      console.log("error in reddeemo spin wheel");
+      console.log("error in reddeemo spin wheel", error);
     })
     const unlockSpinWheel = shadowRoot.querySelector("#fw-chart-spin-wheel")
     unlockSpinWheel.innerHTML = ``

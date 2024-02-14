@@ -17,7 +17,7 @@ const ShowScratchCard = ({funcScratchCardAmount, showScratchCardScreen, walletAm
       try {
         setLoading(true)
         const response = await fetchApi('/get-featured-scratch-cards', 'post', customerDetails)
-        console.log("showscratchCard",response);
+        // console.log("showscratchCard",response);
         setScratchCardData(response?.data)
       } catch (error) {
         console.error(error);
@@ -39,7 +39,7 @@ const ShowScratchCard = ({funcScratchCardAmount, showScratchCardScreen, walletAm
   };
 
   const showScratchCard = (amount) => {
-    console.log("scratch card amount ======", amount);
+    // console.log("scratch card amount ======", amount);
     funcScratchCardAmount(amount)
     showScratchCardScreen("show_scratch_card", "Scratch Card");
   };

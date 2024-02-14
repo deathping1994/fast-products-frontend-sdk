@@ -7,6 +7,7 @@ import Alert from "../Utils/Alert"
 const CouponOverlay = ({couponData, onClick, customerDetails}) => {
     const [couponCode, setCouponCode] = useState("")
     const [isCouponUnlocked, setIsCouponUnlocked] = useState(false)
+    const [showCopied, setShowCopied] = useState(false);
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false);
     const showError = ()=>{
@@ -15,24 +16,31 @@ const CouponOverlay = ({couponData, onClick, customerDetails}) => {
           setError(false)
         },3000)
     }
+    const copyReferralLinkFunc = ()=>{
+        setShowCopied(true)
+        navigator.clipboard.writeText(couponCode)
+        setTimeout(()=>{
+            setShowCopied(false)
+        },1000)
+    }
     const fetchCouponCode = async ()=>{
         try {
             setLoading(true)
-            console.log("coupon Overlay couponData", couponData);
+            // console.log("coupon Overlay couponData", couponData);
             const response = await fetchApi('/get-code', 'post',
-            {   
+            {
                 ...customerDetails,
                 couponAmount: couponData?.amount,
             })
             if(response?.status !== "success"){
-                console.log("failed overlay");
+                // console.log("failed overlay");
                 showError()
                 return
             }
             setCouponCode(response?.data?.coupon_code)
             setIsCouponUnlocked(true)
         } catch (error) {
-            console.log("error in coupon card overlay");
+            console.log("error in coupon card overlay", error);
         } finally {
             setLoading(false)
         }
@@ -67,11 +75,12 @@ const CouponOverlay = ({couponData, onClick, customerDetails}) => {
                 </div>}
                 {isCouponUnlocked && <div class="couponCodeContainer">
                     <p>{couponCode}</p>
-                    <img src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
+                    <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
                 </div>}
             </div> 
         </div>
         {error && <Alert/>}
+        {showCopied && <div class="copied">copied</div>}
     </>
   )
 }

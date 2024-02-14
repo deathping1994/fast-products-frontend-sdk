@@ -19,7 +19,7 @@ const ShowGames = ({ funcSetSpinWheelAmount, showPlayGameScreen, walletAmount, c
         setLoading(true);
         const response = await fetchApi('/get-featured-spin-wheels', 'post', customerDetails);
         setGamesData(response?.data);
-        console.log("spin card data", response?.data);
+        // console.log("spin card data", response?.data);
       } catch (error) {
         console.error("Error fetching wallet data:", error);
       } finally {

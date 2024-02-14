@@ -1,23 +1,31 @@
 // @ts-nocheck
 import { useEffect, useState } from "preact/hooks"
 import fetchApi from "../Utils/FetchApi"
+import Alert from "../Utils/Alert";
 
 const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
     const [referralData, setReferralData] = useState({
         referral_code:"",
         path: ""
     })
+    const [error, setError] = useState(false)
+    const showError = ()=>{
+        setError(true)
+        setTimeout(()=>{
+          setError(false)
+        },3000)
+      }
     const [showCopied, setShowCopied] = useState(false);
     useEffect(()=>{
         try {
             const fetchReferralCode = async ()=>{
                 const resp = await fetchApi('/get-referral-code', 'post', customerDetails)
-                console.log(resp?.data);
+                // console.log(resp?.data);
                 setReferralData(resp?.data)
             }
             fetchReferralCode()
         } catch (error) {
-            console.log("error in inviteEarn");
+            showError()
         }
     },[])
     const copyReferralLinkFunc = ()=>{
@@ -64,6 +72,7 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
                 </a>
             </div>
         </div>
+        {error && <Alert/>}
     </>
   )
 }

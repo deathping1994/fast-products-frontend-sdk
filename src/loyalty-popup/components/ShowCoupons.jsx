@@ -7,7 +7,7 @@ const ShowCoupons = ({btnClick, viewAll, customerDetails}) => {
     useEffect(()=>{
       const fetchFetaturedCoupons = async ()=>{
         const response = await fetchApi('/get-featured-coupons', 'post',customerDetails)
-        console.log(response?.data?.data);
+        // console.log(response?.data?.data);
         setFeaturedCoupons(response?.data?.data)
       }
       fetchFetaturedCoupons()
