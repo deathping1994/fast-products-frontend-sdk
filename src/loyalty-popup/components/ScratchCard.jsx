@@ -13,7 +13,7 @@
     });
     const init = (context) => {
       let gradientColor = context.createLinearGradient(0, 0, 135, 135);
-      console.log("gradientColor", gradientColor);
+      // console.log("gradientColor", gradientColor);
       gradientColor.addColorStop(0, "#AEE7FF");
       gradientColor.addColorStop(1, "#AEE7FF");
       context.fillStyle = gradientColor;
@@ -45,7 +45,7 @@
       const screenContent = shadowRoot.querySelector('.screenContent');
       const canvas = screenContent.querySelector('#scratchCardCanvas');
       const context = canvas.getContext("2d");
-      console.log("useeffect", context);
+      // console.log("useeffect", context);
       init(context)
     }, [shadowRoot, playAgain]);
 
@@ -90,10 +90,10 @@
             ...customerDetails,
             couponAmount: scratchCardAmount,
         })
-        console.log("scratchc card resp", response.data);
+        // console.log("scratchc card resp", response.data);
         setWinMessage(response?.data)
       } catch (error) {
-        console.log("error inSC");
+        console.log("error in SC", error);
       } finally {
         setLoading(false)
         drawUnlockedScratchCard()
@@ -105,7 +105,7 @@
       const screenContent = shadowRoot.querySelector('.screenContent');
       const canvas = screenContent.querySelector('#scratchCardCanvas');
       const context = canvas.getContext("2d");
-      console.log("context drawUnlockFunc", context);
+      // console.log("context drawUnlockFunc", context);
       
       let mouseX = 0;
       let mouseY = 0;

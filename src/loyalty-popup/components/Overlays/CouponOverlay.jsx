@@ -26,21 +26,21 @@ const CouponOverlay = ({couponData, onClick, customerDetails}) => {
     const fetchCouponCode = async ()=>{
         try {
             setLoading(true)
-            console.log("coupon Overlay couponData", couponData);
+            // console.log("coupon Overlay couponData", couponData);
             const response = await fetchApi('/get-code', 'post',
             {
                 ...customerDetails,
                 couponAmount: couponData?.amount,
             })
             if(response?.status !== "success"){
-                console.log("failed overlay");
+                // console.log("failed overlay");
                 showError()
                 return
             }
             setCouponCode(response?.data?.coupon_code)
             setIsCouponUnlocked(true)
         } catch (error) {
-            console.log("error in coupon card overlay");
+            console.log("error in coupon card overlay", error);
         } finally {
             setLoading(false)
         }

@@ -37,13 +37,13 @@ const RedeemCoin = ({customerDetails, closePopup}) => {
                 coupon_title: `Custom Discount: ${rangeValue} ${window.fc_loyalty_vars.coin_name} Coins for ₹${rangeValue} off`
             })
             if(response?.status !== "success"){
-                console.log("failed overlay");
+                // console.log("failed overlay");
                 showError()
                 return
             }
             setRedeemCoinCode(response?.data?.coupon_code);
         } catch (error) {
-            console.log("error in redeem coin");
+            console.log("error in redeem coin", error);
         } finally {
             setLoading(false)
         }
