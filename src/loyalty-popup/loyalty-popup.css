@@ -474,7 +474,7 @@ body {
 .inviteWhatsappBtn {
 	height: 40px;
     width: 96%;
-    background-color: #faa;
+    background-color: #29a71a;
     border-radius: 4px;
     display: flex;
     justify-content: center;
@@ -485,17 +485,27 @@ body {
 .inviteWhatsappBtn p {
 	font-size: 14px;
 	font-weight: 500;
+	color: white;
+}
+
+.inviteWhatsappBtn img {
+	filter: brightness(0) invert(1);
 }
 
 .inviteRoundedBtn {
 	width: 40px;
     height: 40px;
-    background-color: #faa;
-    border-radius: 50%;
+    background-color: #fff;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-	border: none;
+	border: 1px solid var(--loyalty_popup_theme_background, #000);
+}
+
+.inviteRoundedBtn img {
+	width: 16px;
+	height: 16px;
 }
 
 .inviteAndEarnContainer {
@@ -559,9 +569,9 @@ body {
 
 .inviteLinkContainer {
 	padding: 12px;
-    background: #faa;
+    background: #fff;
     border-radius: 4px;
-    border: 1px dashed var(--loyalty_popup_theme_background, #000);;
+    border: 1px solid var(--loyalty_popup_theme_background, #000);
     font-size: 16px;
     font-weight: 700;
     display: flex;
@@ -571,9 +581,9 @@ body {
 
 .couponCodeContainer {
 	padding: 12px;
-    background: #faa;
+    background: #fff;
     border-radius: 4px;
-    border: 1px dashed var(--loyalty_popup_theme_background, #000);;
+    border: 1px solid var(--loyalty_popup_theme_background, #000);;
     font-size: 16px;
     font-weight: 700;
     display: flex;

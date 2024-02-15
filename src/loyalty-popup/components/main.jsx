@@ -541,7 +541,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
           </div>
         </>
       )}
-      {(referralPopup && customerDetails?.client_id) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
+      {(referralPopup && customerDetails?.client_id) && <ReferralPopup referedAmount={referedAmount} walletAmount={walletAmount} closeReferralPopup={handleCloseReferralPopup}/>}
     </>
   );
 }

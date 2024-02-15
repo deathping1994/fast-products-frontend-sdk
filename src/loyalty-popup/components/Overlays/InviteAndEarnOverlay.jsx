@@ -63,12 +63,12 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
                 <p>or share with</p>
             </div>
             <div class="sendInvitesBtnContainer">
-                <a href={`https://api.whatsapp.com/send?text=Click%20on%20the%20referral%20link%20below%20and%20get%20rewarded%20with%20100%20FC%20Coins.%20${window.location.href.slice(0, -1) + referralData.path}`} class="inviteWhatsappBtn">
+                <a href={`https://api.whatsapp.com/send?text=SOHNAA offers an exclusive range of gold and diamond jewellery designs online. Your ultimate destination for a premium collection of jewellery. Checkout the exclusive discount offer - ${window.location.origin + referralData.path}`} target="_blank" class="inviteWhatsappBtn">
                     <img src="https://media.farziengineer.co/farziwallet/whatsapp-icon.png" alt="" />
                     <p>Send on whatsapp</p>
                 </a>
-                <a href={`sms://18005555555/?body=Click%20on%20the%20referral%20link%20below%20and%20get%20rewarded%20with%20100%20FC%20Coins.%20${window.location.href.slice(0, -1) + referralData.path}`} class="inviteRoundedBtn">
-                    <img src="https://media.farziengineer.co/farziwallet/share-icon.png" alt="" />
+                <a href={`sms://18005555555/?body=SOHNAA offers an exclusive range of gold and diamond jewellery designs online. Your ultimate destination for a premium collection of jewellery. Checkout the exclusive discount offer - ${window.location.origin + referralData.path}`} target="_blank" class="inviteRoundedBtn">
+                    <img src="https://media.farziengineer.co/farziwallet/share_arrow.png" alt="" />
                 </a>
             </div>
         </div>
