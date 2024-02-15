@@ -97,24 +97,71 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
     document.querySelector("body").appendChild(script1);
       
   };
+  const fetchSpinWheelReward = async ()=>{
+    const ggg = shadowRoot.querySelector(".screenContent")
+    const hhh = ggg.querySelector(".spinWheelMainContainer")
+    try {
+      setLoading(true)
+      const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
+      {
+        ...customerDetails,
+        couponAmount: spinWheelAmount,
+      })
+    // console.log("spin wheel reward array",response);
+    setSpinWheelRewardData(response?.data)
+    hhh.querySelector("#fw-chart-spin-wheel").innerHTML = ``
+    drawWheel(
+      shadowRoot,
+      response?.data.map((item, index) => {
+        return {
+          label: item,
+          value: index,
+        };
+      }),
+      false )
+    } catch (error) {
+      console.log("error in Playgame", error);
+    } finally {
+      setLoading(false)
+    }
+  }
   useEffect(()=>{
+    const fetchRewardArray = async()=>{
+      const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
+      {
+        ...customerDetails,
+        couponAmount: spinWheelAmount,
+      })
+      return response?.data
+    // console.log("spin wheel reward array",response);
+    }
+    // console.log("use effect chala");
     loadD3JS().then(()=>{
-      // console.log("the script is loaded");
-      // console.log(spinWheelRewardData);
+      fetchRewardArray().then((data)=>{
+        // console.log("====== data", data);
+        setSpinWheelRewardData(data)
+        drawWheel(shadowRoot, data.map((item, index) => {
+          return {
+            label: item,
+            value: index,
+          };
+        }), false)
+        setLoading(false)
+      })
+      
     }).catch((error)=>{
         console.log("error inlloading d3", error);
     })
-},[spinWheelRewardData])
+},[])
 
   function drawWheel(shadowRoot, data, unlock, winningIdx, spinnedCallback) {
     // console.log("drawwheel", data);
     // console.log("shadowRoot", shadowRoot);
     // console.log("screenContent", shadowRoot.querySelector(".screenContent"));
-    const ggg = shadowRoot.querySelector(".screenContent")
-    const hhh = ggg.querySelector(".spinWheelMainContainer")
     // console.log("mainCOntinaire", hhh);
-    // console.log("spinwheel", hhh.querySelector("#fw-chart-spin-wheel"));
     (function auto() {
+      const ggg = shadowRoot.querySelector(".screenContent")
+      const hhh = ggg.querySelector(".spinWheelMainContainer")
       const chartElement = hhh.querySelector("#fw-chart-spin-wheel")
       // console.log("charele", chartElement);
       var padding = { top: 20, right: 40, bottom: 0, left: 0 },
@@ -135,7 +182,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         .attr("width", w + padding.left + padding.right)
         .attr("height", h + padding.top + padding.bottom);
       // console.log(w + padding.left + padding.right);
-      // console.log(h + padding.top + padding.bottom);
+      // console.log("ye hai data",data);
         var container = svg
         .append("g")
         .attr("class", "chartholder")
@@ -309,44 +356,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
       setShowWinPopup(true)
     }, 1000)
   };
-  const fetchSpinWheelReward = async ()=>{
-    const ggg = shadowRoot.querySelector(".screenContent")
-    const hhh = ggg.querySelector(".spinWheelMainContainer")
-    try {
-      // setLoading(true)
-      const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
-      {
-        ...customerDetails,
-        couponAmount: spinWheelAmount,
-      })
-    // console.log("spin wheel reward array",response);
-    setSpinWheelRewardData(response?.data)
-    hhh.querySelector("#fw-chart-spin-wheel").innerHTML = ``
-    drawWheel(
-      shadowRoot,
-      response?.data.map((item, index) => {
-        return {
-          label: item,
-          value: index,
-        };
-      }),
-      false )
-    } catch (error) {
-      console.log("error in Playgame");
-    } finally {
-      setLoading(false)
-    }
-  }
-  
-  
-  useEffect(() => {
-    // console.log("spinwheelamt",spinWheelAmount);
-    const func = async ()=>{
-      await fetchSpinWheelReward()
-    }
-    func()
-    // console.log("amt wala useeffect",  spinWheelRewardData);
-  }, []);
+
 
   const playAgain = ()=>{
     setBtnVisibility(false)
