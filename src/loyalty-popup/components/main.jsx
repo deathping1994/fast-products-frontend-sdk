@@ -38,6 +38,21 @@ export function Main({ themeDetailsData, shadowRoot }) {
     user_hash: "",
     client_id: "",
   });
+  const [singleSpinWheel, setSingleSpinWheel] = useState({
+    title: "",
+    description: "",
+    image: "",
+    amount: "",
+    btnText: "",
+  })
+  
+  const [singleScratchCard, setSingleScratchCard] = useState({
+    title: "",
+    description: "",
+    image: "",
+    amount: "",
+    btnText: "",
+  })
   // console.log("customer details", customerDetails);
   const [screenDetails, setScreenDetails] = useState({
     screen: "home_screen",
@@ -229,6 +244,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
             // console.log(couponResponse?.data);
             setFeaturedCoupons(couponResponse?.data);
           }
+
+          const spinWheelResponse = await fetchApi('/get-featured-spin-wheels', 'post', customerDetails);
+          setSingleSpinWheel(spinWheelResponse?.data[0]);
+          const scratchCardResponse = await fetchApi('/get-featured-scratch-cards', 'post', customerDetails)
+          setSingleScratchCard(scratchCardResponse?.data[0])
         } catch (error) {
           console.error("Error fetching wallet data:", error);
         } finally {
@@ -506,18 +526,22 @@ export function Main({ themeDetailsData, shadowRoot }) {
                     </p>
                   </div>
                   <div class="gamesHorizontalList">
-                    {gamesData.map((card, idx) => (
-                      <GamesCard
-                        key={idx}
-                        btnClick={() => (isLoggedIn && handleScreenComponent(card.name, card.gameTitle))
-                        }
-                        gameTitle={card.gameTitle}
-                        gameDesc={card.gameDesc}
-                        cardImage={card.cardImage}
-                        gamePrice={card.gamePrice}
-                        btnText={card.btnText}
+                      <GamesCard 
+                        btnClick={() => (isLoggedIn && handleScreenComponent("show_spin_wheel", "Wheel of Fortune"))}
+                        gameTitle={singleSpinWheel?.title}
+                        gameDesc={singleSpinWheel?.description}
+                        cardImage={singleSpinWheel?.image}
+                        gamePrice={singleSpinWheel?.amount}
+                        btnText={singleSpinWheel?.btnText || "Explore"}
                       />
-                    ))}
+                      <GamesCard 
+                        btnClick={() => (isLoggedIn && handleScreenComponent("show_scratch_card", "Scratch Card"))}
+                        gameTitle={singleScratchCard?.title}
+                        gameDesc={singleScratchCard?.description}
+                        cardImage={singleScratchCard?.image}
+                        gamePrice={singleScratchCard?.amount}
+                        btnText={singleScratchCard?.btnText || "Explore"}
+                      />
                   </div>
                   <InviteCard
                     onClick={() => (isLoggedIn && changeOverlay("invite_and_earn"))}

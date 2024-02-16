@@ -467,6 +467,9 @@ body {
 	display: flex;
 	gap: 16px;
 	width: 100%;
+	scrollbar-width: none;
+	overflow-x: scroll;
+	overflow-y: hidden;
 }
 
 /* Invite and Earn */
