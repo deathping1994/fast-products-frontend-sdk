@@ -11,16 +11,26 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
   const [showWinPopup, setShowWinPopup] = useState(false);
   const [spinWheelRewardData, setSpinWheelRewardData] = useState([])
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({
+    error: false,
+    msg: ""
+  })
   const [winData, setWinData] = useState({
     win_message:"",
     win_index: -1
   })
-  const showError = ()=>{
-    setError(true)
+  const showError = (msg)=>{
+    setError({
+      error: true,
+      msg:msg
+    })
     setTimeout(()=>{
-      setError(false)
-    }, 1000)
+      console.log(error);
+      setError({
+        error: false,
+        msg:msg
+      })
+    }, 3000)
   }
   function winAudio() {
     const audio = new Audio('https://media.farziengineer.co/farziwallet/success.mp3');
@@ -105,10 +115,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
       
   };
   const fetchSpinWheelReward = async ()=>{
-    if(walletAmount < spinWheelAmount){
-      showError()
-      return
-    }
+
     const ggg = shadowRoot.querySelector(".screenContent")
     const hhh = ggg.querySelector(".spinWheelMainContainer")
     try {
@@ -119,17 +126,21 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         couponAmount: spinWheelAmount,
       })
     // console.log("spin wheel reward array",response);
-    setSpinWheelRewardData(response?.data)
-    hhh.querySelector("#fw-chart-spin-wheel").innerHTML = ``
-    drawWheel(
-      shadowRoot,
-      response?.data.map((item, index) => {
-        return {
-          label: item,
-          value: index,
-        };
-      }),
-      false )
+    if(response?.status === "success"){
+      setSpinWheelRewardData(response?.data)
+      hhh.querySelector("#fw-chart-spin-wheel").innerHTML = ``
+      drawWheel(
+        shadowRoot,
+        response?.data.map((item, index) => {
+          return {
+            label: item,
+            value: index,
+          };
+        }),
+        false )
+    }else{
+      showError(response?.error)
+    }
     } catch (error) {
       console.log("error in Playgame", error);
     } finally {
@@ -379,10 +390,6 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
   }
   
   const drawUnlockSpinWheel = ()=>{
-    if(walletAmount < spinWheelAmount){
-      showError()
-      return
-    }
     const redeemSpinWheel = async ()=>{
         try {
           setLoading(true)
@@ -391,9 +398,13 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
             ...customerDetails,
             couponAmount: spinWheelAmount,
           })
+          if(response?.status === "success"){
+            setWinData(response?.data)
+            return response?.data
+          }else{
+            showError(response?.error)
+          }
         // console.log("win spinwheel data",response?.data);
-        setWinData(response?.data)
-        return response?.data
         } catch (error) {
           console.log("error in redeem spinwheel");
         } finally {
@@ -456,7 +467,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
               </div>
             </div>
         }
-        {error && <Alert/>}
+        {error.error && <Alert message={error?.msg}/>}
       </div>
     </>
   );

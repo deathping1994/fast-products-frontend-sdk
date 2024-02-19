@@ -9,15 +9,24 @@ import Alert from "./Utils/Alert";
     const [loading, setLoading] = useState(false);
     const [showWinPopup, setShowWinPopup] = useState(false)
     const [playAgain, setPlayAgain] = useState(false)
-    const [error, setError] = useState(false);
+    const [error, setError] = useState({
+      error:false,
+      msg:""
+    });
     const [winMessage, setWinMessage] = useState({
       win_message: ""
     });
-    const showError = ()=>{
-      setError(true)
+    const showError = (msg)=>{
+      setError({
+        error:true,
+        msg:msg
+    })
       setTimeout(()=>{
-        setError(false)
-      },1000)
+        setError({
+          error:false,
+          msg:""
+      })
+      },3000)
     }
     const init = (context) => {
       let gradientColor = context.createLinearGradient(0, 0, 135, 135);
@@ -87,10 +96,6 @@ import Alert from "./Utils/Alert";
     };
     
     const getScratchCardWinData = async ()=>{
-      if(walletAmount < scratchCardAmount){
-        showError()
-        return
-      }
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -103,15 +108,16 @@ import Alert from "./Utils/Alert";
             couponAmount: scratchCardAmount,
         })
         if(response?.status !== "success"){
-          showError()
+          showError(response?.error)
+        }else{
+          // console.log("scratchc card resp", response.data);
+          setWinMessage(response?.data)
+          drawUnlockedScratchCard()
         }
-        // console.log("scratchc card resp", response.data);
-        setWinMessage(response?.data)
       } catch (error) {
         console.log("error in SC", error);
       } finally {
         setLoading(false)
-        drawUnlockedScratchCard()
       }
     }
 
@@ -203,7 +209,7 @@ import Alert from "./Utils/Alert";
           context.globalCompositeOperation = "destination-out";
           context.beginPath();
           //arc makes circle - x,y,radius,start angle,end angle
-          context.arc(x, y, 12, 0, 2 * Math.PI);
+          context.arc(x, y, 16, 0, 2 * Math.PI);
           context.fill();
 
           const centerX = canvas.width / 2;
@@ -257,7 +263,7 @@ import Alert from "./Utils/Alert";
               </div>
             </div>
         }
-        {error && <Alert/>}
+        {error.error && <Alert message={error?.msg}/>}
       </>
     );
   };

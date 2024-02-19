@@ -8,12 +8,21 @@ const CouponOverlay = ({couponData, onClick, customerDetails}) => {
     const [couponCode, setCouponCode] = useState("")
     const [isCouponUnlocked, setIsCouponUnlocked] = useState(false)
     const [showCopied, setShowCopied] = useState(false);
-    const [error, setError] = useState(false)
+    const [error, setError] = useState({
+        error:false,
+        msg:""
+    })
     const [loading, setLoading] = useState(false);
-    const showError = ()=>{
-        setError(true)
+    const showError = (msg)=>{
+        setError({
+            error:true,
+            msg:msg
+        })
         setTimeout(()=>{
-          setError(false)
+          setError({
+            error:false,
+            msg:""
+        })
         },3000)
     }
     const copyReferralLinkFunc = ()=>{
@@ -34,11 +43,11 @@ const CouponOverlay = ({couponData, onClick, customerDetails}) => {
             })
             if(response?.status !== "success"){
                 // console.log("failed overlay");
-                showError()
-                return
+                showError(response?.error)
+            }else{
+                setCouponCode(response?.data?.coupon_code)
+                setIsCouponUnlocked(true)
             }
-            setCouponCode(response?.data?.coupon_code)
-            setIsCouponUnlocked(true)
         } catch (error) {
             console.log("error in coupon card overlay", error);
         } finally {
@@ -79,7 +88,7 @@ const CouponOverlay = ({couponData, onClick, customerDetails}) => {
                 </div>}
             </div> 
         </div>
-        {error && <Alert/>}
+        {error.error && <Alert message={error?.msg}/>}
         {showCopied && <div class="copied">copied</div>}
     </>
   )

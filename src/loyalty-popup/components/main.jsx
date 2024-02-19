@@ -30,7 +30,10 @@ export function Main({ themeDetailsData, shadowRoot }) {
   const [scratchCardAmount, setScratchCardAmount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [error, setError] = useState(false)
+  const [error, setError] = useState({
+    error: false,
+    msg: ""
+  })
   const [featuredCoupons, setFeaturedCoupons] = useState([]);
   const [couponCardIdx, setCouponCardIdx] = useState(0);
   const [customerDetails, setCustomerDetails] = useState({
@@ -98,10 +101,16 @@ export function Main({ themeDetailsData, shadowRoot }) {
   const handleCloseReferralPopup = () => {
     setReferralPopup(false)
   }
-  const showError = ()=>{
-    setError(true)
+  const showError = (msg)=>{
+    setError({
+      error:true,
+      msg:msg
+    })
     setTimeout(()=>{
-      setError(false)
+      setError({
+        error:false,
+        msg:""
+      })
     },3000)
   }
   const funcScratchCardAmount = (amount) => {
@@ -227,7 +236,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
           );
           // console.log("responsedata",walletResponse?.data?.data?.wallet?.wallet?.amount);
           if(walletResponse?.status !== 'success'){
-            showError()
+            showError("Failed")
           }else{
             setWalletAmount(walletResponse?.data?.data?.wallet?.wallet?.amount);
             setWalletLogs(walletResponse?.data?.data?.wallet?.wallet?.logs?.edges);
@@ -239,9 +248,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
             {...customerDetails}
           );
           if(couponResponse?.status !== "success"){
-            showError()
+            showError(couponResponse?.error)
           }else{
-            // console.log(couponResponse?.data);
+            // console.log("========",couponResponse?.data);
             setFeaturedCoupons(couponResponse?.data);
           }
 
@@ -494,7 +503,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                   </a>
                 </div>
                 <div class="showAllCouponsList">
-                  {isLoggedIn ? featuredCoupons.map((card, index) => (
+                  {isLoggedIn ? featuredCoupons.length !==0 ? featuredCoupons.map((card, index) => (
                     <CouponCard
                       onClick={() => btnClick(index)}
                       key={index}
@@ -502,7 +511,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                       couponDesc={card.title}
                       couponImgLink={card.image}
                     />
-                  )) :
+                  )) :`Featured coupons is blank` :
                   couponCardData.map((card, index) => (
                     <CouponCard
                       onClick={handleLogin}
@@ -559,9 +568,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
             )}
             </div>
             
-            {error && <
-// @ts-ignore
-            Alert/>}
+            {error?.error && <Alert message={error?.msg}/>}
           </div>
         </>
       )}
