@@ -530,7 +530,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                         btnClick={() => (isLoggedIn && handleScreenComponent("show_spin_wheel", "Wheel of Fortune"))}
                         gameTitle={singleSpinWheel?.title}
                         gameDesc={singleSpinWheel?.description}
-                        cardImage={singleSpinWheel?.image}
+                        cardImage={singleSpinWheel?.image || "https://media.farziengineer.co/farziwallet/coupon-image-top.png"}
                         gamePrice={singleSpinWheel?.amount}
                         btnText={singleSpinWheel?.btnText || "Explore"}
                       />
@@ -538,7 +538,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                         btnClick={() => (isLoggedIn && handleScreenComponent("show_scratch_card", "Scratch Card"))}
                         gameTitle={singleScratchCard?.title}
                         gameDesc={singleScratchCard?.description}
-                        cardImage={singleScratchCard?.image}
+                        cardImage={singleScratchCard?.image || "https://media.farziengineer.co/farziwallet/coupon-image-top.png"}
                         gamePrice={singleScratchCard?.amount}
                         btnText={singleScratchCard?.btnText || "Explore"}
                       />

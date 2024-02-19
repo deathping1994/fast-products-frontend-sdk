@@ -3,6 +3,7 @@ import { useEffect, useState } from "preact/hooks";
 import { WALLET_API_URI } from "..";
 import Loading from "./Utils/Loading";
 import fetchApi from "./Utils/FetchApi";
+import Alert from "./Utils/Alert";
 
 const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScreen, customerDetails }) => {
   const spinAudio = new Audio('https://media.farziengineer.co/farziwallet/spinwheel.mp3');
@@ -10,11 +11,17 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
   const [showWinPopup, setShowWinPopup] = useState(false);
   const [spinWheelRewardData, setSpinWheelRewardData] = useState([])
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [winData, setWinData] = useState({
     win_message:"",
     win_index: -1
   })
-
+  const showError = ()=>{
+    setError(true)
+    setTimeout(()=>{
+      setError(false)
+    }, 1000)
+  }
   function winAudio() {
     const audio = new Audio('https://media.farziengineer.co/farziwallet/success.mp3');
     audio.play();
@@ -98,6 +105,10 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
       
   };
   const fetchSpinWheelReward = async ()=>{
+    if(walletAmount < spinWheelAmount){
+      showError()
+      return
+    }
     const ggg = shadowRoot.querySelector(".screenContent")
     const hhh = ggg.querySelector(".spinWheelMainContainer")
     try {
@@ -368,6 +379,10 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
   }
   
   const drawUnlockSpinWheel = ()=>{
+    if(walletAmount < spinWheelAmount){
+      showError()
+      return
+    }
     const redeemSpinWheel = async ()=>{
         try {
           setLoading(true)
@@ -441,6 +456,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
               </div>
             </div>
         }
+        {error && <Alert/>}
       </div>
     </>
   );

@@ -2,15 +2,23 @@
   import { useEffect, useState } from "preact/hooks";
   import Loading from "./Utils/Loading";
   import fetchApi from "./Utils/FetchApi";
+import Alert from "./Utils/Alert";
 
   const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount, showScratchCardScreen, customerDetails }) => {
     const [isLocked, setIsLocked] = useState(true);
     const [loading, setLoading] = useState(false);
     const [showWinPopup, setShowWinPopup] = useState(false)
     const [playAgain, setPlayAgain] = useState(false)
+    const [error, setError] = useState(false);
     const [winMessage, setWinMessage] = useState({
       win_message: ""
     });
+    const showError = ()=>{
+      setError(true)
+      setTimeout(()=>{
+        setError(false)
+      },1000)
+    }
     const init = (context) => {
       let gradientColor = context.createLinearGradient(0, 0, 135, 135);
       // console.log("gradientColor", gradientColor);
@@ -79,6 +87,10 @@
     };
     
     const getScratchCardWinData = async ()=>{
+      if(walletAmount < scratchCardAmount){
+        showError()
+        return
+      }
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -90,6 +102,9 @@
             ...customerDetails,
             couponAmount: scratchCardAmount,
         })
+        if(response?.status !== "success"){
+          showError()
+        }
         // console.log("scratchc card resp", response.data);
         setWinMessage(response?.data)
       } catch (error) {
@@ -242,6 +257,7 @@
               </div>
             </div>
         }
+        {error && <Alert/>}
       </>
     );
   };
