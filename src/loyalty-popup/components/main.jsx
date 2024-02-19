@@ -511,7 +511,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                       couponDesc={card.title}
                       couponImgLink={card.image}
                     />
-                  )) :`Featured coupons is blank` :
+                  )) :<h2 class="noCouponFound">No Coupons Found</h2> :
                   couponCardData.map((card, index) => (
                     <CouponCard
                       onClick={handleLogin}
