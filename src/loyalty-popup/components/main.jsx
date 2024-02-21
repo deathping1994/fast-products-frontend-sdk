@@ -267,7 +267,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
         "post",
         {client_id}
       );
-      console.log("cccc", couponResponse);
       if(couponResponse?.status !== "success"){
         showError(couponResponse?.error)
       }else{
@@ -511,7 +510,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                   </a>
                 </div>
                 <div class="showAllCouponsList">
-                  {featuredCoupons.map((card, index) => (
+                  {featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => (
                     <CouponCard
                       onClick={() => btnClick(index)}
                       key={index}
