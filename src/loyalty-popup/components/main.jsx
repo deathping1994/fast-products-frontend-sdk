@@ -242,18 +242,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
             setWalletLogs(walletResponse?.data?.data?.wallet?.wallet?.logs?.edges);
           }
 
-          const couponResponse = await fetchApi(
-            "/get-featured-coupons",
-            "post",
-            {...customerDetails}
-          );
-          if(couponResponse?.status !== "success"){
-            showError(couponResponse?.error)
-          }else{
-            // console.log("========",couponResponse?.data);
-            setFeaturedCoupons(couponResponse?.data);
-          }
-
           const spinWheelResponse = await fetchApi('/get-featured-spin-wheels', 'post', customerDetails);
           setSingleSpinWheel(spinWheelResponse?.data[0]);
           const scratchCardResponse = await fetchApi('/get-featured-scratch-cards', 'post', customerDetails)
@@ -269,6 +257,25 @@ export function Main({ themeDetailsData, shadowRoot }) {
     }
   }, [customerDetails, screenDetails?.screen, referralPopup]);
 
+  useEffect(()=>{
+    const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
+    const client_id = mainScript.getAttribute("data-client-id");
+    console.log(client_id);
+    const fetch = async ()=>{
+      const couponResponse = await fetchApi(
+        "/get-featured-coupons",
+        "post",
+        {client_id}
+      );
+      if(couponResponse?.status !== "success"){
+        showError(couponResponse?.error)
+      }else{
+        // console.log("========",couponResponse?.data);
+        setFeaturedCoupons(couponResponse?.data);
+      }
+    }
+    fetch()
+  },[])
   const btnClick = (idx) => {
     changeOverlay("coupon");
     setCouponCardIdx(idx);
@@ -503,18 +510,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
                   </a>
                 </div>
                 <div class="showAllCouponsList">
-                  {isLoggedIn ? featuredCoupons.length !==0 ? featuredCoupons.map((card, index) => (
+                  {featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => (
                     <CouponCard
                       onClick={() => btnClick(index)}
-                      key={index}
-                      couponPrice={card.amount}
-                      couponDesc={card.title}
-                      couponImgLink={card.image}
-                    />
-                  )) :<h2 class="noCouponFound">No Coupons Found</h2> :
-                  couponCardData.map((card, index) => (
-                    <CouponCard
-                      onClick={handleLogin}
                       key={index}
                       couponPrice={card.amount}
                       couponDesc={card.title}
