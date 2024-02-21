@@ -30,7 +30,7 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
     },[])
     const copyReferralLinkFunc = ()=>{
         setShowCopied(true)
-        navigator.clipboard.writeText(window.location.origin + referralData.path)
+        navigator.clipboard.writeText(window.location.origin + "/account/register" + referralData.path)
         setTimeout(()=>{
             setShowCopied(false)
         },1000)
@@ -53,7 +53,7 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
             </div>
             {showCopied && <div class="copied">copied</div>}
             <div class="inviteLinkContainer">
-                <p>{(window.location.href.slice(0, -1) + referralData.path).substring(0,29)}...</p>
+                <p>{(`${window.location.origin}/account/register${referralData.path}`).substring(0,29)}...</p>
                 <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
             </div>
             <div>
