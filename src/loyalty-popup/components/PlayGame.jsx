@@ -400,6 +400,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
           })
           if(response?.status === "success"){
             setWinData(response?.data)
+            setBtnVisibility(true)
             return response?.data
           }else{
             showError(response?.error)
@@ -427,7 +428,6 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
     })
     const unlockSpinWheel = shadowRoot.querySelector("#fw-chart-spin-wheel")
     unlockSpinWheel.innerHTML = ``
-    setBtnVisibility(true)
   }
   
   return (

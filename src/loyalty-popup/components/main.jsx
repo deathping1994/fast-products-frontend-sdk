@@ -535,18 +535,18 @@ export function Main({ themeDetailsData, shadowRoot }) {
                   <div class="gamesHorizontalList">
                       <GamesCard 
                         btnClick={() => (isLoggedIn && handleScreenComponent("show_spin_wheel", "Wheel of Fortune"))}
-                        gameTitle={singleSpinWheel?.title}
-                        gameDesc={singleSpinWheel?.description}
-                        cardImage={singleSpinWheel?.image}
-                        gamePrice={singleSpinWheel?.amount}
+                        gameTitle={singleSpinWheel?.title || "Spin and Win"}
+                        gameDesc={singleSpinWheel?.description || "Spin and win coins"}
+                        cardImage={singleSpinWheel?.image || "https://media.farziengineer.co/farziwallet/spin-wheel.png"}
+                        gamePrice={singleSpinWheel?.amount || "10"}
                         btnText={singleSpinWheel?.btnText || "Explore"}
                       />
                       <GamesCard 
                         btnClick={() => (isLoggedIn && handleScreenComponent("show_scratch_card", "Scratch Card"))}
-                        gameTitle={singleScratchCard?.title}
-                        gameDesc={singleScratchCard?.description}
-                        cardImage={singleScratchCard?.image }
-                        gamePrice={singleScratchCard?.amount}
+                        gameTitle={singleScratchCard?.title || "Scratch and Win"}
+                        gameDesc={singleScratchCard?.description || "Scratch and win coins"}
+                        cardImage={singleScratchCard?.image || "https://media.farziengineer.co/farziwallet/scratch-card.png"}
+                        gamePrice={singleScratchCard?.amount || "10"}
                         btnText={singleScratchCard?.btnText || "Explore"}
                       />
                   </div>
