@@ -242,10 +242,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
             setWalletLogs(walletResponse?.data?.data?.wallet?.wallet?.logs?.edges);
           }
 
-          const spinWheelResponse = await fetchApi('/get-featured-spin-wheels', 'post', customerDetails);
-          setSingleSpinWheel(spinWheelResponse?.data[0]);
-          const scratchCardResponse = await fetchApi('/get-featured-scratch-cards', 'post', customerDetails)
-          setSingleScratchCard(scratchCardResponse?.data[0])
         } catch (error) {
           console.error("Error fetching wallet data:", error);
         } finally {
@@ -273,6 +269,10 @@ export function Main({ themeDetailsData, shadowRoot }) {
         // console.log("========",couponResponse?.data);
         setFeaturedCoupons(couponResponse?.data);
       }
+      const spinWheelResponse = await fetchApi('/get-featured-spin-wheels', 'post', {client_id});
+      setSingleSpinWheel(spinWheelResponse?.data[0]);
+      const scratchCardResponse = await fetchApi('/get-featured-scratch-cards', 'post', {client_id})
+      setSingleScratchCard(scratchCardResponse?.data[0])
     }
     fetch()
   },[])
@@ -537,7 +537,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                         btnClick={() => (isLoggedIn && handleScreenComponent("show_spin_wheel", "Wheel of Fortune"))}
                         gameTitle={singleSpinWheel?.title}
                         gameDesc={singleSpinWheel?.description}
-                        cardImage={singleSpinWheel?.image || "https://media.farziengineer.co/farziwallet/coupon-image-top.png"}
+                        cardImage={singleSpinWheel?.image}
                         gamePrice={singleSpinWheel?.amount}
                         btnText={singleSpinWheel?.btnText || "Explore"}
                       />
@@ -545,7 +545,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                         btnClick={() => (isLoggedIn && handleScreenComponent("show_scratch_card", "Scratch Card"))}
                         gameTitle={singleScratchCard?.title}
                         gameDesc={singleScratchCard?.description}
-                        cardImage={singleScratchCard?.image || "https://media.farziengineer.co/farziwallet/coupon-image-top.png"}
+                        cardImage={singleScratchCard?.image }
                         gamePrice={singleScratchCard?.amount}
                         btnText={singleScratchCard?.btnText || "Explore"}
                       />
