@@ -149,7 +149,7 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shad
                     <div class="exploreCoupons">
                         <h5>Coupons to Explore</h5>
                             {
-                                exploreCoupon.length !==0 && exploreCoupon.map((card, idx)=>(
+                                exploreCoupon && exploreCoupon.map((card, idx)=>(
                                 <div onClick={()=> handleExploreOverlayVisibility(idx)} class="exploreCouponCard">
                                     <div class="shipImgBox">
                                         <img src={card.image} alt="" />
