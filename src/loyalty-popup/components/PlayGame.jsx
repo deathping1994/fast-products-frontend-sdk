@@ -266,7 +266,6 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         .text(function (d, i) {
           return data[i].label;
         })
-        .call(wrap, 36);
         // console.log("draw comp");
       unlock && container.on("click", spin);
       // @ts-ignore
