@@ -66,7 +66,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     overlay: "none",
     active: false,
   });
-  console.log("========== running on local pr ===========");
+  // console.log("========== running on local pr ===========");
   const couponCardData = [
 		{
 			"heading": "₹ 10 Voucher",
@@ -232,7 +232,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
         const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
         try {
           setLoading(true);
-          console.log("user_hash", user_hash);
           const walletResponse = await fetchApi("/user-walletlogs","post",{
             ...customerDetails
           }
@@ -259,7 +258,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   useEffect(()=>{
     const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
     const client_id = mainScript.getAttribute("data-client-id");
-    console.log(client_id);
+    // console.log(client_id);
     const fetch = async ()=>{
       const couponResponse = await fetchApi(
         "/get-featured-coupons",
