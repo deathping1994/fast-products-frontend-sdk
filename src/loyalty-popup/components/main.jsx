@@ -212,7 +212,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
           if(walletResponse?.status !== 'success'){
             showError("Failed")
           }else{
-            setWalletAmount(walletResponse?.data?.data?.wallet?.wallet?.amount);
             setWalletLogs(walletResponse?.data?.data?.wallet?.wallet?.logs?.edges);
           }
 
@@ -230,6 +229,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   useEffect(()=>{
     const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
     const client_id = mainScript.getAttribute("data-client-id");
+    const customer_id = mainScript.getAttribute("data-customer-id");
     // console.log(client_id);
     const fetch = async ()=>{
       const couponResponse = await fetchApi(
@@ -250,6 +250,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
       setSingleSpinWheel(spinWheelResponse?.data[0]);
       const scratchCardResponse = await fetchApi('/get-featured-scratch-cards', 'post', {client_id})
       setSingleScratchCard(scratchCardResponse?.data[0])
+      const walletAmountResponse = await fetchApi('/user-wallet-amount', 'post', {client_id, customer_id})
+      setWalletAmount(walletAmountResponse?.data?.userWallet?.amount)
     }
     fetch()
   },[])
