@@ -2,12 +2,14 @@
 import { useEffect, useState } from "preact/hooks"
 import fetchApi from "../Utils/FetchApi"
 import Alert from "../Utils/Alert";
+import Loading from "../Utils/Loading";
 
 const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
     const [referralData, setReferralData] = useState({
         referral_code:"",
         path: ""
     })
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const showError = ()=>{
         setError(true)
@@ -16,27 +18,32 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
         },3000)
       }
     const [showCopied, setShowCopied] = useState(false);
-    useEffect(()=>{
-        try {
-            const fetchReferralCode = async ()=>{
-                const resp = await fetchApi('/get-referral-code', 'post', customerDetails)
-                // console.log(resp?.data);
-                setReferralData(resp?.data)
+    useEffect(() => {
+        const fetchReferralCode = async () => {
+            try {
+                setLoading(true);
+                const resp = await fetchApi('/get-referral-code', 'post', customerDetails);
+                setReferralData(resp?.data);
+            } catch (error) {
+                showError();
+            } finally {
+                setLoading(false);
             }
-            fetchReferralCode()
-        } catch (error) {
-            showError()
-        }
-    },[])
+        };
+    
+        fetchReferralCode();
+    }, []);
+    
     const copyReferralLinkFunc = ()=>{
         setShowCopied(true)
-        navigator.clipboard.writeText(window.location.origin + "/account/register" + referralData.path)
+        navigator.clipboard.writeText(window.location.origin + (referralData?.path || "/account/register"))
         setTimeout(()=>{
             setShowCopied(false)
         },1000)
     }
   return (
     <>
+        {loading ? <div className="loader"><Loading/></div> :
         <div class="inviteAndEarnContainer">
             <div onClick={closeOverlay} class="closeInviteContainer">
                 <img width={30} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
@@ -53,7 +60,7 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
             </div>
             {showCopied && <div class="copied">copied</div>}
             <div class="inviteLinkContainer">
-                <p>{(`${window.location.origin}/account/register${referralData.path}`).substring(0,29)}...</p>
+                <p>{(`${window.location.origin}${referralData?.path || "/account/register"}`).substring(0,29)}...</p>
                 <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
             </div>
             <div>
@@ -72,8 +79,11 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
                 </a>
             </div>
         </div>
+    }
         {error && <Alert/>}
+        
     </>
+    
   )
 }
 

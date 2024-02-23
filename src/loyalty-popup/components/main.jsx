@@ -66,7 +66,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     overlay: "none",
     active: false,
   });
-  // console.log("========== running on local pr ===========");
+  console.log("========== running on local pr ===========");
   const couponCardData = [
 		{
 			"heading": "₹ 10 Voucher",
@@ -228,8 +228,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
   useEffect(() => {
     if (customerDetails?.customer_id !== "") {
       const fetchData = async () => {
+        const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
+        const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
         try {
           setLoading(true);
+          console.log("user_hash", user_hash);
           const walletResponse = await fetchApi("/user-walletlogs","post",{
             ...customerDetails
           }
@@ -266,8 +269,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
       if(couponResponse?.status !== "success"){
         showError(couponResponse?.error)
       }else{
-        // console.log("========",couponResponse?.data);
-        setFeaturedCoupons(couponResponse?.data);
+        if(couponResponse?.data){
+          setFeaturedCoupons(couponResponse?.data);
+        }else{
+          showError("No coupons found")
+        }
       }
       const spinWheelResponse = await fetchApi('/get-featured-spin-wheels', 'post', {client_id});
       setSingleSpinWheel(spinWheelResponse?.data[0]);
