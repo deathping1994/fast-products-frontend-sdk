@@ -67,32 +67,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
     active: false,
   });
   // console.log("========== running on local pr ===========");
-  const couponCardData = [
-		{
-			"heading": "₹ 10 Voucher",
-			"title": "Rs. 10 off on Striped Silk Blouse",
-			"description": "The management reserves the right to modify the coupon as they see fit and to adjust the customer's wallet if they determine the event.",
-			"label": "₹ 10",
-			"image": "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-			"amount": 10
-		},
-		{
-			"heading": "₹ 30 Voucher",
-			"title": "Rs. 30 off on Striped Silk Blouse",
-			"description": "The management reserves the right to modify the coupon as they see fit and to adjust the customer's wallet if they determine the event.",
-			"label": "₹ 30",
-			"image": "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-			"amount": 30
-		},
-		{
-			"heading": "₹ 50 Voucher",
-			"title": "Rs. 50 off on Striped Silk Blouse",
-			"description": "The management reserves the right to modify the coupon as they see fit and to adjust the customer's wallet if they determine the event.",
-			"label": "₹ 50",
-			"image": "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-			"amount": 50
-		}
-	]
   const handleLogin = ()=>{
     if(!isLoggedIn){
       window.location.href = themeDetailsData?.data?.login_page
@@ -256,7 +230,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   useEffect(()=>{
     const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
     const client_id = mainScript.getAttribute("data-client-id");
-    console.log(client_id);
+    // console.log(client_id);
     const fetch = async ()=>{
       const couponResponse = await fetchApi(
         "/get-featured-coupons",
@@ -266,8 +240,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
       if(couponResponse?.status !== "success"){
         showError(couponResponse?.error)
       }else{
-        // console.log("========",couponResponse?.data);
-        setFeaturedCoupons(couponResponse?.data);
+        if(couponResponse?.data){
+          setFeaturedCoupons(couponResponse?.data);
+        }else{
+          showError("No coupons found")
+        }
       }
       const spinWheelResponse = await fetchApi('/get-featured-spin-wheels', 'post', {client_id});
       setSingleSpinWheel(spinWheelResponse?.data[0]);
@@ -551,6 +528,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                       />
                   </div>
                   <InviteCard
+                    client_id={customerDetails.client_id}
                     onClick={() => (isLoggedIn && changeOverlay("invite_and_earn"))}
                   />
                 </div>

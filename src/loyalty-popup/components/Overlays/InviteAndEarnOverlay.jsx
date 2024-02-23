@@ -2,12 +2,16 @@
 import { useEffect, useState } from "preact/hooks"
 import fetchApi from "../Utils/FetchApi"
 import Alert from "../Utils/Alert";
+import Loading from "../Utils/Loading";
 
 const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
     const [referralData, setReferralData] = useState({
         referral_code:"",
         path: ""
     })
+    const [invitemsg, setInvitemsg] = useState("")
+    const [whatsappmsg, setWhatsappmsg] = useState("")
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const showError = ()=>{
         setError(true)
@@ -16,27 +20,43 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
         },3000)
       }
     const [showCopied, setShowCopied] = useState(false);
-    useEffect(()=>{
-        try {
-            const fetchReferralCode = async ()=>{
-                const resp = await fetchApi('/get-referral-code', 'post', customerDetails)
-                // console.log(resp?.data);
-                setReferralData(resp?.data)
+    useEffect(() => {
+        const fetchReferralCode = async () => {
+            try {
+                setLoading(true);
+                const resp = await fetchApi('/get-referral-code', 'post', customerDetails);
+                const response = await fetchApi('/get-referral-message','post', {client_id: customerDetails?.client_id})
+                const whatsappResp = await fetchApi('/get-referred-message', 'post', customerDetails)
+                
+                if(response?.status !== "success"){
+                    setInvitemsg("Share with you friends to get rewards.")
+                    setWhatsappmsg("Share this with whatsapp")
+                }else{
+                    setInvitemsg(response?.data?.getReferralMessage)
+                    setWhatsappmsg(whatsappResp?.data?.getReferredMessage)
+                }
+                // setInvitemsg(response)
+                setReferralData(resp?.data);
+            } catch (error) {
+                showError();
+            } finally {
+                setLoading(false);
             }
-            fetchReferralCode()
-        } catch (error) {
-            showError()
-        }
-    },[])
+        };
+    
+        fetchReferralCode();
+    }, []);
+    
     const copyReferralLinkFunc = ()=>{
         setShowCopied(true)
-        navigator.clipboard.writeText(window.location.origin + "/account/register" + referralData.path)
+        navigator.clipboard.writeText(window.location.origin + (referralData?.path || "/account/register"))
         setTimeout(()=>{
             setShowCopied(false)
         },1000)
     }
   return (
     <>
+        {loading ? <div className="loader"><Loading/></div> :
         <div class="inviteAndEarnContainer">
             <div onClick={closeOverlay} class="closeInviteContainer">
                 <img width={30} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
@@ -46,14 +66,14 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
                 <h2>Invite & Earn</h2>
             </div>
             <div class="inviteAndEarnMessage">
-                <h4>Every time you successfully refer friend. You get 200 {window.fc_loyalty_vars.coin_name} Coins & they get 100 {window.fc_loyalty_vars.coin_name} Coins</h4>
+                <h4>{invitemsg}</h4>
             </div>
             <div class="inviteEarnTextContainer">
                 <p>copy referral link</p>
             </div>
             {showCopied && <div class="copied">copied</div>}
             <div class="inviteLinkContainer">
-                <p>{(`${window.location.origin}/account/register${referralData.path}`).substring(0,29)}...</p>
+                <p>{(`${window.location.origin}${referralData?.path || "/account/register"}`).substring(0,29)}...</p>
                 <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
             </div>
             <div>
@@ -63,17 +83,20 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
                 <p>or share with</p>
             </div>
             <div class="sendInvitesBtnContainer">
-                <a href={`https://api.whatsapp.com/send?text=SOHNAA offers an exclusive range of gold and diamond jewellery designs online. Your ultimate destination for a premium collection of jewellery. Checkout the exclusive discount offer - ${window.location.origin + referralData.path}`} target="_blank" class="inviteWhatsappBtn">
+                <a href={`https://api.whatsapp.com/send?text=${whatsappmsg}`} target="_blank" class="inviteWhatsappBtn">
                     <img src="https://media.farziengineer.co/farziwallet/whatsapp-icon.png" alt="" />
                     <p>Send on whatsapp</p>
                 </a>
-                <a href={`sms://18005555555/?body=SOHNAA offers an exclusive range of gold and diamond jewellery designs online. Your ultimate destination for a premium collection of jewellery. Checkout the exclusive discount offer - ${window.location.origin + referralData.path}`} target="_blank" class="inviteRoundedBtn">
+                <a href={`sms://18005555555/?body=${whatsappmsg}`} target="_blank" class="inviteRoundedBtn">
                     <img src="https://media.farziengineer.co/farziwallet/share_arrow.png" alt="" />
                 </a>
             </div>
         </div>
+    }
         {error && <Alert/>}
+        
     </>
+    
   )
 }
 

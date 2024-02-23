@@ -343,13 +343,14 @@ body {
   	right: 10px;
     background: var(--loyalty_popup_theme_background,#000);
     color: #fff;
-    width: 40px;
+    width: fit-content;
     height: 24px;
     text-align: center;
     line-height: 24px;
     font-weight: 600;
     font-size: 12px;
     border-radius: 4px;
+	padding: 0 4px;
 }
 
 .couponText {
@@ -1193,13 +1194,13 @@ body {
 	position: absolute;
 	top: 20px;
 	z-index: 2;
-	top: 51%;
-  	left: 37%;
+	top: 47%;
+	left: 31%;
 }
 	
 .lockedIcon img {
-	height: 115px;
-	width: 115px;
+	height: 160px;
+	width: 160px;
 }
 
 .spinWinContainer {

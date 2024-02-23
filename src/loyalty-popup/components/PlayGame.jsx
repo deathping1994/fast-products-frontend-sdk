@@ -114,39 +114,41 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
     document.querySelector("body").appendChild(script1);
       
   };
-  const fetchSpinWheelReward = async ()=>{
+  // const fetchSpinWheelReward = async ()=>{
 
-    const ggg = shadowRoot.querySelector(".screenContent")
-    const hhh = ggg.querySelector(".spinWheelMainContainer")
-    try {
-      setLoading(true)
-      const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
-      {
-        ...customerDetails,
-        couponAmount: spinWheelAmount,
-      })
-    // console.log("spin wheel reward array",response);
-    if(response?.status === "success"){
-      setSpinWheelRewardData(response?.data)
-      hhh.querySelector("#fw-chart-spin-wheel").innerHTML = ``
-      drawWheel(
-        shadowRoot,
-        response?.data.map((item, index) => {
-          return {
-            label: item,
-            value: index,
-          };
-        }),
-        false )
-    }else{
-      showError(response?.error)
-    }
-    } catch (error) {
-      console.log("error in Playgame", error);
-    } finally {
-      setLoading(false)
-    }
-  }
+  //   const ggg = shadowRoot.querySelector(".screenContent")
+  //   const hhh = ggg.querySelector(".spinWheelMainContainer")
+  //   try {
+  //     setLoading(true)
+  //     const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
+  //     {
+  //       ...customerDetails,
+  //       couponAmount: spinWheelAmount,
+  //     })
+  //     console.log("resp spin wheel", response);
+  //   // console.log("spin wheel reward array",response);
+  //   if(response?.status === "success"){
+  //     setSpinWheelRewardData(response?.data)
+  //     hhh.querySelector("#fw-chart-spin-wheel").innerHTML = ``
+  //     drawWheel(
+  //       shadowRoot,
+  //       response?.data.map((item, index) => {
+  //         return {
+  //           label: item,
+  //           value: index,
+  //         };
+  //       }),
+  //       false )
+  //   }else{
+  //     showError(response?.error)
+  //     setLoading(false)
+  //   }
+  //   } catch (error) {
+  //     console.log("error in Playgame", error);
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
   useEffect(()=>{
     const fetchRewardArray = async()=>{
       const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
@@ -154,25 +156,30 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         ...customerDetails,
         couponAmount: spinWheelAmount,
       })
-      return response?.data
+      return response
     // console.log("spin wheel reward array",response);
     }
     // console.log("use effect chala");
     loadD3JS().then(()=>{
-      fetchRewardArray().then((data)=>{
-        // console.log("====== data", data);
-        setSpinWheelRewardData(data)
-        drawWheel(shadowRoot, data.map((item, index) => {
-          return {
-            label: item,
-            value: index,
-          };
-        }), false)
-        setLoading(false)
+      fetchRewardArray().then((resp)=>{
+        console.log("====== data", resp);
+        if(resp?.status === "success"){
+            setSpinWheelRewardData(resp?.data)
+            drawWheel(shadowRoot, resp?.data.map((item, index) => {
+              return {
+                label: item,
+                value: index,
+              };
+            }), false)
+            setLoading(false)
+          }else{
+            setLoading(false)
+            showError(resp?.error)
+          }
       })
       
     }).catch((error)=>{
-        console.log("error inlloading d3", error);
+        console.log("error in loading d3", error);
     })
 },[])
 
@@ -382,7 +389,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
   const playAgain = ()=>{
     setBtnVisibility(false)
     setShowWinPopup(false)
-    fetchSpinWheelReward()
+    // fetchSpinWheelReward()
   }
   const closeWinPopup = ()=>{
       showSpinGameScreen('show_spin_wheel', "Wheel of Fortune")
@@ -448,7 +455,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
         <div id="fw-chart-spin-wheel"></div>
         <div class="spinWheelBottom">
             <hr />
-            {btnVisibility ? <h4>Click 'SPIN' to start</h4> : <h4>Unlock for 10 {window.
+            {btnVisibility ? <h4>Click 'SPIN' to start</h4> : <h4>Unlock for {spinWheelAmount} {window.
 // @ts-ignore
             fc_loyalty_vars.coin_name} Coins</h4>}
             {!btnVisibility && <button onClick={drawUnlockSpinWheel} class="couponUnlockBtn">Tap to Unlock</button>}
