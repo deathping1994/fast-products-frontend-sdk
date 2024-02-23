@@ -67,32 +67,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
     active: false,
   });
   // console.log("========== running on local pr ===========");
-  const couponCardData = [
-		{
-			"heading": "₹ 10 Voucher",
-			"title": "Rs. 10 off on Striped Silk Blouse",
-			"description": "The management reserves the right to modify the coupon as they see fit and to adjust the customer's wallet if they determine the event.",
-			"label": "₹ 10",
-			"image": "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-			"amount": 10
-		},
-		{
-			"heading": "₹ 30 Voucher",
-			"title": "Rs. 30 off on Striped Silk Blouse",
-			"description": "The management reserves the right to modify the coupon as they see fit and to adjust the customer's wallet if they determine the event.",
-			"label": "₹ 30",
-			"image": "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-			"amount": 30
-		},
-		{
-			"heading": "₹ 50 Voucher",
-			"title": "Rs. 50 off on Striped Silk Blouse",
-			"description": "The management reserves the right to modify the coupon as they see fit and to adjust the customer's wallet if they determine the event.",
-			"label": "₹ 50",
-			"image": "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-			"amount": 50
-		}
-	]
   const handleLogin = ()=>{
     if(!isLoggedIn){
       window.location.href = themeDetailsData?.data?.login_page
@@ -228,8 +202,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
   useEffect(() => {
     if (customerDetails?.customer_id !== "") {
       const fetchData = async () => {
-        const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
-        const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
         try {
           setLoading(true);
           const walletResponse = await fetchApi("/user-walletlogs","post",{
@@ -556,6 +528,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                       />
                   </div>
                   <InviteCard
+                    client_id={customerDetails.client_id}
                     onClick={() => (isLoggedIn && changeOverlay("invite_and_earn"))}
                   />
                 </div>
