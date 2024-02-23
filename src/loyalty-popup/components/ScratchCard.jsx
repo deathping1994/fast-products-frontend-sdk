@@ -202,19 +202,19 @@ import Alert from "./Utils/Alert";
       });
 
       let scratchedPixels = 0;
-      const threshold = 300;
+      const threshold = 100;
       let cardScratchable = true;
       const scratch = async (x, y) => {
           //destination-out draws new shapes behind the existing canvas content
           context.globalCompositeOperation = "destination-out";
           context.beginPath();
           //arc makes circle - x,y,radius,start angle,end angle
-          context.arc(x, y, 16, 0, 2 * Math.PI);
+          context.arc(x, y, 18, 0, 2 * Math.PI);
           context.fill();
 
           const centerX = canvas.width / 2;
           const centerY = canvas.height / 2;
-          const distanceFromCenter = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+          const distanceFromCenter = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2)/2;
           const centerAreaRadius = 200; // Radius of the center area
 
           if (distanceFromCenter <= centerAreaRadius) {
