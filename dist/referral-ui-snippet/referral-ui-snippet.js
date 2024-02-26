@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = ".fc-wallet-activity-snippet-19212--root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n\n.fc-wallet-activity-snippet-19212--root a {\n	text-decoration: none;\n	color: inherit;\n}\n\n.fc-wallet-activity-snippet-19212--root {\n	width: 100%;\n}\n\n.fc-wallet-activity-snippet-19212--root .login-container {\n	display: flex;\n	justify-content: center;\n	margin: 50px;\n}\n\n.fc-wallet-activity-snippet-19212--root .login-container a {\n	background-color: #ebebeb;\n	padding: 10px 30px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container {\n	width: 95%;\n	margin: auto;\n	max-width: 1000px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-wrapper {\n	background: #ebebeb;\n	border-radius: 8px;\n	padding: 15px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-container {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n	gap: 10px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-container .total-points {\n	font-size: 42px;\n	font-weight: 600;\n}\n\n.fc-wallet-activity-snippet-19212--root .points-svg-container {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper {\n	margin-top: 36px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	margin: auto;\n	flex-direction: column;\n	gap: 10px;\n	margin: 18px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn p {\n	text-align: center;\n	color: #fff;\n	font-size: 16px;\n	background: #000;\n	border-radius: 4px;\n	padding: 8px 16px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn .circular-loader {\n	border: 3px solid #000;\n	border-left-color: transparent;\n	width: 30px;\n	height: 30px;\n	animation: spin89345 0.7s linear infinite;\n	border-radius: 50%;\n	margin: 0px 8px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .transaction-log-container {\n	margin: 14px 0px;\n	padding: 0px;\n	border: 1px solid rgb(231, 231, 231);\n	border-radius: 6px;\n	box-shadow: 1px 2px 2px rgb(231, 231, 231);\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-header {\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n	border-bottom: 1px solid rgb(231, 231, 231);\n	padding: 8px 18px;\n	font-size: 16px;\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type {\n	border-radius: 4px;\n	padding: 4px 8px;\n	font-weight: 600;\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.credited {\n	background-color: rgb(209, 255, 217);\n	color: rgb(30, 175, 109);\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.debited {\n	background-color: rgba(181, 0, 0, 0.1);\n	color: rgb(181, 0, 0);\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body {\n	padding: 8px 18px;\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body .amount {\n	font-size: 20px;\n	font-weight: 600;\n}\n\n@keyframes shimmer {\n	to {\n		background-position: -100% 0;\n	}\n}\n\n.skeletonloader {\n	margin: 10px auto;\n	border-radius: 3px;\n}\n\n.skeleton-loader-container {\n	width: 80%;\n	margin: auto;\n}\n\n@media screen and (max-width: 480px) {\n	.skeleton-loader-container {\n		width: 92%;\n	}\n}\n\n@keyframes spin89345 {\n	0% {\n		transform: rotate(0deg);\n	}\n\n	100% {\n		transform: rotate(360deg);\n	}\n}";
+  const style = "@keyframes rotate {\n	from {\n		transform: rotate(0deg);\n	}\n	to {\n		transform: rotate(360deg);\n	}\n}\n\n.spinner {\n	animation: rotate 2s linear infinite;\n}\n\n.inviteAndEarnContainer {\n	max-width: 50%;\n	padding: 22px;\n	border-radius: 16px;\n	transition: all 0.5s;\n	width: 40%;\n	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\n	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	\n}\n\n.inviteEarnTextContainer {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	font-weight: 400;\n    font-size: 14px;\n    color: #acacac;\n    margin: 8px 0px;\n    text-align: center;\n}\n.inviteAndEarn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 16px;\n}\n\n.inviteAndEarn h2 {\n	font-weight: 700;\n    font-size: 30px;\n}\n\n.inviteAndEarnMessage h4 {\n	text-align: center;\n    font-weight: 500;\n    font-size: 20px;\n    line-height: 30px;\n    margin: 20px 0!important;\n}\n\n.inviteLinkContainer {\n	padding: 0px 12px;\n    background: #fff;\n    border-radius: 4px;\n    border: 1px solid var(--loyalty_popup_theme_background, #000);\n    font-size: 16px;\n    font-weight: 700;\n    display: flex;\n	justify-content: space-between;\n    align-items: center;\n}\n\n.couponCodeContainer {\n	padding: 12px;\n    background: #fff;\n    border-radius: 4px;\n    border: 1px solid var(--loyalty_popup_theme_background, #000);;\n    font-size: 16px;\n    font-weight: 700;\n    display: flex;\n	width: 100%;\n	justify-content: center;\n    align-items: center;\n	position: relative;\n}\n\n.couponCodeContainer img {\n	position: absolute;\n	right: 20px;\n	cursor: pointer;\n}\n\n.inviteLinkContainer p {\n	font-size: 14px;\n}\n\n.inviteLinkContainer img {\n	max-width: 16px;\n	cursor: pointer;\n}\n\n.sendInvitesBtnContainer, .inviteWhatsappBtn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n    text-decoration: none;\n}\n\n\n.inviteWhatsappBtn {\n	height: 40px;\n    width: 96%;\n    background-color: #29a71a;\n    border-radius: 4px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	border: none;\n}\n\n.inviteWhatsappBtn p {\n	font-weight: 500;\n	color: white;\n}\n\n.inviteWhatsappBtn img {\n	filter: brightness(0) invert(1);\n}\n\n.inviteRoundedBtn {\n	width: 40px;\n    height: 40px;\n    background-color: #fff;\n    border-radius: 8px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	border: 1px solid var(--loyalty_popup_theme_background, #000);\n}\n\n.inviteRoundedBtn img {\n	width: 16px;\n	height: 16px;\n}\n\n\n.alert {\n	position: absolute;\n	bottom: 50%;\n	left: 50%;\n	z-index: 999;\n	background: #160b0b;\n	color: #f4c7c7;\n	font-weight: 400;\n	font-size: 14px;\n	border-radius: 4px;\n	padding: 8px 22px;\n	transition: 0.5s all ease;\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	transform: translate(-50%, -50%);\n	width: 80%;\n	animation-name: fade-in;\n	animation-duration: 0.5s;\n}\n\n.alert svg.fw-wallet-alert-popup-error {\n	width: 22px;\n	height: 22px;\n	fill: rgb(244, 67, 54);\n	margin-right: 8px;\n}\n\n\n.shareTextContainer {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	font-weight: 400;\n	font-size: 14px;\n	color: #acacac;\n	text-align: center;\n	margin-bottom: 12px;\n}\n\n.dashedDivider {\n	border: none;\n    height: 1px;\n    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);\n    margin: 20px 0 16px 0;\n}\n\n.referralContainer {\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.copied {\n	background-color: green;\n    padding: 8px;\n    position: absolute;\n    top: 55%;\n    left: 48%;\n    border-radius: 12px;\n    color: white;\n    font-weight: bold;\n    font-size: 14px;\n}\n\n.loader{\n	height: 100%;\n	width: 100%;\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n	z-index: 999999;\n	background-color: rgba(255, 255, 255, 0.6);\n}\n\n.loading-screen {\n	padding-top: 16px;\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n}\n\n.loginbtn{\n	background-color: #efefef;\n	text-decoration: none;\n	color: black;\n	padding: 12px;\n	border-radius: 8px;\n}\n\n@media (max-width: 948px) {\n    .inviteAndEarnContainer {\n      max-width: 100%;\n    }\n  }";
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -403,336 +403,255 @@
         void 0 === a2[u2] && (a2[u2] = s2[u2]);
     return l$1.vnode && l$1.vnode(i2), i2;
   }
-  function TransactionLog({
-    id,
-    reason,
-    created,
-    amount,
-    type
-  }) {
-    return o(k$1, {
-      children: o("div", {
-        class: "transaction-log-container",
-        children: [o("div", {
-          class: "log-header",
-          children: [o("div", {
-            class: "log-date",
-            children: created == null ? void 0 : created.split("T")[0]
-          }), o("div", {
-            class: `log-type ${type === "ADD" ? "credited" : "debited"}`,
-            children: type === "ADD" ? "Credited" : "Debited"
-          })]
-        }), o("div", {
-          class: "log-body",
-          children: [o("p", {
-            class: "amount",
-            children: [o("span", {
-              children: type === "ADD" ? "+" : "-"
-            }), o("span", {
-              children: ` ${Number(amount).toLocaleString("en-IN", {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2
-              })}`
-            })]
-          }), o("p", {
-            class: "reason",
-            children: reason
-          })]
-        })]
-      })
-    });
-  }
-  function SkeletonLoader({
-    width = "30px",
-    height = "10px",
-    styles = {}
-  }) {
-    return o(k$1, {
-      children: o("div", {
-        class: "skeletonloader",
-        style: {
-          width,
-          height,
-          backgroundImage: "linear-gradient(90deg, #ccc 0px, rgb(229 229 229 / 90%) 40px, #ccc 80px)",
-          backgroundSize: "300%",
-          backgroundPosition: "100% 0",
-          borderRadius: "inherit",
-          animation: "shimmer 1.4s infinite",
-          ...styles
-        }
-      })
-    });
-  }
-  function WalletScreen({
-    customerDetails,
-    setUserHash
-  }) {
-    const [totalWalletAmount, setTotalWalletAmount] = h(null);
-    const [walletLogs, setWalletLogs] = h([]);
-    const [loading, setLoading] = h(true);
-    const [pageInfo, setpageInfo] = h({
-      endCursor: null
-    });
-    const [triggerLoadMore, setTriggerLoadMore] = h(false);
-    const [loadingPaginatedResults, setLoadingPaginatedResults] = h(false);
-    const fetchWalletdetails = async ({
-      customer_id,
-      customer_tags,
-      client_id
-    }) => {
-      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
-      const response = await fetch(`${WALLET_API_URI}/user-walletlogs`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          customer_id,
-          user_hash: customer_tags,
-          client_id,
-          page_info: {
-            first: 20,
-            after: pageInfo == null ? void 0 : pageInfo.endCursor
-          }
+  const Alert = ({
+    message
+  }) => {
+    return o("div", {
+      class: "alert",
+      children: [o("svg", {
+        focusable: "false",
+        class: "fw-wallet-alert-popup-error",
+        "aria-hidden": "true",
+        viewBox: "0 0 24 24",
+        "data-testid": "ErrorOutlineIcon",
+        children: o("path", {
+          d: "M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
         })
-      });
-      let walletData = await response.json();
-      let walletAmount = ((_d = (_c = (_b = (_a = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a.data) == null ? void 0 : _b.wallet) == null ? void 0 : _c.wallet) == null ? void 0 : _d.amount) || 0;
-      let get_user_hash = (_f = (_e = walletData == null ? void 0 : walletData.data) == null ? void 0 : _e.data) == null ? void 0 : _f.user_hash;
-      if (get_user_hash) {
-        setUserHash({
-          ...customerDetails,
-          customerTags: get_user_hash
-        });
-        sessionStorage.setItem("fc_wallet_user_hash", get_user_hash);
-      }
-      setTotalWalletAmount(walletAmount);
-      setWalletLogs((prev) => {
-        var _a2, _b2, _c2, _d2, _e2, _f2;
-        const newWalletLogs = (_f2 = (_e2 = (_d2 = (_c2 = (_b2 = (_a2 = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a2.data) == null ? void 0 : _b2.wallet) == null ? void 0 : _c2.wallet) == null ? void 0 : _d2.logs) == null ? void 0 : _e2.edges) == null ? void 0 : _f2.map((item) => {
-          return item.node;
-        });
-        return [...prev, ...newWalletLogs];
-      });
-      setpageInfo({
-        ...pageInfo,
-        endCursor: ((_l = (_k = (_j = (_i = (_h = (_g = walletData == null ? void 0 : walletData.data) == null ? void 0 : _g.data) == null ? void 0 : _h.wallet) == null ? void 0 : _i.wallet) == null ? void 0 : _j.logs) == null ? void 0 : _k.pageInfo) == null ? void 0 : _l.hasNextPage) && ((_r = (_q = (_p = (_o = (_n = (_m = walletData == null ? void 0 : walletData.data) == null ? void 0 : _m.data) == null ? void 0 : _n.wallet) == null ? void 0 : _o.wallet) == null ? void 0 : _p.logs) == null ? void 0 : _q.pageInfo) == null ? void 0 : _r.endCursor)
-      });
-      setLoadingPaginatedResults(false);
-    };
-    p(() => {
-      if (customerDetails == null ? void 0 : customerDetails.customerID) {
-        (async () => {
-          await fetchWalletdetails({
-            customer_id: customerDetails == null ? void 0 : customerDetails.customerID,
-            customer_tags: (customerDetails == null ? void 0 : customerDetails.customerTags) || sessionStorage.getItem("fc_wallet_user_hash") || "",
-            client_id: customerDetails == null ? void 0 : customerDetails.clientID
-          });
-          setLoading(false);
-        })();
-      }
-    }, [customerDetails == null ? void 0 : customerDetails.customerID, triggerLoadMore]);
-    return o(k$1, {
-      children: loading ? o("div", {
-        class: "skeleton-loader-container",
-        children: [o(SkeletonLoader, {
-          width: "22%",
-          height: "35px",
-          styles: {
-            marginLeft: 0
-          }
-        }), o(SkeletonLoader, {
-          width: "100%",
-          height: "100px"
-        }), o(SkeletonLoader, {
-          width: "28%",
-          height: "30px",
-          styles: {
-            marginLeft: 0,
-            marginTop: "36px"
-          }
-        }), o(SkeletonLoader, {
-          width: "100%",
-          height: "100px"
-        }), o(SkeletonLoader, {
-          width: "100%",
-          height: "100px"
-        }), o(SkeletonLoader, {
-          width: "100%",
-          height: "100px"
-        })]
-      }) : o(k$1, {
-        children: [o("h1", {
-          children: "Wallet Points"
-        }), o("div", {
-          class: "total-points-wrapper",
-          children: [o("div", {
-            class: "total-points-container",
-            children: [o("div", {
-              class: "points-svg-container",
-              children: o("svg", {
-                xmlns: "http://www.w3.org/2000/svg",
-                width: "50",
-                height: "50",
-                fill: "none",
-                viewBox: "0 0 58 57",
-                children: [o("path", {
-                  fill: "#ffffff",
-                  d: "M31.881 51.541C14.523 56.615 1.854 38.046 5.642 23.722 9.928 7.503 24.254 2.195 39.504 6.507 47.408 8.74 53.302 19.502 52.89 27.633c-.644 12.486-9.98 22.994-21.009 23.908z",
-                  style: "\n"
-                }), o("path", {
-                  fill: "#121212",
-                  d: "M34.909 16.739c.767-.137 1.566.42 1.703 1.188a1.478 1.478 0 01-1.188 1.703l-16.622 2.963c-.406.072-.658.49-.594.851a.725.725 0 00.852.594l16.622-2.963a2.957 2.957 0 013.406 2.376l1.803 10.117a2.927 2.927 0 01-2.375 3.406L21.17 40.066a2.899 2.899 0 01-3.406-2.376L15.19 23.237a2.927 2.927 0 012.375-3.406l17.345-3.092zm1.002 13.989a1.478 1.478 0 001.188-1.703c-.137-.768-.936-1.325-1.703-1.188a1.478 1.478 0 00-1.188 1.703 1.45 1.45 0 001.703 1.188z",
-                  style: "\n"
-                })]
-              })
-            }), o("p", {
-              class: "total-points",
-              children: ` ${Number(totalWalletAmount).toLocaleString("en-IN", {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2
-              })}`
-            })]
-          }), o("p", {
-            children: "Total wallet points available"
-          })]
-        }), o("div", {
-          class: "transaction-logs-wrapper",
-          children: [o("h2", {
-            children: "Transactions Logs"
-          }), walletLogs.map((log) => {
-            return o(TransactionLog, {
-              amount: log.amount,
-              created: log.created,
-              id: log.id,
-              reason: log.reason,
-              type: log.type
-            }, log.id);
-          }), (pageInfo == null ? void 0 : pageInfo.endCursor) ? o("div", {
-            class: "show-more-btn",
-            onClick: () => {
-              setLoadingPaginatedResults(true);
-              setTriggerLoadMore((prev) => !prev);
-            },
-            children: [o("p", {
-              children: "Show More"
-            }), loadingPaginatedResults ? o("div", {
-              class: "circular-loader"
-            }) : o(k$1, {})]
-          }) : o(k$1, {})]
-        })]
-      })
+      }), o("p", {
+        children: `${message || "Something went wrong"}`
+      })]
     });
-  }
-  function Login({
-    themeDetails
-  }) {
-    var _a;
-    return o(k$1, {
-      children: o("div", {
-        class: "login-container",
-        children: o("a", {
-          href: (_a = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _a.login_page,
-          children: "Login to view wallet activity"
-        })
-      })
-    });
-  }
-  function Main(props) {
-    const [customerDetails, setCustomerDetails] = h({
-      customerID: "",
-      customerTags: "",
-      clientID: ""
-    });
-    const [loading, setLoading] = h(true);
-    const [themeDetailsData, setThemeDetailsData] = h({});
-    const getThemeDetails = async ({
-      client_id
-    }) => {
-      const themeDetailsRes = await fetch(`${WALLET_API_URI}/get-theme-details`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          client_id
-        })
-      });
-      const themeDetailsResData = await themeDetailsRes.json();
-      setThemeDetailsData(themeDetailsResData);
-    };
-    p(() => {
-      var _a;
-      const mainScript = document.querySelector("#fc-wallet-activity-snippet-script-19212");
-      const customer_id = mainScript.getAttribute("data-customer-id");
-      const customer_tags = ((_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim()) || sessionStorage.getItem("fc_wallet_user_hash") || "";
-      const client_id = mainScript.getAttribute("data-client-id");
-      (async () => {
-        await getThemeDetails({
-          client_id
-        });
-        setCustomerDetails({
-          customerID: customer_id,
-          customerTags: customer_tags,
-          clientID: client_id
-        });
-        setLoading(false);
-      })();
-    }, []);
-    return o(k$1, {
-      children: o("div", {
-        class: "snippet-container",
-        children: loading ? o("div", {
-          class: "skeleton-loader-container",
-          children: [o(SkeletonLoader, {
-            width: "22%",
-            height: "35px",
-            styles: {
-              marginLeft: 0
-            }
-          }), o(SkeletonLoader, {
-            width: "100%",
-            height: "100px"
-          }), o(SkeletonLoader, {
-            width: "28%",
-            height: "30px",
-            styles: {
-              marginLeft: 0,
-              marginTop: "36px"
-            }
-          }), o(SkeletonLoader, {
-            width: "100%",
-            height: "100px"
-          }), o(SkeletonLoader, {
-            width: "100%",
-            height: "100px"
-          }), o(SkeletonLoader, {
-            width: "100%",
-            height: "100px"
-          })]
-        }) : o(k$1, {
-          children: (customerDetails == null ? void 0 : customerDetails.customerID) ? o(WalletScreen, {
-            customerDetails,
-            setUserHash: setCustomerDetails
-          }) : o(Login, {
-            themeDetails: themeDetailsData
-          })
-        })
-      })
-    });
-  }
-  const parseJson = (jsonString) => {
-    try {
-      return JSON.parse(jsonString);
-    } catch {
-      return jsonString;
-    }
   };
-  function App() {
+  const WALLET_API_URI$1 = "https://fastloyaltyapi.farziengineer.co";
+  const fetchApi = async (route, method, data) => {
+    const resp = await fetch(`${WALLET_API_URI$1}${route}`, {
+      method,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ...data
+      })
+    });
+    const response = await resp.json();
+    return response;
+  };
+  const Loading = () => {
+    return o(k$1, {
+      children: o("main", {
+        class: "loading-screen",
+        children: [o("svg", {
+          class: "spinner",
+          width: "50px",
+          height: "50px",
+          viewBox: "0 0 66 66",
+          xmlns: "http://www.w3.org/2000/svg",
+          children: [o("circle", {
+            class: "path",
+            fill: "transparent",
+            "stroke-width": "2",
+            cx: "33",
+            cy: "33",
+            r: "30",
+            stroke: "url(#gradient)"
+          }), o("linearGradient", {
+            id: "gradient",
+            children: [o("stop", {
+              offset: "50%",
+              "stop-color": "#009cdf",
+              "stop-opacity": "1"
+            }), o("stop", {
+              offset: "65%",
+              "stop-color": "#009cdf",
+              "stop-opacity": ".5"
+            }), o("stop", {
+              offset: "100%",
+              "stop-color": "#009cdf",
+              "stop-opacity": "0"
+            })]
+          }), o("svg", {
+            class: "spinner-dot dot",
+            width: "5px",
+            height: "5px",
+            viewBox: "0 0 66 66",
+            xmlns: "http://www.w3.org/2000/svg",
+            x: "37",
+            y: "1.5",
+            children: o("circle", {
+              class: "path",
+              fill: "#009cdf",
+              cx: "33",
+              cy: "33",
+              r: "30"
+            })
+          })]
+        }), o("p", {
+          children: "Loading, please wait..."
+        })]
+      })
+    });
+  };
+  const Main = ({
+    shadowRoot,
+    themeDetailsData
+  }) => {
+    const [invitemsg, setInvitemsg] = h("");
+    const [whatsappmsg, setWhatsappmsg] = h("");
+    const [login, setLogin] = h(false);
+    const [loading, setLoading] = h(false);
+    const [error, setError] = h(false);
+    const [showCopied, setShowCopied] = h(false);
+    const mainScript = document.getElementById("fc-wallet-referral-snippet-ui-script-19212");
+    const customer_id = mainScript.getAttribute("data-customer-id");
+    if (customer_id) {
+      setLogin(true);
+    }
+    console.log("running referral ui ");
+    const [referralData, setReferralData] = h({
+      referral_code: "",
+      path: ""
+    });
+    const showError = () => {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3e3);
+    };
+    p(() => {
+      const fetchReferralCode = async () => {
+        var _a, _b, _c;
+        try {
+          setLoading(true);
+          const customer_id2 = mainScript.getAttribute("data-customer-id");
+          const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
+          const client_id = mainScript.getAttribute("data-client-id");
+          const resp = await fetchApi("/get-referral-code", "post", {
+            client_id,
+            customer_id: customer_id2,
+            user_hash
+          });
+          const response = await fetchApi("/get-referral-message", "post", {
+            client_id
+          });
+          const whatsappResp = await fetchApi("/get-referred-message", "post", {
+            client_id,
+            customer_id: customer_id2,
+            user_hash
+          });
+          console.log("all referral resp", resp, response, whatsappResp);
+          if ((response == null ? void 0 : response.status) !== "success") {
+            setInvitemsg("Share with your friends to get rewards.");
+            setWhatsappmsg("Share this with WhatsApp");
+          } else {
+            setInvitemsg((_b = response == null ? void 0 : response.data) == null ? void 0 : _b.getReferralMessage);
+            setWhatsappmsg((_c = whatsappResp == null ? void 0 : whatsappResp.data) == null ? void 0 : _c.getReferredMessage);
+          }
+          setReferralData(resp == null ? void 0 : resp.data);
+        } catch (error2) {
+          showError();
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchReferralCode();
+    }, []);
+    const copyReferralLinkFunc = () => {
+      setShowCopied(true);
+      navigator.clipboard.writeText(window.location.origin + ((referralData == null ? void 0 : referralData.path) || "/account/register"));
+      setTimeout(() => {
+        setShowCopied(false);
+      }, 1e3);
+    };
+    return login ? o(k$1, {
+      children: [loading ? o("div", {
+        className: "loader",
+        children: o(Loading, {})
+      }) : o("div", {
+        className: "referralContainer",
+        children: o("div", {
+          className: "inviteAndEarnContainer",
+          children: [o("div", {
+            className: "inviteAndEarn",
+            children: [o("img", {
+              src: "https://media.farziengineer.co/farziwallet/invite-earn.png",
+              alt: ""
+            }), o("h2", {
+              children: "Invite & Earn"
+            })]
+          }), o("div", {
+            className: "inviteAndEarnMessage",
+            children: o("h4", {
+              children: invitemsg
+            })
+          }), o("div", {
+            className: "inviteEarnTextContainer",
+            children: o("p", {
+              children: "copy referral link"
+            })
+          }), showCopied && o("div", {
+            className: "copied",
+            children: "copied"
+          }), o("div", {
+            className: "inviteLinkContainer",
+            children: [o("p", {
+              children: `${window.location.origin}${(referralData == null ? void 0 : referralData.path) || "/account/register"}`
+            }), o("img", {
+              onClick: copyReferralLinkFunc,
+              src: "https://media.farziengineer.co/farziwallet/copy-icon.png",
+              alt: ""
+            })]
+          }), o("div", {
+            children: o("hr", {
+              className: "dashedDivider"
+            })
+          }), o("div", {
+            className: "shareTextContainer",
+            children: o("p", {
+              children: "or share with"
+            })
+          }), o("div", {
+            className: "sendInvitesBtnContainer",
+            children: [o("a", {
+              href: `https://api.whatsapp.com/send?text=${whatsappmsg}`,
+              target: "_blank",
+              className: "inviteWhatsappBtn",
+              children: [o("img", {
+                src: "https://media.farziengineer.co/farziwallet/whatsapp-icon.png",
+                alt: ""
+              }), o("p", {
+                children: "Send on WhatsApp"
+              })]
+            }), o("a", {
+              href: `sms://18005555555/?body=${whatsappmsg}`,
+              target: "_blank",
+              className: "inviteRoundedBtn",
+              children: o("img", {
+                src: "https://media.farziengineer.co/farziwallet/share_arrow.png",
+                alt: ""
+              })
+            })]
+          })]
+        })
+      }), error && o(Alert, {
+        message: `Something went wrong`
+      })]
+    }) : o("a", {
+      class: "loginbtn",
+      href: `/account/login`,
+      children: "Login to Continue"
+    });
+  };
+  function App({
+    shadowRoot,
+    themeDetailsData
+  }) {
     return o(k$1, {
       children: [o("div", {
         class: "widget-container",
-        children: o(Main, {})
+        children: o(Main, {
+          themeDetailsData,
+          shadowRoot
+        })
       }), o("div", {
         class: "widget-styles"
       }), o("div", {
@@ -753,56 +672,63 @@
     });
   }
   const WALLET_API_URI = "https://fastloyaltyapi.farziengineer.co";
-  async function renderwalletActivitySnippet() {
-    var _a, _b;
-    const targetDiv = document.getElementById("fc-wallet-activity-snippet-19212");
-    targetDiv.innerHTML = "";
-    let shadowTarget = document.createElement("div");
-    shadowTarget.className = "fc-wallet-activity-snippet-19212-target";
-    shadowTarget.style.display = "block";
-    targetDiv.appendChild(shadowTarget);
-    let shadow = shadowTarget.attachShadow({
-      mode: "open"
-    });
-    let shadowRoot = document.createElement("div");
-    shadowRoot.className = "fc-wallet-activity-snippet-19212--root";
-    shadow.appendChild(shadowRoot);
-    let themeDetailsData;
-    if ((_a = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _a.wallet_snippet_theme_details) {
-      themeDetailsData = window.fc_loyalty_vars.wallet_snippet_theme_details;
-    } else {
-      const mainScript = document.querySelector("#fc-wallet-activity-snippet-script-19212");
-      const client_id = mainScript.getAttribute("data-client-id");
-      const themeDetailsRes = await fetch(`${WALLET_API_URI}/wallet-page-theme-details`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          client_id
-        })
-      });
-      const themeData = await themeDetailsRes.json();
-      themeDetailsData = parseJson((_b = themeData == null ? void 0 : themeData.data) == null ? void 0 : _b.theme_data);
-      if (window.fc_loyalty_vars) {
-        window.fc_loyalty_vars = {
-          // @ts-ignore
-          ...window.fc_loyalty_vars,
-          wallet_snippet_theme_details: themeDetailsData
-        };
-      } else {
-        window.fc_loyalty_vars = {
-          wallet_snippet_theme_details: themeDetailsData
-        };
+  async function renderReferralSnippet() {
+    var _a, _b, _c;
+    try {
+      const targetDiv = document.getElementById("MainContent");
+      const ele = targetDiv.querySelector(".fc-scratch-card-snippet-19212-target");
+      if (ele) {
+        targetDiv.removeChild(ele);
       }
+      let shadowTarget = document.createElement("div");
+      shadowTarget.className = "fc-referral-ui-snippet-19212-target";
+      shadowTarget.style.display = "block";
+      targetDiv.appendChild(shadowTarget);
+      let shadow = shadowTarget.attachShadow({
+        mode: "open"
+      });
+      let shadowRoot = document.createElement("div");
+      shadowRoot.className = "fc-referral-ui-snippet-19212-root";
+      shadow.appendChild(shadowRoot);
+      let themeDetailsData;
+      if ((_a = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _a.theme_details) {
+        themeDetailsData = (_b = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _b.theme_details;
+      } else {
+        const mainScript = document.querySelector("#fc-wallet-referral-snippet-ui-script-19212");
+        console.log("mainScript", mainScript);
+        const client_id = mainScript == null ? void 0 : mainScript.getAttribute("data-client-id");
+        if (client_id) {
+          const themeDetailsRes = await fetch(`${WALLET_API_URI}/get-theme-details`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              client_id
+            })
+          });
+          themeDetailsData = await themeDetailsRes.json();
+          window.fc_loyalty_vars = {
+            // @ts-ignore
+            ...window.fc_loyalty_vars,
+            theme_details: themeDetailsData
+          };
+          console.log("shadowroot", window.fc_loyalty_vars);
+        }
+      }
+      const clientCustomStyleData = ((_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.custom_css) || "";
+      B$1(o(App, {
+        themeDetailsData,
+        shadowRoot
+      }), shadowRoot);
+      B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
+      B$1(o(AppCustomCSS, {
+        customStyles: clientCustomStyleData
+      }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
+    } catch (err) {
+      console.log("error", err);
     }
-    const clientCustomStyleData = (themeDetailsData == null ? void 0 : themeDetailsData.custom_css) || "";
-    B$1(o(App, {}), shadowRoot);
-    B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
-    B$1(o(AppCustomCSS, {
-      customStyles: clientCustomStyleData
-    }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
   }
-  window.fc_render_wallet_activity_snippet = renderwalletActivitySnippet;
-  renderwalletActivitySnippet();
+  window.fc_loyalty_render_wallet_box = renderReferralSnippet;
+  renderReferralSnippet();
 })();

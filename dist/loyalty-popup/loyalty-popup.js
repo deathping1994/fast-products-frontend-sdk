@@ -273,1425 +273,1435 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = `/* :root {\r
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\r
-	line-height: 1.5;\r
-	font-weight: 400;\r
-	\r
-	color: #222;\r
-	background-color: #ffffff;\r
-	\r
-	font-synthesis: none;\r
-	text-rendering: optimizeLegibility;\r
-	-webkit-font-smoothing: antialiased;\r
-	-moz-osx-font-smoothing: grayscale;\r
-	-webkit-text-size-adjust: 100%;\r
-}\r
-*/\r
-.mainPopup {\r
-	--loyalty_popup_theme_background: #000000;\r
-	--coin-svg-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23000000'/%3E%3Cpath d='M11.6003 6.28047C11.6301 6.19829 11.6845 6.12728 11.7561 6.0771C11.8277 6.02692 11.913 6 12.0004 6C12.0879 6 12.1732 6.02692 12.2448 6.0771C12.3164 6.12728 12.3708 6.19829 12.4006 6.28047L12.8076 7.39245C13.1264 8.2644 13.6316 9.05626 14.2881 9.71274C14.9446 10.3692 15.7364 10.8745 16.6084 11.1933L17.7195 11.6003C17.8017 11.6301 17.8727 11.6845 17.9229 11.7561C17.9731 11.8277 18 11.913 18 12.0004C18 12.0879 17.9731 12.1732 17.9229 12.2448C17.8727 12.3164 17.8017 12.3708 17.7195 12.4006L16.6084 12.8076C15.7364 13.1264 14.9446 13.6316 14.2881 14.2881C13.6316 14.9446 13.1264 15.7364 12.8076 16.6084L12.4006 17.7195C12.3708 17.8017 12.3164 17.8727 12.2448 17.9229C12.1732 17.9731 12.0879 18 12.0004 18C11.913 18 11.8277 17.9731 11.7561 17.9229C11.6845 17.8727 11.6301 17.8017 11.6003 17.7195L11.1933 16.6084C10.8745 15.7364 10.3692 14.9446 9.71274 14.2881C9.05626 13.6316 8.2644 13.1264 7.39245 12.8076L6.28047 12.4006C6.19829 12.3708 6.12728 12.3164 6.0771 12.2448C6.02692 12.1732 6 12.0879 6 12.0004C6 11.913 6.02692 11.8277 6.0771 11.7561C6.12728 11.6845 6.19829 11.6301 6.28047 11.6003L7.39245 11.1933C8.2644 10.8745 9.05626 10.3692 9.71274 9.71274C10.3692 9.05626 10.8745 8.2644 11.1933 7.39245L11.6003 6.28047Z' fill='white'/%3E%3C/svg%3E%0A");\r
-	--coin-svg-inverted-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 19 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9.5' cy='9.5' r='9.5' fill='white'/%3E%3Cpath d='M9.18353 4.97204C9.20715 4.90698 9.25022 4.85076 9.3069 4.81104C9.36358 4.77131 9.43112 4.75 9.50034 4.75C9.56955 4.75 9.63709 4.77131 9.69377 4.81104C9.75045 4.85076 9.79353 4.90698 9.81714 4.97204L10.1393 5.85236C10.3917 6.54265 10.7917 7.16954 11.3114 7.68925C11.8311 8.20896 12.458 8.60897 13.1483 8.86133L14.028 9.18353C14.093 9.20715 14.1492 9.25022 14.189 9.3069C14.2287 9.36358 14.25 9.43112 14.25 9.50034C14.25 9.56955 14.2287 9.63709 14.189 9.69377C14.1492 9.75045 14.093 9.79353 14.028 9.81714L13.1483 10.1393C12.458 10.3917 11.8311 10.7917 11.3114 11.3114C10.7917 11.8311 10.3917 12.458 10.1393 13.1483L9.81714 14.028C9.79353 14.093 9.75045 14.1492 9.69377 14.189C9.63709 14.2287 9.56955 14.25 9.50034 14.25C9.43112 14.25 9.36358 14.2287 9.3069 14.189C9.25022 14.1492 9.20715 14.093 9.18353 14.028L8.86133 13.1483C8.60897 12.458 8.20896 11.8311 7.68925 11.3114C7.16954 10.7917 6.54265 10.3917 5.85236 10.1393L4.97204 9.81714C4.90698 9.79353 4.85076 9.75045 4.81104 9.69377C4.77131 9.63709 4.75 9.56955 4.75 9.50034C4.75 9.43112 4.77131 9.36358 4.81104 9.3069C4.85076 9.25022 4.90698 9.20715 4.97204 9.18353L5.85236 8.86133C6.54265 8.60897 7.16954 8.20896 7.68925 7.68925C8.20896 7.16954 8.60897 6.54265 8.86133 5.85236L9.18353 4.97204Z' fill='%23000000'/%3E%3C/svg%3E%0A");\r
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\r
-	\r
-}\r
-\r
-@keyframes rotate {\r
-	from {\r
-		transform: rotate(0deg);\r
-	}\r
-	to {\r
-		transform: rotate(360deg);\r
-	}\r
-}\r
-\r
- @keyframes slide-in-bottom {\r
-	0% {\r
-	  -webkit-transform: translateY(calc(100%));\r
-		ransform: translateY(calc(100%));\r
-	}\r
-	100% {\r
-	  -webkit-transform: translateY(0);\r
-		transform: translateY(0);\r
-	}\r
-  }\r
-\r
-  @keyframes slide-in-top {\r
-	0% {\r
-	  -webkit-transform: translateY(-1000px);\r
-			  transform: translateY(-1000px);\r
-	  opacity: 0;\r
-	}\r
-	100% {\r
-	  -webkit-transform: translateY(0);\r
-			  transform: translateY(0);\r
-	  opacity: 1;\r
-	}\r
-  }\r
-\r
-  @keyframes fade-in {\r
-	0% {\r
-		opacity: 0;\r
-	}\r
-	100% {\r
-		opacity: 1;\r
-	}\r
-  }\r
-  \r
-  \r
-.loader{\r
-	height: 100%;\r
-	width: 100%;\r
-	position: absolute;\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: center;\r
-	align-items: center;\r
-	top: 0;\r
-	z-index: 999999;\r
-	background-color: rgba(255, 255, 255, 0.6);\r
-}\r
-.loaderFullHeight{\r
-	height: 100vh;\r
-	width: 100%;\r
-	position: absolute;\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: center;\r
-	align-items: center;\r
-	top: 0;\r
-	z-index: 999999;\r
-	background-color: rgba(255, 255, 255, 0.6);\r
-}\r
-.loading-screen {\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: center;\r
-	align-items: center;\r
-}\r
-\r
-.loading-screen p {\r
-	font-size: 12px;\r
-}\r
-\r
-.spinner {\r
-	animation: rotate 2s linear infinite;\r
-}\r
-\r
-body {\r
-	margin: 0;\r
-	padding: 0;\r
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;\r
-} \r
-\r
-\r
-.fc-loyalty-popup-19212-root * {\r
-	padding: 0;\r
-	margin: 0;\r
-	box-sizing: border-box;\r
-}\r
-\r
-.fc-loyalty-popup-19212-root a {\r
-	text-decoration: none;\r
-	color: inherit;\r
-}\r
-\r
-.fc-loyalty-popup-19212-root {\r
-	width: 100%;\r
-}\r
-/* Loyality popup styles */\r
-\r
-.floatingPopup {\r
-    background-color: var(--loyalty_popup_theme_background, #000);\r
-	padding: 1rem;\r
-	display: none;\r
-	position: fixed;\r
-	width: 60px;\r
-	height: 60px;\r
-	bottom: 3%;\r
-    right: 3%;\r
-	justify-content: center;\r
-	align-items: center;\r
-	border-radius: 100%;\r
-	z-index: 9999;\r
-	cursor: pointer;\r
-	\r
-}\r
-\r
-.mainPopup {\r
-	background-color: white;\r
-	scrollbar-width: none;\r
-	z-index: 999;\r
-	position: fixed;\r
-	gap: 16px;\r
-	bottom: 13%;\r
-	right: 7%;\r
-	max-width: 360px;\r
-	max-height: 580px;\r
-	width: 85vw;\r
-    height: 80vh;\r
-	border-radius: 15px;\r
-	overflow-x: hidden;\r
-	overflow-y: scroll;\r
-	padding-bottom: 16px;\r
-	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);\r
-}\r
-\r
-.mainContent {\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: start;\r
-	align-items: start;\r
-	padding-bottom: 16px;\r
-}\r
-\r
-.header {\r
-	display: flex;\r
-	justify-content: space-between;\r
-  	align-items: flex-start;\r
-	height: 10vh;\r
-	padding: 14px;\r
-	margin-bottom: 14px;\r
-}\r
-\r
-.header p {\r
-	color: #0c0c0c;\r
-    font-size: 12px;\r
-}\r
-.header h6 {\r
-	color: #0c0c0c;\r
-    font-size: 20px;\r
-	font-weight: 600;\r
-}\r
-\r
-.closePopup {\r
-	cursor: pointer;\r
-	width: 30px;\r
-	height: 30px;\r
-}\r
-\r
-.walletCard {\r
-	background-color: var(--loyalty_popup_theme_background, #000);\r
-    padding: 12px;\r
-    border-radius: 16px;\r
-    box-shadow: none;\r
-    margin: 0 14px;\r
-    width: calc(100% - 32px);\r
-	display: flex;\r
-	justify-content: space-between;\r
-	cursor: pointer;\r
-}\r
-\r
-.coinCard img {\r
-	width: 20px;\r
-	height: 20px;\r
-}\r
-\r
-.coinCard {\r
-	background-color: #fff;\r
-    border-radius: 4px;\r
-    margin: 0 6px;\r
-    padding: 5px 10px;\r
-    display: flex;\r
-    justify-content: center;\r
-    align-items: center;\r
-	gap: 8px;\r
-}\r
-\r
-.coinCard h1 {\r
-    font-size: 18px;\r
-	font-weight: 600;\r
-	color: var(--loyalty_popup_theme_background, #000);\r
-}\r
-\r
-.badgeCard img {\r
-	height: 12px;\r
-	width: 12px;\r
-}\r
-\r
-.badgeCard p {\r
-	font-size: 11px;\r
-}\r
-.badgeCard {\r
-	display: flex;\r
-	justify-content: left;\r
-	align-items: center;\r
-	color: white;\r
-	gap: 4px;\r
-}\r
-\r
-.walletCardText {\r
-	color: white;\r
-	font-size: 14px;\r
-	font-weight: bold;\r
-}\r
-\r
-.inviteCard {\r
-	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);\r
-    margin: 0 20px;\r
-    border-radius: 8px;\r
-    padding: 12px;\r
-}\r
-\r
-.inviteTextSection {\r
-	color: white;\r
-	display: flex;\r
-	align-items: start;\r
-	margin-bottom: 18px;\r
-	gap: 8px;\r
-}\r
-\r
-.inviteTextContainer {\r
-	padding-top: 8px;\r
-}\r
-\r
-.inviteTextContainer h2 {\r
-	font-weight: 700;\r
-	font-size: 20px;\r
-	margin-bottom: 10px;\r
-	line-height: 16px;\r
-}\r
-\r
-.inviteTextContainer p {\r
-	font-weight: 400;\r
-    font-size: 12px;\r
-	line-height: 14px;\r
-}\r
-\r
-.invitebtn {\r
-	width: 100%;\r
-    background: #fff;\r
-    border-radius: 4px;\r
-    border: none;\r
-    padding: 8px;\r
-    color: #3e56d2;\r
-    font-weight: 700;\r
-    font-size: 12px;\r
-    text-align: center;\r
-    cursor: pointer;\r
-	line-height: normal;\r
-	font-family: Inter, sans-serif;\r
-}\r
-\r
-.couponCard {\r
-	border-radius: 12px;\r
-	color: var(--loyalty_popup_theme_background, #000);\r
-	font-size: 14px;\r
-	line-height: 20px;\r
-	cursor: pointer;\r
-	width: 120px;\r
-}\r
-\r
-.couponCardDesc {\r
-	padding: 8px;\r
-	background: #f4f4f4;\r
-	border-radius: 8px;\r
-	box-shadow: 0 -4px 10px rgba(0,0,0,.1);\r
-	position: relative;\r
-	top: -12px;\r
-	min-width: 120px;\r
-	font-size: 13px;\r
-	font-weight: normal;\r
-	display: flex;\r
-	flex-direction: column;\r
-	gap: 4px;\r
-}\r
-\r
-.couponImg {\r
-	border-radius: 8px 8px 0 0;\r
-	width: 120px;\r
-}\r
-\r
-.couponCardPrice {\r
-	display: flex;\r
-	align-items: center;\r
-	justify-content: start;\r
-	gap: 4px;\r
-	font-size: 14px;\r
-	font-weight: 400;\r
-	margin-top: 8px;\r
-}\r
-\r
-.couponFloatingLabel {\r
-	position: absolute;\r
-	top: -10px;\r
-  	right: 10px;\r
-    background: var(--loyalty_popup_theme_background,#000);\r
-    color: #fff;\r
-    width: 40px;\r
-    height: 24px;\r
-    text-align: center;\r
-    line-height: 24px;\r
-    font-weight: 600;\r
-    font-size: 12px;\r
-    border-radius: 4px;\r
-}\r
-\r
-.couponText {\r
-	padding-top: 8px;\r
-	font-size: 13px;\r
-}\r
-\r
-.couponCardPrice img {\r
-	width: 14px;\r
-	height: 14px;\r
-}\r
-\r
-.viewAllCouponsContainer {\r
-	display: flex;\r
-	justify-content: space-between;\r
-	align-items: center;\r
-	padding: 16px;\r
-	padding-bottom: 6px;\r
-	width: 100%;\r
-}\r
-\r
-.viewAllCouponsContainer h1 {\r
-	font-size: 20px;\r
-    font-weight: 700;\r
-}\r
-\r
-.viewAllCouponsContainer a {\r
-	cursor: pointer;\r
-    font-weight: 500;\r
-    font-size: 12px;\r
-}\r
-.gamesArenaContainer {\r
-	padding: 8px 16px;\r
-	margin-top: 16px;\r
-}\r
-.gamesArenaContainer h1 {\r
-	font-size: 20px;\r
-    font-weight: 700;\r
-}\r
-.gamesArenaContainer p {\r
-	font-size: 12px;\r
-    font-weight: 500;\r
-	line-height: 14px;\r
-}\r
-\r
-.gamesCard {\r
-	background-color: #efefef;\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: center;\r
-	align-items: center;\r
-	padding: 8px;\r
-	padding-top: 8px;\r
-	padding-top: 30px;\r
-	border-radius: 8px;\r
-	position: relative;\r
-	bottom: 20px;\r
-	min-width: 126px;\r
-	}\r
-\r
-.gamesCardImg {\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	z-index: 2;\r
-	position: relative;\r
-}\r
-\r
-.gamesCardImg img {\r
-	min-height: 66px;\r
-}\r
-\r
-.coinBox {\r
-	background: #fff;\r
-	border-radius: 4px;\r
-	display: flex;\r
-	justify-content: center;\r
-	padding: 4px 14px;\r
-	align-items: center;\r
-	margin-bottom: 8px;\r
-	color: var(--loyalty_popup_theme_background, #000);\r
-	font-size: 14px;\r
-	gap: 4px;\r
-}\r
-\r
-.gamesCardBtn {\r
-	background: var(--loyalty_popup_theme_background, #000);\r
-    border-radius: 4px;\r
-    font-weight: 700;\r
-    font-size: 12px;\r
-    text-align: center;\r
-    color: #fff;\r
-    width: 100%;\r
-    padding: 8px;\r
-    cursor: pointer;\r
-	border: none;\r
-}\r
-\r
-.gamesCardTitle {\r
-	font-weight: 600;\r
-    font-size: 12px;\r
-	text-align: center;\r
-	color: black;\r
-}\r
-\r
-.gamesCardDesc {\r
-	font-weight: 500;\r
-    font-size: 10px;\r
-    margin-bottom: 8px;\r
-}\r
-\r
-.gamesHorizontalList {\r
-	height: fit-content;\r
-	padding: 8px 16px;\r
-	display: flex;\r
-	gap: 16px;\r
-	width: 100%;\r
-}\r
-\r
-/* Invite and Earn */\r
-\r
-.inviteWhatsappBtn {\r
-	height: 40px;\r
-    width: 96%;\r
-    background-color: #faa;\r
-    border-radius: 4px;\r
-    display: flex;\r
-    justify-content: center;\r
-    align-items: center;\r
-	border: none;\r
-}\r
-\r
-.inviteWhatsappBtn p {\r
-	font-size: 14px;\r
-	font-weight: 500;\r
-}\r
-\r
-.inviteRoundedBtn {\r
-	width: 40px;\r
-    height: 40px;\r
-    background-color: #faa;\r
-    border-radius: 50%;\r
-    display: flex;\r
-    justify-content: center;\r
-    align-items: center;\r
-	border: none;\r
-}\r
-\r
-.inviteAndEarnContainer {\r
-	width: 100%;\r
-	padding: 22px;\r
-	border-radius: 16px;\r
-	transition: all 0.5s;\r
-	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\r
-	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	\r
-}\r
-\r
-.overlay{\r
-	position: absolute;\r
-	display: none;\r
-	top: 0;\r
-	z-index: 99;\r
-	height: 100%;\r
-	width: 100%;\r
-	background-color: rgba(255, 255, 255, 0.6);\r
-	flex-direction: column;\r
-	justify-content: end;\r
-}\r
-\r
-.dashedDivider {\r
-	border: none;\r
-    height: 1px;\r
-    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);\r
-    margin: 20px 0 16px 0;\r
-}\r
-\r
-.inviteEarnTextContainer {\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	font-weight: 400;\r
-    font-size: 14px;\r
-    color: #acacac;\r
-    margin: 8px 0px;\r
-    text-align: center;\r
-}\r
-\r
-.inviteAndEarn {\r
-	display: flex;\r
-	justify-content: flex-start;\r
-	align-items: center;\r
-	gap: 16px;\r
-}\r
-\r
-.inviteAndEarn h2 {\r
-	font-weight: 700;\r
-    font-size: 30px;\r
-}\r
-\r
-.inviteAndEarnMessage h4 {\r
-	text-align: center;\r
-    font-weight: 500;\r
-    font-size: 16px;\r
-    line-height: 30px;\r
-    margin: 20px 0!important;\r
-}\r
-\r
-.inviteLinkContainer {\r
-	padding: 12px;\r
-    background: #faa;\r
-    border-radius: 4px;\r
-    border: 1px dashed var(--loyalty_popup_theme_background, #000);;\r
-    font-size: 16px;\r
-    font-weight: 700;\r
-    display: flex;\r
-	justify-content: space-between;\r
-    align-items: center;\r
-}\r
-\r
-.couponCodeContainer {\r
-	padding: 12px;\r
-    background: #faa;\r
-    border-radius: 4px;\r
-    border: 1px dashed var(--loyalty_popup_theme_background, #000);;\r
-    font-size: 16px;\r
-    font-weight: 700;\r
-    display: flex;\r
-	width: 100%;\r
-	justify-content: center;\r
-    align-items: center;\r
-	position: relative;\r
-}\r
-\r
-.couponCodeContainer img {\r
-	position: absolute;\r
-	right: 20px;\r
-	cursor: pointer;\r
-}\r
-\r
-.inviteLinkContainer p {\r
-	font-size: 14px;\r
-}\r
-\r
-.inviteLinkContainer img {\r
-	max-width: 16px;\r
-	cursor: pointer;\r
-}\r
-\r
-.sendInvitesBtnContainer, .inviteWhatsappBtn {\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	gap: 8px;\r
-}\r
-\r
-.closeInviteContainer {\r
-	display: flex;\r
-	justify-content: end;\r
-	align-items: center;\r
-}\r
-\r
-.couponUnlockBtn {\r
-	background-color: var(--loyalty_popup_theme_background, #000);\r
-    color: #fff;\r
-    padding: 11px 0;\r
-    border-radius: 8px;\r
-    font-family: Inter,sans-serif;\r
-    font-weight: 700;\r
-    cursor: pointer;\r
-    width: 100%;\r
-    font-size: 14px;\r
-	border: none;\r
-}\r
-\r
-\r
-.slide-in-bottom {\r
-	-webkit-animation: slide-in-bottom 0.5s ease-in-out both;\r
-	animation: slide-in-bottom 0.5s ease-in-out both;\r
-}\r
-\r
-.couponOverlayContainer {\r
-	display: flex;\r
-	justify-content: start;\r
-	align-items: center;\r
-	gap: 8px;\r
-}\r
-\r
-.couponOverlayContainer h2 {\r
-	font-size: 30px;\r
-}\r
-\r
-.couponContainer {\r
-	background-color: white;\r
-	width: 100%;\r
-	padding: 16px;\r
-	border-radius: 16px;\r
-	box-shadow: 0 -4px 50px rgba(0,0,0,.25);\r
-}\r
-\r
-.showAllCouponsList {\r
-	display: flex;\r
-	justify-content: start;\r
-	align-items: start;\r
-	gap: 16px;\r
-	scrollbar-width: none;\r
-	overflow-x: scroll;\r
-	overflow-y: hidden;\r
-	padding: 0 16px;\r
-}\r
-\r
-/* .pointsActivityClass {\r
-    height: 100%;\r
-	width: 100%;\r
-	background-color: white;\r
-	position: absolute;\r
-	top: 0px;\r
-	z-index: 999;\r
-	overflow-x: hidden;\r
-	overflow-y: scroll;\r
-	scrollbar-width: none;\r
-} */\r
-\r
-.pointsActivityClass h4 {\r
-	margin-left: 22px;\r
-    font-size: 20px;\r
-}\r
-\r
-.transaction-log-container {\r
-	margin: 24px 20px;\r
-    padding: 6px;\r
-    background: #fff;\r
-    border-radius: 8px;\r
-    border: 1px solid rgb(231, 231, 231);\r
-    border-radius: 6px;\r
-    box-shadow: 1px 2px 2px rgb(231, 231, 231);\r
-}\r
-\r
-.transaction-log-container .log-body {\r
-    padding: 8px 18px;\r
-}\r
-\r
-.transaction-log-container .log-body .amount {\r
-    font-size: 18px;\r
-    font-weight: 600;\r
-}\r
-\r
-.transaction-log-container .log-header {\r
-	display: flex;\r
-	justify-content: space-between;\r
-	align-items: center;\r
-	border-bottom: 1px solid rgb(231, 231, 231);\r
-	padding: 8px 18px;\r
-	font-size: 14px;\r
-}\r
-\r
-.transaction-log-container .log-header .log-type {\r
-	border-radius: 4px;\r
-	padding: 4px 8px;\r
-	font-weight: 600;\r
-}\r
-\r
-.transaction-log-container .log-header .log-type.credited {\r
-	background-color: rgb(209, 255, 217);\r
-	color: rgb(30, 175, 109);\r
-	font-size: 12px;\r
-}\r
-\r
-.transaction-log-container .log-header .log-type.debited {\r
-	background-color: rgba(181, 0, 0, 0.1);\r
-	color: rgb(181, 0, 0);\r
-	font-size: 12px;\r
-}\r
-\r
-.inviteAndEarnContainer {\r
-	background-color: white;\r
-	max-width: 360px;\r
-	max-height: 580px;\r
-	width: 85vw;\r
-	height: fit-content;\r
-	bottom: 2px;\r
-	z-index: 999;\r
-	background-color: white;\r
-	box-shadow: 3px 3px 90px 6px #ccc;\r
-}\r
-\r
-.shareTextContainer {\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	font-weight: 400;\r
-	font-size: 14px;\r
-	color: #acacac;\r
-	text-align: center;\r
-	margin-bottom: 12px;\r
-}\r
-\r
-.pointsActivityHeader {\r
-	display: flex;\r
-	justify-content: space-between;\r
-	align-items: center;\r
-	padding-right: 12px;\r
-  	padding-top: 12px;\r
-}\r
-\r
-.pointsActivityHeader img {\r
-	width: 30px;\r
-	height: 30px;\r
-	cursor: pointer;\r
-}\r
-\r
-.showGamesOverlay {\r
-	background-color: white;\r
-	width: 100%;\r
-	height: 100%;\r
-	position: absolute;\r
-	display: flex;\r
-	flex-direction: column;\r
-	top: 0;\r
-}\r
-\r
-.unlockTextContainer {\r
-	font-weight: 700;\r
-    font-size: 16px;\r
-    margin: 22px;\r
-	text-align: center;\r
-}\r
-\r
-.unlockText h5 {\r
-	font-weight: 700;\r
-    font-size: 16px;\r
-    margin: 16px 0;\r
-}\r
-\r
-.crossImg {\r
-	display: flex;\r
-	justify-content: end;\r
-	align-items: center;\r
-}\r
-\r
-.crossImg img {\r
-	width: 24px;\r
-	height: 24px;\r
-	cursor: pointer;\r
-}\r
-\r
-.unlockDesc p {\r
-	font-weight: 500;\r
-	font-size: 13px;\r
-	line-height: 16px;\r
-}\r
-\r
-.showGamesHeader {\r
-	display: flex;\r
-	justify-content: space-between;\r
-	align-items: center;\r
-	padding: 8px 16px;\r
-}\r
-\r
-.showGamesHeader img {\r
-	width: 30px;\r
-	height: 30px;\r
-	cursor: pointer;\r
-}\r
-.showGamesHeader h2 {\r
-	font-size: 20px;\r
-}\r
-\r
-.showGamesTab {\r
-	display: flex;\r
-	justify-content: space-between;\r
-	align-items: center;\r
-	padding: 0px 16px;\r
-}\r
-\r
-.showGamesTab h2 {\r
-	font-size: 18px;\r
-}\r
-\r
-.gamesTab {\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	gap: 8px;\r
-}\r
-\r
-.walletCoinsBox {\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	background-color: var(--loyalty_popup_theme_background, #000);\r
-	padding: 2px 8px;\r
-	border-radius: 50px;\r
-	gap: 4px;\r
-	width: fit-content;\r
-}\r
-\r
-.walletCoinsBox p {\r
-	color: white;\r
-	font-size: 20px;\r
-}\r
-\r
-.walletCoinsBox img {\r
-	width: 16px;\r
-	height: 16px;\r
-}\r
-\r
-.showGamesCards {\r
-	background-color: white;\r
-	display: flex;\r
-	justify-content: start;\r
-	align-items: center;\r
-	padding: 0px 16px;\r
-	gap: 16px;\r
-}\r
-\r
-.viewAllCoupons {\r
-	background-color: white;\r
-	width: 100%;\r
-	height: 100%;\r
-}\r
-\r
-.viewAllCouponsHeader {\r
-	display: flex;\r
-	justify-content: space-between;\r
-	align-items: center;\r
-	padding: 8px 16px;\r
-}\r
-\r
-.viewAllCouponsHeader h4 {\r
-	font-size: 20px;\r
-	font-weight: 700;\r
-}\r
-.viewAllCouponsHeader img {\r
-	width: 30px;\r
-	height: 30px;\r
-	cursor: pointer;\r
-}\r
-\r
-.viewAllCouponTabText {\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	gap: 8px;\r
-}\r
-\r
-.viewAllCouponTabText h4 {\r
-	cursor: pointer;\r
-	color: #959595;\r
-}\r
-\r
-.viewAllCouponsTab {\r
-	display: flex;\r
-	justify-content: space-between;\r
-	align-items: center;\r
-	padding: 8px 16px;\r
-}\r
-\r
-.viewAllFeaturedComponent h3 {\r
-	margin-left: 16px;\r
-}\r
-.reedemfcCoins {\r
-	padding: 16px;\r
-}\r
-.reedemfcCoins h5, .exploreCoupons h5{\r
-	font-weight: 700;\r
-    font-size: 16px;\r
-}\r
-.reedemfcCoins p{\r
-	/* margin-top: 8px; */\r
-    font-weight: 400;\r
-    font-size: 12px;\r
-	line-height: 14px;\r
-}\r
-\r
-\r
-.reedemfcCoinsCard {\r
-	background-color: #f4f4f4;\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	gap: 8px;\r
-	padding: 8px;\r
-	border-radius: 8px;\r
-	cursor: pointer;\r
-}\r
-.exploreCouponCard {\r
-	background-color: #f4f4f4;\r
-	display: flex;\r
-	justify-content: start;\r
-	align-items: center;\r
-	padding: 16px;\r
-	border-radius: 8px;\r
-	cursor: pointer;\r
-}\r
-.exploreCoupons {\r
-	padding: 16px;\r
-}\r
-\r
-.shipImgBox {\r
-	border-right: 1px dashed #959595;\r
-	padding-right: 8px;\r
-    margin-right: 8px\r
-}\r
-\r
-.exploreCouponCardText {\r
-	font-weight: 700;\r
-    font-size: 14px;\r
-}\r
-\r
-.exploreCouponCardText img {\r
-	width: 12px;\r
-	height: 12px;\r
-}\r
-\r
-.yourCouponsCardMainContainer {\r
-	padding: 16px;\r
-}\r
-\r
-.yourCouponsCardContainer {\r
-	background-color: #f4f4f4;\r
-	border-radius: 8px;\r
-	display: flex;\r
-	margin-top: 16px;\r
-}\r
-\r
-.youCouponCardLeft, .youCouponCardRight {\r
-	padding: 16px;\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: center;\r
-}\r
-\r
-.youCouponCardLeft {\r
-	border-right: 1px dashed #959595;\r
-	align-items: center;\r
-}\r
-\r
-.youCouponCardRight {\r
-	align-items: start;\r
-}\r
-\r
-.youCouponCardLeft h5 {\r
-	font-size: 24px;\r
-}\r
-\r
-.youCouponCardLeft p {\r
-	font-size: 14px;\r
-}\r
-\r
-\r
-.youCouponCardRight h4, .yourCouponCode {\r
-	font-weight: bold;\r
-	font-size: 13px;\r
-	color: var(--loyalty_popup_theme_background, #000);\r
-}\r
-\r
-.youCouponCardRight p {\r
-	color: #acacac;\r
-	font-size: 12px;\r
-}\r
-\r
-.yourCouponsActiveTab {\r
-	display: flex;\r
-	justify-content: start;\r
-	align-items: center;\r
-	gap: 30px;\r
-}\r
-\r
-.yourCouponsActiveTab div {\r
-	background: #d9d9d9;\r
-    border-radius: 8px;\r
-    padding: 8px;\r
-    font-weight: 700;\r
-    font-size: 14px;\r
-    cursor: pointer;\r
-}\r
-\r
-.couponNotFound {\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: center;\r
-	align-items: center;\r
-	margin-top: 16px;\r
-}\r
-\r
-.couponNotFound p{\r
-	font-weight: 400;\r
-    font-size: 12px;\r
-}\r
-\r
-.couponNotFound h4 {\r
-	font-weight: 700;\r
-    font-size: 20px;\r
-}\r
-\r
-.redeemCoinBox {\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: center;\r
-	align-items: center;\r
-	gap: 8px;\r
-}\r
-\r
-.redeemHeading h3 {\r
-	font-weight: 700;\r
-    font-size: 14px;\r
-}\r
-\r
-.redeemText p {\r
-	font-weight: 400;\r
-    font-size: 14px;\r
-}\r
-\r
-.redeemCoinMainContainer {\r
-	width: 100%;\r
-	height: 100%;\r
-    background-color: #ffffff8c;\r
-}\r
-\r
-.redeemCoinContainer {\r
-	background-color: white;\r
-	position: absolute;\r
-	padding: 16px;\r
-	width: 100%;\r
-	height: fit-content;\r
-	bottom: 0px;\r
-	border-radius: 8px;\r
-	box-shadow: 0px -44px 60px -11px rgba(194,194,194,1);\r
-	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\r
-	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	\r
-}\r
-\r
-.redeemCloseContainer {\r
-	display: flex;\r
-	justify-content: end;\r
-	align-items: center;\r
-}\r
-\r
-.redeemVoucherMain {\r
-	display: flex;\r
-	justify-content: start;\r
-	align-items: center;\r
-	gap: 16px;\r
-}\r
-\r
-.redeemVoucherMain h2 {\r
-	font-weight: 700;\r
-    font-size: 30px;\r
-}\r
-.redeemRangeContainer {\r
-	padding: 0px 32px;\r
-}\r
-\r
-.redeemRangeContainer p {\r
-	text-align: center;\r
-}\r
-\r
-.redeemRangeContainer, .redeemRangeContainer input {\r
-	width: 100%;\r
-}\r
-\r
-.redeemRangeContainer input {\r
-	accent-color: #959595;\r
-}\r
-\r
-.screenContainer {\r
-	background-color: white;\r
-}\r
-\r
-.screenHeader {\r
-	display: flex;\r
-	justify-content: space-between;\r
-	align-items: center;\r
-	padding: 8px 16px;\r
-}\r
-\r
-.screenHeader h2 {\r
-	font-weight: 700;\r
-    font-size: 20px;\r
-}\r
-\r
-.screenHeader img {\r
-	width: 30px;\r
-	height: 30px;\r
-}\r
-\r
-.walletCoinContainer {\r
-	width: 100%;\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: center;\r
-	align-items: center;\r
-}\r
-\r
-.walletCoinContainer h4 {\r
-	font-weight: 700;\r
-    font-size: 20px\r
-}\r
-\r
-\r
-.spinWheelBottom h4 {\r
-	font-weight: 700;\r
-	font-size: 16px;\r
-	text-align: center;\r
-}\r
-\r
-.spinWheelBottom hr {\r
-	width: 100%;\r
-	border: none;\r
-	height: 1px;\r
-	background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);\r
-}\r
-\r
-.spinWheelBottom {\r
-	padding: 16px;\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: center;\r
-	align-items: center;\r
-	gap: 8px;\r
-}\r
-\r
-#fw-chart-spin-wheel svg {\r
-	transform: rotate(-90deg);\r
-}\r
-\r
-.lockedIcon {\r
-	position: absolute;\r
-	top: 20px;\r
-	z-index: 2;\r
-	top: 51%;\r
-  	left: 37%;\r
-}\r
-	\r
-.lockedIcon img {\r
-	height: 115px;\r
-	width: 115px;\r
-}\r
-\r
-.spinWinContainer {\r
-	position: absolute;\r
-    width: 100%;\r
-	height: 100%;\r
-    overflow: hidden;\r
-    transition: height .5s ease;\r
-    top: 0;\r
-    left: 0;\r
-    background: #ffffff7d;\r
-    display: flex;\r
-    justify-content: center;\r
-    align-items: center;\r
-	z-index: 2;\r
-	animation-name: movedown;\r
-	animation-duration: 1s;\r
-}\r
-\r
-.spinWinPopup {\r
-	background-color: var(--loyalty_popup_theme_background, #000);\r
-    color: #fff;\r
-    padding: 30px 25px;\r
-    box-shadow: 0 -4px 24px rgba(0,0,0,.12);\r
-    border-radius: 12px;\r
-    max-width: 90%;\r
-	display: flex;\r
-	flex-direction: column;\r
-    justify-content: center;\r
-    align-items: center;\r
-	gap: 8px;\r
-	-webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\r
-	animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\r
-}\r
-\r
-.spinWinPopup h3 {\r
-	font-size: 18px;\r
-    text-align: center;\r
-}\r
-.spinWinPopup h3 {\r
-	font-size: 20px;\r
-    text-align: center;\r
-}\r
-.spinWinPopup p {\r
-	font-size: 14px;\r
-}\r
-\r
-.playagainbtn {\r
-	width: 100%;\r
-    background: #fff;\r
-    color: var(--loyalty_popup_theme_background, #000);;\r
-    font-family: Inter;\r
-    font-size: 14px;\r
-    font-weight: 600;\r
-    padding: 10px;\r
-    border-radius: 4px;\r
-    cursor: pointer;\r
-	border: none;\r
-}\r
-\r
-.closebtn {\r
-	color: #fff;\r
-    background: var(--loyalty_popup_theme_background, #000);;\r
-    border: 0;\r
-    font-size: 14px;\r
-    font-weight: 500;\r
-    padding: 5px;\r
-    margin: 10px;\r
-    cursor: pointer;\r
-}\r
-\r
-.scratchCardDiv {\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: center;\r
-	align-items: center;\r
-	position: relative;\r
-}\r
-\r
-.scratchCardDiv canvas {\r
-	z-index: 2;\r
-	border-radius: 8px;\r
-	cursor: grabbing;\r
-}\r
-\r
-.scratchCardDiv h4 {\r
-	position: absolute;\r
-	top: 45%;\r
-}\r
-\r
-.scratchCardDiv img {\r
-	position: absolute;\r
-	z-index: 3;\r
-}\r
-\r
-.copied {\r
-	background-color: green;\r
-  padding: 8px;\r
-  position: absolute;\r
-  top: 50%;\r
-  left: 40%;\r
-  border-radius: 12px;\r
-  color: white;\r
-  font-weight: bold;\r
-  font-size: 14px;\r
-}\r
-\r
-.coinIcon { \r
-    background-image: var(--coin-svg-url);\r
-	width: 20px;\r
-	height: 20px;\r
-	background-size: 100% 100%;\r
-}\r
-\r
-.logoutWalletCard {\r
-	background-color: var(--loyalty_popup_theme_background, #000);\r
-	display: flex;\r
-	justify-content: space-between;\r
-	align-items: center;\r
-    padding: 12px;\r
-    border-radius: 16px;\r
-    box-shadow: none;\r
-    margin: 0 14px;\r
-    width: auto;\r
-}\r
-.walletLogoutBtn {\r
-	background-color: #fff;\r
-    border-radius: 4px;\r
-    margin: 0 6px;\r
-    padding: 5px 10px;\r
-    display: flex;\r
-    justify-content: center;\r
-    align-items: center;\r
-	cursor: pointer;\r
-}\r
-\r
-.logoutWallerCardHeading {\r
-	color: white;\r
-}\r
-\r
-.logoutWalletCard p {\r
-	color: var(--loyalty_popup_theme_background, #000);\r
-	font-size: 20px;\r
-	font-weight: 600;\r
-}\r
-\r
-.exploreCouponText {\r
-	display: flex;\r
-	justify-content: start;\r
-	align-items: center;\r
-	gap: 4px;\r
-}\r
-\r
-.exploreCouponText div {\r
-	width: 16px;\r
-	height: 16px;\r
-}\r
-\r
-.alert {\r
-	position: absolute;\r
-	bottom: 50%;\r
-	left: 50%;\r
-	z-index: 999;\r
-	background: #160b0b;\r
-	color: #f4c7c7;\r
-	font-weight: 400;\r
-	font-size: 14px;\r
-	border-radius: 4px;\r
-	padding: 8px 22px;\r
-	transition: 0.5s all ease;\r
-	display: flex;\r
-	justify-content: center;\r
-	align-items: center;\r
-	transform: translate(-50%, -50%);\r
-	width: 80%;\r
-	animation-name: fade-in;\r
-	animation-duration: 0.5s;\r
-}\r
-\r
-.alert svg.fw-wallet-alert-popup-error {\r
-	width: 22px;\r
-	height: 22px;\r
-	fill: rgb(244, 67, 54);\r
-	margin-right: 8px;\r
-}\r
-\r
-.referralPopupContainer {\r
-	background-color: var(--loyalty_popup_theme_background, #000);\r
-	display: flex;\r
-	flex-direction: column;\r
-	justify-content: center;\r
-	align-items: center;\r
-	position: absolute;\r
-	top: 50%;\r
-	left: 50%;\r
-	transform: translate(-50%, -50%);\r
-	max-width: 500px;\r
-	min-height: fit-content;\r
-	padding: 16px;\r
-	border-radius: 16px;\r
-	z-index: 999;\r
-	animation-name: fade-in;\r
-	animation-duration: 1s;\r
-	margin: 18px;\r
-	-webkit-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);\r
-	-moz-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);\r
-	box-shadow: 0px 0px 50px -13px rgba(0,0,0,0.75);\r
-}\r
-\r
-.referralPopupContainer img {\r
-	width: 28px;\r
-	height: 28px;\r
-	position: absolute;\r
-	top: 14px;\r
-	right: 14px;\r
-	background-color: white;\r
-	border-radius: 8px;\r
-}\r
-.referralPopupContainer h2 {\r
-	font-size: 28px;\r
-	color: white;\r
-}\r
-\r
-.referralPopupContainer p {\r
-	font-size: 16px;\r
-	text-align: center;\r
-	color: white;\r
-}\r
-.referralPopupContainer span {\r
-	color: gold;\r
+  const style = `/* :root {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+	
+	color: #222;
+	background-color: #ffffff;
+	
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+*/
+.mainPopup {
+	--loyalty_popup_theme_background: #000000;
+	--coin-svg-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23000000'/%3E%3Cpath d='M11.6003 6.28047C11.6301 6.19829 11.6845 6.12728 11.7561 6.0771C11.8277 6.02692 11.913 6 12.0004 6C12.0879 6 12.1732 6.02692 12.2448 6.0771C12.3164 6.12728 12.3708 6.19829 12.4006 6.28047L12.8076 7.39245C13.1264 8.2644 13.6316 9.05626 14.2881 9.71274C14.9446 10.3692 15.7364 10.8745 16.6084 11.1933L17.7195 11.6003C17.8017 11.6301 17.8727 11.6845 17.9229 11.7561C17.9731 11.8277 18 11.913 18 12.0004C18 12.0879 17.9731 12.1732 17.9229 12.2448C17.8727 12.3164 17.8017 12.3708 17.7195 12.4006L16.6084 12.8076C15.7364 13.1264 14.9446 13.6316 14.2881 14.2881C13.6316 14.9446 13.1264 15.7364 12.8076 16.6084L12.4006 17.7195C12.3708 17.8017 12.3164 17.8727 12.2448 17.9229C12.1732 17.9731 12.0879 18 12.0004 18C11.913 18 11.8277 17.9731 11.7561 17.9229C11.6845 17.8727 11.6301 17.8017 11.6003 17.7195L11.1933 16.6084C10.8745 15.7364 10.3692 14.9446 9.71274 14.2881C9.05626 13.6316 8.2644 13.1264 7.39245 12.8076L6.28047 12.4006C6.19829 12.3708 6.12728 12.3164 6.0771 12.2448C6.02692 12.1732 6 12.0879 6 12.0004C6 11.913 6.02692 11.8277 6.0771 11.7561C6.12728 11.6845 6.19829 11.6301 6.28047 11.6003L7.39245 11.1933C8.2644 10.8745 9.05626 10.3692 9.71274 9.71274C10.3692 9.05626 10.8745 8.2644 11.1933 7.39245L11.6003 6.28047Z' fill='white'/%3E%3C/svg%3E%0A");
+	--coin-svg-inverted-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 19 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9.5' cy='9.5' r='9.5' fill='white'/%3E%3Cpath d='M9.18353 4.97204C9.20715 4.90698 9.25022 4.85076 9.3069 4.81104C9.36358 4.77131 9.43112 4.75 9.50034 4.75C9.56955 4.75 9.63709 4.77131 9.69377 4.81104C9.75045 4.85076 9.79353 4.90698 9.81714 4.97204L10.1393 5.85236C10.3917 6.54265 10.7917 7.16954 11.3114 7.68925C11.8311 8.20896 12.458 8.60897 13.1483 8.86133L14.028 9.18353C14.093 9.20715 14.1492 9.25022 14.189 9.3069C14.2287 9.36358 14.25 9.43112 14.25 9.50034C14.25 9.56955 14.2287 9.63709 14.189 9.69377C14.1492 9.75045 14.093 9.79353 14.028 9.81714L13.1483 10.1393C12.458 10.3917 11.8311 10.7917 11.3114 11.3114C10.7917 11.8311 10.3917 12.458 10.1393 13.1483L9.81714 14.028C9.79353 14.093 9.75045 14.1492 9.69377 14.189C9.63709 14.2287 9.56955 14.25 9.50034 14.25C9.43112 14.25 9.36358 14.2287 9.3069 14.189C9.25022 14.1492 9.20715 14.093 9.18353 14.028L8.86133 13.1483C8.60897 12.458 8.20896 11.8311 7.68925 11.3114C7.16954 10.7917 6.54265 10.3917 5.85236 10.1393L4.97204 9.81714C4.90698 9.79353 4.85076 9.75045 4.81104 9.69377C4.77131 9.63709 4.75 9.56955 4.75 9.50034C4.75 9.43112 4.77131 9.36358 4.81104 9.3069C4.85076 9.25022 4.90698 9.20715 4.97204 9.18353L5.85236 8.86133C6.54265 8.60897 7.16954 8.20896 7.68925 7.68925C8.20896 7.16954 8.60897 6.54265 8.86133 5.85236L9.18353 4.97204Z' fill='%23000000'/%3E%3C/svg%3E%0A");
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+ @keyframes slide-in-bottom {
+	0% {
+	  -webkit-transform: translateY(calc(100%));
+		ransform: translateY(calc(100%));
+	}
+	100% {
+	  -webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+  }
+
+  @keyframes slide-in-top {
+	0% {
+	  -webkit-transform: translateY(-1000px);
+			  transform: translateY(-1000px);
+	  opacity: 0;
+	}
+	100% {
+	  -webkit-transform: translateY(0);
+			  transform: translateY(0);
+	  opacity: 1;
+	}
+  }
+
+  @keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+  }
+  
+  
+.loader{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	z-index: 999999;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+.loaderFullHeight{
+	height: 100vh;
+	width: 100%;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	z-index: 999999;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+.loading-screen {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.loading-screen p {
+	font-size: 12px;
+}
+
+.spinner {
+	animation: rotate 2s linear infinite;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+} 
+
+
+.fc-loyalty-popup-19212-root * {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.fc-loyalty-popup-19212-root a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.fc-loyalty-popup-19212-root {
+	width: 100%;
+}
+/* Loyality popup styles */
+
+.floatingPopup {
+    background-color: var(--loyalty_popup_theme_background, #000);
+	padding: 1rem;
+	display: none;
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	bottom: 3%;
+    right: 3%;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+	z-index: 9999;
+	cursor: pointer;
+	
+}
+
+.mainPopup {
+	background-color: white;
+	scrollbar-width: none;
+	z-index: 9999;
+	position: fixed;
+	gap: 16px;
+	bottom: 13%;
+	right: 7%;
+	max-width: 360px;
+	max-height: 580px;
+	width: 85vw;
+    height: 80vh;
+	border-radius: 15px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	padding-bottom: 16px;
+	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);
+}
+
+.mainContent {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+	padding-bottom: 16px;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+  	align-items: flex-start;
+	padding: 14px;
+}
+
+.header p {
+	color: #0c0c0c;
+    font-size: 12px;
+}
+.header h6 {
+	color: #0c0c0c;
+    font-size: 20px;
+	font-weight: 600;
+}
+
+.closePopup {
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+}
+
+.walletCard {
+	background-color: var(--loyalty_popup_theme_background, #000);
+    padding: 12px;
+    border-radius: 16px;
+    box-shadow: none;
+    margin: 0 14px;
+    width: calc(100% - 32px);
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+}
+
+.coinCard img {
+	width: 20px;
+	height: 20px;
+}
+
+.coinCard {
+	background-color: #fff;
+    border-radius: 4px;
+    margin: 0 6px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	gap: 8px;
+}
+
+.coinCard h1 {
+    font-size: 18px;
+	font-weight: 600;
+	color: var(--loyalty_popup_theme_background, #000);
+}
+
+.badgeCard img {
+	height: 12px;
+	width: 12px;
+}
+
+.badgeCard p {
+	font-size: 11px;
+}
+.badgeCard {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	color: white;
+	gap: 4px;
+}
+
+.walletCardText {
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.inviteCard {
+	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);
+    margin: 0 20px;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.inviteTextSection {
+	color: white;
+	display: flex;
+	align-items: start;
+	margin-bottom: 18px;
+	gap: 8px;
+}
+
+.inviteTextContainer {
+	padding-top: 8px;
+}
+
+.inviteTextContainer h2 {
+	font-weight: 700;
+	font-size: 20px;
+	margin-bottom: 10px;
+	line-height: 16px;
+}
+
+.inviteTextContainer p {
+	font-weight: 400;
+    font-size: 12px;
+	line-height: 14px;
+}
+
+.invitebtn {
+	width: 100%;
+    background: #fff;
+    border-radius: 4px;
+    border: none;
+    padding: 8px;
+    color: #3e56d2;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+	line-height: normal;
+	font-family: Inter, sans-serif;
+}
+
+.couponCard {
+	border-radius: 12px;
+	color: var(--loyalty_popup_theme_background, #000);
+	font-size: 14px;
+	line-height: 20px;
+	cursor: pointer;
+	width: 120px;
+}
+
+.couponCardDesc {
+	padding: 8px;
+	background: #f4f4f4;
+	border-radius: 8px;
+	box-shadow: 0 -4px 10px rgba(0,0,0,.1);
+	position: relative;
+	top: -12px;
+	min-width: 120px;
+	font-size: 13px;
+	font-weight: normal;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.couponImg {
+	border-radius: 8px 8px 0 0;
+	width: 120px;
+}
+
+.couponCardPrice {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	gap: 4px;
+	font-size: 14px;
+	font-weight: 400;
+	margin-top: 8px;
+}
+
+.couponFloatingLabel {
+	position: absolute;
+	top: -10px;
+  	right: 10px;
+    background: var(--loyalty_popup_theme_background,#000);
+    color: #fff;
+    width: fit-content;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 4px;
+	padding: 0 4px;
+}
+
+.couponText {
+	padding-top: 8px;
+	font-size: 13px;
+}
+
+.couponCardPrice img {
+	width: 14px;
+	height: 14px;
+}
+
+.viewAllCouponsContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px;
+	padding-bottom: 6px;
+	width: 100%;
+}
+
+.viewAllCouponsContainer h1 {
+	font-size: 20px;
+    font-weight: 700;
+}
+
+.viewAllCouponsContainer a {
+	cursor: pointer;
+    font-weight: 500;
+    font-size: 12px;
+}
+.gamesArenaContainer {
+	padding: 8px 16px;
+}
+.gamesArenaContainer h1 {
+	font-size: 20px;
+    font-weight: 700;
+}
+.gamesArenaContainer p {
+	font-size: 12px;
+    font-weight: 500;
+	line-height: 14px;
+}
+
+.gamesCard {
+	background-color: #efefef;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 8px;
+	padding-top: 8px;
+	padding-top: 30px;
+	border-radius: 8px;
+	position: relative;
+	bottom: 20px;
+	min-width: 126px;
+}
+
+.gamesCardImg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 2;
+	position: relative;
+}
+
+.gamesCardImg img {
+	max-height: 66px;
+}
+
+.coinBox {
+	background: #fff;
+	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	padding: 4px 14px;
+	align-items: center;
+	margin-bottom: 8px;
+	color: var(--loyalty_popup_theme_background, #000);
+	font-size: 14px;
+	gap: 4px;
+}
+
+.gamesCardBtn {
+	background: var(--loyalty_popup_theme_background, #000);
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    padding: 8px;
+    cursor: pointer;
+	border: none;
+}
+
+.gamesCardTitle {
+	font-weight: 600;
+    font-size: 12px;
+	text-align: center;
+	color: black;
+}
+
+.gamesCardDesc {
+	font-weight: 500;
+    font-size: 10px;
+}
+
+.gamesHorizontalList {
+	height: fit-content;
+	padding: 8px 16px;
+	display: flex;
+	gap: 16px;
+	width: 100%;
+	scrollbar-width: none;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+/* Invite and Earn */
+
+.inviteWhatsappBtn {
+	height: 40px;
+    width: 96%;
+    background-color: #29a71a;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border: none;
+}
+
+.inviteWhatsappBtn p {
+	font-size: 14px;
+	font-weight: 500;
+	color: white;
+}
+
+.inviteWhatsappBtn img {
+	filter: brightness(0) invert(1);
+}
+
+.inviteRoundedBtn {
+	width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border: 1px solid var(--loyalty_popup_theme_background, #000);
+}
+
+.inviteRoundedBtn img {
+	width: 16px;
+	height: 16px;
+}
+
+.inviteAndEarnContainer {
+	width: 100%;
+	padding: 22px;
+	border-radius: 16px;
+	transition: all 0.5s;
+	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	
+}
+
+.overlay{
+	position: absolute;
+	display: none;
+	top: 0;
+	z-index: 99;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.6);
+	flex-direction: column;
+	justify-content: end;
+}
+
+.dashedDivider {
+	border: none;
+    height: 1px;
+    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
+    margin: 20px 0 16px 0;
+}
+
+.inviteEarnTextContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 400;
+    font-size: 14px;
+    color: #acacac;
+    margin: 8px 0px;
+    text-align: center;
+}
+
+.inviteAndEarn {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 16px;
+}
+
+.inviteAndEarn h2 {
+	font-weight: 700;
+    font-size: 30px;
+}
+
+.inviteAndEarnMessage h4 {
+	text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 30px;
+    margin: 20px 0!important;
+}
+
+.inviteLinkContainer {
+	padding: 12px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid var(--loyalty_popup_theme_background, #000);
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+	justify-content: space-between;
+    align-items: center;
+}
+
+.couponCodeContainer {
+	padding: 12px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid var(--loyalty_popup_theme_background, #000);;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+	width: 100%;
+	justify-content: center;
+    align-items: center;
+	position: relative;
+}
+
+.couponCodeContainer img {
+	position: absolute;
+	right: 20px;
+	cursor: pointer;
+}
+
+.inviteLinkContainer p {
+	font-size: 14px;
+}
+
+.inviteLinkContainer img {
+	max-width: 16px;
+	cursor: pointer;
+}
+
+.sendInvitesBtnContainer, .inviteWhatsappBtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.closeInviteContainer {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.couponUnlockBtn {
+	background-color: var(--loyalty_popup_theme_background, #000);
+    color: #fff;
+    padding: 11px 0;
+    border-radius: 8px;
+    font-family: Inter,sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+	border: none;
+}
+
+
+.slide-in-bottom {
+	-webkit-animation: slide-in-bottom 0.5s ease-in-out both;
+	animation: slide-in-bottom 0.5s ease-in-out both;
+}
+
+.couponOverlayContainer {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 8px;
+}
+
+.couponOverlayContainer h2 {
+	font-size: 30px;
+}
+
+.couponContainer {
+	background-color: white;
+	width: 100%;
+	padding: 16px;
+	border-radius: 16px;
+	box-shadow: 0 -4px 50px rgba(0,0,0,.25);
+}
+
+.showAllCouponsList {
+	display: flex;
+	justify-content: start;
+	align-items: start;
+	gap: 16px;
+	scrollbar-width: none;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	padding: 0 16px;
+}
+
+/* .pointsActivityClass {
+    height: 100%;
+	width: 100%;
+	background-color: white;
+	position: absolute;
+	top: 0px;
+	z-index: 999;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	scrollbar-width: none;
+} */
+
+.pointsActivityClass h4 {
+	margin-left: 22px;
+    font-size: 20px;
+}
+
+.transaction-log-container {
+	margin: 24px 20px;
+    padding: 6px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid rgb(231, 231, 231);
+    border-radius: 6px;
+    box-shadow: 1px 2px 2px rgb(231, 231, 231);
+}
+
+.transaction-log-container .log-body {
+    padding: 8px 18px;
+}
+
+.transaction-log-container .log-body .amount {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.transaction-log-container .log-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid rgb(231, 231, 231);
+	padding: 8px 18px;
+	font-size: 14px;
+}
+
+.transaction-log-container .log-header .log-type {
+	border-radius: 4px;
+	padding: 4px 8px;
+	font-weight: 600;
+}
+
+.transaction-log-container .log-header .log-type.credited {
+	background-color: rgb(209, 255, 217);
+	color: rgb(30, 175, 109);
+	font-size: 12px;
+}
+
+.transaction-log-container .log-header .log-type.debited {
+	background-color: rgba(181, 0, 0, 0.1);
+	color: rgb(181, 0, 0);
+	font-size: 12px;
+}
+
+.inviteAndEarnContainer {
+	background-color: white;
+	max-width: 360px;
+	max-height: 580px;
+	width: 85vw;
+	height: fit-content;
+	bottom: 2px;
+	z-index: 999;
+	background-color: white;
+	box-shadow: 3px 3px 90px 6px #ccc;
+}
+
+.shareTextContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 400;
+	font-size: 14px;
+	color: #acacac;
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+.pointsActivityHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-right: 12px;
+  	padding-top: 12px;
+}
+
+.pointsActivityHeader img {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.showGamesOverlay {
+	background-color: white;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	top: 0;
+}
+
+.unlockTextContainer {
+	font-weight: 700;
+    font-size: 16px;
+    margin: 22px;
+	text-align: center;
+}
+
+.unlockText h5 {
+	font-weight: 700;
+    font-size: 16px;
+    margin: 16px 0;
+}
+
+.crossImg {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.crossImg img {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+
+.unlockDesc p {
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 16px;
+}
+
+.showGamesHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+}
+
+.showGamesHeader img {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+.showGamesHeader h2 {
+	font-size: 20px;
+}
+
+.showGamesTab {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 16px;
+}
+
+.showGamesTab h2 {
+	font-size: 18px;
+}
+
+.gamesTab {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.walletCoinsBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--loyalty_popup_theme_background, #000);
+	padding: 2px 8px;
+	border-radius: 50px;
+	gap: 4px;
+	width: fit-content;
+}
+
+.walletCoinsBox p {
+	color: white;
+	font-size: 20px;
+}
+
+.walletCoinsBox img {
+	width: 16px;
+	height: 16px;
+}
+
+.showGamesCards {
+	background-color: white;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	padding: 0px 16px;
+	gap: 16px;
+}
+
+.viewAllCoupons {
+	background-color: white;
+	width: 100%;
+	height: 100%;
+}
+
+.viewAllCouponsHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+}
+
+.viewAllCouponsHeader h4 {
+	font-size: 20px;
+	font-weight: 700;
+}
+.viewAllCouponsHeader img {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.viewAllCouponTabText {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.viewAllCouponTabText h4 {
+	cursor: pointer;
+	color: #959595;
+}
+
+.viewAllCouponsTab {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+}
+
+.viewAllFeaturedComponent h3 {
+	margin-left: 16px;
+}
+.reedemfcCoins {
+	padding: 16px;
+}
+.reedemfcCoins h5, .exploreCoupons h5{
+	font-weight: 700;
+    font-size: 16px;
+}
+.reedemfcCoins p{
+	/* margin-top: 8px; */
+    font-weight: 400;
+    font-size: 12px;
+	line-height: 14px;
+}
+
+
+.reedemfcCoinsCard {
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	padding: 8px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.exploreCouponCard {
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	padding: 16px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.exploreCoupons {
+	padding: 16px;
+}
+
+.shipImgBox {
+	border-right: 1px dashed #959595;
+	padding-right: 8px;
+    margin-right: 8px
+}
+
+.exploreCouponCardText {
+	font-weight: 700;
+    font-size: 14px;
+}
+
+.exploreCouponCardText img {
+	width: 12px;
+	height: 12px;
+}
+
+.yourCouponsCardMainContainer {
+	padding: 16px;
+}
+
+.yourCouponsCardContainer {
+	background-color: #f4f4f4;
+	border-radius: 8px;
+	display: flex;
+	margin-top: 16px;
+}
+
+.youCouponCardLeft, .youCouponCardRight {
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.youCouponCardLeft {
+	border-right: 1px dashed #959595;
+	align-items: center;
+}
+
+.youCouponCardRight {
+	align-items: start;
+}
+
+.youCouponCardLeft h5 {
+	font-size: 24px;
+}
+
+.youCouponCardLeft p {
+	font-size: 14px;
+}
+
+
+.youCouponCardRight h4, .yourCouponCode {
+	font-weight: bold;
+	font-size: 13px;
+	color: var(--loyalty_popup_theme_background, #000);
+}
+
+.youCouponCardRight p {
+	color: #acacac;
+	font-size: 12px;
+}
+
+.yourCouponsActiveTab {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 30px;
+}
+
+.yourCouponsActiveTab div {
+	background: #d9d9d9;
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.couponNotFound {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 16px;
+}
+
+.couponNotFound p{
+	font-weight: 400;
+    font-size: 12px;
+}
+
+.couponNotFound h4 {
+	font-weight: 700;
+    font-size: 20px;
+}
+
+.redeemCoinBox {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.redeemHeading h3 {
+	font-weight: 700;
+    font-size: 14px;
+}
+
+.redeemText p {
+	font-weight: 400;
+    font-size: 14px;
+}
+
+.redeemCoinMainContainer {
+	width: 100%;
+	height: 100%;
+    background-color: #ffffff8c;
+}
+
+.redeemCoinContainer {
+	background-color: white;
+	position: absolute;
+	padding: 16px;
+	width: 100%;
+	height: fit-content;
+	bottom: 0px;
+	border-radius: 8px;
+	box-shadow: 0px -44px 60px -11px rgba(194,194,194,1);
+	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	
+}
+
+.redeemCloseContainer {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.redeemVoucherMain {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 16px;
+}
+
+.redeemVoucherMain h2 {
+	font-weight: 700;
+    font-size: 30px;
+}
+.redeemRangeContainer {
+	padding: 0px 32px;
+}
+
+.redeemRangeContainer p {
+	text-align: center;
+}
+
+.redeemRangeContainer, .redeemRangeContainer input {
+	width: 100%;
+}
+
+.redeemRangeContainer input {
+	accent-color: #959595;
+}
+
+.screenContainer {
+	background-color: white;
+}
+
+.screenHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+}
+
+.screenHeader h2 {
+	font-weight: 700;
+    font-size: 20px;
+}
+
+.screenHeader img {
+	width: 30px;
+	height: 30px;
+}
+
+.walletCoinContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.walletCoinContainer h4 {
+	font-weight: 700;
+    font-size: 20px
+}
+
+
+.spinWheelBottom h4 {
+	font-weight: 700;
+	font-size: 16px;
+	text-align: center;
+}
+
+.spinWheelBottom hr {
+	width: 100%;
+	border: none;
+	height: 1px;
+	background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
+}
+
+.spinWheelBottom {
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+#fw-chart-spin-wheel svg {
+	transform: rotate(-90deg);
+}
+
+.lockedIcon {
+	position: absolute;
+	top: 20px;
+	z-index: 2;
+	top: 47%;
+	left: 31%;
+}
+	
+.lockedIcon img {
+	height: 160px;
+	width: 160px;
+}
+
+.spinWinContainer {
+	position: absolute;
+    width: 100%;
+	height: 100%;
+    overflow: hidden;
+    transition: height .5s ease;
+    top: 0;
+    left: 0;
+    background: #ffffff7d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	z-index: 2;
+	animation-name: movedown;
+	animation-duration: 1s;
+}
+
+.spinWinPopup {
+	background-color: var(--loyalty_popup_theme_background, #000);
+    color: #fff;
+    padding: 30px 25px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,.12);
+    border-radius: 12px;
+    max-width: 90%;
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	gap: 8px;
+	-webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.spinWinPopup h3 {
+	font-size: 18px;
+    text-align: center;
+}
+.spinWinPopup h3 {
+	font-size: 20px;
+    text-align: center;
+}
+.spinWinPopup p {
+	font-size: 14px;
+}
+
+.playagainbtn {
+	width: 100%;
+    background: #fff;
+    color: var(--loyalty_popup_theme_background, #000);;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+	border: none;
+}
+
+.closebtn {
+	color: #fff;
+    background: var(--loyalty_popup_theme_background, #000);;
+    border: 0;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.scratchCardDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.scratchCardDiv canvas {
+	z-index: 2;
+	border-radius: 8px;
+	cursor: grabbing;
+}
+
+.scratchCardDiv h4 {
+	position: absolute;
+	top: 45%;
+}
+
+.scratchCardDiv img {
+	position: absolute;
+	z-index: 3;
+}
+
+.copied {
+	background-color: green;
+  padding: 8px;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.coinIcon { 
+    background-image: var(--coin-svg-url);
+	width: 20px;
+	height: 20px;
+	background-size: 100% 100%;
+}
+
+.logoutWalletCard {
+	background-color: var(--loyalty_popup_theme_background, #000);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+    padding: 12px;
+    border-radius: 16px;
+    box-shadow: none;
+    margin: 0 14px;
+    width: auto;
+}
+.walletLogoutBtn {
+	background-color: #fff;
+    border-radius: 4px;
+    margin: 0 6px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	cursor: pointer;
+}
+
+.logoutWallerCardHeading {
+	color: white;
+}
+
+.logoutWalletCard p {
+	color: var(--loyalty_popup_theme_background, #000);
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.exploreCouponText {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 4px;
+}
+
+.exploreCouponText div {
+	width: 16px;
+	height: 16px;
+}
+
+.alert {
+	position: absolute;
+	bottom: 50%;
+	left: 50%;
+	z-index: 999;
+	background: #160b0b;
+	color: #f4c7c7;
+	font-weight: 400;
+	font-size: 14px;
+	border-radius: 4px;
+	padding: 8px 22px;
+	transition: 0.5s all ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	animation-name: fade-in;
+	animation-duration: 0.5s;
+}
+
+.alert svg.fw-wallet-alert-popup-error {
+	width: 22px;
+	height: 22px;
+	fill: rgb(244, 67, 54);
+	margin-right: 8px;
+}
+
+.referralPopupContainer {
+	background-color: var(--loyalty_popup_theme_background, #000);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 500px;
+	min-height: fit-content;
+	padding: 16px;
+	border-radius: 16px;
+	z-index: 999;
+	animation-name: fade-in;
+	animation-duration: 1s;
+	margin: 18px;
+	-webkit-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 50px -13px rgba(0,0,0,0.75);
+}
+
+.referralPopupContainer img {
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	background-color: white;
+	border-radius: 8px;
+}
+.referralPopupContainer h2 {
+	font-size: 28px;
+	color: white;
+}
+
+.referralPopupContainer p {
+	font-size: 16px;
+	text-align: center;
+	color: white;
+}
+.referralPopupContainer span {
+	color: gold;
 }`;
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
@@ -1854,9 +1864,38 @@ body {\r
       })
     });
   };
+  const fetchApi = async (route, method, data) => {
+    const resp = await fetch(`${WALLET_API_URI}${route}`, {
+      method,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ...data
+      })
+    });
+    const response = await resp.json();
+    return response;
+  };
   const InviteCard = ({
-    onClick
+    onClick,
+    client_id
   }) => {
+    const [cardMessage, setCardMessage] = h("");
+    p(() => {
+      const fetch2 = async () => {
+        var _a;
+        const resp = await fetchApi("/get-referrer-message", "post", {
+          client_id
+        });
+        if ((resp == null ? void 0 : resp.status) !== "success") {
+          setCardMessage("Invite your friends to get rewards");
+        } else {
+          setCardMessage((_a = resp == null ? void 0 : resp.data) == null ? void 0 : _a.getReferrerMessage);
+        }
+      };
+      fetch2();
+    }, []);
     return o(k$1, {
       children: o("div", {
         class: "inviteCard",
@@ -1872,7 +1911,7 @@ body {\r
             children: [o("h2", {
               children: "Invite & Earn"
             }), o("p", {
-              children: ["Get 200 ", window.fc_loyalty_vars.coin_name, " coins every time you invite a friend to try loyalty"]
+              children: cardMessage
             })]
           })]
         }), o("button", {
@@ -1938,19 +1977,6 @@ body {\r
       })
     });
   };
-  const fetchApi = async (route, method, data) => {
-    const resp = await fetch(`${WALLET_API_URI}${route}`, {
-      method,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        ...data
-      })
-    });
-    const response = await resp.json();
-    return response;
-  };
   const Alert = ({
     message
   }) => {
@@ -1977,32 +2003,47 @@ body {\r
   }) => {
     const [couponCode, setCouponCode] = h("");
     const [isCouponUnlocked, setIsCouponUnlocked] = h(false);
-    const [error, setError] = h(false);
+    const [showCopied, setShowCopied] = h(false);
+    const [error, setError] = h({
+      error: false,
+      msg: ""
+    });
     const [loading, setLoading] = h(false);
-    const showError = () => {
-      setError(true);
+    const showError = (msg) => {
+      setError({
+        error: true,
+        msg
+      });
       setTimeout(() => {
-        setError(false);
+        setError({
+          error: false,
+          msg: ""
+        });
       }, 3e3);
+    };
+    const copyReferralLinkFunc = () => {
+      setShowCopied(true);
+      navigator.clipboard.writeText(couponCode);
+      setTimeout(() => {
+        setShowCopied(false);
+      }, 1e3);
     };
     const fetchCouponCode = async () => {
       var _a;
       try {
         setLoading(true);
-        console.log("coupon Overlay couponData", couponData);
         const response = await fetchApi("/get-code", "post", {
           ...customerDetails,
           couponAmount: couponData == null ? void 0 : couponData.amount
         });
         if ((response == null ? void 0 : response.status) !== "success") {
-          console.log("failed overlay");
-          showError();
-          return;
+          showError(response == null ? void 0 : response.error);
+        } else {
+          setCouponCode((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.coupon_code);
+          setIsCouponUnlocked(true);
         }
-        setCouponCode((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.coupon_code);
-        setIsCouponUnlocked(true);
       } catch (error2) {
-        console.log("error in coupon card overlay");
+        console.log("error in coupon card overlay", error2);
       } finally {
         setLoading(false);
       }
@@ -2060,12 +2101,18 @@ body {\r
             children: [o("p", {
               children: couponCode
             }), o("img", {
+              onClick: copyReferralLinkFunc,
               src: "https://media.farziengineer.co/farziwallet/copy-icon.png",
               alt: ""
             })]
           })]
         })
-      }), error && o(Alert, {})]
+      }), error.error && o(Alert, {
+        message: error == null ? void 0 : error.msg
+      }), showCopied && o("div", {
+        class: "copied",
+        children: "copied"
+      })]
     });
   };
   const InviteAndEarnOverlay = ({
@@ -2076,28 +2123,55 @@ body {\r
       referral_code: "",
       path: ""
     });
+    const [invitemsg, setInvitemsg] = h("");
+    const [whatsappmsg, setWhatsappmsg] = h("");
+    const [loading, setLoading] = h(false);
+    const [error, setError] = h(false);
+    const showError = () => {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3e3);
+    };
     const [showCopied, setShowCopied] = h(false);
     p(() => {
-      try {
-        const fetchReferralCode = async () => {
+      const fetchReferralCode = async () => {
+        var _a, _b;
+        try {
+          setLoading(true);
           const resp = await fetchApi("/get-referral-code", "post", customerDetails);
-          console.log(resp == null ? void 0 : resp.data);
+          const response = await fetchApi("/get-referral-message", "post", {
+            client_id: customerDetails == null ? void 0 : customerDetails.client_id
+          });
+          const whatsappResp = await fetchApi("/get-referred-message", "post", customerDetails);
+          if ((response == null ? void 0 : response.status) !== "success") {
+            setInvitemsg("Share with you friends to get rewards.");
+            setWhatsappmsg("Share this with whatsapp");
+          } else {
+            setInvitemsg((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.getReferralMessage);
+            setWhatsappmsg((_b = whatsappResp == null ? void 0 : whatsappResp.data) == null ? void 0 : _b.getReferredMessage);
+          }
           setReferralData(resp == null ? void 0 : resp.data);
-        };
-        fetchReferralCode();
-      } catch (error) {
-        console.log("error in inviteEarn");
-      }
+        } catch (error2) {
+          showError();
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchReferralCode();
     }, []);
     const copyReferralLinkFunc = () => {
       setShowCopied(true);
-      navigator.clipboard.writeText(window.location.href.slice(0, -1) + referralData.path);
+      navigator.clipboard.writeText(window.location.origin + ((referralData == null ? void 0 : referralData.path) || "/account/register"));
       setTimeout(() => {
         setShowCopied(false);
       }, 1e3);
     };
     return o(k$1, {
-      children: o("div", {
+      children: [loading ? o("div", {
+        className: "loader",
+        children: o(Loading, {})
+      }) : o("div", {
         class: "inviteAndEarnContainer",
         children: [o("div", {
           onClick: closeOverlay,
@@ -2118,7 +2192,7 @@ body {\r
         }), o("div", {
           class: "inviteAndEarnMessage",
           children: o("h4", {
-            children: ["Every time you successfully refer friend. You get 200 ", window.fc_loyalty_vars.coin_name, " Coins & they get 100 ", window.fc_loyalty_vars.coin_name, " Coins"]
+            children: invitemsg
           })
         }), o("div", {
           class: "inviteEarnTextContainer",
@@ -2131,7 +2205,7 @@ body {\r
         }), o("div", {
           class: "inviteLinkContainer",
           children: [o("p", {
-            children: [(window.location.href.slice(0, -1) + referralData.path).substring(0, 29), "..."]
+            children: [`${window.location.origin}${(referralData == null ? void 0 : referralData.path) || "/account/register"}`.substring(0, 29), "..."]
           }), o("img", {
             onClick: copyReferralLinkFunc,
             src: "https://media.farziengineer.co/farziwallet/copy-icon.png",
@@ -2149,7 +2223,8 @@ body {\r
         }), o("div", {
           class: "sendInvitesBtnContainer",
           children: [o("a", {
-            href: `https://api.whatsapp.com/send?text=Click%20on%20the%20referral%20link%20below%20and%20get%20rewarded%20with%20100%20FC%20Coins.%20${window.location.href.slice(0, -1) + referralData.path}`,
+            href: `https://api.whatsapp.com/send?text=${whatsappmsg}`,
+            target: "_blank",
             class: "inviteWhatsappBtn",
             children: [o("img", {
               src: "https://media.farziengineer.co/farziwallet/whatsapp-icon.png",
@@ -2158,15 +2233,16 @@ body {\r
               children: "Send on whatsapp"
             })]
           }), o("a", {
-            href: `sms://18005555555/?body=Click%20on%20the%20referral%20link%20below%20and%20get%20rewarded%20with%20100%20FC%20Coins.%20${window.location.href.slice(0, -1) + referralData.path}`,
+            href: `sms://18005555555/?body=${whatsappmsg}`,
+            target: "_blank",
             class: "inviteRoundedBtn",
             children: o("img", {
-              src: "https://media.farziengineer.co/farziwallet/share-icon.png",
+              src: "https://media.farziengineer.co/farziwallet/share_arrow.png",
               alt: ""
             })
           })]
         })]
-      })
+      }), error && o(Alert, {})]
     });
   };
   const GamesCard = ({
@@ -2211,7 +2287,6 @@ body {\r
     });
   };
   const YourCoupons = ({
-    yourCouponTab,
     customerDetails
   }) => {
     const [activeTab, setActiveTab] = h("");
@@ -2278,9 +2353,7 @@ body {\r
             })]
           }), o("div", {
             class: "youCouponCardRight",
-            children: [o("h4", {
-              children: ele.title
-            }), o("p", {
+            children: [o("p", {
               children: ["code: ", o("span", {
                 class: "yourCouponCode",
                 children: ele.coupon
@@ -2354,7 +2427,6 @@ body {\r
           setLoading(true);
           const response = await fetchApi("/get-featured-spin-wheels", "post", customerDetails);
           setGamesData(response == null ? void 0 : response.data);
-          console.log("spin card data", response == null ? void 0 : response.data);
         } catch (error) {
           console.error("Error fetching wallet data:", error);
         } finally {
@@ -2410,8 +2482,7 @@ body {\r
           gamePrice: game.amount
         }, idx))
       })), activeTab === "yourcoupons" && o(YourCoupons, {
-        customerDetails,
-        yourCouponTab: activeTab
+        customerDetails
       })]
     });
   };
@@ -2462,79 +2533,72 @@ body {\r
     const [showWinPopup, setShowWinPopup] = h(false);
     const [spinWheelRewardData, setSpinWheelRewardData] = h([]);
     const [loading, setLoading] = h(true);
+    const [error, setError] = h({
+      error: false,
+      msg: ""
+    });
     const [winData, setWinData] = h({
       win_message: "",
       win_index: -1
     });
+    const showError = (msg) => {
+      setError({
+        error: true,
+        msg
+      });
+      setTimeout(() => {
+        console.log(error);
+        setError({
+          error: false,
+          msg
+        });
+      }, 3e3);
+    };
     function winAudio() {
       const audio = new Audio("https://media.farziengineer.co/farziwallet/success.mp3");
       audio.play();
-    }
-    function splitStringOnLength(inputString, maxLength) {
-      if (typeof inputString !== "string") {
-        return [];
-      }
-      const words = inputString.split(" ");
-      const result = [];
-      let currentSubstring = "";
-      for (const word of words) {
-        if (currentSubstring.length + word.length + 1 <= maxLength) {
-          if (currentSubstring.length > 0) {
-            currentSubstring += " ";
-          }
-          currentSubstring += word;
-        } else {
-          result.push(currentSubstring);
-          currentSubstring = word;
-        }
-      }
-      if (currentSubstring.length > 0) {
-        result.push(currentSubstring);
-      }
-      return result;
-    }
-    function wrap(text, width) {
-      text.each(function() {
-        var text2 = d3.select(this), words = splitStringOnLength(text2.text(), 12).reverse(), word, line = [], lineNumber = 1, x2 = text2.attr("x"), y2 = text2.attr("y"), dy = 0, tspan = text2.text(null).append("tspan").attr("x", x2).attr("y", y2).attr("dy", "-1em");
-        while (word = words.pop()) {
-          line.push(word);
-          tspan.text(line.join(" "));
-          if (tspan.node().getComputedTextLength() > width) {
-            line.pop();
-            tspan.text(line.join(" "));
-            line = [word];
-            tspan = text2.append("tspan").attr("x", x2).attr("y", y2).attr("dy", "1em").attr("dx", "-" + ++lineNumber + dy + "em").text(word);
-          }
-        }
-      });
     }
     const loadD3JS = async () => {
       const res1 = await fetch("https://d3js.org/d3.v3.min.js");
       const fileContent1 = await res1.text();
       var script1 = document.createElement("script");
       script1.innerHTML = fileContent1;
-      console.log("adding", script1);
       document.querySelector("body").appendChild(script1);
     };
     p(() => {
+      const fetchRewardArray = async () => {
+        const response = await fetchApi(`/get-spin-wheel-rewards`, "post", {
+          ...customerDetails,
+          couponAmount: spinWheelAmount
+        });
+        return response;
+      };
       loadD3JS().then(() => {
-        console.log("the script is loaded");
-        console.log(spinWheelRewardData);
-      }).catch((error) => {
-        console.log("error inlloading d3", error);
+        fetchRewardArray().then((resp) => {
+          console.log("====== data", resp);
+          if ((resp == null ? void 0 : resp.status) === "success") {
+            setSpinWheelRewardData(resp == null ? void 0 : resp.data);
+            drawWheel(shadowRoot, resp == null ? void 0 : resp.data.map((item, index) => {
+              return {
+                label: item,
+                value: index
+              };
+            }), false);
+            setLoading(false);
+          } else {
+            setLoading(false);
+            showError(resp == null ? void 0 : resp.error);
+          }
+        });
+      }).catch((error2) => {
+        console.log("error in loading d3", error2);
       });
-    }, [spinWheelRewardData]);
+    }, []);
     function drawWheel(shadowRoot2, data, unlock, winningIdx, spinnedCallback) {
-      console.log("drawwheel", data);
-      console.log("shadowRoot", shadowRoot2);
-      console.log("screenContent", shadowRoot2.querySelector(".screenContent"));
-      const ggg = shadowRoot2.querySelector(".screenContent");
-      const hhh = ggg.querySelector(".spinWheelMainContainer");
-      console.log("mainCOntinaire", hhh);
-      console.log("spinwheel", hhh.querySelector("#fw-chart-spin-wheel"));
       (function auto() {
+        const ggg = shadowRoot2.querySelector(".screenContent");
+        const hhh = ggg.querySelector(".spinWheelMainContainer");
         const chartElement = hhh.querySelector("#fw-chart-spin-wheel");
-        console.log("charele", chartElement);
         var padding = {
           top: 20,
           right: 40,
@@ -2542,8 +2606,6 @@ body {\r
           left: 0
         }, w2 = chartElement.offsetWidth - padding.left - padding.right, h2 = chartElement.offsetWidth - padding.top - padding.bottom, r2 = Math.min(w2, h2) / 2, rotation = 0, oldrotation = 0, picked = winningIdx, color = d3.scale.category20();
         var svg = d3.select(chartElement).append("svg").data([data]).attr("width", w2 + padding.left + padding.right).attr("height", h2 + padding.top + padding.bottom);
-        console.log(w2 + padding.left + padding.right);
-        console.log(h2 + padding.top + padding.bottom);
         var container = svg.append("g").attr("class", "chartholder").attr("transform", "translate(" + (w2 / 2 + padding.left) + "," + (h2 / 2 + padding.top) + ")");
         var vis = container.append("g");
         var pie = d3.layout.pie().sort(null).value(function(d2) {
@@ -2563,8 +2625,7 @@ body {\r
           return "rotate(" + (d2.angle * 180 / Math.PI - 90) + ")translate(" + (d2.outerRadius - 10) + ")";
         }).attr("text-anchor", "end").text(function(d2, i2) {
           return data[i2].label;
-        }).call(wrap, 36);
-        console.log("draw comp");
+        });
         unlock && container.on("click", spin);
         function spin(d2) {
           spinAudio.play();
@@ -2605,41 +2666,9 @@ body {\r
         setShowWinPopup(true);
       }, 1e3);
     };
-    const fetchSpinWheelReward = async () => {
-      const ggg = shadowRoot.querySelector(".screenContent");
-      const hhh = ggg.querySelector(".spinWheelMainContainer");
-      try {
-        const response = await fetchApi(`/get-spin-wheel-rewards`, "post", {
-          ...customerDetails,
-          couponAmount: spinWheelAmount
-        });
-        console.log("spin wheel reward array", response);
-        setSpinWheelRewardData(response == null ? void 0 : response.data);
-        hhh.querySelector("#fw-chart-spin-wheel").innerHTML = ``;
-        drawWheel(shadowRoot, response == null ? void 0 : response.data.map((item, index) => {
-          return {
-            label: item,
-            value: index
-          };
-        }), false);
-      } catch (error) {
-        console.log("error in Playgame");
-      } finally {
-        setLoading(false);
-      }
-    };
-    p(() => {
-      console.log("spinwheelamt", spinWheelAmount);
-      const func = async () => {
-        await fetchSpinWheelReward();
-      };
-      func();
-      console.log("amt wala useeffect", spinWheelRewardData);
-    }, []);
     const playAgain = () => {
       setBtnVisibility(false);
       setShowWinPopup(false);
-      fetchSpinWheelReward();
     };
     const closeWinPopup = () => {
       showSpinGameScreen("show_spin_wheel", "Wheel of Fortune");
@@ -2652,29 +2681,31 @@ body {\r
             ...customerDetails,
             couponAmount: spinWheelAmount
           });
-          console.log("win spinwheel data", response == null ? void 0 : response.data);
-          setWinData(response == null ? void 0 : response.data);
-          return response == null ? void 0 : response.data;
-        } catch (error) {
+          if ((response == null ? void 0 : response.status) === "success") {
+            setWinData(response == null ? void 0 : response.data);
+            setBtnVisibility(true);
+            return response == null ? void 0 : response.data;
+          } else {
+            showError(response == null ? void 0 : response.error);
+          }
+        } catch (error2) {
           console.log("error in redeem spinwheel");
         } finally {
           setLoading(false);
         }
       };
       redeemSpinWheel().then((data) => {
-        console.log("redepinwheel WIN", data);
         drawWheel(shadowRoot, spinWheelRewardData.map((item, index) => {
           return {
             label: item,
             value: index
           };
         }), true, data == null ? void 0 : data.win_index, spinCB);
-      }).catch((error) => {
-        console.log("error in reddeemo spin wheel");
+      }).catch((error2) => {
+        console.log("error in reddeemo spin wheel", error2);
       });
       const unlockSpinWheel = shadowRoot.querySelector("#fw-chart-spin-wheel");
       unlockSpinWheel.innerHTML = ``;
-      setBtnVisibility(true);
     };
     return o(k$1, {
       children: o("div", {
@@ -2704,7 +2735,7 @@ body {\r
           children: [o("hr", {}), btnVisibility ? o("h4", {
             children: "Click 'SPIN' to start"
           }) : o("h4", {
-            children: ["Unlock for 10 ", window.fc_loyalty_vars.coin_name, " Coins"]
+            children: ["Unlock for ", spinWheelAmount, " ", window.fc_loyalty_vars.coin_name, " Coins"]
           }), !btnVisibility && o("button", {
             onClick: drawUnlockSpinWheel,
             class: "couponUnlockBtn",
@@ -2733,6 +2764,8 @@ body {\r
               children: "close"
             })]
           })
+        }), error.error && o(Alert, {
+          message: error == null ? void 0 : error.msg
         })]
       })
     });
@@ -2817,7 +2850,6 @@ body {\r
         try {
           setLoading(true);
           const response = await fetchApi("/get-featured-scratch-cards", "post", customerDetails);
-          console.log("showscratchCard", response);
           setScratchCardData(response == null ? void 0 : response.data);
         } catch (error) {
           console.error(error);
@@ -2835,7 +2867,6 @@ body {\r
       borderBottom: "2px solid #373737"
     };
     const showScratchCard = (amount) => {
-      console.log("scratch card amount ======", amount);
       funcScratchCardAmount(amount);
       showScratchCardScreen("show_scratch_card", "Scratch Card");
     };
@@ -2875,8 +2906,7 @@ body {\r
           gamePrice: game.amount
         }, idx))
       })), activeTab === "yourcoupons" && o(YourCoupons, {
-        customerDetails,
-        yourCouponTab: activeTab
+        customerDetails
       })]
     });
   };
@@ -2891,12 +2921,27 @@ body {\r
     const [loading, setLoading] = h(false);
     const [showWinPopup, setShowWinPopup] = h(false);
     const [playAgain, setPlayAgain] = h(false);
+    const [error, setError] = h({
+      error: false,
+      msg: ""
+    });
     const [winMessage, setWinMessage] = h({
       win_message: ""
     });
+    const showError = (msg) => {
+      setError({
+        error: true,
+        msg
+      });
+      setTimeout(() => {
+        setError({
+          error: false,
+          msg: ""
+        });
+      }, 3e3);
+    };
     const init = (context) => {
       let gradientColor = context.createLinearGradient(0, 0, 135, 135);
-      console.log("gradientColor", gradientColor);
       gradientColor.addColorStop(0, "#AEE7FF");
       gradientColor.addColorStop(1, "#AEE7FF");
       context.fillStyle = gradientColor;
@@ -2922,7 +2967,6 @@ body {\r
       const screenContent = shadowRoot.querySelector(".screenContent");
       const canvas = screenContent.querySelector("#scratchCardCanvas");
       const context = canvas.getContext("2d");
-      console.log("useeffect", context);
       init(context);
     }, [shadowRoot, playAgain]);
     const handlePlayAgainBtn = () => {
@@ -2956,13 +3000,16 @@ body {\r
           ...customerDetails,
           couponAmount: scratchCardAmount
         });
-        console.log("scratchc card resp", response.data);
-        setWinMessage(response == null ? void 0 : response.data);
-      } catch (error) {
-        console.log("error inSC");
+        if ((response == null ? void 0 : response.status) !== "success") {
+          showError(response == null ? void 0 : response.error);
+        } else {
+          setWinMessage(response == null ? void 0 : response.data);
+          drawUnlockedScratchCard();
+        }
+      } catch (error2) {
+        console.log("error in SC", error2);
       } finally {
         setLoading(false);
-        drawUnlockedScratchCard();
       }
     };
     const drawUnlockedScratchCard = () => {
@@ -2970,7 +3017,6 @@ body {\r
       const screenContent = shadowRoot.querySelector(".screenContent");
       const canvas = screenContent.querySelector("#scratchCardCanvas");
       const context = canvas.getContext("2d");
-      console.log("context drawUnlockFunc", context);
       let mouseX = 0;
       let mouseY = 0;
       let isDragged = false;
@@ -3025,16 +3071,16 @@ body {\r
         isDragged = false;
       });
       let scratchedPixels = 0;
-      const threshold = 300;
+      const threshold = 100;
       let cardScratchable = true;
       const scratch = async (x2, y2) => {
         context.globalCompositeOperation = "destination-out";
         context.beginPath();
-        context.arc(x2, y2, 12, 0, 2 * Math.PI);
+        context.arc(x2, y2, 18, 0, 2 * Math.PI);
         context.fill();
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
-        const distanceFromCenter = Math.sqrt((x2 - centerX) ** 2 + (y2 - centerY) ** 2);
+        const distanceFromCenter = Math.sqrt((x2 - centerX) ** 2 + (y2 - centerY) ** 2) / 2;
         const centerAreaRadius = 200;
         if (distanceFromCenter <= centerAreaRadius) {
           scratchedPixels++;
@@ -3103,6 +3149,8 @@ body {\r
             children: "close"
           })]
         })
+      }), error.error && o(Alert, {
+        message: error == null ? void 0 : error.msg
       })]
     });
   };
@@ -3178,13 +3226,12 @@ body {\r
           coupon_title: `Custom Discount: ${rangeValue} ${window.fc_loyalty_vars.coin_name} Coins for ₹${rangeValue} off`
         });
         if ((response == null ? void 0 : response.status) !== "success") {
-          console.log("failed overlay");
           showError();
           return;
         }
         setRedeemCoinCode((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.coupon_code);
       } catch (error2) {
-        console.log("error in redeem coin");
+        console.log("error in redeem coin", error2);
       } finally {
         setLoading(false);
       }
@@ -3433,7 +3480,7 @@ body {\r
             class: "exploreCoupons",
             children: [o("h5", {
               children: "Coupons to Explore"
-            }), exploreCoupon.map((card, idx) => o("div", {
+            }), exploreCoupon && exploreCoupon.map((card, idx) => o("div", {
               onClick: () => handleExploreOverlayVisibility(idx),
               class: "exploreCouponCard",
               children: [o("div", {
@@ -3502,6 +3549,8 @@ body {\r
     });
   };
   const ReferralPopup = ({
+    referedAmount,
+    walletAmount,
     closeReferralPopup
   }) => {
     const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
@@ -3516,10 +3565,7 @@ body {\r
         }), o("h2", {
           children: ["Welcome to ", clientName]
         }), o("p", {
-          children: ["You have received 100 points into your ", clientName, " wallet for signing up with us. Your total wallet balance is 100. ", o("span", {
-            class: "referralPopupHashtag",
-            children: "#LiveYourBrilliance"
-          }), " "]
+          children: ["You have received ", referedAmount, " points into your ", clientName, " wallet for signing up with us."]
         })]
       })
     });
@@ -3530,19 +3576,37 @@ body {\r
   }) {
     const [visibilty, setVisibility] = h(false);
     const [referralPopup, setReferralPopup] = h(false);
+    const [referedAmount, setReferedAmount] = h(0);
     const [walletAmount, setWalletAmount] = h(0);
     const [walletLogs, setWalletLogs] = h([]);
     const [spinWheelAmount, setSpinWheelAmount] = h(0);
     const [scratchCardAmount, setScratchCardAmount] = h(0);
     const [loading, setLoading] = h(false);
     const [isLoggedIn, setIsLoggedIn] = h(false);
-    const [error, setError] = h(false);
+    const [error, setError] = h({
+      error: false,
+      msg: ""
+    });
     const [featuredCoupons, setFeaturedCoupons] = h([]);
     const [couponCardIdx, setCouponCardIdx] = h(0);
     const [customerDetails, setCustomerDetails] = h({
       customer_id: "",
       user_hash: "",
       client_id: ""
+    });
+    const [singleSpinWheel, setSingleSpinWheel] = h({
+      title: "",
+      description: "",
+      image: "",
+      amount: "",
+      btnText: ""
+    });
+    const [singleScratchCard, setSingleScratchCard] = h({
+      title: "",
+      description: "",
+      image: "",
+      amount: "",
+      btnText: ""
     });
     const [screenDetails, setScreenDetails] = h({
       screen: "home_screen",
@@ -3553,28 +3617,6 @@ body {\r
       overlay: "none",
       active: false
     });
-    const couponCardData = [{
-      "heading": "₹ 10 Voucher",
-      "title": "Rs. 10 off on Striped Silk Blouse",
-      "description": "The management reserves the right to modify the coupon as they see fit and to adjust the customer's wallet if they determine the event.",
-      "label": "₹ 10",
-      "image": "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      "amount": 10
-    }, {
-      "heading": "₹ 30 Voucher",
-      "title": "Rs. 30 off on Striped Silk Blouse",
-      "description": "The management reserves the right to modify the coupon as they see fit and to adjust the customer's wallet if they determine the event.",
-      "label": "₹ 30",
-      "image": "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      "amount": 30
-    }, {
-      "heading": "₹ 50 Voucher",
-      "title": "Rs. 50 off on Striped Silk Blouse",
-      "description": "The management reserves the right to modify the coupon as they see fit and to adjust the customer's wallet if they determine the event.",
-      "label": "₹ 50",
-      "image": "https://media.farziengineer.co/farziwallet/coupon-image-top.png",
-      "amount": 50
-    }];
     const handleLogin = () => {
       var _a;
       if (!isLoggedIn) {
@@ -3584,28 +3626,42 @@ body {\r
     const handleCloseReferralPopup = () => {
       setReferralPopup(false);
     };
-    const showError = () => {
-      setError(true);
+    const showError = (msg) => {
+      setError({
+        error: true,
+        msg
+      });
       setTimeout(() => {
-        setError(false);
+        setError({
+          error: false,
+          msg: ""
+        });
       }, 3e3);
     };
     const funcScratchCardAmount = (amount) => {
-      console.log("func scr card===", amount);
       setScratchCardAmount(amount);
     };
-    async function redeemReferHash() {
+    async function redeemReferHash({
+      client_id,
+      customer_id,
+      user_hash
+    }) {
+      var _a;
       const fc_refer_hash = localStorage.getItem("fc_refer_hash");
-      console.log("fc refer", fc_refer_hash);
       if (fc_refer_hash) {
         try {
           const response = await fetchApi("/redeem-referral-code", "post", {
-            ...customerDetails,
+            client_id,
+            customer_id,
+            // user_hash: user_hash,
             refer_hash: fc_refer_hash
           });
-          setReferralPopup(true);
-          console.log("fc_refer response", response);
-          localStorage.removeItem("fc_refer_hash");
+          if ((response == null ? void 0 : response.status) === "success") {
+            setReferralPopup(true);
+            setReferedAmount((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.referredReward);
+            localStorage.removeItem("fc_refer_hash");
+            return;
+          }
         } catch (err) {
           console.log("error in redeemReferHash", err);
         }
@@ -3641,7 +3697,6 @@ body {\r
       setTheme({
         themeDetails: themeDetailsData
       });
-      console.log(themeDetailsData);
     }, [visibilty]);
     p(() => {
       var _a;
@@ -3671,33 +3726,26 @@ body {\r
       });
       if (customer_id) {
         setIsLoggedIn(true);
-        redeemReferHash();
+        redeemReferHash({
+          client_id,
+          customer_id,
+          user_hash
+        });
       }
     }, []);
     p(() => {
       if ((customerDetails == null ? void 0 : customerDetails.customer_id) !== "") {
         const fetchData = async () => {
-          var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m;
+          var _a, _b, _c, _d, _e;
           try {
             setLoading(true);
             const walletResponse = await fetchApi("/user-walletlogs", "post", {
               ...customerDetails
             });
-            console.log("responsedata", (_d = (_c = (_b = (_a = walletResponse == null ? void 0 : walletResponse.data) == null ? void 0 : _a.data) == null ? void 0 : _b.wallet) == null ? void 0 : _c.wallet) == null ? void 0 : _d.amount);
             if ((walletResponse == null ? void 0 : walletResponse.status) !== "success") {
-              showError();
+              showError("Failed");
             } else {
-              setWalletAmount((_h = (_g = (_f = (_e = walletResponse == null ? void 0 : walletResponse.data) == null ? void 0 : _e.data) == null ? void 0 : _f.wallet) == null ? void 0 : _g.wallet) == null ? void 0 : _h.amount);
-              setWalletLogs((_m = (_l = (_k = (_j = (_i = walletResponse == null ? void 0 : walletResponse.data) == null ? void 0 : _i.data) == null ? void 0 : _j.wallet) == null ? void 0 : _k.wallet) == null ? void 0 : _l.logs) == null ? void 0 : _m.edges);
-            }
-            const couponResponse = await fetchApi("/get-featured-coupons", "post", {
-              ...customerDetails
-            });
-            if ((couponResponse == null ? void 0 : couponResponse.status) !== "success") {
-              showError();
-            } else {
-              console.log(couponResponse == null ? void 0 : couponResponse.data);
-              setFeaturedCoupons(couponResponse == null ? void 0 : couponResponse.data);
+              setWalletLogs((_e = (_d = (_c = (_b = (_a = walletResponse == null ? void 0 : walletResponse.data) == null ? void 0 : _a.data) == null ? void 0 : _b.wallet) == null ? void 0 : _c.wallet) == null ? void 0 : _d.logs) == null ? void 0 : _e.edges);
             }
           } catch (error2) {
             console.error("Error fetching wallet data:", error2);
@@ -3708,6 +3756,40 @@ body {\r
         fetchData();
       }
     }, [customerDetails, screenDetails == null ? void 0 : screenDetails.screen, referralPopup]);
+    p(() => {
+      const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
+      const client_id = mainScript.getAttribute("data-client-id");
+      const customer_id = mainScript.getAttribute("data-customer-id");
+      const fetch2 = async () => {
+        var _a, _b;
+        const couponResponse = await fetchApi("/get-featured-coupons", "post", {
+          client_id
+        });
+        if ((couponResponse == null ? void 0 : couponResponse.status) !== "success") {
+          showError(couponResponse == null ? void 0 : couponResponse.error);
+        } else {
+          if (couponResponse == null ? void 0 : couponResponse.data) {
+            setFeaturedCoupons(couponResponse == null ? void 0 : couponResponse.data);
+          } else {
+            showError("No coupons found");
+          }
+        }
+        const spinWheelResponse = await fetchApi("/get-featured-spin-wheels", "post", {
+          client_id
+        });
+        setSingleSpinWheel(spinWheelResponse == null ? void 0 : spinWheelResponse.data[0]);
+        const scratchCardResponse = await fetchApi("/get-featured-scratch-cards", "post", {
+          client_id
+        });
+        setSingleScratchCard(scratchCardResponse == null ? void 0 : scratchCardResponse.data[0]);
+        const walletAmountResponse = await fetchApi("/user-wallet-amount", "post", {
+          client_id,
+          customer_id
+        });
+        setWalletAmount((_b = (_a = walletAmountResponse == null ? void 0 : walletAmountResponse.data) == null ? void 0 : _a.userWallet) == null ? void 0 : _b.amount);
+      };
+      fetch2();
+    }, []);
     const btnClick = (idx) => {
       changeOverlay("coupon");
       setCouponCardIdx(idx);
@@ -3760,21 +3842,6 @@ body {\r
         });
       }
     };
-    const gamesData = [{
-      name: "show_spin_wheel",
-      gameTitle: "Wheel of Fortune",
-      gameDesc: "Start at",
-      cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
-      gamePrice: "10",
-      btnText: "Explore"
-    }, {
-      name: "show_scratch_card",
-      gameTitle: "Scratch Card",
-      gameDesc: "Start at",
-      cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
-      gamePrice: "10",
-      btnText: "Explore"
-    }];
     p(() => {
       if (visibilty) {
         document.body.classList.add("fc-no-scroll");
@@ -3913,13 +3980,8 @@ body {\r
               })]
             }), o("div", {
               class: "showAllCouponsList",
-              children: isLoggedIn ? featuredCoupons.map((card, index) => o(CouponCard, {
+              children: featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => o(CouponCard, {
                 onClick: () => btnClick(index),
-                couponPrice: card.amount,
-                couponDesc: card.title,
-                couponImgLink: card.image
-              }, index)) : couponCardData.map((card, index) => o(CouponCard, {
-                onClick: handleLogin,
                 couponPrice: card.amount,
                 couponDesc: card.title,
                 couponImgLink: card.image
@@ -3934,15 +3996,23 @@ body {\r
                 })]
               }), o("div", {
                 class: "gamesHorizontalList",
-                children: gamesData.map((card, idx) => o(GamesCard, {
-                  btnClick: () => isLoggedIn && handleScreenComponent(card.name, card.gameTitle),
-                  gameTitle: card.gameTitle,
-                  gameDesc: card.gameDesc,
-                  cardImage: card.cardImage,
-                  gamePrice: card.gamePrice,
-                  btnText: card.btnText
-                }, idx))
+                children: [o(GamesCard, {
+                  btnClick: () => isLoggedIn && handleScreenComponent("show_spin_wheel", "Wheel of Fortune"),
+                  gameTitle: (singleSpinWheel == null ? void 0 : singleSpinWheel.title) || "Spin and Win",
+                  gameDesc: (singleSpinWheel == null ? void 0 : singleSpinWheel.description) || "Spin and win coins",
+                  cardImage: (singleSpinWheel == null ? void 0 : singleSpinWheel.image) || "https://media.farziengineer.co/farziwallet/spin-wheel.png",
+                  gamePrice: (singleSpinWheel == null ? void 0 : singleSpinWheel.amount) || "10",
+                  btnText: (singleSpinWheel == null ? void 0 : singleSpinWheel.btnText) || "Explore"
+                }), o(GamesCard, {
+                  btnClick: () => isLoggedIn && handleScreenComponent("show_scratch_card", "Scratch Card"),
+                  gameTitle: (singleScratchCard == null ? void 0 : singleScratchCard.title) || "Scratch and Win",
+                  gameDesc: (singleScratchCard == null ? void 0 : singleScratchCard.description) || "Scratch and win coins",
+                  cardImage: (singleScratchCard == null ? void 0 : singleScratchCard.image) || "https://media.farziengineer.co/farziwallet/scratch-card.png",
+                  gamePrice: (singleScratchCard == null ? void 0 : singleScratchCard.amount) || "10",
+                  btnText: (singleScratchCard == null ? void 0 : singleScratchCard.btnText) || "Explore"
+                })]
               }), o(InviteCard, {
+                client_id: customerDetails.client_id,
                 onClick: () => isLoggedIn && changeOverlay("invite_and_earn")
               })]
             })]
@@ -3953,13 +4023,13 @@ body {\r
                 content: handleOverlay(overlayVisible == null ? void 0 : overlayVisible.overlay)
               })
             }) : o(k$1, {})
-          }), error && o(
-            // @ts-ignore
-            Alert,
-            {}
-          )]
+          }), (error == null ? void 0 : error.error) && o(Alert, {
+            message: error == null ? void 0 : error.msg
+          })]
         })
       }), referralPopup && (customerDetails == null ? void 0 : customerDetails.client_id) && o(ReferralPopup, {
+        referedAmount,
+        walletAmount,
         closeReferralPopup: handleCloseReferralPopup
       })]
     });
