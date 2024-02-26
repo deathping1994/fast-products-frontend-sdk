@@ -16,24 +16,24 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shad
     const [couponIdx, setCouponIdx] = useState(0)
     const [loading, setLoading] = useState(false);
     const [overlayVisible, setOverlayVisible] = useState({
-        overlay: "none",
-        active: false,
-      });
+      overlay: "none",
+      active: false,
+    });
 
-      useEffect(()=>{
-        const exploreCouponResp = async ()=>{
-            try {
-              setLoading(true)
-              const resp = await fetchApi('/get-coupons-to-explore', 'post', customerDetails)
-              setExploreCoupon(resp?.data?.data)
-            } catch (error) {
-              console.log(error);
-            } finally {
-              setLoading(false)
-            }
-        }
-        exploreCouponResp()
-      },[])
+    useEffect(()=>{
+      const exploreCouponResp = async ()=>{
+          try {
+            setLoading(true)
+            const resp = await fetchApi('/get-coupons-to-explore', 'post', customerDetails)
+            setExploreCoupon(resp?.data?.data)
+          } catch (error) {
+            console.log(error);
+          } finally {
+            setLoading(false)
+          }
+      }
+      exploreCouponResp()
+    },[])
 
       const handleOverlay = (overlayname) => {
         if (overlayname === "coupon") {

@@ -1,8 +1,8 @@
   // @ts-nocheck
   import { useEffect, useState } from "preact/hooks";
-  import Loading from "./Utils/Loading";
-  import fetchApi from "./Utils/FetchApi";
-  import Alert from "./Utils/Alert";
+  import Alert from '../../global/Alert';
+  import fetchApi from '../../global/FetchApi';
+  import Loading from '../../global/Loading';
 
   const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount, showScratchCardScreen, customerDetails }) => {
     const [isLocked, setIsLocked] = useState(true);
@@ -59,17 +59,16 @@
       }
     };
     useEffect(() => {
-      const screenContent = shadowRoot.querySelector('.screenContent');
-      const canvas = screenContent.querySelector('#scratchCardCanvas');
-      const context = canvas.getContext("2d");
-      // console.log("useeffect", context);
-      init(context)
+        const canvas = shadowRoot.querySelector("#scratchCardCanvas")
+        const context = canvas.getContext("2d");
+        // console.log("useeffect", context);
+        init(context)
     }, [shadowRoot, playAgain]);
 
     const handlePlayAgainBtn = () => {
-      const scratchCardDiv = shadowRoot.querySelector('.scratchCardDiv');
-    
-      const existingCanvas = scratchCardDiv.querySelector('#scratchCardCanvas');
+      const existingCanvas = canvas.querySelector('#scratchCardCanvas');
+      
+      
       if (existingCanvas) {
         existingCanvas.parentNode.removeChild(existingCanvas);
       }
@@ -81,6 +80,8 @@
       newCanvas.height = 300;
     
       // Append the new canvas to the scratchCardDiv element
+      const scratchCardDiv = shadowRoot.querySelector('.scratchCardDiv');
+      console.log("=======",scratchCardDiv);
       scratchCardDiv.appendChild(newCanvas);
     
       setPlayAgain(!playAgain);
@@ -123,8 +124,7 @@
 
     const drawUnlockedScratchCard = ()=>{
       setIsLocked(false)
-      const screenContent = shadowRoot.querySelector('.screenContent');
-      const canvas = screenContent.querySelector('#scratchCardCanvas');
+      const canvas = shadowRoot.querySelector('#scratchCardCanvas');
       const context = canvas.getContext("2d");
       // console.log("context drawUnlockFunc", context);
       
@@ -259,7 +259,7 @@
                 <p>You Won</p>
                 <h2>{winMessage?.win_message}</h2>
                 <button onClick={handlePlayAgainBtn} class="playagainbtn">Play Again</button>
-                <button onClick={()=> showScratchCardScreen('show_scratch_card',"Scratch Card")} class="closebtn">close</button>
+                <button onClick={()=> showScratchCardScreen()} class="closebtn">close</button>
               </div>
             </div>
         }

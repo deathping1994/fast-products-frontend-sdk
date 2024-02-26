@@ -1,4 +1,4 @@
-import { WALLET_API_URI } from "../scratch-card-snippet";
+export const WALLET_API_URI = import.meta.env.VITE_APP_BASE_URL;
 
 const fetchApi = async (route, method, data) => {
   // @ts-ignore
