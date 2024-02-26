@@ -66,8 +66,7 @@
     }, [shadowRoot, playAgain]);
 
     const handlePlayAgainBtn = () => {
-      const existingCanvas = canvas.querySelector('#scratchCardCanvas');
-      
+      const existingCanvas = shadowRoot.querySelector('#scratchCardCanvas');
       
       if (existingCanvas) {
         existingCanvas.parentNode.removeChild(existingCanvas);
@@ -245,13 +244,7 @@
           <h4>{winMessage?.win_message}</h4>
           {isLocked && <img src="https://media.farziengineer.co/farziwallet/lock.png" alt="" />}
           <canvas width={300} height={300} id="scratchCardCanvas"></canvas>
-        </div>
-        <div class="spinWheelBottom">
-          <hr />
-          <h4>{isLocked ? `Unlock for ${scratchCardAmount} ${window.fc_loyalty_vars.coin_name} Coin` : `Click and drag your cursor across the card`}</h4>
-          {isLocked && <button onClick={getScratchCardWinData} class="couponUnlockBtn">Tap to Unlock</button>}
-        </div>
-        {
+          {
             showWinPopup && 
             <div class="spinWinContainer">
               <div class="spinWinPopup">
@@ -262,7 +255,14 @@
                 <button onClick={()=> showScratchCardScreen()} class="closebtn">close</button>
               </div>
             </div>
-        }
+          }
+        </div>
+        <div class="spinWheelBottom">
+          <hr />
+          <h4>{isLocked ? `Unlock for ${scratchCardAmount} ${window.fc_loyalty_vars.coin_name} Coin` : `Click and drag your cursor across the card`}</h4>
+          {isLocked && <button onClick={getScratchCardWinData} class="couponUnlockBtn">Tap to Unlock</button>}
+        </div>
+        
         {error.error && <Alert message={error?.msg}/>}
       </>
     );

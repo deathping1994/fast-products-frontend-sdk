@@ -31,6 +31,56 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     }
     fetch()
   }, []);
+
+  function setTheme({ themeDetails }) {
+    var cssVariablesScope = shadowRoot.querySelector(".widget-container");
+    console.log("theme details",themeDetails);
+    if (cssVariablesScope && themeDetails?.data?.theme_color) {
+      cssVariablesScope.style.setProperty(
+        "--loyalty_popup_theme_background",
+        themeDetails?.data?.theme_color
+      );
+
+      if (themeDetails?.data?.coin_icon) {
+        cssVariablesScope.style.setProperty(
+          "--coin-svg-url",
+          `url("${themeDetails?.data?.coin_icon}")`
+        );
+        cssVariablesScope.style.setProperty(
+          "--coin-svg-inverted-url",
+          `url("${themeDetails?.data?.coin_icon}")`
+        );
+      } else {
+        cssVariablesScope.style.setProperty(
+          "--coin-svg-url",
+          `url("https://media.farziengineer.co/farziwallet/coin-icon.png")`
+        );
+        cssVariablesScope.style.setProperty(
+          "--coin-svg-inverted-url",
+          `url("https://media.farziengineer.co/farziwallet/coin-icon.png")`
+        );
+      }
+    }
+
+    if (themeDetails?.data?.coin_name) {
+      // @ts-ignore
+      window.fc_loyalty_vars = {
+        coin_name: themeDetails?.data?.coin_name,
+      };
+    } else {
+      // @ts-ignore
+      window.fc_loyalty_vars = {
+        coin_name: "FC",
+      };
+    }
+
+    // shadowRoot.querySelector(".floatingPopup").style.display = "flex"; //widget visible only after custom styles are applied
+  }
+  useEffect(() => {
+    setTheme({ themeDetails: themeDetailsData });
+    // console.log(themeDetailsData);
+  }, [themeDetailsData]);
+  
   const [walletAmount, setWalletAmount] = useState(0);
   const [scratchCardAmount, setScratchCardAmount] = useState(0);
   const [activeTab, setActiveTab] = useState("");

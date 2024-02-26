@@ -12,6 +12,19 @@ p {
 	}
 }
 
+@keyframes slide-in-top {
+	0% {
+	  -webkit-transform: translateY(-1000px);
+			  transform: translateY(-1000px);
+	  opacity: 0;
+	}
+	100% {
+	  -webkit-transform: translateY(0);
+			  transform: translateY(0);
+	  opacity: 1;
+	}
+  }
+
 
 .fc-spin-wheel-snippet-19212-root {
 	display: flex;
@@ -408,4 +421,114 @@ p {
 	width: 20px;
 	height: 20px;
 	background-size: 100% 100%;
+}
+
+.lockedIcon {
+	position: absolute;
+	z-index: 2;
+	transform: rotate(90deg);
+	right: 125px;
+  	top: 118px;
+}
+
+#fw-chart-spin-wheel {
+	transform: rotate(-90deg);
+	max-width: 400px;
+	max-height: 400px;
+	position: relative;
+}
+
+
+.spinWinPopup {
+	background-color: var(--loyalty_popup_theme_background, #000);
+    color: #fff;
+    padding: 30px 25px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,.12);
+    border-radius: 12px;
+    max-width: 90%;
+	display: flex;
+	position: relative;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	gap: 8px;
+	-webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	z-index: 2;
+	left: 0;
+}
+
+.spinWinPopup h2 {
+	font-size: 18px;
+    text-align: center;
+	margin: 0;
+}
+.spinWinPopup h3 {
+	font-size: 20px;
+    text-align: center;
+	margin: 0;
+}
+.spinWinPopup p {
+	font-size: 14px;
+}
+
+.playagainbtn {
+	width: 100%;
+    background: #fff;
+    color: var(--loyalty_popup_theme_background, #000);
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+	border: none;
+}
+
+.closebtn {
+	color: #fff;
+    background: var(--loyalty_popup_theme_background, #000);;
+    border: 0;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.couponUnlockBtn {
+	background-color: var(--loyalty_popup_theme_background, #000);
+    color: #fff;
+    padding: 11px 0;
+    border-radius: 8px;
+    font-family: Inter,sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+	border: none;
+}
+
+.spinWheelBottom hr {
+	width: 100%;
+	border: none;
+	height: 1px;
+	background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
+}
+
+.spinWheelBottom h4 {
+	font-weight: 700;
+	font-size: 16px;
+	text-align: center;
+	margin: 0;
+}
+
+.spinWheelMainContainer {
+	position: relative;
+}
+
+.spinWinContainer {
+	position: absolute;
+	top: 200px;
+	left: 100px;
 }
