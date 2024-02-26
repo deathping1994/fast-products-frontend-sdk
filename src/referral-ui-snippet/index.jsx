@@ -2,11 +2,11 @@ import { render } from "preact";
 import style from "./shadow-styles.css?inline";
 import Main from "./components/Main";
 
-export function App({shadowRoot}) {
+export function App({shadowRoot,themeDetailsData}) {
   return (
     <>
       <div class="widget-container">
-        <Main shadowRoot={shadowRoot}/>
+        <Main themeDetailsData={themeDetailsData} shadowRoot={shadowRoot}/>
       </div>
       <div class="widget-styles"></div>
       <div class="widget-custom-styles"></div>
@@ -79,7 +79,7 @@ async function renderReferralSnippet() {
     
     const clientCustomStyleData = themeDetailsData?.data?.custom_css || "";
 
-    render(<App shadowRoot={shadowRoot}/>, shadowRoot);
+    render(<App themeDetailsData={themeDetailsData} shadowRoot={shadowRoot}/>, shadowRoot);
     render(<AppCSS />, shadowRoot?.querySelector(".widget-styles"));
     render(
       <AppCustomCSS customStyles={clientCustomStyleData} />,

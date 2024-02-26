@@ -3,7 +3,7 @@ import Alert from '../../global/Alert';
 import fetchApi from '../../global/FetchApi';
 import Loading from '../../global/Loading';
 
-const Main = ({shadowRoot}) => {
+const Main = ({shadowRoot, themeDetailsData}) => {
   const [invitemsg, setInvitemsg] = useState("");
   const [whatsappmsg, setWhatsappmsg] = useState("");
   const [login, setLogin] = useState(false);
@@ -22,7 +22,6 @@ const Main = ({shadowRoot}) => {
     path: ""
   });
 
-  
 
   const showError = () => {
     setError(true);

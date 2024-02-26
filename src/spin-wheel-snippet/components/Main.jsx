@@ -4,6 +4,7 @@ import fetchApi from '../../global/FetchApi';
 import Loading from '../../global/Loading';
 import GamesCard from '../../loyalty-popup/components/GamesCard';
 import YourCoupons from '../../loyalty-popup/components/YourCoupons';
+import SpinWheel from './SpinWheel';
 
 const Main = ({ themeDetailsData, shadowRoot }) => {
   console.log("spin wheel snippet");
@@ -13,6 +14,8 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     customer_id: "",
     user_hash: ""
   });
+  const [spinWheelAmount, setSpinWheelAmount] = useState(0);
+  const [screen, setScreen] = useState(false)
   useEffect(() => {
     const client_id = mainScript.getAttribute("data-client-id");
     const customer_id = mainScript.getAttribute("data-customer-id");
@@ -27,6 +30,55 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     }
     fetch()
   }, []);
+
+  function setTheme({ themeDetails }) {
+    var cssVariablesScope = shadowRoot.querySelector(".widget-container");
+    console.log("theme details",themeDetails);
+    if (cssVariablesScope && themeDetails?.data?.theme_color) {
+      cssVariablesScope.style.setProperty(
+        "--loyalty_popup_theme_background",
+        themeDetails?.data?.theme_color
+      );
+
+      if (themeDetails?.data?.coin_icon) {
+        cssVariablesScope.style.setProperty(
+          "--coin-svg-url",
+          `url("${themeDetails?.data?.coin_icon}")`
+        );
+        cssVariablesScope.style.setProperty(
+          "--coin-svg-inverted-url",
+          `url("${themeDetails?.data?.coin_icon}")`
+        );
+      } else {
+        cssVariablesScope.style.setProperty(
+          "--coin-svg-url",
+          `url("https://media.farziengineer.co/farziwallet/coin-icon.png")`
+        );
+        cssVariablesScope.style.setProperty(
+          "--coin-svg-inverted-url",
+          `url("https://media.farziengineer.co/farziwallet/coin-icon.png")`
+        );
+      }
+    }
+
+    if (themeDetails?.data?.coin_name) {
+      // @ts-ignore
+      window.fc_loyalty_vars = {
+        coin_name: themeDetails?.data?.coin_name,
+      };
+    } else {
+      // @ts-ignore
+      window.fc_loyalty_vars = {
+        coin_name: "FC",
+      };
+    }
+  }
+  
+  useEffect(() => {
+    setTheme({ themeDetails: themeDetailsData });
+    // console.log(themeDetailsData);
+  }, [themeDetailsData]);
+
   const [walletAmount, setWalletAmount] = useState(0);
   const [activeTab, setActiveTab] = useState("");
   const [loading, setLoading] = useState(false);
@@ -35,6 +87,12 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
   if(activeTab === ""){
       setActiveTab("available")
   }
+
+  const showSpinWheel = (amount) => {
+    setScreen(true)
+    setSpinWheelAmount(amount)
+  };
+
   useEffect(()=>{
     const fetchScratchCard = async ()=>{
       try {
@@ -62,10 +120,13 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     borderBottom: "2px solid #373737",
   };
 
-  const showScratchCard = (amount) => {
-    console.log("scratch card amount ======", amount);
-  };
+  const closeScreen = ()=>{
+    setScreen(false)
+  }
+
   return (
+    <>
+    {screen ? <SpinWheel showSpinGameScreen={closeScreen} spinWheelAmount={spinWheelAmount} customerDetails={customerDetails} shadowRoot={shadowRoot} walletAmount={walletAmount} /> :
     <>
       <div class="showGamesTab">
         <div class="viewAllCouponTabText">
@@ -93,7 +154,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
           {scratchCardData.map((game, idx) => (
             <GamesCard
               key={idx}
-              btnClick={()=> showScratchCard(game.amount)}
+              btnClick={()=> showSpinWheel(game.amount)}
               gameTitle={game.title}
               gameDesc={game.description}
               cardImage={game.image}
@@ -106,6 +167,8 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
       { activeTab === "yourcoupons" && (
           <YourCoupons customerDetails={customerDetails} />
       )}
+      </>
+      }
     </>
   );
 };
