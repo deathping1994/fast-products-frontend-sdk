@@ -1,0 +1,230 @@
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.spinner {
+	animation: rotate 2s linear infinite;
+}
+
+.inviteAndEarnContainer {
+	max-width: 50%;
+	padding: 22px;
+	border-radius: 16px;
+	transition: all 0.5s;
+	width: 40%;
+	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	
+}
+
+.inviteEarnTextContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 400;
+    font-size: 14px;
+    color: #acacac;
+    margin: 8px 0px;
+    text-align: center;
+}
+.inviteAndEarn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+}
+
+.inviteAndEarn h2 {
+	font-weight: 700;
+    font-size: 30px;
+}
+
+.inviteAndEarnMessage h4 {
+	text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    margin: 20px 0!important;
+}
+
+.inviteLinkContainer {
+	padding: 0px 12px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid var(--loyalty_popup_theme_background, #000);
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+	justify-content: space-between;
+    align-items: center;
+}
+
+.couponCodeContainer {
+	padding: 12px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid var(--loyalty_popup_theme_background, #000);;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+	width: 100%;
+	justify-content: center;
+    align-items: center;
+	position: relative;
+}
+
+.couponCodeContainer img {
+	position: absolute;
+	right: 20px;
+	cursor: pointer;
+}
+
+.inviteLinkContainer p {
+	font-size: 14px;
+}
+
+.inviteLinkContainer img {
+	max-width: 16px;
+	cursor: pointer;
+}
+
+.sendInvitesBtnContainer, .inviteWhatsappBtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+    text-decoration: none;
+}
+
+
+.inviteWhatsappBtn {
+	height: 40px;
+    width: 96%;
+    background-color: #29a71a;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border: none;
+}
+
+.inviteWhatsappBtn p {
+	font-weight: 500;
+	color: white;
+}
+
+.inviteWhatsappBtn img {
+	filter: brightness(0) invert(1);
+}
+
+.inviteRoundedBtn {
+	width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border: 1px solid var(--loyalty_popup_theme_background, #000);
+}
+
+.inviteRoundedBtn img {
+	width: 16px;
+	height: 16px;
+}
+
+
+.alert {
+	position: absolute;
+	bottom: 50%;
+	left: 50%;
+	z-index: 999;
+	background: #160b0b;
+	color: #f4c7c7;
+	font-weight: 400;
+	font-size: 14px;
+	border-radius: 4px;
+	padding: 8px 22px;
+	transition: 0.5s all ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	animation-name: fade-in;
+	animation-duration: 0.5s;
+}
+
+.alert svg.fw-wallet-alert-popup-error {
+	width: 22px;
+	height: 22px;
+	fill: rgb(244, 67, 54);
+	margin-right: 8px;
+}
+
+
+.shareTextContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 400;
+	font-size: 14px;
+	color: #acacac;
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+.dashedDivider {
+	border: none;
+    height: 1px;
+    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
+    margin: 20px 0 16px 0;
+}
+
+.referralContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.copied {
+	background-color: green;
+    padding: 8px;
+    position: absolute;
+    top: 55%;
+    left: 48%;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.loader{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 999999;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+
+.loading-screen {
+	padding-top: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+@media (max-width: 948px) {
+    .inviteAndEarnContainer {
+      max-width: 100%;
+    }
+  }

@@ -15,7 +15,13 @@
     "start:wallet-activity-snippet": "concurrently \"npm run build:wallet-activity-snippet\" \"npm run serve\"",
     "build:loyalty-popup": "vite build --config vite-configs/vite.loyalty-popup.config.js --watch",
     "start:loyalty-popup": "concurrently \"npm run build:wallet-activity-snippet\" \"npm run serve\"",
-    "build:watch": "concurrently \"npm run build:cart-drawer\" \" npm run build:cart-wallet-widget\" \" npm run build:wallet-activity-snippet\" \" npm run build:loyalty-popup\""
+    "build:referral-ui-snippet": "vite build --config vite-configs/vite.referral-ui-snippet.config.js --watch",
+    "start:referral-ui-snippet": "concurrently \"npm run build:referral-ui-snippet\" \"npm run serve\"",
+    "build:scratch-card-snippet": "vite build --config vite-configs/vite.scratch-card-snippet.config.js --watch",
+    "start:scratch-card-snippet": "concurrently \"npm run build:scratch-card-snippet\" \"npm run serve\"",
+    "build:spin-wheel-snippet": "vite build --config vite-configs/vite.spin-wheel-snippet.config.js --watch",
+    "start:spin-wheel-snippet": "concurrently \"npm run build:spin-wheel-snippet\" \"npm run serve\"",
+    "build:watch": "concurrently \"npm run build:cart-drawer\" \" npm run build:cart-wallet-widget\" \" npm run build:wallet-activity-snippet\" \" npm run build:loyalty-popup\" \" npm run build:referral-ui-snippet\" \" npm run build:scratch-card-snippet\" \" npm run build:spin-wheel-snippet\""
   },
   "dependencies": {
     "concurrently": "^8.2.2",
