@@ -223,6 +223,14 @@
 	align-items: center;
 }
 
+.loginbtn{
+	background-color: #efefef;
+	text-decoration: none;
+	color: black;
+	padding: 12px;
+	border-radius: 8px;
+}
+
 @media (max-width: 948px) {
     .inviteAndEarnContainer {
       max-width: 100%;
