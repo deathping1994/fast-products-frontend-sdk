@@ -406,7 +406,7 @@ body {
 	position: relative;
 	bottom: 20px;
 	min-width: 126px;
-	}
+}
 
 .gamesCardImg {
 	display: flex;
@@ -456,7 +456,6 @@ body {
 .gamesCardDesc {
 	font-weight: 500;
     font-size: 10px;
-    margin-bottom: 8px;
 }
 
 .gamesHorizontalList {

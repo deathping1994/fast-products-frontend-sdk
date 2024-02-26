@@ -4,18 +4,25 @@ import fetchApi from '../../global/FetchApi';
 import Loading from '../../global/Loading';
 
 const Main = ({shadowRoot}) => {
+  const [invitemsg, setInvitemsg] = useState("");
+  const [whatsappmsg, setWhatsappmsg] = useState("");
+  const [login, setLogin] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [showCopied, setShowCopied] = useState(false);
+
   const mainScript = document.getElementById("fc-wallet-referral-snippet-ui-script-19212");
+  const customer_id = mainScript.getAttribute("data-customer-id");
+  if(customer_id){
+    setLogin(true)
+  }
   console.log("running referral ui ");
   const [referralData, setReferralData] = useState({
     referral_code: "",
     path: ""
   });
 
-  const [invitemsg, setInvitemsg] = useState("");
-  const [whatsappmsg, setWhatsappmsg] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [showCopied, setShowCopied] = useState(false);
+  
 
   const showError = () => {
     setError(true);
@@ -64,47 +71,47 @@ const Main = ({shadowRoot}) => {
   };
 
   return (
-    <>
-      {loading ? (
-        <div className="loader"><Loading /></div>
-      ) : (
-        <div className="referralContainer">
-          <div className="inviteAndEarnContainer">
-            <div className="inviteAndEarn">
-              <img src="https://media.farziengineer.co/farziwallet/invite-earn.png" alt="" />
-              <h2>Invite & Earn</h2>
-            </div>
-            <div className="inviteAndEarnMessage">
-              <h4>{invitemsg}</h4>
-            </div>
-            <div className="inviteEarnTextContainer">
-              <p>copy referral link</p>
-            </div>
-            {showCopied && <div className="copied">copied</div>}
-            <div className="inviteLinkContainer">
-              <p>{(`${window.location.origin}${referralData?.path || "/account/register"}`)}</p>
-              <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
-            </div>
-            <div>
-              <hr className="dashedDivider" />
-            </div>
-            <div className="shareTextContainer">
-              <p>or share with</p>
-            </div>
-            <div className="sendInvitesBtnContainer">
-              <a href={`https://api.whatsapp.com/send?text=${whatsappmsg}`} target="_blank" className="inviteWhatsappBtn">
-                <img src="https://media.farziengineer.co/farziwallet/whatsapp-icon.png" alt="" />
-                <p>Send on WhatsApp</p>
-              </a>
-              <a href={`sms://18005555555/?body=${whatsappmsg}`} target="_blank" className="inviteRoundedBtn">
-                <img src="https://media.farziengineer.co/farziwallet/share_arrow.png" alt="" />
-              </a>
-            </div>
+    login ? <>
+    {loading ? (
+      <div className="loader"><Loading /></div>
+    ) : (
+      <div className="referralContainer">
+        <div className="inviteAndEarnContainer">
+          <div className="inviteAndEarn">
+            <img src="https://media.farziengineer.co/farziwallet/invite-earn.png" alt="" />
+            <h2>Invite & Earn</h2>
+          </div>
+          <div className="inviteAndEarnMessage">
+            <h4>{invitemsg}</h4>
+          </div>
+          <div className="inviteEarnTextContainer">
+            <p>copy referral link</p>
+          </div>
+          {showCopied && <div className="copied">copied</div>}
+          <div className="inviteLinkContainer">
+            <p>{(`${window.location.origin}${referralData?.path || "/account/register"}`)}</p>
+            <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
+          </div>
+          <div>
+            <hr className="dashedDivider" />
+          </div>
+          <div className="shareTextContainer">
+            <p>or share with</p>
+          </div>
+          <div className="sendInvitesBtnContainer">
+            <a href={`https://api.whatsapp.com/send?text=${whatsappmsg}`} target="_blank" className="inviteWhatsappBtn">
+              <img src="https://media.farziengineer.co/farziwallet/whatsapp-icon.png" alt="" />
+              <p>Send on WhatsApp</p>
+            </a>
+            <a href={`sms://18005555555/?body=${whatsappmsg}`} target="_blank" className="inviteRoundedBtn">
+              <img src="https://media.farziengineer.co/farziwallet/share_arrow.png" alt="" />
+            </a>
           </div>
         </div>
-      )}
-      {error && <Alert message={`Something went wrong`}/>}
-    </>
+      </div>
+    )}
+    {error && <Alert message={`Something went wrong`}/>}
+  </> : <a class="loginbtn" href={`/account/login`}>Login to Continue</a>
   );
 };
 

@@ -61,7 +61,6 @@ const YourCoupons = ({customerDetails}) => {
                                 <p>Voucher</p>
                             </div>
                             <div class="youCouponCardRight">
-                                <h4>{ele.title}</h4>
                                 <p>code: <span class="yourCouponCode">{ele.coupon}</span></p>
                                 <p>{ele.date}</p>
                             </div>
