@@ -31,6 +31,10 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     fetch()
   }, []);
 
+  const scratchCardStyles = {
+    justifyContent: "start"
+  }
+
   function setTheme({ themeDetails }) {
     var cssVariablesScope = shadowRoot.querySelector(".widget-container");
     console.log("theme details",themeDetails);
@@ -150,7 +154,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
       </div>
       {activeTab === "available" && (
         loading ? <div className="loader"><Loading/></div> :
-        <div class="showGamesCards">
+        <div class="showGamesCards" style={scratchCardData.length > 3 && scratchCardStyles}>
           {scratchCardData.map((game, idx) => (
             <GamesCard
               key={idx}

@@ -153,18 +153,20 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
         </div>
       {activeTab === "available" && (
         loading ? <div className="loader"><Loading/></div> :
-        <div class="showGamesCards" style={scratchCardData.length > 3 && scratchCardStyles}>
-          {scratchCardData.map((game, idx) => (
-            <GamesCard
-              key={idx}
-              btnClick={()=> showScratchCard(game.amount)}
-              gameTitle={game.title}
-              gameDesc={game.description}
-              cardImage={game.image}
-              btnText={"Scratch"}
-              gamePrice={game.amount}
-            />
-          ))}
+        <div class="scratchCardBox">
+          <div class="showGamesCards" style={scratchCardData.length > 3 && scratchCardStyles}>
+            {scratchCardData.map((game, idx) => (
+              <GamesCard
+                key={idx}
+                btnClick={()=> showScratchCard(game.amount)}
+                gameTitle={game.title}
+                gameDesc={game.description}
+                cardImage={game.image}
+                btnText={"Scratch"}
+                gamePrice={game.amount}
+              />
+            ))}
+          </div>
         </div>
       )}
       { activeTab === "yourcoupons" && (
