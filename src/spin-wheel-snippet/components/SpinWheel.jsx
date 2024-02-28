@@ -7,7 +7,7 @@ import Loading from '../../global/Loading';
 
 const SpinWheel = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScreen, customerDetails }) => {
   const spinAudio = new Audio('https://media.farziengineer.co/farziwallet/spinwheel.mp3');
-  const [btnVisibility, setBtnVisibility] = useState(false);
+  const [btnVisibility, setBtnVisibility] = useState(true);
   const [showWinPopup, setShowWinPopup] = useState(false);
   const [spinWheelRewardData, setSpinWheelRewardData] = useState([])
   const [loading, setLoading] = useState(true);
@@ -172,6 +172,11 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScre
               };
             }), false)
             setLoading(false)
+            const spinStyles = shadowRoot.querySelector(".chart-spin-container")
+            spinStyles.style.display = "flex"
+            spinStyles.style.justifyContent = "center"
+            spinStyles.style.alignItems = "center"
+            setBtnVisibility(false)
           }else{
             setLoading(false)
             showError(resp?.error)
@@ -446,13 +451,15 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScre
           </div>
           <h4>Spin and Win</h4>
         </div>
-        <div id="fw-chart-spin-wheel">
-        {
-          !btnVisibility &&
-          <div class="lockedIcon">
-            <img src="https://media.farziengineer.co/farziwallet/lock.png" alt="" />
+        <div class="chart-spin-container">
+          <div id="fw-chart-spin-wheel">
+          {
+            !btnVisibility &&
+            <div class="lockedIcon">
+              <img src="https://media.farziengineer.co/farziwallet/lock.png" alt="" />
+            </div>
+          }
           </div>
-        }
         </div>
         {
           showWinPopup && 

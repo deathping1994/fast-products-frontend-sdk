@@ -44,6 +44,16 @@ p {
 	animation: rotate 2s linear infinite;
 }
 
+.loading-screen{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+
 .viewAllCoupons {
 	background-color: white;
 	width: 100%;
@@ -250,7 +260,6 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0px 16px;
 	gap: 4em;
 	flex-wrap: wrap;
   }
@@ -517,10 +526,6 @@ p {
 	margin: 0;
 }
 
-.spinWheelMainContainer {
-	position: relative;
-}
-
 .spinWinContainer {
 	position: absolute;
 	top: 200px;
@@ -530,3 +535,15 @@ p {
 .gamesCardTitle {
 	font-size: 18px;
 }
+
+.chart-spin-container {
+	width: 100%;
+}
+
+.walletCoinContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  }

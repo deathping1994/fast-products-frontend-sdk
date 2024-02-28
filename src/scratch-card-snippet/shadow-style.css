@@ -44,6 +44,17 @@ p {
 	animation: rotate 2s linear infinite;
 }
 
+.loading-screen{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 999999;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+
 .viewAllCoupons {
 	background-color: white;
 	width: 100%;
@@ -250,7 +261,6 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0px 16px;
 	gap: 4em;
 	flex-wrap: wrap;
   }
@@ -291,6 +301,7 @@ p {
 	justify-content: space-between;
 	align-items: center;
 	padding: 0px 16px;
+	padding-right: 32px;
 }
 
 .showGamesTab h2 {
@@ -523,10 +534,59 @@ p {
 
 .spinWinContainer {
 	position: absolute;
-	top: 200px;
-	left: 100px;
 }
 
 .gamesCardTitle {
 	font-size: 18px;
 }
+
+.scratchCardDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.scratchCardDiv canvas {
+	z-index: 2;
+	border-radius: 8px;
+	cursor: grabbing;
+}
+
+.scratchCardDiv h4 {
+	position: absolute;
+	top: 45%;
+}
+
+.scratchCardDiv img {
+	position: absolute;
+	z-index: 3;
+}
+
+.walletCoinContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.walletCoinContainer h4 {
+	font-weight: 700;
+    font-size: 20px
+}
+
+.scratchCardBox {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-left: 2em;
+}
+
+@media (max-width: 948px) {
+    .scratchCardBox {
+      padding-left: 2em;
+    }
+  }
