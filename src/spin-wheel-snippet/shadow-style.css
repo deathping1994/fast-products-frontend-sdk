@@ -528,8 +528,8 @@ p {
 
 .spinWinContainer {
 	position: absolute;
-	top: 200px;
-	left: 100px;
+	top: 37%;
+	left: 37%;
 }
 
 .gamesCardTitle {
@@ -538,6 +538,10 @@ p {
 
 .chart-spin-container {
 	width: 100%;
+}
+
+.spinWheelMainContainer {
+	position: relative;
 }
 
 .walletCoinContainer {

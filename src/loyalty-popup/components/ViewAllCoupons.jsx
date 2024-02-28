@@ -56,6 +56,7 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shad
         mainPopup.style.overflowY = "hidden";
         const overlay = shadowRoot.querySelector(".overlay")
         overlay.style.display = "flex"
+        overlay.style.justifyContent = "end"
         overlay.style.position = "absolute";
         overlay.style.top = `${scrolledTop}px`;
         overlay.style.height = "100%";

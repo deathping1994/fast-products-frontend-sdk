@@ -4,14 +4,16 @@ import fetchApi from "./Utils/FetchApi";
 import YourCoupons from "./YourCoupons";
 import Loading from "./Utils/Loading";
 
-const ShowScratchCard = ({funcScratchCardAmount, showScratchCardScreen, walletAmount, customerDetails }) => {
+const ShowScratchCard = ({funcScratchCardAmount, showScratchCardScreen, customerDetails }) => {
   const [activeTab, setActiveTab] = useState("");
   const [loading, setLoading] = useState(false);
+  const [walletAmount, setWalletAmount] = useState(0);
   const [scratchCardData, setScratchCardData] = useState([])
   // forced rendering
   if(activeTab === ""){
       setActiveTab("available")
   }
+  
   useEffect(()=>{
     const fetchScratchCard = async ()=>{
       try {
@@ -19,6 +21,8 @@ const ShowScratchCard = ({funcScratchCardAmount, showScratchCardScreen, walletAm
         const response = await fetchApi('/get-featured-scratch-cards', 'post', customerDetails)
         // console.log("showscratchCard",response);
         setScratchCardData(response?.data)
+        const amountResp = await fetchApi("/user-wallet-amount", 'post', {...customerDetails})
+        setWalletAmount(amountResp?.data?.userWallet?.amount)
       } catch (error) {
         console.error(error);
       } finally {

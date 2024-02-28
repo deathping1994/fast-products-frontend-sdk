@@ -5,12 +5,13 @@ import Alert from '../../global/Alert';
 import fetchApi from '../../global/FetchApi';
 import Loading from '../../global/Loading';
 
-const SpinWheel = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScreen, customerDetails }) => {
+const SpinWheel = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDetails }) => {
   const spinAudio = new Audio('https://media.farziengineer.co/farziwallet/spinwheel.mp3');
   const [btnVisibility, setBtnVisibility] = useState(true);
   const [showWinPopup, setShowWinPopup] = useState(false);
   const [spinWheelRewardData, setSpinWheelRewardData] = useState([])
   const [loading, setLoading] = useState(true);
+  const [walletAmount, setWalletAmount] = useState(0);
   const [error, setError] = useState({
     error: false,
     msg: ""
@@ -114,41 +115,15 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScre
     document.querySelector("body").appendChild(script1);
       
   };
-  // const fetchSpinWheelReward = async ()=>{
 
-  //   const ggg = shadowRoot.querySelector(".screenContent")
-  //   const hhh = ggg.querySelector(".spinWheelMainContainer")
-  //   try {
-  //     setLoading(true)
-  //     const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
-  //     {
-  //       ...customerDetails,
-  //       couponAmount: spinWheelAmount,
-  //     })
-  //     console.log("resp spin wheel", response);
-  //   // console.log("spin wheel reward array",response);
-  //   if(response?.status === "success"){
-  //     setSpinWheelRewardData(response?.data)
-  //     hhh.querySelector("#fw-chart-spin-wheel").innerHTML = ``
-  //     drawWheel(
-  //       shadowRoot,
-  //       response?.data.map((item, index) => {
-  //         return {
-  //           label: item,
-  //           value: index,
-  //         };
-  //       }),
-  //       false )
-  //   }else{
-  //     showError(response?.error)
-  //     setLoading(false)
-  //   }
-  //   } catch (error) {
-  //     console.log("error in Playgame", error);
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
+  useEffect(()=>{
+    const fetchWalletAmount = async ()=>{
+      const amountResp = await fetchApi("/user-wallet-amount", 'post', {...customerDetails})
+      setWalletAmount(amountResp?.data?.userWallet?.amount)
+    }
+    fetchWalletAmount()
+  },[showWinPopup])
+
     useEffect(()=>{
         const fetchRewardArray = async()=>{
         const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
@@ -176,6 +151,7 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScre
             spinStyles.style.display = "flex"
             spinStyles.style.justifyContent = "center"
             spinStyles.style.alignItems = "center"
+            
             setBtnVisibility(false)
           }else{
             setLoading(false)
@@ -401,6 +377,9 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScre
   }
   
   const drawUnlockSpinWheel = ()=>{
+    const spinStyles = shadowRoot.querySelector(".chart-spin-container")
+    console.log("sdfdsfsdf",spinStyles);
+    spinStyles.style.display = "block"
     const redeemSpinWheel = async ()=>{
         try {
           setLoading(true)
@@ -434,6 +413,8 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScre
           };
         }),
         true, data?.win_index, spinCB );
+        const spinStyles = shadowRoot.querySelector(".chart-spin-container")
+        spinStyles.style.display = "flex"
     }).catch((error)=>{
       console.log("error in reddeemo spin wheel", error);
     })

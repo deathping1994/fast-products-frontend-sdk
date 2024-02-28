@@ -4,9 +4,10 @@ import fetchApi from "./Utils/FetchApi";
 import YourCoupons from "./YourCoupons";
 import Loading from "./Utils/Loading";
 
-const ShowGames = ({ funcSetSpinWheelAmount, showPlayGameScreen, walletAmount, customerDetails, screenDetails }) => {
+const ShowGames = ({ funcSetSpinWheelAmount, showPlayGameScreen, customerDetails, screenDetails }) => {
   const [activeTab, setActiveTab] = useState("");
   const [loading, setLoading] = useState(false);
+  const [walletAmount, setWalletAmount] = useState(0);
   const [gamesData, setGamesData] = useState([]);
 
   // forced rendering
@@ -18,7 +19,9 @@ const ShowGames = ({ funcSetSpinWheelAmount, showPlayGameScreen, walletAmount, c
       try {
         setLoading(true);
         const response = await fetchApi('/get-featured-spin-wheels', 'post', customerDetails);
+        const amountResp = await fetchApi("/user-wallet-amount", 'post', {...customerDetails})
         setGamesData(response?.data);
+        setWalletAmount(amountResp?.data?.userWallet?.amount)
         // console.log("spin card data", response?.data);
       } catch (error) {
         console.error("Error fetching wallet data:", error);
