@@ -1,0 +1,554 @@
+p, h5, h4, h2 {
+    margin: 0;
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes slide-in-bottom {
+    0% {
+        -webkit-transform: translateY(calc(100%));
+        ransform: translateY(calc(100%));
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+
+.spinner {
+	animation: rotate 2s linear infinite;
+}
+
+
+.fc-wallet-gifting-coupons-snippet-19212-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.youCouponCardRight h4, .yourCouponCode {
+	font-weight: bold;
+	font-size: 13px;
+	color: var(--loyalty_popup_theme_background, #000);
+}
+
+.widget-container {
+    width: 60%;
+    font-family: Inter, sans-serif;
+}
+.viewAllCouponsTab {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+}
+
+.viewAllCouponTabText {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.viewAllCouponTabText h4 {
+	cursor: pointer;
+	color: #959595;
+}
+
+.walletCoinsBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--loyalty_popup_theme_background, #000);
+	padding: 2px 8px;
+	border-radius: 50px;
+	gap: 4px;
+	width: fit-content;
+}
+
+.viewAllFeaturedComponent h3 {
+	margin-left: 16px;
+}
+
+.couponCard {
+	border-radius: 12px;
+	color: var(--loyalty_popup_theme_background, #000);
+	font-size: 14px;
+	line-height: 20px;
+	cursor: pointer;
+	width: 120px;
+}
+
+.couponCardDesc {
+	padding: 8px;
+    background: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 -4px 10px rgba(0,0,0,.1);
+    position: relative;
+    top: -12px;
+    min-width: 120px;
+    font-size: 13px;
+    font-weight: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    
+}
+
+.couponImg {
+	border-radius: 8px 8px 0 0;
+	width: 136px;
+    height: 120px;
+}
+
+.couponCardPrice {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	gap: 4px;
+	font-size: 14px;
+	font-weight: 400;
+	margin-top: 8px;
+}
+
+.couponFloatingLabel {
+	position: absolute;
+	top: -10px;
+  	right: 10px;
+    background: var(--loyalty_popup_theme_background,#000);
+    color: #fff;
+    width: fit-content;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 4px;
+	padding: 0 4px;
+}
+
+.couponText {
+	padding-top: 8px;
+	font-size: 13px;
+}
+
+.couponCardPrice img {
+	width: 14px;
+	height: 14px;
+}
+
+.couponCardDesc {
+	padding: 8px;
+	background: #f4f4f4;
+	border-radius: 8px;
+	box-shadow: 0 -4px 10px rgba(0,0,0,.1);
+	position: relative;
+	top: -12px;
+	min-width: 120px;
+	font-size: 13px;
+	font-weight: normal;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.showAllCouponsList {
+	display: flex;
+	justify-content: start;
+	align-items: start;
+	gap: 32px;
+	scrollbar-width: none;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	padding: 0 16px;
+}
+
+.redeemCoinBox {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.redeemHeading h3 {
+	font-weight: 700;
+    font-size: 14px;
+}
+
+.redeemText p {
+	font-weight: 400;
+    font-size: 14px;
+}
+
+.redeemCoinMainContainer {
+	width: 100%;
+	height: 100%;
+    background-color: #ffffff8c;
+}
+
+.redeemCoinContainer {
+	background-color: white;
+	position: absolute;
+	padding: 16px;
+	width: 100%;
+	height: fit-content;
+	bottom: 0px;
+	border-radius: 8px;
+	box-shadow: 0px -44px 60px -11px rgba(194,194,194,0.5);
+	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	
+}
+
+.redeemCloseContainer {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.redeemVoucherMain {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 16px;
+}
+
+.redeemVoucherMain h2 {
+	font-weight: 700;
+    font-size: 30px;
+}
+.redeemRangeContainer {
+	padding: 0px 32px;
+}
+
+.redeemRangeContainer p {
+	text-align: center;
+}
+
+.redeemRangeContainer, .redeemRangeContainer input {
+	width: 100%;
+}
+
+.redeemRangeContainer input {
+	accent-color: #959595;
+}
+
+.reedemfcCoinsCard {
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	padding: 8px;
+	border-radius: 8px;
+	cursor: pointer;
+    width: fit-content;
+}
+
+.reedemfcCoins {
+	padding: 16px;
+}
+.reedemfcCoins h5{
+	font-weight: 700;
+    font-size: 16px;
+}
+.reedemfcCoins p{
+	/* margin-top: 8px; */
+    font-weight: 400;
+    font-size: 12px;
+	line-height: 14px;
+}
+
+
+.reedemfcCoinsCard {
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	padding: 8px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.exploreCouponCard {
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	padding: 16px;
+	border-radius: 8px;
+	cursor: pointer;
+    min-width: fit-content;
+    width: 340px;
+}
+.exploreCoupons {
+	padding: 16px;
+}
+
+.shipImgBox {
+	border-right: 1px dashed #959595;
+	padding-right: 8px;
+    margin-right: 8px
+}
+
+.exploreCouponCardText {
+	font-weight: 700;
+    font-size: 14px;
+}
+
+.exploreCouponCardText img {
+	width: 12px;
+	height: 12px;
+}
+
+.couponNotFound {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 16px;
+}
+
+.couponNotFound p{
+	font-weight: 400;
+    font-size: 12px;
+}
+
+.couponNotFound h4 {
+	font-weight: 700;
+    font-size: 20px;
+}
+
+.unlockedTab, .redeemedTab{
+    width: fit-content;
+}
+
+.yourCouponsCardContainer {
+	background-color: #f4f4f4;
+	border-radius: 8px;
+	display: flex;
+	margin-top: 16px;
+}
+
+.youCouponCardLeft, .youCouponCardRight {
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.youCouponCardLeft {
+	border-right: 1px dashed #959595;
+	align-items: center;
+}
+
+.youCouponCardRight {
+	align-items: start;
+}
+
+.youCouponCardLeft h5 {
+	font-size: 24px;
+}
+
+.youCouponCardLeft p {
+	font-size: 14px;
+}
+
+.exploreCouponText {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 4px;
+}
+
+.exploreCouponText div {
+	width: 16px;
+	height: 16px;
+}
+
+.yourCouponsActiveTab div {
+    background: #d9d9d9;
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.yourCouponsActiveTab {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+}
+
+.yourCouponsCardMainContainer {
+    margin-left: 16px;
+}
+
+.coinIcon { 
+    background-image: var(--coin-svg-url);
+	width: 20px;
+	height: 20px;
+	background-size: 100% 100%;
+}
+
+.walletCoinsBox p {
+	color: white;
+	font-size: 20px;
+}
+
+.walletCoinsBox img {
+	width: 16px;
+	height: 16px;
+}
+
+.overlay{
+	position: absolute;
+	display: none;
+	top: 0;
+	z-index: 99;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.6);
+	flex-direction: column;
+	justify-content: center;
+}
+
+.couponOverlayContainer {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 8px;
+}
+
+.couponOverlayContainer h2 {
+	font-size: 30px;
+}
+
+.couponContainer {
+	background-color: white;
+	width: 100%;
+	padding: 16px;
+	border-radius: 16px;
+	box-shadow: 0 -4px 50px rgba(0,0,0,.25);
+    width: 100%;
+}
+
+.couponUnlockBtn {
+	background-color: var(--loyalty_popup_theme_background, #000);
+    color: #fff;
+    padding: 11px 0;
+    border-radius: 8px;
+    font-family: Inter,sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+	border: none;
+}
+
+.unlockText {
+    margin-top: 18px;
+}
+
+.unlockTextContainer {
+    margin-bottom: 18px;
+}
+.unlockTextContainer h4 {
+    text-align: center;
+}
+
+.crossImg {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.crossImg img {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+
+.unlockDesc p {
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 16px;
+}
+
+.dashedDivider {
+	border: none;
+    height: 1px;
+    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
+    margin: 20px 0 16px 0;
+}
+
+.slide-in-bottom {
+	-webkit-animation: slide-in-bottom 0.5s ease-in-out both;
+	animation: slide-in-bottom 0.5s ease-in-out both;
+}
+
+.viewAllCoupons {
+    position: relative;
+    width: 60%;
+}
+
+.unlockCouponContainer  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.redeemCloseContainer img {
+    cursor: pointer;
+	width: 30px;
+	height: 30px;
+}
+
+.couponCodeContainer {
+	padding: 12px 0;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid var(--loyalty_popup_theme_background, #000);;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+	width: 100%;
+	justify-content: center;
+    align-items: center;
+	position: relative;
+}
+
+.couponCodeContainer img {
+	position: absolute;
+	right: 20px;
+	cursor: pointer;
+}
+
+.copied {
+	background-color: green;
+  padding: 8px;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.unlockText h5 {
+	font-weight: 700;
+    font-size: 16px;
+    margin: 16px 0;
+}

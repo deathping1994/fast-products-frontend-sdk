@@ -1,31 +1,104 @@
 // @ts-nocheck
 import { useEffect, useState } from "preact/hooks";
 import CouponCard from "./CouponCard";
-import CouponOverlay from "./Overlays/CouponOverlay";
-import RedeemCoin from "./RedeemCoin";
-import fetchApi from "./Utils/FetchApi";
-import Overlay from "./Overlays/Overlay";
+import CouponOverlay from "../../loyalty-popup/components/Overlays/CouponOverlay";
+import RedeemCoin from "../../loyalty-popup/components/RedeemCoin";
+import fetchApi from "../../global/FetchApi";
+import Overlay from "../../loyalty-popup/components/Overlays/Overlay";
 import YourCoupons from "./YourCoupons";
-import Loading from "./Utils/Loading";
+import Loading from "../../global/Loading";
 
-const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shadowRoot, }) => {
+const Main = ({shadowRoot, themeDetailsData}) => {
+    const mainScript = document.querySelector("#fc-wallet-gifting-coupons-snippet-script-19212")
+    
     const [availableTab, setAvailableTab] = useState(true)
     const [yourCouponTab, setYourCouponTab] = useState(false)
+    const [couponCardResponse, setCouponCardResponse] = useState([])
     const [exploreCoupon, setExploreCoupon] = useState([])
     const [exploreCouponIdx, setExploreCouponIdx] = useState(0)
     const [couponIdx, setCouponIdx] = useState(0)
     const [loading, setLoading] = useState(false);
+    const [walletAmount, setWalletAmount] = useState(0);
+    const [customerDetails, setCustomerDetails] = useState({
+        client_id:"",
+        customer_id:"",
+        user_hash:""
+    })
     const [overlayVisible, setOverlayVisible] = useState({
       overlay: "none",
       active: false,
     });
+    function setTheme({ themeDetails }) {
+      var cssVariablesScope = shadowRoot.querySelector(".widget-container");
+      console.log("theme details",themeDetails);
+      if (cssVariablesScope && themeDetails?.data?.theme_color) {
+        cssVariablesScope.style.setProperty(
+          "--loyalty_popup_theme_background",
+          themeDetails?.data?.theme_color
+        );
+  
+        if (themeDetails?.data?.coin_icon) {
+          cssVariablesScope.style.setProperty(
+            "--coin-svg-url",
+            `url("${themeDetails?.data?.coin_icon}")`
+          );
+          cssVariablesScope.style.setProperty(
+            "--coin-svg-inverted-url",
+            `url("${themeDetails?.data?.coin_icon}")`
+          );
+        } else {
+          cssVariablesScope.style.setProperty(
+            "--coin-svg-url",
+            `url("https://media.farziengineer.co/farziwallet/coin-icon.png")`
+          );
+          cssVariablesScope.style.setProperty(
+            "--coin-svg-inverted-url",
+            `url("https://media.farziengineer.co/farziwallet/coin-icon.png")`
+          );
+        }
+      }
+  
+      if (themeDetails?.data?.coin_name) {
+        // @ts-ignore
+        window.fc_loyalty_vars = {
+          coin_name: themeDetails?.data?.coin_name,
+        };
+      } else {
+        // @ts-ignore
+        window.fc_loyalty_vars = {
+          coin_name: "FC",
+        };
+      }
+  
+      // shadowRoot.querySelector(".floatingPopup").style.display = "flex"; //widget visible only after custom styles are applied
+    }
+    useEffect(() => {
+      setTheme({ themeDetails: themeDetailsData });
+      // console.log(themeDetailsData);
+    }, [themeDetailsData]); 
 
     useEffect(()=>{
+      (function loadfont() {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href =
+          "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap";
+        document.head.appendChild(link);
+      })();
+        const client_id = mainScript.getAttribute("data-client-id");
+        const customer_id = mainScript.getAttribute("data-customer-id");
+        const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
+        setCustomerDetails({client_id, customer_id, user_hash})
       const exploreCouponResp = async ()=>{
           try {
             setLoading(true)
-            const resp = await fetchApi('/get-coupons-to-explore', 'post', customerDetails)
+            const resp = await fetchApi('/get-coupons-to-explore', 'post', {client_id, customer_id, user_hash})
             setExploreCoupon(resp?.data?.data)
+            const walletAmtResp = await fetchApi('/user-wallet-amount', 'post', {client_id, customer_id})
+            setWalletAmount(walletAmtResp?.data?.userWallet?.amount);
+            const couponResp = await fetchApi('/get-featured-coupons', 'post', {client_id})
+            setCouponCardResponse(couponResp?.data)
+            console.log(couponResp);
           } catch (error) {
             console.log(error);
           } finally {
@@ -51,15 +124,10 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shad
         setCouponIdx(idx)
       }
       const changeOverlay = (overlayname) => {
-        const mainPopup = shadowRoot.querySelector(".mainPopup")
-        const scrolledTop = mainPopup.scrollTop
-        mainPopup.style.overflowY = "hidden";
+        // mainPopup.style.overflowY = "hidden";
         const overlay = shadowRoot.querySelector(".overlay")
         overlay.style.display = "flex"
-        overlay.style.position = "absolute";
-        overlay.style.top = `${scrolledTop}px`;
-        overlay.style.height = "100%";
-        overlay.style.width = "100%";
+        // overlay.style.position = "absolute";
         setOverlayVisible({
           ...overlayVisible,
           overlay: overlayname,
@@ -182,4 +250,4 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shad
   )
 }
 
-export default ViewAllCoupons
+export default Main

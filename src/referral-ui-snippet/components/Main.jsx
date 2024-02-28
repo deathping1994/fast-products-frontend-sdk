@@ -103,7 +103,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
               <p>Send on WhatsApp</p>
             </a>
             <a href={`sms://18005555555/?body=${whatsappmsg}`} target="_blank" className="inviteRoundedBtn">
-              <img src="https://media.farziengineer.co/farziwallet/share_arrow.png" alt="" />
+              <img  src="https://media.farziengineer.co/farziwallet/share_arrow.png" alt="" />
             </a>
           </div>
         </div>
