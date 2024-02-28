@@ -73,8 +73,6 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
         coin_name: "FC",
       };
     }
-
-    // shadowRoot.querySelector(".floatingPopup").style.display = "flex"; //widget visible only after custom styles are applied
   }
   useEffect(() => {
     setTheme({ themeDetails: themeDetailsData });
@@ -107,6 +105,9 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     fetchScratchCard()
   },[activeTab])
 
+  const scratchCardStyles = {
+    justifyContent: "start"
+  }
 
   const handleMainTab = (mainTab) => {
     setActiveTab(mainTab);
@@ -152,7 +153,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
         </div>
       {activeTab === "available" && (
         loading ? <div className="loader"><Loading/></div> :
-        <div class="showGamesCards">
+        <div class="showGamesCards" style={scratchCardData.length > 3 && scratchCardStyles}>
           {scratchCardData.map((game, idx) => (
             <GamesCard
               key={idx}
