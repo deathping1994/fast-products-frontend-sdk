@@ -1,11 +1,12 @@
-  // @ts-nocheck
+
   import { useEffect, useState } from "preact/hooks";
   import Alert from '../../global/Alert';
   import fetchApi from '../../global/FetchApi';
   import Loading from '../../global/Loading';
 
-  const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount, showScratchCardScreen, customerDetails }) => {
+  const ScratchCard = ({ shadowRoot, scratchCardAmount, showScratchCardScreen, customerDetails }) => {
     const [isLocked, setIsLocked] = useState(true);
+    const [walletAmount, setWalletAmount] = useState(0);
     const [loading, setLoading] = useState(false);
     const [showWinPopup, setShowWinPopup] = useState(false)
     const [playAgain, setPlayAgain] = useState(false)
@@ -16,6 +17,15 @@
     const [winMessage, setWinMessage] = useState({
       win_message: ""
     });
+
+    useEffect(()=>{
+      const fetchWalletAmount = async ()=>{
+        const amountResp = await fetchApi("/user-wallet-amount", 'post', {...customerDetails})
+        setWalletAmount(amountResp?.data?.userWallet?.amount)
+      }
+      fetchWalletAmount()
+    },[showWinPopup])
+
     const showError = (msg)=>{
       setError({
         error:true,
@@ -259,7 +269,9 @@
         </div>
         <div class="spinWheelBottom">
           <hr />
-          <h4>{isLocked ? `Unlock for ${scratchCardAmount} ${window.fc_loyalty_vars.coin_name} Coin` : `Click and drag your cursor across the card`}</h4>
+          <h4>{isLocked ? `Unlock for ${scratchCardAmount} ${window.
+// @ts-ignore
+          fc_loyalty_vars.coin_name} Coin` : `Click and drag your cursor across the card`}</h4>
           {isLocked && <button onClick={getScratchCardWinData} class="couponUnlockBtn">Tap to Unlock</button>}
         </div>
         

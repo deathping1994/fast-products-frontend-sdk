@@ -5,10 +5,11 @@ import Loading from "./Utils/Loading";
 import fetchApi from "./Utils/FetchApi";
 import Alert from "./Utils/Alert";
 
-const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScreen, customerDetails }) => {
+const PlayGame = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDetails }) => {
   const spinAudio = new Audio('https://media.farziengineer.co/farziwallet/spinwheel.mp3');
   const [btnVisibility, setBtnVisibility] = useState(false);
   const [showWinPopup, setShowWinPopup] = useState(false);
+  const [walletAmount, setWalletAmount] = useState(0);
   const [spinWheelRewardData, setSpinWheelRewardData] = useState([])
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState({
@@ -114,6 +115,14 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, walletAmount, showSpinGameScree
     document.querySelector("body").appendChild(script1);
       
   };
+
+  useEffect(()=>{
+    const fetchWalletAmount = async ()=>{
+      const amountResp = await fetchApi("/user-wallet-amount", 'post', {...customerDetails})
+      setWalletAmount(amountResp?.data?.userWallet?.amount)
+    }
+    fetchWalletAmount()
+  },[showWinPopup])
   // const fetchSpinWheelReward = async ()=>{
 
   //   const ggg = shadowRoot.querySelector(".screenContent")

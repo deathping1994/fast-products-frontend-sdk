@@ -23,13 +23,18 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     console.log({ client_id, customer_id, user_hash });
     setCustomerDetails({ client_id, customer_id, user_hash });
 
-    const fetch = async ()=>{
-      const resp = await fetchApi('/user-wallet-amount', 'post', {client_id, customer_id, user_hash})
-      // setWalletAmount(resp?.data?.userWallet)
-      setWalletAmount(resp?.data?.userWallet?.amount)
-    }
-    fetch()
   }, []);
+
+  useEffect(()=>{
+    const client_id = mainScript.getAttribute("data-client-id");
+    const customer_id = mainScript.getAttribute("data-customer-id");
+    const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
+    const fetchWalletAmount = async ()=>{
+      const amountResp = await fetchApi("/user-wallet-amount", 'post', {customer_id, client_id, user_hash})
+      setWalletAmount(amountResp?.data?.userWallet?.amount)
+    }
+    fetchWalletAmount()
+  },[screen])
 
   const scratchCardStyles = {
     justifyContent: "start"
@@ -96,7 +101,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     setScreen(true)
     setSpinWheelAmount(amount)
   };
-
+  
   useEffect(()=>{
     const fetchScratchCard = async ()=>{
       try {
@@ -130,7 +135,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
 
   return (
     <>
-    {screen ? <SpinWheel showSpinGameScreen={closeScreen} spinWheelAmount={spinWheelAmount} customerDetails={customerDetails} shadowRoot={shadowRoot} walletAmount={walletAmount} /> :
+    {screen ? <SpinWheel showSpinGameScreen={closeScreen} spinWheelAmount={spinWheelAmount} customerDetails={customerDetails} shadowRoot={shadowRoot}/> :
     <>
       <div class="showGamesTab">
         <div class="viewAllCouponTabText">

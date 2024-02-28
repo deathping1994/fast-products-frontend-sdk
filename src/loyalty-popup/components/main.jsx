@@ -272,6 +272,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     mainPopup.style.overflowY = "hidden";
     const overlay = shadowRoot.querySelector(".overlay")
     overlay.style.display = "flex"
+    overlay.style.justifyContent = "end"
     overlay.style.position = "absolute";
     overlay.style.top = `${scrolledTop}px`;
     overlay.style.height = "100%";
@@ -385,7 +386,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
           <PlayGame
             customerDetails={customerDetails}
             showSpinGameScreen={handleScreenComponent}
-            walletAmount={walletAmount}
             spinWheelAmount={spinWheelAmount}
             shadowRoot={shadowRoot}
           />
@@ -394,7 +394,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
         return (
           <ShowGames
             customerDetails={customerDetails}
-            walletAmount={walletAmount}
             funcSetSpinWheelAmount={funcSetSpinWheelAmount}
             showPlayGameScreen={showPlayGameScreen}
             screenDetails={screenDetails}
@@ -408,7 +407,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
             customerDetails={customerDetails}
             showScratchCardScreen={handleScreenComponent}
             scratchCardAmount={scratchCardAmount}
-            walletAmount={walletAmount}
             shadowRoot={shadowRoot}
           />
         );
@@ -416,7 +414,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
         return (
           <ShowScratchCard
             customerDetails={customerDetails}
-            walletAmount={walletAmount}
             funcScratchCardAmount={funcScratchCardAmount}
             showScratchCardScreen={showScratchCardScreen}
           />

@@ -24,12 +24,6 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     console.log({ client_id, customer_id, user_hash });
     setCustomerDetails({ client_id, customer_id, user_hash });
 
-    const fetch = async ()=>{
-      const resp = await fetchApi('/user-wallet-amount', 'post', {client_id, customer_id, user_hash})
-      // setWalletAmount(resp?.data?.userWallet)
-      setWalletAmount(resp?.data?.userWallet?.amount)
-    }
-    fetch()
   }, []);
 
   function setTheme({ themeDetails }) {
@@ -89,12 +83,24 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
       setActiveTab("available")
   }
   useEffect(()=>{
+    const client_id = mainScript.getAttribute("data-client-id");
+    const customer_id = mainScript.getAttribute("data-customer-id");
+    const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
+    const fetchWalletAmount = async ()=>{
+      const amountResp = await fetchApi("/user-wallet-amount", 'post', {customer_id, client_id, user_hash})
+      setWalletAmount(amountResp?.data?.userWallet?.amount)
+      console.log(amountResp?.data)
+    }
+    fetchWalletAmount()
+  },[screen])
+  useEffect(()=>{
     const fetchScratchCard = async ()=>{
       try {
         setLoading(true)
         const client_id = mainScript.getAttribute("data-client-id");
         const response = await fetchApi('/get-featured-scratch-cards', 'post', {client_id})
         // console.log("showscratchCard",response);
+        
         setScratchCardData(response?.data)
       } catch (error) {
         console.error(error);
@@ -104,6 +110,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     }
     fetchScratchCard()
   },[activeTab])
+  
 
   const scratchCardStyles = {
     justifyContent: "start"
@@ -128,7 +135,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
   }
   return (
     <>
-      {screen ? <ScratchCard showScratchCardScreen={showScratchCardScreen} customerDetails={customerDetails} shadowRoot={shadowRoot} walletAmount={walletAmount} scratchCardAmount={scratchCardAmount} /> 
+      {screen ? <ScratchCard showScratchCardScreen={showScratchCardScreen} customerDetails={customerDetails} shadowRoot={shadowRoot} scratchCardAmount={scratchCardAmount} /> 
       : 
       <>
       <div class="showGamesTab">

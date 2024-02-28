@@ -22,6 +22,19 @@ const Main = ({shadowRoot, themeDetailsData}) => {
     path: ""
   });
 
+  const handleShareClick = (msg)=>{
+    if(navigator.share){
+      navigator.share({
+        title: 'Web Share API Draft',
+        text: msg,
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing', error));
+    }else{
+      navigator.clipboard.writeText(msg)
+    }
+  }
+
 
   const showError = () => {
     setError(true);
@@ -102,9 +115,9 @@ const Main = ({shadowRoot, themeDetailsData}) => {
               <img src="https://media.farziengineer.co/farziwallet/whatsapp-icon.png" alt="" />
               <p>Send on WhatsApp</p>
             </a>
-            <a href={`sms://18005555555/?body=${whatsappmsg}`} target="_blank" className="inviteRoundedBtn">
+            <button onClick={()=> handleShareClick(whatsappmsg)} className="inviteRoundedBtn">
               <img  src="https://media.farziengineer.co/farziwallet/share_arrow.png" alt="" />
-            </a>
+            </button>
           </div>
         </div>
       </div>

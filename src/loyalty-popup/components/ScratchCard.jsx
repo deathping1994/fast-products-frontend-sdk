@@ -1,12 +1,13 @@
-  // @ts-nocheck
+
   import { useEffect, useState } from "preact/hooks";
   import Loading from "./Utils/Loading";
   import fetchApi from "./Utils/FetchApi";
   import Alert from "./Utils/Alert";
 
-  const ScratchCard = ({ shadowRoot, scratchCardAmount, walletAmount, showScratchCardScreen, customerDetails }) => {
+  const ScratchCard = ({ shadowRoot, scratchCardAmount, showScratchCardScreen, customerDetails }) => {
     const [isLocked, setIsLocked] = useState(true);
     const [loading, setLoading] = useState(false);
+    const [walletAmount, setWalletAmount] = useState(0);
     const [showWinPopup, setShowWinPopup] = useState(false)
     const [playAgain, setPlayAgain] = useState(false)
     const [error, setError] = useState({
@@ -58,6 +59,14 @@
           }
       }
     };
+
+    useEffect(()=>{
+      const fetchWalletAmount = async ()=>{
+        const amountResp = await fetchApi("/user-wallet-amount", 'post', {...customerDetails})
+        setWalletAmount(amountResp?.data?.userWallet?.amount)
+      }
+      fetchWalletAmount()
+    },[showWinPopup])
     useEffect(() => {
       const screenContent = shadowRoot.querySelector('.screenContent');
       const canvas = screenContent.querySelector('#scratchCardCanvas');
