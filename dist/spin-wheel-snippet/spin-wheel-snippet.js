@@ -523,26 +523,29 @@
 .showGamesCards {
 	background-color: white;
 	display: flex;
-	justify-content: start;
+	justify-content: center;
 	align-items: center;
 	padding: 0px 16px;
-	gap: 16px;
-}
-
+	gap: 4em;
+	flex-wrap: wrap;
+  }
 
 .gamesCard {
 	background-color: #efefef;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: start;
 	align-items: center;
 	padding: 8px;
+	padding-top: 8px;
 	padding-top: 8px;
 	padding-top: 30px;
 	border-radius: 8px;
 	position: relative;
 	bottom: 20px;
-	min-width: 126px;
+	min-width: 170px;
+	height: 200px;
+	gap: 12px;
 }
 
 .gamesCardImg {
@@ -554,7 +557,7 @@
 }
 
 .gamesCardImg img {
-	max-height: 66px;
+	height: 140px;
 }
 
 
@@ -595,15 +598,6 @@
 .walletCoinsBox img {
 	width: 16px;
 	height: 16px;
-}
-
-.showGamesCards {
-	background-color: white;
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	padding: 0px 16px;
-	gap: 16px;
 }
 
 .viewAllCoupons {
@@ -652,7 +646,7 @@
 	background: var(--loyalty_popup_theme_background, #000);
     border-radius: 4px;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 15px;
     text-align: center;
     color: #fff;
     width: 100%;
@@ -687,7 +681,7 @@
 
 .gamesCardDesc {
 	font-weight: 500;
-    font-size: 10px;
+    font-size: 14px;
     margin-bottom: 8px;
 }
 
@@ -806,6 +800,10 @@
 	position: absolute;
 	top: 200px;
 	left: 100px;
+}
+
+.gamesCardTitle {
+	font-size: 18px;
 }`;
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
@@ -1086,6 +1084,10 @@
 	--coin-svg-inverted-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 19 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9.5' cy='9.5' r='9.5' fill='white'/%3E%3Cpath d='M9.18353 4.97204C9.20715 4.90698 9.25022 4.85076 9.3069 4.81104C9.36358 4.77131 9.43112 4.75 9.50034 4.75C9.56955 4.75 9.63709 4.77131 9.69377 4.81104C9.75045 4.85076 9.79353 4.90698 9.81714 4.97204L10.1393 5.85236C10.3917 6.54265 10.7917 7.16954 11.3114 7.68925C11.8311 8.20896 12.458 8.60897 13.1483 8.86133L14.028 9.18353C14.093 9.20715 14.1492 9.25022 14.189 9.3069C14.2287 9.36358 14.25 9.43112 14.25 9.50034C14.25 9.56955 14.2287 9.63709 14.189 9.69377C14.1492 9.75045 14.093 9.79353 14.028 9.81714L13.1483 10.1393C12.458 10.3917 11.8311 10.7917 11.3114 11.3114C10.7917 11.8311 10.3917 12.458 10.1393 13.1483L9.81714 14.028C9.79353 14.093 9.75045 14.1492 9.69377 14.189C9.63709 14.2287 9.56955 14.25 9.50034 14.25C9.43112 14.25 9.36358 14.2287 9.3069 14.189C9.25022 14.1492 9.20715 14.093 9.18353 14.028L8.86133 13.1483C8.60897 12.458 8.20896 11.8311 7.68925 11.3114C7.16954 10.7917 6.54265 10.3917 5.85236 10.1393L4.97204 9.81714C4.90698 9.79353 4.85076 9.75045 4.81104 9.69377C4.77131 9.63709 4.75 9.56955 4.75 9.50034C4.75 9.43112 4.77131 9.36358 4.81104 9.3069C4.85076 9.25022 4.90698 9.20715 4.97204 9.18353L5.85236 8.86133C6.54265 8.60897 7.16954 8.20896 7.68925 7.68925C8.20896 7.16954 8.60897 6.54265 8.86133 5.85236L9.18353 4.97204Z' fill='%23000000'/%3E%3C/svg%3E%0A");
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	
+}
+
+.widget-container{
+	position: relative;
 }
 
 @keyframes rotate {
@@ -1593,7 +1595,7 @@ body {
 	width: 100%;
 	background-color: rgba(255, 255, 255, 0.6);
 	flex-direction: column;
-	justify-content: end;
+	justify-content: center;
 }
 
 .dashedDivider {

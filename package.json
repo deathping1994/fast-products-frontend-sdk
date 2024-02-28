@@ -21,7 +21,9 @@
     "start:scratch-card-snippet": "concurrently \"npm run build:scratch-card-snippet\" \"npm run serve\"",
     "build:spin-wheel-snippet": "vite build --config vite-configs/vite.spin-wheel-snippet.config.js --watch",
     "start:spin-wheel-snippet": "concurrently \"npm run build:spin-wheel-snippet\" \"npm run serve\"",
-    "build:watch": "concurrently \"npm run build:cart-drawer\" \" npm run build:cart-wallet-widget\" \" npm run build:wallet-activity-snippet\" \" npm run build:loyalty-popup\" \" npm run build:referral-ui-snippet\" \" npm run build:scratch-card-snippet\" \" npm run build:spin-wheel-snippet\""
+    "build:gifting-coupons-snippet": "vite build --config vite-configs/vite.gifting-coupons-snippet.config.js --watch",
+    "start:gifting-coupons-snippet": "concurrently \"npm run build:gifting-coupons-snippet\" \"npm run serve\"",
+    "build:watch": "concurrently \"npm run build:cart-drawer\" \" npm run build:cart-wallet-widget\" \" npm run build:wallet-activity-snippet\" \" npm run build:loyalty-popup\" \" npm run build:referral-ui-snippet\" \" npm run build:scratch-card-snippet\" \" npm run build:spin-wheel-snippet\" \" npm run build:gifting-coupons-snippet\""
   },
   "dependencies": {
     "concurrently": "^8.2.2",

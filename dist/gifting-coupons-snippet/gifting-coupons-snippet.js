@@ -273,6 +273,225 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
+  const style$1 = "p, h5, h4, h2 {\n    margin: 0;\n}\n\n@keyframes rotate {\n	from {\n		transform: rotate(0deg);\n	}\n	to {\n		transform: rotate(360deg);\n	}\n}\n\n@keyframes slide-in-bottom {\n    0% {\n        -webkit-transform: translateY(calc(100%));\n        ransform: translateY(calc(100%));\n    }\n    100% {\n        -webkit-transform: translateY(0);\n        transform: translateY(0);\n    }\n}\n\n\n.spinner {\n	animation: rotate 2s linear infinite;\n}\n\n\n.fc-wallet-gifting-coupons-snippet-19212-root {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.youCouponCardRight h4, .yourCouponCode {\n	font-weight: bold;\n	font-size: 13px;\n	color: var(--loyalty_popup_theme_background, #000);\n}\n\n.widget-container {\n    width: 60%;\n    font-family: Inter, sans-serif;\n}\n.viewAllCouponsTab {\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n	padding: 8px 16px;\n}\n\n.viewAllCouponTabText {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n}\n\n.viewAllCouponTabText h4 {\n	cursor: pointer;\n	color: #959595;\n}\n\n.walletCoinsBox {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	background-color: var(--loyalty_popup_theme_background, #000);\n	padding: 2px 8px;\n	border-radius: 50px;\n	gap: 4px;\n	width: fit-content;\n}\n\n.viewAllFeaturedComponent h3 {\n	margin-left: 16px;\n}\n\n.couponCard {\n	border-radius: 12px;\n	color: var(--loyalty_popup_theme_background, #000);\n	font-size: 14px;\n	line-height: 20px;\n	cursor: pointer;\n	width: 120px;\n}\n\n.couponCardDesc {\n	padding: 8px;\n    background: #f4f4f4;\n    border-radius: 8px;\n    box-shadow: 0 -4px 10px rgba(0,0,0,.1);\n    position: relative;\n    top: -12px;\n    min-width: 120px;\n    font-size: 13px;\n    font-weight: normal;\n    display: flex;\n    flex-direction: column;\n    gap: 4px;\n    \n}\n\n.couponImg {\n	border-radius: 8px 8px 0 0;\n	width: 136px;\n    height: 120px;\n}\n\n.couponCardPrice {\n	display: flex;\n	align-items: center;\n	justify-content: start;\n	gap: 4px;\n	font-size: 14px;\n	font-weight: 400;\n	margin-top: 8px;\n}\n\n.couponFloatingLabel {\n	position: absolute;\n	top: -10px;\n  	right: 10px;\n    background: var(--loyalty_popup_theme_background,#000);\n    color: #fff;\n    width: fit-content;\n    height: 24px;\n    text-align: center;\n    line-height: 24px;\n    font-weight: 600;\n    font-size: 12px;\n    border-radius: 4px;\n	padding: 0 4px;\n}\n\n.couponText {\n	padding-top: 8px;\n	font-size: 13px;\n}\n\n.couponCardPrice img {\n	width: 14px;\n	height: 14px;\n}\n\n.couponCardDesc {\n	padding: 8px;\n	background: #f4f4f4;\n	border-radius: 8px;\n	box-shadow: 0 -4px 10px rgba(0,0,0,.1);\n	position: relative;\n	top: -12px;\n	min-width: 120px;\n	font-size: 13px;\n	font-weight: normal;\n	display: flex;\n	flex-direction: column;\n	gap: 4px;\n}\n\n.showAllCouponsList {\n	display: flex;\n	justify-content: start;\n	align-items: start;\n	gap: 32px;\n	scrollbar-width: none;\n	overflow-x: scroll;\n	overflow-y: hidden;\n	padding: 0 16px;\n}\n\n.redeemCoinBox {\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n}\n\n.redeemHeading h3 {\n	font-weight: 700;\n    font-size: 14px;\n}\n\n.redeemText p {\n	font-weight: 400;\n    font-size: 14px;\n}\n\n.redeemCoinMainContainer {\n	width: 100%;\n	height: 100%;\n    background-color: #ffffff8c;\n}\n\n.redeemCoinContainer {\n	background-color: white;\n	position: absolute;\n	padding: 16px;\n	width: 100%;\n	height: fit-content;\n	bottom: 0px;\n	border-radius: 8px;\n	box-shadow: 0px -44px 60px -11px rgba(194,194,194,0.5);\n	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\n	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	\n}\n\n.redeemCloseContainer {\n	display: flex;\n	justify-content: end;\n	align-items: center;\n}\n\n.redeemVoucherMain {\n	display: flex;\n	justify-content: start;\n	align-items: center;\n	gap: 16px;\n}\n\n.redeemVoucherMain h2 {\n	font-weight: 700;\n    font-size: 30px;\n}\n.redeemRangeContainer {\n	padding: 0px 32px;\n}\n\n.redeemRangeContainer p {\n	text-align: center;\n}\n\n.redeemRangeContainer, .redeemRangeContainer input {\n	width: 100%;\n}\n\n.redeemRangeContainer input {\n	accent-color: #959595;\n}\n\n.reedemfcCoinsCard {\n	background-color: #f4f4f4;\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n	padding: 8px;\n	border-radius: 8px;\n	cursor: pointer;\n    width: fit-content;\n}\n\n.reedemfcCoins {\n	padding: 16px;\n}\n.reedemfcCoins h5{\n	font-weight: 700;\n    font-size: 16px;\n}\n.reedemfcCoins p{\n	/* margin-top: 8px; */\n    font-weight: 400;\n    font-size: 12px;\n	line-height: 14px;\n}\n\n\n.reedemfcCoinsCard {\n	background-color: #f4f4f4;\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n	padding: 8px;\n	border-radius: 8px;\n	cursor: pointer;\n}\n\n.exploreCouponCard {\n	background-color: #f4f4f4;\n	display: flex;\n	justify-content: start;\n	align-items: center;\n	padding: 16px;\n	border-radius: 8px;\n	cursor: pointer;\n    min-width: fit-content;\n    width: 340px;\n}\n.exploreCoupons {\n	padding: 16px;\n}\n\n.shipImgBox {\n	border-right: 1px dashed #959595;\n	padding-right: 8px;\n    margin-right: 8px\n}\n\n.exploreCouponCardText {\n	font-weight: 700;\n    font-size: 14px;\n}\n\n.exploreCouponCardText img {\n	width: 12px;\n	height: 12px;\n}\n\n.couponNotFound {\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n	margin-top: 16px;\n}\n\n.couponNotFound p{\n	font-weight: 400;\n    font-size: 12px;\n}\n\n.couponNotFound h4 {\n	font-weight: 700;\n    font-size: 20px;\n}\n\n.unlockedTab, .redeemedTab{\n    width: fit-content;\n}\n\n.yourCouponsCardContainer {\n	background-color: #f4f4f4;\n	border-radius: 8px;\n	display: flex;\n	margin-top: 16px;\n}\n\n.youCouponCardLeft, .youCouponCardRight {\n	padding: 16px;\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n}\n\n.youCouponCardLeft {\n	border-right: 1px dashed #959595;\n	align-items: center;\n}\n\n.youCouponCardRight {\n	align-items: start;\n}\n\n.youCouponCardLeft h5 {\n	font-size: 24px;\n}\n\n.youCouponCardLeft p {\n	font-size: 14px;\n}\n\n.exploreCouponText {\n	display: flex;\n	justify-content: start;\n	align-items: center;\n	gap: 4px;\n}\n\n.exploreCouponText div {\n	width: 16px;\n	height: 16px;\n}\n\n.yourCouponsActiveTab div {\n    background: #d9d9d9;\n    border-radius: 8px;\n    padding: 8px;\n    font-weight: 700;\n    font-size: 14px;\n    cursor: pointer;\n}\n\n.yourCouponsActiveTab {\n    display: flex;\n    justify-content: start;\n    align-items: center;\n    gap: 30px;\n}\n\n.yourCouponsCardMainContainer {\n    margin-left: 16px;\n}\n\n.coinIcon { \n    background-image: var(--coin-svg-url);\n	width: 20px;\n	height: 20px;\n	background-size: 100% 100%;\n}\n\n.walletCoinsBox p {\n	color: white;\n	font-size: 20px;\n}\n\n.walletCoinsBox img {\n	width: 16px;\n	height: 16px;\n}\n\n.overlay{\n	position: absolute;\n	display: none;\n	top: 0;\n	z-index: 99;\n	height: 100%;\n	width: 100%;\n	background-color: rgba(255, 255, 255, 0.6);\n	flex-direction: column;\n	justify-content: center;\n}\n\n.couponOverlayContainer {\n	display: flex;\n	justify-content: start;\n	align-items: center;\n	gap: 8px;\n}\n\n.couponOverlayContainer h2 {\n	font-size: 30px;\n}\n\n.couponContainer {\n	background-color: white;\n	width: 100%;\n	padding: 16px;\n	border-radius: 16px;\n	box-shadow: 0 -4px 50px rgba(0,0,0,.25);\n    width: 100%;\n}\n\n.couponUnlockBtn {\n	background-color: var(--loyalty_popup_theme_background, #000);\n    color: #fff;\n    padding: 11px 0;\n    border-radius: 8px;\n    font-family: Inter,sans-serif;\n    font-weight: 700;\n    cursor: pointer;\n    width: 100%;\n    font-size: 14px;\n	border: none;\n}\n\n.unlockText {\n    margin-top: 18px;\n}\n\n.unlockTextContainer {\n    margin-bottom: 18px;\n}\n.unlockTextContainer h4 {\n    text-align: center;\n}\n\n.crossImg {\n	display: flex;\n	justify-content: end;\n	align-items: center;\n}\n\n.crossImg img {\n	width: 24px;\n	height: 24px;\n	cursor: pointer;\n}\n\n.unlockDesc p {\n	font-weight: 500;\n	font-size: 13px;\n	line-height: 16px;\n}\n\n.dashedDivider {\n	border: none;\n    height: 1px;\n    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);\n    margin: 20px 0 16px 0;\n}\n\n.slide-in-bottom {\n	-webkit-animation: slide-in-bottom 0.5s ease-in-out both;\n	animation: slide-in-bottom 0.5s ease-in-out both;\n}\n\n.viewAllCoupons {\n    position: relative;\n    width: 60%;\n}\n\n.unlockCouponContainer  {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.redeemCloseContainer img {\n    cursor: pointer;\n	width: 30px;\n	height: 30px;\n}\n\n.couponCodeContainer {\n	padding: 12px 0;\n    background: #fff;\n    border-radius: 4px;\n    border: 1px solid var(--loyalty_popup_theme_background, #000);;\n    font-size: 16px;\n    font-weight: 700;\n    display: flex;\n	width: 100%;\n	justify-content: center;\n    align-items: center;\n	position: relative;\n}\n\n.couponCodeContainer img {\n	position: absolute;\n	right: 20px;\n	cursor: pointer;\n}\n\n.copied {\n	background-color: green;\n  padding: 8px;\n  position: absolute;\n  top: 50%;\n  left: 40%;\n  border-radius: 12px;\n  color: white;\n  font-weight: bold;\n  font-size: 14px;\n}\n\n.unlockText h5 {\n	font-weight: 700;\n    font-size: 16px;\n    margin: 16px 0;\n}";
+  var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
+  function d(t2, u2) {
+    l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
+    var i2 = r.__H || (r.__H = { __: [], __h: [] });
+    return t2 >= i2.__.length && i2.__.push({ __V: c }), i2.__[t2];
+  }
+  function h(n2) {
+    return o$1 = 1, s(B, n2);
+  }
+  function s(n2, u2, i2) {
+    var o2 = d(t++, 2);
+    if (o2.t = n2, !o2.__c && (o2.__ = [i2 ? i2(u2) : B(void 0, u2), function(n3) {
+      var t2 = o2.__N ? o2.__N[0] : o2.__[0], r2 = o2.t(t2, n3);
+      t2 !== r2 && (o2.__N = [r2, o2.__[1]], o2.__c.setState({}));
+    }], o2.__c = r, !r.u)) {
+      var f2 = function(n3, t2, r2) {
+        if (!o2.__c.__H)
+          return true;
+        var u3 = o2.__c.__H.__.filter(function(n4) {
+          return n4.__c;
+        });
+        if (u3.every(function(n4) {
+          return !n4.__N;
+        }))
+          return !c2 || c2.call(this, n3, t2, r2);
+        var i3 = false;
+        return u3.forEach(function(n4) {
+          if (n4.__N) {
+            var t3 = n4.__[0];
+            n4.__ = n4.__N, n4.__N = void 0, t3 !== n4.__[0] && (i3 = true);
+          }
+        }), !(!i3 && o2.__c.props === n3) && (!c2 || c2.call(this, n3, t2, r2));
+      };
+      r.u = true;
+      var c2 = r.shouldComponentUpdate, e2 = r.componentWillUpdate;
+      r.componentWillUpdate = function(n3, t2, r2) {
+        if (this.__e) {
+          var u3 = c2;
+          c2 = void 0, f2(n3, t2, r2), c2 = u3;
+        }
+        e2 && e2.call(this, n3, t2, r2);
+      }, r.shouldComponentUpdate = f2;
+    }
+    return o2.__N || o2.__;
+  }
+  function p(u2, i2) {
+    var o2 = d(t++, 3);
+    !l$1.__s && z(o2.__H, i2) && (o2.__ = u2, o2.i = i2, r.__H.__h.push(o2));
+  }
+  function b() {
+    for (var t2; t2 = f.shift(); )
+      if (t2.__P && t2.__H)
+        try {
+          t2.__H.__h.forEach(k), t2.__H.__h.forEach(w), t2.__H.__h = [];
+        } catch (r2) {
+          t2.__H.__h = [], l$1.__e(r2, t2.__v);
+        }
+  }
+  l$1.__b = function(n2) {
+    r = null, e && e(n2);
+  }, l$1.__r = function(n2) {
+    a && a(n2), t = 0;
+    var i2 = (r = n2.__c).__H;
+    i2 && (u === r ? (i2.__h = [], r.__h = [], i2.__.forEach(function(n3) {
+      n3.__N && (n3.__ = n3.__N), n3.__V = c, n3.__N = n3.i = void 0;
+    })) : (i2.__h.forEach(k), i2.__h.forEach(w), i2.__h = [], t = 0)), u = r;
+  }, l$1.diffed = function(t2) {
+    v && v(t2);
+    var o2 = t2.__c;
+    o2 && o2.__H && (o2.__H.__h.length && (1 !== f.push(o2) && i === l$1.requestAnimationFrame || ((i = l$1.requestAnimationFrame) || j)(b)), o2.__H.__.forEach(function(n2) {
+      n2.i && (n2.__H = n2.i), n2.__V !== c && (n2.__ = n2.__V), n2.i = void 0, n2.__V = c;
+    })), u = r = null;
+  }, l$1.__c = function(t2, r2) {
+    r2.some(function(t3) {
+      try {
+        t3.__h.forEach(k), t3.__h = t3.__h.filter(function(n2) {
+          return !n2.__ || w(n2);
+        });
+      } catch (u2) {
+        r2.some(function(n2) {
+          n2.__h && (n2.__h = []);
+        }), r2 = [], l$1.__e(u2, t3.__v);
+      }
+    }), l && l(t2, r2);
+  }, l$1.unmount = function(t2) {
+    m && m(t2);
+    var r2, u2 = t2.__c;
+    u2 && u2.__H && (u2.__H.__.forEach(function(n2) {
+      try {
+        k(n2);
+      } catch (n3) {
+        r2 = n3;
+      }
+    }), u2.__H = void 0, r2 && l$1.__e(r2, u2.__v));
+  };
+  var g = "function" == typeof requestAnimationFrame;
+  function j(n2) {
+    var t2, r2 = function() {
+      clearTimeout(u2), g && cancelAnimationFrame(t2), setTimeout(n2);
+    }, u2 = setTimeout(r2, 100);
+    g && (t2 = requestAnimationFrame(r2));
+  }
+  function k(n2) {
+    var t2 = r, u2 = n2.__c;
+    "function" == typeof u2 && (n2.__c = void 0, u2()), r = t2;
+  }
+  function w(n2) {
+    var t2 = r;
+    n2.__c = n2.__(), r = t2;
+  }
+  function z(n2, t2) {
+    return !n2 || n2.length !== t2.length || t2.some(function(t3, r2) {
+      return t3 !== n2[r2];
+    });
+  }
+  function B(n2, t2) {
+    return "function" == typeof t2 ? t2(n2) : t2;
+  }
+  var _ = 0;
+  function o(o2, e2, n2, t2, f2, l2) {
+    var s2, u2, a2 = {};
+    for (u2 in e2)
+      "ref" == u2 ? s2 = e2[u2] : a2[u2] = e2[u2];
+    var i2 = { type: o2, props: a2, key: n2, ref: s2, __k: null, __: null, __b: 0, __e: null, __d: void 0, __c: null, __h: null, constructor: void 0, __v: --_, __source: f2, __self: l2 };
+    if ("function" == typeof o2 && (s2 = o2.defaultProps))
+      for (u2 in s2)
+        void 0 === a2[u2] && (a2[u2] = s2[u2]);
+    return l$1.vnode && l$1.vnode(i2), i2;
+  }
+  const CouponCard$1 = ({
+    couponImgLink,
+    couponPrice,
+    couponDesc,
+    onClick
+  }) => {
+    return o(k$1, {
+      children: o("div", {
+        onClick,
+        class: "couponCard",
+        children: [o("img", {
+          class: "couponImg",
+          src: couponImgLink,
+          alt: ""
+        }), o("div", {
+          class: "couponCardDesc",
+          children: [o("div", {
+            class: "couponFloatingLabel",
+            children: ["₹ ", couponPrice]
+          }), o("p", {
+            class: "couponText",
+            children: couponDesc
+          }), o("div", {
+            className: "couponCardPrice",
+            children: [o("div", {
+              class: "coinIcon"
+            }), o("p", {
+              children: couponPrice
+            })]
+          })]
+        })]
+      })
+    });
+  };
+  const Loading$1 = () => {
+    return o(k$1, {
+      children: o("main", {
+        class: "loading-screen",
+        children: [o("svg", {
+          class: "spinner",
+          width: "50px",
+          height: "50px",
+          viewBox: "0 0 66 66",
+          xmlns: "http://www.w3.org/2000/svg",
+          children: [o("circle", {
+            class: "path",
+            fill: "transparent",
+            "stroke-width": "2",
+            cx: "33",
+            cy: "33",
+            r: "30",
+            stroke: "url(#gradient)"
+          }), o("linearGradient", {
+            id: "gradient",
+            children: [o("stop", {
+              offset: "50%",
+              "stop-color": "#009cdf",
+              "stop-opacity": "1"
+            }), o("stop", {
+              offset: "65%",
+              "stop-color": "#009cdf",
+              "stop-opacity": ".5"
+            }), o("stop", {
+              offset: "100%",
+              "stop-color": "#009cdf",
+              "stop-opacity": "0"
+            })]
+          }), o("svg", {
+            class: "spinner-dot dot",
+            width: "5px",
+            height: "5px",
+            viewBox: "0 0 66 66",
+            xmlns: "http://www.w3.org/2000/svg",
+            x: "37",
+            y: "1.5",
+            children: o("circle", {
+              class: "path",
+              fill: "#009cdf",
+              cx: "33",
+              cy: "33",
+              r: "30"
+            })
+          })]
+        }), o("p", {
+          children: "Loading, please wait..."
+        })]
+      })
+    });
+  };
   const style = `/* :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
@@ -1707,135 +1926,6 @@ body {
 .referralPopupContainer span {
 	color: gold;
 }`;
-  var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
-  function d(t2, u2) {
-    l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
-    var i2 = r.__H || (r.__H = { __: [], __h: [] });
-    return t2 >= i2.__.length && i2.__.push({ __V: c }), i2.__[t2];
-  }
-  function h(n2) {
-    return o$1 = 1, s(B, n2);
-  }
-  function s(n2, u2, i2) {
-    var o2 = d(t++, 2);
-    if (o2.t = n2, !o2.__c && (o2.__ = [i2 ? i2(u2) : B(void 0, u2), function(n3) {
-      var t2 = o2.__N ? o2.__N[0] : o2.__[0], r2 = o2.t(t2, n3);
-      t2 !== r2 && (o2.__N = [r2, o2.__[1]], o2.__c.setState({}));
-    }], o2.__c = r, !r.u)) {
-      var f2 = function(n3, t2, r2) {
-        if (!o2.__c.__H)
-          return true;
-        var u3 = o2.__c.__H.__.filter(function(n4) {
-          return n4.__c;
-        });
-        if (u3.every(function(n4) {
-          return !n4.__N;
-        }))
-          return !c2 || c2.call(this, n3, t2, r2);
-        var i3 = false;
-        return u3.forEach(function(n4) {
-          if (n4.__N) {
-            var t3 = n4.__[0];
-            n4.__ = n4.__N, n4.__N = void 0, t3 !== n4.__[0] && (i3 = true);
-          }
-        }), !(!i3 && o2.__c.props === n3) && (!c2 || c2.call(this, n3, t2, r2));
-      };
-      r.u = true;
-      var c2 = r.shouldComponentUpdate, e2 = r.componentWillUpdate;
-      r.componentWillUpdate = function(n3, t2, r2) {
-        if (this.__e) {
-          var u3 = c2;
-          c2 = void 0, f2(n3, t2, r2), c2 = u3;
-        }
-        e2 && e2.call(this, n3, t2, r2);
-      }, r.shouldComponentUpdate = f2;
-    }
-    return o2.__N || o2.__;
-  }
-  function p(u2, i2) {
-    var o2 = d(t++, 3);
-    !l$1.__s && z(o2.__H, i2) && (o2.__ = u2, o2.i = i2, r.__H.__h.push(o2));
-  }
-  function b() {
-    for (var t2; t2 = f.shift(); )
-      if (t2.__P && t2.__H)
-        try {
-          t2.__H.__h.forEach(k), t2.__H.__h.forEach(w), t2.__H.__h = [];
-        } catch (r2) {
-          t2.__H.__h = [], l$1.__e(r2, t2.__v);
-        }
-  }
-  l$1.__b = function(n2) {
-    r = null, e && e(n2);
-  }, l$1.__r = function(n2) {
-    a && a(n2), t = 0;
-    var i2 = (r = n2.__c).__H;
-    i2 && (u === r ? (i2.__h = [], r.__h = [], i2.__.forEach(function(n3) {
-      n3.__N && (n3.__ = n3.__N), n3.__V = c, n3.__N = n3.i = void 0;
-    })) : (i2.__h.forEach(k), i2.__h.forEach(w), i2.__h = [], t = 0)), u = r;
-  }, l$1.diffed = function(t2) {
-    v && v(t2);
-    var o2 = t2.__c;
-    o2 && o2.__H && (o2.__H.__h.length && (1 !== f.push(o2) && i === l$1.requestAnimationFrame || ((i = l$1.requestAnimationFrame) || j)(b)), o2.__H.__.forEach(function(n2) {
-      n2.i && (n2.__H = n2.i), n2.__V !== c && (n2.__ = n2.__V), n2.i = void 0, n2.__V = c;
-    })), u = r = null;
-  }, l$1.__c = function(t2, r2) {
-    r2.some(function(t3) {
-      try {
-        t3.__h.forEach(k), t3.__h = t3.__h.filter(function(n2) {
-          return !n2.__ || w(n2);
-        });
-      } catch (u2) {
-        r2.some(function(n2) {
-          n2.__h && (n2.__h = []);
-        }), r2 = [], l$1.__e(u2, t3.__v);
-      }
-    }), l && l(t2, r2);
-  }, l$1.unmount = function(t2) {
-    m && m(t2);
-    var r2, u2 = t2.__c;
-    u2 && u2.__H && (u2.__H.__.forEach(function(n2) {
-      try {
-        k(n2);
-      } catch (n3) {
-        r2 = n3;
-      }
-    }), u2.__H = void 0, r2 && l$1.__e(r2, u2.__v));
-  };
-  var g = "function" == typeof requestAnimationFrame;
-  function j(n2) {
-    var t2, r2 = function() {
-      clearTimeout(u2), g && cancelAnimationFrame(t2), setTimeout(n2);
-    }, u2 = setTimeout(r2, 100);
-    g && (t2 = requestAnimationFrame(r2));
-  }
-  function k(n2) {
-    var t2 = r, u2 = n2.__c;
-    "function" == typeof u2 && (n2.__c = void 0, u2()), r = t2;
-  }
-  function w(n2) {
-    var t2 = r;
-    n2.__c = n2.__(), r = t2;
-  }
-  function z(n2, t2) {
-    return !n2 || n2.length !== t2.length || t2.some(function(t3, r2) {
-      return t3 !== n2[r2];
-    });
-  }
-  function B(n2, t2) {
-    return "function" == typeof t2 ? t2(n2) : t2;
-  }
-  var _ = 0;
-  function o(o2, e2, n2, t2, f2, l2) {
-    var s2, u2, a2 = {};
-    for (u2 in e2)
-      "ref" == u2 ? s2 = e2[u2] : a2[u2] = e2[u2];
-    var i2 = { type: o2, props: a2, key: n2, ref: s2, __k: null, __: null, __b: 0, __e: null, __d: void 0, __c: null, __h: null, constructor: void 0, __v: --_, __source: f2, __self: l2 };
-    if ("function" == typeof o2 && (s2 = o2.defaultProps))
-      for (u2 in s2)
-        void 0 === a2[u2] && (a2[u2] = s2[u2]);
-    return l$1.vnode && l$1.vnode(i2), i2;
-  }
   const WalletCard = ({
     walletAmount,
     onClick
@@ -1868,19 +1958,6 @@ body {
       })
     });
   };
-  const fetchApi = async (route, method, data) => {
-    const resp = await fetch(`${WALLET_API_URI}${route}`, {
-      method,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        ...data
-      })
-    });
-    const response = await resp.json();
-    return response;
-  };
   const InviteCard = ({
     onClick,
     client_id
@@ -1889,7 +1966,7 @@ body {
     p(() => {
       const fetch2 = async () => {
         var _a;
-        const resp = await fetchApi("/get-referrer-message", "post", {
+        const resp = await fetchApi$1("/get-referrer-message", "post", {
           client_id
         });
         if ((resp == null ? void 0 : resp.status) !== "success") {
@@ -1926,61 +2003,6 @@ body {
       })
     });
   };
-  const Loading = () => {
-    return o(k$1, {
-      children: o("main", {
-        class: "loading-screen",
-        children: [o("svg", {
-          class: "spinner",
-          width: "50px",
-          height: "50px",
-          viewBox: "0 0 66 66",
-          xmlns: "http://www.w3.org/2000/svg",
-          children: [o("circle", {
-            class: "path",
-            fill: "transparent",
-            "stroke-width": "2",
-            cx: "33",
-            cy: "33",
-            r: "30",
-            stroke: "url(#gradient)"
-          }), o("linearGradient", {
-            id: "gradient",
-            children: [o("stop", {
-              offset: "50%",
-              "stop-color": "#009cdf",
-              "stop-opacity": "1"
-            }), o("stop", {
-              offset: "65%",
-              "stop-color": "#009cdf",
-              "stop-opacity": ".5"
-            }), o("stop", {
-              offset: "100%",
-              "stop-color": "#009cdf",
-              "stop-opacity": "0"
-            })]
-          }), o("svg", {
-            class: "spinner-dot dot",
-            width: "5px",
-            height: "5px",
-            viewBox: "0 0 66 66",
-            xmlns: "http://www.w3.org/2000/svg",
-            x: "37",
-            y: "1.5",
-            children: o("circle", {
-              class: "path",
-              fill: "#009cdf",
-              cx: "33",
-              cy: "33",
-              r: "30"
-            })
-          })]
-        }), o("p", {
-          children: "Loading, please wait..."
-        })]
-      })
-    });
-  };
   const Alert = ({
     message
   }) => {
@@ -1997,125 +2019,6 @@ body {
         })
       }), o("p", {
         children: `${message || "Something went wrong"}`
-      })]
-    });
-  };
-  const CouponOverlay = ({
-    couponData,
-    onClick,
-    customerDetails
-  }) => {
-    const [couponCode, setCouponCode] = h("");
-    const [isCouponUnlocked, setIsCouponUnlocked] = h(false);
-    const [showCopied, setShowCopied] = h(false);
-    const [error, setError] = h({
-      error: false,
-      msg: ""
-    });
-    const [loading, setLoading] = h(false);
-    const showError = (msg) => {
-      setError({
-        error: true,
-        msg
-      });
-      setTimeout(() => {
-        setError({
-          error: false,
-          msg: ""
-        });
-      }, 3e3);
-    };
-    const copyReferralLinkFunc = () => {
-      setShowCopied(true);
-      navigator.clipboard.writeText(couponCode);
-      setTimeout(() => {
-        setShowCopied(false);
-      }, 1e3);
-    };
-    const fetchCouponCode = async () => {
-      var _a;
-      try {
-        setLoading(true);
-        const response = await fetchApi("/get-code", "post", {
-          ...customerDetails,
-          couponAmount: couponData == null ? void 0 : couponData.amount
-        });
-        if ((response == null ? void 0 : response.status) !== "success") {
-          showError(response == null ? void 0 : response.error);
-        } else {
-          setCouponCode((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.coupon_code);
-          setIsCouponUnlocked(true);
-        }
-      } catch (error2) {
-        console.log("error in coupon card overlay", error2);
-      } finally {
-        setLoading(false);
-      }
-    };
-    return loading ? o("div", {
-      className: "loader",
-      children: o(Loading, {})
-    }) : o(k$1, {
-      children: [o("div", {
-        class: "unlockCouponContainer slide-in-bottom",
-        children: o("div", {
-          class: "couponContainer",
-          children: [o("div", {
-            class: "crossImg",
-            children: o("img", {
-              onClick,
-              src: "https://media.farziengineer.co/farziwallet/cross.png",
-              alt: ""
-            })
-          }), o("div", {
-            class: "couponOverlayContainer",
-            children: [o("img", {
-              src: "https://media.farziengineer.co/farziwallet/voucher-icon.png",
-              alt: ""
-            }), o("h2", {
-              children: couponData == null ? void 0 : couponData.heading
-            })]
-          }), o("div", {
-            class: "unlockText",
-            children: o("h5", {
-              children: couponData == null ? void 0 : couponData.title
-            })
-          }), o("div", {
-            class: "unlockDesc",
-            children: o("p", {
-              children: couponData == null ? void 0 : couponData.description
-            })
-          }), o("div", {
-            children: o("hr", {
-              class: "dashedDivider"
-            })
-          }), o("div", {
-            class: "unlockTextContainer",
-            children: o("h4", {
-              children: !isCouponUnlocked ? `Unlock for ${couponData == null ? void 0 : couponData.amount} ${window.fc_loyalty_vars.coin_name} Coins` : "Use this code at checkout"
-            })
-          }), !isCouponUnlocked && o("div", {
-            children: !loading && o("button", {
-              onClick: fetchCouponCode,
-              class: "couponUnlockBtn",
-              children: "Tap to Unlock"
-            })
-          }), isCouponUnlocked && o("div", {
-            class: "couponCodeContainer",
-            children: [o("p", {
-              children: couponCode
-            }), o("img", {
-              onClick: copyReferralLinkFunc,
-              src: "https://media.farziengineer.co/farziwallet/copy-icon.png",
-              alt: ""
-            })]
-          })]
-        })
-      }), error.error && o(Alert, {
-        message: error == null ? void 0 : error.msg
-      }), showCopied && o("div", {
-        class: "copied",
-        children: "copied"
       })]
     });
   };
@@ -2143,11 +2046,11 @@ body {
         var _a, _b;
         try {
           setLoading(true);
-          const resp = await fetchApi("/get-referral-code", "post", customerDetails);
-          const response = await fetchApi("/get-referral-message", "post", {
+          const resp = await fetchApi$1("/get-referral-code", "post", customerDetails);
+          const response = await fetchApi$1("/get-referral-message", "post", {
             client_id: customerDetails == null ? void 0 : customerDetails.client_id
           });
-          const whatsappResp = await fetchApi("/get-referred-message", "post", customerDetails);
+          const whatsappResp = await fetchApi$1("/get-referred-message", "post", customerDetails);
           if ((response == null ? void 0 : response.status) !== "success") {
             setInvitemsg("Share with you friends to get rewards.");
             setWhatsappmsg("Share this with whatsapp");
@@ -2174,7 +2077,7 @@ body {
     return o(k$1, {
       children: [loading ? o("div", {
         className: "loader",
-        children: o(Loading, {})
+        children: o(Loading$1, {})
       }) : o("div", {
         class: "inviteAndEarnContainer",
         children: [o("div", {
@@ -2290,7 +2193,7 @@ body {
       })
     });
   };
-  const YourCoupons = ({
+  const YourCoupons$1 = ({
     customerDetails
   }) => {
     const [activeTab, setActiveTab] = h("");
@@ -2305,7 +2208,7 @@ body {
         var _a, _b;
         try {
           setLoading(true);
-          const response = await fetchApi("/get-user-coupons", "post", customerDetails);
+          const response = await fetchApi$1("/get-user-coupons", "post", customerDetails);
           setYourUnlockedCoupon((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.unlocked);
           setYourRedeemedCoupon((_b = response == null ? void 0 : response.data) == null ? void 0 : _b.redeemed);
         } catch (error) {
@@ -2329,7 +2232,7 @@ body {
     };
     return loading ? o("div", {
       className: "loader",
-      children: o(Loading, {})
+      children: o(Loading$1, {})
     }) : o(k$1, {
       children: o("div", {
         class: "yourCouponsCardMainContainer",
@@ -2429,7 +2332,7 @@ body {
       const fetchData = async () => {
         try {
           setLoading(true);
-          const response = await fetchApi("/get-featured-spin-wheels", "post", customerDetails);
+          const response = await fetchApi$1("/get-featured-spin-wheels", "post", customerDetails);
           setGamesData(response == null ? void 0 : response.data);
         } catch (error) {
           console.error("Error fetching wallet data:", error);
@@ -2474,7 +2377,7 @@ body {
         })]
       }), activeTab === "available" && (loading ? o("div", {
         className: "loader",
-        children: o(Loading, {})
+        children: o(Loading$1, {})
       }) : o("div", {
         class: "showGamesCards",
         children: gamesData.map((game, idx) => o(GamesCard, {
@@ -2485,7 +2388,7 @@ body {
           btnText: "Explore",
           gamePrice: game.amount
         }, idx))
-      })), activeTab === "yourcoupons" && o(YourCoupons, {
+      })), activeTab === "yourcoupons" && o(YourCoupons$1, {
         customerDetails
       })]
     });
@@ -2571,7 +2474,7 @@ body {
     };
     p(() => {
       const fetchRewardArray = async () => {
-        const response = await fetchApi(`/get-spin-wheel-rewards`, "post", {
+        const response = await fetchApi$1(`/get-spin-wheel-rewards`, "post", {
           ...customerDetails,
           couponAmount: spinWheelAmount
         });
@@ -2681,7 +2584,7 @@ body {
       const redeemSpinWheel = async () => {
         try {
           setLoading(true);
-          const response = await fetchApi(`/redeem-spin-wheel`, "post", {
+          const response = await fetchApi$1(`/redeem-spin-wheel`, "post", {
             ...customerDetails,
             couponAmount: spinWheelAmount
           });
@@ -2747,7 +2650,7 @@ body {
           })]
         }), loading && o("div", {
           class: "loader",
-          children: o(Loading, {})
+          children: o(Loading$1, {})
         }), showWinPopup && o("div", {
           class: "spinWinContainer",
           children: o("div", {
@@ -2853,7 +2756,7 @@ body {
       const fetchScratchCard = async () => {
         try {
           setLoading(true);
-          const response = await fetchApi("/get-featured-scratch-cards", "post", customerDetails);
+          const response = await fetchApi$1("/get-featured-scratch-cards", "post", customerDetails);
           setScratchCardData(response == null ? void 0 : response.data);
         } catch (error) {
           console.error(error);
@@ -2898,7 +2801,7 @@ body {
         })]
       }), activeTab === "available" && (loading ? o("div", {
         className: "loader",
-        children: o(Loading, {})
+        children: o(Loading$1, {})
       }) : o("div", {
         class: "showGamesCards",
         children: scratchCardData.map((game, idx) => o(GamesCard, {
@@ -2909,7 +2812,7 @@ body {
           btnText: "Scratch",
           gamePrice: game.amount
         }, idx))
-      })), activeTab === "yourcoupons" && o(YourCoupons, {
+      })), activeTab === "yourcoupons" && o(YourCoupons$1, {
         customerDetails
       })]
     });
@@ -3000,7 +2903,7 @@ body {
       });
       try {
         setLoading(true);
-        const response = await fetchApi(`/redeem-scratch-card`, "post", {
+        const response = await fetchApi$1(`/redeem-scratch-card`, "post", {
           ...customerDetails,
           couponAmount: scratchCardAmount
         });
@@ -3099,7 +3002,7 @@ body {
     return o(k$1, {
       children: [loading && o("div", {
         class: "loaderFullHeight",
-        children: o(Loading, {})
+        children: o(Loading$1, {})
       }), o("div", {
         class: "walletCoinContainer",
         children: [o("div", {
@@ -3224,7 +3127,7 @@ body {
       var _a;
       try {
         setLoading(true);
-        const response = await fetchApi(`/get-code`, "post", {
+        const response = await fetchApi$1(`/get-code`, "post", {
           ...customerDetails,
           couponAmount: rangeValue,
           coupon_title: `Custom Discount: ${rangeValue} ${window.fc_loyalty_vars.coin_name} Coins for ₹${rangeValue} off`
@@ -3242,7 +3145,7 @@ body {
     };
     return loading ? o("div", {
       class: "loader",
-      children: o(Loading, {})
+      children: o(Loading$1, {})
     }) : o(k$1, {
       children: o("div", {
         className: "redeemCoinMainContainer",
@@ -3333,7 +3236,7 @@ body {
         var _a;
         try {
           setLoading(true);
-          const resp = await fetchApi("/get-coupons-to-explore", "post", customerDetails);
+          const resp = await fetchApi$1("/get-coupons-to-explore", "post", customerDetails);
           setExploreCoupon((_a = resp == null ? void 0 : resp.data) == null ? void 0 : _a.data);
         } catch (error) {
           console.log(error);
@@ -3440,7 +3343,7 @@ body {
           })]
         }), availableTab && (loading ? o("div", {
           className: "loader",
-          children: o(Loading, {})
+          children: o(Loading$1, {})
         }) : o("div", {
           children: [o("div", {
             class: "viewAllFeaturedComponent",
@@ -3506,7 +3409,7 @@ body {
               })]
             }))]
           })]
-        })), yourCouponTab && o(YourCoupons, {
+        })), yourCouponTab && o(YourCoupons$1, {
           customerDetails,
           yourCouponTab
         }), o("div", {
@@ -3574,7 +3477,7 @@ body {
       })
     });
   };
-  function Main({
+  function Main$1({
     themeDetailsData,
     shadowRoot
   }) {
@@ -3654,7 +3557,7 @@ body {
       const fc_refer_hash = localStorage.getItem("fc_refer_hash");
       if (fc_refer_hash) {
         try {
-          const response = await fetchApi("/redeem-referral-code", "post", {
+          const response = await fetchApi$1("/redeem-referral-code", "post", {
             client_id,
             customer_id,
             // user_hash: user_hash,
@@ -3743,7 +3646,7 @@ body {
           var _a, _b, _c, _d, _e;
           try {
             setLoading(true);
-            const walletResponse = await fetchApi("/user-walletlogs", "post", {
+            const walletResponse = await fetchApi$1("/user-walletlogs", "post", {
               ...customerDetails
             });
             if ((walletResponse == null ? void 0 : walletResponse.status) !== "success") {
@@ -3766,7 +3669,7 @@ body {
       const customer_id = mainScript.getAttribute("data-customer-id");
       const fetch2 = async () => {
         var _a, _b;
-        const couponResponse = await fetchApi("/get-featured-coupons", "post", {
+        const couponResponse = await fetchApi$1("/get-featured-coupons", "post", {
           client_id
         });
         if ((couponResponse == null ? void 0 : couponResponse.status) !== "success") {
@@ -3778,15 +3681,15 @@ body {
             showError("No coupons found");
           }
         }
-        const spinWheelResponse = await fetchApi("/get-featured-spin-wheels", "post", {
+        const spinWheelResponse = await fetchApi$1("/get-featured-spin-wheels", "post", {
           client_id
         });
         setSingleSpinWheel(spinWheelResponse == null ? void 0 : spinWheelResponse.data[0]);
-        const scratchCardResponse = await fetchApi("/get-featured-scratch-cards", "post", {
+        const scratchCardResponse = await fetchApi$1("/get-featured-scratch-cards", "post", {
           client_id
         });
         setSingleScratchCard(scratchCardResponse == null ? void 0 : scratchCardResponse.data[0]);
-        const walletAmountResponse = await fetchApi("/user-wallet-amount", "post", {
+        const walletAmountResponse = await fetchApi$1("/user-wallet-amount", "post", {
           client_id,
           customer_id
         });
@@ -3951,7 +3854,7 @@ body {
             content: getScreenComponent(screenDetails == null ? void 0 : screenDetails.screen)
           }) : loading ? o("div", {
             className: "loader",
-            children: o(Loading, {})
+            children: o(Loading$1, {})
           }) : o(k$1, {
             children: [o("div", {
               class: "header",
@@ -4038,6 +3941,681 @@ body {
       })]
     });
   }
+  function App$1({
+    themeDetailsData,
+    shadowRoot
+  }) {
+    return o(k$1, {
+      children: [o("div", {
+        class: "widget-container",
+        children: o(Main$1, {
+          themeDetailsData,
+          shadowRoot
+        })
+      }), o("div", {
+        class: "widget-styles"
+      }), o("div", {
+        class: "widget-custom-styles"
+      })]
+    });
+  }
+  function AppCSS$1() {
+    return o("style", {
+      children: style
+    });
+  }
+  function AppCustomCSS$1({
+    customStyles
+  }) {
+    return o("style", {
+      children: customStyles
+    });
+  }
+  const WALLET_API_URI$2 = "https://fastloyaltyapi.farziengineer.co";
+  async function renderLoyaltyPopup() {
+    var _a, _b, _c;
+    try {
+      const targetDiv = document.body;
+      let shadowTarget = document.createElement("div");
+      shadowTarget.className = "fc-loyalty-popup-19212-target";
+      shadowTarget.style.display = "block";
+      targetDiv.appendChild(shadowTarget);
+      let shadow = shadowTarget.attachShadow({
+        mode: "open"
+      });
+      let shadowRoot = document.createElement("div");
+      shadowRoot.className = "fc-loyalty-popup-19212-root";
+      shadow.appendChild(shadowRoot);
+      let themeDetailsData;
+      if ((_a = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _a.theme_details) {
+        themeDetailsData = (_b = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _b.theme_details;
+      } else {
+        const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
+        const client_id = mainScript == null ? void 0 : mainScript.getAttribute("data-client-id");
+        if (client_id) {
+          const themeDetailsRes = await fetch(`${WALLET_API_URI$2}/get-theme-details`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              client_id
+            })
+          });
+          themeDetailsData = await themeDetailsRes.json();
+          window.fc_loyalty_vars = {
+            // @ts-ignore
+            ...window.fc_loyalty_vars,
+            theme_details: themeDetailsData
+          };
+          console.log("shadowroot", window.fc_loyalty_vars);
+        }
+      }
+      const clientCustomStyleData = ((_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.custom_css) || "";
+      B$1(o(App$1, {
+        themeDetailsData,
+        shadowRoot
+      }), shadowRoot);
+      B$1(o(AppCSS$1, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
+      B$1(o(AppCustomCSS$1, {
+        customStyles: clientCustomStyleData
+      }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
+    } catch (err) {
+      console.log("error", err);
+    }
+  }
+  window.fc_loyalty_render_wallet_box = renderLoyaltyPopup;
+  renderLoyaltyPopup();
+  const fetchApi$1 = async (route, method, data) => {
+    const resp = await fetch(`${WALLET_API_URI$2}${route}`, {
+      method,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ...data
+      })
+    });
+    const response = await resp.json();
+    return response;
+  };
+  const CouponOverlay = ({
+    couponData,
+    onClick,
+    customerDetails
+  }) => {
+    const [couponCode, setCouponCode] = h("");
+    const [isCouponUnlocked, setIsCouponUnlocked] = h(false);
+    const [showCopied, setShowCopied] = h(false);
+    const [error, setError] = h({
+      error: false,
+      msg: ""
+    });
+    const [loading, setLoading] = h(false);
+    const showError = (msg) => {
+      setError({
+        error: true,
+        msg
+      });
+      setTimeout(() => {
+        setError({
+          error: false,
+          msg: ""
+        });
+      }, 3e3);
+    };
+    const copyReferralLinkFunc = () => {
+      setShowCopied(true);
+      navigator.clipboard.writeText(couponCode);
+      setTimeout(() => {
+        setShowCopied(false);
+      }, 1e3);
+    };
+    const fetchCouponCode = async () => {
+      var _a;
+      try {
+        setLoading(true);
+        const response = await fetchApi$1("/get-code", "post", {
+          ...customerDetails,
+          couponAmount: couponData == null ? void 0 : couponData.amount
+        });
+        if ((response == null ? void 0 : response.status) !== "success") {
+          showError(response == null ? void 0 : response.error);
+        } else {
+          setCouponCode((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.coupon_code);
+          setIsCouponUnlocked(true);
+        }
+      } catch (error2) {
+        console.log("error in coupon card overlay", error2);
+      } finally {
+        setLoading(false);
+      }
+    };
+    return loading ? o("div", {
+      className: "loader",
+      children: o(Loading$1, {})
+    }) : o(k$1, {
+      children: [o("div", {
+        class: "unlockCouponContainer slide-in-bottom",
+        children: o("div", {
+          class: "couponContainer",
+          children: [o("div", {
+            class: "crossImg",
+            children: o("img", {
+              onClick,
+              src: "https://media.farziengineer.co/farziwallet/cross.png",
+              alt: ""
+            })
+          }), o("div", {
+            class: "couponOverlayContainer",
+            children: [o("img", {
+              src: "https://media.farziengineer.co/farziwallet/voucher-icon.png",
+              alt: ""
+            }), o("h2", {
+              children: couponData == null ? void 0 : couponData.heading
+            })]
+          }), o("div", {
+            class: "unlockText",
+            children: o("h5", {
+              children: couponData == null ? void 0 : couponData.title
+            })
+          }), o("div", {
+            class: "unlockDesc",
+            children: o("p", {
+              children: couponData == null ? void 0 : couponData.description
+            })
+          }), o("div", {
+            children: o("hr", {
+              class: "dashedDivider"
+            })
+          }), o("div", {
+            class: "unlockTextContainer",
+            children: o("h4", {
+              children: !isCouponUnlocked ? `Unlock for ${couponData == null ? void 0 : couponData.amount} ${window.fc_loyalty_vars.coin_name} Coins` : "Use this code at checkout"
+            })
+          }), !isCouponUnlocked && o("div", {
+            children: !loading && o("button", {
+              onClick: fetchCouponCode,
+              class: "couponUnlockBtn",
+              children: "Tap to Unlock"
+            })
+          }), isCouponUnlocked && o("div", {
+            class: "couponCodeContainer",
+            children: [o("p", {
+              children: couponCode
+            }), o("img", {
+              onClick: copyReferralLinkFunc,
+              src: "https://media.farziengineer.co/farziwallet/copy-icon.png",
+              alt: ""
+            })]
+          })]
+        })
+      }), error.error && o(Alert, {
+        message: error == null ? void 0 : error.msg
+      }), showCopied && o("div", {
+        class: "copied",
+        children: "copied"
+      })]
+    });
+  };
+  const WALLET_API_URI$1 = "https://fastloyaltyapi.farziengineer.co";
+  const fetchApi = async (route, method, data) => {
+    const resp = await fetch(`${WALLET_API_URI$1}${route}`, {
+      method,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ...data
+      })
+    });
+    const response = await resp.json();
+    return response;
+  };
+  const Loading = () => {
+    return o(k$1, {
+      children: o("main", {
+        class: "loading-screen",
+        children: [o("svg", {
+          class: "spinner",
+          width: "50px",
+          height: "50px",
+          viewBox: "0 0 66 66",
+          xmlns: "http://www.w3.org/2000/svg",
+          children: [o("circle", {
+            class: "path",
+            fill: "transparent",
+            "stroke-width": "2",
+            cx: "33",
+            cy: "33",
+            r: "30",
+            stroke: "url(#gradient)"
+          }), o("linearGradient", {
+            id: "gradient",
+            children: [o("stop", {
+              offset: "50%",
+              "stop-color": "#009cdf",
+              "stop-opacity": "1"
+            }), o("stop", {
+              offset: "65%",
+              "stop-color": "#009cdf",
+              "stop-opacity": ".5"
+            }), o("stop", {
+              offset: "100%",
+              "stop-color": "#009cdf",
+              "stop-opacity": "0"
+            })]
+          }), o("svg", {
+            class: "spinner-dot dot",
+            width: "5px",
+            height: "5px",
+            viewBox: "0 0 66 66",
+            xmlns: "http://www.w3.org/2000/svg",
+            x: "37",
+            y: "1.5",
+            children: o("circle", {
+              class: "path",
+              fill: "#009cdf",
+              cx: "33",
+              cy: "33",
+              r: "30"
+            })
+          })]
+        }), o("p", {
+          children: "Loading, please wait..."
+        })]
+      })
+    });
+  };
+  const YourCoupons = ({
+    customerDetails
+  }) => {
+    const [activeTab, setActiveTab] = h("");
+    const [yourUnlockedCoupon, setYourUnlockedCoupon] = h([]);
+    const [yourRedeemedCoupon, setYourRedeemedCoupon] = h([]);
+    const [loading, setLoading] = h(false);
+    if (activeTab === "") {
+      setActiveTab("unlock");
+    }
+    p(() => {
+      const fetchUnlockCoupon = async () => {
+        var _a, _b;
+        try {
+          setLoading(true);
+          const response = await fetchApi("/get-user-coupons", "post", customerDetails);
+          setYourUnlockedCoupon((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.unlocked);
+          setYourRedeemedCoupon((_b = response == null ? void 0 : response.data) == null ? void 0 : _b.redeemed);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchUnlockCoupon();
+    }, [customerDetails, activeTab]);
+    const handleTab = (tab) => {
+      setActiveTab(tab);
+    };
+    const couponCardTabStyles = {
+      borderRadius: "8px",
+      padding: "8px",
+      fontWeight: "700",
+      fontSize: "14px",
+      cursor: "pointer",
+      backgroundColor: "#ff8f8f"
+    };
+    return loading ? o("div", {
+      className: "loader",
+      children: o(Loading, {})
+    }) : o(k$1, {
+      children: o("div", {
+        class: "yourCouponsCardMainContainer",
+        children: [o("div", {
+          class: "yourCouponsActiveTab",
+          children: [o("div", {
+            style: activeTab === "unlock" && couponCardTabStyles,
+            onClick: () => handleTab("unlock"),
+            class: "unlockedTab",
+            children: "Unlocked"
+          }), o("div", {
+            style: activeTab === "redeem" && couponCardTabStyles,
+            onClick: () => handleTab("redeem"),
+            class: "redeemedTab",
+            children: "Redeemed"
+          })]
+        }), activeTab === "unlock" && (yourUnlockedCoupon.length !== 0 ? yourUnlockedCoupon.map((ele, idx) => o("div", {
+          class: "yourCouponsCardContainer",
+          children: [o("div", {
+            class: "youCouponCardLeft",
+            children: [o("h5", {
+              children: ["₹", ele.amount]
+            }), o("p", {
+              children: "Voucher"
+            })]
+          }), o("div", {
+            class: "youCouponCardRight",
+            children: [o("p", {
+              children: ["code: ", o("span", {
+                class: "yourCouponCode",
+                children: ele.coupon
+              })]
+            }), o("p", {
+              children: ele.date
+            })]
+          })]
+        }, idx)) : o("div", {
+          class: "couponNotFound",
+          children: [o("img", {
+            src: "https://earthrhythm-media.farziengineer.co/hosted/image_24-c96b6aaf23b2.png",
+            alt: ""
+          }), o("h4", {
+            children: "Uh-Oh!"
+          }), o("p", {
+            children: "Looks like you don't have any redeemed coupons"
+          })]
+        })), activeTab === "redeem" && (yourRedeemedCoupon.length === 0 ? o("div", {
+          class: "couponNotFound",
+          children: [o("img", {
+            src: "https://earthrhythm-media.farziengineer.co/hosted/image_24-c96b6aaf23b2.png",
+            alt: ""
+          }), o("h4", {
+            children: "Uh-Oh!"
+          }), o("p", {
+            children: "Looks like you don't have any redeemed coupons"
+          })]
+        }) : yourRedeemedCoupon.map((ele, idx) => o("div", {
+          class: "yourCouponsCardContainer",
+          children: [o("div", {
+            class: "youCouponCardLeft",
+            children: [o("h5", {
+              children: ["₹", ele.amount]
+            }), o("p", {
+              children: "Voucher"
+            })]
+          }), o("div", {
+            class: "youCouponCardRight",
+            children: [o("h4", {
+              children: ele.title
+            }), o("p", {
+              children: ["code: ", o("span", {
+                class: "yourCouponCode",
+                children: ele.coupon
+              })]
+            }), o("p", {
+              children: ele.date
+            })]
+          })]
+        }, idx)))]
+      })
+    });
+  };
+  const Main = ({
+    shadowRoot,
+    themeDetailsData
+  }) => {
+    const mainScript = document.querySelector("#fc-wallet-gifting-coupons-snippet-script-19212");
+    const [availableTab, setAvailableTab] = h(true);
+    const [yourCouponTab, setYourCouponTab] = h(false);
+    const [couponCardResponse, setCouponCardResponse] = h([]);
+    const [exploreCoupon, setExploreCoupon] = h([]);
+    const [exploreCouponIdx, setExploreCouponIdx] = h(0);
+    const [couponIdx, setCouponIdx] = h(0);
+    const [loading, setLoading] = h(false);
+    const [walletAmount, setWalletAmount] = h(0);
+    const [customerDetails, setCustomerDetails] = h({
+      client_id: "",
+      customer_id: "",
+      user_hash: ""
+    });
+    const [overlayVisible, setOverlayVisible] = h({
+      overlay: "none",
+      active: false
+    });
+    function setTheme({
+      themeDetails
+    }) {
+      var _a, _b, _c, _d, _e, _f, _g;
+      var cssVariablesScope = shadowRoot.querySelector(".widget-container");
+      console.log("theme details", themeDetails);
+      if (cssVariablesScope && ((_a = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _a.theme_color)) {
+        cssVariablesScope.style.setProperty("--loyalty_popup_theme_background", (_b = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _b.theme_color);
+        if ((_c = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _c.coin_icon) {
+          cssVariablesScope.style.setProperty("--coin-svg-url", `url("${(_d = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _d.coin_icon}")`);
+          cssVariablesScope.style.setProperty("--coin-svg-inverted-url", `url("${(_e = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _e.coin_icon}")`);
+        } else {
+          cssVariablesScope.style.setProperty("--coin-svg-url", `url("https://media.farziengineer.co/farziwallet/coin-icon.png")`);
+          cssVariablesScope.style.setProperty("--coin-svg-inverted-url", `url("https://media.farziengineer.co/farziwallet/coin-icon.png")`);
+        }
+      }
+      if ((_f = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _f.coin_name) {
+        window.fc_loyalty_vars = {
+          coin_name: (_g = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _g.coin_name
+        };
+      } else {
+        window.fc_loyalty_vars = {
+          coin_name: "FC"
+        };
+      }
+    }
+    p(() => {
+      setTheme({
+        themeDetails: themeDetailsData
+      });
+    }, [themeDetailsData]);
+    p(() => {
+      var _a;
+      (function loadfont() {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap";
+        document.head.appendChild(link);
+      })();
+      const client_id = mainScript.getAttribute("data-client-id");
+      const customer_id = mainScript.getAttribute("data-customer-id");
+      const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
+      setCustomerDetails({
+        client_id,
+        customer_id,
+        user_hash
+      });
+      const exploreCouponResp = async () => {
+        var _a2, _b, _c;
+        try {
+          setLoading(true);
+          const resp = await fetchApi("/get-coupons-to-explore", "post", {
+            client_id,
+            customer_id,
+            user_hash
+          });
+          setExploreCoupon((_a2 = resp == null ? void 0 : resp.data) == null ? void 0 : _a2.data);
+          const walletAmtResp = await fetchApi("/user-wallet-amount", "post", {
+            client_id,
+            customer_id
+          });
+          setWalletAmount((_c = (_b = walletAmtResp == null ? void 0 : walletAmtResp.data) == null ? void 0 : _b.userWallet) == null ? void 0 : _c.amount);
+          const couponResp = await fetchApi("/get-featured-coupons", "post", {
+            client_id
+          });
+          setCouponCardResponse(couponResp == null ? void 0 : couponResp.data);
+          console.log(couponResp);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      exploreCouponResp();
+    }, []);
+    const handleOverlay = (overlayname) => {
+      if (overlayname === "coupon") {
+        return o(CouponOverlay, {
+          customerDetails,
+          couponData: couponCardResponse[couponIdx],
+          onClick: closeOverlay
+        });
+      }
+      if (overlayname === "explore") {
+        return o(CouponOverlay, {
+          customerDetails,
+          couponData: exploreCoupon[exploreCouponIdx],
+          onClick: closeOverlay
+        });
+      }
+      if (overlayname === "redeem") {
+        return o(RedeemCoin, {
+          customerDetails,
+          closePopup: closeOverlay
+        });
+      }
+    };
+    const handleAndShowCouponOverlay = (idx) => {
+      changeOverlay("coupon");
+      setCouponIdx(idx);
+    };
+    const changeOverlay = (overlayname) => {
+      const overlay = shadowRoot.querySelector(".overlay");
+      overlay.style.display = "flex";
+      setOverlayVisible({
+        ...overlayVisible,
+        overlay: overlayname,
+        active: true
+      });
+    };
+    const closeOverlay = () => {
+      const mainPopup = shadowRoot.querySelector(".mainPopup");
+      const overlay = shadowRoot.querySelector(".overlay");
+      overlay.style.display = "none";
+      mainPopup.style.overflowY = "scroll";
+      setOverlayVisible({
+        ...overlayVisible,
+        overlay: "none",
+        active: false
+      });
+    };
+    const handleMainTab = (mainTab) => {
+      if (mainTab === "available") {
+        setAvailableTab(true);
+        setYourCouponTab(false);
+      }
+      if (mainTab === "yourcoupons") {
+        setAvailableTab(false);
+        setYourCouponTab(true);
+      }
+    };
+    const handleExploreOverlayVisibility = (idx) => {
+      changeOverlay("explore");
+      setExploreCouponIdx(idx);
+    };
+    const activeTabStyles = {
+      color: "#373737",
+      borderBottom: "2px solid #373737"
+    };
+    return o(k$1, {
+      children: o("div", {
+        class: "viewAllCoupons",
+        children: [o("div", {
+          class: "viewAllCouponsTab",
+          children: [o("div", {
+            class: "viewAllCouponTabText",
+            children: [o("h4", {
+              style: availableTab && activeTabStyles,
+              onClick: () => handleMainTab("available"),
+              children: "Available"
+            }), o("h4", {
+              style: yourCouponTab && activeTabStyles,
+              onClick: () => handleMainTab("yourcoupons"),
+              children: "Your Coupons"
+            })]
+          }), o("div", {
+            class: "walletCoinsBox",
+            children: [o("div", {
+              class: "coinIcon"
+            }), o("p", {
+              children: walletAmount
+            })]
+          })]
+        }), availableTab && (loading ? o("div", {
+          className: "loader",
+          children: o(Loading, {})
+        }) : o("div", {
+          children: [o("div", {
+            class: "viewAllFeaturedComponent",
+            children: [o("h3", {
+              children: "Featured Components"
+            }), o("div", {
+              class: "showAllCouponsList",
+              children: couponCardResponse.map((card, index) => o(CouponCard$1, {
+                onClick: () => handleAndShowCouponOverlay(index),
+                couponPrice: card.amount,
+                couponDesc: card.title,
+                couponImgLink: card.image
+              }, index))
+            })]
+          }), o("div", {
+            class: "reedemfcCoins",
+            children: [o("h3", {
+              children: ["Redeem ", window.fc_loyalty_vars.coin_name, " Coins"]
+            }), o("div", {
+              onClick: () => changeOverlay("redeem"),
+              class: "reedemfcCoinsCard",
+              children: [o("div", {
+                children: o("img", {
+                  src: "https://media.farziengineer.co/farziwallet/voucher-icon.png",
+                  alt: ""
+                })
+              }), o("div", {
+                children: [o("h5", {
+                  children: ["100 ", window.fc_loyalty_vars.coin_name, " Coins = ₹100"]
+                }), o("p", {
+                  children: ["Use ", window.fc_loyalty_vars.coin_name, " Coins to create a custom discount coupon"]
+                })]
+              }), o("div", {
+                children: o("img", {
+                  src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                  alt: ""
+                })
+              })]
+            })]
+          }), o("div", {
+            class: "exploreCoupons",
+            children: [o("h5", {
+              children: "Coupons to Explore"
+            }), exploreCoupon && exploreCoupon.map((card, idx) => o("div", {
+              onClick: () => handleExploreOverlayVisibility(idx),
+              class: "exploreCouponCard",
+              children: [o("div", {
+                class: "shipImgBox",
+                children: o("img", {
+                  src: card.image,
+                  alt: ""
+                })
+              }), o("div", {
+                class: "exploreCouponCardText",
+                children: [o("p", {
+                  children: card.heading
+                }), o("p", {
+                  class: "exploreCouponText",
+                  children: ["Unlock for ", o("div", {
+                    class: "coinIcon"
+                  }), " ", card.amount]
+                })]
+              })]
+            }))]
+          })]
+        })), yourCouponTab && o(YourCoupons, {
+          customerDetails,
+          yourCouponTab
+        }), o("div", {
+          class: "overlay",
+          children: (overlayVisible == null ? void 0 : overlayVisible.active) ? o(k$1, {
+            children: o(Overlay, {
+              content: handleOverlay(overlayVisible == null ? void 0 : overlayVisible.overlay)
+            })
+          }) : o(k$1, {})
+        })]
+      })
+    });
+  };
   function App({
     themeDetailsData,
     shadowRoot
@@ -4058,7 +4636,7 @@ body {
   }
   function AppCSS() {
     return o("style", {
-      children: style
+      children: style$1
     });
   }
   function AppCustomCSS({
@@ -4069,25 +4647,29 @@ body {
     });
   }
   const WALLET_API_URI = "https://fastloyaltyapi.farziengineer.co";
-  async function renderLoyaltyPopup() {
+  async function renderGiftCouponSnippet() {
     var _a, _b, _c;
     try {
-      const targetDiv = document.body;
+      const targetDiv = document.getElementById("MainContent");
+      const ele = targetDiv.querySelector(".fc-scratch-card-snippet-19212-target");
+      if (ele) {
+        targetDiv.removeChild(ele);
+      }
       let shadowTarget = document.createElement("div");
-      shadowTarget.className = "fc-loyalty-popup-19212-target";
+      shadowTarget.className = "fc-wallet-gifting-coupons-snippet-19212";
       shadowTarget.style.display = "block";
       targetDiv.appendChild(shadowTarget);
       let shadow = shadowTarget.attachShadow({
         mode: "open"
       });
       let shadowRoot = document.createElement("div");
-      shadowRoot.className = "fc-loyalty-popup-19212-root";
+      shadowRoot.className = "fc-wallet-gifting-coupons-snippet-19212-root";
       shadow.appendChild(shadowRoot);
       let themeDetailsData;
       if ((_a = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _a.theme_details) {
         themeDetailsData = (_b = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _b.theme_details;
       } else {
-        const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
+        const mainScript = document.querySelector("#fc-wallet-gifting-coupons-snippet-script-19212");
         const client_id = mainScript == null ? void 0 : mainScript.getAttribute("data-client-id");
         if (client_id) {
           const themeDetailsRes = await fetch(`${WALLET_API_URI}/get-theme-details`, {
@@ -4121,6 +4703,6 @@ body {
       console.log("error", err);
     }
   }
-  window.fc_loyalty_render_wallet_box = renderLoyaltyPopup;
-  renderLoyaltyPopup();
+  window.fc_loyalty_render_wallet_box = renderGiftCouponSnippet;
+  renderGiftCouponSnippet();
 })();
