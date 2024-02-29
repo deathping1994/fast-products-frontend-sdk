@@ -108,7 +108,7 @@ p, h5, h4, h2 {
     box-shadow: 0 -4px 10px rgba(0,0,0,.1);
     position: relative;
     top: -12px;
-    min-width: 120px;
+    min-width: 170px;
     font-size: 13px;
     font-weight: normal;
     display: flex;
@@ -119,7 +119,6 @@ p, h5, h4, h2 {
 
 .couponImg {
 	border-radius: 8px 8px 0 0;
-	width: 136px;
     height: 120px;
 }
 
@@ -151,7 +150,7 @@ p, h5, h4, h2 {
 
 .couponText {
 	padding-top: 8px;
-	font-size: 13px;
+	font-size: 16px;
 }
 
 .couponCardPrice img {
@@ -159,30 +158,19 @@ p, h5, h4, h2 {
 	height: 14px;
 }
 
-.couponCardDesc {
-	padding: 8px;
-	background: #f4f4f4;
-	border-radius: 8px;
-	box-shadow: 0 -4px 10px rgba(0,0,0,.1);
-	position: relative;
-	top: -12px;
-	min-width: 120px;
-	font-size: 13px;
-	font-weight: normal;
-	display: flex;
-	flex-direction: column;
-	gap: 4px;
+.couponCardPrice p {
+	font-size: 16px;
+	font-weight: bold;
 }
 
 .showAllCouponsList {
 	display: flex;
-	justify-content: start;
+	justify-content: center;
 	align-items: start;
 	gap: 32px;
 	scrollbar-width: none;
-	overflow-x: scroll;
-	overflow-y: hidden;
 	padding: 0 16px;
+	width: 100%;
 }
 
 .redeemCoinBox {
@@ -302,7 +290,7 @@ p, h5, h4, h2 {
 	border-radius: 8px;
 	cursor: pointer;
     min-width: fit-content;
-    width: 340px;
+    width: 400px;
 }
 .exploreCoupons {
 	padding: 16px;
@@ -565,4 +553,19 @@ p, h5, h4, h2 {
 	font-weight: 700;
     font-size: 16px;
     margin: 16px 0;
+}
+
+.exploreCoupons, .reedemfcCoins, .viewAllFeaturedComponent {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.exploreCoupons h5 {
+	font-size: 20px;
+}
+
+.exploreCouponCardText {
+	font-size: 18px;
 }

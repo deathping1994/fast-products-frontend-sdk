@@ -189,7 +189,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
               loading ? <div className="loader"><Loading/></div> :
                 <div>
                     <div class="viewAllFeaturedComponent">
-                        <h3>Featured Components</h3>
+                        <h3>Featured Coupons</h3>
                         <div class="showAllCouponsList">
 
                         {couponCardResponse.map((card, index)=>(
