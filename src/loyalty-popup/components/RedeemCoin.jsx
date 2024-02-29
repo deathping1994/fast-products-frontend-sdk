@@ -1,10 +1,10 @@
-// @ts-nocheck
+
 import { useState } from "preact/hooks"
 import Loading from "./Utils/Loading"
 import fetchApi from "./Utils/FetchApi"
 import Alert from "./Utils/Alert"
 
-const RedeemCoin = ({customerDetails, closePopup}) => {
+const RedeemCoin = ({customerDetails, closePopup, updateWalletAmount}) => {
     const [showCopied, setShowCopied] = useState(false)
     const copyFunc = (code)=>{
         setShowCopied(true)
@@ -34,6 +34,7 @@ const RedeemCoin = ({customerDetails, closePopup}) => {
             {
                 ...customerDetails,
                 couponAmount: rangeValue,
+                // @ts-ignore
                 coupon_title: `Custom Discount: ${rangeValue} ${window.fc_loyalty_vars.coin_name} Coins for ₹${rangeValue} off`
             })
             if(response?.status !== "success"){
@@ -42,6 +43,7 @@ const RedeemCoin = ({customerDetails, closePopup}) => {
                 return
             }
             setRedeemCoinCode(response?.data?.coupon_code);
+            updateWalletAmount()
         } catch (error) {
             console.log("error in redeem coin", error);
         } finally {
@@ -62,10 +64,14 @@ const RedeemCoin = ({customerDetails, closePopup}) => {
                         <h2>Redeem Coins</h2>
                     </div>
                     <div class="redeemHeading">
-                        <h3>Use {window.fc_loyalty_vars.coin_name} Coins to create a Discount Coupon</h3>
+                        <h3>Use {window.
+// @ts-ignore
+                        fc_loyalty_vars.coin_name} Coins to create a Discount Coupon</h3>
                     </div>
                     <div class="redeemText">
-                        <p>{rangeValue} {window.fc_loyalty_vars.coin_name} Coins for ₹{rangeValue} off</p>
+                        <p>{rangeValue} {window.
+// @ts-ignore
+                        fc_loyalty_vars.coin_name} Coins for ₹{rangeValue} off</p>
                     </div>
                     <div class="redeemRangeContainer">
                         {redeemCoinCode ? <p>Use this code at checkout</p> :<input type="range" onChange={handleChangeRange} defaultValue={"10"} min={0} max={100} name="coinRange" />}
@@ -82,7 +88,7 @@ const RedeemCoin = ({customerDetails, closePopup}) => {
                     {showCopied && <div class="copied">copied</div>}
                 </div>
             </div>
-            {error && <Alert/>}
+            {error && <Alert message={`Something went wrong`}/>}
         </div>
     </>
   )

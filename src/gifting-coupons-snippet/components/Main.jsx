@@ -24,6 +24,10 @@ const Main = ({shadowRoot, themeDetailsData}) => {
         customer_id:"",
         user_hash:""
     })
+    const fetchWalletAmount = async ()=>{
+      const walletAmountResponse = await fetchApi('/user-wallet-amount', 'post', customerDetails)
+      setWalletAmount(walletAmountResponse?.data?.userWallet?.amount)
+    }
     const [overlayVisible, setOverlayVisible] = useState({
       overlay: "none",
       active: false,
@@ -110,13 +114,13 @@ const Main = ({shadowRoot, themeDetailsData}) => {
 
       const handleOverlay = (overlayname) => {
         if (overlayname === "coupon") {
-          return <CouponOverlay customerDetails={customerDetails} couponData={couponCardResponse[couponIdx]} onClick={closeOverlay} />;
+          return <CouponOverlay updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={couponCardResponse[couponIdx]} onClick={closeOverlay} />;
         }
         if(overlayname === "explore"){
-          return <CouponOverlay customerDetails={customerDetails} couponData={exploreCoupon[exploreCouponIdx]} onClick={closeOverlay}/>
+          return <CouponOverlay updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={exploreCoupon[exploreCouponIdx]} onClick={closeOverlay}/>
         }
         if(overlayname === "redeem"){
-          return <RedeemCoin customerDetails={customerDetails} closePopup={closeOverlay}/>
+          return <RedeemCoin updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} closePopup={closeOverlay}/>
         }
       };
       const handleAndShowCouponOverlay = (idx)=>{

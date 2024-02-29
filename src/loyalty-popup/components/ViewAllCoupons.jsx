@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { useEffect, useState } from "preact/hooks";
 import CouponCard from "./CouponCard";
 import CouponOverlay from "./Overlays/CouponOverlay";
@@ -8,17 +8,22 @@ import Overlay from "./Overlays/Overlay";
 import YourCoupons from "./YourCoupons";
 import Loading from "./Utils/Loading";
 
-const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shadowRoot, }) => {
+const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot}) => {
     const [availableTab, setAvailableTab] = useState(true)
     const [yourCouponTab, setYourCouponTab] = useState(false)
     const [exploreCoupon, setExploreCoupon] = useState([])
     const [exploreCouponIdx, setExploreCouponIdx] = useState(0)
     const [couponIdx, setCouponIdx] = useState(0)
+    const [walletAmount, setWalletAmount] = useState(0)
     const [loading, setLoading] = useState(false);
     const [overlayVisible, setOverlayVisible] = useState({
       overlay: "none",
       active: false,
     });
+    const fetchWalletAmount = async ()=>{
+      const walletAmountResponse = await fetchApi('/user-wallet-amount', 'post', customerDetails)
+      setWalletAmount(walletAmountResponse?.data?.userWallet?.amount)
+    }
 
     useEffect(()=>{
       const exploreCouponResp = async ()=>{
@@ -26,6 +31,8 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shad
             setLoading(true)
             const resp = await fetchApi('/get-coupons-to-explore', 'post', customerDetails)
             setExploreCoupon(resp?.data?.data)
+            const walletAmountResponse = await fetchApi('/user-wallet-amount', 'post', customerDetails)
+            setWalletAmount(walletAmountResponse?.data?.userWallet?.amount)
           } catch (error) {
             console.log(error);
           } finally {
@@ -34,16 +41,16 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shad
       }
       exploreCouponResp()
     },[])
-
+      
       const handleOverlay = (overlayname) => {
         if (overlayname === "coupon") {
-          return <CouponOverlay customerDetails={customerDetails} couponData={couponCardResponse[couponIdx]} onClick={closeOverlay} />;
+          return <CouponOverlay updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={couponCardResponse[couponIdx]} onClick={closeOverlay} />;
         }
         if(overlayname === "explore"){
-          return <CouponOverlay customerDetails={customerDetails} couponData={exploreCoupon[exploreCouponIdx]} onClick={closeOverlay}/>
+          return <CouponOverlay updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={exploreCoupon[exploreCouponIdx]} onClick={closeOverlay}/>
         }
         if(overlayname === "redeem"){
-          return <RedeemCoin customerDetails={customerDetails} closePopup={closeOverlay}/>
+          return <RedeemCoin updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} closePopup={closeOverlay}/>
         }
       };
       const handleAndShowCouponOverlay = (idx)=>{
@@ -133,14 +140,20 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shad
                         </div>
                     </div>
                     <div class="reedemfcCoins">
-                        <h3>Redeem {window.fc_loyalty_vars.coin_name} Coins</h3>
+                        <h3>Redeem {window.
+// @ts-ignore
+                        fc_loyalty_vars.coin_name} Coins</h3>
                         <div onClick={()=> changeOverlay("redeem")} class="reedemfcCoinsCard">
                             <div>
                                 <img src="https://media.farziengineer.co/farziwallet/voucher-icon.png" alt="" />
                             </div>
                             <div>
-                                <h5>100 {window.fc_loyalty_vars.coin_name} Coins = ₹100</h5>
-                                <p>Use {window.fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
+                                <h5>100 {window.
+// @ts-ignore
+                                fc_loyalty_vars.coin_name} Coins = ₹100</h5>
+                                <p>Use {window.
+// @ts-ignore
+                                fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
                             </div>
                             <div>
                                 <img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />
@@ -167,7 +180,7 @@ const ViewAllCoupons = ({couponCardResponse, walletAmount, customerDetails, shad
             )}
             {/* {exploreCouponVisibilty && <div class="overlay"></div>} */}
             { yourCouponTab && (
-                <YourCoupons customerDetails={customerDetails} yourCouponTab={yourCouponTab}/>
+                <YourCoupons customerDetails={customerDetails}/>
             )}
             <div class="overlay">
               {overlayVisible?.active ? (

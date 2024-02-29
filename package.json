@@ -14,7 +14,7 @@
     "build:wallet-activity-snippet": "vite build --config vite-configs/vite.wallet-activity-snippet.config.js --watch",
     "start:wallet-activity-snippet": "concurrently \"npm run build:wallet-activity-snippet\" \"npm run serve\"",
     "build:loyalty-popup": "vite build --config vite-configs/vite.loyalty-popup.config.js --watch",
-    "start:loyalty-popup": "concurrently \"npm run build:wallet-activity-snippet\" \"npm run serve\"",
+    "start:loyalty-popup": "concurrently \"npm run build:loyalty-popup\" \"npm run serve\"",
     "build:referral-ui-snippet": "vite build --config vite-configs/vite.referral-ui-snippet.config.js --watch",
     "start:referral-ui-snippet": "concurrently \"npm run build:referral-ui-snippet\" \"npm run serve\"",
     "build:scratch-card-snippet": "vite build --config vite-configs/vite.scratch-card-snippet.config.js --watch",
