@@ -46,6 +46,23 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
     
         fetchReferralCode();
     }, []);
+
+    const handleShareClick = (msg)=>{
+        if(navigator.share){
+          navigator.share({
+            title: 'Invite your friend to get rewards',
+            text: msg,
+          })
+          .then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing', error));
+        }else{
+            navigator.clipboard.writeText(msg)
+            setShowCopied(true)
+            setTimeout(()=>{
+                setShowCopied(false)
+            },1000)
+        }
+      }
     
     const copyReferralLinkFunc = ()=>{
         setShowCopied(true)
@@ -87,9 +104,9 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
                     <img src="https://media.farziengineer.co/farziwallet/whatsapp-icon.png" alt="" />
                     <p>Send on whatsapp</p>
                 </a>
-                <a href={`sms://18005555555/?body=${whatsappmsg}`} target="_blank" class="inviteRoundedBtn">
+                <button onClick={()=> handleShareClick(whatsappmsg)} class="inviteRoundedBtn">
                     <img src="https://media.farziengineer.co/farziwallet/share_arrow.png" alt="" />
-                </a>
+                </button>
             </div>
         </div>
     }

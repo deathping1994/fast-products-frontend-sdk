@@ -25,7 +25,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
   const handleShareClick = (msg)=>{
     if(navigator.share){
       navigator.share({
-        title: 'Web Share API Draft',
+        title: 'Invite your friend to get rewards',
         text: msg,
       })
       .then(() => console.log('Successful share'))
@@ -101,7 +101,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
           </div>
           {showCopied && <div className="copied">copied</div>}
           <div className="inviteLinkContainer">
-            <p>{(`${window.location.origin}${referralData?.path || "/account/register"}`)}</p>
+            <p>{(`${window.location.origin}${referralData?.path || "/account/register"}`).substring(0,35)}...</p>
             <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
           </div>
           <div>

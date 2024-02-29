@@ -113,7 +113,8 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
   
 
   const scratchCardStyles = {
-    justifyContent: "start"
+    justifyContent: "start",
+    paddingLeft: "4em"
   }
 
   const handleMainTab = (mainTab) => {
