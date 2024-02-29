@@ -48,11 +48,9 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
                     window.open(`https://api.whatsapp.com/send?text=${message}`, "_blank");
                 } else {
                     showError();
-                    console.log("as-----");
                 }
             } catch (error) {
                 showError();
-                console.log("errrrrrrr", error);
             }
         }
     }
