@@ -1,10 +1,10 @@
-// @ts-nocheck
-import { useState } from "preact/hooks"
+
+import { useEffect, useState } from "preact/hooks"
 import Loading from "../Utils/Loading"
 import fetchApi from "../Utils/FetchApi"
 import Alert from "../Utils/Alert"
 
-const CouponOverlay = ({couponData, onClick, customerDetails}) => {
+const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount}) => {
     const [couponCode, setCouponCode] = useState("")
     const [isCouponUnlocked, setIsCouponUnlocked] = useState(false)
     const [showCopied, setShowCopied] = useState(false);
@@ -47,6 +47,7 @@ const CouponOverlay = ({couponData, onClick, customerDetails}) => {
             }else{
                 setCouponCode(response?.data?.coupon_code)
                 setIsCouponUnlocked(true)
+                updateWalletAmount()
             }
         } catch (error) {
             console.log("error in coupon card overlay", error);
@@ -76,7 +77,9 @@ const CouponOverlay = ({couponData, onClick, customerDetails}) => {
                     <hr class="dashedDivider" />
                 </div>
                 <div class="unlockTextContainer">
-                    <h4>{!isCouponUnlocked ? `Unlock for ${couponData?.amount} ${window.fc_loyalty_vars.coin_name} Coins` : "Use this code at checkout"}</h4>
+                    <h4>{!isCouponUnlocked ? `Unlock for ${couponData?.amount} ${window.
+// @ts-ignore
+                    fc_loyalty_vars.coin_name} Coins` : "Use this code at checkout"}</h4>
                 </div>
                 
                 {!isCouponUnlocked && <div>

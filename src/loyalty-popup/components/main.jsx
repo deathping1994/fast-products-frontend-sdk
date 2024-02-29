@@ -21,6 +21,9 @@ import Alert from "./Utils/Alert";
 import ReferralPopup from "./ReferralPopup";
 
 export function Main({ themeDetailsData, shadowRoot }) {
+  const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
+  const client_id = mainScript.getAttribute("data-client-id");
+  const customer_id = mainScript.getAttribute("data-customer-id");
   const [visibilty, setVisibility] = useState(false);
   const [referralPopup, setReferralPopup] = useState(false)
   const [referedAmount, setReferedAmount] = useState(0)
@@ -111,7 +114,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
           localStorage.removeItem("fc_refer_hash");
           return
         }
-        // console.log("/////////  nhi huva    ///////");
       } catch (err) {
         console.log("error in redeemReferHash", err);
       } 
@@ -185,10 +187,10 @@ export function Main({ themeDetailsData, shadowRoot }) {
       document.body.appendChild(styles);
     })();
 
-    const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
-    const customer_id = mainScript.getAttribute("data-customer-id");
+    // const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
+    // const customer_id = mainScript.getAttribute("data-customer-id");
     const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
-    const client_id = mainScript.getAttribute("data-client-id");
+    // const client_id = mainScript.getAttribute("data-client-id");
     setCustomerDetails({ client_id, customer_id, user_hash });
     // logged in
     if (customer_id) {
@@ -227,9 +229,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
   }, [customerDetails, screenDetails?.screen, referralPopup]);
 
   useEffect(()=>{
-    const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
-    const client_id = mainScript.getAttribute("data-client-id");
-    const customer_id = mainScript.getAttribute("data-customer-id");
+    // const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
+    // const client_id = mainScript.getAttribute("data-client-id");
+    // const customer_id = mainScript.getAttribute("data-customer-id");
     // console.log(client_id);
     const fetch = async ()=>{
       const couponResponse = await fetchApi(
@@ -250,11 +252,23 @@ export function Main({ themeDetailsData, shadowRoot }) {
       setSingleSpinWheel(spinWheelResponse?.data[0]);
       const scratchCardResponse = await fetchApi('/get-featured-scratch-cards', 'post', {client_id})
       setSingleScratchCard(scratchCardResponse?.data[0])
-      const walletAmountResponse = await fetchApi('/user-wallet-amount', 'post', {client_id, customer_id})
-      setWalletAmount(walletAmountResponse?.data?.userWallet?.amount)
     }
     fetch()
   },[])
+  const fetchWalletAmount = async ()=>{
+    const walletAmountResponse = await fetchApi('/user-wallet-amount', 'post', {client_id, customer_id})
+    setWalletAmount(walletAmountResponse?.data?.userWallet?.amount)
+  }
+  useEffect(()=>{
+    // const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
+    // const client_id = mainScript.getAttribute("data-client-id");
+    // const customer_id = mainScript.getAttribute("data-customer-id");
+    const fetchWalletAmount = async ()=>{
+      const walletAmountResponse = await fetchApi('/user-wallet-amount', 'post', {client_id, customer_id})
+      setWalletAmount(walletAmountResponse?.data?.userWallet?.amount)
+    }
+    fetchWalletAmount()
+  },[screenDetails, overlayVisible])
   const btnClick = (idx) => {
     changeOverlay("coupon");
     setCouponCardIdx(idx);
@@ -300,6 +314,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     if (overlayname === "coupon") {
       return (
         <CouponOverlay
+          updateWalletAmount={fetchWalletAmount}
           customerDetails={customerDetails}
           couponData={featuredCoupons[couponCardIdx]}
           onClick={closeOverlay}
@@ -421,8 +436,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
       case "show_all_coupons":
         return (
           <ViewAllCoupons
-          shadowRoot={shadowRoot}
-            walletAmount={walletAmount}
+            shadowRoot={shadowRoot}
             couponCardResponse={featuredCoupons}
             customerDetails={customerDetails}
           />
