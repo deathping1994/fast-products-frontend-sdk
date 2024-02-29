@@ -300,8 +300,6 @@ p {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0px 16px;
-	padding-right: 32px;
 }
 
 .showGamesTab h2 {
@@ -582,11 +580,10 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-left: 2em;
 }
 
-@media (max-width: 948px) {
-    .scratchCardBox {
-      padding-left: 2em;
-    }
-  }
+@media (max-width:768px) {
+	.widget-container{
+		width: 85%;
+	}
+}

@@ -37,7 +37,8 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
   },[screen])
 
   const scratchCardStyles = {
-    justifyContent: "start"
+    justifyContent: "start",
+    paddingLeft: "4em"
   }
 
   function setTheme({ themeDetails }) {

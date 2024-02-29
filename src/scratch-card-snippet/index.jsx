@@ -26,7 +26,8 @@ export const WALLET_API_URI = import.meta.env.VITE_APP_BASE_URL;
 
 async function renderScratchCardSnippet() {
   try {
-    const targetDiv = document.getElementById("MainContent");
+    const targetDiv = document.getElementById("fc-wallet-scratch-card-snippet-19212");
+    targetDiv.innerHTML = ""
     // Load the App content into the shadow DOM
     let shadowTarget = document.createElement("div");
     shadowTarget.className = "fc-scratch-card-snippet-19212-target";
