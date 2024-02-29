@@ -4,15 +4,20 @@ import fetchApi from "./Utils/FetchApi"
 const InviteCard = ({onClick, client_id}) => {
     const [cardMessage, setCardMessage] = useState("")
     useEffect(()=>{
-        const fetch = async ()=>{
-            const resp = await fetchApi('/get-referrer-message', 'post', {client_id})
-            if(resp?.status !== "success"){
-                setCardMessage("Invite your friends to get rewards")
-            }else{
-                setCardMessage(resp?.data?.getReferrerMessage);
+        if(localStorage.getItem("fc-invite-text")){
+            setCardMessage(localStorage.getItem("fc-invite-text"))
+        }else{
+            const fetch = async ()=>{
+                const resp = await fetchApi('/get-referrer-message', 'post', {client_id})
+                if(resp?.status !== "success"){
+                    setCardMessage("Invite your friends to get rewards")
+                }else{
+                    setCardMessage(resp?.data?.getReferrerMessage);
+                    localStorage.setItem("fc-invite-text",resp?.data?.getReferrerMessage)
+                }
             }
+            fetch()
         }
-        fetch()
     },[])
   return (
     <>

@@ -28,6 +28,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   const [referralPopup, setReferralPopup] = useState(false)
   const [referedAmount, setReferedAmount] = useState(0)
   const [walletAmount, setWalletAmount] = useState(0);
+  const [whatsappOverlayText, setWhatsappOverlayText] = useState("")
   const [walletLogs, setWalletLogs] = useState([]);
   const [spinWheelAmount, setSpinWheelAmount] = useState(0);
   const [scratchCardAmount, setScratchCardAmount] = useState(0);
@@ -229,29 +230,45 @@ export function Main({ themeDetailsData, shadowRoot }) {
   }, [customerDetails, screenDetails?.screen, referralPopup]);
 
   useEffect(()=>{
-    // const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
-    // const client_id = mainScript.getAttribute("data-client-id");
-    // const customer_id = mainScript.getAttribute("data-customer-id");
-    // console.log(client_id);
+
     const fetch = async ()=>{
-      const couponResponse = await fetchApi(
-        "/get-featured-coupons",
-        "post",
-        {client_id}
-      );
-      if(couponResponse?.status !== "success"){
-        showError(couponResponse?.error)
+      if(localStorage.getItem("fc-coupon-card")){
+        let coupons = localStorage.getItem("fc-coupon-card")
+        setFeaturedCoupons(JSON.parse(coupons))
       }else{
-        if(couponResponse?.data){
-          setFeaturedCoupons(couponResponse?.data);
+        const couponResponse = await fetchApi(
+          "/get-featured-coupons",
+          "post",
+          {client_id}
+        );
+        if(couponResponse?.status !== "success"){
+          showError(couponResponse?.error)
         }else{
-          showError("No coupons found")
+          if(couponResponse?.data){
+            setFeaturedCoupons(couponResponse?.data);
+            localStorage.setItem("fc-coupon-card", JSON.stringify(couponResponse?.data))
+          }else{
+            showError("No coupons found")
+          }
         }
       }
       const spinWheelResponse = await fetchApi('/get-featured-spin-wheels', 'post', {client_id});
       setSingleSpinWheel(spinWheelResponse?.data[0]);
       const scratchCardResponse = await fetchApi('/get-featured-scratch-cards', 'post', {client_id})
       setSingleScratchCard(scratchCardResponse?.data[0])
+
+      if(localStorage.getItem("fc-invite-overlay-text")){
+        console.log(localStorage.getItem("fc-invite-overlay-text"));
+        setWhatsappOverlayText(localStorage.getItem("fc-invite-overlay-text"))
+      }else{
+        const response = await fetchApi('/get-referral-message','post', {client_id})
+        console.log(response);
+        if(response?.status === "success"){
+          localStorage.setItem("fc-invite-overlay-text", response?.data?.getReferralMessage)
+        }else{
+          showError()
+        }
+      }
     }
     fetch()
   },[])
@@ -260,9 +277,17 @@ export function Main({ themeDetailsData, shadowRoot }) {
     setWalletAmount(walletAmountResponse?.data?.userWallet?.amount)
   }
   useEffect(()=>{
-    // const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
-    // const client_id = mainScript.getAttribute("data-client-id");
-    // const customer_id = mainScript.getAttribute("data-customer-id");
+    const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
+    const fetchData = async ()=>{
+      if(!localStorage.getItem("fc-referral-code")){
+        const resp = await fetchApi("/get-referral-code", "post", {client_id, customer_id, user_hash})
+        localStorage.setItem("fc-referral-code", resp?.data?.path)
+      }
+    }
+    fetchData()
+  },[])
+  useEffect(()=>{
+
     const fetchWalletAmount = async ()=>{
       const walletAmountResponse = await fetchApi('/user-wallet-amount', 'post', {client_id, customer_id})
       setWalletAmount(walletAmountResponse?.data?.userWallet?.amount)
@@ -330,24 +355,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
       );
     }
   };
-  const gamesData = [
-    {
-      name: "show_spin_wheel",
-      gameTitle: "Wheel of Fortune",
-      gameDesc: "Start at",
-      cardImage: "https://media.farziengineer.co/farziwallet/spin-wheel.png",
-      gamePrice: "10",
-      btnText: "Explore",
-    },
-    {
-      name: "show_scratch_card",
-      gameTitle: "Scratch Card",
-      gameDesc: "Start at",
-      cardImage: "https://media.farziengineer.co/farziwallet/scratch-card.png",
-      gamePrice: "10",
-      btnText: "Explore",
-    },
-  ];
 
   useEffect(() => {
     if (visibilty) {
