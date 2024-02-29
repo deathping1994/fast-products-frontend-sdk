@@ -26,7 +26,7 @@ export const WALLET_API_URI = import.meta.env.VITE_APP_BASE_URL;
 
 async function renderGiftCouponSnippet() {
   try {
-    const targetDiv = document.getElementById("MainContent");
+    const targetDiv = document.getElementById("fc-wallet-gifting-coupons-snippet-19212");
     const ele = targetDiv.querySelector(".fc-scratch-card-snippet-19212-target")
     if(ele){
       targetDiv.removeChild(ele)

@@ -26,11 +26,8 @@ export const WALLET_API_URI = import.meta.env.VITE_APP_BASE_URL;
 
 async function renderSpinWheelSnippet() {
   try {
-    const targetDiv = document.getElementById("MainContent");
-    const ele = targetDiv.querySelector(".fc-scratch-card-snippet-19212-target")
-    if(ele){
-      targetDiv.removeChild(ele)
-    }
+    const targetDiv = document.getElementById("fc-wallet-spin-wheel-snippet-19212");
+    targetDiv.innerHTML = ""
     // Load the App content into the shadow DOM
     let shadowTarget = document.createElement("div");
     shadowTarget.className = "fc-spin-wheel-snippet-19212-target";
