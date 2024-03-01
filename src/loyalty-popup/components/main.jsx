@@ -78,6 +78,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   }
   const handleCloseReferralPopup = () => {
     setReferralPopup(false)
+    location.reload()
   }
   const showError = (msg)=>{
     setError({
