@@ -200,9 +200,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
     // logged in
     if (customer_id) {
       setIsLoggedIn(true);
-      // console.log("reddeem ke upar log custID", customer_id);
-      // console.log("reddeem ke userHash", user_hash);
-      redeemReferHash({ client_id, customer_id });
     }
   }, []);
 
