@@ -109,6 +109,7 @@
     justify-content: center;
     align-items: center;
 	border: none;
+	cursor: pointer;
 }
 
 .inviteWhatsappBtn p {
@@ -128,6 +129,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+	cursor: pointer;
 	border: 1px solid var(--loyalty_popup_theme_background, #000);
 }
 
@@ -234,4 +236,16 @@
     .inviteAndEarnContainer {
       width: 100%;
     }
+  }
+
+  .ellipsis-text {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	padding-right: 4px;
+  }
+
+  .widget-container {
+	padding: 16px;
   }
