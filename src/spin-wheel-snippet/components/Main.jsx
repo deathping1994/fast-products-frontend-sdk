@@ -16,13 +16,16 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
   });
   const [spinWheelAmount, setSpinWheelAmount] = useState(0);
   const [screen, setScreen] = useState(false)
+  const [login, setLogin] = useState(false)
   useEffect(() => {
     const client_id = mainScript.getAttribute("data-client-id");
     const customer_id = mainScript.getAttribute("data-customer-id");
     const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
     console.log({ client_id, customer_id, user_hash });
     setCustomerDetails({ client_id, customer_id, user_hash });
-
+    if(customer_id){
+      setLogin(true)
+    }
   }, []);
 
   useEffect(()=>{
@@ -135,6 +138,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
   }
 
   return (
+    login ? 
     <>
     {screen ? <SpinWheel showSpinGameScreen={closeScreen} spinWheelAmount={spinWheelAmount} customerDetails={customerDetails} shadowRoot={shadowRoot}/> :
     <>
@@ -180,6 +184,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
       </>
       }
     </>
+    : <a class="loginbtn" href={`/account/login`}>Login to Continue</a>
   );
 };
 

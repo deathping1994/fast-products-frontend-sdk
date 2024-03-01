@@ -60,7 +60,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     amount: "",
     btnText: "",
   })
-  // console.log("customer details", customerDetails);
+  console.log("running local");
   const [screenDetails, setScreenDetails] = useState({
     screen: "home_screen",
     screenTitle: "",
@@ -97,8 +97,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
   };
   async function redeemReferHash({ client_id, customer_id, user_hash }) {
     const fc_refer_hash = localStorage.getItem("fc_refer_hash");
-    // console.log("fc refer", fc_refer_hash);
     if (fc_refer_hash) {
+      console.log("referral popup");
       try {
         // console.log("hitting redeem referral code");
         // @ts-ignore
@@ -108,10 +108,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
           // user_hash: user_hash,
           refer_hash: fc_refer_hash
         })
+        console.log(response);
         if(response?.status === 'success'){
           setReferralPopup(true)
           setReferedAmount(response?.data?.referredReward)
-          // console.log("fc_refer response", response);
+          console.log("fc_refer response", response);
           localStorage.removeItem("fc_refer_hash");
           return
         }
@@ -568,7 +569,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
           </div>
         </>
       )}
-      {(referralPopup && customerDetails?.client_id) && <ReferralPopup referedAmount={referedAmount} walletAmount={walletAmount} closeReferralPopup={handleCloseReferralPopup}/>}
+      {(referralPopup && client_id) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
     </>
   );
 }

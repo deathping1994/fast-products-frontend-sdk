@@ -12,6 +12,7 @@ import ScratchCard from './ScratchCard';
 const Main = ({ themeDetailsData, shadowRoot }) => {
   const mainScript = document.querySelector("#fc-wallet-scratch-card-snippet-script-19212");
   const [screen, setScreen] = useState(false)
+  const [login, setLogin] = useState(false)
   const [customerDetails, setCustomerDetails] = useState({
     client_id: "",
     customer_id: "",
@@ -23,7 +24,9 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
     console.log({ client_id, customer_id, user_hash });
     setCustomerDetails({ client_id, customer_id, user_hash });
-
+    if(customer_id){
+      setLogin(true)
+    }
   }, []);
 
   function setTheme({ themeDetails }) {
@@ -135,6 +138,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     setScreen(false)
   }
   return (
+    login ?
     <>
       {screen ? <ScratchCard showScratchCardScreen={showScratchCardScreen} customerDetails={customerDetails} shadowRoot={shadowRoot} scratchCardAmount={scratchCardAmount} /> 
       : 
@@ -182,6 +186,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
       )}
       </>}
     </>
+    : <a class="loginbtn" href={`/account/login`}>Login to Continue</a>
   );
 };
 

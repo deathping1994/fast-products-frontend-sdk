@@ -583,3 +583,11 @@ p, h5, h4, h2 {
 		width: 85%;
 	}
 }
+
+.loginbtn{
+	background-color: #efefef;
+	text-decoration: none;
+	color: black;
+	padding: 12px;
+	border-radius: 8px;
+}
