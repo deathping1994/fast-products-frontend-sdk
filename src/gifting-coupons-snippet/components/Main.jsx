@@ -13,6 +13,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
     
     const [availableTab, setAvailableTab] = useState(true)
     const [yourCouponTab, setYourCouponTab] = useState(false)
+    const [login, setLogin] = useState(false)
     const [couponCardResponse, setCouponCardResponse] = useState([])
     const [exploreCoupon, setExploreCoupon] = useState([])
     const [exploreCouponIdx, setExploreCouponIdx] = useState(0)
@@ -93,6 +94,9 @@ const Main = ({shadowRoot, themeDetailsData}) => {
         const customer_id = mainScript.getAttribute("data-customer-id");
         const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
         setCustomerDetails({client_id, customer_id, user_hash})
+        if(customer_id){
+          setLogin(true)
+        }
       const exploreCouponResp = async ()=>{
           try {
             setLoading(true)
@@ -173,6 +177,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
     }
     
   return (
+    login ?
     <>
         <div class="viewAllCoupons">
             <div class="viewAllCouponsTab">
@@ -253,6 +258,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
             </div>
         </div>
     </>
+    : <a class="loginbtn" href={`/account/login`}>Login to Continue</a>
   )
 }
 

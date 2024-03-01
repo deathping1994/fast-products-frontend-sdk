@@ -4,7 +4,6 @@ import fetchApi from '../../global/FetchApi';
 import Loading from '../../global/Loading';
 
 const Main = ({shadowRoot, themeDetailsData}) => {
-  const [whatsappmsg, setWhatsappmsg] = useState("");
   const [login, setLogin] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -80,13 +79,14 @@ const Main = ({shadowRoot, themeDetailsData}) => {
   };
 
 
-  const copyReferralLinkFunc = () => {
-    setShowCopied(true);
-    navigator.clipboard.writeText(window.location.origin + (localStorage.getItem("fc-referral-code") || "/account/register"));
-    setTimeout(() => {
-      setShowCopied(false);
-    }, 1000);
-  };
+  const copyReferralLinkFunc = ()=>{
+    console.log("referral copy func",localStorage.getItem("fc-referral-code"));
+    setShowCopied(true)
+    navigator.clipboard.writeText(window.location.origin + (localStorage.getItem("fc-referral-code") || "/account/register"))
+    setTimeout(()=>{
+        setShowCopied(false)
+    },1000)
+}
 
   const hanldeWhatsappClick = async () => {
     if (localStorage.getItem("fc-whatsapp-msg")) {

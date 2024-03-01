@@ -1,4 +1,4 @@
-const ReferralPopup = ({referedAmount, walletAmount, closeReferralPopup}) => {
+const ReferralPopup = ({referedAmount, closeReferralPopup}) => {
 
   const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
   const clientName = mainScript.getAttribute("client-name");
