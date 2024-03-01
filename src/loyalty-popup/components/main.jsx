@@ -101,14 +101,12 @@ export function Main({ themeDetailsData, shadowRoot }) {
       console.log("referral popup");
       try {
         // console.log("hitting redeem referral code");
-        // @ts-ignore
         const response = await fetchApi('/redeem-referral-code', 'post', {
           client_id:client_id,
           customer_id: customer_id,
           // user_hash: user_hash,
           refer_hash: fc_refer_hash
         })
-        console.log(response);
         if(response?.status === 'success'){
           setReferralPopup(true)
           setReferedAmount(response?.data?.referredReward)
@@ -569,7 +567,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
           </div>
         </>
       )}
-      {(referralPopup && client_id) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
+      {referralPopup && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
     </>
   );
 }

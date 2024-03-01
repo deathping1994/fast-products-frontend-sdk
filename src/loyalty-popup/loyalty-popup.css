@@ -21,10 +21,6 @@
 	
 }
 
-.widget-container{
-	position: relative;
-}
-
 @keyframes rotate {
 	from {
 		transform: rotate(0deg);
