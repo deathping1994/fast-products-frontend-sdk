@@ -187,7 +187,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
             </div>
             { availableTab && (
               loading ? <div className="loader"><Loading/></div> :
-                <div>
+                <div class="giftMainContainer">
                     <div class="viewAllFeaturedComponent">
                         <h3>Featured Coupons</h3>
                         <div class="showAllCouponsList">
@@ -203,36 +203,38 @@ const Main = ({shadowRoot, themeDetailsData}) => {
                             ))}
                         </div>
                     </div>
-                    <div class="reedemfcCoins">
-                        <h3>Redeem {window.fc_loyalty_vars.coin_name} Coins</h3>
-                        <div onClick={()=> changeOverlay("redeem")} class="reedemfcCoinsCard">
-                            <div>
-                                <img src="https://media.farziengineer.co/farziwallet/voucher-icon.png" alt="" />
-                            </div>
-                            <div>
-                                <h5>100 {window.fc_loyalty_vars.coin_name} Coins = ₹100</h5>
-                                <p>Use {window.fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
-                            </div>
-                            <div>
-                                <img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="exploreCoupons">
-                        <h5>Coupons to Explore</h5>
-                            {
-                                exploreCoupon && exploreCoupon.map((card, idx)=>(
-                                <div onClick={()=> handleExploreOverlayVisibility(idx)} class="exploreCouponCard">
-                                    <div class="shipImgBox">
-                                        <img src={card.image} alt="" />
-                                    </div>
-                                    <div class="exploreCouponCardText">
-                                        <p>{card.heading}</p>
-                                        <p class="exploreCouponText">Unlock for <div class="coinIcon"></div> {card.amount}</p>
-                                    </div>
-                                </div>
-                                ))
-                            }
+                    <div className="gift-container">
+                      <div class="reedemfcCoins">
+                          <h3>Redeem {window.fc_loyalty_vars.coin_name} Coins</h3>
+                          <div onClick={()=> changeOverlay("redeem")} class="reedemfcCoinsCard">
+                              <div>
+                                  <img src="https://media.farziengineer.co/farziwallet/voucher-icon.png" alt="" />
+                              </div>
+                              <div>
+                                  <h5>100 {window.fc_loyalty_vars.coin_name} Coins = ₹100</h5>
+                                  <p>Use {window.fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
+                              </div>
+                              <div>
+                                  <img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />
+                              </div>
+                          </div>
+                      </div>
+                      <div class="exploreCoupons">
+                          <h5>Coupons to Explore</h5>
+                              {
+                                  exploreCoupon && exploreCoupon.map((card, idx)=>(
+                                  <div onClick={()=> handleExploreOverlayVisibility(idx)} class="exploreCouponCard">
+                                      <div class="shipImgBox">
+                                          <img src={card.image} alt="" />
+                                      </div>
+                                      <div class="exploreCouponCardText">
+                                          <p>{card.heading}</p>
+                                          <p class="exploreCouponText">Unlock for <div class="coinIcon"></div> {card.amount}</p>
+                                      </div>
+                                  </div>
+                                  ))
+                              }
+                      </div>
                     </div>
                 </div>
             )}

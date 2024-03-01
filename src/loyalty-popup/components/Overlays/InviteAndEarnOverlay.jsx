@@ -96,7 +96,7 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
                     <img src="https://media.farziengineer.co/farziwallet/whatsapp-icon.png" alt="" />
                     <p>Send on whatsapp</p>
                 </button>
-                <button onClick={()=> handleShareClick(whatsappmsg)} class="inviteRoundedBtn">
+                <button onClick={handleShareClick} class="inviteRoundedBtn">
                     <img src="https://media.farziengineer.co/farziwallet/share_arrow.png" alt="" />
                 </button>
             </div>
