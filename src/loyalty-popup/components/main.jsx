@@ -60,7 +60,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     amount: "",
     btnText: "",
   })
-  console.log("running local");
+  //console.log("running local pc");
   const [screenDetails, setScreenDetails] = useState({
     screen: "home_screen",
     screenTitle: "",
@@ -95,10 +95,10 @@ export function Main({ themeDetailsData, shadowRoot }) {
     // console.log("func scr card===", amount);
     setScratchCardAmount(amount);
   };
-  async function redeemReferHash({ client_id, customer_id, user_hash }) {
+  async function redeemReferHash({ client_id, customer_id }) {
     const fc_refer_hash = localStorage.getItem("fc_refer_hash");
     if (fc_refer_hash) {
-      console.log("referral popup");
+      //console.log("referral popup");
       try {
         // console.log("hitting redeem referral code");
         const response = await fetchApi('/redeem-referral-code', 'post', {
@@ -110,7 +110,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
         if(response?.status === 'success'){
           setReferralPopup(true)
           setReferedAmount(response?.data?.referredReward)
-          console.log("fc_refer response", response);
+          //console.log("fc_refer response", response);
           localStorage.removeItem("fc_refer_hash");
           return
         }
@@ -119,6 +119,10 @@ export function Main({ themeDetailsData, shadowRoot }) {
       } 
     }
   }
+
+  useEffect(()=>{
+    redeemReferHash({client_id, customer_id})
+  },[referralPopup])
   function setTheme({ themeDetails }) {
     var cssVariablesScope = shadowRoot.querySelector(".mainPopup");
 
@@ -197,7 +201,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
       setIsLoggedIn(true);
       // console.log("reddeem ke upar log custID", customer_id);
       // console.log("reddeem ke userHash", user_hash);
-      redeemReferHash({ client_id, customer_id, user_hash });
+      redeemReferHash({ client_id, customer_id });
     }
   }, []);
 
@@ -257,11 +261,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
       setSingleScratchCard(scratchCardResponse?.data[0])
 
       if(localStorage.getItem("fc-invite-overlay-text")){
-        console.log(localStorage.getItem("fc-invite-overlay-text"));
+        //console.log(localStorage.getItem("fc-invite-overlay-text"));
         setWhatsappOverlayText(localStorage.getItem("fc-invite-overlay-text"))
       }else{
         const response = await fetchApi('/get-referral-message','post', {client_id})
-        console.log(response);
+        //console.log(response);
         if(response?.status === "success"){
           localStorage.setItem("fc-invite-overlay-text", response?.data?.getReferralMessage)
         }else{
@@ -567,7 +571,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
           </div>
         </>
       )}
-      {referralPopup && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
+      {(referralPopup && customer_id) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
     </>
   );
 }
