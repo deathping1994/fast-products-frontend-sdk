@@ -82,7 +82,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
 
   const copyReferralLinkFunc = () => {
     setShowCopied(true);
-    navigator.clipboard.writeText(window.location.origin + (referralData?.path || "/account/register"));
+    navigator.clipboard.writeText(window.location.origin + (localStorage.getItem("fc-referral-code") || "/account/register"));
     setTimeout(() => {
       setShowCopied(false);
     }, 1000);
