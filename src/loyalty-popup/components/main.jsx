@@ -124,7 +124,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
         } catch (err) {
           console.log("error in redeemReferHash", err);
         }
-      }, 3000);
+      }, 2000);
     }
   }  
 
