@@ -52,10 +52,10 @@ const Main = ({shadowRoot, themeDetailsData}) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        if(!localStorage.getItem("fc-referral-code")){
+        if(!localStorage.getItem(`fc-referral-code-${customer_id}`)){
           const resp = await fetchApi('/get-referral-code', 'post', { client_id, customer_id, user_hash });
           if(resp?.status === "success"){
-            localStorage.setItem("fc-referral-code", resp?.data?.path);
+            localStorage.setItem(`fc-referral-code-${customer_id}`, resp?.data?.path);
           }else{
             showError()
           }
@@ -81,9 +81,9 @@ const Main = ({shadowRoot, themeDetailsData}) => {
 
 
   const copyReferralLinkFunc = ()=>{
-    console.log("referral copy func",localStorage.getItem("fc-referral-code"));
+    console.log("referral copy func",localStorage.getItem(`fc-referral-code-${customer_id}`));
     setShowCopied(true)
-    navigator.clipboard.writeText(window.location.origin + (localStorage.getItem("fc-referral-code") || "/account/register"))
+    navigator.clipboard.writeText(window.location.origin + (localStorage.getItem(`fc-referral-code-${customer_id}`) || "/account/register"))
     setTimeout(()=>{
         setShowCopied(false)
     },1000)
@@ -120,7 +120,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
             <h2>Invite & Earn</h2>
           </div>
           <div className="inviteAndEarnMessage">
-            <h4>{localStorage.getItem("fc-invite-text")}</h4>
+            <h4>{localStorage.getItem(`fc-invite-text-${customer_id}`)}</h4>
           </div>
           <div className="inviteEarnTextContainer">
             <p>copy referral link</p>
@@ -128,7 +128,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
           {showCopied && <div className="copied">copied</div>}
           <div className="inviteLinkContainer">
             <p className="ellipsis-text">
-              {`${window.location.origin}${localStorage.getItem("fc-referral-code") || "/account/register"}`}
+              {`${window.location.origin}${localStorage.getItem(`fc-referral-code-${customer_id}`) || "/account/register"}`}
             </p>
             <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
           </div>

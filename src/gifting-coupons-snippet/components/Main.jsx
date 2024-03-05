@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useEffect, useState } from "preact/hooks";
 import CouponCard from "./CouponCard";
 import CouponOverlay from "../../loyalty-popup/components/Overlays/CouponOverlay";
@@ -104,7 +103,6 @@ const Main = ({shadowRoot, themeDetailsData}) => {
             setExploreCoupon(resp?.data?.data)
             const walletAmtResp = await fetchApi('/user-wallet-amount', 'post', {client_id, customer_id})
             setWalletAmount(walletAmtResp?.data?.userWallet?.amount);
-            console.log(couponResp);
           } catch (error) {
             console.log(error);
           } finally {
@@ -115,13 +113,14 @@ const Main = ({shadowRoot, themeDetailsData}) => {
     },[])
 
     useEffect(()=>{
+      const client_id = mainScript.getAttribute("data-client-id");
       const getCoupon = async ()=>{
-        if(localStorage.getItem("fc-coupon-card")){
-          setCouponCardResponse(JSON.parse(localStorage.getItem("fc-coupon-card")))
+        if(localStorage.getItem(`fc-coupon-card-${client_id}`)){
+          setCouponCardResponse(JSON.parse(localStorage.getItem(`fc-coupon-card-${client_id}`)))
         }else{
           const couponResp = await fetchApi('/get-featured-coupons', 'post', {client_id})
           setCouponCardResponse(couponResp?.data)
-          localStorage.setItem("fc-coupon-card", JSON.stringify(couponResp?.data))
+          localStorage.setItem(`fc-coupon-card-${client_id}`, JSON.stringify(couponResp?.data))
         }
       }
       getCoupon()
@@ -256,7 +255,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
             )}
             {/* {exploreCouponVisibilty && <div class="overlay"></div>} */}
             { yourCouponTab && (
-                <YourCoupons customerDetails={customerDetails} yourCouponTab={yourCouponTab}/>
+                <YourCoupons customerDetails={customerDetails} />
             )}
             <div class="overlay">
               {overlayVisible?.active ? (
