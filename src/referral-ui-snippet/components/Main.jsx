@@ -23,11 +23,11 @@ const Main = ({shadowRoot, themeDetailsData}) => {
   });
 
   const handleShareClick = async ()=>{
-    if(!localStorage.getItem("fc-whatsapp-msg")){
+    if(!localStorage.getItem(`fc-whatsapp-msg-${customer_id}`)){
       const whatsappResp = await fetchApi('/get-referred-message', 'post', {client_id, customer_id, user_hash})
       if (whatsappResp?.status === "success") {
           const message = whatsappResp?.data?.getReferredMessage;
-          localStorage.setItem("fc-whatsapp-msg", message);
+          localStorage.setItem(`fc-whatsapp-msg-${customer_id}`, message);
       } else {
           showError();
       }
@@ -35,12 +35,12 @@ const Main = ({shadowRoot, themeDetailsData}) => {
         if(navigator.share){
           navigator.share({
             title: 'Invite your friend to get rewards',
-            text: localStorage.getItem("fc-whatsapp-msg"),
+            text: localStorage.getItem(`fc-whatsapp-msg-${customer_id}`),
           })
           .then(() => console.log('Successful share'))
           .catch((error) => console.log('Error sharing', error));
         }else{
-            navigator.clipboard.writeText(localStorage.getItem("fc-whatsapp-msg"))
+            navigator.clipboard.writeText(localStorage.getItem(`fc-whatsapp-msg-${customer_id}`))
             setShowCopied(true)
             setTimeout(()=>{
                 setShowCopied(false)

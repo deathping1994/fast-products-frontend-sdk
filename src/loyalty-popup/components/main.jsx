@@ -99,27 +99,34 @@ export function Main({ themeDetailsData, shadowRoot }) {
   async function redeemReferHash({ client_id, customer_id }) {
     const fc_refer_hash = localStorage.getItem("fc_refer_hash");
     if (fc_refer_hash) {
-      //console.log("referral popup");
-      try {
-        // console.log("hitting redeem referral code");
-        const response = await fetchApi('/redeem-referral-code', 'post', {
-          client_id:client_id,
-          customer_id: customer_id,
-          // user_hash: user_hash,
-          refer_hash: fc_refer_hash
-        })
-        if(response?.status === 'success'){
-          setReferralPopup(true)
-          setReferedAmount(response?.data?.referredReward)
-          //console.log("fc_refer response", response);
-          localStorage.removeItem("fc_refer_hash");
-          return
+      setTimeout(async () => {
+        try {
+          const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
+          if(!localStorage.getItem(`fc-referral-code-${customer_id}`)){
+            const resp = await fetchApi("/get-referral-code", "post", {client_id, customer_id, user_hash})
+            if(resp?.status === "success"){
+              localStorage.setItem(`fc-referral-code-${customer_id}`, resp?.data?.path)
+            }
+          }
+          
+          const response = await fetchApi('/redeem-referral-code', 'post', {
+            client_id: client_id,
+            customer_id: customer_id,
+            refer_hash: fc_refer_hash
+          });
+  
+          if (response?.status === 'success') {
+            setReferralPopup(true);
+            setReferedAmount(response?.data?.referredReward);
+            localStorage.removeItem("fc_refer_hash");
+            return;
+          }
+        } catch (err) {
+          console.log("error in redeemReferHash", err);
         }
-      } catch (err) {
-        console.log("error in redeemReferHash", err);
-      } 
+      }, 3000);
     }
-  }
+  }  
 
   useEffect(()=>{
     redeemReferHash({client_id, customer_id})
