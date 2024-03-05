@@ -104,8 +104,6 @@ const Main = ({shadowRoot, themeDetailsData}) => {
             setExploreCoupon(resp?.data?.data)
             const walletAmtResp = await fetchApi('/user-wallet-amount', 'post', {client_id, customer_id})
             setWalletAmount(walletAmtResp?.data?.userWallet?.amount);
-            const couponResp = await fetchApi('/get-featured-coupons', 'post', {client_id})
-            setCouponCardResponse(couponResp?.data)
             console.log(couponResp);
           } catch (error) {
             console.log(error);
@@ -114,6 +112,19 @@ const Main = ({shadowRoot, themeDetailsData}) => {
           }
       }
       exploreCouponResp()
+    },[])
+
+    useEffect(()=>{
+      const getCoupon = async ()=>{
+        if(localStorage.getItem("fc-coupon-card")){
+          setCouponCardResponse(JSON.parse(localStorage.getItem("fc-coupon-card")))
+        }else{
+          const couponResp = await fetchApi('/get-featured-coupons', 'post', {client_id})
+          setCouponCardResponse(couponResp?.data)
+          localStorage.setItem("fc-coupon-card", JSON.stringify(couponResp?.data))
+        }
+      }
+      getCoupon()
     },[])
 
       const handleOverlay = (overlayname) => {

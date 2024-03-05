@@ -62,11 +62,13 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     if (themeDetails?.data?.coin_name) {
       // @ts-ignore
       window.fc_loyalty_vars = {
+        ...window.fc_loyalty_vars,
         coin_name: themeDetails?.data?.coin_name,
       };
     } else {
       // @ts-ignore
       window.fc_loyalty_vars = {
+        ...window.fc_loyalty_vars,
         coin_name: "FC",
       };
     }
