@@ -6,7 +6,10 @@ import Alert from "./Utils/Alert"
 
 const RedeemCoin = ({customerDetails, closePopup, updateWalletAmount}) => {
     const [showCopied, setShowCopied] = useState(false)
-    const [errorMsg, setErrorMsg] = useState("")
+    const [error, setError] = useState({
+        error: false,
+        msg: ""
+    })
     const copyFunc = (code)=>{
         setShowCopied(true)
         navigator.clipboard.writeText(code)
@@ -16,16 +19,21 @@ const RedeemCoin = ({customerDetails, closePopup, updateWalletAmount}) => {
     }
     const [rangeValue, setRangeValue] = useState(10)
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false)
     const [redeemCoinCode, setRedeemCoinCode] = useState("")
     const handleChangeRange = (e)=>{
         const {value} = e.target
         setRangeValue(value)
     }
-    const showError = ()=>{
-        setError(true)
+    const showError = (msg)=>{
+        setError({
+            error:true,
+            msg:msg
+        })
         setTimeout(()=>{
-          setError(false)
+          setError({
+            error:false,
+            msg:""
+          })
         },3000)
     }
     const getRedeemCoin = async ()=>{
@@ -40,8 +48,7 @@ const RedeemCoin = ({customerDetails, closePopup, updateWalletAmount}) => {
             })
             if(response?.status !== "success"){
                 // console.log("failed overlay");
-                setErrorMsg(response?.error)
-                showError()
+                showError(response?.error)
                 return
             }
             setRedeemCoinCode(response?.data?.coupon_code);
@@ -90,7 +97,7 @@ const RedeemCoin = ({customerDetails, closePopup, updateWalletAmount}) => {
                     {showCopied && <div class="copied">copied</div>}
                 </div>
             </div>
-            {error && <Alert message={errorMsg}/>}
+            {error.error && <Alert message={error.msg}/>}
         </div>
     </>
   )
