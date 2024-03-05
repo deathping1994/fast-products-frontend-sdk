@@ -6,6 +6,7 @@ import Alert from "./Utils/Alert"
 
 const RedeemCoin = ({customerDetails, closePopup, updateWalletAmount}) => {
     const [showCopied, setShowCopied] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
     const copyFunc = (code)=>{
         setShowCopied(true)
         navigator.clipboard.writeText(code)
@@ -39,6 +40,7 @@ const RedeemCoin = ({customerDetails, closePopup, updateWalletAmount}) => {
             })
             if(response?.status !== "success"){
                 // console.log("failed overlay");
+                setErrorMsg(response?.error)
                 showError()
                 return
             }
@@ -88,7 +90,7 @@ const RedeemCoin = ({customerDetails, closePopup, updateWalletAmount}) => {
                     {showCopied && <div class="copied">copied</div>}
                 </div>
             </div>
-            {error && <Alert message={`Something went wrong`}/>}
+            {error && <Alert message={errorMsg}/>}
         </div>
     </>
   )
