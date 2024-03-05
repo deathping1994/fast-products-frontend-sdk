@@ -22,35 +22,36 @@ const Main = ({shadowRoot, themeDetailsData}) => {
     path: ""
   });
 
-  const handleShareClick = ()=>{
-    if(navigator.share){
-      navigator.share({
-        title: 'Invite your friend to get rewards',
-        text: localStorage.getItem("fc-whatsapp-msg"),
-      })
-      .then(() => console.log('Successful share'))
-      .catch((error) => console.log('Error sharing', error));
+  const handleShareClick = async ()=>{
+    if(!localStorage.getItem("fc-whatsapp-msg")){
+      const whatsappResp = await fetchApi('/get-referred-message', 'post', {client_id, customer_id, user_hash})
+      if (whatsappResp?.status === "success") {
+          const message = whatsappResp?.data?.getReferredMessage;
+          localStorage.setItem("fc-whatsapp-msg", message);
+      } else {
+          showError();
+      }
     }else{
-        navigator.clipboard.writeText(localStorage.getItem("fc-whatsapp-msg"))
-        setShowCopied(true)
-        setTimeout(()=>{
-            setShowCopied(false)
-        },1000)
+        if(navigator.share){
+          navigator.share({
+            title: 'Invite your friend to get rewards',
+            text: localStorage.getItem("fc-whatsapp-msg"),
+          })
+          .then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing', error));
+        }else{
+            navigator.clipboard.writeText(localStorage.getItem("fc-whatsapp-msg"))
+            setShowCopied(true)
+            setTimeout(()=>{
+                setShowCopied(false)
+            },1000)
+        }
     }
 }
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        if (!localStorage.getItem("fc-invite-overlay-text")) {
-          const response = await fetchApi('/get-referral-message', 'post', { client_id });
-          if (response?.status === "success") {
-            localStorage.setItem("fc-invite-overlay-text", response?.data?.getReferralMessage);
-          } else {
-            localStorage.setItem("fc-invite-overlay-text", "Invite your friends to get exciting rewards and discounts");
-          }
-        }
-
         if(!localStorage.getItem("fc-referral-code")){
           const resp = await fetchApi('/get-referral-code', 'post', { client_id, customer_id, user_hash });
           if(resp?.status === "success"){
@@ -119,7 +120,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
             <h2>Invite & Earn</h2>
           </div>
           <div className="inviteAndEarnMessage">
-            <h4>{localStorage.getItem("fc-invite-overlay-text")}</h4>
+            <h4>{localStorage.getItem("fc-invite-text")}</h4>
           </div>
           <div className="inviteEarnTextContainer">
             <p>copy referral link</p>
@@ -142,7 +143,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
               <img src="https://media.farziengineer.co/farziwallet/whatsapp-icon.png" alt="" />
               <p>Send on WhatsApp</p>
             </button>
-            <button onClick={handleShareClick} className="inviteRoundedBtn">
+            <button onClick={()=> handleShareClick()} className="inviteRoundedBtn">
               <img  src="https://media.farziengineer.co/farziwallet/share_arrow.png" alt="" />
             </button>
           </div>

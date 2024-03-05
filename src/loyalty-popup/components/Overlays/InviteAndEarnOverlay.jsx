@@ -75,7 +75,7 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
                 <h2>Invite & Earn</h2>
             </div>
             <div class="inviteAndEarnMessage">
-                <h4>{localStorage.getItem("fc-invite-overlay-text")}</h4>
+                <h4>{localStorage.getItem("fc-invite-text")}</h4>
             </div>
             <div class="inviteEarnTextContainer">
                 <p>copy referral link</p>

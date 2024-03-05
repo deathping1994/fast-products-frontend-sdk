@@ -573,3 +573,7 @@ p {
 	border-radius: 8px;
 	width: fit-content;
 }
+
+.fc-spin-wheel-snippet-19212-root .widget-container {
+	display: block;
+}

@@ -70,7 +70,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     overlay: "none",
     active: false,
   });
-  // console.log("========== running on local pr ===========");
+
   const handleLogin = ()=>{
     if(!isLoggedIn){
       window.location.href = themeDetailsData?.data?.login_page
@@ -257,19 +257,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
       setSingleSpinWheel(spinWheelResponse?.data[0]);
       const scratchCardResponse = await fetchApi('/get-featured-scratch-cards', 'post', {client_id})
       setSingleScratchCard(scratchCardResponse?.data[0])
-
-      if(localStorage.getItem("fc-invite-overlay-text")){
-        //console.log(localStorage.getItem("fc-invite-overlay-text"));
-        setWhatsappOverlayText(localStorage.getItem("fc-invite-overlay-text"))
-      }else{
-        const response = await fetchApi('/get-referral-message','post', {client_id})
-        //console.log(response);
-        if(response?.status === "success"){
-          localStorage.setItem("fc-invite-overlay-text", response?.data?.getReferralMessage)
-        }else{
-          showError()
-        }
-      }
     }
     fetch()
   },[])
