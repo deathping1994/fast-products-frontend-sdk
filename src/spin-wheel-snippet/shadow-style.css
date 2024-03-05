@@ -535,7 +535,7 @@ p {
 	justify-content: center;
 	align-items: center;
 	transform: translate(-50%, -50%);
-	width: 80%;
+	width: fit-content;
 	animation-name: fade-in;
 	animation-duration: 0.5s;
 }
