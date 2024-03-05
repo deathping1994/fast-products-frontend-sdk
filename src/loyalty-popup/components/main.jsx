@@ -233,8 +233,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
   useEffect(()=>{
 
     const fetch = async ()=>{
-      if(localStorage.getItem("fc-coupon-card")){
-        let coupons = localStorage.getItem("fc-coupon-card")
+      if(localStorage.getItem(`fc-coupon-card-${client_id}`)){
+        let coupons = localStorage.getItem(`fc-coupon-card-${client_id}`)
         setFeaturedCoupons(JSON.parse(coupons))
       }else{
         const couponResponse = await fetchApi(
@@ -247,7 +247,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
         }else{
           if(couponResponse?.data){
             setFeaturedCoupons(couponResponse?.data);
-            localStorage.setItem("fc-coupon-card", JSON.stringify(couponResponse?.data))
+            localStorage.setItem(`fc-coupon-card-${client_id}`, JSON.stringify(couponResponse?.data))
           }else{
             showError("No coupons found")
           }
@@ -267,9 +267,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
   useEffect(()=>{
     const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
     const fetchData = async ()=>{
-      if(!localStorage.getItem("fc-referral-code")){
+      if(!localStorage.getItem(`fc-referral-code-${customer_id}`)){
         const resp = await fetchApi("/get-referral-code", "post", {client_id, customer_id, user_hash})
-        localStorage.setItem("fc-referral-code", resp?.data?.path)
+        if(resp?.status === "success"){
+          localStorage.setItem(`fc-referral-code-${customer_id}`, resp?.data?.path)
+        }
       }
     }
     fetchData()
@@ -536,7 +538,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
                       />
                   </div>
                   <InviteCard
-                    client_id={customerDetails.client_id}
+                    client_id={client_id}
+                    customer_id={customer_id}
                     onClick={() => (isLoggedIn && changeOverlay("invite_and_earn"))}
                   />
                 </div>

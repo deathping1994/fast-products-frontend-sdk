@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { useEffect, useState } from "preact/hooks"
 import fetchApi from "../Utils/FetchApi"
 import Alert from "../Utils/Alert";
@@ -58,7 +58,7 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
     
     const copyReferralLinkFunc = ()=>{
         setShowCopied(true)
-        navigator.clipboard.writeText(window.location.origin + (localStorage.getItem("fc-referral-code") || "/account/register"))
+        navigator.clipboard.writeText(window.location.origin + (localStorage.getItem(`fc-referral-code-${customerDetails?.customer_id}`) || "/account/register"))
         setTimeout(()=>{
             setShowCopied(false)
         },1000)
@@ -75,14 +75,14 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
                 <h2>Invite & Earn</h2>
             </div>
             <div class="inviteAndEarnMessage">
-                <h4>{localStorage.getItem("fc-invite-text")}</h4>
+                <h4>{localStorage.getItem(`fc-invite-text-${customerDetails?.customer_id}`)}</h4>
             </div>
             <div class="inviteEarnTextContainer">
                 <p>copy referral link</p>
             </div>
             {showCopied && <div class="copied">copied</div>}
             <div class="inviteLinkContainer">
-                <p>{(`${window.location.origin}${localStorage.getItem("fc-referral-code") || "/account/register"}`).substring(0,29)}...</p>
+                <p>{(`${window.location.origin}${localStorage.getItem(`fc-referral-code-${customerDetails?.customer_id}`) || "/account/register"}`).substring(0,29)}...</p>
                 <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
             </div>
             <div>
@@ -102,7 +102,7 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
             </div>
         </div>
     }
-        {error && <Alert/>}
+        {error && <Alert message={`Something went wrong`}/>}
         
     </>
     // const whatsappResp = await fetchApi('/get-referred-message', 'post', customerDetails)
