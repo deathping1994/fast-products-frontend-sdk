@@ -250,29 +250,31 @@
           </div>
           <h4>Scratch and Win</h4>
         </div>
-        <div class="scratchCardDiv">
-          <h4>{winMessage?.win_message}</h4>
-          {isLocked && <img src="https://media.farziengineer.co/farziwallet/lock.png" alt="" />}
-          <canvas width={300} height={300} id="scratchCardCanvas"></canvas>
-          {
-            showWinPopup && 
-            <div class="spinWinContainer">
-              <div class="spinWinPopup">
-                <h3>Congratulations!</h3>
-                <p>You Won</p>
-                <h2>{winMessage?.win_message}</h2>
-                <button onClick={handlePlayAgainBtn} class="playagainbtn">Play Again</button>
-                <button onClick={()=> showScratchCardScreen()} class="closebtn">close</button>
+        <div class="scratchCardContainer">
+          <div class="scratchCardDiv">
+            <h4>{winMessage?.win_message}</h4>
+            {isLocked && <img src="https://media.farziengineer.co/farziwallet/lock.png" alt="" />}
+            <canvas width={300} height={300} id="scratchCardCanvas"></canvas>
+            {
+              showWinPopup && 
+              <div class="spinWinContainer">
+                <div class="spinWinPopup">
+                  <h3>Congratulations!</h3>
+                  <p>You Won</p>
+                  <h2>{winMessage?.win_message}</h2>
+                  <button onClick={handlePlayAgainBtn} class="playagainbtn">Play Again</button>
+                  <button onClick={()=> showScratchCardScreen()} class="closebtn">close</button>
+                </div>
               </div>
-            </div>
-          }
-        </div>
-        <div class="spinWheelBottom">
-          <hr />
-          <h4>{isLocked ? `Unlock for ${scratchCardAmount} ${window.
-// @ts-ignore
-          fc_loyalty_vars.coin_name} Coin` : `Click and drag your cursor across the card`}</h4>
-          {isLocked && <button onClick={getScratchCardWinData} class="couponUnlockBtn">Tap to Unlock</button>}
+            }
+          </div>
+          <div class="spinWheelBottom">
+            <hr />
+            <h4>{isLocked ? `Unlock for ${scratchCardAmount} ${window.
+  // @ts-ignore
+            fc_loyalty_vars.coin_name} Coin` : `Click and drag your cursor across the card`}</h4>
+            {isLocked && <button onClick={getScratchCardWinData} class="couponUnlockBtn">Tap to Unlock</button>}
+          </div>
         </div>
         
         {error.error && <Alert message={error?.msg}/>}

@@ -286,9 +286,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDet
       unlock && container.on("click", spin);
       // @ts-ignore
       function spin(d) {
-        if(btnVisibility){
-          spinAudio.play()
-        }
+        spinAudio.play()
         container.on("click", null);
 
         var totalValues = data.length;
