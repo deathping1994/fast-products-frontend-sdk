@@ -147,10 +147,14 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDe
               };
             }), false)
             setLoading(false)
+            const spinWheelMainContainer = shadowRoot.querySelector(".spinWheelMainContainer")
+            spinWheelMainContainer.style.width = "fit-content"
             const spinStyles = shadowRoot.querySelector(".chart-spin-container")
             spinStyles.style.display = "flex"
             spinStyles.style.justifyContent = "center"
             spinStyles.style.alignItems = "center"
+            const widgetContainer = shadowRoot.querySelector(".fc-spin-wheel-snippet-19212-root .widget-container")
+            widgetContainer.style.display = "flex"
             
             setBtnVisibility(false)
           }else{
@@ -258,9 +262,7 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDe
       unlock && container.on("click", spin);
       // @ts-ignore
       function spin(d) {
-        if(btnVisibility){
-          spinAudio.play()
-        }
+        spinAudio.play()
         container.on("click", null);
 
         var totalValues = data.length;
@@ -379,6 +381,10 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDe
   }
   
   const drawUnlockSpinWheel = ()=>{
+    const widgetContainer = shadowRoot.querySelector(".fc-spin-wheel-snippet-19212-root .widget-container")
+    widgetContainer.style.display = "block"
+    const spinWheelMainContainer = shadowRoot.querySelector(".spinWheelMainContainer")
+    spinWheelMainContainer.style.width = ""
     const spinStyles = shadowRoot.querySelector(".chart-spin-container")
     console.log("sdfdsfsdf",spinStyles);
     spinStyles.style.display = "block"
@@ -390,13 +396,8 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDe
             ...customerDetails,
             couponAmount: spinWheelAmount,
           })
-          if(response?.status === "success"){
-            setWinData(response?.data)
-            setBtnVisibility(true)
-            return response?.data
-          }else{
-            showError(response?.error)
-          }
+          setWinData(response?.data)
+          return response
         // console.log("win spinwheel data",response?.data);
         } catch (error) {
           console.log("error in redeem spinwheel");
@@ -404,19 +405,31 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDe
           setLoading(false)
         }
     }
-    redeemSpinWheel().then((data)=>{
+    redeemSpinWheel().then((resp)=>{
       // console.log("redepinwheel WIN", data);
-      drawWheel(
-        shadowRoot,
-        spinWheelRewardData.map((item, index) => {
+      if(resp?.status === "success"){
+        setBtnVisibility(true)
+        drawWheel(
+          shadowRoot,
+          spinWheelRewardData.map((item, index) => {
+            return {
+              label: item,
+              value: index,
+            };
+          }),
+          true, resp?.data?.win_index, spinCB );
+      }else{
+        showError(resp?.error)
+        drawWheel(shadowRoot, spinWheelRewardData?.map((item, index) => {
           return {
             label: item,
             value: index,
           };
-        }),
-        true, data?.win_index, spinCB );
-        const spinStyles = shadowRoot.querySelector(".chart-spin-container")
-        spinStyles.style.display = "flex"
+        }), false)
+        setBtnVisibility(false)
+      }
+      const spinStyles = shadowRoot.querySelector(".chart-spin-container")
+      spinStyles.style.display = "flex"
     }).catch((error)=>{
       console.log("error in reddeemo spin wheel", error);
     })
@@ -443,27 +456,25 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDe
             </div>
           }
           </div>
-        </div>
-        {
+          {
           showWinPopup && 
-          <div class="spinWinContainer">
-              <div class="spinWinPopup">
-                <h3>Congratulations!</h3>
-                <p>You Won</p>
-                <h2>{winData.win_message}</h2>
-                <button onClick={playAgain} class="playagainbtn">Play Again</button>
-                <button onClick={closeWinPopup} class="closebtn">close</button>
+            <div class="spinWinContainer">
+                <div class="spinWinPopup">
+                  <h3>Congratulations!</h3>
+                  <p>You Won</p>
+                  <h2>{winData.win_message}</h2>
+                  <button onClick={playAgain} class="playagainbtn">Play Again</button>
+                  <button onClick={closeWinPopup} class="closebtn">close</button>
+                </div>
               </div>
-            </div>
-        }
-        
-        <div class="spinWheelBottom">
-            <hr />
-            {btnVisibility ? <h4>Click 'SPIN' to start</h4> : <h4>Unlock for {spinWheelAmount} {window.
-// @ts-ignore
-            fc_loyalty_vars.coin_name} Coins</h4>}
-            {!btnVisibility && <button onClick={drawUnlockSpinWheel} class="couponUnlockBtn">Tap to Unlock</button>}
+          }
         </div>
+        <div class="spinWheelBottom">
+            {!loading && <hr />}
+            {btnVisibility ? <h4>Click 'SPIN' to start</h4> : <h4>Unlock for {spinWheelAmount} {window.fc_loyalty_vars.coin_name} Coins</h4>}
+            {!btnVisibility && <button onClick={()=> drawUnlockSpinWheel()} class="couponUnlockBtn">Tap to Unlock</button>}
+        </div>
+        
         {loading && <div class="loader"><Loading/></div>}
         {error.error && <Alert message={error?.msg}/>}
       </div>

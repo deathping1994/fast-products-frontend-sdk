@@ -8,7 +8,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [showCopied, setShowCopied] = useState(false);
-
+  const [inviteMsg, setInviteMsg] = useState("")
   const mainScript = document.getElementById("fc-wallet-referral-snippet-ui-script-19212");
   const customer_id = mainScript.getAttribute("data-customer-id");
   const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
@@ -17,10 +17,6 @@ const Main = ({shadowRoot, themeDetailsData}) => {
     setLogin(true)
   }
   console.log("running referral ui ");
-  const [referralData, setReferralData] = useState({
-    referral_code: "",
-    path: ""
-  });
 
   const handleShareClick = async ()=>{
     if(!localStorage.getItem(`fc-whatsapp-msg-${customer_id}`)){
@@ -71,6 +67,22 @@ const Main = ({shadowRoot, themeDetailsData}) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+        if(!localStorage.getItem(`fc-invite-text-${customer_id}`)){
+          const resp = await fetchApi('/get-referrer-message', 'post', {client_id})
+          if(resp?.status === "success"){
+            localStorage.setItem(`fc-invite-text-${customer_id}`, resp?.data?.getReferrerMessage)
+            setInviteMsg(resp?.data?.getReferrerMessage)
+          }else{
+            showError()
+          }
+        }else{
+          setInviteMsg(localStorage.getItem(`fc-invite-text-${customer_id}`))
+        }
+    }
+    fetchData()
+  },[])
 
   const showError = () => {
     setError(true);
@@ -90,14 +102,14 @@ const Main = ({shadowRoot, themeDetailsData}) => {
 }
 
   const hanldeWhatsappClick = async () => {
-    if (localStorage.getItem("fc-whatsapp-msg")) {
-        window.open(`https://api.whatsapp.com/send?text=${localStorage.getItem("fc-whatsapp-msg")}`, "_blank")
+    if (localStorage.getItem(`fc-whatsapp-msg-${client_id}`)) {
+        window.open(`https://api.whatsapp.com/send?text=${localStorage.getItem(`fc-whatsapp-msg-${client_id}`)}`, "_blank")
     } else {
         try {
             const whatsappResp = await fetchApi('/get-referred-message', 'post', {client_id, customer_id, user_hash})
             if (whatsappResp?.status === "success") {
                 const message = whatsappResp?.data?.getReferredMessage;
-                localStorage.setItem("fc-whatsapp-msg", message);
+                localStorage.setItem(`fc-whatsapp-msg-${client_id}`, message);
                 window.open(`https://api.whatsapp.com/send?text=${message}`, "_blank");
             } else {
                 showError();
@@ -120,7 +132,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
             <h2>Invite & Earn</h2>
           </div>
           <div className="inviteAndEarnMessage">
-            <h4>{localStorage.getItem(`fc-invite-text-${customer_id}`)}</h4>
+            <h4>{inviteMsg}</h4>
           </div>
           <div className="inviteEarnTextContainer">
             <p>copy referral link</p>
