@@ -28,7 +28,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
   const [referralPopup, setReferralPopup] = useState(false)
   const [referedAmount, setReferedAmount] = useState(0)
   const [walletAmount, setWalletAmount] = useState(0);
-  const [whatsappOverlayText, setWhatsappOverlayText] = useState("")
   const [walletLogs, setWalletLogs] = useState([]);
   const [spinWheelAmount, setSpinWheelAmount] = useState(0);
   const [scratchCardAmount, setScratchCardAmount] = useState(0);
@@ -354,10 +353,12 @@ export function Main({ themeDetailsData, shadowRoot }) {
   };
 
   useEffect(() => {
-    if (visibilty) {
-      document.body.classList.add("fc-no-scroll");
-    } else {
-      document.body.classList.remove("fc-no-scroll");
+    if(!referralPopup){
+      if (visibilty) {
+        document.body.classList.add("fc-no-scroll");
+      } else {
+        document.body.classList.remove("fc-no-scroll");
+      }
     }
   }, [visibilty]);
 
@@ -461,7 +462,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
         height={30}
         alt="gift icon"
       />
-      {visibilty && (
+      {(!referralPopup && visibilty) && (
         <>
           <div onClick={handleLogin} class="mainPopup">
             {screenDetails?.active ? (
