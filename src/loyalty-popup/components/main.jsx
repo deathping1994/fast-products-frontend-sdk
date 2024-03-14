@@ -226,7 +226,13 @@ export function Main({ themeDetailsData, shadowRoot }) {
           }
 
         } catch (error) {
-          console.error("Error fetching wallet data:", error);
+          const checkUser = await fetchApi('/sync-external-user', 'post', {...customerDetails})
+          if(checkUser.status === 'success'){
+            const walletResponse = await fetchApi("/user-walletlogs","post",{
+              ...customerDetails
+            })
+            setWalletAmount(walletResponse?.data?.data?.wallet?.wallet?.amount)
+          }
         } finally {
           setLoading(false);
         }

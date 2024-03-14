@@ -17,7 +17,21 @@ const Main = ({shadowRoot, themeDetailsData}) => {
     setLogin(true)
   }
   console.log("running referral ui ");
-
+  useEffect(()=>{
+    const fetch = async ()=>{
+      try {
+        const walletResponse = await fetchApi("/user-walletlogs","post",{client_id, customer_id, user_hash})
+      } catch (error) {
+        const checkUser = await fetchApi('/sync-external-user', 'post', {client_id, customer_id})
+        if(checkUser.status === 'success'){
+          console.log("user mil gya");
+        }else{
+          
+        }
+      }
+    }
+    fetch()
+  },[])
   const handleShareClick = async ()=>{
     if(!localStorage.getItem(`fc-whatsapp-msg-${customer_id}`)){
       const whatsappResp = await fetchApi('/get-referred-message', 'post', {client_id, customer_id, user_hash})

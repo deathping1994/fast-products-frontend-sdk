@@ -81,7 +81,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
       // console.log(themeDetailsData);
     }, [themeDetailsData]); 
 
-    useEffect(()=>{
+    useEffect(() => {
       (function loadfont() {
         const link = document.createElement("link");
         link.rel = "stylesheet";
@@ -89,28 +89,43 @@ const Main = ({shadowRoot, themeDetailsData}) => {
           "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap";
         document.head.appendChild(link);
       })();
-        const client_id = mainScript.getAttribute("data-client-id");
-        const customer_id = mainScript.getAttribute("data-customer-id");
-        const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
-        setCustomerDetails({client_id, customer_id, user_hash})
-        if(customer_id){
-          setLogin(true)
-        }
-      const exploreCouponResp = async ()=>{
-          try {
-            setLoading(true)
-            const resp = await fetchApi('/get-coupons-to-explore', 'post', {client_id, customer_id, user_hash})
-            setExploreCoupon(resp?.data?.data)
-            const walletAmtResp = await fetchApi('/user-wallet-amount', 'post', {client_id, customer_id})
-            setWalletAmount(walletAmtResp?.data?.userWallet?.amount);
-          } catch (error) {
-            console.log(error);
-          } finally {
-            setLoading(false)
-          }
+    
+      const client_id = mainScript.getAttribute("data-client-id");
+      const customer_id = mainScript.getAttribute("data-customer-id");
+      const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
+      setCustomerDetails({ client_id, customer_id, user_hash });
+      if (customer_id) {
+        setLogin(true);
       }
-      exploreCouponResp()
-    },[])
+    
+      const exploreCouponResp = async () => {
+        try {
+          setLoading(true);
+          const resp = await fetchApi('/get-coupons-to-explore', 'post', { client_id, customer_id, user_hash });
+          setExploreCoupon(resp?.data?.data);
+        } catch (error) {
+          console.log("Error fetching coupons to explore:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      const fetchWallet = async()=>{
+        try {
+          const walletLogResp = await fetchApi('/user-walletlogs', 'post', { client_id, customer_id, user_hash });
+          setWalletAmount(walletLogResp?.data?.data?.wallet?.wallet?.amount);
+        } catch (error) {
+          console.log("Error fetching wallet logs:", error);
+          const checkUser = await fetchApi('/sync-external-user', 'post', { client_id, customer_id });
+          if (checkUser.status === 'success') {
+            const walletResponse = await fetchApi("/user-wallet-amount", "post", { client_id, customer_id, user_hash });
+            setWalletAmount(walletResponse?.data?.userWallet?.amount);
+          }
+        }
+      }
+      fetchWallet()
+      exploreCouponResp();
+    }, []);
+    
 
     useEffect(()=>{
       const client_id = mainScript.getAttribute("data-client-id");

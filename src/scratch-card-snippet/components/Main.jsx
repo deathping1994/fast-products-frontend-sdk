@@ -62,12 +62,14 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     if (themeDetails?.data?.coin_name) {
       // @ts-ignore
       window.fc_loyalty_vars = {
+        // @ts-ignore
         ...window.fc_loyalty_vars,
         coin_name: themeDetails?.data?.coin_name,
       };
     } else {
       // @ts-ignore
       window.fc_loyalty_vars = {
+        // @ts-ignore
         ...window.fc_loyalty_vars,
         coin_name: "FC",
       };
@@ -92,9 +94,16 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     const customer_id = mainScript.getAttribute("data-customer-id");
     const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
     const fetchWalletAmount = async ()=>{
-      const amountResp = await fetchApi("/user-wallet-amount", 'post', {customer_id, client_id, user_hash})
-      setWalletAmount(amountResp?.data?.userWallet?.amount)
-      console.log(amountResp?.data)
+      try {
+        const amountResp = await fetchApi("/user-walletlogs", 'post', {customer_id, client_id, user_hash})
+        setWalletAmount(amountResp?.data?.data?.wallet?.wallet?.amount)
+      } catch (error) {
+        const checkUser = await fetchApi('/sync-external-user', 'post', {customer_id, client_id})
+          if(checkUser.status === 'success'){
+            const walletResponse = await fetchApi("/user-wallet-amount","post",{customer_id, client_id, user_hash})
+            setWalletAmount(walletResponse?.data?.userWallet?.amount)
+          }
+      }
     }
     fetchWalletAmount()
   },[screen])
