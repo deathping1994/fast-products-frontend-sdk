@@ -1,12 +1,12 @@
 import { render } from "preact";
-import style from "./shadow-style.css?inline";
-import Main from "./components/Main";
+import style from "./shadow-styles.css?inline";
+import Main from './components/main'
 
-export function App({themeDetailsData, shadowRoot}) {
+export function App({ themeDetailsData, shadowRoot }) {
   return (
     <>
       <div class="widget-container">
-        <Main themeDetailsData={themeDetailsData} shadowRoot={shadowRoot}/>
+        <Main themeDetailsData={themeDetailsData} shadowRoot={shadowRoot} />
       </div>
       <div class="widget-styles"></div>
       <div class="widget-custom-styles"></div>
@@ -24,18 +24,17 @@ export function AppCustomCSS({ customStyles }) {
 
 export const WALLET_API_URI = import.meta.env.VITE_APP_BASE_URL;
 
-async function renderScratchCardSnippet() {
+async function renderReferralPopup() {
   try {
-    const targetDiv = document.getElementById("fc-wallet-scratch-card-snippet-19212");
-    targetDiv.innerHTML = ""
+    const targetDiv = document.body;
     // Load the App content into the shadow DOM
     let shadowTarget = document.createElement("div");
-    shadowTarget.className = "fc-scratch-card-snippet-19212-target";
+    shadowTarget.className = "fc-referral-popup-19212-target";
     shadowTarget.style.display = "block";
     targetDiv.appendChild(shadowTarget);
     let shadow = shadowTarget.attachShadow({ mode: "open" });
     let shadowRoot = document.createElement("div");
-    shadowRoot.className = "fc-scratch-card-snippet-19212-root";
+    shadowRoot.className = "fc-referral-popup-19212-root";
     shadow.appendChild(shadowRoot);
 
     let themeDetailsData;
@@ -44,7 +43,7 @@ async function renderScratchCardSnippet() {
       // @ts-ignore
       themeDetailsData = window?.fc_loyalty_vars?.theme_details;
     } else {
-      const mainScript = document.querySelector("#fc-wallet-scratch-card-snippet-script-19212");
+      const mainScript = document.querySelector("#fc-referral-popup-script-19212");
       const client_id = mainScript?.getAttribute("data-client-id");
       if(client_id){
         const themeDetailsRes = await fetch(
@@ -73,7 +72,8 @@ async function renderScratchCardSnippet() {
       
     }
     
-    const clientCustomStyleData = themeDetailsData?.data?.custom_css || "";
+    const clientCustomStyleData =
+      themeDetailsData?.data?.custom_css || "";
 
     render(<App themeDetailsData={themeDetailsData} shadowRoot={shadowRoot} />, shadowRoot);
     render(<AppCSS />, shadowRoot?.querySelector(".widget-styles"));
@@ -87,5 +87,6 @@ async function renderScratchCardSnippet() {
 }
 
 // @ts-ignore
-window.fc_loyalty_render_wallet_box = renderScratchCardSnippet; //Exposing for external use
-renderScratchCardSnippet(); // Calling on first load
+window.fc_loyalty_render_wallet_box = renderReferralPopup; //Exposing for external use
+renderReferralPopup(); // Calling on first load
+

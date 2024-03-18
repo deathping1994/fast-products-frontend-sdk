@@ -67,7 +67,7 @@ async function renderSpinWheelSnippet() {
           theme_details: themeDetailsData
         }
         // @ts-ignore
-        console.log("shadowroot",window.fc_loyalty_vars);
+        // console.log("shadowroot",window.fc_loyalty_vars);
         
       }
       
