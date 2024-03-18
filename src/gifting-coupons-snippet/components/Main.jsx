@@ -34,7 +34,7 @@ const Main = ({shadowRoot, themeDetailsData}) => {
     });
     function setTheme({ themeDetails }) {
       var cssVariablesScope = shadowRoot.querySelector(".widget-container");
-      console.log("theme details",themeDetails);
+      // console.log("theme details",themeDetails);
       if (cssVariablesScope && themeDetails?.data?.theme_color) {
         cssVariablesScope.style.setProperty(
           "--loyalty_popup_theme_background",
