@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = "@keyframes rotate {\n	from {\n		transform: rotate(0deg);\n	}\n	to {\n		transform: rotate(360deg);\n	}\n}\n\n.spinner {\n	animation: rotate 2s linear infinite;\n}\n\n.inviteAndEarnContainer {\n	padding: 22px;\n	border-radius: 16px;\n	transition: all 0.5s;\n	width: 40%;\n	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\n	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	\n}\n\n.inviteEarnTextContainer {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	font-weight: 400;\n    font-size: 14px;\n    color: #acacac;\n    margin: 8px 0px;\n    text-align: center;\n}\n.inviteAndEarn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 16px;\n}\n\n.inviteAndEarn h2 {\n	font-weight: 700;\n    font-size: 30px;\n}\n\n.inviteAndEarnMessage h4 {\n	text-align: center;\n    font-weight: 500;\n    font-size: 20px;\n    line-height: 30px;\n    margin: 20px 0!important;\n}\n\n.inviteLinkContainer {\n	padding: 0px 12px;\n    background: #fff;\n    border-radius: 4px;\n    border: 1px solid var(--loyalty_popup_theme_background, #000);\n    font-size: 16px;\n    font-weight: 700;\n    display: flex;\n	justify-content: space-between;\n    align-items: center;\n}\n\n.couponCodeContainer {\n	padding: 12px;\n    background: #fff;\n    border-radius: 4px;\n    border: 1px solid var(--loyalty_popup_theme_background, #000);;\n    font-size: 16px;\n    font-weight: 700;\n    display: flex;\n	width: 100%;\n	justify-content: center;\n    align-items: center;\n	position: relative;\n}\n\n.couponCodeContainer img {\n	position: absolute;\n	right: 20px;\n	cursor: pointer;\n}\n\n.inviteLinkContainer p {\n	font-size: 14px;\n}\n\n.inviteLinkContainer img {\n	max-width: 16px;\n	cursor: pointer;\n}\n\n.sendInvitesBtnContainer, .inviteWhatsappBtn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n    text-decoration: none;\n}\n\n\n.inviteWhatsappBtn {\n	height: 40px;\n    width: 96%;\n    background-color: #29a71a;\n    border-radius: 4px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	border: none;\n	cursor: pointer;\n}\n\n.inviteWhatsappBtn p {\n	font-weight: 500;\n	color: white;\n}\n\n.inviteWhatsappBtn img {\n	filter: brightness(0) invert(1);\n}\n\n.inviteRoundedBtn {\n	width: 40px;\n    height: 40px;\n    background-color: #fff;\n    border-radius: 8px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	cursor: pointer;\n	border: 1px solid var(--loyalty_popup_theme_background, #000);\n}\n\n.inviteRoundedBtn img {\n	width: 16px;\n	height: 16px;\n}\n\n\n.alert {\n	position: absolute;\n	bottom: 50%;\n	left: 50%;\n	z-index: 999;\n	background: #160b0b;\n	color: #f4c7c7;\n	font-weight: 400;\n	font-size: 14px;\n	border-radius: 4px;\n	padding: 8px 22px;\n	transition: 0.5s all ease;\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	transform: translate(-50%, -50%);\n	width: fit-content;\n	animation-name: fade-in;\n	animation-duration: 0.5s;\n}\n\n.alert svg.fw-wallet-alert-popup-error {\n	width: 22px;\n	height: 22px;\n	fill: rgb(244, 67, 54);\n	margin-right: 8px;\n}\n\n\n.shareTextContainer {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	font-weight: 400;\n	font-size: 14px;\n	color: #acacac;\n	text-align: center;\n	margin-bottom: 12px;\n}\n\n.dashedDivider {\n	border: none;\n    height: 1px;\n    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);\n    margin: 20px 0 16px 0;\n}\n\n.referralContainer {\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.copied {\n	background-color: green;\n    padding: 8px;\n    position: absolute;\n    top: 55%;\n    left: 48%;\n    border-radius: 12px;\n    color: white;\n    font-weight: bold;\n    font-size: 14px;\n}\n\n.loader{\n	height: 100%;\n	width: 100%;\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n	z-index: 999999;\n	background-color: rgba(255, 255, 255, 0.6);\n}\n\n.loading-screen {\n	padding-top: 16px;\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n}\n\n.loginbtn{\n	background-color: #efefef;\n	text-decoration: none;\n	color: black;\n	padding: 12px;\n	border-radius: 8px;\n}\n\n@media (max-width: 768px) {\n    .inviteAndEarnContainer {\n      width: 100%;\n    }\n  }\n\n  .ellipsis-text {\n	white-space: nowrap;\n	overflow: hidden;\n	text-overflow: ellipsis;\n	max-width: 100%;\n	padding-right: 4px;\n  }\n\n  .widget-container {\n	padding: 16px;\n	display: flex;\n  	justify-content: center;\n  }";
+  const style = ".fc-referral-popup-19212-root h2, p{\n	margin: 0;\n}\n\n.referralPopupContainer {\n	background-color: var(--loyalty_popup_theme_background, #000);\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n	position: absolute;\n	top: 50%;\n	left: 50%;\n	transform: translate(-50%, -50%);\n	max-width: 500px;\n	min-height: fit-content;\n	padding: 16px;\n	border-radius: 16px;\n	z-index: 999;\n	animation-name: fade-in;\n	animation-duration: 1s;\n	margin: 18px;\n	-webkit-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);\n	-moz-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);\n	box-shadow: 0px 0px 50px -13px rgba(0,0,0,0.75);\n}\n\n.referralPopupContainer img {\n	width: 28px;\n	height: 28px;\n	position: absolute;\n	top: 14px;\n	right: 14px;\n	background-color: white;\n	border-radius: 8px;\n}\n.referralPopupContainer h2 {\n	font-size: 28px;\n	color: white;\n}\n\n.referralPopupContainer p {\n	font-size: 16px;\n	text-align: center;\n	color: white;\n}\n.referralPopupContainer span {\n	color: gold;\n}";
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -392,41 +392,6 @@
   function B(n2, t2) {
     return "function" == typeof t2 ? t2(n2) : t2;
   }
-  var _ = 0;
-  function o(o2, e2, n2, t2, f2, l2) {
-    var s2, u2, a2 = {};
-    for (u2 in e2)
-      "ref" == u2 ? s2 = e2[u2] : a2[u2] = e2[u2];
-    var i2 = { type: o2, props: a2, key: n2, ref: s2, __k: null, __: null, __b: 0, __e: null, __d: void 0, __c: null, __h: null, constructor: void 0, __v: --_, __source: f2, __self: l2 };
-    if ("function" == typeof o2 && (s2 = o2.defaultProps))
-      for (u2 in s2)
-        void 0 === a2[u2] && (a2[u2] = s2[u2]);
-    return l$1.vnode && l$1.vnode(i2), i2;
-  }
-  const Alert = ({
-    message
-  }) => {
-    const capitalizeFirstLetter = (str) => {
-      const alphabeticStr = str.replace(/[^a-zA-Z ]/g, "");
-      return alphabeticStr.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(" ");
-    };
-    const formattedMessage = capitalizeFirstLetter(message || "Something went wrong");
-    return o("div", {
-      class: "alert",
-      children: [o("svg", {
-        focusable: "false",
-        class: "fw-wallet-alert-popup-error",
-        "aria-hidden": "true",
-        viewBox: "0 0 24 24",
-        "data-testid": "ErrorOutlineIcon",
-        children: o("path", {
-          d: "M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
-        })
-      }), o("p", {
-        children: `${formattedMessage}`
-      })]
-    });
-  };
   const WALLET_API_URI$1 = "https://fastloyaltyapi.farziengineer.co";
   const fetchApi = async (route, method, data) => {
     const resp = await fetch(`${WALLET_API_URI$1}${route}`, {
@@ -441,295 +406,102 @@
     const response = await resp.json();
     return response;
   };
-  const Loading = () => {
+  var _ = 0;
+  function o(o2, e2, n2, t2, f2, l2) {
+    var s2, u2, a2 = {};
+    for (u2 in e2)
+      "ref" == u2 ? s2 = e2[u2] : a2[u2] = e2[u2];
+    var i2 = { type: o2, props: a2, key: n2, ref: s2, __k: null, __: null, __b: 0, __e: null, __d: void 0, __c: null, __h: null, constructor: void 0, __v: --_, __source: f2, __self: l2 };
+    if ("function" == typeof o2 && (s2 = o2.defaultProps))
+      for (u2 in s2)
+        void 0 === a2[u2] && (a2[u2] = s2[u2]);
+    return l$1.vnode && l$1.vnode(i2), i2;
+  }
+  const main = ({
+    themeDetailsData,
+    shadowRoot
+  }) => {
+    const mainScript = document.querySelector("#fc-referral-popup-script-19212");
+    const client_id = mainScript.getAttribute("data-client-id");
+    const customer_id = mainScript.getAttribute("data-customer-id");
+    const clientName = mainScript.getAttribute("client-name");
+    console.log("deded", client_id, customer_id);
+    const [referralPopup, setReferralPopup] = h(false);
+    const [referedAmount, setReferedAmount] = h(0);
+    async function redeemReferHash({
+      client_id: client_id2,
+      customer_id: customer_id2
+    }) {
+      const fc_refer_hash = localStorage.getItem("fc_refer_hash");
+      if (fc_refer_hash) {
+        setTimeout(async () => {
+          var _a, _b, _c;
+          try {
+            const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
+            if (!localStorage.getItem(`fc-referral-code-${customer_id2}`)) {
+              try {
+                const resp = await fetchApi("/get-referral-code", "post", {
+                  client_id: client_id2,
+                  customer_id: customer_id2,
+                  user_hash
+                });
+                if ((resp == null ? void 0 : resp.status) === "success") {
+                  localStorage.setItem(`fc-referral-code-${customer_id2}`, (_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.path);
+                }
+              } catch (error) {
+                console.log("error in referral code");
+              }
+            }
+            const response = await fetchApi("/redeem-referral-code", "post", {
+              client_id: client_id2,
+              customer_id: customer_id2,
+              refer_hash: fc_refer_hash
+            });
+            if ((response == null ? void 0 : response.status) === "success") {
+              setReferralPopup(true);
+              setReferedAmount((_c = response == null ? void 0 : response.data) == null ? void 0 : _c.referredReward);
+              localStorage.removeItem("fc_refer_hash");
+              return;
+            }
+          } catch (err) {
+            console.log("error in redeemReferHash", err);
+          }
+        }, 2e3);
+      }
+    }
+    p(() => {
+      redeemReferHash({
+        client_id,
+        customer_id
+      });
+    }, [referralPopup]);
+    const handleCloseReferralPopup = () => {
+      setReferralPopup(false);
+      location.reload();
+    };
     return o(k$1, {
-      children: o("main", {
-        class: "loading-screen",
-        children: [o("svg", {
-          class: "spinner",
-          width: "50px",
-          height: "50px",
-          viewBox: "0 0 66 66",
-          xmlns: "http://www.w3.org/2000/svg",
-          children: [o("circle", {
-            class: "path",
-            fill: "transparent",
-            "stroke-width": "2",
-            cx: "33",
-            cy: "33",
-            r: "30",
-            stroke: "url(#gradient)"
-          }), o("linearGradient", {
-            id: "gradient",
-            children: [o("stop", {
-              offset: "50%",
-              "stop-color": "#009cdf",
-              "stop-opacity": "1"
-            }), o("stop", {
-              offset: "65%",
-              "stop-color": "#009cdf",
-              "stop-opacity": ".5"
-            }), o("stop", {
-              offset: "100%",
-              "stop-color": "#009cdf",
-              "stop-opacity": "0"
-            })]
-          }), o("svg", {
-            class: "spinner-dot dot",
-            width: "5px",
-            height: "5px",
-            viewBox: "0 0 66 66",
-            xmlns: "http://www.w3.org/2000/svg",
-            x: "37",
-            y: "1.5",
-            children: o("circle", {
-              class: "path",
-              fill: "#009cdf",
-              cx: "33",
-              cy: "33",
-              r: "30"
-            })
-          })]
+      children: referralPopup && customer_id && o("div", {
+        class: "referralPopupContainer",
+        children: [o("img", {
+          onClick: handleCloseReferralPopup,
+          src: "https://media.farziengineer.co/farziwallet/cross.png",
+          alt: ""
+        }), o("h2", {
+          children: ["Welcome to ", clientName]
         }), o("p", {
-          children: "Loading, please wait..."
+          children: ["You have received ", referedAmount, " points into your ", clientName, " wallet for signing up with us."]
         })]
       })
     });
   };
-  const Main = ({
-    shadowRoot,
-    themeDetailsData
-  }) => {
-    var _a;
-    const [login, setLogin] = h(false);
-    const [loading, setLoading] = h(false);
-    const [error, setError] = h(false);
-    const [showCopied, setShowCopied] = h(false);
-    const [inviteMsg, setInviteMsg] = h("");
-    const mainScript = document.getElementById("fc-wallet-referral-snippet-ui-script-19212");
-    const customer_id = mainScript.getAttribute("data-customer-id");
-    const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
-    const client_id = mainScript.getAttribute("data-client-id");
-    if (customer_id) {
-      setLogin(true);
-    }
-    console.log("running referral ui ");
-    p(() => {
-      const fetch2 = async () => {
-        try {
-          const walletResponse = await fetchApi("/user-walletlogs", "post", {
-            client_id,
-            customer_id,
-            user_hash
-          });
-        } catch (error2) {
-          const checkUser = await fetchApi("/sync-external-user", "post", {
-            client_id,
-            customer_id
-          });
-          if (checkUser.status === "success") {
-            console.log("user mil gya");
-          }
-        }
-      };
-      fetch2();
-    }, []);
-    const handleShareClick = async () => {
-      var _a2;
-      if (!localStorage.getItem(`fc-whatsapp-msg-${customer_id}`)) {
-        const whatsappResp = await fetchApi("/get-referred-message", "post", {
-          client_id,
-          customer_id,
-          user_hash
-        });
-        if ((whatsappResp == null ? void 0 : whatsappResp.status) === "success") {
-          const message = (_a2 = whatsappResp == null ? void 0 : whatsappResp.data) == null ? void 0 : _a2.getReferredMessage;
-          localStorage.setItem(`fc-whatsapp-msg-${customer_id}`, message);
-        } else {
-          showError();
-        }
-      } else {
-        if (navigator.share) {
-          navigator.share({
-            title: "Invite your friend to get rewards",
-            text: localStorage.getItem(`fc-whatsapp-msg-${customer_id}`)
-          }).then(() => console.log("Successful share")).catch((error2) => console.log("Error sharing", error2));
-        } else {
-          navigator.clipboard.writeText(localStorage.getItem(`fc-whatsapp-msg-${customer_id}`));
-          setShowCopied(true);
-          setTimeout(() => {
-            setShowCopied(false);
-          }, 1e3);
-        }
-      }
-    };
-    p(() => {
-      const fetchData = async () => {
-        var _a2;
-        try {
-          setLoading(true);
-          if (!localStorage.getItem(`fc-referral-code-${customer_id}`)) {
-            const resp = await fetchApi("/get-referral-code", "post", {
-              client_id,
-              customer_id,
-              user_hash
-            });
-            if ((resp == null ? void 0 : resp.status) === "success") {
-              localStorage.setItem(`fc-referral-code-${customer_id}`, (_a2 = resp == null ? void 0 : resp.data) == null ? void 0 : _a2.path);
-            } else {
-              showError();
-            }
-          }
-        } catch (error2) {
-          console.error("Error fetching data:", error2);
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchData();
-    }, []);
-    p(() => {
-      const fetchData = async () => {
-        var _a2, _b;
-        if (!localStorage.getItem(`fc-invite-text-${customer_id}`)) {
-          const resp = await fetchApi("/get-referrer-message", "post", {
-            client_id
-          });
-          if ((resp == null ? void 0 : resp.status) === "success") {
-            localStorage.setItem(`fc-invite-text-${customer_id}`, (_a2 = resp == null ? void 0 : resp.data) == null ? void 0 : _a2.getReferrerMessage);
-            setInviteMsg((_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.getReferrerMessage);
-          } else {
-            showError();
-          }
-        } else {
-          setInviteMsg(localStorage.getItem(`fc-invite-text-${customer_id}`));
-        }
-      };
-      fetchData();
-    }, []);
-    const showError = () => {
-      setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 3e3);
-    };
-    const copyReferralLinkFunc = () => {
-      console.log("referral copy func", localStorage.getItem(`fc-referral-code-${customer_id}`));
-      setShowCopied(true);
-      navigator.clipboard.writeText(window.location.origin + (localStorage.getItem(`fc-referral-code-${customer_id}`) || "/account/register"));
-      setTimeout(() => {
-        setShowCopied(false);
-      }, 1e3);
-    };
-    const hanldeWhatsappClick = async () => {
-      var _a2;
-      if (localStorage.getItem(`fc-whatsapp-msg-${client_id}`)) {
-        window.open(`https://api.whatsapp.com/send?text=${localStorage.getItem(`fc-whatsapp-msg-${client_id}`)}`, "_blank");
-      } else {
-        try {
-          const whatsappResp = await fetchApi("/get-referred-message", "post", {
-            client_id,
-            customer_id,
-            user_hash
-          });
-          if ((whatsappResp == null ? void 0 : whatsappResp.status) === "success") {
-            const message = (_a2 = whatsappResp == null ? void 0 : whatsappResp.data) == null ? void 0 : _a2.getReferredMessage;
-            localStorage.setItem(`fc-whatsapp-msg-${client_id}`, message);
-            window.open(`https://api.whatsapp.com/send?text=${message}`, "_blank");
-          } else {
-            showError();
-          }
-        } catch (error2) {
-          showError();
-        }
-      }
-    };
-    return login ? o(k$1, {
-      children: [loading ? o("div", {
-        className: "loader",
-        children: o(Loading, {})
-      }) : o("div", {
-        className: "referralContainer",
-        children: o("div", {
-          className: "inviteAndEarnContainer",
-          children: [o("div", {
-            className: "inviteAndEarn",
-            children: [o("img", {
-              src: "https://media.farziengineer.co/farziwallet/invite-earn.png",
-              alt: ""
-            }), o("h2", {
-              children: "Invite & Earn"
-            })]
-          }), o("div", {
-            className: "inviteAndEarnMessage",
-            children: o("h4", {
-              children: inviteMsg
-            })
-          }), o("div", {
-            className: "inviteEarnTextContainer",
-            children: o("p", {
-              children: "copy referral link"
-            })
-          }), showCopied && o("div", {
-            className: "copied",
-            children: "copied"
-          }), o("div", {
-            className: "inviteLinkContainer",
-            children: [o("p", {
-              className: "ellipsis-text",
-              children: `${window.location.origin}${localStorage.getItem(`fc-referral-code-${customer_id}`) || "/account/register"}`
-            }), o("img", {
-              onClick: copyReferralLinkFunc,
-              src: "https://media.farziengineer.co/farziwallet/copy-icon.png",
-              alt: ""
-            })]
-          }), o("div", {
-            children: o("hr", {
-              className: "dashedDivider"
-            })
-          }), o("div", {
-            className: "shareTextContainer",
-            children: o("p", {
-              children: "or share with"
-            })
-          }), o("div", {
-            className: "sendInvitesBtnContainer",
-            children: [o("button", {
-              onClick: () => hanldeWhatsappClick(),
-              className: "inviteWhatsappBtn",
-              children: [o("img", {
-                src: "https://media.farziengineer.co/farziwallet/whatsapp-icon.png",
-                alt: ""
-              }), o("p", {
-                children: "Send on WhatsApp"
-              })]
-            }), o("button", {
-              onClick: () => handleShareClick(),
-              className: "inviteRoundedBtn",
-              children: o("img", {
-                src: "https://media.farziengineer.co/farziwallet/share_arrow.png",
-                alt: ""
-              })
-            })]
-          })]
-        })
-      }), error && o(Alert, {
-        message: `Something went wrong`
-      })]
-    }) : o("a", {
-      class: "loginbtn",
-      href: `/account/login`,
-      children: "Login to Continue"
-    });
-  };
   function App({
-    shadowRoot,
-    themeDetailsData
+    themeDetailsData,
+    shadowRoot
   }) {
     return o(k$1, {
       children: [o("div", {
         class: "widget-container",
-        children: o(Main, {
+        children: o(main, {
           themeDetailsData,
           shadowRoot
         })
@@ -753,27 +525,25 @@
     });
   }
   const WALLET_API_URI = "https://fastloyaltyapi.farziengineer.co";
-  async function renderReferralSnippet() {
+  async function renderReferralPopup() {
     var _a, _b, _c;
     try {
-      const targetDiv = document.getElementById("fc-wallet-referral-snippet-ui-19212");
-      targetDiv.innerHTML = "";
+      const targetDiv = document.body;
       let shadowTarget = document.createElement("div");
-      shadowTarget.className = "fc-referral-ui-snippet-19212-target";
+      shadowTarget.className = "fc-referral-popup-19212-target";
       shadowTarget.style.display = "block";
       targetDiv.appendChild(shadowTarget);
       let shadow = shadowTarget.attachShadow({
         mode: "open"
       });
       let shadowRoot = document.createElement("div");
-      shadowRoot.className = "fc-referral-ui-snippet-19212-root";
+      shadowRoot.className = "fc-referral-popup-19212-root";
       shadow.appendChild(shadowRoot);
       let themeDetailsData;
       if ((_a = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _a.theme_details) {
         themeDetailsData = (_b = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _b.theme_details;
       } else {
-        const mainScript = document.querySelector("#fc-wallet-referral-snippet-ui-script-19212");
-        console.log("mainScript", mainScript);
+        const mainScript = document.querySelector("#fc-referral-popup-script-19212");
         const client_id = mainScript == null ? void 0 : mainScript.getAttribute("data-client-id");
         if (client_id) {
           const themeDetailsRes = await fetch(`${WALLET_API_URI}/get-theme-details`, {
@@ -791,7 +561,6 @@
             ...window.fc_loyalty_vars,
             theme_details: themeDetailsData
           };
-          console.log("shadowroot", window.fc_loyalty_vars);
         }
       }
       const clientCustomStyleData = ((_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.custom_css) || "";
@@ -807,6 +576,6 @@
       console.log("error", err);
     }
   }
-  window.fc_loyalty_render_wallet_box = renderReferralSnippet;
-  renderReferralSnippet();
+  window.fc_loyalty_render_wallet_box = renderReferralPopup;
+  renderReferralPopup();
 })();

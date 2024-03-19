@@ -306,17 +306,60 @@
 	justify-content: center;
 }
 
-.widget-container {
+.alert {
+	position: absolute;
+	bottom: 50%;
+	left: 50%;
+	z-index: 999;
+	background: #160b0b;
+	color: #f4c7c7;
+	font-weight: 400;
+	font-size: 14px;
+	border-radius: 4px;
+	padding: 8px 22px;
+	transition: 0.5s all ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: translate(-50%, -50%);
+	width: fit-content;
+	animation-name: fade-in;
+	animation-duration: 0.5s;
+}
+
+.alert svg.fw-wallet-alert-popup-error {
+	width: 22px;
+	height: 22px;
+	fill: rgb(244, 67, 54);
+	margin-right: 8px;
+}
+
+.fc-scratch-card-snippet-19212-root .widget-container {
     --loyalty_popup_theme_background: #000000;
 	--coin-svg-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23000000'/%3E%3Cpath d='M11.6003 6.28047C11.6301 6.19829 11.6845 6.12728 11.7561 6.0771C11.8277 6.02692 11.913 6 12.0004 6C12.0879 6 12.1732 6.02692 12.2448 6.0771C12.3164 6.12728 12.3708 6.19829 12.4006 6.28047L12.8076 7.39245C13.1264 8.2644 13.6316 9.05626 14.2881 9.71274C14.9446 10.3692 15.7364 10.8745 16.6084 11.1933L17.7195 11.6003C17.8017 11.6301 17.8727 11.6845 17.9229 11.7561C17.9731 11.8277 18 11.913 18 12.0004C18 12.0879 17.9731 12.1732 17.9229 12.2448C17.8727 12.3164 17.8017 12.3708 17.7195 12.4006L16.6084 12.8076C15.7364 13.1264 14.9446 13.6316 14.2881 14.2881C13.6316 14.9446 13.1264 15.7364 12.8076 16.6084L12.4006 17.7195C12.3708 17.8017 12.3164 17.8727 12.2448 17.9229C12.1732 17.9731 12.0879 18 12.0004 18C11.913 18 11.8277 17.9731 11.7561 17.9229C11.6845 17.8727 11.6301 17.8017 11.6003 17.7195L11.1933 16.6084C10.8745 15.7364 10.3692 14.9446 9.71274 14.2881C9.05626 13.6316 8.2644 13.1264 7.39245 12.8076L6.28047 12.4006C6.19829 12.3708 6.12728 12.3164 6.0771 12.2448C6.02692 12.1732 6 12.0879 6 12.0004C6 11.913 6.02692 11.8277 6.0771 11.7561C6.12728 11.6845 6.19829 11.6301 6.28047 11.6003L7.39245 11.1933C8.2644 10.8745 9.05626 10.3692 9.71274 9.71274C10.3692 9.05626 10.8745 8.2644 11.1933 7.39245L11.6003 6.28047Z' fill='white'/%3E%3C/svg%3E%0A");
 	--coin-svg-inverted-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 19 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9.5' cy='9.5' r='9.5' fill='white'/%3E%3Cpath d='M9.18353 4.97204C9.20715 4.90698 9.25022 4.85076 9.3069 4.81104C9.36358 4.77131 9.43112 4.75 9.50034 4.75C9.56955 4.75 9.63709 4.77131 9.69377 4.81104C9.75045 4.85076 9.79353 4.90698 9.81714 4.97204L10.1393 5.85236C10.3917 6.54265 10.7917 7.16954 11.3114 7.68925C11.8311 8.20896 12.458 8.60897 13.1483 8.86133L14.028 9.18353C14.093 9.20715 14.1492 9.25022 14.189 9.3069C14.2287 9.36358 14.25 9.43112 14.25 9.50034C14.25 9.56955 14.2287 9.63709 14.189 9.69377C14.1492 9.75045 14.093 9.79353 14.028 9.81714L13.1483 10.1393C12.458 10.3917 11.8311 10.7917 11.3114 11.3114C10.7917 11.8311 10.3917 12.458 10.1393 13.1483L9.81714 14.028C9.79353 14.093 9.75045 14.1492 9.69377 14.189C9.63709 14.2287 9.56955 14.25 9.50034 14.25C9.43112 14.25 9.36358 14.2287 9.3069 14.189C9.25022 14.1492 9.20715 14.093 9.18353 14.028L8.86133 13.1483C8.60897 12.458 8.20896 11.8311 7.68925 11.3114C7.16954 10.7917 6.54265 10.3917 5.85236 10.1393L4.97204 9.81714C4.90698 9.79353 4.85076 9.75045 4.81104 9.69377C4.77131 9.63709 4.75 9.56955 4.75 9.50034C4.75 9.43112 4.77131 9.36358 4.81104 9.3069C4.85076 9.25022 4.90698 9.20715 4.97204 9.18353L5.85236 8.86133C6.54265 8.60897 7.16954 8.20896 7.68925 7.68925C8.20896 7.16954 8.60897 6.54265 8.86133 5.85236L9.18353 4.97204Z' fill='%23000000'/%3E%3C/svg%3E%0A");
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     width: 60%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: start;
 }
 
 
 .spinner {
 	animation: rotate 2s linear infinite;
+}
+
+.loading-screen{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 999999;
+	background-color: rgba(255, 255, 255, 0.6);
 }
 
 .viewAllCoupons {
@@ -525,7 +568,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0px 16px;
 	gap: 4em;
 	flex-wrap: wrap;
   }
@@ -565,7 +607,8 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0px 16px;
+	width: 100%;
+	margin-top: 1em;
 }
 
 .showGamesTab h2 {
@@ -681,7 +724,7 @@
 
 .gamesCardDesc {
 	font-weight: 500;
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: 8px;
 }
 
@@ -778,6 +821,10 @@
 	border: none;
 }
 
+.spinWheelBottom {
+	width: 100%;
+}
+
 .spinWheelBottom hr {
 	width: 100%;
 	border: none;
@@ -798,12 +845,80 @@
 
 .spinWinContainer {
 	position: absolute;
-	top: 200px;
-	left: 100px;
 }
 
 .gamesCardTitle {
 	font-size: 18px;
+}
+
+.scratchCardDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.scratchCardDiv canvas {
+	z-index: 2;
+	border-radius: 8px;
+	cursor: grabbing;
+}
+
+.scratchCardDiv h4 {
+	position: absolute;
+	top: 45%;
+}
+
+.scratchCardDiv img {
+	position: absolute;
+	z-index: 3;
+}
+
+.walletCoinContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.walletCoinContainer h4 {
+	font-weight: 700;
+    font-size: 20px
+}
+
+.scratchCardBox {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.scratchCardContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2em;
+}
+
+@media (max-width:768px) {
+	.fc-scratch-card-snippet-19212-root .widget-container{
+		width: 85%;
+		justify-content: start;
+	}
+}
+
+
+
+.loginbtn{
+	background-color: #efefef;
+	text-decoration: none;
+	color: black;
+	padding: 12px;
+	width: fit-content;
+	border-radius: 8px;
 }`;
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
@@ -937,6 +1052,11 @@
   const Alert$1 = ({
     message
   }) => {
+    const capitalizeFirstLetter = (str) => {
+      const alphabeticStr = str.replace(/[^a-zA-Z ]/g, "");
+      return alphabeticStr.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(" ");
+    };
+    const formattedMessage = capitalizeFirstLetter(message || "Something went wrong");
     return o("div", {
       class: "alert",
       children: [o("svg", {
@@ -949,7 +1069,7 @@
           d: "M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
         })
       }), o("p", {
-        children: `${message || "Something went wrong"}`
+        children: `${formattedMessage}`
       })]
     });
   };
@@ -1132,10 +1252,6 @@
 	--coin-svg-inverted-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 19 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9.5' cy='9.5' r='9.5' fill='white'/%3E%3Cpath d='M9.18353 4.97204C9.20715 4.90698 9.25022 4.85076 9.3069 4.81104C9.36358 4.77131 9.43112 4.75 9.50034 4.75C9.56955 4.75 9.63709 4.77131 9.69377 4.81104C9.75045 4.85076 9.79353 4.90698 9.81714 4.97204L10.1393 5.85236C10.3917 6.54265 10.7917 7.16954 11.3114 7.68925C11.8311 8.20896 12.458 8.60897 13.1483 8.86133L14.028 9.18353C14.093 9.20715 14.1492 9.25022 14.189 9.3069C14.2287 9.36358 14.25 9.43112 14.25 9.50034C14.25 9.56955 14.2287 9.63709 14.189 9.69377C14.1492 9.75045 14.093 9.79353 14.028 9.81714L13.1483 10.1393C12.458 10.3917 11.8311 10.7917 11.3114 11.3114C10.7917 11.8311 10.3917 12.458 10.1393 13.1483L9.81714 14.028C9.79353 14.093 9.75045 14.1492 9.69377 14.189C9.63709 14.2287 9.56955 14.25 9.50034 14.25C9.43112 14.25 9.36358 14.2287 9.3069 14.189C9.25022 14.1492 9.20715 14.093 9.18353 14.028L8.86133 13.1483C8.60897 12.458 8.20896 11.8311 7.68925 11.3114C7.16954 10.7917 6.54265 10.3917 5.85236 10.1393L4.97204 9.81714C4.90698 9.79353 4.85076 9.75045 4.81104 9.69377C4.77131 9.63709 4.75 9.56955 4.75 9.50034C4.75 9.43112 4.77131 9.36358 4.81104 9.3069C4.85076 9.25022 4.90698 9.20715 4.97204 9.18353L5.85236 8.86133C6.54265 8.60897 7.16954 8.20896 7.68925 7.68925C8.20896 7.16954 8.60897 6.54265 8.86133 5.85236L9.18353 4.97204Z' fill='%23000000'/%3E%3C/svg%3E%0A");
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	
-}
-
-.widget-container{
-	position: relative;
 }
 
 @keyframes rotate {
@@ -1597,6 +1713,7 @@ body {
     justify-content: center;
     align-items: center;
 	border: none;
+	cursor: pointer;
 }
 
 .inviteWhatsappBtn p {
@@ -1736,6 +1853,7 @@ body {
 	display: flex;
 	justify-content: end;
 	align-items: center;
+	cursor: pointer;
 }
 
 .couponUnlockBtn {
@@ -1990,6 +2108,9 @@ body {
 	align-items: center;
 	padding: 0px 16px;
 	gap: 16px;
+	overflow-y: scroll;
+	scrollbar-width: none;
+	margin-top: 8px;
 }
 
 .viewAllCoupons {
@@ -2261,6 +2382,7 @@ body {
 .screenHeader img {
 	width: 30px;
 	height: 30px;
+	cursor: pointer;
 }
 
 .walletCoinContainer {
@@ -2579,22 +2701,28 @@ body {
   };
   const InviteCard = ({
     onClick,
+    customer_id,
     client_id
   }) => {
     const [cardMessage, setCardMessage] = h("");
     p(() => {
-      const fetch2 = async () => {
-        var _a;
-        const resp = await fetchApi("/get-referrer-message", "post", {
-          client_id
-        });
-        if ((resp == null ? void 0 : resp.status) !== "success") {
-          setCardMessage("Invite your friends to get rewards");
-        } else {
-          setCardMessage((_a = resp == null ? void 0 : resp.data) == null ? void 0 : _a.getReferrerMessage);
-        }
-      };
-      fetch2();
+      if (localStorage.getItem(`fc-invite-text-${customer_id}`)) {
+        setCardMessage(localStorage.getItem(`fc-invite-text-${customer_id}`));
+      } else {
+        const fetch2 = async () => {
+          var _a, _b;
+          const resp = await fetchApi("/get-referrer-message", "post", {
+            client_id
+          });
+          if ((resp == null ? void 0 : resp.status) !== "success") {
+            setCardMessage("Invite your friends to get rewards");
+          } else {
+            setCardMessage((_a = resp == null ? void 0 : resp.data) == null ? void 0 : _a.getReferrerMessage);
+            localStorage.setItem(`fc-invite-text-${customer_id}`, (_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.getReferrerMessage);
+          }
+        };
+        fetch2();
+      }
     }, []);
     return o(k$1, {
       children: o("div", {
@@ -2611,7 +2739,7 @@ body {
             children: [o("h2", {
               children: "Invite & Earn"
             }), o("p", {
-              children: cardMessage
+              children: localStorage.getItem(`fc-invite-text-${customer_id}`) || cardMessage
             })]
           })]
         }), o("button", {
@@ -2625,6 +2753,11 @@ body {
   const Alert = ({
     message
   }) => {
+    const capitalizeFirstLetter = (str) => {
+      const alphabeticStr = str.replace(/[^a-zA-Z ]/g, "");
+      return alphabeticStr.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(" ");
+    };
+    const formattedMessage = capitalizeFirstLetter(message || "Something went wrong");
     return o("div", {
       class: "alert",
       children: [o("svg", {
@@ -2637,7 +2770,7 @@ body {
           d: "M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
         })
       }), o("p", {
-        children: `${message || "Something went wrong"}`
+        children: `${formattedMessage}`
       })]
     });
   };
@@ -2645,12 +2778,10 @@ body {
     closeOverlay,
     customerDetails
   }) => {
-    const [referralData, setReferralData] = h({
+    h({
       referral_code: "",
       path: ""
     });
-    const [invitemsg, setInvitemsg] = h("");
-    const [whatsappmsg, setWhatsappmsg] = h("");
     const [loading, setLoading] = h(false);
     const [error, setError] = h(false);
     const showError = () => {
@@ -2660,35 +2791,42 @@ body {
       }, 3e3);
     };
     const [showCopied, setShowCopied] = h(false);
-    p(() => {
-      const fetchReferralCode = async () => {
-        var _a, _b;
+    const handleShareClick = () => {
+      if (navigator.share) {
+        navigator.share({
+          title: "Invite your friend to get rewards",
+          text: localStorage.getItem("fc-whatsapp-msg")
+        }).then(() => console.log("Successful share")).catch((error2) => console.log("Error sharing", error2));
+      } else {
+        navigator.clipboard.writeText(localStorage.getItem("fc-whatsapp-msg"));
+        setShowCopied(true);
+        setTimeout(() => {
+          setShowCopied(false);
+        }, 1e3);
+      }
+    };
+    const hanldeWhatsappClick = async () => {
+      var _a;
+      if (localStorage.getItem("fc-whatsapp-msg")) {
+        window.open(`https://api.whatsapp.com/send?text=${localStorage.getItem("fc-whatsapp-msg")}`, "_blank");
+      } else {
         try {
-          setLoading(true);
-          const resp = await fetchApi("/get-referral-code", "post", customerDetails);
-          const response = await fetchApi("/get-referral-message", "post", {
-            client_id: customerDetails == null ? void 0 : customerDetails.client_id
-          });
           const whatsappResp = await fetchApi("/get-referred-message", "post", customerDetails);
-          if ((response == null ? void 0 : response.status) !== "success") {
-            setInvitemsg("Share with you friends to get rewards.");
-            setWhatsappmsg("Share this with whatsapp");
+          if ((whatsappResp == null ? void 0 : whatsappResp.status) === "success") {
+            const message = (_a = whatsappResp == null ? void 0 : whatsappResp.data) == null ? void 0 : _a.getReferredMessage;
+            localStorage.setItem("fc-whatsapp-msg", message);
+            window.open(`https://api.whatsapp.com/send?text=${message}`, "_blank");
           } else {
-            setInvitemsg((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.getReferralMessage);
-            setWhatsappmsg((_b = whatsappResp == null ? void 0 : whatsappResp.data) == null ? void 0 : _b.getReferredMessage);
+            showError();
           }
-          setReferralData(resp == null ? void 0 : resp.data);
         } catch (error2) {
           showError();
-        } finally {
-          setLoading(false);
         }
-      };
-      fetchReferralCode();
-    }, []);
+      }
+    };
     const copyReferralLinkFunc = () => {
       setShowCopied(true);
-      navigator.clipboard.writeText(window.location.origin + ((referralData == null ? void 0 : referralData.path) || "/account/register"));
+      navigator.clipboard.writeText(window.location.origin + (localStorage.getItem(`fc-referral-code-${customerDetails == null ? void 0 : customerDetails.customer_id}`) || "/account/register"));
       setTimeout(() => {
         setShowCopied(false);
       }, 1e3);
@@ -2718,7 +2856,7 @@ body {
         }), o("div", {
           class: "inviteAndEarnMessage",
           children: o("h4", {
-            children: invitemsg
+            children: localStorage.getItem(`fc-invite-text-${customerDetails == null ? void 0 : customerDetails.customer_id}`)
           })
         }), o("div", {
           class: "inviteEarnTextContainer",
@@ -2731,7 +2869,7 @@ body {
         }), o("div", {
           class: "inviteLinkContainer",
           children: [o("p", {
-            children: [`${window.location.origin}${(referralData == null ? void 0 : referralData.path) || "/account/register"}`.substring(0, 29), "..."]
+            children: [`${window.location.origin}${localStorage.getItem(`fc-referral-code-${customerDetails == null ? void 0 : customerDetails.customer_id}`) || "/account/register"}`.substring(0, 29), "..."]
           }), o("img", {
             onClick: copyReferralLinkFunc,
             src: "https://media.farziengineer.co/farziwallet/copy-icon.png",
@@ -2748,9 +2886,8 @@ body {
           })
         }), o("div", {
           class: "sendInvitesBtnContainer",
-          children: [o("a", {
-            href: `https://api.whatsapp.com/send?text=${whatsappmsg}`,
-            target: "_blank",
+          children: [o("button", {
+            onClick: () => hanldeWhatsappClick(),
             class: "inviteWhatsappBtn",
             children: [o("img", {
               src: "https://media.farziengineer.co/farziwallet/whatsapp-icon.png",
@@ -2758,9 +2895,8 @@ body {
             }), o("p", {
               children: "Send on whatsapp"
             })]
-          }), o("a", {
-            href: `sms://18005555555/?body=${whatsappmsg}`,
-            target: "_blank",
+          }), o("button", {
+            onClick: handleShareClick,
             class: "inviteRoundedBtn",
             children: o("img", {
               src: "https://media.farziengineer.co/farziwallet/share_arrow.png",
@@ -2768,7 +2904,9 @@ body {
             })
           })]
         })]
-      }), error && o(Alert, {})]
+      }), error && o(Alert, {
+        message: `Something went wrong`
+      })]
     });
   };
   const GamesCard = ({
@@ -2937,22 +3075,27 @@ body {
   const ShowGames = ({
     funcSetSpinWheelAmount,
     showPlayGameScreen,
-    walletAmount,
     customerDetails,
     screenDetails
   }) => {
     const [activeTab, setActiveTab] = h("");
     const [loading, setLoading] = h(false);
+    const [walletAmount, setWalletAmount] = h(0);
     const [gamesData, setGamesData] = h([]);
     if (activeTab === "") {
       setActiveTab("available");
     }
     p(() => {
       const fetchData = async () => {
+        var _a, _b;
         try {
           setLoading(true);
           const response = await fetchApi("/get-featured-spin-wheels", "post", customerDetails);
+          const amountResp = await fetchApi("/user-wallet-amount", "post", {
+            ...customerDetails
+          });
           setGamesData(response == null ? void 0 : response.data);
+          setWalletAmount((_b = (_a = amountResp == null ? void 0 : amountResp.data) == null ? void 0 : _a.userWallet) == null ? void 0 : _b.amount);
         } catch (error) {
           console.error("Error fetching wallet data:", error);
         } finally {
@@ -3050,13 +3193,13 @@ body {
   const PlayGame = ({
     shadowRoot,
     spinWheelAmount,
-    walletAmount,
     showSpinGameScreen,
     customerDetails
   }) => {
     const spinAudio = new Audio("https://media.farziengineer.co/farziwallet/spinwheel.mp3");
     const [btnVisibility, setBtnVisibility] = h(false);
     const [showWinPopup, setShowWinPopup] = h(false);
+    const [walletAmount, setWalletAmount] = h(0);
     const [spinWheelRewardData, setSpinWheelRewardData] = h([]);
     const [loading, setLoading] = h(true);
     const [error, setError] = h({
@@ -3091,6 +3234,16 @@ body {
       script1.innerHTML = fileContent1;
       document.querySelector("body").appendChild(script1);
     };
+    p(() => {
+      const fetchWalletAmount = async () => {
+        var _a, _b;
+        const amountResp = await fetchApi("/user-wallet-amount", "post", {
+          ...customerDetails
+        });
+        setWalletAmount((_b = (_a = amountResp == null ? void 0 : amountResp.data) == null ? void 0 : _a.userWallet) == null ? void 0 : _b.amount);
+      };
+      fetchWalletAmount();
+    }, [showWinPopup]);
     p(() => {
       const fetchRewardArray = async () => {
         const response = await fetchApi(`/get-spin-wheel-rewards`, "post", {
@@ -3362,21 +3515,26 @@ body {
   const ShowScratchCard = ({
     funcScratchCardAmount,
     showScratchCardScreen,
-    walletAmount,
     customerDetails
   }) => {
     const [activeTab, setActiveTab] = h("");
     const [loading, setLoading] = h(false);
+    const [walletAmount, setWalletAmount] = h(0);
     const [scratchCardData, setScratchCardData] = h([]);
     if (activeTab === "") {
       setActiveTab("available");
     }
     p(() => {
       const fetchScratchCard = async () => {
+        var _a, _b;
         try {
           setLoading(true);
           const response = await fetchApi("/get-featured-scratch-cards", "post", customerDetails);
           setScratchCardData(response == null ? void 0 : response.data);
+          const amountResp = await fetchApi("/user-wallet-amount", "post", {
+            ...customerDetails
+          });
+          setWalletAmount((_b = (_a = amountResp == null ? void 0 : amountResp.data) == null ? void 0 : _a.userWallet) == null ? void 0 : _b.amount);
         } catch (error) {
           console.error(error);
         } finally {
@@ -3439,12 +3597,12 @@ body {
   const ScratchCard$1 = ({
     shadowRoot,
     scratchCardAmount,
-    walletAmount,
     showScratchCardScreen,
     customerDetails
   }) => {
     const [isLocked, setIsLocked] = h(true);
     const [loading, setLoading] = h(false);
+    const [walletAmount, setWalletAmount] = h(0);
     const [showWinPopup, setShowWinPopup] = h(false);
     const [playAgain, setPlayAgain] = h(false);
     const [error, setError] = h({
@@ -3489,6 +3647,16 @@ body {
         }
       }
     };
+    p(() => {
+      const fetchWalletAmount = async () => {
+        var _a, _b;
+        const amountResp = await fetchApi("/user-wallet-amount", "post", {
+          ...customerDetails
+        });
+        setWalletAmount((_b = (_a = amountResp == null ? void 0 : amountResp.data) == null ? void 0 : _a.userWallet) == null ? void 0 : _b.amount);
+      };
+      fetchWalletAmount();
+    }, [showWinPopup]);
     p(() => {
       const screenContent = shadowRoot.querySelector(".screenContent");
       const canvas = screenContent.querySelector("#scratchCardCanvas");
@@ -3714,7 +3882,6 @@ body {
   };
   const ReferralPopup = ({
     referedAmount,
-    walletAmount,
     closeReferralPopup
   }) => {
     const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
@@ -3738,6 +3905,9 @@ body {
     themeDetailsData,
     shadowRoot
   }) {
+    const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
+    const client_id = mainScript.getAttribute("data-client-id");
+    const customer_id = mainScript.getAttribute("data-customer-id");
     const [visibilty, setVisibility] = h(false);
     const [referralPopup, setReferralPopup] = h(false);
     const [referedAmount, setReferedAmount] = h(0);
@@ -3789,6 +3959,7 @@ body {
     };
     const handleCloseReferralPopup = () => {
       setReferralPopup(false);
+      location.reload();
     };
     const showError = (msg) => {
       setError({
@@ -3806,31 +3977,48 @@ body {
       setScratchCardAmount(amount);
     };
     async function redeemReferHash({
-      client_id,
-      customer_id,
-      user_hash
+      client_id: client_id2,
+      customer_id: customer_id2
     }) {
-      var _a;
       const fc_refer_hash = localStorage.getItem("fc_refer_hash");
       if (fc_refer_hash) {
-        try {
-          const response = await fetchApi("/redeem-referral-code", "post", {
-            client_id,
-            customer_id,
-            // user_hash: user_hash,
-            refer_hash: fc_refer_hash
-          });
-          if ((response == null ? void 0 : response.status) === "success") {
-            setReferralPopup(true);
-            setReferedAmount((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.referredReward);
-            localStorage.removeItem("fc_refer_hash");
-            return;
+        setTimeout(async () => {
+          var _a, _b, _c;
+          try {
+            const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
+            if (!localStorage.getItem(`fc-referral-code-${customer_id2}`)) {
+              const resp = await fetchApi("/get-referral-code", "post", {
+                client_id: client_id2,
+                customer_id: customer_id2,
+                user_hash
+              });
+              if ((resp == null ? void 0 : resp.status) === "success") {
+                localStorage.setItem(`fc-referral-code-${customer_id2}`, (_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.path);
+              }
+            }
+            const response = await fetchApi("/redeem-referral-code", "post", {
+              client_id: client_id2,
+              customer_id: customer_id2,
+              refer_hash: fc_refer_hash
+            });
+            if ((response == null ? void 0 : response.status) === "success") {
+              setReferralPopup(true);
+              setReferedAmount((_c = response == null ? void 0 : response.data) == null ? void 0 : _c.referredReward);
+              localStorage.removeItem("fc_refer_hash");
+              return;
+            }
+          } catch (err) {
+            console.log("error in redeemReferHash", err);
           }
-        } catch (err) {
-          console.log("error in redeemReferHash", err);
-        }
+        }, 2e3);
       }
     }
+    p(() => {
+      redeemReferHash({
+        client_id,
+        customer_id
+      });
+    }, [referralPopup]);
     function setTheme({
       themeDetails
     }) {
@@ -3879,10 +4067,7 @@ body {
       `;
         document.body.appendChild(styles);
       })();
-      const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
-      const customer_id = mainScript.getAttribute("data-customer-id");
       const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
-      const client_id = mainScript.getAttribute("data-client-id");
       setCustomerDetails({
         client_id,
         customer_id,
@@ -3890,17 +4075,12 @@ body {
       });
       if (customer_id) {
         setIsLoggedIn(true);
-        redeemReferHash({
-          client_id,
-          customer_id,
-          user_hash
-        });
       }
     }, []);
     p(() => {
       if ((customerDetails == null ? void 0 : customerDetails.customer_id) !== "") {
         const fetchData = async () => {
-          var _a, _b, _c, _d, _e;
+          var _a, _b, _c, _d, _e, _f, _g, _h, _i;
           try {
             setLoading(true);
             const walletResponse = await fetchApi("/user-walletlogs", "post", {
@@ -3912,7 +4092,15 @@ body {
               setWalletLogs((_e = (_d = (_c = (_b = (_a = walletResponse == null ? void 0 : walletResponse.data) == null ? void 0 : _a.data) == null ? void 0 : _b.wallet) == null ? void 0 : _c.wallet) == null ? void 0 : _d.logs) == null ? void 0 : _e.edges);
             }
           } catch (error2) {
-            console.error("Error fetching wallet data:", error2);
+            const checkUser = await fetchApi("/sync-external-user", "post", {
+              ...customerDetails
+            });
+            if (checkUser.status === "success") {
+              const walletResponse = await fetchApi("/user-walletlogs", "post", {
+                ...customerDetails
+              });
+              setWalletAmount((_i = (_h = (_g = (_f = walletResponse == null ? void 0 : walletResponse.data) == null ? void 0 : _f.data) == null ? void 0 : _g.wallet) == null ? void 0 : _h.wallet) == null ? void 0 : _i.amount);
+            }
           } finally {
             setLoading(false);
           }
@@ -3921,21 +4109,23 @@ body {
       }
     }, [customerDetails, screenDetails == null ? void 0 : screenDetails.screen, referralPopup]);
     p(() => {
-      const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
-      const client_id = mainScript.getAttribute("data-client-id");
-      const customer_id = mainScript.getAttribute("data-customer-id");
       const fetch2 = async () => {
-        var _a, _b;
-        const couponResponse = await fetchApi("/get-featured-coupons", "post", {
-          client_id
-        });
-        if ((couponResponse == null ? void 0 : couponResponse.status) !== "success") {
-          showError(couponResponse == null ? void 0 : couponResponse.error);
+        if (localStorage.getItem(`fc-coupon-card-${client_id}`)) {
+          let coupons = localStorage.getItem(`fc-coupon-card-${client_id}`);
+          setFeaturedCoupons(JSON.parse(coupons));
         } else {
-          if (couponResponse == null ? void 0 : couponResponse.data) {
-            setFeaturedCoupons(couponResponse == null ? void 0 : couponResponse.data);
+          const couponResponse = await fetchApi("/get-featured-coupons", "post", {
+            client_id
+          });
+          if ((couponResponse == null ? void 0 : couponResponse.status) !== "success") {
+            showError(couponResponse == null ? void 0 : couponResponse.error);
           } else {
-            showError("No coupons found");
+            if (couponResponse == null ? void 0 : couponResponse.data) {
+              setFeaturedCoupons(couponResponse == null ? void 0 : couponResponse.data);
+              localStorage.setItem(`fc-coupon-card-${client_id}`, JSON.stringify(couponResponse == null ? void 0 : couponResponse.data));
+            } else {
+              showError("No coupons found");
+            }
           }
         }
         const spinWheelResponse = await fetchApi("/get-featured-spin-wheels", "post", {
@@ -3946,14 +4136,46 @@ body {
           client_id
         });
         setSingleScratchCard(scratchCardResponse == null ? void 0 : scratchCardResponse.data[0]);
+      };
+      fetch2();
+    }, []);
+    const fetchWalletAmount = async () => {
+      var _a, _b;
+      const walletAmountResponse = await fetchApi("/user-wallet-amount", "post", {
+        client_id,
+        customer_id
+      });
+      setWalletAmount((_b = (_a = walletAmountResponse == null ? void 0 : walletAmountResponse.data) == null ? void 0 : _a.userWallet) == null ? void 0 : _b.amount);
+    };
+    p(() => {
+      var _a;
+      const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
+      const fetchData = async () => {
+        var _a2;
+        if (!localStorage.getItem(`fc-referral-code-${customer_id}`)) {
+          const resp = await fetchApi("/get-referral-code", "post", {
+            client_id,
+            customer_id,
+            user_hash
+          });
+          if ((resp == null ? void 0 : resp.status) === "success") {
+            localStorage.setItem(`fc-referral-code-${customer_id}`, (_a2 = resp == null ? void 0 : resp.data) == null ? void 0 : _a2.path);
+          }
+        }
+      };
+      fetchData();
+    }, []);
+    p(() => {
+      const fetchWalletAmount2 = async () => {
+        var _a, _b;
         const walletAmountResponse = await fetchApi("/user-wallet-amount", "post", {
           client_id,
           customer_id
         });
         setWalletAmount((_b = (_a = walletAmountResponse == null ? void 0 : walletAmountResponse.data) == null ? void 0 : _a.userWallet) == null ? void 0 : _b.amount);
       };
-      fetch2();
-    }, []);
+      fetchWalletAmount2();
+    }, [screenDetails, overlayVisible]);
     const btnClick = (idx) => {
       changeOverlay("coupon");
       setCouponCardIdx(idx);
@@ -3970,6 +4192,7 @@ body {
       mainPopup.style.overflowY = "hidden";
       const overlay = shadowRoot.querySelector(".overlay");
       overlay.style.display = "flex";
+      overlay.style.justifyContent = "end";
       overlay.style.position = "absolute";
       overlay.style.top = `${scrolledTop}px`;
       overlay.style.height = "100%";
@@ -3994,6 +4217,7 @@ body {
     const handleOverlay = (overlayname) => {
       if (overlayname === "coupon") {
         return o(CouponOverlay, {
+          updateWalletAmount: fetchWalletAmount,
           customerDetails,
           couponData: featuredCoupons[couponCardIdx],
           onClick: closeOverlay
@@ -4007,10 +4231,12 @@ body {
       }
     };
     p(() => {
-      if (visibilty) {
-        document.body.classList.add("fc-no-scroll");
-      } else {
-        document.body.classList.remove("fc-no-scroll");
+      if (!referralPopup) {
+        if (visibilty) {
+          document.body.classList.add("fc-no-scroll");
+        } else {
+          document.body.classList.remove("fc-no-scroll");
+        }
       }
     }, [visibilty]);
     const showPlayGameScreen = () => {
@@ -4051,14 +4277,12 @@ body {
           return o(PlayGame, {
             customerDetails,
             showSpinGameScreen: handleScreenComponent,
-            walletAmount,
             spinWheelAmount,
             shadowRoot
           });
         case "show_spin_wheel":
           return o(ShowGames, {
             customerDetails,
-            walletAmount,
             funcSetSpinWheelAmount,
             showPlayGameScreen,
             screenDetails
@@ -4072,20 +4296,17 @@ body {
             customerDetails,
             showScratchCardScreen: handleScreenComponent,
             scratchCardAmount,
-            walletAmount,
             shadowRoot
           });
         case "show_scratch_card":
           return o(ShowScratchCard, {
             customerDetails,
-            walletAmount,
             funcScratchCardAmount,
             showScratchCardScreen
           });
         case "show_all_coupons":
           return o(ViewAllCoupons, {
             shadowRoot,
-            walletAmount,
             couponCardResponse: featuredCoupons,
             customerDetails
           });
@@ -4101,7 +4322,7 @@ body {
         width: 30,
         height: 30,
         alt: "gift icon"
-      }), visibilty && o(k$1, {
+      }), !referralPopup && visibilty && o(k$1, {
         children: o("div", {
           onClick: handleLogin,
           class: "mainPopup",
@@ -4176,7 +4397,8 @@ body {
                   btnText: (singleScratchCard == null ? void 0 : singleScratchCard.btnText) || "Explore"
                 })]
               }), o(InviteCard, {
-                client_id: customerDetails.client_id,
+                client_id,
+                customer_id,
                 onClick: () => isLoggedIn && changeOverlay("invite_and_earn")
               })]
             })]
@@ -4191,9 +4413,8 @@ body {
             message: error == null ? void 0 : error.msg
           })]
         })
-      }), referralPopup && (customerDetails == null ? void 0 : customerDetails.client_id) && o(ReferralPopup, {
+      }), referralPopup && customer_id && o(ReferralPopup, {
         referedAmount,
-        walletAmount,
         closeReferralPopup: handleCloseReferralPopup
       })]
     });
@@ -4265,7 +4486,6 @@ body {
             ...window.fc_loyalty_vars,
             theme_details: themeDetailsData
           };
-          console.log("shadowroot", window.fc_loyalty_vars);
         }
       }
       const clientCustomStyleData = ((_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.custom_css) || "";
@@ -4299,7 +4519,8 @@ body {
   const CouponOverlay = ({
     couponData,
     onClick,
-    customerDetails
+    customerDetails,
+    updateWalletAmount
   }) => {
     const [couponCode, setCouponCode] = h("");
     const [isCouponUnlocked, setIsCouponUnlocked] = h(false);
@@ -4341,6 +4562,7 @@ body {
         } else {
           setCouponCode((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.coupon_code);
           setIsCouponUnlocked(true);
+          updateWalletAmount();
         }
       } catch (error2) {
         console.log("error in coupon card overlay", error2);
@@ -4417,9 +4639,14 @@ body {
   };
   const RedeemCoin = ({
     customerDetails,
-    closePopup
+    closePopup,
+    updateWalletAmount
   }) => {
     const [showCopied, setShowCopied] = h(false);
+    const [error, setError] = h({
+      error: false,
+      msg: ""
+    });
     const copyFunc = (code) => {
       setShowCopied(true);
       navigator.clipboard.writeText(code);
@@ -4429,7 +4656,6 @@ body {
     };
     const [rangeValue, setRangeValue] = h(10);
     const [loading, setLoading] = h(false);
-    const [error, setError] = h(false);
     const [redeemCoinCode, setRedeemCoinCode] = h("");
     const handleChangeRange = (e2) => {
       const {
@@ -4437,10 +4663,16 @@ body {
       } = e2.target;
       setRangeValue(value);
     };
-    const showError = () => {
-      setError(true);
+    const showError = (msg) => {
+      setError({
+        error: true,
+        msg
+      });
       setTimeout(() => {
-        setError(false);
+        setError({
+          error: false,
+          msg: ""
+        });
       }, 3e3);
     };
     const getRedeemCoin = async () => {
@@ -4450,13 +4682,15 @@ body {
         const response = await fetchApi(`/get-code`, "post", {
           ...customerDetails,
           couponAmount: rangeValue,
+          // @ts-ignore
           coupon_title: `Custom Discount: ${rangeValue} ${window.fc_loyalty_vars.coin_name} Coins for ₹${rangeValue} off`
         });
         if ((response == null ? void 0 : response.status) !== "success") {
-          showError();
+          showError(response == null ? void 0 : response.error);
           return;
         }
         setRedeemCoinCode((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.coupon_code);
+        updateWalletAmount();
       } catch (error2) {
         console.log("error in redeem coin", error2);
       } finally {
@@ -4531,13 +4765,14 @@ body {
               children: "copied"
             })]
           })]
-        }), error && o(Alert, {})]
+        }), error.error && o(Alert, {
+          message: error.msg
+        })]
       })
     });
   };
   const ViewAllCoupons = ({
     couponCardResponse,
-    walletAmount,
     customerDetails,
     shadowRoot
   }) => {
@@ -4546,18 +4781,26 @@ body {
     const [exploreCoupon, setExploreCoupon] = h([]);
     const [exploreCouponIdx, setExploreCouponIdx] = h(0);
     const [couponIdx, setCouponIdx] = h(0);
+    const [walletAmount, setWalletAmount] = h(0);
     const [loading, setLoading] = h(false);
     const [overlayVisible, setOverlayVisible] = h({
       overlay: "none",
       active: false
     });
+    const fetchWalletAmount = async () => {
+      var _a, _b;
+      const walletAmountResponse = await fetchApi("/user-wallet-amount", "post", customerDetails);
+      setWalletAmount((_b = (_a = walletAmountResponse == null ? void 0 : walletAmountResponse.data) == null ? void 0 : _a.userWallet) == null ? void 0 : _b.amount);
+    };
     p(() => {
       const exploreCouponResp = async () => {
-        var _a;
+        var _a, _b, _c;
         try {
           setLoading(true);
           const resp = await fetchApi("/get-coupons-to-explore", "post", customerDetails);
           setExploreCoupon((_a = resp == null ? void 0 : resp.data) == null ? void 0 : _a.data);
+          const walletAmountResponse = await fetchApi("/user-wallet-amount", "post", customerDetails);
+          setWalletAmount((_c = (_b = walletAmountResponse == null ? void 0 : walletAmountResponse.data) == null ? void 0 : _b.userWallet) == null ? void 0 : _c.amount);
         } catch (error) {
           console.log(error);
         } finally {
@@ -4569,6 +4812,7 @@ body {
     const handleOverlay = (overlayname) => {
       if (overlayname === "coupon") {
         return o(CouponOverlay, {
+          updateWalletAmount: fetchWalletAmount,
           customerDetails,
           couponData: couponCardResponse[couponIdx],
           onClick: closeOverlay
@@ -4576,6 +4820,7 @@ body {
       }
       if (overlayname === "explore") {
         return o(CouponOverlay, {
+          updateWalletAmount: fetchWalletAmount,
           customerDetails,
           couponData: exploreCoupon[exploreCouponIdx],
           onClick: closeOverlay
@@ -4583,6 +4828,7 @@ body {
       }
       if (overlayname === "redeem") {
         return o(RedeemCoin, {
+          updateWalletAmount: fetchWalletAmount,
           customerDetails,
           closePopup: closeOverlay
         });
@@ -4598,6 +4844,7 @@ body {
       mainPopup.style.overflowY = "hidden";
       const overlay = shadowRoot.querySelector(".overlay");
       overlay.style.display = "flex";
+      overlay.style.justifyContent = "end";
       overlay.style.position = "absolute";
       overlay.style.top = `${scrolledTop}px`;
       overlay.style.height = "100%";
@@ -4730,8 +4977,7 @@ body {
             }))]
           })]
         })), yourCouponTab && o(YourCoupons, {
-          customerDetails,
-          yourCouponTab
+          customerDetails
         }), o("div", {
           class: "overlay",
           children: (overlayVisible == null ? void 0 : overlayVisible.active) ? o(k$1, {
@@ -4746,11 +4992,11 @@ body {
   const ScratchCard = ({
     shadowRoot,
     scratchCardAmount,
-    walletAmount,
     showScratchCardScreen,
     customerDetails
   }) => {
     const [isLocked, setIsLocked] = h(true);
+    const [walletAmount, setWalletAmount] = h(0);
     const [loading, setLoading] = h(false);
     const [showWinPopup, setShowWinPopup] = h(false);
     const [playAgain, setPlayAgain] = h(false);
@@ -4761,6 +5007,16 @@ body {
     const [winMessage, setWinMessage] = h({
       win_message: ""
     });
+    p(() => {
+      const fetchWalletAmount = async () => {
+        var _a, _b;
+        const amountResp = await fetchApi$1("/user-wallet-amount", "post", {
+          ...customerDetails
+        });
+        setWalletAmount((_b = (_a = amountResp == null ? void 0 : amountResp.data) == null ? void 0 : _a.userWallet) == null ? void 0 : _b.amount);
+      };
+      fetchWalletAmount();
+    }, [showWinPopup]);
     const showError = (msg) => {
       setError({
         error: true,
@@ -4941,45 +5197,48 @@ body {
           children: "Scratch and Win"
         })]
       }), o("div", {
-        class: "scratchCardDiv",
-        children: [o("h4", {
-          children: winMessage == null ? void 0 : winMessage.win_message
-        }), isLocked && o("img", {
-          src: "https://media.farziengineer.co/farziwallet/lock.png",
-          alt: ""
-        }), o("canvas", {
-          width: 300,
-          height: 300,
-          id: "scratchCardCanvas"
-        }), showWinPopup && o("div", {
-          class: "spinWinContainer",
-          children: o("div", {
-            class: "spinWinPopup",
-            children: [o("h3", {
-              children: "Congratulations!"
-            }), o("p", {
-              children: "You Won"
-            }), o("h2", {
-              children: winMessage == null ? void 0 : winMessage.win_message
-            }), o("button", {
-              onClick: handlePlayAgainBtn,
-              class: "playagainbtn",
-              children: "Play Again"
-            }), o("button", {
-              onClick: () => showScratchCardScreen(),
-              class: "closebtn",
-              children: "close"
-            })]
-          })
-        })]
-      }), o("div", {
-        class: "spinWheelBottom",
-        children: [o("hr", {}), o("h4", {
-          children: isLocked ? `Unlock for ${scratchCardAmount} ${window.fc_loyalty_vars.coin_name} Coin` : `Click and drag your cursor across the card`
-        }), isLocked && o("button", {
-          onClick: getScratchCardWinData,
-          class: "couponUnlockBtn",
-          children: "Tap to Unlock"
+        class: "scratchCardContainer",
+        children: [o("div", {
+          class: "scratchCardDiv",
+          children: [o("h4", {
+            children: winMessage == null ? void 0 : winMessage.win_message
+          }), isLocked && o("img", {
+            src: "https://media.farziengineer.co/farziwallet/lock.png",
+            alt: ""
+          }), o("canvas", {
+            width: 300,
+            height: 300,
+            id: "scratchCardCanvas"
+          }), showWinPopup && o("div", {
+            class: "spinWinContainer",
+            children: o("div", {
+              class: "spinWinPopup",
+              children: [o("h3", {
+                children: "Congratulations!"
+              }), o("p", {
+                children: "You Won"
+              }), o("h2", {
+                children: winMessage == null ? void 0 : winMessage.win_message
+              }), o("button", {
+                onClick: handlePlayAgainBtn,
+                class: "playagainbtn",
+                children: "Play Again"
+              }), o("button", {
+                onClick: () => showScratchCardScreen(),
+                class: "closebtn",
+                children: "close"
+              })]
+            })
+          })]
+        }), o("div", {
+          class: "spinWheelBottom",
+          children: [o("hr", {}), o("h4", {
+            children: isLocked ? `Unlock for ${scratchCardAmount} ${window.fc_loyalty_vars.coin_name} Coin` : `Click and drag your cursor across the card`
+          }), isLocked && o("button", {
+            onClick: getScratchCardWinData,
+            class: "couponUnlockBtn",
+            children: "Tap to Unlock"
+          })]
         })]
       }), error.error && o(Alert$1, {
         message: error == null ? void 0 : error.msg
@@ -4992,6 +5251,7 @@ body {
   }) => {
     const mainScript = document.querySelector("#fc-wallet-scratch-card-snippet-script-19212");
     const [screen, setScreen] = h(false);
+    const [login, setLogin] = h(false);
     const [customerDetails, setCustomerDetails] = h({
       client_id: "",
       customer_id: "",
@@ -5012,23 +5272,15 @@ body {
         customer_id,
         user_hash
       });
-      const fetch2 = async () => {
-        var _a2, _b;
-        const resp = await fetchApi$1("/user-wallet-amount", "post", {
-          client_id,
-          customer_id,
-          user_hash
-        });
-        setWalletAmount((_b = (_a2 = resp == null ? void 0 : resp.data) == null ? void 0 : _a2.userWallet) == null ? void 0 : _b.amount);
-      };
-      fetch2();
+      if (customer_id) {
+        setLogin(true);
+      }
     }, []);
     function setTheme({
       themeDetails
     }) {
       var _a, _b, _c, _d, _e, _f, _g;
       var cssVariablesScope = shadowRoot.querySelector(".widget-container");
-      console.log("theme details", themeDetails);
       if (cssVariablesScope && ((_a = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _a.theme_color)) {
         cssVariablesScope.style.setProperty("--loyalty_popup_theme_background", (_b = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _b.theme_color);
         if ((_c = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _c.coin_icon) {
@@ -5041,10 +5293,14 @@ body {
       }
       if ((_f = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _f.coin_name) {
         window.fc_loyalty_vars = {
+          // @ts-ignore
+          ...window.fc_loyalty_vars,
           coin_name: (_g = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _g.coin_name
         };
       } else {
         window.fc_loyalty_vars = {
+          // @ts-ignore
+          ...window.fc_loyalty_vars,
           coin_name: "FC"
         };
       }
@@ -5063,6 +5319,37 @@ body {
       setActiveTab("available");
     }
     p(() => {
+      var _a;
+      const client_id = mainScript.getAttribute("data-client-id");
+      const customer_id = mainScript.getAttribute("data-customer-id");
+      const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
+      const fetchWalletAmount = async () => {
+        var _a2, _b, _c, _d, _e, _f;
+        try {
+          const amountResp = await fetchApi$1("/user-walletlogs", "post", {
+            customer_id,
+            client_id,
+            user_hash
+          });
+          setWalletAmount((_d = (_c = (_b = (_a2 = amountResp == null ? void 0 : amountResp.data) == null ? void 0 : _a2.data) == null ? void 0 : _b.wallet) == null ? void 0 : _c.wallet) == null ? void 0 : _d.amount);
+        } catch (error) {
+          const checkUser = await fetchApi$1("/sync-external-user", "post", {
+            customer_id,
+            client_id
+          });
+          if (checkUser.status === "success") {
+            const walletResponse = await fetchApi$1("/user-wallet-amount", "post", {
+              customer_id,
+              client_id,
+              user_hash
+            });
+            setWalletAmount((_f = (_e = walletResponse == null ? void 0 : walletResponse.data) == null ? void 0 : _e.userWallet) == null ? void 0 : _f.amount);
+          }
+        }
+      };
+      fetchWalletAmount();
+    }, [screen]);
+    p(() => {
       const fetchScratchCard = async () => {
         try {
           setLoading(true);
@@ -5080,7 +5367,8 @@ body {
       fetchScratchCard();
     }, [activeTab]);
     const scratchCardStyles = {
-      justifyContent: "start"
+      justifyContent: "start",
+      paddingLeft: "4em"
     };
     const handleMainTab = (mainTab) => {
       setActiveTab(mainTab);
@@ -5096,12 +5384,11 @@ body {
     const showScratchCardScreen = () => {
       setScreen(false);
     };
-    return o(k$1, {
+    return login ? o(k$1, {
       children: screen ? o(ScratchCard, {
         showScratchCardScreen,
         customerDetails,
         shadowRoot,
-        walletAmount,
         scratchCardAmount
       }) : o(k$1, {
         children: [o("div", {
@@ -5129,20 +5416,27 @@ body {
           className: "loader",
           children: o(Loading$1, {})
         }) : o("div", {
-          class: "showGamesCards",
-          style: scratchCardData.length > 3 && scratchCardStyles,
-          children: scratchCardData.map((game, idx) => o(GamesCard, {
-            btnClick: () => showScratchCard(game.amount),
-            gameTitle: game.title,
-            gameDesc: game.description,
-            cardImage: game.image,
-            btnText: "Scratch",
-            gamePrice: game.amount
-          }, idx))
+          class: "scratchCardBox",
+          children: o("div", {
+            class: "showGamesCards",
+            style: scratchCardData.length > 3 && scratchCardStyles,
+            children: scratchCardData.map((game, idx) => o(GamesCard, {
+              btnClick: () => showScratchCard(game.amount),
+              gameTitle: game.title,
+              gameDesc: game.description,
+              cardImage: game.image,
+              btnText: "Scratch",
+              gamePrice: game.amount
+            }, idx))
+          })
         })), activeTab === "yourcoupons" && o(YourCoupons, {
           customerDetails
         })]
       })
+    }) : o("a", {
+      class: "loginbtn",
+      href: `/account/login`,
+      children: "Login to Continue"
     });
   };
   function App({
@@ -5179,7 +5473,8 @@ body {
   async function renderScratchCardSnippet() {
     var _a, _b, _c;
     try {
-      const targetDiv = document.getElementById("MainContent");
+      const targetDiv = document.getElementById("fc-wallet-scratch-card-snippet-19212");
+      targetDiv.innerHTML = "";
       let shadowTarget = document.createElement("div");
       shadowTarget.className = "fc-scratch-card-snippet-19212-target";
       shadowTarget.style.display = "block";
@@ -5212,7 +5507,6 @@ body {
             ...window.fc_loyalty_vars,
             theme_details: themeDetailsData
           };
-          console.log("shadowroot", window.fc_loyalty_vars);
         }
       }
       const clientCustomStyleData = ((_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.custom_css) || "";
