@@ -9,7 +9,19 @@ const main = ({themeDetailsData, shadowRoot}) => {
   console.log("deded", client_id, customer_id);
   const [referralPopup, setReferralPopup] = useState(false)
   const [referedAmount, setReferedAmount] = useState(0)
-
+  useEffect(() => {
+    (function storeReferHash() {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const referHash = urlSearchParams.get("fc_refer_hash");
+        if (referHash) {
+            try {
+                localStorage.setItem("fc_refer_hash", referHash);
+            } catch (error) {
+                console.log("error in storeReferHash", error);
+            }
+        }
+    })();
+  }, [])
   async function redeemReferHash({ client_id, customer_id }) {
     const fc_refer_hash = localStorage.getItem("fc_refer_hash");
     if (fc_refer_hash) {
