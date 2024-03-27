@@ -394,7 +394,7 @@ export function ApplyWallet({
                 <SkeletonLoader width="50px" height="16px" />
               </>
             ) : (
-              userPoints
+              userPoints.toFixed(2)
             )}
           </strong>
         </p>
