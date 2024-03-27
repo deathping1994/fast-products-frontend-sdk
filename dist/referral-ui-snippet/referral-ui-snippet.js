@@ -565,7 +565,7 @@
     };
     p(() => {
       const fetchData = async () => {
-        var _a2;
+        var _a2, _b;
         try {
           setLoading(true);
           if (!localStorage.getItem(`fc-referral-code-${customer_id}`)) {
@@ -575,7 +575,9 @@
               user_hash
             });
             if ((resp == null ? void 0 : resp.status) === "success") {
-              localStorage.setItem(`fc-referral-code-${customer_id}`, (_a2 = resp == null ? void 0 : resp.data) == null ? void 0 : _a2.path);
+              if (!((_a2 = resp == null ? void 0 : resp.data) == null ? void 0 : _a2.path.includes("undefined"))) {
+                localStorage.setItem(`fc-referral-code-${customer_id}`, (_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.path);
+              }
             } else {
               showError();
             }

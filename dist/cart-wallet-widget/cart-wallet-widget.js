@@ -743,6 +743,15 @@ body {
       totalPayablePrice: 0,
       couponDiscountApplied: 0
     });
+    const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
+    const checkout_total = mainScript.getAttribute("data-checkout-total");
+    const checkoutTotalTag = document.querySelector(`.${checkout_total}`);
+    checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice).toLocaleString("en-IN", {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+      style: "currency",
+      currency: "INR"
+    })}`;
     const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] = h({
       amount: 0,
       type: null
@@ -1008,7 +1017,7 @@ body {
                 width: "50px",
                 height: "16px"
               })
-            }) : userPoints]
+            }) : userPoints.toFixed(2)]
           })]
         })]
       }), o("div", {

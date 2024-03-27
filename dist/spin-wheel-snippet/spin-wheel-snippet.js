@@ -4467,7 +4467,7 @@ body {
       var _a;
       const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
       const fetchData = async () => {
-        var _a2;
+        var _a2, _b;
         if (!localStorage.getItem(`fc-referral-code-${customer_id}`)) {
           const resp = await fetchApi("/get-referral-code", "post", {
             client_id,
@@ -4475,7 +4475,9 @@ body {
             user_hash
           });
           if ((resp == null ? void 0 : resp.status) === "success") {
-            localStorage.setItem(`fc-referral-code-${customer_id}`, (_a2 = resp == null ? void 0 : resp.data) == null ? void 0 : _a2.path);
+            if (!((_a2 = resp == null ? void 0 : resp.data) == null ? void 0 : _a2.path.includes("undefined"))) {
+              localStorage.setItem(`fc-referral-code-${customer_id}`, (_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.path);
+            }
           }
         }
       };

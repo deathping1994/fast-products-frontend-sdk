@@ -428,6 +428,19 @@
     console.log("deded", client_id, customer_id);
     const [referralPopup, setReferralPopup] = h(false);
     const [referedAmount, setReferedAmount] = h(0);
+    p(() => {
+      (function storeReferHash() {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const referHash = urlSearchParams.get("fc_refer_hash");
+        if (referHash) {
+          try {
+            localStorage.setItem("fc_refer_hash", referHash);
+          } catch (error) {
+            console.log("error in storeReferHash", error);
+          }
+        }
+      })();
+    }, []);
     async function redeemReferHash({
       client_id: client_id2,
       customer_id: customer_id2
@@ -435,7 +448,7 @@
       const fc_refer_hash = localStorage.getItem("fc_refer_hash");
       if (fc_refer_hash) {
         setTimeout(async () => {
-          var _a, _b, _c;
+          var _a, _b, _c, _d;
           try {
             const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
             if (!localStorage.getItem(`fc-referral-code-${customer_id2}`)) {
@@ -446,7 +459,9 @@
                   user_hash
                 });
                 if ((resp == null ? void 0 : resp.status) === "success") {
-                  localStorage.setItem(`fc-referral-code-${customer_id2}`, (_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.path);
+                  if (!((_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.path.includes("undefined"))) {
+                    localStorage.setItem(`fc-referral-code-${customer_id2}`, (_c = resp == null ? void 0 : resp.data) == null ? void 0 : _c.path);
+                  }
                 }
               } catch (error) {
                 console.log("error in referral code");
@@ -459,7 +474,7 @@
             });
             if ((response == null ? void 0 : response.status) === "success") {
               setReferralPopup(true);
-              setReferedAmount((_c = response == null ? void 0 : response.data) == null ? void 0 : _c.referredReward);
+              setReferedAmount((_d = response == null ? void 0 : response.data) == null ? void 0 : _d.referredReward);
               localStorage.removeItem("fc_refer_hash");
               return;
             }
