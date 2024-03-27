@@ -282,7 +282,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
       if(!localStorage.getItem(`fc-referral-code-${customer_id}`)){
         const resp = await fetchApi("/get-referral-code", "post", {client_id, customer_id, user_hash})
         if(resp?.status === "success"){
-          localStorage.setItem(`fc-referral-code-${customer_id}`, resp?.data?.path)
+          if(!resp?.data?.path.includes('undefined')){
+            localStorage.setItem(`fc-referral-code-${customer_id}`, resp?.data?.path)
+          }
         }
       }
     }
