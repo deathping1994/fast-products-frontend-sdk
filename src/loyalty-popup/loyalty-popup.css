@@ -203,6 +203,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	cursor: pointer;
+	position: relative;
 }
 
 .coinCard img {
@@ -323,6 +324,7 @@ body {
 .couponImg {
 	border-radius: 8px 8px 0 0;
 	width: 120px;
+	max-height: 120px;
 }
 
 .couponCardPrice {
@@ -338,7 +340,7 @@ body {
 .couponFloatingLabel {
 	position: absolute;
 	top: -10px;
-  	right: 10px;
+  	right: 16px;
     background: var(--loyalty_popup_theme_background,#000);
     color: #fff;
     width: fit-content;
@@ -428,6 +430,7 @@ body {
 	padding: 4px 14px;
 	align-items: center;
 	margin-bottom: 8px;
+	margin-top: 8px;
 	color: var(--loyalty_popup_theme_background, #000);
 	font-size: 14px;
 	gap: 4px;
@@ -1298,6 +1301,20 @@ body {
 	z-index: 3;
 }
 
+#sparkImg {
+	position: absolute;
+	width: 60px;
+	top: 36px;
+	left: 35%;
+	clip-path: inset(0 0 44% 0);
+}
+
+#sparkImg2 {
+	position: absolute;
+	top: 22px;
+	width: 30px;
+	left: 50%;
+}
 .copied {
 	background-color: green;
   padding: 8px;
@@ -1331,11 +1348,11 @@ body {
 .walletLogoutBtn {
 	background-color: #fff;
     border-radius: 4px;
-    margin: 0 6px;
     padding: 5px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+	gap: 4px;
 	cursor: pointer;
 }
 

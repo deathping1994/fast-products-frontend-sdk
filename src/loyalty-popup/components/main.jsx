@@ -488,7 +488,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                 <div class="header">
                   <div class="leftHeader">
                     <p>Welcome to</p>
-                    <h6>Loyalty</h6>
+                    <h6>One Loyalty</h6>
                   </div>
                   <div class="rightHeader">
                     <img
@@ -507,7 +507,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                 /> : <Logout/>
                 }
                 <div class="viewAllCouponsContainer">
-                  <h1>Coupons</h1>
+                  <h1>Redeem with Coupons</h1>
                   <a onClick={() => handleScreenComponent("show_all_coupons", "Coupons")}>
                     View All
                   </a>
