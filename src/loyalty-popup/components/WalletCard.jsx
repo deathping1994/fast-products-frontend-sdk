@@ -14,6 +14,8 @@ const WalletCard = ({walletAmount, onClick}) => {
                 <div class="coinIcon"></div>
                 <h1>{walletAmount}</h1>
             </div>
+            <img src="https://static.farziengineer.co/farziwallet/sparks.png" id='sparkImg' alt="" />
+            <img src="https://static.farziengineer.co/farziwallet/sparks.png" id='sparkImg2' alt="" />
         </div>
     </>
   )
