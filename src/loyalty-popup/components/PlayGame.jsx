@@ -123,41 +123,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDet
     }
     fetchWalletAmount()
   },[showWinPopup])
-  // const fetchSpinWheelReward = async ()=>{
 
-  //   const ggg = shadowRoot.querySelector(".screenContent")
-  //   const hhh = ggg.querySelector(".spinWheelMainContainer")
-  //   try {
-  //     setLoading(true)
-  //     const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
-  //     {
-  //       ...customerDetails,
-  //       couponAmount: spinWheelAmount,
-  //     })
-  //     console.log("resp spin wheel", response);
-  //   // console.log("spin wheel reward array",response);
-  //   if(response?.status === "success"){
-  //     setSpinWheelRewardData(response?.data)
-  //     hhh.querySelector("#fw-chart-spin-wheel").innerHTML = ``
-  //     drawWheel(
-  //       shadowRoot,
-  //       response?.data.map((item, index) => {
-  //         return {
-  //           label: item,
-  //           value: index,
-  //         };
-  //       }),
-  //       false )
-  //   }else{
-  //     showError(response?.error)
-  //     setLoading(false)
-  //   }
-  //   } catch (error) {
-  //     console.log("error in Playgame", error);
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
   useEffect(()=>{
     const fetchRewardArray = async()=>{
       const response = await fetchApi(`/get-spin-wheel-rewards`, 'post',
@@ -198,9 +164,9 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDet
     // console.log("screenContent", shadowRoot.querySelector(".screenContent"));
     // console.log("mainCOntinaire", hhh);
     (function auto() {
-      const ggg = shadowRoot.querySelector(".screenContent")
-      const hhh = ggg.querySelector(".spinWheelMainContainer")
-      const chartElement = hhh.querySelector("#fw-chart-spin-wheel")
+      const scrContent = shadowRoot.querySelector(".screenContent")
+      const spinWheelMainContainer = scrContent.querySelector(".spinWheelMainContainer")
+      const chartElement = spinWheelMainContainer.querySelector("#fw-chart-spin-wheel")
       // console.log("charele", chartElement);
       var padding = { top: 20, right: 40, bottom: 0, left: 0 },
         w = chartElement.offsetWidth - padding.left - padding.right,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import WalletCard from "../components/WalletCard";
 import InviteCard from "../components/InviteCard";
 import CouponOverlay from "./Overlays/CouponOverlay";
@@ -24,7 +24,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
   const client_id = mainScript.getAttribute("data-client-id");
   const customer_id = mainScript.getAttribute("data-customer-id");
-  const [visibilty, setVisibility] = useState(false);
+  const [visibilty, setVisibility] = useState(true);
   const [referralPopup, setReferralPopup] = useState(false)
   const [referedAmount, setReferedAmount] = useState(0)
   const [walletAmount, setWalletAmount] = useState(0);
@@ -459,6 +459,38 @@ export function Main({ themeDetailsData, shadowRoot }) {
     }
   };
 
+  const sliderRef = useRef(null);
+  const [prevBtn, setPrevBtn] = useState(false);
+  const [nextBtn, setNextBtn] = useState(true);
+
+  const scrollLeft = () => {
+    sliderRef.current.scrollBy({
+      left: -200,
+      behavior: "smooth",
+    });
+    if (sliderRef.current.scrollLeft - 200 <= 5) {
+      setPrevBtn(false);
+      setNextBtn(true);
+    } else {
+      setPrevBtn(true);
+      setNextBtn(true);
+    }
+  };
+
+  const scrollRight = () => {
+    sliderRef.current.scrollBy({
+      left: 200,
+      behavior: "smooth",
+    });
+    if (sliderRef.current.scrollLeft + sliderRef.current.offsetWidth + 200 >= sliderRef.current.scrollWidth - 5) {
+      setPrevBtn(true);
+      setNextBtn(false);
+    } else {
+      setPrevBtn(true);
+      setNextBtn(true);
+    }
+  };
+
   return (
     <>
       <Referral />
@@ -506,23 +538,31 @@ export function Main({ themeDetailsData, shadowRoot }) {
                     onClick={() => handleScreenComponent("transaction_log", "Points activity")}
                 /> : <Logout/>
                 }
-                <div class="viewAllCouponsContainer">
-                  <h1>Redeem with Coupons</h1>
-                  <a onClick={() => handleScreenComponent("show_all_coupons", "Coupons")}>
-                    View All
-                  </a>
-                </div>
-                <div class="showAllCouponsList">
-                  {featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => (
-                    <CouponCard
-                      onClick={() => btnClick(index)}
-                      key={index}
-                      couponPrice={card.amount}
-                      couponDesc={card.title}
-                      couponImgLink={card.image}
-                    />
-                  ))
-                }
+                <div class='couponMainContainer'>
+                  <div class="viewAllCouponsContainer">
+                    <h1>Redeem with Coupons</h1>
+                    <div class='viewAllBtn'>
+                    <a onClick={() => handleScreenComponent("show_all_coupons", "Coupons")}>
+                      View All
+                    </a>
+                    <img width={6} src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />
+                    </div>
+                  </div>
+                  <div class="showAllCouponsList" ref={sliderRef}>
+                    {featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => (
+                      <CouponCard
+                        onClick={() => btnClick(index)}
+                        key={index}
+                        couponPrice={card.amount}
+                        couponDesc={card.title}
+                        couponImgLink={card.image}
+                      />
+                    ))
+                  }
+
+                      {prevBtn && <div className="scrollBtnPrev" onClick={scrollLeft}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                      {nextBtn && <div className="scrollBtnNext" onClick={scrollRight}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                    </div>
                 </div>
 
                 <div>
