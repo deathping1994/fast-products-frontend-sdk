@@ -363,6 +363,10 @@ body {
 	height: 14px;
 }
 
+.couponMainContainer {
+	position: relative;
+}
+
 .viewAllCouponsContainer {
 	display: flex;
 	justify-content: space-between;
@@ -370,6 +374,44 @@ body {
 	padding: 16px;
 	padding-bottom: 6px;
 	width: 100%;
+}
+
+.scrollBtnPrev {
+	background-color: white;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	top: 55%;
+	left: 10%;
+	transform: translate(-50%, -50%);
+	box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+}
+
+.scrollBtnPrev img {
+	rotate: 180deg;
+}
+
+.scrollBtnNext {	
+	background-color: white;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	top: 55%;
+	left: 90%;
+	transform: translate(-50%, -50%);
+	box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+}
+
+.scrollBtnNext img, .scrollBtnPrev img {
+	width: 8px;
 }
 
 .viewAllCouponsContainer h1 {
@@ -381,6 +423,13 @@ body {
 	cursor: pointer;
     font-weight: 500;
     font-size: 12px;
+}
+
+.viewAllBtn {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 4px;
 }
 .gamesArenaContainer {
 	padding: 8px 16px;
@@ -630,7 +679,7 @@ body {
 	background-color: var(--loyalty_popup_theme_background, #000);
     color: #fff;
     padding: 11px 0;
-    border-radius: 8px;
+    border-radius: 4px;
     font-family: Inter,sans-serif;
     font-weight: 700;
     cursor: pointer;
@@ -814,6 +863,7 @@ body {
 	font-weight: 500;
 	font-size: 13px;
 	line-height: 16px;
+	color: #797979;
 }
 
 .showGamesHeader {
@@ -931,6 +981,9 @@ body {
 .reedemfcCoins {
 	padding: 16px;
 }
+.reedemfcCoins h3 {
+	margin-bottom: 8px;
+}
 .reedemfcCoins h5, .exploreCoupons h5{
 	font-weight: 700;
     font-size: 16px;
@@ -952,7 +1005,14 @@ body {
 	padding: 8px;
 	border-radius: 8px;
 	cursor: pointer;
+	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);
+	color: white;
 }
+
+.reedemfcCoinsCardArrow {
+	filter: invert(100%);
+}
+
 .exploreCouponCard {
 	background-color: #f4f4f4;
 	display: flex;
@@ -965,7 +1025,9 @@ body {
 .exploreCoupons {
 	padding: 16px;
 }
-
+.exploreCoupons h5 {
+	margin-bottom: 8px;
+}
 .shipImgBox {
 	border-right: 1px dashed #959595;
 	padding-right: 8px;

@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import CouponCard from "./CouponCard";
 import CouponOverlay from "./Overlays/CouponOverlay";
 import RedeemCoin from "./RedeemCoin";
@@ -107,6 +107,38 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot}) => {
         color: "#373737",
         borderBottom: "2px solid #373737",
     }
+
+    const sliderRef = useRef(null);
+    const [prevBtn, setPrevBtn] = useState(false);
+    const [nextBtn, setNextBtn] = useState(true);
+
+    const scrollLeft = () => {
+      sliderRef.current.scrollBy({
+        left: -200,
+        behavior: "smooth",
+      });
+      if (sliderRef.current.scrollLeft - 200 <= 5) {
+        setPrevBtn(false);
+        setNextBtn(true);
+      } else {
+        setPrevBtn(true);
+        setNextBtn(true);
+      }
+    };
+
+    const scrollRight = () => {
+      sliderRef.current.scrollBy({
+        left: 200,
+        behavior: "smooth",
+      });
+      if (sliderRef.current.scrollLeft + sliderRef.current.offsetWidth + 200 >= sliderRef.current.scrollWidth - 5) {
+        setPrevBtn(true);
+        setNextBtn(false);
+      } else {
+        setPrevBtn(true);
+        setNextBtn(true);
+      }
+    };
     
   return (
     <>
@@ -124,44 +156,41 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot}) => {
             { availableTab && (
               loading ? <div className="loader"><Loading/></div> :
                 <div>
-                    <div class="viewAllFeaturedComponent">
-                        <h3>Featured Components</h3>
-                        <div class="showAllCouponsList">
-
-                        {couponCardResponse.map((card, index)=>(
-                            <CouponCard
-                                onClick={()=> handleAndShowCouponOverlay(index)}
-                                key={index}
-                                couponPrice={card.amount}
-                                couponDesc={card.title}
-                                couponImgLink={card.image}
-                            />
-                            ))}
-                        </div>
+                    <div class='couponMainContainer'>
+                      <div class="viewAllFeaturedComponent">
+                          <h3>Featured Components</h3>
+                          <div class="showAllCouponsList" ref={sliderRef}>
+                          {couponCardResponse.map((card, index)=>(
+                              <CouponCard
+                                  onClick={()=> handleAndShowCouponOverlay(index)}
+                                  key={index}
+                                  couponPrice={card.amount}
+                                  couponDesc={card.title}
+                                  couponImgLink={card.image}
+                              />
+                              ))}
+                          </div>
+                          {prevBtn && <div className="scrollBtnPrev" onClick={scrollLeft}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                        {nextBtn && <div className="scrollBtnNext" onClick={scrollRight}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                      </div>
                     </div>
                     <div class="reedemfcCoins">
-                        <h3>Redeem {window.
-// @ts-ignore
-                        fc_loyalty_vars.coin_name} Coins</h3>
+                        <h3>Redeem {window.fc_loyalty_vars.coin_name} Coins</h3>
                         <div onClick={()=> changeOverlay("redeem")} class="reedemfcCoinsCard">
                             <div>
-                                <img src="https://media.farziengineer.co/farziwallet/voucher-icon.png" alt="" />
+                                <img src="https://media.farziengineer.co/farziwallet/rupee-icon.png" alt="" />
                             </div>
                             <div>
-                                <h5>100 {window.
-// @ts-ignore
-                                fc_loyalty_vars.coin_name} Coins = ₹100</h5>
-                                <p>Use {window.
-// @ts-ignore
-                                fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
+                                <h5>100 {window.fc_loyalty_vars.coin_name} Coins = ₹100</h5>
+                                <p>Use {window.fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
                             </div>
                             <div>
-                                <img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />
+                                <img class='reedemfcCoinsCardArrow' src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />
                             </div>
                         </div>
                     </div>
                     <div class="exploreCoupons">
-                        <h5>Coupons to Explore</h5>
+                        <h5>Redeem {window.fc_loyalty_vars.coin_name} Coins</h5>
                             {
                                 exploreCoupon && exploreCoupon.map((card, idx)=>(
                                 <div onClick={()=> handleExploreOverlayVisibility(idx)} class="exploreCouponCard">

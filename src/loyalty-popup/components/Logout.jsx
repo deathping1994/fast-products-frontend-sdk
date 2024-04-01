@@ -2,12 +2,20 @@
 const Logout = () => {
   return (
     <>
-        <div class="logoutWalletCard">
-            <h4 class="logoutWallerCardHeading">Login to access points</h4>
-            <div class="walletLogoutBtn">
-                <div class="coinIcon"></div>
-                <p>Login</p>
+        <div class="walletCard">
+            <div>
+                <p class="walletCardText">My {window.fc_loyalty_vars.coin_name} Coins</p>
+                <div class="badgeCard">
+                    <img src="https://media.farziengineer.co/farziwallet/silver-tier-icon.png" alt="" />
+                    <p>Silver</p>
+                </div>
             </div>
+            <div class="coinCard">
+                <div class="coinIcon"></div>
+                <h1>Login</h1>
+            </div>
+            <img src="https://static.farziengineer.co/farziwallet/sparks.png" id='sparkImg' alt="" />
+            <img src="https://static.farziengineer.co/farziwallet/sparks.png" id='sparkImg2' alt="" />
         </div>
     </>
   )
