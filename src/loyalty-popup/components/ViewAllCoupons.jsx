@@ -44,10 +44,10 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot}) => {
       
       const handleOverlay = (overlayname) => {
         if (overlayname === "coupon") {
-          return <CouponOverlay updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={couponCardResponse[couponIdx]} onClick={closeOverlay} />;
+          return <CouponOverlay isLoggedIn={true} handleLogin={()=>{}} updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={couponCardResponse[couponIdx]} onClick={closeOverlay} />;
         }
         if(overlayname === "explore"){
-          return <CouponOverlay updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={exploreCoupon[exploreCouponIdx]} onClick={closeOverlay}/>
+          return <CouponOverlay isLoggedIn={true} handleLogin={()=>{}} updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={exploreCoupon[exploreCouponIdx]} onClick={closeOverlay}/>
         }
         if(overlayname === "redeem"){
           return <RedeemCoin updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} closePopup={closeOverlay}/>
@@ -189,11 +189,11 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot}) => {
                             </div>
                         </div>
                     </div>
-                    <div class="exploreCoupons">
-                        <h5>Redeem {window.fc_loyalty_vars.coin_name} Coins</h5>
-                            {
-                                exploreCoupon && exploreCoupon.map((card, idx)=>(
-                                <div onClick={()=> handleExploreOverlayVisibility(idx)} class="exploreCouponCard">
+                    {exploreCoupon.length > 0 && <div class="exploreCoupons">
+                        <h3>Coupons to Explore</h3>
+                            <>
+                            {exploreCoupon && exploreCoupon.map((card, idx)=>(
+                              <div onClick={()=> handleExploreOverlayVisibility(idx)} class="exploreCouponCard">
                                     <div class="shipImgBox">
                                         <img src={card.image} alt="" />
                                     </div>
@@ -202,9 +202,10 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot}) => {
                                         <p class="exploreCouponText">Unlock for <div class="coinIcon"></div> {card.amount}</p>
                                     </div>
                                 </div>
-                                ))
+                              ))
                             }
-                    </div>
+                            </>
+                    </div>}
                 </div>
             )}
             {/* {exploreCouponVisibilty && <div class="overlay"></div>} */}

@@ -990,6 +990,7 @@ body {
 }
 .reedemfcCoins {
 	padding: 16px;
+	padding-bottom: 0;
 }
 .reedemfcCoins h3 {
 	margin-bottom: 8px;
