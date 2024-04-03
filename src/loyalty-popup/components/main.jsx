@@ -102,9 +102,13 @@ export function Main({ themeDetailsData, shadowRoot }) {
         try {
           const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
           if(!localStorage.getItem(`fc-referral-code-${customer_id}`)){
-            const resp = await fetchApi("/get-referral-code", "post", {client_id, customer_id, user_hash})
-            if(resp?.status === "success"){
-              localStorage.setItem(`fc-referral-code-${customer_id}`, resp?.data?.path)
+            try {
+              const resp = await fetchApi("/get-referral-code", "post", {client_id, customer_id, user_hash})
+              if(resp?.status === "success"){
+                localStorage.setItem(`fc-referral-code-${customer_id}`, resp?.data?.path)
+              }
+            } catch (error) {
+              console.log("error", error);
             }
           }
           
