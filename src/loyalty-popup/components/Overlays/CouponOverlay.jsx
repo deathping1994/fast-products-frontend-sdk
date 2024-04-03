@@ -4,7 +4,7 @@ import Loading from "../Utils/Loading"
 import fetchApi from "../Utils/FetchApi"
 import Alert from "../Utils/Alert"
 
-const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount}) => {
+const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount, isLoggedIn, handleLogin}) => {
     const [couponCode, setCouponCode] = useState("")
     const [isCouponUnlocked, setIsCouponUnlocked] = useState(false)
     const [showCopied, setShowCopied] = useState(false);
@@ -83,7 +83,7 @@ const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount
                 </div>
                 
                 {!isCouponUnlocked && <div>
-                    {!loading && <button onClick={fetchCouponCode} class="couponUnlockBtn">Tap to Unlock</button>}
+                    {!loading && <button onClick={isLoggedIn ? fetchCouponCode : handleLogin} class="couponUnlockBtn">Tap to Unlock</button>}
                 </div>}
                 {isCouponUnlocked && <div class="couponCodeContainer">
                     <p>{couponCode}</p>

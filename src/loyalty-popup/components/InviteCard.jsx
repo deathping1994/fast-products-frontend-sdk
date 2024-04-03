@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/hooks"
 import fetchApi from "./Utils/FetchApi"
 
-const InviteCard = ({onClick, customer_id, client_id}) => {
+const InviteCard = ({onClick, customer_id, client_id, handleLogin, isLoggedIn}) => {
     const [cardMessage, setCardMessage] = useState("")
     useEffect(()=>{
         if(localStorage.getItem(`fc-invite-text-${customer_id}`)){
@@ -32,7 +32,7 @@ const InviteCard = ({onClick, customer_id, client_id}) => {
                     <p>{localStorage.getItem(`fc-invite-text-${customer_id}`) || cardMessage}</p>
                 </div>
             </div>
-            <button onClick={onClick} class="invitebtn">Share Invite</button>
+            <button onClick={isLoggedIn ? onClick : handleLogin} class="invitebtn">Share Invite</button>
         </div>
     </>
   )

@@ -24,7 +24,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
   const client_id = mainScript.getAttribute("data-client-id");
   const customer_id = mainScript.getAttribute("data-customer-id");
-  const [visibilty, setVisibility] = useState(true);
+  const [visibilty, setVisibility] = useState(false);
   const [referralPopup, setReferralPopup] = useState(false)
   const [referedAmount, setReferedAmount] = useState(0)
   const [walletAmount, setWalletAmount] = useState(0);
@@ -343,6 +343,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
     if (overlayname === "coupon") {
       return (
         <CouponOverlay
+          isLoggedIn={isLoggedIn}
+          handleLogin={handleLogin}
           updateWalletAmount={fetchWalletAmount}
           customerDetails={customerDetails}
           couponData={featuredCoupons[couponCardIdx]}
@@ -504,7 +506,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
       />
       {(!referralPopup && visibilty) && (
         <>
-          <div onClick={handleLogin} class="mainPopup">
+          <div class="mainPopup">
             {screenDetails?.active ? (
               <Screen
                 closeScreen={closeScreen}
@@ -536,13 +538,13 @@ export function Main({ themeDetailsData, shadowRoot }) {
                   <WalletCard
                     walletAmount={walletAmount}
                     onClick={() => handleScreenComponent("transaction_log", "Points activity")}
-                /> : <Logout/>
+                /> : <Logout handleLogin={handleLogin}/>
                 }
                 <div class='couponMainContainer'>
                   <div class="viewAllCouponsContainer">
                     <h1>Redeem with Coupons</h1>
                     <div class='viewAllBtn'>
-                    <a onClick={() => handleScreenComponent("show_all_coupons", "Coupons")}>
+                    <a onClick={isLoggedIn ? () => handleScreenComponent("show_all_coupons", "Coupons") : handleLogin}>
                       View All
                     </a>
                     <img width={6} src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />
@@ -550,15 +552,15 @@ export function Main({ themeDetailsData, shadowRoot }) {
                   </div>
                   <div class="showAllCouponsList" ref={sliderRef}>
                     {featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => (
-                      <CouponCard
-                        onClick={() => btnClick(index)}
-                        key={index}
-                        couponPrice={card.amount}
-                        couponDesc={card.title}
-                        couponImgLink={card.image}
-                      />
-                    ))
-                  }
+                        <CouponCard
+                          onClick={() => btnClick(index)}
+                          key={index}
+                          couponPrice={card.amount}
+                          couponDesc={card.title}
+                          couponImgLink={card.image}
+                        />
+                      ))
+                    }
 
                       {prevBtn && <div className="scrollBtnPrev" onClick={scrollLeft}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
                       {nextBtn && <div className="scrollBtnNext" onClick={scrollRight}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
@@ -583,6 +585,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
                         cardImage={singleSpinWheel?.image || "https://media.farziengineer.co/farziwallet/spin-wheel.png"}
                         gamePrice={singleSpinWheel?.amount || "10"}
                         btnText={singleSpinWheel?.btnText || "Explore"}
+                        isLoggedIn={isLoggedIn}
+                        handleLogin={handleLogin}
                       />
                       <GamesCard 
                         btnClick={() => (isLoggedIn && handleScreenComponent("show_scratch_card", "Scratch Card"))}
@@ -591,9 +595,13 @@ export function Main({ themeDetailsData, shadowRoot }) {
                         cardImage={singleScratchCard?.image || "https://media.farziengineer.co/farziwallet/scratch-card.png"}
                         gamePrice={singleScratchCard?.amount || "10"}
                         btnText={singleScratchCard?.btnText || "Explore"}
+                        isLoggedIn={isLoggedIn}
+                        handleLogin={handleLogin}
                       />
                   </div>
                   <InviteCard
+                    isLoggedIn={isLoggedIn}
+                    handleLogin={handleLogin}
                     client_id={client_id}
                     customer_id={customer_id}
                     onClick={() => (isLoggedIn && changeOverlay("invite_and_earn"))}

@@ -1,8 +1,8 @@
 
-const Logout = () => {
+const Logout = ({handleLogin}) => {
   return (
     <>
-        <div class="walletCard">
+        <div class="logoutwalletCard">
             <div>
                 <p class="walletCardText">My {window.fc_loyalty_vars.coin_name} Coins</p>
                 <div class="badgeCard">
@@ -10,7 +10,7 @@ const Logout = () => {
                     <p>Silver</p>
                 </div>
             </div>
-            <div class="coinCard">
+            <div onClick={handleLogin} class="coinCard">
                 <div class="coinIcon"></div>
                 <h1>Login</h1>
             </div>

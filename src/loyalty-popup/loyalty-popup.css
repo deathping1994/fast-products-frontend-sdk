@@ -193,7 +193,7 @@ body {
 	height: 30px;
 }
 
-.walletCard {
+.logoutwalletCard, .walletCard{
 	background-color: var(--loyalty_popup_theme_background, #000);
     padding: 12px;
     border-radius: 16px;
@@ -202,8 +202,11 @@ body {
     width: calc(100% - 32px);
 	display: flex;
 	justify-content: space-between;
-	cursor: pointer;
 	position: relative;
+}
+
+.walletCard {
+	cursor: pointer;
 }
 
 .coinCard img {
@@ -220,6 +223,7 @@ body {
     justify-content: center;
     align-items: center;
 	gap: 8px;
+	cursor: pointer;
 }
 
 .coinCard h1 {
@@ -297,6 +301,8 @@ body {
 	font-family: Inter, sans-serif;
 }
 
+/* change here */
+
 .couponCard {
 	border-radius: 12px;
 	color: var(--loyalty_popup_theme_background, #000);
@@ -304,6 +310,7 @@ body {
 	line-height: 20px;
 	cursor: pointer;
 	width: 120px;
+	height: 100%;
 }
 
 .couponCardDesc {
@@ -318,7 +325,9 @@ body {
 	font-weight: normal;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	gap: 4px;
+	min-height: 120px;
 }
 
 .couponImg {
@@ -363,6 +372,7 @@ body {
 	height: 14px;
 }
 
+/* till here */
 .couponMainContainer {
 	position: relative;
 }
@@ -468,7 +478,7 @@ body {
 }
 
 .gamesCardImg img {
-	max-height: 66px;
+	max-height: 60px;
 }
 
 .coinBox {
@@ -1513,3 +1523,6 @@ body {
 .referralPopupContainer span {
 	color: gold;
 }
+
+
+/* experimentatl css */
