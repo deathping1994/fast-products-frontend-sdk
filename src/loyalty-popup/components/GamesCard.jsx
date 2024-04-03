@@ -1,4 +1,4 @@
-const GamesCard = ({btnClick, cardImage, gameTitle, gameDesc, btnText, gamePrice}) => {
+const GamesCard = ({btnClick, cardImage, gameTitle, gameDesc, btnText, gamePrice, isLoggedIn, handleLogin}) => {
   return (
     <>
         <div class="gamesMainContainer">
@@ -12,7 +12,7 @@ const GamesCard = ({btnClick, cardImage, gameTitle, gameDesc, btnText, gamePrice
             <div class="coinIcon"></div>
               <p>{gamePrice}</p>
             </div>
-            <button onClick={btnClick} class="gamesCardBtn">{btnText}</button>
+            <button onClick={isLoggedIn ? btnClick : handleLogin} class="gamesCardBtn">{btnText}</button>
           </div>
         </div>
     </>

@@ -419,7 +419,7 @@ export function ApplyWallet({
                 {loadingWalletBal ? (
                   <SkeletonLoader width="50px" height="16px" />
                 ) : (
-                  walletAppliedDetails?.remainingWalletBalance
+                  walletAppliedDetails?.remainingWalletBalance.toFixed(2)
                 )}
               </p>
             </div>
