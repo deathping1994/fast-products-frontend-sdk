@@ -257,7 +257,9 @@
         </div>
         <div class="spinWheelBottom">
           <hr />
-          <h4>{isLocked ? `Unlock for ${scratchCardAmount} ${window.fc_loyalty_vars.coin_name} Coin` : `Click and drag your cursor across the card`}</h4>
+          <h4>{isLocked ? `Unlock for ${scratchCardAmount} ${window.
+// @ts-ignore
+          fc_loyalty_vars.coin_name} Coin` : `Click and drag your cursor across the card`}</h4>
           {isLocked && <button onClick={getScratchCardWinData} class="couponUnlockBtn">Tap to Unlock</button>}
         </div>
         {

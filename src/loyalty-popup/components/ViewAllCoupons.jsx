@@ -170,19 +170,29 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot}) => {
                               />
                               ))}
                           </div>
-                          {prevBtn && <div className="scrollBtnPrev" onClick={scrollLeft}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
-                        {nextBtn && <div className="scrollBtnNext" onClick={scrollRight}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                          {
+                            <>
+                              {prevBtn && <div className="scrollBtnPrev" onClick={scrollLeft}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                              {nextBtn && <div className="scrollBtnNext" onClick={scrollRight}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                            </>
+                          }
                       </div>
                     </div>
                     <div class="reedemfcCoins">
-                        <h3>Redeem {window.fc_loyalty_vars.coin_name} Coins</h3>
+                        <h3>Redeem {window.
+// @ts-ignore
+                        fc_loyalty_vars.coin_name} Coins</h3>
                         <div onClick={()=> changeOverlay("redeem")} class="reedemfcCoinsCard">
                             <div>
                                 <img src="https://media.farziengineer.co/farziwallet/rupee-icon.png" alt="" />
                             </div>
                             <div>
-                                <h5>100 {window.fc_loyalty_vars.coin_name} Coins = ₹100</h5>
-                                <p>Use {window.fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
+                                <h5>100 {window.
+// @ts-ignore
+                                fc_loyalty_vars.coin_name} Coins = ₹100</h5>
+                                <p>Use {window.
+// @ts-ignore
+                                fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
                             </div>
                             <div>
                                 <img class='reedemfcCoinsCardArrow' src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />

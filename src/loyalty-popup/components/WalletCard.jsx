@@ -4,7 +4,9 @@ const WalletCard = ({walletAmount, onClick}) => {
     <>
         <div onClick={onClick} class="walletCard">
             <div>
-                <p class="walletCardText">My {window.fc_loyalty_vars.coin_name} Coins</p>
+                <p class="walletCardText">My {window.
+// @ts-ignore
+                fc_loyalty_vars.coin_name} Coins</p>
                 <div class="badgeCard">
                     <img src="https://media.farziengineer.co/farziwallet/silver-tier-icon.png" alt="" />
                     <p>Silver</p>

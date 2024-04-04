@@ -90,7 +90,7 @@
     
       // Append the new canvas to the scratchCardDiv element
       const scratchCardDiv = shadowRoot.querySelector('.scratchCardDiv');
-      console.log("=======",scratchCardDiv);
+      // console.log("=======",scratchCardDiv);
       scratchCardDiv.appendChild(newCanvas);
     
       setPlayAgain(!playAgain);

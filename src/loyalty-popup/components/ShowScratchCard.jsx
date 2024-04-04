@@ -74,6 +74,8 @@ const ShowScratchCard = ({funcScratchCardAmount, showScratchCardScreen, customer
         <div class="showGamesCards">
           {scratchCardData.map((game, idx) => (
             <GamesCard
+              isLoggedIn={true}
+              handleLogin={()=>{}}
               key={idx}
               btnClick={()=> showScratchCard(game.amount)}
               gameTitle={game.title}

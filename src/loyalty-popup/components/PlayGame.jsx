@@ -137,7 +137,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDet
     // console.log("use effect chala");
     loadD3JS().then(()=>{
       fetchRewardArray().then((resp)=>{
-        console.log("====== data", resp);
+        // console.log("====== data", resp);
         if(resp?.status === "success"){
             setSpinWheelRewardData(resp?.data)
             drawWheel(shadowRoot, resp?.data.map((item, index) => {
