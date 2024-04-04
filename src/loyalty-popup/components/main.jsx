@@ -24,6 +24,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
   const client_id = mainScript.getAttribute("data-client-id");
   const customer_id = mainScript.getAttribute("data-customer-id");
+  const client_name = mainScript.getAttribute("client-name")
   const [visibilty, setVisibility] = useState(false);
   const [referralPopup, setReferralPopup] = useState(false)
   const [referedAmount, setReferedAmount] = useState(0)
@@ -526,7 +527,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                 <div class="header">
                   <div class="leftHeader">
                     <p>Welcome to</p>
-                    <h6>One Loyalty</h6>
+                    <h6>{client_name}</h6>
                   </div>
                   <div class="rightHeader">
                     <img
@@ -565,9 +566,12 @@ export function Main({ themeDetailsData, shadowRoot }) {
                         />
                       ))
                     }
-
-                      {prevBtn && <div className="scrollBtnPrev" onClick={scrollLeft}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
-                      {nextBtn && <div className="scrollBtnNext" onClick={scrollRight}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                      {featuredCoupons.length > 2 && 
+                        <>
+                          {prevBtn && <div className="scrollBtnPrev" onClick={scrollLeft}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                          {nextBtn && <div className="scrollBtnNext" onClick={scrollRight}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                        </>
+                      }
                     </div>
                 </div>
 

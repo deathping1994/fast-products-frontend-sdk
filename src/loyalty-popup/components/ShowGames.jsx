@@ -75,6 +75,8 @@ const ShowGames = ({ funcSetSpinWheelAmount, showPlayGameScreen, customerDetails
         <div class="showGamesCards">
           {gamesData.map((game, idx) => (
             <GamesCard
+              isLoggedIn={true}
+              handleLogin={()=>{}}
               key={idx}
               btnClick={() => showWheelOfFortune(game.amount)}
               gameDesc={game.description}
