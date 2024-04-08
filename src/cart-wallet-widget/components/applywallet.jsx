@@ -38,7 +38,8 @@ export function ApplyWallet({
   renderApplyCouponCodeBox,
   refetchCartSummary,
   calculateCashback,
-  setUserHash
+  setUserHash,
+  renderWalletCredit
 }) {
   const [userPoints, setUserPoints] = useState(null);
   const [walletApplied, setWalletApplied] = useState(
@@ -366,7 +367,7 @@ export function ApplyWallet({
 
   return (
     <>
-      <div class="wallet-box-container" onClick={toggleUserWallet}>
+      {renderWalletCredit && <div class="wallet-box-container" onClick={toggleUserWallet}>
         <p
           style={{
             display: "flex",
@@ -408,7 +409,7 @@ export function ApplyWallet({
             )}
           </strong>
         </p>
-      </div>
+      </div>}
 
       <div class="wallet-applied-details-container">
         {walletApplied ? (

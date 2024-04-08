@@ -19,6 +19,8 @@ import Referral from "./Referral";
 import Logout from "./Logout";
 import Alert from "./Utils/Alert";
 import ReferralPopup from "./ReferralPopup";
+import EasyEarn from "./EasyEarn";
+import EasyEarnCard from "./EasyEarnCard";
 
 export function Main({ themeDetailsData, shadowRoot }) {
   const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
@@ -411,7 +413,36 @@ export function Main({ themeDetailsData, shadowRoot }) {
       active: true,
     });
   };
-
+  const easyEarnData = [
+    {
+      gameTitle: "Place an Order",
+      gameDesc: `Earn Rs. 10% ${window.fc_loyalty_vars.coin_name} Cashback`,
+      cardImage: "https://media.farziengineer.co/farziwallet/Place_order.png",
+      gamePrice: "100",
+      btnText: "Order Now"
+    },
+    {
+      gameTitle: "Signup",
+      gameDesc: `Earn Rs. 100 ${window.fc_loyalty_vars.coin_name} Cashback`,
+      cardImage: "https://media.farziengineer.co/farziwallet/Sign_up.png",
+      gamePrice: "100",
+      btnText: "Signup Here"
+    },
+    {
+      gameTitle: "Birthday",
+      gameDesc: `Add birthday to get 100 ${window.fc_loyalty_vars.coin_name} points`,
+      cardImage: "https://media.farziengineer.co/farziwallet/Birthday.png",
+      gamePrice: "100",
+      btnText: "Earn Now"
+    },
+    {
+      gameTitle: "Anniversary",
+      gameDesc: `Add anniversary to get 100 ${window.fc_loyalty_vars.coin_name} points`,
+      cardImage: "https://media.farziengineer.co/farziwallet/anniversary.png",
+      gamePrice: "100",
+      btnText: "Earn Now"
+    }
+  ];
 
 
   const getScreenComponent = (screenname) => {
@@ -461,14 +492,21 @@ export function Main({ themeDetailsData, shadowRoot }) {
             customerDetails={customerDetails}
           />
         );
+      case "easy_earn":
+        return (
+          <EasyEarn walletAmount={walletAmount}/>
+        );
       default:
         console.warn("Unknown screen:", screenname);
     }
   };
 
   const sliderRef = useRef(null);
+  const easyEarnSliderRef = useRef(null);
   const [prevBtn, setPrevBtn] = useState(false);
   const [nextBtn, setNextBtn] = useState(true);
+  const [easyEarnPrevBtn, seteasyEarnPrevBtn] = useState(false);
+  const [easyEarnNextBtn, setEasyEarnNextBtn] = useState(true);
 
   const scrollLeft = () => {
     sliderRef.current.scrollBy({
@@ -476,11 +514,38 @@ export function Main({ themeDetailsData, shadowRoot }) {
       behavior: "smooth",
     });
     if (sliderRef.current.scrollLeft - 200 <= 5) {
-      setPrevBtn(false);
-      setNextBtn(true);
+      seteasyEarnPrevBtn(false);
+      setEasyEarnNextBtn(true);
     } else {
-      setPrevBtn(true);
-      setNextBtn(true);
+      seteasyEarnPrevBtn(true);
+      setEasyEarnNextBtn(true);
+    }
+  };
+  const easyEarnScrollLeft = () => {
+    easyEarnSliderRef.current.scrollBy({
+      left: -200,
+      behavior: "smooth",
+    });
+    if (easyEarnSliderRef.current.scrollLeft - 200 <= 5) {
+      seteasyEarnPrevBtn(false);
+      setEasyEarnNextBtn(true);
+    } else {
+      seteasyEarnPrevBtn(true);
+      setEasyEarnNextBtn(true);
+    }
+  };
+
+  const easyEarnScrollRight = () => {
+    easyEarnSliderRef.current.scrollBy({
+      left: 200,
+      behavior: "smooth",
+    });
+    if (easyEarnSliderRef.current.scrollLeft + easyEarnSliderRef.current.offsetWidth + 200 >= easyEarnSliderRef.current.scrollWidth - 5) {
+      seteasyEarnPrevBtn(true);
+      setEasyEarnNextBtn(false);
+    } else {
+      seteasyEarnPrevBtn(true);
+      setEasyEarnNextBtn(true);
     }
   };
 
@@ -574,7 +639,40 @@ export function Main({ themeDetailsData, shadowRoot }) {
                       }
                     </div>
                 </div>
-
+                <div className="easyEarnMainContainer">
+                  <div class="gamesArenaContainer">
+                    <div className="easyEarnTitleBox">
+                      <h1>Easy Earn</h1>
+                      <a onClick={() => handleScreenComponent("easy_earn", "Easy Earn")}>
+                        View All
+                      </a>
+                    </div>
+                    <p>Earn Reward just by inputting your details</p>
+                  </div>
+                  <div class="gamesHorizontalList" ref={easyEarnSliderRef}>
+                  {  
+                      easyEarnData.map((game, index) => (
+                        <EasyEarnCard
+                          key={index}
+                          btnClick={() => (isLoggedIn && handleScreenComponent("easy_earn", "Easy Earn"))}
+                          gameTitle={game.gameTitle}
+                          gameDesc={game.gameDesc}
+                          cardImage={game.cardImage}
+                          gamePrice={game.gamePrice}
+                          btnText={game.btnText}
+                          isLoggedIn={isLoggedIn}
+                          handleLogin={handleLogin}
+                        />
+                      ))
+                    }
+                    {featuredCoupons.length > 2 && 
+                        <>
+                          {easyEarnPrevBtn && <div className="scrollBtnPrev" onClick={easyEarnScrollLeft}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                          {easyEarnNextBtn && <div className="scrollBtnNext" onClick={easyEarnScrollRight}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
+                        </>
+                    }
+                  </div>
+                </div>
                 <div>
                   <div class="gamesArenaContainer">
                     <h1>Games Arena</h1>

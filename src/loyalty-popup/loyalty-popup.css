@@ -466,7 +466,8 @@ body {
 	border-radius: 8px;
 	position: relative;
 	bottom: 20px;
-	min-width: 126px;
+	max-width: 130px;
+	min-width: 130px;
 }
 
 .gamesCardImg {
@@ -518,6 +519,7 @@ body {
 .gamesCardDesc {
 	font-weight: 500;
     font-size: 10px;
+	text-align: center;
 }
 
 .gamesHorizontalList {
@@ -1525,5 +1527,54 @@ body {
 	color: gold;
 }
 
+.easyEarnTitleBox {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
 
-/* experimentatl css */
+.easyEarnTitleBox a {
+	cursor: pointer;
+	font-weight: 500;
+	font-size: 12px;
+}
+
+.easyEarnScreenContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	padding: 2rem;
+	row-gap: 0;
+	column-gap: 2rem;
+}
+
+.easyEarnScreenDesc {
+	font-size: 14px;
+	margin-left: 16px;
+}
+
+.easyEarnCardBtn {
+	background-color: gray;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    padding: 8px;
+    cursor: pointer;
+	border: none;
+}
+
+.coinContainer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 16px;
+}
+
+.easyEarnMainContainer {
+	position: relative;
+}
