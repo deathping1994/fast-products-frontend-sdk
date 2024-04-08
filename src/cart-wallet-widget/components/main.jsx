@@ -18,7 +18,8 @@ export function Main({ themeDetailsData }) {
   const [refetchCartSummary, setRefetchSummary] = useState(false);
   const [renderApplyCouponCodeBox, setRenderApplyCouponCodeBox] =
     useState(false);
-
+  const [renderCashbackStrip, setRenderCashbackStrip] = useState(false)
+  const [renderWalletCredit, setRenderWalletCredit] = useState(false)
   const [loadingWalletBal, setLoadingWalletBal] = useState(false);
   const [walletAppliedDetails, setWalletAppliedDetails] = useState({
     currency: null,
@@ -132,9 +133,17 @@ export function Main({ themeDetailsData }) {
 
     const checkout_target = mainScript.getAttribute("data-checkout-target");
     const coupon_code_box = mainScript.getAttribute("data-coupon-code-box");
+    const cashback_strip = mainScript.getAttribute("data-cashback-strip");
+    const wallet_credit = mainScript.getAttribute("data-wallet-credit-box");
 
     if (coupon_code_box) {
       setRenderApplyCouponCodeBox(true);
+    }
+    if(cashback_strip === "true"){
+      setRenderCashbackStrip(true)
+    }
+    if(wallet_credit === "true"){
+      setRenderWalletCredit(true)
     }
 
     if (checkout_target) {
@@ -170,6 +179,43 @@ export function Main({ themeDetailsData }) {
     loadCartSummary();
   }, [refetchCartSummary, cashbackDetails?.type]);
   
+  
+  useEffect(() => {
+    const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
+    const customer_id = mainScript.getAttribute("data-customer-id");
+    setCustomerDetails((prev)=>({
+      ...prev,
+      customerID: customer_id,
+    }));
+
+    if (!customer_id) {
+      removeAppliedCouponCode();
+    }
+
+  }, []);
+
+  const removeAppliedCouponCode = async () => {
+    const clearDiscountCode = "FC_REMOVE_CODE";
+    const walletAppliedCode = localStorage.getItem("fc-wallet-applied-code") || "";
+
+    try {
+      // First, remove the wallet coupon code if it was applied
+      if (walletAppliedCode) {
+        await fetch(`/discount/${clearDiscountCode}`);
+        localStorage.removeItem("fc-wallet-applied-code");
+      }
+
+      // Next, remove any other applied discount code
+      const appliedDiscountCode = localStorage.getItem("fc-coupon-applied-code");
+      if (appliedDiscountCode) {
+        await fetch(`/discount/${appliedDiscountCode}`);
+        localStorage.removeItem("fc-coupon-applied-code");
+      }
+    } catch (error) {
+      console.error("Error removing applied coupon code:", error);
+    }
+  };
+
   return (
     <>
       {renderApplyCouponCodeBox ? (
@@ -182,22 +228,27 @@ export function Main({ themeDetailsData }) {
         <></>
       )}
       {!loadingCashbackDetails && cashbackAmount !== 0 && (
-        <div class="cashback-strip-container">
+        <>
+        {renderCashbackStrip && <div class="cashback-strip-container">
           <p>
             You'll get&nbsp;<span>Rs. {parseFloat(`${cashbackAmount}`).toFixed(2)} cashback</span>
             &nbsp;with this order
           </p>
-        </div>
+        </div>}
+        </>
       )}
       {customerDetails?.customerID ? (
-        <ApplyWallet
-          customerDetails={customerDetails}
-          checkoutTarget={checkoutTarget}
-          renderApplyCouponCodeBox={renderApplyCouponCodeBox}
-          refetchCartSummary={refetchCartSummary}
-          calculateCashback={calculateCashback}
-          setUserHash={setCustomerDetails}
-        />
+        <div>
+          <ApplyWallet
+            customerDetails={customerDetails}
+            checkoutTarget={checkoutTarget}
+            renderApplyCouponCodeBox={renderApplyCouponCodeBox}
+            refetchCartSummary={refetchCartSummary}
+            calculateCashback={calculateCashback}
+            setUserHash={setCustomerDetails}
+            renderWalletCredit={renderWalletCredit}
+          />
+        </div>
       ) : (
         <>
           <Login themeDetails={themeDetailsData} />
