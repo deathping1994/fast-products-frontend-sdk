@@ -566,6 +566,7 @@ body {
     justify-content: center;
     align-items: center;
 	border: 1px solid var(--loyalty_popup_theme_background, #000);
+	cursor: pointer;
 }
 
 .inviteRoundedBtn img {
