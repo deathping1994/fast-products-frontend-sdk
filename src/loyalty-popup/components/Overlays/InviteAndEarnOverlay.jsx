@@ -20,20 +20,37 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
     }
     const [showCopied, setShowCopied] = useState(false);
 
-    const handleShareClick = ()=>{
-        if(navigator.share){
-          navigator.share({
-            title: 'Invite your friend to get rewards',
-            text: localStorage.getItem("fc-whatsapp-msg"),
-          })
-          .then(() => console.log('Successful share'))
-          .catch((error) => console.log('Error sharing', error));
-        }else{
-            navigator.clipboard.writeText(localStorage.getItem("fc-whatsapp-msg"))
-            setShowCopied(true)
-            setTimeout(()=>{
-                setShowCopied(false)
-            },1000)
+    const handleShareClick = async () => {
+        let whatsappMsg = localStorage.getItem("fc-whatsapp-msg");
+        if (!whatsappMsg) {
+            try {
+                const whatsappResp = await fetchApi('/get-referred-message', 'post', customerDetails);
+                if (whatsappResp?.status === "success") {
+                    whatsappMsg = whatsappResp?.data?.getReferredMessage;
+                    localStorage.setItem("fc-whatsapp-msg", whatsappMsg);
+                } else {
+                    showError();
+                    return;
+                }
+            } catch (error) {
+                showError();
+                return;
+            }
+        }
+    
+        if (navigator.share) {
+            navigator.share({
+                title: 'Invite your friend to get rewards',
+                text: whatsappMsg,
+            })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+        } else {
+            navigator.clipboard.writeText(whatsappMsg);
+            setShowCopied(true);
+            setTimeout(() => {
+                setShowCopied(false);
+            }, 1000);
         }
     }
     const hanldeWhatsappClick = async () => {

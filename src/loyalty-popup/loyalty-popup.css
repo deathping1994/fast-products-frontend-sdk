@@ -140,7 +140,7 @@ body {
 	border-radius: 100%;
 	z-index: 9999;
 	cursor: pointer;
-	
+	padding: 12px;
 }
 
 .mainPopup {
@@ -566,6 +566,7 @@ body {
     justify-content: center;
     align-items: center;
 	border: 1px solid var(--loyalty_popup_theme_background, #000);
+	cursor: pointer;
 }
 
 .inviteRoundedBtn img {
@@ -717,7 +718,7 @@ body {
 	font-size: 30px;
 }
 
-.couponContainer {
+.couponContainer, .easyEarnOverlayContainer {
 	background-color: white;
 	width: 100%;
 	padding: 16px;
@@ -1577,4 +1578,25 @@ body {
 
 .easyEarnMainContainer {
 	position: relative;
+}
+
+.easyEarnOverlayContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.easyEarnCoinBox {
+	background-color: #EFEDED;
+	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	padding: 4px 14px;
+	align-items: center;
+	margin-bottom: 8px;
+	margin-top: 8px;
+	color: var(--loyalty_popup_theme_background, #000);
+	font-size: 14px;
+	gap: 4px;
 }
