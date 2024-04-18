@@ -21,6 +21,7 @@ import Alert from "./Utils/Alert";
 import ReferralPopup from "./ReferralPopup";
 import EasyEarn from "./EasyEarn";
 import EasyEarnCard from "./EasyEarnCard";
+import EasyEarnOverlay from "./Overlays/EasyEarnOverlay";
 
 export function Main({ themeDetailsData, shadowRoot }) {
   const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
@@ -367,6 +368,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
         />
       );
     }
+    if(overlayname === "easy_earn"){
+      return (
+        <EasyEarnOverlay easyEarnBtnText={''} easyEarnDesc={''} easyEarnTitle={''} easyEarnImg={''} easyPoints={''}/>
+      )
+    }
   };
 
   useEffect(() => {
@@ -514,11 +520,11 @@ export function Main({ themeDetailsData, shadowRoot }) {
       behavior: "smooth",
     });
     if (sliderRef.current.scrollLeft - 200 <= 5) {
-      seteasyEarnPrevBtn(false);
-      setEasyEarnNextBtn(true);
+      setPrevBtn(false);
+      setNextBtn(true);
     } else {
-      seteasyEarnPrevBtn(true);
-      setEasyEarnNextBtn(true);
+      setPrevBtn(true);
+      setNextBtn(true);
     }
   };
   const easyEarnScrollLeft = () => {
@@ -654,7 +660,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                       easyEarnData.map((game, index) => (
                         <EasyEarnCard
                           key={index}
-                          btnClick={() => (isLoggedIn && handleScreenComponent("easy_earn", "Easy Earn"))}
+                          btnClick={() => (isLoggedIn && changeOverlay("easy_earn"))}
                           gameTitle={game.gameTitle}
                           gameDesc={game.gameDesc}
                           cardImage={game.cardImage}
