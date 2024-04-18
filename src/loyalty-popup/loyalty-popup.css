@@ -140,7 +140,7 @@ body {
 	border-radius: 100%;
 	z-index: 9999;
 	cursor: pointer;
-	
+	padding: 12px;
 }
 
 .mainPopup {
