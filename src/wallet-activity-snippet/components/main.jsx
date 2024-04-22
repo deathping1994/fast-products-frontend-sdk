@@ -71,7 +71,8 @@ export function Main(props) {
         ) : (
           <>
             {customerDetails?.customerID ? (
-              <WalletScreen 
+              <WalletScreen
+              themeDetailsData={themeDetailsData}
               customerDetails={customerDetails}
               setUserHash={setCustomerDetails} 
               />
