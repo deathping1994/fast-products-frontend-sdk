@@ -160,3 +160,7 @@
 		transform: rotate(360deg);
 	}
 }
+
+.points-svg-container{
+	margin-top: 6px;
+}
