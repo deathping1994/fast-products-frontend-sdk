@@ -719,6 +719,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                     onClick={() => (isLoggedIn && changeOverlay("invite_and_earn"))}
                   />
                 </div>
+                <p id="watermarkContainer"><a href='https://retainley.com/' target="_blank">Powered by Retainley</a></p>
               </>
             )}
             <div class="overlay">

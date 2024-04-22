@@ -158,7 +158,6 @@ body {
 	border-radius: 15px;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	padding-bottom: 16px;
 	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);
 }
 
@@ -1599,4 +1598,13 @@ body {
 	color: var(--loyalty_popup_theme_background, #000);
 	font-size: 14px;
 	gap: 4px;
+}
+
+#watermarkContainer {
+	color: white;
+	background-color: black;
+	font-size: 12px;
+	text-align: end;
+	padding: 4px 16px;
+	margin-top: 16px;
 }

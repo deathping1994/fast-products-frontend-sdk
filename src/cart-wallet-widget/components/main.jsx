@@ -136,7 +136,7 @@ export function Main({ themeDetailsData }) {
     const cashback_strip = mainScript.getAttribute("data-cashback-strip");
     const wallet_credit = mainScript.getAttribute("data-wallet-credit-box");
 
-    if (coupon_code_box) {
+    if (coupon_code_box === 'true') {
       setRenderApplyCouponCodeBox(true);
     }
     if(cashback_strip === "true"){
