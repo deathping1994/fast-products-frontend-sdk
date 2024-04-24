@@ -1,0 +1,45 @@
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #acacac;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+#fc-retainley-wallet-box {
+    position: relative;
+    width: fit-content;
+}
+
+#fc-retainley-wallet-btn {
+  background-color: #0056b2;
+  padding: 4px 20px;
+  color: #eed364;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 90px;
+  font-weight: bold;
+  border: 2px solid #eed364;
+  border-top: none;
+  text-decoration: none;
+}
+
+#fc-wallet-amt-name {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: fit-content;
+  color: white;
+  text-wrap: nowrap;
+  font-size: 12px;
+  font-weight: bold;
+  transform: translate(-50%);
+}
