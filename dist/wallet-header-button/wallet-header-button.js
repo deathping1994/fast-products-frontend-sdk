@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = ".fc-wallet-activity-snippet-19212--root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n\n.fc-wallet-activity-snippet-19212--root a {\n	text-decoration: none;\n	color: inherit;\n}\n\n.fc-wallet-activity-snippet-19212--root {\n	width: 100%;\n}\n\n.fc-wallet-activity-snippet-19212--root .login-container {\n	display: flex;\n	justify-content: center;\n	margin: 50px;\n}\n\n.fc-wallet-activity-snippet-19212--root .login-container a {\n	background-color: #ebebeb;\n	padding: 10px 30px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container {\n	width: 95%;\n	margin: auto;\n	max-width: 1000px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-wrapper {\n	background: #ebebeb;\n	border-radius: 8px;\n	padding: 15px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-container {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n	gap: 10px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-container .total-points {\n	font-size: 42px;\n	font-weight: 600;\n}\n\n.fc-wallet-activity-snippet-19212--root .points-svg-container {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper {\n	margin-top: 36px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	margin: auto;\n	flex-direction: column;\n	gap: 10px;\n	margin: 18px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn p {\n	text-align: center;\n	color: #fff;\n	font-size: 16px;\n	background: #000;\n	border-radius: 4px;\n	padding: 8px 16px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn .circular-loader {\n	border: 3px solid #000;\n	border-left-color: transparent;\n	width: 30px;\n	height: 30px;\n	animation: spin89345 0.7s linear infinite;\n	border-radius: 50%;\n	margin: 0px 8px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .transaction-log-container {\n	margin: 14px 0px;\n	padding: 0px;\n	border: 1px solid rgb(231, 231, 231);\n	border-radius: 6px;\n	box-shadow: 1px 2px 2px rgb(231, 231, 231);\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-header {\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n	border-bottom: 1px solid rgb(231, 231, 231);\n	padding: 8px 18px;\n	font-size: 16px;\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type {\n	border-radius: 4px;\n	padding: 4px 8px;\n	font-weight: 600;\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.credited {\n	background-color: rgb(209, 255, 217);\n	color: rgb(30, 175, 109);\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.debited {\n	background-color: rgba(181, 0, 0, 0.1);\n	color: rgb(181, 0, 0);\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body {\n	padding: 8px 18px;\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body .amount {\n	font-size: 20px;\n	font-weight: 600;\n}\n\n@keyframes shimmer {\n	to {\n		background-position: -100% 0;\n	}\n}\n\n.skeletonloader {\n	margin: 10px auto;\n	border-radius: 3px;\n}\n\n.skeleton-loader-container {\n	width: 80%;\n	margin: auto;\n}\n\n@media screen and (max-width: 480px) {\n	.skeleton-loader-container {\n		width: 92%;\n	}\n}\n\n@keyframes spin89345 {\n	0% {\n		transform: rotate(0deg);\n	}\n\n	100% {\n		transform: rotate(360deg);\n	}\n}\n\n.points-svg-container{\n	margin-top: 6px;\n}";
+  const style = ".loader {\n    border: 4px solid #f3f3f3;\n    border-top: 4px solid #acacac;\n    border-radius: 50%;\n    width: 14px;\n    height: 14px;\n    animation: spin 2s linear infinite;\n  }\n  \n  @keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n  }\n\n#fc-retainley-wallet-box {\n    position: relative;\n    width: fit-content;\n}\n\n#fc-retainley-wallet-btn {\n  background-color: #0056b2;\n  padding: 4px 20px;\n  color: #eed364;\n  border-radius: 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  max-width: 90px;\n  font-weight: bold;\n  border: 2px solid #eed364;\n  border-top: none;\n  text-decoration: none;\n}\n\n#fc-wallet-amt-name {\n  position: absolute;\n  top: -10px;\n  left: 50%;\n  width: fit-content;\n  color: white;\n  text-wrap: nowrap;\n  font-size: 12px;\n  font-weight: bold;\n  transform: translate(-50%);\n}\n";
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -392,6 +392,20 @@
   function B(n2, t2) {
     return "function" == typeof t2 ? t2(n2) : t2;
   }
+  const WALLET_API_URI$1 = "https://fastloyaltyapi.farziengineer.co";
+  const fetchApi = async (route, method, data) => {
+    const resp = await fetch(`${WALLET_API_URI$1}${route}`, {
+      method,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ...data
+      })
+    });
+    const response = await resp.json();
+    return response;
+  };
   var _ = 0;
   function o(o2, e2, n2, t2, f2, l2) {
     var s2, u2, a2 = {};
@@ -403,346 +417,89 @@
         void 0 === a2[u2] && (a2[u2] = s2[u2]);
     return l$1.vnode && l$1.vnode(i2), i2;
   }
-  function TransactionLog({
-    id,
-    reason,
-    created,
-    amount,
-    type
-  }) {
-    return o(k$1, {
-      children: o("div", {
-        class: "transaction-log-container",
-        children: [o("div", {
-          class: "log-header",
-          children: [o("div", {
-            class: "log-date",
-            children: created == null ? void 0 : created.split("T")[0]
-          }), o("div", {
-            class: `log-type ${type === "ADD" ? "credited" : "debited"}`,
-            children: type === "ADD" ? "Credited" : "Debited"
-          })]
-        }), o("div", {
-          class: "log-body",
-          children: [o("p", {
-            class: "amount",
-            children: [o("span", {
-              children: type === "ADD" ? "+" : "-"
-            }), o("span", {
-              children: ` ${Number(amount).toLocaleString("en-IN", {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2
-              })}`
-            })]
-          }), o("p", {
-            class: "reason",
-            children: reason
-          })]
-        })]
-      })
-    });
-  }
-  function SkeletonLoader({
-    width = "30px",
-    height = "10px",
-    styles = {}
-  }) {
-    return o(k$1, {
-      children: o("div", {
-        class: "skeletonloader",
-        style: {
-          width,
-          height,
-          backgroundImage: "linear-gradient(90deg, #ccc 0px, rgb(229 229 229 / 90%) 40px, #ccc 80px)",
-          backgroundSize: "300%",
-          backgroundPosition: "100% 0",
-          borderRadius: "inherit",
-          animation: "shimmer 1.4s infinite",
-          ...styles
-        }
-      })
-    });
-  }
-  function WalletScreen({
-    customerDetails,
-    setUserHash,
-    themeDetailsData
-  }) {
-    var _a;
-    const [totalWalletAmount, setTotalWalletAmount] = h(null);
-    const [walletLogs, setWalletLogs] = h([]);
-    const [loading, setLoading] = h(true);
-    const [pageInfo, setpageInfo] = h({
-      endCursor: null
-    });
-    const [triggerLoadMore, setTriggerLoadMore] = h(false);
-    const [loadingPaginatedResults, setLoadingPaginatedResults] = h(false);
-    const mainScript = document.querySelector("#fc-wallet-activity-snippet-script-19212");
-    const wallet_name = mainScript.getAttribute("data-wallet-name");
-    const wallet_icon = mainScript.getAttribute("data-wallet-icon");
-    const fetchWalletdetails = async ({
+  const Main = ({
+    themeDetailsData,
+    shadowRoot
+  }) => {
+    var _a, _b, _c;
+    const mainScript = document.querySelector("#fc-wallet-header-button-script-19212");
+    const customer_id = mainScript.getAttribute("data-customer-id");
+    const user_hash = ((_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim()) || sessionStorage.getItem("fc_wallet_user_hash") || "";
+    const client_id = mainScript.getAttribute("data-client-id");
+    const showAtLogout = mainScript.getAttribute("data-show-at-logout");
+    const redirectURL = mainScript.getAttribute("data-redirect-url");
+    const [walletAmount, setWalletAmount] = h("");
+    const [loading, setLoading] = h(false);
+    const [showBtnAtLogout, setShowBtnAtLogout] = h("false");
+    const customerDetails = {
+      client_id,
       customer_id,
-      customer_tags,
-      client_id
-    }) => {
-      var _a2, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
-      const response = await fetch(`${WALLET_API_URI}/user-walletlogs`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          customer_id,
-          user_hash: customer_tags,
-          client_id,
-          page_info: {
-            first: 20,
-            after: pageInfo == null ? void 0 : pageInfo.endCursor
-          }
-        })
-      });
-      let walletData = await response.json();
-      let walletAmount = ((_d = (_c = (_b = (_a2 = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a2.data) == null ? void 0 : _b.wallet) == null ? void 0 : _c.wallet) == null ? void 0 : _d.amount) || 0;
-      let get_user_hash = (_f = (_e = walletData == null ? void 0 : walletData.data) == null ? void 0 : _e.data) == null ? void 0 : _f.user_hash;
-      if (get_user_hash) {
-        setUserHash({
-          ...customerDetails,
-          customerTags: get_user_hash
-        });
-        sessionStorage.setItem("fc_wallet_user_hash", get_user_hash);
-      }
-      setTotalWalletAmount(walletAmount);
-      setWalletLogs((prev) => {
-        var _a3, _b2, _c2, _d2, _e2, _f2;
-        const newWalletLogs = (_f2 = (_e2 = (_d2 = (_c2 = (_b2 = (_a3 = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a3.data) == null ? void 0 : _b2.wallet) == null ? void 0 : _c2.wallet) == null ? void 0 : _d2.logs) == null ? void 0 : _e2.edges) == null ? void 0 : _f2.map((item) => {
-          return item.node;
-        });
-        return [...prev, ...newWalletLogs];
-      });
-      setpageInfo({
-        ...pageInfo,
-        endCursor: ((_l = (_k = (_j = (_i = (_h = (_g = walletData == null ? void 0 : walletData.data) == null ? void 0 : _g.data) == null ? void 0 : _h.wallet) == null ? void 0 : _i.wallet) == null ? void 0 : _j.logs) == null ? void 0 : _k.pageInfo) == null ? void 0 : _l.hasNextPage) && ((_r = (_q = (_p = (_o = (_n = (_m = walletData == null ? void 0 : walletData.data) == null ? void 0 : _m.data) == null ? void 0 : _n.wallet) == null ? void 0 : _o.wallet) == null ? void 0 : _p.logs) == null ? void 0 : _q.pageInfo) == null ? void 0 : _r.endCursor)
-      });
-      setLoadingPaginatedResults(false);
+      user_hash
     };
     p(() => {
-      if (customerDetails == null ? void 0 : customerDetails.customerID) {
-        (async () => {
-          await fetchWalletdetails({
-            customer_id: customerDetails == null ? void 0 : customerDetails.customerID,
-            customer_tags: (customerDetails == null ? void 0 : customerDetails.customerTags) || sessionStorage.getItem("fc_wallet_user_hash") || "",
-            client_id: customerDetails == null ? void 0 : customerDetails.clientID
-          });
-          setLoading(false);
-        })();
+      if (customerDetails.customer_id) {
+        setShowBtnAtLogout("true");
+        const getWalletAmount = async () => {
+          var _a2, _b2, _c2, _d, _e, _f, _g, _h, _i, _j, _k, _l;
+          try {
+            setLoading(true);
+            const walletResponse = await fetchApi("/user-walletlogs", "post", {
+              ...customerDetails
+            });
+            if ((walletResponse == null ? void 0 : walletResponse.status) !== "success") {
+              console.log("Failed to get walletlog");
+            } else {
+              if (!isNaN((_d = (_c2 = (_b2 = (_a2 = walletResponse == null ? void 0 : walletResponse.data) == null ? void 0 : _a2.data) == null ? void 0 : _b2.wallet) == null ? void 0 : _c2.wallet) == null ? void 0 : _d.amount)) {
+                setWalletAmount(`₹ ${(_h = (_g = (_f = (_e = walletResponse == null ? void 0 : walletResponse.data) == null ? void 0 : _e.data) == null ? void 0 : _f.wallet) == null ? void 0 : _g.wallet) == null ? void 0 : _h.amount}`);
+              } else {
+                setWalletAmount(`₹ 0`);
+              }
+            }
+          } catch (error) {
+            const checkUser = await fetchApi("/sync-external-user", "post", {
+              ...customerDetails
+            });
+            if (checkUser.status === "success") {
+              const walletResponse = await fetchApi("/user-walletlogs", "post", {
+                ...customerDetails
+              });
+              setWalletAmount(`₹ ${(_l = (_k = (_j = (_i = walletResponse == null ? void 0 : walletResponse.data) == null ? void 0 : _i.data) == null ? void 0 : _j.wallet) == null ? void 0 : _k.wallet) == null ? void 0 : _l.amount}`);
+            }
+          } finally {
+            setLoading(false);
+          }
+        };
+        getWalletAmount();
+      } else {
+        setShowBtnAtLogout(showAtLogout);
+        setWalletAmount("Login");
       }
-    }, [customerDetails == null ? void 0 : customerDetails.customerID, triggerLoadMore]);
-    return o(k$1, {
-      children: loading ? o("div", {
-        class: "skeleton-loader-container",
-        children: [o(SkeletonLoader, {
-          width: "22%",
-          height: "35px",
-          styles: {
-            marginLeft: 0
-          }
-        }), o(SkeletonLoader, {
-          width: "100%",
-          height: "100px"
-        }), o(SkeletonLoader, {
-          width: "28%",
-          height: "30px",
-          styles: {
-            marginLeft: 0,
-            marginTop: "36px"
-          }
-        }), o(SkeletonLoader, {
-          width: "100%",
-          height: "100px"
-        }), o(SkeletonLoader, {
-          width: "100%",
-          height: "100px"
-        }), o(SkeletonLoader, {
-          width: "100%",
-          height: "100px"
-        })]
-      }) : o(k$1, {
-        children: [o("h1", {
-          children: wallet_name ? wallet_name : "Wallet Points"
-        }), o("div", {
-          class: "total-points-wrapper",
-          children: [o("div", {
-            class: "total-points-container",
-            children: [o("div", {
-              class: "points-svg-container",
-              children: wallet_icon ? o("img", {
-                src: wallet_icon,
-                alt: "",
-                srcset: ""
-              }) : o("svg", {
-                xmlns: "http://www.w3.org/2000/svg",
-                width: "50",
-                height: "50",
-                fill: "none",
-                viewBox: "0 0 58 57",
-                children: [o("path", {
-                  fill: "#ffffff",
-                  d: "M31.881 51.541C14.523 56.615 1.854 38.046 5.642 23.722 9.928 7.503 24.254 2.195 39.504 6.507 47.408 8.74 53.302 19.502 52.89 27.633c-.644 12.486-9.98 22.994-21.009 23.908z",
-                  style: ""
-                }), o("path", {
-                  fill: "#121212",
-                  d: "M34.909 16.739c.767-.137 1.566.42 1.703 1.188a1.478 1.478 0 01-1.188 1.703l-16.622 2.963c-.406.072-.658.49-.594.851a.725.725 0 00.852.594l16.622-2.963a2.957 2.957 0 013.406 2.376l1.803 10.117a2.927 2.927 0 01-2.375 3.406L21.17 40.066a2.899 2.899 0 01-3.406-2.376L15.19 23.237a2.927 2.927 0 012.375-3.406l17.345-3.092zm1.002 13.989a1.478 1.478 0 001.188-1.703c-.137-.768-.936-1.325-1.703-1.188a1.478 1.478 0 00-1.188 1.703 1.45 1.45 0 001.703 1.188z",
-                  style: ""
-                })]
-              })
-            }), o("p", {
-              class: "total-points",
-              children: ` ${Number(totalWalletAmount).toLocaleString("en-IN", {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2
-              })}`
-            })]
-          }), o("p", {
-            children: ["Total ", ((_a = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a.coin_name) || "wallet points", " available"]
-          })]
-        }), o("div", {
-          class: "transaction-logs-wrapper",
-          children: [o("h2", {
-            children: "Transactions Logs"
-          }), walletLogs.map((log) => {
-            return o(TransactionLog, {
-              amount: log.amount,
-              created: log.created,
-              id: log.id,
-              reason: log.reason,
-              type: log.type
-            }, log.id);
-          }), (pageInfo == null ? void 0 : pageInfo.endCursor) ? o("div", {
-            class: "show-more-btn",
-            onClick: () => {
-              setLoadingPaginatedResults(true);
-              setTriggerLoadMore((prev) => !prev);
-            },
-            children: [o("p", {
-              children: "Show More"
-            }), loadingPaginatedResults ? o("div", {
-              class: "circular-loader"
-            }) : o(k$1, {})]
-          }) : o(k$1, {})]
-        })]
-      })
-    });
-  }
-  function Login({
-    themeDetails
-  }) {
-    var _a;
-    return o(k$1, {
-      children: o("div", {
-        class: "login-container",
-        children: o("a", {
-          href: (_a = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _a.login_page,
-          children: "Login to view wallet activity"
-        })
-      })
-    });
-  }
-  function Main(props) {
-    const [customerDetails, setCustomerDetails] = h({
-      customerID: "",
-      customerTags: "",
-      clientID: ""
-    });
-    const [loading, setLoading] = h(true);
-    const [themeDetailsData, setThemeDetailsData] = h({});
-    const getThemeDetails = async ({
-      client_id
-    }) => {
-      const themeDetailsRes = await fetch(`${WALLET_API_URI}/get-theme-details`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          client_id
-        })
-      });
-      const themeDetailsResData = await themeDetailsRes.json();
-      setThemeDetailsData(themeDetailsResData);
-    };
-    p(() => {
-      var _a;
-      const mainScript = document.querySelector("#fc-wallet-activity-snippet-script-19212");
-      const customer_id = mainScript.getAttribute("data-customer-id");
-      const customer_tags = ((_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim()) || sessionStorage.getItem("fc_wallet_user_hash") || "";
-      const client_id = mainScript.getAttribute("data-client-id");
-      (async () => {
-        await getThemeDetails({
-          client_id
-        });
-        setCustomerDetails({
-          customerID: customer_id,
-          customerTags: customer_tags,
-          clientID: client_id
-        });
-        setLoading(false);
-      })();
-    }, []);
-    return o(k$1, {
-      children: o("div", {
-        class: "snippet-container",
+    }, [customer_id]);
+    return showBtnAtLogout === "true" && o("div", {
+      id: "fc-retainley-wallet-box",
+      children: [o("a", {
+        href: walletAmount === "Login" ? ((_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.login_page) || "/account/login" : redirectURL,
+        id: "fc-retainley-wallet-btn",
         children: loading ? o("div", {
-          class: "skeleton-loader-container",
-          children: [o(SkeletonLoader, {
-            width: "22%",
-            height: "35px",
-            styles: {
-              marginLeft: 0
-            }
-          }), o(SkeletonLoader, {
-            width: "100%",
-            height: "100px"
-          }), o(SkeletonLoader, {
-            width: "28%",
-            height: "30px",
-            styles: {
-              marginLeft: 0,
-              marginTop: "36px"
-            }
-          }), o(SkeletonLoader, {
-            width: "100%",
-            height: "100px"
-          }), o(SkeletonLoader, {
-            width: "100%",
-            height: "100px"
-          }), o(SkeletonLoader, {
-            width: "100%",
-            height: "100px"
-          })]
-        }) : o(k$1, {
-          children: (customerDetails == null ? void 0 : customerDetails.customerID) ? o(WalletScreen, {
-            themeDetailsData,
-            customerDetails,
-            setUserHash: setCustomerDetails
-          }) : o(Login, {
-            themeDetails: themeDetailsData
-          })
-        })
-      })
+          className: "loader"
+        }) : walletAmount
+      }), o("span", {
+        id: "fc-wallet-amt-name",
+        children: (_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.coin_name
+      })]
     });
-  }
-  const parseJson = (jsonString) => {
-    try {
-      return JSON.parse(jsonString);
-    } catch {
-      return jsonString;
-    }
   };
-  function App() {
+  function App({
+    themeDetailsData,
+    shadowRoot
+  }) {
     return o(k$1, {
       children: [o("div", {
         class: "widget-container",
-        children: o(Main, {})
+        children: o(Main, {
+          themeDetailsData,
+          shadowRoot
+        })
       }), o("div", {
         class: "widget-styles"
       }), o("div", {
@@ -763,56 +520,59 @@
     });
   }
   const WALLET_API_URI = "https://fastloyaltyapi.farziengineer.co";
-  async function renderwalletActivitySnippet() {
-    var _a, _b;
-    const targetDiv = document.getElementById("fc-wallet-activity-snippet-19212");
-    targetDiv.innerHTML = "";
-    let shadowTarget = document.createElement("div");
-    shadowTarget.className = "fc-wallet-activity-snippet-19212-target";
-    shadowTarget.style.display = "block";
-    targetDiv.appendChild(shadowTarget);
-    let shadow = shadowTarget.attachShadow({
-      mode: "open"
-    });
-    let shadowRoot = document.createElement("div");
-    shadowRoot.className = "fc-wallet-activity-snippet-19212--root";
-    shadow.appendChild(shadowRoot);
-    let themeDetailsData;
-    if ((_a = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _a.wallet_snippet_theme_details) {
-      themeDetailsData = window.fc_loyalty_vars.wallet_snippet_theme_details;
-    } else {
-      const mainScript = document.querySelector("#fc-wallet-activity-snippet-script-19212");
-      const client_id = mainScript.getAttribute("data-client-id");
-      const themeDetailsRes = await fetch(`${WALLET_API_URI}/wallet-page-theme-details`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          client_id
-        })
+  async function renderWalletAmtHeaderButton() {
+    var _a, _b, _c;
+    try {
+      const mainScript = document.querySelector("#fc-wallet-header-button-script-19212");
+      const appendClass = mainScript == null ? void 0 : mainScript.getAttribute("data-append-class-name");
+      const targetDiv = document.querySelector(`${appendClass}`);
+      let shadowTarget = document.createElement("div");
+      shadowTarget.className = "fc-wallet-amount-header-button-19212-target";
+      shadowTarget.style.display = "block";
+      targetDiv.appendChild(shadowTarget);
+      let shadow = shadowTarget.attachShadow({
+        mode: "open"
       });
-      const themeData = await themeDetailsRes.json();
-      themeDetailsData = parseJson((_b = themeData == null ? void 0 : themeData.data) == null ? void 0 : _b.theme_data);
-      if (window.fc_loyalty_vars) {
-        window.fc_loyalty_vars = {
-          // @ts-ignore
-          ...window.fc_loyalty_vars,
-          wallet_snippet_theme_details: themeDetailsData
-        };
+      let shadowRoot = document.createElement("div");
+      shadowRoot.className = "fc-wallet-amount-header-button-19212-root";
+      shadow.appendChild(shadowRoot);
+      let themeDetailsData;
+      if ((_a = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _a.theme_details) {
+        themeDetailsData = (_b = window == null ? void 0 : window.fc_loyalty_vars) == null ? void 0 : _b.theme_details;
       } else {
-        window.fc_loyalty_vars = {
-          wallet_snippet_theme_details: themeDetailsData
-        };
+        const mainScript2 = document.querySelector("#fc-wallet-header-button-script-19212");
+        const client_id = mainScript2 == null ? void 0 : mainScript2.getAttribute("data-client-id");
+        if (client_id) {
+          const themeDetailsRes = await fetch(`${WALLET_API_URI}/get-theme-details`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              client_id
+            })
+          });
+          themeDetailsData = await themeDetailsRes.json();
+          window.fc_loyalty_vars = {
+            // @ts-ignore
+            ...window.fc_loyalty_vars,
+            theme_details: themeDetailsData
+          };
+        }
       }
+      const clientCustomStyleData = ((_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.custom_css) || "";
+      B$1(o(App, {
+        themeDetailsData,
+        shadowRoot
+      }), shadowRoot);
+      B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
+      B$1(o(AppCustomCSS, {
+        customStyles: clientCustomStyleData
+      }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
+    } catch (err) {
+      console.log("error", err);
     }
-    const clientCustomStyleData = (themeDetailsData == null ? void 0 : themeDetailsData.custom_css) || "";
-    B$1(o(App, {}), shadowRoot);
-    B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
-    B$1(o(AppCustomCSS, {
-      customStyles: clientCustomStyleData
-    }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
   }
-  window.fc_render_wallet_activity_snippet = renderwalletActivitySnippet;
-  renderwalletActivitySnippet();
+  window.fc_loyalty_render_wallet_box = renderWalletAmtHeaderButton;
+  renderWalletAmtHeaderButton();
 })();

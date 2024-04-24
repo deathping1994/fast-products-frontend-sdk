@@ -29,13 +29,13 @@
   function b$1(n2, l2) {
     this.props = n2, this.context = l2;
   }
-  function g$1(n2, l2) {
+  function g$2(n2, l2) {
     if (null == l2)
-      return n2.__ ? g$1(n2.__, n2.__.__k.indexOf(n2) + 1) : null;
+      return n2.__ ? g$2(n2.__, n2.__.__k.indexOf(n2) + 1) : null;
     for (var u2; l2 < n2.__k.length; l2++)
       if (null != (u2 = n2.__k[l2]) && null != u2.__e)
         return u2.__d || u2.__e;
-    return "function" == typeof n2.type ? g$1(n2) : null;
+    return "function" == typeof n2.type ? g$2(n2) : null;
   }
   function m$1(n2) {
     var l2, u2;
@@ -48,26 +48,31 @@
       return m$1(n2);
     }
   }
-  function w$1(n2) {
+  function w$2(n2) {
     (!n2.__d && (n2.__d = true) && i$1.push(n2) && !x.__r++ || o$2 !== l$1.debounceRendering) && ((o$2 = l$1.debounceRendering) || r$1)(x);
   }
   function x() {
     var n2, l2, u2, t2, o2, r2, e2, c2, s2;
     for (i$1.sort(f$1); n2 = i$1.shift(); )
-      n2.__d && (l2 = i$1.length, t2 = void 0, o2 = void 0, r2 = void 0, c2 = (e2 = (u2 = n2).__v).__e, (s2 = u2.__P) && (t2 = [], o2 = [], (r2 = h$1({}, e2)).__v = e2.__v + 1, z$1(s2, e2, r2, u2.__n, void 0 !== s2.ownerSVGElement, null != e2.__h ? [c2] : null, t2, null == c2 ? g$1(e2) : c2, e2.__h, o2), L(t2, e2, o2), e2.__e != c2 && m$1(e2)), i$1.length > l2 && i$1.sort(f$1));
+      n2.__d && (l2 = i$1.length, t2 = void 0, o2 = void 0, r2 = void 0, c2 = (e2 = (u2 = n2).__v).__e, (s2 = u2.__P) && (t2 = [], o2 = [], (r2 = h$1({}, e2)).__v = e2.__v + 1, z$1(s2, e2, r2, u2.__n, void 0 !== s2.ownerSVGElement, null != e2.__h ? [c2] : null, t2, null == c2 ? g$2(e2) : c2, e2.__h, o2), L$1(t2, e2, o2), e2.__e != c2 && m$1(e2)), i$1.length > l2 && i$1.sort(f$1));
     x.__r = 0;
   }
   function P(n2, l2, u2, t2, i2, o2, r2, f2, e2, a2, h2) {
-    var p2, y2, _2, b2, m2, w2, x2, P2, C, D2 = 0, H2 = t2 && t2.__k || s$1, I2 = H2.length, T2 = I2, j2 = l2.length;
+    var p2, y2, _2, b2, m2, w2, x2, P2, C2, D2 = 0, H2 = t2 && t2.__k || s$1, I2 = H2.length, T2 = I2, j2 = l2.length;
     for (u2.__k = [], p2 = 0; p2 < j2; p2++)
-      null != (b2 = u2.__k[p2] = null == (b2 = l2[p2]) || "boolean" == typeof b2 || "function" == typeof b2 ? null : "string" == typeof b2 || "number" == typeof b2 || "bigint" == typeof b2 ? d$1(null, b2, null, null, b2) : v$1(b2) ? d$1(k$1, { children: b2 }, null, null, null) : b2.__b > 0 ? d$1(b2.type, b2.props, b2.key, b2.ref ? b2.ref : null, b2.__v) : b2) ? (b2.__ = u2, b2.__b = u2.__b + 1, -1 === (P2 = A(b2, H2, x2 = p2 + D2, T2)) ? _2 = c$1 : (_2 = H2[P2] || c$1, H2[P2] = void 0, T2--), z$1(n2, b2, _2, i2, o2, r2, f2, e2, a2, h2), m2 = b2.__e, (y2 = b2.ref) && _2.ref != y2 && (_2.ref && N(_2.ref, null, b2), h2.push(y2, b2.__c || m2, b2)), null != m2 && (null == w2 && (w2 = m2), (C = _2 === c$1 || null === _2.__v) ? -1 == P2 && D2-- : P2 !== x2 && (P2 === x2 + 1 ? D2++ : P2 > x2 ? T2 > j2 - x2 ? D2 += P2 - x2 : D2-- : D2 = P2 < x2 && P2 == x2 - 1 ? P2 - x2 : 0), x2 = p2 + D2, "function" != typeof b2.type || P2 === x2 && _2.__k !== b2.__k ? "function" == typeof b2.type || P2 === x2 && !C ? void 0 !== b2.__d ? (e2 = b2.__d, b2.__d = void 0) : e2 = m2.nextSibling : e2 = S(n2, m2, e2) : e2 = $(b2, e2, n2), "function" == typeof u2.type && (u2.__d = e2))) : (_2 = H2[p2]) && null == _2.key && _2.__e && (_2.__e == e2 && (_2.__ = t2, e2 = g$1(_2)), O(_2, _2, false), H2[p2] = null);
+      null != (b2 = u2.__k[p2] = null == (b2 = l2[p2]) || "boolean" == typeof b2 || "function" == typeof b2 ? null : "string" == typeof b2 || "number" == typeof b2 || "bigint" == typeof b2 ? d$1(null, b2, null, null, b2) : v$1(b2) ? d$1(k$1, { children: b2 }, null, null, null) : b2.__b > 0 ? d$1(b2.type, b2.props, b2.key, b2.ref ? b2.ref : null, b2.__v) : b2) ? (b2.__ = u2, b2.__b = u2.__b + 1, -1 === (P2 = A(b2, H2, x2 = p2 + D2, T2)) ? _2 = c$1 : (_2 = H2[P2] || c$1, H2[P2] = void 0, T2--), z$1(n2, b2, _2, i2, o2, r2, f2, e2, a2, h2), m2 = b2.__e, (y2 = b2.ref) && _2.ref != y2 && (_2.ref && N(_2.ref, null, b2), h2.push(y2, b2.__c || m2, b2)), null != m2 && (null == w2 && (w2 = m2), (C2 = _2 === c$1 || null === _2.__v) ? -1 == P2 && D2-- : P2 !== x2 && (P2 === x2 + 1 ? D2++ : P2 > x2 ? T2 > j2 - x2 ? D2 += P2 - x2 : D2-- : D2 = P2 < x2 && P2 == x2 - 1 ? P2 - x2 : 0), x2 = p2 + D2, "function" != typeof b2.type || P2 === x2 && _2.__k !== b2.__k ? "function" == typeof b2.type || P2 === x2 && !C2 ? void 0 !== b2.__d ? (e2 = b2.__d, b2.__d = void 0) : e2 = m2.nextSibling : e2 = S(n2, m2, e2) : e2 = $$1(b2, e2, n2), "function" == typeof u2.type && (u2.__d = e2))) : (_2 = H2[p2]) && null == _2.key && _2.__e && (_2.__e == e2 && (_2.__ = t2, e2 = g$2(_2)), O(_2, _2, false), H2[p2] = null);
     for (u2.__e = w2, p2 = I2; p2--; )
       null != H2[p2] && ("function" == typeof u2.type && null != H2[p2].__e && H2[p2].__e == u2.__d && (u2.__d = H2[p2].__e.nextSibling), O(H2[p2], H2[p2]));
   }
-  function $(n2, l2, u2) {
+  function $$1(n2, l2, u2) {
     for (var t2, i2 = n2.__k, o2 = 0; i2 && o2 < i2.length; o2++)
-      (t2 = i2[o2]) && (t2.__ = n2, l2 = "function" == typeof t2.type ? $(t2, l2, u2) : S(u2, t2.__e, l2));
+      (t2 = i2[o2]) && (t2.__ = n2, l2 = "function" == typeof t2.type ? $$1(t2, l2, u2) : S(u2, t2.__e, l2));
     return l2;
+  }
+  function C$1(n2, l2) {
+    return l2 = l2 || [], null == n2 || "boolean" == typeof n2 || (v$1(n2) ? n2.some(function(n3) {
+      C$1(n3, l2);
+    }) : l2.push(n2)), l2;
   }
   function S(n2, l2, u2) {
     return null == u2 || u2.parentNode !== n2 ? n2.insertBefore(l2, null) : l2 == u2 && null != l2.parentNode || n2.insertBefore(l2, u2), l2.nextSibling;
@@ -91,17 +96,17 @@
       }
     return -1;
   }
-  function D(n2, l2, u2, t2, i2) {
+  function D$1(n2, l2, u2, t2, i2) {
     var o2;
     for (o2 in u2)
-      "children" === o2 || "key" === o2 || o2 in l2 || I(n2, o2, null, u2[o2], t2);
+      "children" === o2 || "key" === o2 || o2 in l2 || I$1(n2, o2, null, u2[o2], t2);
     for (o2 in l2)
-      i2 && "function" != typeof l2[o2] || "children" === o2 || "key" === o2 || "value" === o2 || "checked" === o2 || u2[o2] === l2[o2] || I(n2, o2, l2[o2], u2[o2], t2);
+      i2 && "function" != typeof l2[o2] || "children" === o2 || "key" === o2 || "value" === o2 || "checked" === o2 || u2[o2] === l2[o2] || I$1(n2, o2, l2[o2], u2[o2], t2);
   }
-  function H(n2, l2, u2) {
+  function H$1(n2, l2, u2) {
     "-" === l2[0] ? n2.setProperty(l2, null == u2 ? "" : u2) : n2[l2] = null == u2 ? "" : "number" != typeof u2 || a$1.test(l2) ? u2 : u2 + "px";
   }
-  function I(n2, l2, u2, t2, i2) {
+  function I$1(n2, l2, u2, t2, i2) {
     var o2;
     n:
       if ("style" === l2)
@@ -110,13 +115,13 @@
         else {
           if ("string" == typeof t2 && (n2.style.cssText = t2 = ""), t2)
             for (l2 in t2)
-              u2 && l2 in u2 || H(n2.style, l2, "");
+              u2 && l2 in u2 || H$1(n2.style, l2, "");
           if (u2)
             for (l2 in u2)
-              t2 && u2[l2] === t2[l2] || H(n2.style, l2, u2[l2]);
+              t2 && u2[l2] === t2[l2] || H$1(n2.style, l2, u2[l2]);
         }
       else if ("o" === l2[0] && "n" === l2[1])
-        o2 = l2 !== (l2 = l2.replace(/(PointerCapture)$|Capture$/, "$1")), l2 = l2.toLowerCase() in n2 ? l2.toLowerCase().slice(2) : l2.slice(2), n2.l || (n2.l = {}), n2.l[l2 + o2] = u2, u2 ? t2 ? u2.u = t2.u : (u2.u = Date.now(), n2.addEventListener(l2, o2 ? j$1 : T, o2)) : n2.removeEventListener(l2, o2 ? j$1 : T, o2);
+        o2 = l2 !== (l2 = l2.replace(/(PointerCapture)$|Capture$/, "$1")), l2 = l2.toLowerCase() in n2 ? l2.toLowerCase().slice(2) : l2.slice(2), n2.l || (n2.l = {}), n2.l[l2 + o2] = u2, u2 ? t2 ? u2.u = t2.u : (u2.u = Date.now(), n2.addEventListener(l2, o2 ? j$1 : T$1, o2)) : n2.removeEventListener(l2, o2 ? j$1 : T$1, o2);
       else if ("dangerouslySetInnerHTML" !== l2) {
         if (i2)
           l2 = l2.replace(/xlink(H|:h)/, "h").replace(/sName$/, "s");
@@ -129,7 +134,7 @@
         "function" == typeof u2 || (null == u2 || false === u2 && "-" !== l2[4] ? n2.removeAttribute(l2) : n2.setAttribute(l2, u2));
       }
   }
-  function T(n2) {
+  function T$1(n2) {
     var u2 = this.l[n2.type + false];
     if (n2.t) {
       if (n2.t <= u2.u)
@@ -142,21 +147,21 @@
     return this.l[n2.type + true](l$1.event ? l$1.event(n2) : n2);
   }
   function z$1(n2, u2, t2, i2, o2, r2, f2, e2, c2, s2) {
-    var a2, p2, y2, d2, _2, g2, m2, w2, x2, $2, C, S2, A2, D2, H2, I2 = u2.type;
+    var a2, p2, y2, d2, _2, g2, m2, w2, x2, $2, C2, S2, A2, D2, H2, I2 = u2.type;
     if (void 0 !== u2.constructor)
       return null;
     null != t2.__h && (c2 = t2.__h, e2 = u2.__e = t2.__e, u2.__h = null, r2 = [e2]), (a2 = l$1.__b) && a2(u2);
     n:
       if ("function" == typeof I2)
         try {
-          if (w2 = u2.props, x2 = (a2 = I2.contextType) && i2[a2.__c], $2 = a2 ? x2 ? x2.props.value : a2.__ : i2, t2.__c ? m2 = (p2 = u2.__c = t2.__c).__ = p2.__E : ("prototype" in I2 && I2.prototype.render ? u2.__c = p2 = new I2(w2, $2) : (u2.__c = p2 = new b$1(w2, $2), p2.constructor = I2, p2.render = q), x2 && x2.sub(p2), p2.props = w2, p2.state || (p2.state = {}), p2.context = $2, p2.__n = i2, y2 = p2.__d = true, p2.__h = [], p2._sb = []), null == p2.__s && (p2.__s = p2.state), null != I2.getDerivedStateFromProps && (p2.__s == p2.state && (p2.__s = h$1({}, p2.__s)), h$1(p2.__s, I2.getDerivedStateFromProps(w2, p2.__s))), d2 = p2.props, _2 = p2.state, p2.__v = u2, y2)
+          if (w2 = u2.props, x2 = (a2 = I2.contextType) && i2[a2.__c], $2 = a2 ? x2 ? x2.props.value : a2.__ : i2, t2.__c ? m2 = (p2 = u2.__c = t2.__c).__ = p2.__E : ("prototype" in I2 && I2.prototype.render ? u2.__c = p2 = new I2(w2, $2) : (u2.__c = p2 = new b$1(w2, $2), p2.constructor = I2, p2.render = q$1), x2 && x2.sub(p2), p2.props = w2, p2.state || (p2.state = {}), p2.context = $2, p2.__n = i2, y2 = p2.__d = true, p2.__h = [], p2._sb = []), null == p2.__s && (p2.__s = p2.state), null != I2.getDerivedStateFromProps && (p2.__s == p2.state && (p2.__s = h$1({}, p2.__s)), h$1(p2.__s, I2.getDerivedStateFromProps(w2, p2.__s))), d2 = p2.props, _2 = p2.state, p2.__v = u2, y2)
             null == I2.getDerivedStateFromProps && null != p2.componentWillMount && p2.componentWillMount(), null != p2.componentDidMount && p2.__h.push(p2.componentDidMount);
           else {
             if (null == I2.getDerivedStateFromProps && w2 !== d2 && null != p2.componentWillReceiveProps && p2.componentWillReceiveProps(w2, $2), !p2.__e && (null != p2.shouldComponentUpdate && false === p2.shouldComponentUpdate(w2, p2.__s, $2) || u2.__v === t2.__v)) {
               for (u2.__v !== t2.__v && (p2.props = w2, p2.state = p2.__s, p2.__d = false), u2.__e = t2.__e, u2.__k = t2.__k, u2.__k.forEach(function(n3) {
                 n3 && (n3.__ = u2);
-              }), C = 0; C < p2._sb.length; C++)
-                p2.__h.push(p2._sb[C]);
+              }), C2 = 0; C2 < p2._sb.length; C2++)
+                p2.__h.push(p2._sb[C2]);
               p2._sb = [], p2.__h.length && f2.push(p2);
               break n;
             }
@@ -180,7 +185,7 @@
         null == r2 && u2.__v === t2.__v ? (u2.__k = t2.__k, u2.__e = t2.__e) : u2.__e = M(t2.__e, u2, t2, i2, o2, r2, f2, c2, s2);
     (a2 = l$1.diffed) && a2(u2);
   }
-  function L(n2, u2, t2) {
+  function L$1(n2, u2, t2) {
     for (var i2 = 0; i2 < t2.length; i2++)
       N(t2[i2], t2[++i2], t2[++i2]);
     l$1.__c && l$1.__c(u2, n2), n2.some(function(u3) {
@@ -216,12 +221,12 @@
             d2[l2.attributes[b2].name] = l2.attributes[b2].value;
         (y2 || h2) && (y2 && (h2 && y2.__html == h2.__html || y2.__html === l2.innerHTML) || (l2.innerHTML = y2 && y2.__html || ""));
       }
-      if (D(l2, _2, d2, o2, e2), y2)
+      if (D$1(l2, _2, d2, o2, e2), y2)
         u2.__k = [];
-      else if (P(l2, v$1(b2 = u2.props.children) ? b2 : [b2], u2, t2, i2, o2 && "foreignObject" !== k2, r2, f2, r2 ? r2[0] : t2.__k && g$1(t2, 0), e2, s2), null != r2)
+      else if (P(l2, v$1(b2 = u2.props.children) ? b2 : [b2], u2, t2, i2, o2 && "foreignObject" !== k2, r2, f2, r2 ? r2[0] : t2.__k && g$2(t2, 0), e2, s2), null != r2)
         for (b2 = r2.length; b2--; )
           null != r2[b2] && p$1(r2[b2]);
-      e2 || ("value" in _2 && void 0 !== (b2 = _2.value) && (b2 !== l2.value || "progress" === k2 && !b2 || "option" === k2 && b2 !== d2.value) && I(l2, "value", b2, d2.value, false), "checked" in _2 && void 0 !== (b2 = _2.checked) && b2 !== l2.checked && I(l2, "checked", b2, d2.checked, false));
+      e2 || ("value" in _2 && void 0 !== (b2 = _2.value) && (b2 !== l2.value || "progress" === k2 && !b2 || "option" === k2 && b2 !== d2.value) && I$1(l2, "value", b2, d2.value, false), "checked" in _2 && void 0 !== (b2 = _2.checked) && b2 !== l2.checked && I$1(l2, "checked", b2, d2.checked, false));
     }
     return l2;
   }
@@ -248,12 +253,12 @@
         i2[o2] && O(i2[o2], u2, t2 || "function" != typeof n2.type);
     t2 || null == n2.__e || p$1(n2.__e), n2.__ = n2.__e = n2.__d = void 0;
   }
-  function q(n2, l2, u2) {
+  function q$1(n2, l2, u2) {
     return this.constructor(n2, u2);
   }
-  function B$1(u2, t2, i2) {
+  function B$2(u2, t2, i2) {
     var o2, r2, f2, e2;
-    l$1.__ && l$1.__(u2, t2), r2 = (o2 = "function" == typeof i2) ? null : i2 && i2.__k || t2.__k, f2 = [], e2 = [], z$1(t2, u2 = (!o2 && i2 || t2).__k = y(k$1, null, [u2]), r2 || c$1, c$1, void 0 !== t2.ownerSVGElement, !o2 && i2 ? [i2] : r2 ? null : t2.firstChild ? n.call(t2.childNodes) : null, f2, !o2 && i2 ? i2 : r2 ? r2.__e : t2.firstChild, o2, e2), L(f2, u2, e2);
+    l$1.__ && l$1.__(u2, t2), r2 = (o2 = "function" == typeof i2) ? null : i2 && i2.__k || t2.__k, f2 = [], e2 = [], z$1(t2, u2 = (!o2 && i2 || t2).__k = y(k$1, null, [u2]), r2 || c$1, c$1, void 0 !== t2.ownerSVGElement, !o2 && i2 ? [i2] : r2 ? null : t2.firstChild ? n.call(t2.childNodes) : null, f2, !o2 && i2 ? i2 : r2 ? r2.__e : t2.firstChild, o2, e2), L$1(f2, u2, e2);
   }
   n = s$1.slice, l$1 = { __e: function(n2, l2, u2, t2) {
     for (var i2, o2, r2; l2 = l2.__; )
@@ -267,9 +272,9 @@
     throw n2;
   } }, u$1 = 0, b$1.prototype.setState = function(n2, l2) {
     var u2;
-    u2 = null != this.__s && this.__s !== this.state ? this.__s : this.__s = h$1({}, this.state), "function" == typeof n2 && (n2 = n2(h$1({}, u2), this.props)), n2 && h$1(u2, n2), null != n2 && this.__v && (l2 && this._sb.push(l2), w$1(this));
+    u2 = null != this.__s && this.__s !== this.state ? this.__s : this.__s = h$1({}, this.state), "function" == typeof n2 && (n2 = n2(h$1({}, u2), this.props)), n2 && h$1(u2, n2), null != n2 && this.__v && (l2 && this._sb.push(l2), w$2(this));
   }, b$1.prototype.forceUpdate = function(n2) {
-    this.__v && (this.__e = true, n2 && this.__h.push(n2), w$1(this));
+    this.__v && (this.__e = true, n2 && this.__h.push(n2), w$2(this));
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
@@ -927,11 +932,11 @@
     return t2 >= i2.__.length && i2.__.push({ __V: c }), i2.__[t2];
   }
   function h(n2) {
-    return o$1 = 1, s(B, n2);
+    return o$1 = 1, s(B$1, n2);
   }
   function s(n2, u2, i2) {
     var o2 = d(t++, 2);
-    if (o2.t = n2, !o2.__c && (o2.__ = [i2 ? i2(u2) : B(void 0, u2), function(n3) {
+    if (o2.t = n2, !o2.__c && (o2.__ = [i2 ? i2(u2) : B$1(void 0, u2), function(n3) {
       var t2 = o2.__N ? o2.__N[0] : o2.__[0], r2 = o2.t(t2, n3);
       t2 !== r2 && (o2.__N = [r2, o2.__[1]], o2.__c.setState({}));
     }], o2.__c = r, !r.u)) {
@@ -969,11 +974,20 @@
     var o2 = d(t++, 3);
     !l$1.__s && z(o2.__H, i2) && (o2.__ = u2, o2.i = i2, r.__H.__h.push(o2));
   }
+  function _$1(n2) {
+    return o$1 = 5, F$1(function() {
+      return { current: n2 };
+    }, []);
+  }
+  function F$1(n2, r2) {
+    var u2 = d(t++, 7);
+    return z(u2.__H, r2) ? (u2.__V = n2(), u2.i = r2, u2.__h = n2, u2.__V) : u2.__;
+  }
   function b() {
     for (var t2; t2 = f.shift(); )
       if (t2.__P && t2.__H)
         try {
-          t2.__H.__h.forEach(k), t2.__H.__h.forEach(w), t2.__H.__h = [];
+          t2.__H.__h.forEach(k), t2.__H.__h.forEach(w$1), t2.__H.__h = [];
         } catch (r2) {
           t2.__H.__h = [], l$1.__e(r2, t2.__v);
         }
@@ -985,7 +999,7 @@
     var i2 = (r = n2.__c).__H;
     i2 && (u === r ? (i2.__h = [], r.__h = [], i2.__.forEach(function(n3) {
       n3.__N && (n3.__ = n3.__N), n3.__V = c, n3.__N = n3.i = void 0;
-    })) : (i2.__h.forEach(k), i2.__h.forEach(w), i2.__h = [], t = 0)), u = r;
+    })) : (i2.__h.forEach(k), i2.__h.forEach(w$1), i2.__h = [], t = 0)), u = r;
   }, l$1.diffed = function(t2) {
     v && v(t2);
     var o2 = t2.__c;
@@ -996,7 +1010,7 @@
     r2.some(function(t3) {
       try {
         t3.__h.forEach(k), t3.__h = t3.__h.filter(function(n2) {
-          return !n2.__ || w(n2);
+          return !n2.__ || w$1(n2);
         });
       } catch (u2) {
         r2.some(function(n2) {
@@ -1015,18 +1029,18 @@
       }
     }), u2.__H = void 0, r2 && l$1.__e(r2, u2.__v));
   };
-  var g = "function" == typeof requestAnimationFrame;
+  var g$1 = "function" == typeof requestAnimationFrame;
   function j(n2) {
     var t2, r2 = function() {
-      clearTimeout(u2), g && cancelAnimationFrame(t2), setTimeout(n2);
+      clearTimeout(u2), g$1 && cancelAnimationFrame(t2), setTimeout(n2);
     }, u2 = setTimeout(r2, 100);
-    g && (t2 = requestAnimationFrame(r2));
+    g$1 && (t2 = requestAnimationFrame(r2));
   }
   function k(n2) {
     var t2 = r, u2 = n2.__c;
     "function" == typeof u2 && (n2.__c = void 0, u2()), r = t2;
   }
-  function w(n2) {
+  function w$1(n2) {
     var t2 = r;
     n2.__c = n2.__(), r = t2;
   }
@@ -1035,7 +1049,7 @@
       return t3 !== n2[r2];
     });
   }
-  function B(n2, t2) {
+  function B$1(n2, t2) {
     return "function" == typeof t2 ? t2(n2) : t2;
   }
   var _ = 0;
@@ -1373,7 +1387,7 @@ body {
 	border-radius: 100%;
 	z-index: 9999;
 	cursor: pointer;
-	
+	padding: 12px;
 }
 
 .mainPopup {
@@ -1391,7 +1405,6 @@ body {
 	border-radius: 15px;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	padding-bottom: 16px;
 	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);
 }
 
@@ -1426,7 +1439,7 @@ body {
 	height: 30px;
 }
 
-.walletCard {
+.logoutwalletCard, .walletCard{
 	background-color: var(--loyalty_popup_theme_background, #000);
     padding: 12px;
     border-radius: 16px;
@@ -1435,6 +1448,10 @@ body {
     width: calc(100% - 32px);
 	display: flex;
 	justify-content: space-between;
+	position: relative;
+}
+
+.walletCard {
 	cursor: pointer;
 }
 
@@ -1452,6 +1469,7 @@ body {
     justify-content: center;
     align-items: center;
 	gap: 8px;
+	cursor: pointer;
 }
 
 .coinCard h1 {
@@ -1529,6 +1547,8 @@ body {
 	font-family: Inter, sans-serif;
 }
 
+/* change here */
+
 .couponCard {
 	border-radius: 12px;
 	color: var(--loyalty_popup_theme_background, #000);
@@ -1536,6 +1556,7 @@ body {
 	line-height: 20px;
 	cursor: pointer;
 	width: 120px;
+	height: 100%;
 }
 
 .couponCardDesc {
@@ -1550,12 +1571,15 @@ body {
 	font-weight: normal;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	gap: 4px;
+	min-height: 120px;
 }
 
 .couponImg {
 	border-radius: 8px 8px 0 0;
 	width: 120px;
+	max-height: 120px;
 }
 
 .couponCardPrice {
@@ -1571,7 +1595,7 @@ body {
 .couponFloatingLabel {
 	position: absolute;
 	top: -10px;
-  	right: 10px;
+  	right: 16px;
     background: var(--loyalty_popup_theme_background,#000);
     color: #fff;
     width: fit-content;
@@ -1594,6 +1618,11 @@ body {
 	height: 14px;
 }
 
+/* till here */
+.couponMainContainer {
+	position: relative;
+}
+
 .viewAllCouponsContainer {
 	display: flex;
 	justify-content: space-between;
@@ -1601,6 +1630,44 @@ body {
 	padding: 16px;
 	padding-bottom: 6px;
 	width: 100%;
+}
+
+.scrollBtnPrev {
+	background-color: white;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	top: 55%;
+	left: 10%;
+	transform: translate(-50%, -50%);
+	box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+}
+
+.scrollBtnPrev img {
+	rotate: 180deg;
+}
+
+.scrollBtnNext {	
+	background-color: white;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	top: 55%;
+	left: 90%;
+	transform: translate(-50%, -50%);
+	box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+}
+
+.scrollBtnNext img, .scrollBtnPrev img {
+	width: 8px;
 }
 
 .viewAllCouponsContainer h1 {
@@ -1612,6 +1679,13 @@ body {
 	cursor: pointer;
     font-weight: 500;
     font-size: 12px;
+}
+
+.viewAllBtn {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 4px;
 }
 .gamesArenaContainer {
 	padding: 8px 16px;
@@ -1638,7 +1712,8 @@ body {
 	border-radius: 8px;
 	position: relative;
 	bottom: 20px;
-	min-width: 126px;
+	max-width: 130px;
+	min-width: 130px;
 }
 
 .gamesCardImg {
@@ -1650,7 +1725,7 @@ body {
 }
 
 .gamesCardImg img {
-	max-height: 66px;
+	max-height: 60px;
 }
 
 .coinBox {
@@ -1661,6 +1736,7 @@ body {
 	padding: 4px 14px;
 	align-items: center;
 	margin-bottom: 8px;
+	margin-top: 8px;
 	color: var(--loyalty_popup_theme_background, #000);
 	font-size: 14px;
 	gap: 4px;
@@ -1689,6 +1765,7 @@ body {
 .gamesCardDesc {
 	font-weight: 500;
     font-size: 10px;
+	text-align: center;
 }
 
 .gamesHorizontalList {
@@ -1735,6 +1812,7 @@ body {
     justify-content: center;
     align-items: center;
 	border: 1px solid var(--loyalty_popup_theme_background, #000);
+	cursor: pointer;
 }
 
 .inviteRoundedBtn img {
@@ -1860,7 +1938,7 @@ body {
 	background-color: var(--loyalty_popup_theme_background, #000);
     color: #fff;
     padding: 11px 0;
-    border-radius: 8px;
+    border-radius: 4px;
     font-family: Inter,sans-serif;
     font-weight: 700;
     cursor: pointer;
@@ -1886,7 +1964,7 @@ body {
 	font-size: 30px;
 }
 
-.couponContainer {
+.couponContainer, .easyEarnOverlayContainer {
 	background-color: white;
 	width: 100%;
 	padding: 16px;
@@ -2044,6 +2122,7 @@ body {
 	font-weight: 500;
 	font-size: 13px;
 	line-height: 16px;
+	color: #797979;
 }
 
 .showGamesHeader {
@@ -2160,6 +2239,10 @@ body {
 }
 .reedemfcCoins {
 	padding: 16px;
+	padding-bottom: 0;
+}
+.reedemfcCoins h3 {
+	margin-bottom: 8px;
 }
 .reedemfcCoins h5, .exploreCoupons h5{
 	font-weight: 700;
@@ -2182,7 +2265,14 @@ body {
 	padding: 8px;
 	border-radius: 8px;
 	cursor: pointer;
+	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);
+	color: white;
 }
+
+.reedemfcCoinsCardArrow {
+	filter: invert(100%);
+}
+
 .exploreCouponCard {
 	background-color: #f4f4f4;
 	display: flex;
@@ -2195,7 +2285,9 @@ body {
 .exploreCoupons {
 	padding: 16px;
 }
-
+.exploreCoupons h5 {
+	margin-bottom: 8px;
+}
 .shipImgBox {
 	border-right: 1px dashed #959595;
 	padding-right: 8px;
@@ -2531,6 +2623,20 @@ body {
 	z-index: 3;
 }
 
+#sparkImg {
+	position: absolute;
+	width: 60px;
+	top: 36px;
+	left: 35%;
+	clip-path: inset(0 0 44% 0);
+}
+
+#sparkImg2 {
+	position: absolute;
+	top: 22px;
+	width: 30px;
+	left: 50%;
+}
 .copied {
 	background-color: green;
   padding: 8px;
@@ -2564,11 +2670,11 @@ body {
 .walletLogoutBtn {
 	background-color: #fff;
     border-radius: 4px;
-    margin: 0 6px;
     padding: 5px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+	gap: 4px;
 	cursor: pointer;
 }
 
@@ -2666,6 +2772,92 @@ body {
 }
 .referralPopupContainer span {
 	color: gold;
+}
+
+.easyEarnTitleBox {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.easyEarnTitleBox a {
+	cursor: pointer;
+	font-weight: 500;
+	font-size: 12px;
+}
+
+.easyEarnScreenContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	padding: 2rem;
+	row-gap: 0;
+	column-gap: 2rem;
+}
+
+.easyEarnScreenDesc {
+	font-size: 14px;
+	margin-left: 16px;
+}
+
+.easyEarnCardBtn {
+	background-color: gray;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    padding: 8px;
+    cursor: pointer;
+	border: none;
+}
+
+.coinContainer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 16px;
+}
+
+.easyEarnMainContainer {
+	position: relative;
+}
+
+.easyEarnOverlayContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.easyEarnCoinBox {
+	background-color: #EFEDED;
+	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	padding: 4px 14px;
+	align-items: center;
+	margin-bottom: 8px;
+	margin-top: 8px;
+	color: var(--loyalty_popup_theme_background, #000);
+	font-size: 14px;
+	gap: 4px;
+}
+
+#watermarkContainer {
+	color: white;
+	background-color: black;
+	font-size: 12px;
+	text-align: end;
+	padding: 4px 16px;
+	margin-top: 16px;
+}
+
+#watermarkContainer:hover {
+	text-decoration: underline;
 }`;
   const WalletCard = ({
     walletAmount,
@@ -2695,6 +2887,14 @@ body {
           }), o("h1", {
             children: walletAmount
           })]
+        }), o("img", {
+          src: "https://static.farziengineer.co/farziwallet/sparks.png",
+          id: "sparkImg",
+          alt: ""
+        }), o("img", {
+          src: "https://static.farziengineer.co/farziwallet/sparks.png",
+          id: "sparkImg2",
+          alt: ""
         })]
       })
     });
@@ -2702,7 +2902,9 @@ body {
   const InviteCard = ({
     onClick,
     customer_id,
-    client_id
+    client_id,
+    handleLogin,
+    isLoggedIn
   }) => {
     const [cardMessage, setCardMessage] = h("");
     p(() => {
@@ -2743,7 +2945,7 @@ body {
             })]
           })]
         }), o("button", {
-          onClick,
+          onClick: isLoggedIn ? onClick : handleLogin,
           class: "invitebtn",
           children: "Share Invite"
         })]
@@ -2791,14 +2993,31 @@ body {
       }, 3e3);
     };
     const [showCopied, setShowCopied] = h(false);
-    const handleShareClick = () => {
+    const handleShareClick = async () => {
+      var _a;
+      let whatsappMsg = localStorage.getItem("fc-whatsapp-msg");
+      if (!whatsappMsg) {
+        try {
+          const whatsappResp = await fetchApi("/get-referred-message", "post", customerDetails);
+          if ((whatsappResp == null ? void 0 : whatsappResp.status) === "success") {
+            whatsappMsg = (_a = whatsappResp == null ? void 0 : whatsappResp.data) == null ? void 0 : _a.getReferredMessage;
+            localStorage.setItem("fc-whatsapp-msg", whatsappMsg);
+          } else {
+            showError();
+            return;
+          }
+        } catch (error2) {
+          showError();
+          return;
+        }
+      }
       if (navigator.share) {
         navigator.share({
           title: "Invite your friend to get rewards",
-          text: localStorage.getItem("fc-whatsapp-msg")
+          text: whatsappMsg
         }).then(() => console.log("Successful share")).catch((error2) => console.log("Error sharing", error2));
       } else {
-        navigator.clipboard.writeText(localStorage.getItem("fc-whatsapp-msg"));
+        navigator.clipboard.writeText(whatsappMsg);
         setShowCopied(true);
         setTimeout(() => {
           setShowCopied(false);
@@ -2915,7 +3134,9 @@ body {
     gameTitle,
     gameDesc,
     btnText,
-    gamePrice
+    gamePrice,
+    isLoggedIn,
+    handleLogin
   }) => {
     return o(k$1, {
       children: o("div", {
@@ -2942,7 +3163,7 @@ body {
               children: gamePrice
             })]
           }), o("button", {
-            onClick: btnClick,
+            onClick: isLoggedIn ? btnClick : handleLogin,
             class: "gamesCardBtn",
             children: btnText
           })]
@@ -3143,6 +3364,9 @@ body {
       }) : o("div", {
         class: "showGamesCards",
         children: gamesData.map((game, idx) => o(GamesCard, {
+          isLoggedIn: true,
+          handleLogin: () => {
+          },
           btnClick: () => showWheelOfFortune(game.amount),
           gameDesc: game.description,
           gameTitle: game.title,
@@ -3254,7 +3478,6 @@ body {
       };
       loadD3JS().then(() => {
         fetchRewardArray().then((resp) => {
-          console.log("====== data", resp);
           if ((resp == null ? void 0 : resp.status) === "success") {
             setSpinWheelRewardData(resp == null ? void 0 : resp.data);
             drawWheel(shadowRoot, resp == null ? void 0 : resp.data.map((item, index) => {
@@ -3275,9 +3498,9 @@ body {
     }, []);
     function drawWheel(shadowRoot2, data, unlock, winningIdx, spinnedCallback) {
       (function auto() {
-        const ggg = shadowRoot2.querySelector(".screenContent");
-        const hhh = ggg.querySelector(".spinWheelMainContainer");
-        const chartElement = hhh.querySelector("#fw-chart-spin-wheel");
+        const scrContent = shadowRoot2.querySelector(".screenContent");
+        const spinWheelMainContainer = scrContent.querySelector(".spinWheelMainContainer");
+        const chartElement = spinWheelMainContainer.querySelector("#fw-chart-spin-wheel");
         var padding = {
           top: 20,
           right: 40,
@@ -3502,13 +3725,15 @@ body {
     return o(k$1, {
       children: o("div", {
         class: "pointsActivityClass",
-        children: walletLogs.map((log) => o(WalletPointsActivity, {
+        children: walletLogs.length > 0 ? walletLogs.map((log) => o(WalletPointsActivity, {
           id: log.node.id,
           reason: log.node.reason,
           created: log.node.created,
           amount: log.node.amount,
           type: log.node.type
-        }))
+        })) : o("h3", {
+          children: "No Logs Found"
+        })
       })
     });
   };
@@ -3582,6 +3807,9 @@ body {
       }) : o("div", {
         class: "showGamesCards",
         children: scratchCardData.map((game, idx) => o(GamesCard, {
+          isLoggedIn: true,
+          handleLogin: () => {
+          },
           btnClick: () => showScratchCard(game.amount),
           gameTitle: game.title,
           gameDesc: game.description,
@@ -3864,18 +4092,41 @@ body {
     }, []);
     return o("div", {});
   };
-  const Logout = () => {
+  const Logout = ({
+    handleLogin
+  }) => {
     return o(k$1, {
       children: o("div", {
-        class: "logoutWalletCard",
-        children: [o("h4", {
-          class: "logoutWallerCardHeading",
-          children: "Login to access points"
+        class: "logoutwalletCard",
+        children: [o("div", {
+          children: [o("p", {
+            class: "walletCardText",
+            children: ["My ", window.fc_loyalty_vars.coin_name, " Coins"]
+          }), o("div", {
+            class: "badgeCard",
+            children: [o("img", {
+              src: "https://media.farziengineer.co/farziwallet/silver-tier-icon.png",
+              alt: ""
+            }), o("p", {
+              children: "Silver"
+            })]
+          })]
         }), o("div", {
-          class: "walletLogoutBtn",
-          children: o("p", {
+          onClick: handleLogin,
+          class: "coinCard",
+          children: [o("div", {
+            class: "coinIcon"
+          }), o("h1", {
             children: "Login"
-          })
+          })]
+        }), o("img", {
+          src: "https://static.farziengineer.co/farziwallet/sparks.png",
+          id: "sparkImg",
+          alt: ""
+        }), o("img", {
+          src: "https://static.farziengineer.co/farziwallet/sparks.png",
+          id: "sparkImg2",
+          alt: ""
         })]
       })
     });
@@ -3901,6 +4152,344 @@ body {
       })
     });
   };
+  function g(n2, t2) {
+    for (var e2 in t2)
+      n2[e2] = t2[e2];
+    return n2;
+  }
+  function C(n2, t2) {
+    for (var e2 in n2)
+      if ("__source" !== e2 && !(e2 in t2))
+        return true;
+    for (var r2 in t2)
+      if ("__source" !== r2 && n2[r2] !== t2[r2])
+        return true;
+    return false;
+  }
+  function w(n2) {
+    this.props = n2;
+  }
+  (w.prototype = new b$1()).isPureReactComponent = true, w.prototype.shouldComponentUpdate = function(n2, t2) {
+    return C(this.props, n2) || C(this.state, t2);
+  };
+  var R = l$1.__b;
+  l$1.__b = function(n2) {
+    n2.type && n2.type.__f && n2.ref && (n2.props.ref = n2.ref, n2.ref = null), R && R(n2);
+  };
+  var T = l$1.__e;
+  l$1.__e = function(n2, t2, e2, r2) {
+    if (n2.then) {
+      for (var u2, o2 = t2; o2 = o2.__; )
+        if ((u2 = o2.__c) && u2.__c)
+          return null == t2.__e && (t2.__e = e2.__e, t2.__k = e2.__k), u2.__c(n2, t2);
+    }
+    T(n2, t2, e2, r2);
+  };
+  var F = l$1.unmount;
+  function I(n2, t2, e2) {
+    return n2 && (n2.__c && n2.__c.__H && (n2.__c.__H.__.forEach(function(n3) {
+      "function" == typeof n3.__c && n3.__c();
+    }), n2.__c.__H = null), null != (n2 = g({}, n2)).__c && (n2.__c.__P === e2 && (n2.__c.__P = t2), n2.__c = null), n2.__k = n2.__k && n2.__k.map(function(n3) {
+      return I(n3, t2, e2);
+    })), n2;
+  }
+  function L(n2, t2, e2) {
+    return n2 && e2 && (n2.__v = null, n2.__k = n2.__k && n2.__k.map(function(n3) {
+      return L(n3, t2, e2);
+    }), n2.__c && n2.__c.__P === t2 && (n2.__e && e2.insertBefore(n2.__e, n2.__d), n2.__c.__e = true, n2.__c.__P = e2)), n2;
+  }
+  function U() {
+    this.__u = 0, this.t = null, this.__b = null;
+  }
+  function D(n2) {
+    var t2 = n2.__.__c;
+    return t2 && t2.__a && t2.__a(n2);
+  }
+  function V() {
+    this.u = null, this.o = null;
+  }
+  l$1.unmount = function(n2) {
+    var t2 = n2.__c;
+    t2 && t2.__R && t2.__R(), t2 && true === n2.__h && (n2.type = null), F && F(n2);
+  }, (U.prototype = new b$1()).__c = function(n2, t2) {
+    var e2 = t2.__c, r2 = this;
+    null == r2.t && (r2.t = []), r2.t.push(e2);
+    var u2 = D(r2.__v), o2 = false, i2 = function() {
+      o2 || (o2 = true, e2.__R = null, u2 ? u2(l2) : l2());
+    };
+    e2.__R = i2;
+    var l2 = function() {
+      if (!--r2.__u) {
+        if (r2.state.__a) {
+          var n3 = r2.state.__a;
+          r2.__v.__k[0] = L(n3, n3.__c.__P, n3.__c.__O);
+        }
+        var t3;
+        for (r2.setState({ __a: r2.__b = null }); t3 = r2.t.pop(); )
+          t3.forceUpdate();
+      }
+    }, c2 = true === t2.__h;
+    r2.__u++ || c2 || r2.setState({ __a: r2.__b = r2.__v.__k[0] }), n2.then(i2, i2);
+  }, U.prototype.componentWillUnmount = function() {
+    this.t = [];
+  }, U.prototype.render = function(n2, e2) {
+    if (this.__b) {
+      if (this.__v.__k) {
+        var r2 = document.createElement("div"), o2 = this.__v.__k[0].__c;
+        this.__v.__k[0] = I(this.__b, r2, o2.__O = o2.__P);
+      }
+      this.__b = null;
+    }
+    var i2 = e2.__a && y(k$1, null, n2.fallback);
+    return i2 && (i2.__h = null), [y(k$1, null, e2.__a ? null : n2.children), i2];
+  };
+  var W = function(n2, t2, e2) {
+    if (++e2[1] === e2[0] && n2.o.delete(t2), n2.props.revealOrder && ("t" !== n2.props.revealOrder[0] || !n2.o.size))
+      for (e2 = n2.u; e2; ) {
+        for (; e2.length > 3; )
+          e2.pop()();
+        if (e2[1] < e2[0])
+          break;
+        n2.u = e2 = e2[2];
+      }
+  };
+  (V.prototype = new b$1()).__a = function(n2) {
+    var t2 = this, e2 = D(t2.__v), r2 = t2.o.get(n2);
+    return r2[0]++, function(u2) {
+      var o2 = function() {
+        t2.props.revealOrder ? (r2.push(u2), W(t2, n2, r2)) : u2();
+      };
+      e2 ? e2(o2) : o2();
+    };
+  }, V.prototype.render = function(n2) {
+    this.u = null, this.o = /* @__PURE__ */ new Map();
+    var t2 = C$1(n2.children);
+    n2.revealOrder && "b" === n2.revealOrder[0] && t2.reverse();
+    for (var e2 = t2.length; e2--; )
+      this.o.set(t2[e2], this.u = [1, 0, this.u]);
+    return n2.children;
+  }, V.prototype.componentDidUpdate = V.prototype.componentDidMount = function() {
+    var n2 = this;
+    this.o.forEach(function(t2, e2) {
+      W(n2, e2, t2);
+    });
+  };
+  var B = "undefined" != typeof Symbol && Symbol.for && Symbol.for("react.element") || 60103, H = /^(?:accent|alignment|arabic|baseline|cap|clip(?!PathU)|color|dominant|fill|flood|font|glyph(?!R)|horiz|image(!S)|letter|lighting|marker(?!H|W|U)|overline|paint|pointer|shape|stop|strikethrough|stroke|text(?!L)|transform|underline|unicode|units|v|vector|vert|word|writing|x(?!C))[A-Z]/, Z = /^on(Ani|Tra|Tou|BeforeInp|Compo)/, Y = /[A-Z0-9]/g, $ = "undefined" != typeof document, q = function(n2) {
+    return ("undefined" != typeof Symbol && "symbol" == typeof Symbol() ? /fil|che|rad/ : /fil|che|ra/).test(n2);
+  };
+  b$1.prototype.isReactComponent = {}, ["componentWillMount", "componentWillReceiveProps", "componentWillUpdate"].forEach(function(t2) {
+    Object.defineProperty(b$1.prototype, t2, { configurable: true, get: function() {
+      return this["UNSAFE_" + t2];
+    }, set: function(n2) {
+      Object.defineProperty(this, t2, { configurable: true, writable: true, value: n2 });
+    } });
+  });
+  var K = l$1.event;
+  function Q() {
+  }
+  function X() {
+    return this.cancelBubble;
+  }
+  function nn() {
+    return this.defaultPrevented;
+  }
+  l$1.event = function(n2) {
+    return K && (n2 = K(n2)), n2.persist = Q, n2.isPropagationStopped = X, n2.isDefaultPrevented = nn, n2.nativeEvent = n2;
+  };
+  var en = { enumerable: false, configurable: true, get: function() {
+    return this.class;
+  } }, rn = l$1.vnode;
+  l$1.vnode = function(n2) {
+    "string" == typeof n2.type && function(n3) {
+      var t2 = n3.props, e2 = n3.type, u2 = {};
+      for (var o2 in t2) {
+        var i2 = t2[o2];
+        if (!("value" === o2 && "defaultValue" in t2 && null == i2 || $ && "children" === o2 && "noscript" === e2 || "class" === o2 || "className" === o2)) {
+          var l2 = o2.toLowerCase();
+          "defaultValue" === o2 && "value" in t2 && null == t2.value ? o2 = "value" : "download" === o2 && true === i2 ? i2 = "" : "ondoubleclick" === l2 ? o2 = "ondblclick" : "onchange" !== l2 || "input" !== e2 && "textarea" !== e2 || q(t2.type) ? "onfocus" === l2 ? o2 = "onfocusin" : "onblur" === l2 ? o2 = "onfocusout" : Z.test(o2) ? o2 = l2 : -1 === e2.indexOf("-") && H.test(o2) ? o2 = o2.replace(Y, "-$&").toLowerCase() : null === i2 && (i2 = void 0) : l2 = o2 = "oninput", "oninput" === l2 && u2[o2 = l2] && (o2 = "oninputCapture"), u2[o2] = i2;
+        }
+      }
+      "select" == e2 && u2.multiple && Array.isArray(u2.value) && (u2.value = C$1(t2.children).forEach(function(n4) {
+        n4.props.selected = -1 != u2.value.indexOf(n4.props.value);
+      })), "select" == e2 && null != u2.defaultValue && (u2.value = C$1(t2.children).forEach(function(n4) {
+        n4.props.selected = u2.multiple ? -1 != u2.defaultValue.indexOf(n4.props.value) : u2.defaultValue == n4.props.value;
+      })), t2.class && !t2.className ? (u2.class = t2.class, Object.defineProperty(u2, "className", en)) : (t2.className && !t2.class || t2.class && t2.className) && (u2.class = u2.className = t2.className), n3.props = u2;
+    }(n2), n2.$$typeof = B, rn && rn(n2);
+  };
+  var un = l$1.__r;
+  l$1.__r = function(n2) {
+    un && un(n2), n2.__c;
+  };
+  var on = l$1.diffed;
+  l$1.diffed = function(n2) {
+    on && on(n2);
+    var t2 = n2.props, e2 = n2.__e;
+    null != e2 && "textarea" === n2.type && "value" in t2 && t2.value !== e2.value && (e2.value = null == t2.value ? "" : t2.value);
+  };
+  const EasyEarnCard = ({
+    btnClick,
+    cardImage,
+    gameTitle,
+    gameDesc,
+    btnText,
+    gamePrice,
+    isLoggedIn,
+    handleLogin
+  }) => {
+    return o(k$1, {
+      children: o("div", {
+        class: "gamesMainContainer",
+        children: [o("div", {
+          class: "gamesCardImg",
+          children: o("img", {
+            src: cardImage,
+            alt: ""
+          })
+        }), o("div", {
+          class: "gamesCard",
+          children: [o("p", {
+            class: "gamesCardTitle",
+            children: gameTitle
+          }), o("p", {
+            class: "gamesCardDesc",
+            children: gameDesc
+          }), o("div", {
+            class: "coinBox",
+            children: [o("div", {
+              class: "coinIcon"
+            }), o("p", {
+              children: gamePrice
+            })]
+          }), o("button", {
+            disabled: btnText.toLowerCase() === "signup here" && isLoggedIn ? true : false,
+            onClick: isLoggedIn ? btnClick : handleLogin,
+            class: btnText.toLowerCase() === "signup here" && isLoggedIn ? "easyEarnCardBtn" : "gamesCardBtn",
+            children: btnText.toLowerCase() === "signup here" && isLoggedIn ? "Claimed" : btnText
+          })]
+        })]
+      })
+    });
+  };
+  const EasyEarn = ({
+    walletAmount
+  }) => {
+    const gamesData = [{
+      gameTitle: "Place an Order",
+      gameDesc: `Earn Rs. 10% ${window.fc_loyalty_vars.coin_name} Cashback`,
+      cardImage: "https://media.farziengineer.co/farziwallet/Place_order.png",
+      gamePrice: "100",
+      btnText: "Order Now",
+      btnClick: () => {
+        console.log("clicked");
+      }
+    }, {
+      gameTitle: "Signup",
+      gameDesc: `Earn Rs. 100 ${window.fc_loyalty_vars.coin_name} Cashback`,
+      cardImage: "https://media.farziengineer.co/farziwallet/Sign_up.png",
+      gamePrice: "100",
+      btnText: "Signup Here",
+      btnClick: () => {
+        console.log("clicked");
+      }
+    }, {
+      gameTitle: "Birthday",
+      gameDesc: `Add birthday to get 100 ${window.fc_loyalty_vars.coin_name} points`,
+      cardImage: "https://media.farziengineer.co/farziwallet/Birthday.png",
+      gamePrice: "100",
+      btnText: "Earn Now",
+      btnClick: () => {
+        console.log("clicked");
+      }
+    }, {
+      gameTitle: "Anniversary",
+      gameDesc: `Add anniversary to get 100 ${window.fc_loyalty_vars.coin_name} points`,
+      cardImage: "https://media.farziengineer.co/farziwallet/anniversary.png",
+      gamePrice: "100",
+      btnText: "Earn Now",
+      btnClick: () => {
+        console.log("clicked");
+      }
+    }];
+    return o(k$1, {
+      children: o("div", {
+        className: "easyEarnScreen",
+        children: [o("p", {
+          className: "easyEarnScreenDesc",
+          children: "Earn Reward just by inputting your details"
+        }), o("div", {
+          className: "coinContainer",
+          children: o("div", {
+            className: "walletCoinsBox",
+            children: [o("div", {
+              class: "coinIcon"
+            }), o("p", {
+              children: walletAmount
+            })]
+          })
+        }), o("div", {
+          className: "easyEarnScreenContainer",
+          children: gamesData.map((game, index) => o(EasyEarnCard, {
+            btnClick: game.btnClick,
+            gameTitle: game.gameTitle,
+            gameDesc: game.gameDesc,
+            cardImage: game.cardImage,
+            gamePrice: game.gamePrice,
+            btnText: game.btnText,
+            isLoggedIn: true,
+            handleLogin: () => {
+            }
+          }, index))
+        })]
+      })
+    });
+  };
+  const EasyEarnOverlay = ({
+    easyEarnTitle,
+    easyPoints,
+    easyEarnDesc,
+    easyEarnBtnText,
+    easyEarnImg
+  }) => {
+    return o("div", {
+      className: "easyEarnOverlayContainer",
+      children: [o("img", {
+        className: "easyEarnImg",
+        src: "https://media.farziengineer.co/farziwallet/Birthday.png",
+        alt: ""
+      }), o("h2", {
+        className: "easyEarn",
+        children: "Birthday"
+      }), o("div", {
+        className: "easyEarnCoinBox",
+        children: [o("div", {
+          className: "coinIcon"
+        }), o("p", {
+          children: "100"
+        })]
+      }), o("p", {
+        className: "easyEarnDesc",
+        children: "Earn Rs. 100 JH Cashback on your Birthday Date."
+      }), o("div", {
+        className: "easyEarnDateContainer",
+        children: [o("input", {
+          type: "tel",
+          name: "",
+          id: ""
+        }), o("input", {
+          type: "tel",
+          name: "",
+          id: ""
+        }), o("input", {
+          type: "tel",
+          name: "",
+          id: ""
+        })]
+      }), o("button", {
+        className: "gamesCardBtn",
+        children: "Save"
+      })]
+    });
+  };
   function Main$1({
     themeDetailsData,
     shadowRoot
@@ -3908,6 +4497,7 @@ body {
     const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
     const client_id = mainScript.getAttribute("data-client-id");
     const customer_id = mainScript.getAttribute("data-customer-id");
+    const client_name = mainScript.getAttribute("client-name");
     const [visibilty, setVisibility] = h(false);
     const [referralPopup, setReferralPopup] = h(false);
     const [referedAmount, setReferedAmount] = h(0);
@@ -3987,13 +4577,17 @@ body {
           try {
             const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
             if (!localStorage.getItem(`fc-referral-code-${customer_id2}`)) {
-              const resp = await fetchApi("/get-referral-code", "post", {
-                client_id: client_id2,
-                customer_id: customer_id2,
-                user_hash
-              });
-              if ((resp == null ? void 0 : resp.status) === "success") {
-                localStorage.setItem(`fc-referral-code-${customer_id2}`, (_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.path);
+              try {
+                const resp = await fetchApi("/get-referral-code", "post", {
+                  client_id: client_id2,
+                  customer_id: customer_id2,
+                  user_hash
+                });
+                if ((resp == null ? void 0 : resp.status) === "success") {
+                  localStorage.setItem(`fc-referral-code-${customer_id2}`, (_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.path);
+                }
+              } catch (error2) {
+                console.log("error", error2);
               }
             }
             const response = await fetchApi("/redeem-referral-code", "post", {
@@ -4219,6 +4813,8 @@ body {
     const handleOverlay = (overlayname) => {
       if (overlayname === "coupon") {
         return o(CouponOverlay, {
+          isLoggedIn,
+          handleLogin,
           updateWalletAmount: fetchWalletAmount,
           customerDetails,
           couponData: featuredCoupons[couponCardIdx],
@@ -4229,6 +4825,15 @@ body {
         return o(InviteAndEarnOverlay, {
           customerDetails,
           closeOverlay
+        });
+      }
+      if (overlayname === "easy_earn") {
+        return o(EasyEarnOverlay, {
+          easyEarnBtnText: "",
+          easyEarnDesc: "",
+          easyEarnTitle: "",
+          easyEarnImg: "",
+          easyPoints: ""
         });
       }
     };
@@ -4273,6 +4878,31 @@ body {
         active: true
       });
     };
+    const easyEarnData = [{
+      gameTitle: "Place an Order",
+      gameDesc: `Earn Rs. 10% ${window.fc_loyalty_vars.coin_name} Cashback`,
+      cardImage: "https://media.farziengineer.co/farziwallet/Place_order.png",
+      gamePrice: "100",
+      btnText: "Order Now"
+    }, {
+      gameTitle: "Signup",
+      gameDesc: `Earn Rs. 100 ${window.fc_loyalty_vars.coin_name} Cashback`,
+      cardImage: "https://media.farziengineer.co/farziwallet/Sign_up.png",
+      gamePrice: "100",
+      btnText: "Signup Here"
+    }, {
+      gameTitle: "Birthday",
+      gameDesc: `Add birthday to get 100 ${window.fc_loyalty_vars.coin_name} points`,
+      cardImage: "https://media.farziengineer.co/farziwallet/Birthday.png",
+      gamePrice: "100",
+      btnText: "Earn Now"
+    }, {
+      gameTitle: "Anniversary",
+      gameDesc: `Add anniversary to get 100 ${window.fc_loyalty_vars.coin_name} points`,
+      cardImage: "https://media.farziengineer.co/farziwallet/anniversary.png",
+      gamePrice: "100",
+      btnText: "Earn Now"
+    }];
     const getScreenComponent = (screenname) => {
       switch (screenname) {
         case "play_spin_wheel":
@@ -4312,8 +4942,70 @@ body {
             couponCardResponse: featuredCoupons,
             customerDetails
           });
+        case "easy_earn":
+          return o(EasyEarn, {
+            walletAmount
+          });
         default:
           console.warn("Unknown screen:", screenname);
+      }
+    };
+    const sliderRef = _$1(null);
+    const easyEarnSliderRef = _$1(null);
+    const [prevBtn, setPrevBtn] = h(false);
+    const [nextBtn, setNextBtn] = h(true);
+    const [easyEarnPrevBtn, seteasyEarnPrevBtn] = h(false);
+    const [easyEarnNextBtn, setEasyEarnNextBtn] = h(true);
+    const scrollLeft = () => {
+      sliderRef.current.scrollBy({
+        left: -200,
+        behavior: "smooth"
+      });
+      if (sliderRef.current.scrollLeft - 200 <= 5) {
+        setPrevBtn(false);
+        setNextBtn(true);
+      } else {
+        setPrevBtn(true);
+        setNextBtn(true);
+      }
+    };
+    const easyEarnScrollLeft = () => {
+      easyEarnSliderRef.current.scrollBy({
+        left: -200,
+        behavior: "smooth"
+      });
+      if (easyEarnSliderRef.current.scrollLeft - 200 <= 5) {
+        seteasyEarnPrevBtn(false);
+        setEasyEarnNextBtn(true);
+      } else {
+        seteasyEarnPrevBtn(true);
+        setEasyEarnNextBtn(true);
+      }
+    };
+    const easyEarnScrollRight = () => {
+      easyEarnSliderRef.current.scrollBy({
+        left: 200,
+        behavior: "smooth"
+      });
+      if (easyEarnSliderRef.current.scrollLeft + easyEarnSliderRef.current.offsetWidth + 200 >= easyEarnSliderRef.current.scrollWidth - 5) {
+        seteasyEarnPrevBtn(true);
+        setEasyEarnNextBtn(false);
+      } else {
+        seteasyEarnPrevBtn(true);
+        setEasyEarnNextBtn(true);
+      }
+    };
+    const scrollRight = () => {
+      sliderRef.current.scrollBy({
+        left: 200,
+        behavior: "smooth"
+      });
+      if (sliderRef.current.scrollLeft + sliderRef.current.offsetWidth + 200 >= sliderRef.current.scrollWidth - 5) {
+        setPrevBtn(true);
+        setNextBtn(false);
+      } else {
+        setPrevBtn(true);
+        setNextBtn(true);
       }
     };
     return o(k$1, {
@@ -4326,7 +5018,6 @@ body {
         alt: "gift icon"
       }), !referralPopup && visibilty && o(k$1, {
         children: o("div", {
-          onClick: handleLogin,
           class: "mainPopup",
           children: [(screenDetails == null ? void 0 : screenDetails.active) ? o(Screen, {
             closeScreen,
@@ -4343,7 +5034,7 @@ body {
                 children: [o("p", {
                   children: "Welcome to"
                 }), o("h6", {
-                  children: "Loyalty"
+                  children: client_name
                 })]
               }), o("div", {
                 class: "rightHeader",
@@ -4357,22 +5048,96 @@ body {
             }), isLoggedIn ? o(WalletCard, {
               walletAmount,
               onClick: () => handleScreenComponent("transaction_log", "Points activity")
-            }) : o(Logout, {}), o("div", {
-              class: "viewAllCouponsContainer",
-              children: [o("h1", {
-                children: "Coupons"
-              }), o("a", {
-                onClick: () => handleScreenComponent("show_all_coupons", "Coupons"),
-                children: "View All"
+            }) : o(Logout, {
+              handleLogin
+            }), o("div", {
+              class: "couponMainContainer",
+              children: [o("div", {
+                class: "viewAllCouponsContainer",
+                children: [o("h1", {
+                  children: "Redeem with Coupons"
+                }), o("div", {
+                  class: "viewAllBtn",
+                  children: [o("a", {
+                    onClick: isLoggedIn ? () => handleScreenComponent("show_all_coupons", "Coupons") : handleLogin,
+                    children: "View All"
+                  }), o("img", {
+                    width: 6,
+                    src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                    alt: ""
+                  })]
+                })]
+              }), o("div", {
+                class: "showAllCouponsList",
+                ref: sliderRef,
+                children: [featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => o(CouponCard, {
+                  onClick: () => btnClick(index),
+                  couponPrice: card.amount,
+                  couponDesc: card.title,
+                  couponImgLink: card.image
+                }, index)), featuredCoupons.length > 2 && o(k$1, {
+                  children: [prevBtn && o("div", {
+                    className: "scrollBtnPrev",
+                    onClick: scrollLeft,
+                    children: o("img", {
+                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                      alt: ""
+                    })
+                  }), nextBtn && o("div", {
+                    className: "scrollBtnNext",
+                    onClick: scrollRight,
+                    children: o("img", {
+                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                      alt: ""
+                    })
+                  })]
+                })]
               })]
             }), o("div", {
-              class: "showAllCouponsList",
-              children: featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => o(CouponCard, {
-                onClick: () => btnClick(index),
-                couponPrice: card.amount,
-                couponDesc: card.title,
-                couponImgLink: card.image
-              }, index))
+              className: "easyEarnMainContainer",
+              children: [o("div", {
+                class: "gamesArenaContainer",
+                children: [o("div", {
+                  className: "easyEarnTitleBox",
+                  children: [o("h1", {
+                    children: "Easy Earn"
+                  }), o("a", {
+                    onClick: () => handleScreenComponent("easy_earn", "Easy Earn"),
+                    children: "View All"
+                  })]
+                }), o("p", {
+                  children: "Earn Reward just by inputting your details"
+                })]
+              }), o("div", {
+                class: "gamesHorizontalList",
+                ref: easyEarnSliderRef,
+                children: [easyEarnData.map((game, index) => o(EasyEarnCard, {
+                  btnClick: () => isLoggedIn && changeOverlay("easy_earn"),
+                  gameTitle: game.gameTitle,
+                  gameDesc: game.gameDesc,
+                  cardImage: game.cardImage,
+                  gamePrice: game.gamePrice,
+                  btnText: game.btnText,
+                  isLoggedIn,
+                  handleLogin
+                }, index)), featuredCoupons.length > 2 && o(k$1, {
+                  children: [easyEarnPrevBtn && o("div", {
+                    className: "scrollBtnPrev",
+                    onClick: easyEarnScrollLeft,
+                    children: o("img", {
+                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                      alt: ""
+                    })
+                  }), easyEarnNextBtn && o("div", {
+                    className: "scrollBtnNext",
+                    onClick: easyEarnScrollRight,
+                    children: o("img", {
+                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                      alt: ""
+                    })
+                  })]
+                })]
+              })]
             }), o("div", {
               children: [o("div", {
                 class: "gamesArenaContainer",
@@ -4389,20 +5154,33 @@ body {
                   gameDesc: (singleSpinWheel == null ? void 0 : singleSpinWheel.description) || "Spin and win coins",
                   cardImage: (singleSpinWheel == null ? void 0 : singleSpinWheel.image) || "https://media.farziengineer.co/farziwallet/spin-wheel.png",
                   gamePrice: (singleSpinWheel == null ? void 0 : singleSpinWheel.amount) || "10",
-                  btnText: (singleSpinWheel == null ? void 0 : singleSpinWheel.btnText) || "Explore"
+                  btnText: (singleSpinWheel == null ? void 0 : singleSpinWheel.btnText) || "Explore",
+                  isLoggedIn,
+                  handleLogin
                 }), o(GamesCard, {
                   btnClick: () => isLoggedIn && handleScreenComponent("show_scratch_card", "Scratch Card"),
                   gameTitle: (singleScratchCard == null ? void 0 : singleScratchCard.title) || "Scratch and Win",
                   gameDesc: (singleScratchCard == null ? void 0 : singleScratchCard.description) || "Scratch and win coins",
                   cardImage: (singleScratchCard == null ? void 0 : singleScratchCard.image) || "https://media.farziengineer.co/farziwallet/scratch-card.png",
                   gamePrice: (singleScratchCard == null ? void 0 : singleScratchCard.amount) || "10",
-                  btnText: (singleScratchCard == null ? void 0 : singleScratchCard.btnText) || "Explore"
+                  btnText: (singleScratchCard == null ? void 0 : singleScratchCard.btnText) || "Explore",
+                  isLoggedIn,
+                  handleLogin
                 })]
               }), o(InviteCard, {
+                isLoggedIn,
+                handleLogin,
                 client_id,
                 customer_id,
                 onClick: () => isLoggedIn && changeOverlay("invite_and_earn")
               })]
+            }), o("p", {
+              id: "watermarkContainer",
+              children: o("a", {
+                href: "https://retainley.com/",
+                target: "_blank",
+                children: "Powered by Retainley"
+              })
             })]
           }), o("div", {
             class: "overlay",
@@ -4491,12 +5269,12 @@ body {
         }
       }
       const clientCustomStyleData = ((_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.custom_css) || "";
-      B$1(o(App$1, {
+      B$2(o(App$1, {
         themeDetailsData,
         shadowRoot
       }), shadowRoot);
-      B$1(o(AppCSS$1, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
-      B$1(o(AppCustomCSS$1, {
+      B$2(o(AppCSS$1, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
+      B$2(o(AppCustomCSS$1, {
         customStyles: clientCustomStyleData
       }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
     } catch (err) {
@@ -4522,7 +5300,9 @@ body {
     couponData,
     onClick,
     customerDetails,
-    updateWalletAmount
+    updateWalletAmount,
+    isLoggedIn,
+    handleLogin
   }) => {
     const [couponCode, setCouponCode] = h("");
     const [isCouponUnlocked, setIsCouponUnlocked] = h(false);
@@ -4616,7 +5396,7 @@ body {
             })
           }), !isCouponUnlocked && o("div", {
             children: !loading && o("button", {
-              onClick: fetchCouponCode,
+              onClick: isLoggedIn ? fetchCouponCode : handleLogin,
               class: "couponUnlockBtn",
               children: "Tap to Unlock"
             })
@@ -4814,6 +5594,9 @@ body {
     const handleOverlay = (overlayname) => {
       if (overlayname === "coupon") {
         return o(CouponOverlay, {
+          isLoggedIn: true,
+          handleLogin: () => {
+          },
           updateWalletAmount: fetchWalletAmount,
           customerDetails,
           couponData: couponCardResponse[couponIdx],
@@ -4822,6 +5605,9 @@ body {
       }
       if (overlayname === "explore") {
         return o(CouponOverlay, {
+          isLoggedIn: true,
+          handleLogin: () => {
+          },
           updateWalletAmount: fetchWalletAmount,
           customerDetails,
           couponData: exploreCoupon[exploreCouponIdx],
@@ -4886,6 +5672,35 @@ body {
       color: "#373737",
       borderBottom: "2px solid #373737"
     };
+    const sliderRef = _$1(null);
+    const [prevBtn, setPrevBtn] = h(false);
+    const [nextBtn, setNextBtn] = h(true);
+    const scrollLeft = () => {
+      sliderRef.current.scrollBy({
+        left: -200,
+        behavior: "smooth"
+      });
+      if (sliderRef.current.scrollLeft - 200 <= 5) {
+        setPrevBtn(false);
+        setNextBtn(true);
+      } else {
+        setPrevBtn(true);
+        setNextBtn(true);
+      }
+    };
+    const scrollRight = () => {
+      sliderRef.current.scrollBy({
+        left: 200,
+        behavior: "smooth"
+      });
+      if (sliderRef.current.scrollLeft + sliderRef.current.offsetWidth + 200 >= sliderRef.current.scrollWidth - 5) {
+        setPrevBtn(true);
+        setNextBtn(false);
+      } else {
+        setPrevBtn(true);
+        setNextBtn(true);
+      }
+    };
     return o(k$1, {
       children: o("div", {
         class: "viewAllCoupons",
@@ -4915,18 +5730,38 @@ body {
           children: o(Loading, {})
         }) : o("div", {
           children: [o("div", {
-            class: "viewAllFeaturedComponent",
-            children: [o("h3", {
-              children: "Featured Components"
-            }), o("div", {
-              class: "showAllCouponsList",
-              children: couponCardResponse.map((card, index) => o(CouponCard, {
-                onClick: () => handleAndShowCouponOverlay(index),
-                couponPrice: card.amount,
-                couponDesc: card.title,
-                couponImgLink: card.image
-              }, index))
-            })]
+            class: "couponMainContainer",
+            children: o("div", {
+              class: "viewAllFeaturedComponent",
+              children: [o("h3", {
+                children: "Featured Components"
+              }), o("div", {
+                class: "showAllCouponsList",
+                ref: sliderRef,
+                children: couponCardResponse.map((card, index) => o(CouponCard, {
+                  onClick: () => handleAndShowCouponOverlay(index),
+                  couponPrice: card.amount,
+                  couponDesc: card.title,
+                  couponImgLink: card.image
+                }, index))
+              }), o(k$1, {
+                children: [prevBtn && o("div", {
+                  className: "scrollBtnPrev",
+                  onClick: scrollLeft,
+                  children: o("img", {
+                    src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                    alt: ""
+                  })
+                }), nextBtn && o("div", {
+                  className: "scrollBtnNext",
+                  onClick: scrollRight,
+                  children: o("img", {
+                    src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                    alt: ""
+                  })
+                })]
+              })]
+            })
           }), o("div", {
             class: "reedemfcCoins",
             children: [o("h3", {
@@ -4936,7 +5771,7 @@ body {
               class: "reedemfcCoinsCard",
               children: [o("div", {
                 children: o("img", {
-                  src: "https://media.farziengineer.co/farziwallet/voucher-icon.png",
+                  src: "https://media.farziengineer.co/farziwallet/rupee-icon.png",
                   alt: ""
                 })
               }), o("div", {
@@ -4947,36 +5782,39 @@ body {
                 })]
               }), o("div", {
                 children: o("img", {
+                  class: "reedemfcCoinsCardArrow",
                   src: "https://media.farziengineer.co/farziwallet/arrow.png",
                   alt: ""
                 })
               })]
             })]
-          }), o("div", {
+          }), exploreCoupon.length > 0 && o("div", {
             class: "exploreCoupons",
-            children: [o("h5", {
+            children: [o("h3", {
               children: "Coupons to Explore"
-            }), exploreCoupon && exploreCoupon.map((card, idx) => o("div", {
-              onClick: () => handleExploreOverlayVisibility(idx),
-              class: "exploreCouponCard",
-              children: [o("div", {
-                class: "shipImgBox",
-                children: o("img", {
-                  src: card.image,
-                  alt: ""
-                })
-              }), o("div", {
-                class: "exploreCouponCardText",
-                children: [o("p", {
-                  children: card.heading
-                }), o("p", {
-                  class: "exploreCouponText",
-                  children: ["Unlock for ", o("div", {
-                    class: "coinIcon"
-                  }), " ", card.amount]
+            }), o(k$1, {
+              children: exploreCoupon && exploreCoupon.map((card, idx) => o("div", {
+                onClick: () => handleExploreOverlayVisibility(idx),
+                class: "exploreCouponCard",
+                children: [o("div", {
+                  class: "shipImgBox",
+                  children: o("img", {
+                    src: card.image,
+                    alt: ""
+                  })
+                }), o("div", {
+                  class: "exploreCouponCardText",
+                  children: [o("p", {
+                    children: card.heading
+                  }), o("p", {
+                    class: "exploreCouponText",
+                    children: ["Unlock for ", o("div", {
+                      class: "coinIcon"
+                    }), " ", card.amount]
+                  })]
                 })]
-              })]
-            }))]
+              }))
+            })]
           })]
         })), yourCouponTab && o(YourCoupons, {
           customerDetails
@@ -5069,7 +5907,6 @@ body {
       newCanvas.width = 300;
       newCanvas.height = 300;
       const scratchCardDiv = shadowRoot.querySelector(".scratchCardDiv");
-      console.log("=======", scratchCardDiv);
       scratchCardDiv.appendChild(newCanvas);
       setPlayAgain(!playAgain);
       setShowWinPopup(false);
@@ -5512,12 +6349,12 @@ body {
         }
       }
       const clientCustomStyleData = ((_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.custom_css) || "";
-      B$1(o(App, {
+      B$2(o(App, {
         themeDetailsData,
         shadowRoot
       }), shadowRoot);
-      B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
-      B$1(o(AppCustomCSS, {
+      B$2(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
+      B$2(o(AppCustomCSS, {
         customStyles: clientCustomStyleData
       }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
     } catch (err) {

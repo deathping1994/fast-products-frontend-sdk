@@ -731,7 +731,8 @@ body {
     renderApplyCouponCodeBox,
     refetchCartSummary,
     calculateCashback,
-    setUserHash
+    setUserHash,
+    renderWalletCredit
   }) {
     const [userPoints, setUserPoints] = h(null);
     const [walletApplied, setWalletApplied] = h(localStorage.getItem("fc-wallet-cart-applied") === "true" || false);
@@ -984,7 +985,7 @@ body {
       }
     }, [walletAppliedDetails]);
     return o(k$1, {
-      children: [o("div", {
+      children: [renderWalletCredit && o("div", {
         class: "wallet-box-container",
         onClick: toggleUserWallet,
         children: [o("p", {
@@ -1017,7 +1018,7 @@ body {
                 width: "50px",
                 height: "16px"
               })
-            }) : userPoints.toFixed(2)]
+            }) : (userPoints || 0).toFixed(2)]
           })]
         })]
       }), o("div", {
@@ -1032,7 +1033,7 @@ body {
               children: loadingWalletBal ? o(SkeletonLoader, {
                 width: "50px",
                 height: "16px"
-              }) : walletAppliedDetails == null ? void 0 : walletAppliedDetails.remainingWalletBalance
+              }) : walletAppliedDetails == null ? void 0 : walletAppliedDetails.remainingWalletBalance.toFixed(2)
             })]
           }), o("div", {
             class: "wallet-applied-details",
@@ -1111,6 +1112,15 @@ body {
     loadingWalletBal,
     walletAppliedDetails
   }) {
+    const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
+    const checkout_total = mainScript.getAttribute("data-checkout-total");
+    const checkoutTotalTag = document.querySelector(`.${checkout_total}`);
+    checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice).toLocaleString("en-IN", {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+      style: "currency",
+      currency: "INR"
+    })}`;
     return o(k$1, {
       children: o("div", {
         class: "wallet-applied-details-container",
@@ -1235,6 +1245,8 @@ body {
     });
     const [refetchCartSummary, setRefetchSummary] = h(false);
     const [renderApplyCouponCodeBox, setRenderApplyCouponCodeBox] = h(false);
+    const [renderCashbackStrip, setRenderCashbackStrip] = h(false);
+    const [renderWalletCredit, setRenderWalletCredit] = h(false);
     const [loadingWalletBal, setLoadingWalletBal] = h(false);
     const [walletAppliedDetails, setWalletAppliedDetails] = h({
       currency: null,
@@ -1333,8 +1345,16 @@ body {
       const client_id = mainScript.getAttribute("data-client-id");
       const checkout_target = mainScript.getAttribute("data-checkout-target");
       const coupon_code_box = mainScript.getAttribute("data-coupon-code-box");
-      if (coupon_code_box) {
+      const cashback_strip = mainScript.getAttribute("data-cashback-strip");
+      const wallet_credit = mainScript.getAttribute("data-wallet-credit-box");
+      if (coupon_code_box === "true") {
         setRenderApplyCouponCodeBox(true);
+      }
+      if (cashback_strip === "true") {
+        setRenderCashbackStrip(true);
+      }
+      if (wallet_credit === "true") {
+        setRenderWalletCredit(true);
       }
       if (checkout_target) {
         setCheckoutTarget({
@@ -1364,25 +1384,58 @@ body {
     p(() => {
       loadCartSummary();
     }, [refetchCartSummary, cashbackDetails == null ? void 0 : cashbackDetails.type]);
+    p(() => {
+      const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
+      const customer_id = mainScript.getAttribute("data-customer-id");
+      setCustomerDetails((prev) => ({
+        ...prev,
+        customerID: customer_id
+      }));
+      if (!customer_id) {
+        removeAppliedCouponCode();
+      }
+    }, []);
+    const removeAppliedCouponCode = async () => {
+      const clearDiscountCode = "FC_REMOVE_CODE";
+      const walletAppliedCode = localStorage.getItem("fc-wallet-applied-code") || "";
+      try {
+        if (walletAppliedCode) {
+          await fetch(`/discount/${clearDiscountCode}`);
+          localStorage.removeItem("fc-wallet-applied-code");
+        }
+        const appliedDiscountCode2 = localStorage.getItem("fc-coupon-applied-code");
+        if (appliedDiscountCode2) {
+          await fetch(`/discount/${appliedDiscountCode2}`);
+          localStorage.removeItem("fc-coupon-applied-code");
+        }
+      } catch (error) {
+        console.error("Error removing applied coupon code:", error);
+      }
+    };
     return o(k$1, {
       children: [renderApplyCouponCodeBox ? o(ApplyDiscountCode, {
         setRefetchSummary,
         appliedDiscountCode,
         appliedDiscountsList
-      }) : o(k$1, {}), !loadingCashbackDetails && cashbackAmount !== 0 && o("div", {
-        class: "cashback-strip-container",
-        children: o("p", {
-          children: ["You'll get ", o("span", {
-            children: ["Rs. ", parseFloat(`${cashbackAmount}`).toFixed(2), " cashback"]
-          }), " with this order"]
+      }) : o(k$1, {}), !loadingCashbackDetails && cashbackAmount !== 0 && o(k$1, {
+        children: renderCashbackStrip && o("div", {
+          class: "cashback-strip-container",
+          children: o("p", {
+            children: ["You'll get ", o("span", {
+              children: ["Rs. ", parseFloat(`${cashbackAmount}`).toFixed(2), " cashback"]
+            }), " with this order"]
+          })
         })
-      }), (customerDetails == null ? void 0 : customerDetails.customerID) ? o(ApplyWallet, {
-        customerDetails,
-        checkoutTarget,
-        renderApplyCouponCodeBox,
-        refetchCartSummary,
-        calculateCashback,
-        setUserHash: setCustomerDetails
+      }), (customerDetails == null ? void 0 : customerDetails.customerID) ? o("div", {
+        children: o(ApplyWallet, {
+          customerDetails,
+          checkoutTarget,
+          renderApplyCouponCodeBox,
+          refetchCartSummary,
+          calculateCashback,
+          setUserHash: setCustomerDetails,
+          renderWalletCredit
+        })
       }) : o(k$1, {
         children: [o(Login, {
           themeDetails: themeDetailsData

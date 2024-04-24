@@ -425,7 +425,6 @@
     const client_id = mainScript.getAttribute("data-client-id");
     const customer_id = mainScript.getAttribute("data-customer-id");
     const clientName = mainScript.getAttribute("client-name");
-    console.log("deded", client_id, customer_id);
     const [referralPopup, setReferralPopup] = h(false);
     const [referedAmount, setReferedAmount] = h(0);
     p(() => {
