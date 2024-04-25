@@ -55,6 +55,8 @@ export function ApplyWallet({
   });
   const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
   const checkout_total = mainScript.getAttribute('data-checkout-total')
+  const checkboxChangeCustomJs = mainScript.getAttribute('checkbox-change-custom-js') || "()=>{}"
+  const customJs =  eval(`()=>{${checkboxChangeCustomJs}}`)
   const checkoutTotalTag = document.querySelector(`.${checkout_total}`)
   checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(
     walletAppliedDetails?.totalPayablePrice
@@ -363,6 +365,7 @@ export function ApplyWallet({
         totalPrice: walletAppliedDetails?.totalPayablePrice,
       });
     }
+    customJs()
   }, [walletAppliedDetails]);
 
   return (
