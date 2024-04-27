@@ -133,8 +133,8 @@ body {
 	position: fixed;
 	width: 60px;
 	height: 60px;
-	bottom: 3%;
-    right: 3%;
+	/* bottom: 3%;
+    right: 3%; */
 	justify-content: center;
 	align-items: center;
 	border-radius: 100%;
@@ -149,8 +149,8 @@ body {
 	z-index: 9999;
 	position: fixed;
 	gap: 16px;
-	bottom: 13%;
-	right: 7%;
+	/* bottom: 13%;
+	right: 7%; */
 	max-width: 360px;
 	max-height: 580px;
 	width: 85vw;
@@ -202,10 +202,12 @@ body {
 	display: flex;
 	justify-content: space-between;
 	position: relative;
+	align-items: center;
 }
 
 .walletCard {
 	cursor: pointer;
+	align-items: center;
 }
 
 .coinCard img {
@@ -245,11 +247,12 @@ body {
 	align-items: center;
 	color: white;
 	gap: 4px;
+	display: none;
 }
 
 .walletCardText {
 	color: white;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: bold;
 }
 
@@ -1379,7 +1382,7 @@ body {
 #sparkImg {
 	position: absolute;
 	width: 60px;
-	top: 36px;
+	top: 32px;
 	left: 35%;
 	clip-path: inset(0 0 44% 0);
 }

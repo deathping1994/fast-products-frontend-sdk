@@ -1,3 +1,4 @@
+// checkbox.jsx
 export function Checkbox({ walletApplied, setWalletApplied }) {
   return (
     <>

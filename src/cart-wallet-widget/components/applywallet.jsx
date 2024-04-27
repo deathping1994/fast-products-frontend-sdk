@@ -55,8 +55,6 @@ export function ApplyWallet({
   });
   const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
   const checkout_total = mainScript.getAttribute('data-checkout-total')
-  const checkboxChangeCustomJs = mainScript.getAttribute('checkbox-change-custom-js') || "()=>{}"
-  const customJs =  eval(`()=>{${checkboxChangeCustomJs}}`)
   const checkoutTotalTag = document.querySelector(`.${checkout_total}`)
   checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(
     walletAppliedDetails?.totalPayablePrice
@@ -329,6 +327,12 @@ export function ApplyWallet({
       }
     }
     setLoadingWalletBal(false);
+    try {
+      // @ts-ignore
+      fc_coupon_toggle(window.fc_coupon_callback)
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const debouncedToggleUserWalletApplied = returnDebouncedFunc(
@@ -336,6 +340,10 @@ export function ApplyWallet({
     200
   );
 
+  // @ts-ignore
+  const fc_coupon_toggle = (callback = ()=>{})=>{
+    callback()
+  }
   const toggleUserWallet = () => {
     setWalletApplied((prev) => {
       debouncedToggleUserWalletApplied(prev);
@@ -365,7 +373,6 @@ export function ApplyWallet({
         totalPrice: walletAppliedDetails?.totalPayablePrice,
       });
     }
-    customJs()
   }, [walletAppliedDetails]);
 
   return (
