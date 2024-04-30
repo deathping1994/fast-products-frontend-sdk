@@ -584,6 +584,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
       <Referral />
       <img
         onClick={handleViewPopup}
+        style={{backgroundColor: themeDetailsData?.data?.theme_color}}
         class="floatingPopup"
         src="https://media.farziengineer.co/farziwallet/gift-icon.png"
         width={30}

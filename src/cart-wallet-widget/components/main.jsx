@@ -4,6 +4,7 @@ import { Login } from "./login";
 import { LoggedoutCartSummary } from "./loggedoutcartsummary";
 import { ApplyDiscountCode } from "./applydiscountcode";
 import { WALLET_API_URI } from "..";
+import ModernLogin from "./ModernUI/ModernLogin";
 
 export function Main({ themeDetailsData }) {
   const [customerDetails, setCustomerDetails] = useState({
@@ -33,8 +34,8 @@ export function Main({ themeDetailsData }) {
     amount: 0,
     type: null,
   });
+  const [modernUiTheme, setModernUiTheme] = useState('')
   const [cashbackAmount, setCashbackAmount] = useState(0);
-
   const loadCartSummary = async () => {
     setLoadingWalletBal(true);
     const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
@@ -135,7 +136,8 @@ export function Main({ themeDetailsData }) {
     const coupon_code_box = mainScript.getAttribute("data-coupon-code-box");
     const cashback_strip = mainScript.getAttribute("data-cashback-strip");
     const wallet_credit = mainScript.getAttribute("data-wallet-credit-box");
-
+    const walletUiTheme = mainScript.getAttribute('wallet-theme')
+    setModernUiTheme(walletUiTheme)
     if (coupon_code_box === 'true') {
       setRenderApplyCouponCodeBox(true);
     }
@@ -247,15 +249,20 @@ export function Main({ themeDetailsData }) {
             calculateCashback={calculateCashback}
             setUserHash={setCustomerDetails}
             renderWalletCredit={renderWalletCredit}
+            themeDetailsData={themeDetailsData}
           />
         </div>
       ) : (
         <>
+          {modernUiTheme === "modern" ? <ModernLogin themeDetailsData={themeDetailsData}/> : 
+          <>
           <Login themeDetails={themeDetailsData} />
           <LoggedoutCartSummary
             loadingWalletBal={loadingWalletBal}
             walletAppliedDetails={walletAppliedDetails}
-          />
+            />
+          </>
+          }
         </>
       )}
     </>

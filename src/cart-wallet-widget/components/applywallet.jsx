@@ -4,6 +4,7 @@ import { WALLET_API_URI } from "..";
 import { CircularLoader } from "./circularloader";
 import { SkeletonLoader } from "./skeletonloader";
 import { setCookie } from "../../global/utils";
+import ModernMain from "./ModernUI/ModernMain";
 let debounceTimer;
 const returnDebouncedFunc = (mainFunction, delay) => {
   return function (...args) {
@@ -39,7 +40,8 @@ export function ApplyWallet({
   refetchCartSummary,
   calculateCashback,
   setUserHash,
-  renderWalletCredit
+  renderWalletCredit,
+  themeDetailsData
 }) {
   const [userPoints, setUserPoints] = useState(null);
   const [walletApplied, setWalletApplied] = useState(
@@ -55,6 +57,7 @@ export function ApplyWallet({
   });
   const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
   const checkout_total = mainScript.getAttribute('data-checkout-total')
+  const walletUiTheme = mainScript.getAttribute('wallet-theme')
   const checkoutTotalTag = document.querySelector(`.${checkout_total}`)
   checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(
     walletAppliedDetails?.totalPayablePrice
@@ -219,27 +222,29 @@ export function ApplyWallet({
         : walletPointsToApplyBeforeLimit;
 
       try {
-        const walletCouponResponse = await fetch(
-          `${WALLET_API_URI}/loyalty/get-wallet-coupon`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              client_id: customerDetails?.clientID,
-              customer_id: customerDetails?.customerID,
-              user_hash: customerDetails?.customerTags,
-              wallet_points: Math.round(walletPointsToApply),
-
-            }),
-          }
-        );
-        const walletCouponData = await walletCouponResponse.json();
-
-        var walletCouponCode = walletCouponData?.data?.coupon_code;
-
-        localStorage.setItem("fc-wallet-applied-code", walletCouponCode);
+        if(walletPointsToApply > 0){
+          const walletCouponResponse = await fetch(
+            `${WALLET_API_URI}/loyalty/get-wallet-coupon`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                client_id: customerDetails?.clientID,
+                customer_id: customerDetails?.customerID,
+                user_hash: customerDetails?.customerTags,
+                wallet_points: Math.round(walletPointsToApply),
+  
+              }),
+            }
+          );
+          const walletCouponData = await walletCouponResponse.json();
+  
+          var walletCouponCode = walletCouponData?.data?.coupon_code;
+  
+          localStorage.setItem("fc-wallet-applied-code", walletCouponCode);
+        }
       } catch (err) {
         setLoadingWalletBal(false);
       }
@@ -374,8 +379,13 @@ export function ApplyWallet({
       });
     }
   }, [walletAppliedDetails]);
-
+  
+  useEffect(()=>{
+    console.log('wal', walletApplied)
+  },[walletApplied])
   return (
+    <>
+    {walletUiTheme === "classic" ?
     <>
       {renderWalletCredit && <div class="wallet-box-container" onClick={toggleUserWallet}>
         <p
@@ -507,6 +517,14 @@ export function ApplyWallet({
           </p>
         </div>
       </div>
+    </> : <ModernMain
+      customerDetails={customerDetails}
+      themeDetailsData={themeDetailsData}
+      walletAppliedDetails={walletAppliedDetails}
+      setWalletApplied={toggleUserWallet}
+      walletApplied={walletApplied}
+      loadingWalletBal={loadingWalletBal}
+    />}
     </>
   );
 }
