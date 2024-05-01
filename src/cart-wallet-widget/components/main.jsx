@@ -6,7 +6,7 @@ import { ApplyDiscountCode } from "./applydiscountcode";
 import { WALLET_API_URI } from "..";
 import ModernLogin from "./ModernUI/ModernLogin";
 
-export function Main({ themeDetailsData }) {
+export function Main({ themeDetailsData, shadowRoot }) {
   const [customerDetails, setCustomerDetails] = useState({
     customerID: "",
     customerTags: "",
@@ -36,6 +36,23 @@ export function Main({ themeDetailsData }) {
   });
   const [modernUiTheme, setModernUiTheme] = useState('')
   const [cashbackAmount, setCashbackAmount] = useState(0);
+
+  const setTheme = ({themeDetailsData})=>{
+    var cssVariablesScope = shadowRoot.querySelector(".widget-container");
+    if (cssVariablesScope && themeDetailsData?.data?.gradient_start_color) {
+      cssVariablesScope.style.setProperty("--gradient_start_color",themeDetailsData?.data?.gradient_start_color);
+    }
+    if (cssVariablesScope && themeDetailsData?.data?.gradient_end_color) {
+      cssVariablesScope.style.setProperty("--gradient_end_color",themeDetailsData?.data?.gradient_end_color);
+    }
+    if (cssVariablesScope && themeDetailsData?.data?.gradient_angle) {
+      cssVariablesScope.style.setProperty("--gradient_angle",themeDetailsData?.data?.gradient_angle);
+    }
+    if (cssVariablesScope && themeDetailsData?.data?.discount_loading_icon) {
+      cssVariablesScope.style.setProperty("--discount_loading_icon",`url("${themeDetailsData?.data?.discount_loading_icon}")`);
+    }
+  }
+
   const loadCartSummary = async () => {
     setLoadingWalletBal(true);
     const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
@@ -175,6 +192,7 @@ export function Main({ themeDetailsData }) {
       customerTags: customer_tags,
       clientID: client_id,
     });
+    setTheme({themeDetailsData})
   }, []);
 
   useEffect(() => {

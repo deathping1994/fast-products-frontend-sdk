@@ -57,21 +57,23 @@ const ModernMain = ({
           </p>
         </div>
       </div>
+      <div className='modernWalletCheckboxContainer'>
       {!loadingWalletBal ?
-        <div className="modern-checkbox bounce">
-        <input
-          type="checkbox"
-          checked={walletApplied}
-          onClick={() => setWalletApplied((prev) => !prev)}
-        />
-        <svg viewBox="0 0 21 21">
-          <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
-        </svg>
-      </div> : 
+          <div className="modern-checkbox bounce">
+            <input
+              type="checkbox"
+              checked={walletApplied}
+              onClick={() => setWalletApplied((prev) => !prev)}
+            />
+            <svg viewBox="0 0 21 21">
+              <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
+            </svg>
+          </div>: 
       <div class="spinner-container">
       <div class="spinner"></div>
       <img src="https://media.farziengineer.co/farziwallet/wallet_icon.svg" alt="Wallet Icon" class="spinner-image"/>
     </div>}
+    </div>
     </div>
     : <ModernLogin themeDetailsData={themeDetailsData}/> 
     }

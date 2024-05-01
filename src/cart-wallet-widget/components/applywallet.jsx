@@ -222,6 +222,7 @@ export function ApplyWallet({
         : walletPointsToApplyBeforeLimit;
 
       try {
+        localStorage.setItem('rtly-applied-discount', `${Math.round(walletPointsToApply)}`)
         if(walletPointsToApply > 0){
           const walletCouponResponse = await fetch(
             `${WALLET_API_URI}/loyalty/get-wallet-coupon`,
@@ -354,6 +355,8 @@ export function ApplyWallet({
       debouncedToggleUserWalletApplied(prev);
       try {
         localStorage.setItem("fc-wallet-cart-applied", `${!prev}`);
+        const cart_applied = localStorage.getItem('fc-wallet-cart-applied')
+        localStorage.setItem('rtly-applied-discount', `${cart_applied === "false" ? "0" : walletAppliedDetails?.walletDiscountApplied}`)
       } catch (err) {
         console.log(err);
       }

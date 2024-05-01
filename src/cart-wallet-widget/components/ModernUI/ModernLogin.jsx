@@ -12,7 +12,7 @@ const ModernLogin = ({ themeDetailsData }) => {
           <div className="modernWalletMidSection">
             <p>{themeDetailsData?.data?.coin_name}</p>
             <p>
-            {themeDetailsData?.data?.cart_wallet_limit} of the Grand Total can be paid via{" "}
+            {themeDetailsData?.data?.cart_wallet_limit} of the Grand Total can be paid via
               {" " + themeDetailsData?.data?.coin_name}
             </p>
           </div>

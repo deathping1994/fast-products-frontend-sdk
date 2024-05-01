@@ -20,6 +20,13 @@ body {
 	min-height: 100vh;
 } */
 
+.widget-container {
+  --gradient_start_color: #20abff;
+  --gradient_end_color: #8cc9ff;
+  --gradient_deg:90deg;
+  --discount_loading_icon:url('https://media.farziengineer.co/farziwallet/wallet_icon.svg');
+}
+
 .fc-wallet-cart-widget-19212-root * {
   padding: 0;
   margin: 0;
@@ -262,12 +269,8 @@ body {
   padding: 12px;
   gap: 4px;
   border-radius: 8px;
-  background: rgb(255, 200, 32);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 200, 32, 1) 0%,
-    rgba(253, 255, 213, 1) 100%
-  );
+  background-color: rgb(32, 171, 255);
+  background: linear-gradient( var(--gradient_deg, 90deg), var(--gradient_start_color, #20abff) 0%, var(--gradient_end_color, #215aab) 100% );
 }
 .modernWalletMidContainer {
   display: flex;
@@ -317,7 +320,7 @@ body {
 .wallet_icon {
   width: 28px;
   aspect-ratio: 1/1;
-  background: url("https://media.farziengineer.co/farziwallet/wallet_icon.svg");
+  background-image: var(--discount_loading_icon, url("https://media.farziengineer.co/farziwallet/wallet_icon.svg"));
   background-position-x: 0%;
   background-position-y: 0%;
   background-size: auto;
@@ -339,12 +342,22 @@ body {
   width: 40%;
 }
 
+.modernWalletCheckboxContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+}
+
 /* animated checkbox */
 
 .modern-checkbox {
-  padding-top: 4px;
   width: 28px;
   height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   --background: #fff;
   --border: #7d7d7d;
   --border-hover: #bbc1e1;
@@ -356,9 +369,11 @@ body {
     width: 21px;
     height: 21px;
     display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   input {
-    padding-top: 4px;
     -webkit-appearance: none;
     -moz-appearance: none;
     position: relative;
@@ -380,7 +395,6 @@ body {
     }
   }
   svg {
-    margin-top: 4px;
     pointer-events: none;
     fill: none;
     stroke-width: 2px;
@@ -388,8 +402,8 @@ body {
     stroke-linejoin: round;
     stroke: var(--stroke, var(--border-active));
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 4;
+    left: 4;
     width: 21px;
     height: 21px;
     transform: scale(var(--scale, 1)) translateZ(0);
