@@ -6,7 +6,8 @@ const ModernMain = ({
   setWalletApplied,
   walletApplied,
   customerDetails,
-  loadingWalletBal
+  loadingWalletBal,
+  walletRedemptionLimitDetails
 }) => {
 
   return (
@@ -30,8 +31,13 @@ const ModernMain = ({
                 currency: "INR",
               })}`}
           </p>
-          <p>
-            {themeDetailsData?.data?.cart_wallet_limit} of the Grand Total can be paid via{" "+themeDetailsData?.data?.coin_name}
+          <p>{walletRedemptionLimitDetails?.type === "CART_PERCENT" ? `${walletRedemptionLimitDetails?.amount}% of the Grand Total ` : `Maximum ${Number(walletRedemptionLimitDetails?.amount).toLocaleString("en-IN", {
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2,
+                      style: "currency",
+                      currency: "INR",
+                    })} `}
+             can be paid via{" "+themeDetailsData?.data?.coin_name}
           </p>
         </div>
         <div className="modernWalletBalance">
@@ -75,7 +81,7 @@ const ModernMain = ({
     </div>}
     </div>
     </div>
-    : <ModernLogin themeDetailsData={themeDetailsData}/> 
+    : <ModernLogin themeDetailsData={themeDetailsData} customerDetails={customerDetails}/> 
     }
     </>
   );

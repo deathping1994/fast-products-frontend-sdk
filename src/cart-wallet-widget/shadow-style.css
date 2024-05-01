@@ -336,6 +336,7 @@ body {
   height: 65px;
   cursor: pointer;
   font-weight: bold;
+  width: 100%;
 }
 
 .modernLoginBox {

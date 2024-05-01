@@ -245,6 +245,8 @@ export function ApplyWallet({
           var walletCouponCode = walletCouponData?.data?.coupon_code;
   
           localStorage.setItem("fc-wallet-applied-code", walletCouponCode);
+        }else{
+          setWalletApplied(false)
         }
       } catch (err) {
         setLoadingWalletBal(false);
@@ -527,6 +529,7 @@ export function ApplyWallet({
       setWalletApplied={toggleUserWallet}
       walletApplied={walletApplied}
       loadingWalletBal={loadingWalletBal}
+      walletRedemptionLimitDetails={walletRedemptionLimitDetails}
     />}
     </>
   );

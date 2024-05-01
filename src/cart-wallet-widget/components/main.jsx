@@ -272,7 +272,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
         </div>
       ) : (
         <>
-          {modernUiTheme === "modern" ? <ModernLogin themeDetailsData={themeDetailsData}/> : 
+          {modernUiTheme === "modern" ? <ModernLogin themeDetailsData={themeDetailsData} customerDetails={customerDetails}/> : 
           <>
           <Login themeDetails={themeDetailsData} />
           <LoggedoutCartSummary
