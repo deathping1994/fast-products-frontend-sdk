@@ -140,7 +140,17 @@ export function Main({ themeDetailsData, shadowRoot }) {
   },[referralPopup])
   function setTheme({ themeDetails }) {
     var cssVariablesScope = shadowRoot.querySelector(".mainPopup");
+    const floatingPopupPos = shadowRoot.querySelector('.floatingPopup')
+    
 
+    if(cssVariablesScope && themeDetails?.data?.popup_position){
+      cssVariablesScope.style.left = themeDetails?.data?.popup_position?.left
+      cssVariablesScope.style.top = themeDetails?.data?.popup_position?.top
+    }
+    if(floatingPopupPos && themeDetails?.data?.icon_position){
+      floatingPopupPos.style.left = themeDetails?.data?.icon_position?.left
+      floatingPopupPos.style.top = themeDetails?.data?.icon_position?.top
+    }
     if (cssVariablesScope && themeDetails?.data?.theme_color) {
       cssVariablesScope.style.setProperty(
         "--loyalty_popup_theme_background",
@@ -574,6 +584,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
       <Referral />
       <img
         onClick={handleViewPopup}
+        style={{backgroundColor: themeDetailsData?.data?.theme_color}}
         class="floatingPopup"
         src="https://media.farziengineer.co/farziwallet/gift-icon.png"
         width={30}
