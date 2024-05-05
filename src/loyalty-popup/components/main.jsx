@@ -22,12 +22,14 @@ import ReferralPopup from "./ReferralPopup";
 import EasyEarn from "./EasyEarn";
 import EasyEarnCard from "./EasyEarnCard";
 import EasyEarnOverlay from "./Overlays/EasyEarnOverlay";
+import ReferralPage from "./ReferralUi";
 
-export function Main({ themeDetailsData, shadowRoot }) {
+export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
   const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
   const client_id = mainScript.getAttribute("data-client-id");
   const customer_id = mainScript.getAttribute("data-customer-id");
   const client_name = mainScript.getAttribute("client-name")
+  const activePage = mainScript.getAttribute("data-active-page")
   const [visibilty, setVisibility] = useState(false);
   const [referralPopup, setReferralPopup] = useState(false)
   const [referedAmount, setReferedAmount] = useState(0)
@@ -139,15 +141,24 @@ export function Main({ themeDetailsData, shadowRoot }) {
     redeemReferHash({client_id, customer_id})
   },[referralPopup])
   function setTheme({ themeDetails }) {
-    var cssVariablesScope = shadowRoot.querySelector(".mainPopup");
-    const floatingPopupPos = shadowRoot.querySelector('.floatingPopup')
+
+    var cssVariablesScope;
+    if(loyalty_theme === 'page'){
+      cssVariablesScope = shadowRoot.querySelector(".loyaltyMainPage");
+    }else{
+      cssVariablesScope = shadowRoot.querySelector(".mainPopup");
+    }
+    let floatingPopupPos;
+    if(loyalty_theme === 'popup'){
+       floatingPopupPos = shadowRoot.querySelector('.floatingPopup')
+    }
     
 
-    if(cssVariablesScope && themeDetails?.data?.popup_position){
+    if(loyalty_theme === 'popup' && cssVariablesScope && themeDetails?.data?.popup_position){
       cssVariablesScope.style.left = themeDetails?.data?.popup_position?.left
       cssVariablesScope.style.top = themeDetails?.data?.popup_position?.top
     }
-    if(floatingPopupPos && themeDetails?.data?.icon_position){
+    if(loyalty_theme === 'popup' && floatingPopupPos && themeDetails?.data?.icon_position){
       floatingPopupPos.style.left = themeDetails?.data?.icon_position?.left
       floatingPopupPos.style.top = themeDetails?.data?.icon_position?.top
     }
@@ -190,7 +201,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
       };
     }
 
-    shadowRoot.querySelector(".floatingPopup").style.display = "flex"; //widget visible only after custom styles are applied
+    if(loyalty_theme === 'popup'){
+      shadowRoot.querySelector(".floatingPopup").style.display = "flex";
+    } //widget visible only after custom styles are applied
   }
   useEffect(() => {
     setTheme({ themeDetails: themeDetailsData });
@@ -216,15 +229,54 @@ export function Main({ themeDetailsData, shadowRoot }) {
       document.body.appendChild(styles);
     })();
 
-    // const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
-    // const customer_id = mainScript.getAttribute("data-customer-id");
     const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
-    // const client_id = mainScript.getAttribute("data-client-id");
     setCustomerDetails({ client_id, customer_id, user_hash });
     // logged in
     if (customer_id) {
       setIsLoggedIn(true);
     }
+    if(loyalty_theme === 'page'){
+      setVisibility(true);
+    }
+    if(loyalty_theme === 'page'){
+      switch (activePage) {
+        case "coupon":
+          setScreenDetails({
+            screen: "show_all_coupons",
+            screenTitle: "Coupons",
+            active: true,
+          });
+          break;
+        case "spinwheel":
+          setScreenDetails({
+            screen: "show_spin_wheel",
+            screenTitle: "Play Wheel of Fortune",
+            active: true,
+          });
+          break;
+        case "scratchcard":
+          setScreenDetails({
+            screen: "show_scratch_card",
+            screenTitle: "Play Scratch Card",
+            active: true,
+          });
+          break;
+        case "referral":
+          setScreenDetails({
+            screen:"referral",
+            screenTitle:"referral_page",
+            active:true
+          })
+          break;
+        default:
+          setScreenDetails({
+            screen: "home_screen",
+            screenTitle: "",
+            active: false,
+          });
+      }
+    }
+    console.log("screenDetails", activePage);
   }, []);
 
   useEffect(() => {
@@ -328,12 +380,25 @@ export function Main({ themeDetailsData, shadowRoot }) {
     setVisibility(!visibilty);
   };
   const changeOverlay = (overlayname) => {
-    const mainPopup = shadowRoot.querySelector(".mainPopup")
+    let mainPopup;
+    if(loyalty_theme === 'page'){
+      mainPopup = document.body;
+    }
+    if(loyalty_theme === 'popup'){
+      mainPopup = shadowRoot.querySelector('.mainPopup')
+    }
     const scrolledTop = mainPopup.scrollTop
-    mainPopup.style.overflowY = "hidden";
+    console.log("scrolledTop", scrolledTop);
+    if(loyalty_theme === 'popup'){
+      mainPopup.style.overflowY = "hidden";
+    }
     const overlay = shadowRoot.querySelector(".overlay")
     overlay.style.display = "flex"
-    overlay.style.justifyContent = "end"
+    overlay.style.justifyContent = `${loyalty_theme === 'popup' ? 'end' : 'center'}`
+    if(loyalty_theme === 'page'){
+      overlay.style.alignItems = "center";
+
+    }
     overlay.style.position = "absolute";
     overlay.style.top = `${scrolledTop}px`;
     overlay.style.height = "100%";
@@ -346,7 +411,13 @@ export function Main({ themeDetailsData, shadowRoot }) {
   };
 
   const closeOverlay = () => {
-    const mainPopup = shadowRoot.querySelector(".mainPopup")
+    let mainPopup;
+    if(loyalty_theme === 'page'){
+      mainPopup = document.body;
+    }
+    if(loyalty_theme === 'popup'){
+      mainPopup = shadowRoot.querySelector('.mainPopup')
+    }
     const overlay = shadowRoot.querySelector(".overlay")
     overlay.style.display = "none"
     mainPopup.style.overflowY = "scroll";
@@ -387,10 +458,12 @@ export function Main({ themeDetailsData, shadowRoot }) {
 
   useEffect(() => {
     if(!referralPopup){
-      if (visibilty) {
-        document.body.classList.add("fc-no-scroll");
-      } else {
-        document.body.classList.remove("fc-no-scroll");
+      if(loyalty_theme !== 'page'){
+        if (visibilty) {
+          document.body.classList.add("fc-no-scroll");
+        } else {
+          document.body.classList.remove("fc-no-scroll");
+        }
       }
     }
   }, [visibilty]);
@@ -503,6 +576,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
       case "show_all_coupons":
         return (
           <ViewAllCoupons
+            loyalty_theme={loyalty_theme}
             shadowRoot={shadowRoot}
             couponCardResponse={featuredCoupons}
             customerDetails={customerDetails}
@@ -511,6 +585,10 @@ export function Main({ themeDetailsData, shadowRoot }) {
       case "easy_earn":
         return (
           <EasyEarn walletAmount={walletAmount}/>
+        );
+      case "referral":
+        return (
+          <ReferralPage shadowRoot={shadowRoot} themeDetailsData={themeDetailsData}/>
         );
       default:
         console.warn("Unknown screen:", screenname);
@@ -582,7 +660,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   return (
     <>
       <Referral />
-      <img
+      {loyalty_theme === 'popup' && <img
         onClick={handleViewPopup}
         style={{backgroundColor: themeDetailsData?.data?.theme_color}}
         class="floatingPopup"
@@ -590,10 +668,10 @@ export function Main({ themeDetailsData, shadowRoot }) {
         width={30}
         height={30}
         alt="gift icon"
-      />
+      />}
       {(!referralPopup && visibilty) && (
         <>
-          <div class="mainPopup">
+          <div className={loyalty_theme === 'page'? 'loyaltyMainPage' : 'mainPopup'}>
             {screenDetails?.active ? (
               <Screen
                 closeScreen={closeScreen}
@@ -612,12 +690,12 @@ export function Main({ themeDetailsData, shadowRoot }) {
                     <h6>{client_name}</h6>
                   </div>
                   <div class="rightHeader">
-                    <img
+                    {loyalty_theme === 'popup' && <img
                       class="closePopup"
                       onClick={handleViewPopup}
                       src="https://media.farziengineer.co/farziwallet/cross.png"
                       alt=""
-                    />
+                    />}
                   </div>
                 </div>
                 {
@@ -727,7 +805,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
                     handleLogin={handleLogin}
                     client_id={client_id}
                     customer_id={customer_id}
-                    onClick={() => (isLoggedIn && changeOverlay("invite_and_earn"))}
+                    onClick={() => (loyalty_theme==='popup' ? changeOverlay("invite_and_earn") : getScreenComponent('referral'))}
                   />
                 </div>
                 <p id="watermarkContainer"><a href='https://retainley.com/' target="_blank">Powered by Retainley</a></p>

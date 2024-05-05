@@ -8,7 +8,7 @@ import Overlay from "./Overlays/Overlay";
 import YourCoupons from "./YourCoupons";
 import Loading from "./Utils/Loading";
 
-const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot}) => {
+const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot, loyalty_theme}) => {
     const [availableTab, setAvailableTab] = useState(true)
     const [yourCouponTab, setYourCouponTab] = useState(false)
     const [exploreCoupon, setExploreCoupon] = useState([])
@@ -58,7 +58,7 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot}) => {
         setCouponIdx(idx)
       }
       const changeOverlay = (overlayname) => {
-        const mainPopup = shadowRoot.querySelector(".mainPopup")
+        const mainPopup = shadowRoot.querySelector(`${loyalty_theme === 'popup' ? '.mainPopup' : '.loyaltyMainPage'}`)
         const scrolledTop = mainPopup.scrollTop
         mainPopup.style.overflowY = "hidden";
         const overlay = shadowRoot.querySelector(".overlay")
@@ -76,7 +76,7 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot}) => {
       };
 
       const closeOverlay = () => {
-        const mainPopup = shadowRoot.querySelector(".mainPopup")
+        const mainPopup = shadowRoot.querySelector(`${loyalty_theme === 'popup' ? '.mainPopup' : '.loyaltyMainPage'}`)
         const overlay = shadowRoot.querySelector(".overlay")
         overlay.style.display = "none"
         mainPopup.style.overflowY = "scroll";

@@ -133,8 +133,6 @@ body {
 	position: fixed;
 	width: 60px;
 	height: 60px;
-	/* bottom: 3%;
-    right: 3%; */
 	justify-content: center;
 	align-items: center;
 	border-radius: 100%;
@@ -1267,6 +1265,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	gap: 8px;
+  	margin: auto;
 }
 
 #fw-chart-spin-wheel svg {
@@ -1275,10 +1274,10 @@ body {
 
 .lockedIcon {
 	position: absolute;
-	top: 20px;
 	z-index: 2;
-	top: 47%;
-	left: 31%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 	
 .lockedIcon img {
@@ -1614,4 +1613,304 @@ body {
 
 #watermarkContainer:hover {
 	text-decoration: underline;
+}
+
+.loyaltyMainPage {
+	position: relative;
+	margin: 0px 15%;
+}
+
+#fw-chart-spin-wheel {
+	display: flex;
+	justify-content: center;
+	position: relative;
+}
+
+@media (min-width: 400px) {
+	.loyaltyMainPage .spinWheelBottom {
+	  max-width: 30%;
+	}
+  
+	.loyaltyMainPage #watermarkContainer {
+	  border-radius: 4px;
+	  margin: 16px 16px 0 16px;
+	}
+  
+	.loyaltyMainPage .gamesCardTitle {
+	  font-size: 14px;
+	}
+  
+	.loyaltyMainPage .gamesCardDesc {
+	  font-size: 12px;
+	}
+  
+	.loyaltyMainPage .inviteTextContainer p {
+	  font-size: 16px;
+	}
+  
+	.loyaltyMainPage .gamesArenaContainer h1, .loyaltyMainPage .viewAllCouponsContainer h1, .loyaltyMainPage .inviteTextContainer {
+	  font-size: 24px;
+	}
+  
+	.loyaltyMainPage .gamesArenaContainer p {
+	  font-size: 14px;
+	}
+  
+	.loyaltyMainPage .leftHeader p {
+	  font-size: 14px;
+	}
+  
+	.loyaltyMainPage .leftHeader h6 {
+	  font-size: 22px;
+	}
+  
+	.loyaltyMainPage .spinner {
+	  animation: rotate 2s linear infinite;
+	}
+  
+	.loyaltyMainPage .inviteAndEarnContainer {
+	  padding: 22px;
+	  border-radius: 16px;
+	  transition: all 0.5s;
+	  animation: none;
+	  box-shadow: none;
+	  width: 60%;
+	  max-width: 100%;
+	}
+  
+	.loyaltyMainPage .inviteEarnTextContainer {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  font-weight: 400;
+	  font-size: 14px;
+	  color: #acacac;
+	  margin: 8px 0px;
+	  text-align: center;
+	}
+  
+	.loyaltyMainPage .inviteAndEarn {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  gap: 16px;
+	}
+  
+	.loyaltyMainPage .inviteAndEarn h2 {
+	  font-weight: 700;
+	  font-size: 30px;
+	}
+  
+	.loyaltyMainPage .inviteAndEarnMessage h4 {
+	  text-align: center;
+	  font-weight: 500;
+	  font-size: 20px;
+	  line-height: 30px;
+	  margin: 20px 0 !important;
+	}
+  
+	.loyaltyMainPage .inviteLinkContainer {
+	  padding: 10px 12px;
+	  background: #fff;
+	  border-radius: 4px;
+	  border: 1px solid var(--loyalty_popup_theme_background, #000);
+	  font-size: 16px;
+	  font-weight: 700;
+	  display: flex;
+	  justify-content: space-between;
+	  align-items: center;
+	}
+  
+	.loyaltyMainPage .couponCodeContainer {
+	  padding: 12px;
+	  background: #fff;
+	  border-radius: 4px;
+	  border: 1px solid var(--loyalty_popup_theme_background, #000);
+	  font-size: 16px;
+	  font-weight: 700;
+	  display: flex;
+	  width: 100%;
+	  justify-content: center;
+	  align-items: center;
+	  position: relative;
+	}
+  
+	.loyaltyMainPage .couponCodeContainer img {
+	  position: absolute;
+	  right: 20px;
+	  cursor: pointer;
+	}
+  
+	.loyaltyMainPage .inviteLinkContainer p {
+	  font-size: 14px;
+	}
+  
+	.loyaltyMainPage .inviteLinkContainer img {
+	  max-width: 16px;
+	  cursor: pointer;
+	}
+  
+	.loyaltyMainPage .sendInvitesBtnContainer, .inviteWhatsappBtn {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  gap: 8px;
+	  text-decoration: none;
+	}
+  
+	.loyaltyMainPage .inviteWhatsappBtn {
+	  height: 40px;
+	  width: 96%;
+	  background-color: #29a71a;
+	  border-radius: 4px;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  border: none;
+	  cursor: pointer;
+	}
+  
+	.inviteWhatsappBtn p {
+	  font-weight: 500;
+	  color: white;
+	}
+  
+	.inviteWhatsappBtn img {
+	  filter: brightness(0) invert(1);
+	}
+  
+	.loyaltyMainPage .inviteRoundedBtn {
+	  width: 40px;
+	  height: 40px;
+	  background-color: #fff;
+	  border-radius: 8px;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  cursor: pointer;
+	  border: 1px solid var(--loyalty_popup_theme_background, #000);
+	}
+  
+	.loyaltyMainPage .inviteRoundedBtn img {
+	  width: 16px;
+	  height: 16px;
+	}
+  
+	.loyaltyMainPage .alert {
+	  position: absolute;
+	  bottom: 50%;
+	  left: 50%;
+	  z-index: 999;
+	  background: #160b0b;
+	  color: #f4c7c7;
+	  font-weight: 400;
+	  font-size: 14px;
+	  border-radius: 4px;
+	  padding: 8px 22px;
+	  transition: 0.5s all ease;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  transform: translate(-50%, -50%);
+	  width: fit-content;
+	  animation-name: fade-in;
+	  animation-duration: 0.5s;
+	}
+  
+	.loyaltyMainPage .alert svg.fw-wallet-alert-popup-error {
+	  width: 22px;
+	  height: 22px;
+	  fill: rgb(244, 67, 54);
+	  margin-right: 8px;
+	}
+  
+	.loyaltyMainPage .shareTextContainer {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  font-weight: 400;
+	  font-size: 14px;
+	  color: #acacac;
+	  text-align: center;
+	  margin-bottom: 12px;
+	}
+  
+	.loyaltyMainPage .dashedDivider {
+	  border: none;
+	  height: 1px;
+	  background: repeating-linear-gradient(90deg, #000, #000 6px, transparent 6px, transparent 12px);
+	  margin: 20px 0 16px 0;
+	}
+  
+	.loyaltyMainPage .referralContainer {
+	  width: 100%;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	}
+  
+	.loyaltyMainPage .copied {
+	  background-color: green;
+	  padding: 8px;
+	  position: absolute;
+	  top: 55%;
+	  left: 48%;
+	  border-radius: 12px;
+	  color: white;
+	  font-weight: bold;
+	  font-size: 14px;
+	}
+  
+	.loyaltyMainPage .loader {
+	  height: 100%;
+	  width: 100%;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	  z-index: 999999;
+	  background-color: rgba(255, 255, 255, 0.6);
+	}
+  
+	.loyaltyMainPage .loading-screen {
+	  padding-top: 16px;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	}
+  
+	.loyaltyMainPage .loginbtn {
+	  background-color: #efefef;
+	  text-decoration: none;
+	  color: black;
+	  padding: 12px;
+	  border-radius: 8px;
+	}
+  
+	.loyaltyMainPage #couponOverlayId {
+	  width: 80%;
+	}
+  
+	.loyaltyMainPage .unlockCouponContainer {
+	  display: flex;
+	  justify-content: center;
+	}
+  
+	.loyaltyMainPage .redeemCoinContainer {
+	  width: 70%;
+	}
+  
+	.loyaltyMainPage .redeemCoinMainContainer {
+	  display: flex;
+	  justify-content: center;
+	}
+  
+	.loyaltyMainPage .lockedIcon img {
+	  width: 130px;
+	  height: 130px;
+	}
+	.loyaltyMainPage .lockedIcon {
+		transform: translate(-42%, -40%);
+	}
 }

@@ -59,7 +59,7 @@ const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount
       loading ? <div className="loader"><Loading/></div> :
       <>
         <div class="unlockCouponContainer slide-in-bottom">
-            <div class="couponContainer">
+            <div class="couponContainer" id="couponOverlayId">
                 <div class="crossImg">
                     <img onClick={onClick} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
                 </div>

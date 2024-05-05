@@ -132,9 +132,7 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDet
         couponAmount: spinWheelAmount,
       })
       return response
-    // console.log("spin wheel reward array",response);
     }
-    // console.log("use effect chala");
     loadD3JS().then(()=>{
       fetchRewardArray().then((resp)=>{
         // console.log("====== data", resp);
@@ -169,8 +167,8 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDet
       const chartElement = spinWheelMainContainer.querySelector("#fw-chart-spin-wheel")
       // console.log("charele", chartElement);
       var padding = { top: 20, right: 40, bottom: 0, left: 0 },
-        w = chartElement.offsetWidth - padding.left - padding.right,
-        h = chartElement.offsetWidth - padding.top - padding.bottom,
+        w = Math.min(chartElement.offsetWidth - padding.left - padding.right, 300),
+        h = Math.min(chartElement.offsetWidth - padding.top - padding.bottom, 300),
         r = Math.min(w, h) / 2,
         rotation = 0,
         oldrotation = 0,
@@ -421,13 +419,15 @@ const PlayGame = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDet
           </div>
           <h4>Spin and Win</h4>
         </div>
-        {
+        <div className='spinWheelWrapper'>
+          <div id="fw-chart-spin-wheel"></div>
+          {
           !btnVisibility &&
           <div class="lockedIcon">
             <img src="https://media.farziengineer.co/farziwallet/lock.png" alt="" />
           </div>
         }
-        <div id="fw-chart-spin-wheel"></div>
+        </div>
         <div class="spinWheelBottom">
             <hr />
             {btnVisibility ? <h4>Click 'SPIN' to start</h4> : <h4>Unlock for {spinWheelAmount} {window.

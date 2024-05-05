@@ -2,11 +2,11 @@ import { render } from "preact";
 import style from "./loyalty-popup.css?inline";
 import { Main } from "./components/main";
 
-export function App({ themeDetailsData, shadowRoot }) {
+export function App({ themeDetailsData, shadowRoot,loyalty_theme }) {
   return (
     <>
       <div class="widget-container">
-        <Main themeDetailsData={themeDetailsData} shadowRoot={shadowRoot} />
+        <Main themeDetailsData={themeDetailsData} loyalty_theme={loyalty_theme} shadowRoot={shadowRoot} />
       </div>
       <div class="widget-styles"></div>
       <div class="widget-custom-styles"></div>
@@ -26,7 +26,14 @@ export const WALLET_API_URI = import.meta.env.VITE_APP_BASE_URL;
 
 async function renderLoyaltyPopup() {
   try {
-    const targetDiv = document.body;
+    const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
+    const loyalty_theme = mainScript?.getAttribute("data-loyalty-theme");
+    let targetDiv;
+    if(loyalty_theme === "page"){
+      targetDiv = document.getElementById('fc-loyalty-page')
+    }else{
+      targetDiv = document.body;
+    }
     // Load the App content into the shadow DOM
     let shadowTarget = document.createElement("div");
     shadowTarget.className = "fc-loyalty-popup-19212-target";
@@ -75,7 +82,7 @@ async function renderLoyaltyPopup() {
     const clientCustomStyleData =
       themeDetailsData?.data?.custom_css || "";
 
-    render(<App themeDetailsData={themeDetailsData} shadowRoot={shadowRoot} />, shadowRoot);
+    render(<App themeDetailsData={themeDetailsData} loyalty_theme={loyalty_theme} shadowRoot={shadowRoot} />, shadowRoot);
     render(<AppCSS />, shadowRoot?.querySelector(".widget-styles"));
     render(
       <AppCustomCSS customStyles={clientCustomStyleData} />,
