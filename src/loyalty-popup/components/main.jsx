@@ -397,7 +397,10 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
     overlay.style.justifyContent = `${loyalty_theme === 'popup' ? 'end' : 'center'}`
     if(loyalty_theme === 'page'){
       overlay.style.alignItems = "center";
-
+      window.scrollTo({
+        top: window.innerHeight * 0.6,
+        behavior: 'smooth'
+      });
     }
     overlay.style.position = "absolute";
     overlay.style.top = `${scrolledTop}px`;
@@ -674,9 +677,15 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
           <div className={loyalty_theme === 'page'? 'loyaltyMainPage' : 'mainPopup'}>
             {screenDetails?.active ? (
               <Screen
+                loyalty_theme={loyalty_theme}
                 closeScreen={closeScreen}
                 screenTitle={screenDetails?.screenTitle || "screentitle"}
                 content={getScreenComponent(screenDetails?.screen)}
+                isLoggedIn={isLoggedIn}
+                loginURL={themeDetailsData?.data?.login_page}
+                handleScreenComponent={handleScreenComponent}
+                activePage={activePage}
+                screenDetails={screenDetails}
               />
             ) : loading ? (
               <div className="loader">
@@ -726,7 +735,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
                         />
                       ))
                     }
-                      {featuredCoupons.length > 2 && 
+                      {featuredCoupons.length > (loyalty_theme === 'popup' ? 2 : 10) && 
                         <>
                           {prevBtn && <div className="scrollBtnPrev" onClick={scrollLeft}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
                           {nextBtn && <div className="scrollBtnNext" onClick={scrollRight}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
@@ -760,7 +769,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
                         />
                       ))
                     }
-                    {featuredCoupons.length > 2 && 
+                    {featuredCoupons.length > (loyalty_theme === 'popup' ? 2 : 10) && 
                         <>
                           {easyEarnPrevBtn && <div className="scrollBtnPrev" onClick={easyEarnScrollLeft}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
                           {easyEarnNextBtn && <div className="scrollBtnNext" onClick={easyEarnScrollRight}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
@@ -805,7 +814,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
                     handleLogin={handleLogin}
                     client_id={client_id}
                     customer_id={customer_id}
-                    onClick={() => (loyalty_theme==='popup' ? changeOverlay("invite_and_earn") : getScreenComponent('referral'))}
+                    onClick={() => (changeOverlay("invite_and_earn"))}
                   />
                 </div>
                 <p id="watermarkContainer"><a href='https://retainley.com/' target="_blank">Powered by Retainley</a></p>

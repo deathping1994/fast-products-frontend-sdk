@@ -100,6 +100,7 @@ export function ApplyWallet({
       setUserPoints(walletAmount);
     } catch (err) {
       setUserPoints(0);
+    }finally {
       setLoadingWalletBal(false);
     }
     setLoadingWalletBal(false);
@@ -249,6 +250,8 @@ export function ApplyWallet({
           setWalletApplied(false)
         }
       } catch (err) {
+        console.log(err)
+      } finally {
         setLoadingWalletBal(false);
       }
 
@@ -348,7 +351,6 @@ export function ApplyWallet({
     200
   );
 
-  // @ts-ignore
   const fc_coupon_toggle = (callback = ()=>{})=>{
     callback()
   }
@@ -375,6 +377,7 @@ export function ApplyWallet({
     if (userPoints !== null && checkoutTarget?.isSet) {
       toggleUserWalletApplied(!walletApplied);
     }
+    console.log("apply wallet1", refetchCartSummary);
   }, [userPoints, checkoutTarget?.isSet, refetchCartSummary]);
 
   useEffect(() => {
@@ -383,11 +386,9 @@ export function ApplyWallet({
         totalPrice: walletAppliedDetails?.totalPayablePrice,
       });
     }
+    console.log("apply wallet2");
   }, [walletAppliedDetails]);
   
-  useEffect(()=>{
-    console.log('wal', walletApplied)
-  },[walletApplied])
   return (
     <>
     {walletUiTheme === "classic" ?

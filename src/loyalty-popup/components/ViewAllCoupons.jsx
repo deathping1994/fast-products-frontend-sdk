@@ -158,7 +158,7 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot, loyalt
                 <div>
                     <div class='couponMainContainer'>
                       <div class="viewAllFeaturedComponent">
-                          <h3>Featured Components</h3>
+                          <h3>Featured Coupons</h3>
                           <div class="showAllCouponsList" ref={sliderRef}>
                           {couponCardResponse.map((card, index)=>(
                               <CouponCard
@@ -170,7 +170,7 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot, loyalt
                               />
                               ))}
                           </div>
-                          {
+                          {couponCardResponse.length > (loyalty_theme === 'popup' ? 2 : 10) &&
                             <>
                               {prevBtn && <div className="scrollBtnPrev" onClick={scrollLeft}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
                               {nextBtn && <div className="scrollBtnNext" onClick={scrollRight}><img src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" /></div>}
@@ -178,44 +178,46 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot, loyalt
                           }
                       </div>
                     </div>
-                    <div class="reedemfcCoins">
-                        <h3>Redeem {window.
-// @ts-ignore
-                        fc_loyalty_vars.coin_name} Coins</h3>
-                        <div onClick={()=> changeOverlay("redeem")} class="reedemfcCoinsCard">
-                            <div>
-                                <img src="https://media.farziengineer.co/farziwallet/rupee-icon.png" alt="" />
-                            </div>
-                            <div>
-                                <h5>100 {window.
-// @ts-ignore
-                                fc_loyalty_vars.coin_name} Coins = ₹100</h5>
-                                <p>Use {window.
-// @ts-ignore
-                                fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
-                            </div>
-                            <div>
-                                <img class='reedemfcCoinsCardArrow' src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />
-                            </div>
-                        </div>
+                    <div className="couponWrapper">
+                      <div class="reedemfcCoins">
+                          <h3>Redeem {window.
+                      // @ts-ignore
+                          fc_loyalty_vars.coin_name} Coins</h3>
+                          <div onClick={()=> changeOverlay("redeem")} class="reedemfcCoinsCard">
+                              <div>
+                                  <img src="https://media.farziengineer.co/farziwallet/rupee-icon.png" alt="" />
+                              </div>
+                              <div>
+                                  <h5>100 {window.
+                      // @ts-ignore
+                                  fc_loyalty_vars.coin_name} Coins = ₹100</h5>
+                                  <p>Use {window.
+                      // @ts-ignore
+                                  fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
+                              </div>
+                              <div>
+                                  <img class='reedemfcCoinsCardArrow' src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />
+                              </div>
+                          </div>
+                      </div>
+                      {exploreCoupon.length > 0 && <div class="exploreCoupons">
+                          <h3>Coupons to Explore</h3>
+                              <>
+                              {exploreCoupon && exploreCoupon.map((card, idx)=>(
+                                <div onClick={()=> handleExploreOverlayVisibility(idx)} class="exploreCouponCard">
+                                      <div class="shipImgBox">
+                                          <img src={card.image} alt="" />
+                                      </div>
+                                      <div class="exploreCouponCardText">
+                                          <p>{card.heading}</p>
+                                          <p class="exploreCouponText">Unlock for <div class="coinIcon"></div> {card.amount}</p>
+                                      </div>
+                                  </div>
+                                ))
+                              }
+                              </>
+                      </div>}
                     </div>
-                    {exploreCoupon.length > 0 && <div class="exploreCoupons">
-                        <h3>Coupons to Explore</h3>
-                            <>
-                            {exploreCoupon && exploreCoupon.map((card, idx)=>(
-                              <div onClick={()=> handleExploreOverlayVisibility(idx)} class="exploreCouponCard">
-                                    <div class="shipImgBox">
-                                        <img src={card.image} alt="" />
-                                    </div>
-                                    <div class="exploreCouponCardText">
-                                        <p>{card.heading}</p>
-                                        <p class="exploreCouponText">Unlock for <div class="coinIcon"></div> {card.amount}</p>
-                                    </div>
-                                </div>
-                              ))
-                            }
-                            </>
-                    </div>}
                 </div>
             )}
             {/* {exploreCouponVisibilty && <div class="overlay"></div>} */}

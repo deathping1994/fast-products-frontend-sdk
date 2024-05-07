@@ -99,7 +99,9 @@ const InviteAndEarnOverlay = ({closeOverlay, customerDetails}) => {
             </div>
             {showCopied && <div class="copied">copied</div>}
             <div class="inviteLinkContainer">
-                <p>{(`${window.location.origin}${localStorage.getItem(`fc-referral-code-${customerDetails?.customer_id}`) || "/account/register"}`).substring(0,29)}...</p>
+            <p className="ellipsis-text">
+              {`${window.location.origin}${localStorage.getItem(`fc-referral-code-${customerDetails?.customer_id}`) || "/account/register"}`}
+            </p>
                 <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
             </div>
             <div>

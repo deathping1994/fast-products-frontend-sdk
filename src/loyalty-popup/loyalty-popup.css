@@ -995,9 +995,7 @@ body {
 	padding: 16px;
 	padding-bottom: 0;
 }
-.reedemfcCoins h3 {
-	margin-bottom: 8px;
-}
+
 .reedemfcCoins h5, .exploreCoupons h5{
 	font-weight: 700;
     font-size: 16px;
@@ -1032,7 +1030,7 @@ body {
 	display: flex;
 	justify-content: start;
 	align-items: center;
-	padding: 16px;
+	padding: 8px;
 	border-radius: 8px;
 	cursor: pointer;
 }
@@ -1170,8 +1168,8 @@ body {
 	width: 100%;
 	height: fit-content;
 	bottom: 0px;
-	border-radius: 8px;
-	box-shadow: 0px -44px 60px -11px rgba(194,194,194,1);
+	border-radius: 16px;
+	box-shadow: 0 -4px 50px rgba(0,0,0,.25);
 	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	
 }
@@ -1384,6 +1382,7 @@ body {
 	top: 32px;
 	left: 35%;
 	clip-path: inset(0 0 44% 0);
+	transform: translate(-50%);
 }
 
 #sparkImg2 {
@@ -1391,6 +1390,7 @@ body {
 	top: 22px;
 	width: 30px;
 	left: 50%;
+	transform: translate(-100%);
 }
 .copied {
 	background-color: green;
@@ -1618,6 +1618,7 @@ body {
 .loyaltyMainPage {
 	position: relative;
 	margin: 0px 15%;
+	scrollbar-width: none;
 }
 
 #fw-chart-spin-wheel {
@@ -1626,9 +1627,28 @@ body {
 	position: relative;
 }
 
-@media (min-width: 400px) {
+.ellipsis-text {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	padding-right: 4px;
+}
+
+.screenHeaderBackBtn {
+	background-color: #efefef;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+@media (min-width: 350px) {
+	.loyaltyMainPage {
+		margin: 0 10%;
+	}
 	.loyaltyMainPage .spinWheelBottom {
-	  max-width: 30%;
+		max-width: 75%;
 	}
   
 	.loyaltyMainPage #watermarkContainer {
@@ -1674,8 +1694,8 @@ body {
 	  transition: all 0.5s;
 	  animation: none;
 	  box-shadow: none;
-	  width: 60%;
 	  max-width: 100%;
+	  box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
 	}
   
 	.loyaltyMainPage .inviteEarnTextContainer {
@@ -1886,6 +1906,8 @@ body {
 	  color: black;
 	  padding: 12px;
 	  border-radius: 8px;
+	  display: block;
+      width: fit-content;
 	}
   
 	.loyaltyMainPage #couponOverlayId {
@@ -1898,7 +1920,7 @@ body {
 	}
   
 	.loyaltyMainPage .redeemCoinContainer {
-	  width: 70%;
+	  width: 80%;
 	}
   
 	.loyaltyMainPage .redeemCoinMainContainer {
@@ -1912,5 +1934,39 @@ body {
 	}
 	.loyaltyMainPage .lockedIcon {
 		transform: translate(-42%, -40%);
+	}
+	.loyaltyMainPage .loginBtnWrapper {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.loyaltyMainPage .overlayContainer {
+		display: flex;
+		justify-content: center;
+	}
+	.loyaltyMainPage .loader {
+		position: relative;
+	}
+}
+
+@media (min-width: 634px) {
+	.loyaltyMainPage .inviteAndEarnContainer {
+		width: 80%;
+		box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+	}
+	.loyaltyMainPage .spinWheelBottom {
+		max-width: 40%;
+	}
+	.loyaltyMainPage .reedemfcCoins, .loyaltyMainPage .exploreCoupons {
+		width: 100%;
+	}
+}
+
+@media (min-width:810px) {
+	.loyaltyMainPage .couponWrapper {
+		display: flex;
+	}
+	.loyaltyMainPage .redeemCoinContainer {
+		width: 65%;
 	}
 }
