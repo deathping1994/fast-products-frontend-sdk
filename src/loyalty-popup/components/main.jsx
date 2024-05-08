@@ -264,7 +264,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
         case "referral":
           setScreenDetails({
             screen:"referral",
-            screenTitle:"referral_page",
+            screenTitle:"Referral",
             active:true
           })
           break;

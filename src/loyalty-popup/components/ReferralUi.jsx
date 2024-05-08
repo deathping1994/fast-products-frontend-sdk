@@ -142,7 +142,7 @@ const ReferralPage = ({shadowRoot, themeDetailsData}) => {
       <div className="loader"><Loading /></div>
     ) : (
       <div className="referralContainer">
-        <div className="inviteAndEarnContainer">
+        <div className="inviteAndEarnContainerPage">
           <div className="inviteAndEarn">
             <img src="https://media.farziengineer.co/farziwallet/invite-earn.png" alt="" />
             <h2>Invite & Earn</h2>

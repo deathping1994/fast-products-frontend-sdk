@@ -3,11 +3,11 @@ import style from "./shadow-style.css?inline";
 import { Main } from "./components/main";
 import { parseJson } from "../global/utils";
 
-export function App() {
+export function App({themeDetailsData}) {
   return (
     <>
       <div class="widget-container">
-        <Main />
+        <Main walletThemeDetailsData={themeDetailsData}/>
       </div>
       <div class="widget-styles"></div>
       <div class="widget-custom-styles"></div>
@@ -79,7 +79,7 @@ async function renderwalletActivitySnippet() {
   }
   const clientCustomStyleData = themeDetailsData?.custom_css || "";
 
-  render(<App />, shadowRoot);
+  render(<App themeDetailsData={themeDetailsData}/>, shadowRoot);
   render(<AppCSS />, shadowRoot?.querySelector(".widget-styles"));
   render(
     <AppCustomCSS customStyles={clientCustomStyleData} />,

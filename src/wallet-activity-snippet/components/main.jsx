@@ -4,13 +4,13 @@ import { WALLET_API_URI } from "..";
 import { Login } from "./login";
 import { SkeletonLoader } from "../../global/skeletonloader";
 
-export function Main(props) {
+export function Main({walletThemeDetailsData}) {
   const [customerDetails, setCustomerDetails] = useState({
     customerID: "",
     customerTags: "",
     clientID: "",
   });
-
+  console.log("walletThemeDetailsData", walletThemeDetailsData);
   const [loading, setLoading] = useState(true);
 
   const [themeDetailsData, setThemeDetailsData] = useState({});
@@ -74,7 +74,8 @@ export function Main(props) {
               <WalletScreen
               themeDetailsData={themeDetailsData}
               customerDetails={customerDetails}
-              setUserHash={setCustomerDetails} 
+              setUserHash={setCustomerDetails}
+              walletThemeDetailsData={walletThemeDetailsData}
               />
             ) : (
               <Login themeDetails={themeDetailsData} />
