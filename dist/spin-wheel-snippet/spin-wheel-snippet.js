@@ -3674,7 +3674,7 @@ body {
   const ScreenHeader = ({
     screenTitle,
     closeScreen,
-    loyalty_theme,
+    activePage,
     handleBackBtn,
     backBtnVisible
   }) => {
@@ -3683,14 +3683,16 @@ body {
         className: "screenHeader",
         children: [o("h2", {
           children: screenTitle
-        }), loyalty_theme === "popup" && o("img", {
-          onClick: closeScreen,
-          src: "https://media.farziengineer.co/farziwallet/cross.png",
-          alt: ""
-        }), backBtnVisible && o("button", {
+        }), backBtnVisible ? o("button", {
           class: "screenHeaderBackBtn",
           onClick: handleBackBtn,
           children: "Back"
+        }) : o(k$1, {
+          children: !(activePage === "coupon" || activePage === "spinwheel" || activePage === "scratchcard") && o("img", {
+            onClick: closeScreen,
+            src: "https://media.farziengineer.co/farziwallet/cross.png",
+            alt: ""
+          })
         })]
       })
     });
@@ -3708,18 +3710,24 @@ body {
   }) => {
     const [backBtnVisible, setBackBtnVisible] = h(false);
     p(() => {
-      if ((screenDetails == null ? void 0 : screenDetails.screen) === "play_spin_wheel" || (screenDetails == null ? void 0 : screenDetails.screen) === "play_scratch_card") {
-        setBackBtnVisible(true);
+      if (loyalty_theme === "page") {
+        if ((screenDetails == null ? void 0 : screenDetails.screen) === "play_spin_wheel" || (screenDetails == null ? void 0 : screenDetails.screen) === "play_scratch_card") {
+          setBackBtnVisible(true);
+        }
+        if (activePage === "all") {
+          setBackBtnVisible(false);
+        }
       }
-    }, []);
+    }, [screenDetails == null ? void 0 : screenDetails.screen]);
     const handleBackBtn = () => {
       if (activePage === "coupon") {
         handleScreenComponent("show_all_coupons", "Coupons");
       } else if (activePage === "spinwheel") {
-        handleScreenComponent("show_spin_wheel", "Wheel of Fortune");
+        handleScreenComponent("show_spin_wheel", "Play Wheel of Fortune");
       } else if (activePage === "scratchcard") {
         handleScreenComponent("show_scratch_card", "Scratch Card");
       }
+      setBackBtnVisible(false);
     };
     return o(k$1, {
       children: o("div", {
@@ -3727,7 +3735,7 @@ body {
         children: [o(ScreenHeader, {
           handleBackBtn,
           backBtnVisible,
-          loyalty_theme,
+          activePage,
           screenTitle: screenTitle || "check title",
           closeScreen
         }), loyalty_theme === "page" && !isLoggedIn && o("div", {
