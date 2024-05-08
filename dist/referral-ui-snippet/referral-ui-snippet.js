@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = "@keyframes rotate {\n	from {\n		transform: rotate(0deg);\n	}\n	to {\n		transform: rotate(360deg);\n	}\n}\n\n.spinner {\n	animation: rotate 2s linear infinite;\n}\n\n.inviteAndEarnContainer {\n	max-width: 50%;\n	padding: 22px;\n	border-radius: 16px;\n	transition: all 0.5s;\n	width: 40%;\n	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\n	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	\n}\n\n.inviteEarnTextContainer {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	font-weight: 400;\n    font-size: 14px;\n    color: #acacac;\n    margin: 8px 0px;\n    text-align: center;\n}\n.inviteAndEarn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 16px;\n}\n\n.inviteAndEarn h2 {\n	font-weight: 700;\n    font-size: 30px;\n}\n\n.inviteAndEarnMessage h4 {\n	text-align: center;\n    font-weight: 500;\n    font-size: 20px;\n    line-height: 30px;\n    margin: 20px 0!important;\n}\n\n.inviteLinkContainer {\n	padding: 0px 12px;\n    background: #fff;\n    border-radius: 4px;\n    border: 1px solid var(--loyalty_popup_theme_background, #000);\n    font-size: 16px;\n    font-weight: 700;\n    display: flex;\n	justify-content: space-between;\n    align-items: center;\n}\n\n.couponCodeContainer {\n	padding: 12px;\n    background: #fff;\n    border-radius: 4px;\n    border: 1px solid var(--loyalty_popup_theme_background, #000);;\n    font-size: 16px;\n    font-weight: 700;\n    display: flex;\n	width: 100%;\n	justify-content: center;\n    align-items: center;\n	position: relative;\n}\n\n.couponCodeContainer img {\n	position: absolute;\n	right: 20px;\n	cursor: pointer;\n}\n\n.inviteLinkContainer p {\n	font-size: 14px;\n}\n\n.inviteLinkContainer img {\n	max-width: 16px;\n	cursor: pointer;\n}\n\n.sendInvitesBtnContainer, .inviteWhatsappBtn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n    text-decoration: none;\n}\n\n\n.inviteWhatsappBtn {\n	height: 40px;\n    width: 96%;\n    background-color: #29a71a;\n    border-radius: 4px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	border: none;\n}\n\n.inviteWhatsappBtn p {\n	font-weight: 500;\n	color: white;\n}\n\n.inviteWhatsappBtn img {\n	filter: brightness(0) invert(1);\n}\n\n.inviteRoundedBtn {\n	width: 40px;\n    height: 40px;\n    background-color: #fff;\n    border-radius: 8px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	border: 1px solid var(--loyalty_popup_theme_background, #000);\n}\n\n.inviteRoundedBtn img {\n	width: 16px;\n	height: 16px;\n}\n\n\n.alert {\n	position: absolute;\n	bottom: 50%;\n	left: 50%;\n	z-index: 999;\n	background: #160b0b;\n	color: #f4c7c7;\n	font-weight: 400;\n	font-size: 14px;\n	border-radius: 4px;\n	padding: 8px 22px;\n	transition: 0.5s all ease;\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	transform: translate(-50%, -50%);\n	width: 80%;\n	animation-name: fade-in;\n	animation-duration: 0.5s;\n}\n\n.alert svg.fw-wallet-alert-popup-error {\n	width: 22px;\n	height: 22px;\n	fill: rgb(244, 67, 54);\n	margin-right: 8px;\n}\n\n\n.shareTextContainer {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	font-weight: 400;\n	font-size: 14px;\n	color: #acacac;\n	text-align: center;\n	margin-bottom: 12px;\n}\n\n.dashedDivider {\n	border: none;\n    height: 1px;\n    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);\n    margin: 20px 0 16px 0;\n}\n\n.referralContainer {\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.copied {\n	background-color: green;\n    padding: 8px;\n    position: absolute;\n    top: 55%;\n    left: 48%;\n    border-radius: 12px;\n    color: white;\n    font-weight: bold;\n    font-size: 14px;\n}\n\n.loader{\n	height: 100%;\n	width: 100%;\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n	z-index: 999999;\n	background-color: rgba(255, 255, 255, 0.6);\n}\n\n.loading-screen {\n	padding-top: 16px;\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n}\n\n.loginbtn{\n	background-color: #efefef;\n	text-decoration: none;\n	color: black;\n	padding: 12px;\n	border-radius: 8px;\n}\n\n@media (max-width: 948px) {\n    .inviteAndEarnContainer {\n      max-width: 100%;\n    }\n  }";
+  const style = "@keyframes rotate {\n	from {\n		transform: rotate(0deg);\n	}\n	to {\n		transform: rotate(360deg);\n	}\n}\n\n.spinner {\n	animation: rotate 2s linear infinite;\n}\n\n.inviteAndEarnContainer {\n	padding: 22px;\n	border-radius: 16px;\n	transition: all 0.5s;\n	width: 40%;\n	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\n	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	\n}\n\n.inviteEarnTextContainer {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	font-weight: 400;\n    font-size: 14px;\n    color: #acacac;\n    margin: 8px 0px;\n    text-align: center;\n}\n.inviteAndEarn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 16px;\n}\n\n.inviteAndEarn h2 {\n	font-weight: 700;\n    font-size: 30px;\n}\n\n.inviteAndEarnMessage h4 {\n	text-align: center;\n    font-weight: 500;\n    font-size: 20px;\n    line-height: 30px;\n    margin: 20px 0!important;\n}\n\n.inviteLinkContainer {\n	padding: 0px 12px;\n    background: #fff;\n    border-radius: 4px;\n    border: 1px solid var(--loyalty_popup_theme_background, #000);\n    font-size: 16px;\n    font-weight: 700;\n    display: flex;\n	justify-content: space-between;\n    align-items: center;\n}\n\n.couponCodeContainer {\n	padding: 12px;\n    background: #fff;\n    border-radius: 4px;\n    border: 1px solid var(--loyalty_popup_theme_background, #000);;\n    font-size: 16px;\n    font-weight: 700;\n    display: flex;\n	width: 100%;\n	justify-content: center;\n    align-items: center;\n	position: relative;\n}\n\n.couponCodeContainer img {\n	position: absolute;\n	right: 20px;\n	cursor: pointer;\n}\n\n.inviteLinkContainer p {\n	font-size: 14px;\n}\n\n.inviteLinkContainer img {\n	max-width: 16px;\n	cursor: pointer;\n}\n\n.sendInvitesBtnContainer, .inviteWhatsappBtn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	gap: 8px;\n    text-decoration: none;\n}\n\n\n.inviteWhatsappBtn {\n	height: 40px;\n    width: 96%;\n    background-color: #29a71a;\n    border-radius: 4px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	border: none;\n	cursor: pointer;\n}\n\n.inviteWhatsappBtn p {\n	font-weight: 500;\n	color: white;\n}\n\n.inviteWhatsappBtn img {\n	filter: brightness(0) invert(1);\n}\n\n.inviteRoundedBtn {\n	width: 40px;\n    height: 40px;\n    background-color: #fff;\n    border-radius: 8px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n	cursor: pointer;\n	border: 1px solid var(--loyalty_popup_theme_background, #000);\n}\n\n.inviteRoundedBtn img {\n	width: 16px;\n	height: 16px;\n}\n\n\n.alert {\n	position: absolute;\n	bottom: 50%;\n	left: 50%;\n	z-index: 999;\n	background: #160b0b;\n	color: #f4c7c7;\n	font-weight: 400;\n	font-size: 14px;\n	border-radius: 4px;\n	padding: 8px 22px;\n	transition: 0.5s all ease;\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	transform: translate(-50%, -50%);\n	width: fit-content;\n	animation-name: fade-in;\n	animation-duration: 0.5s;\n}\n\n.alert svg.fw-wallet-alert-popup-error {\n	width: 22px;\n	height: 22px;\n	fill: rgb(244, 67, 54);\n	margin-right: 8px;\n}\n\n\n.shareTextContainer {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	font-weight: 400;\n	font-size: 14px;\n	color: #acacac;\n	text-align: center;\n	margin-bottom: 12px;\n}\n\n.dashedDivider {\n	border: none;\n    height: 1px;\n    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);\n    margin: 20px 0 16px 0;\n}\n\n.referralContainer {\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.copied {\n	background-color: green;\n    padding: 8px;\n    position: absolute;\n    top: 55%;\n    left: 48%;\n    border-radius: 12px;\n    color: white;\n    font-weight: bold;\n    font-size: 14px;\n}\n\n.loader{\n	height: 100%;\n	width: 100%;\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n	z-index: 999999;\n	background-color: rgba(255, 255, 255, 0.6);\n}\n\n.loading-screen {\n	padding-top: 16px;\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n}\n\n.loginbtn{\n	background-color: #efefef;\n	text-decoration: none;\n	color: black;\n	padding: 12px;\n	border-radius: 8px;\n}\n\n@media (max-width: 768px) {\n    .inviteAndEarnContainer {\n      width: 100%;\n    }\n  }\n\n  .ellipsis-text {\n	white-space: nowrap;\n	overflow: hidden;\n	text-overflow: ellipsis;\n	max-width: 100%;\n	padding-right: 4px;\n  }\n\n  .widget-container {\n	padding: 16px;\n	display: flex;\n  	justify-content: center;\n  }";
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -406,6 +406,11 @@
   const Alert = ({
     message
   }) => {
+    const capitalizeFirstLetter = (str) => {
+      const alphabeticStr = str.replace(/[^a-zA-Z ]/g, "");
+      return alphabeticStr.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(" ");
+    };
+    const formattedMessage = capitalizeFirstLetter(message || "Something went wrong");
     return o("div", {
       class: "alert",
       children: [o("svg", {
@@ -418,7 +423,7 @@
           d: "M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
         })
       }), o("p", {
-        children: `${message || "Something went wrong"}`
+        children: `${formattedMessage}`
       })]
     });
   };
@@ -495,72 +500,151 @@
     shadowRoot,
     themeDetailsData
   }) => {
-    const [invitemsg, setInvitemsg] = h("");
-    const [whatsappmsg, setWhatsappmsg] = h("");
+    var _a;
     const [login, setLogin] = h(false);
     const [loading, setLoading] = h(false);
     const [error, setError] = h(false);
     const [showCopied, setShowCopied] = h(false);
+    const [inviteMsg, setInviteMsg] = h("");
     const mainScript = document.getElementById("fc-wallet-referral-snippet-ui-script-19212");
     const customer_id = mainScript.getAttribute("data-customer-id");
+    const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
+    const client_id = mainScript.getAttribute("data-client-id");
     if (customer_id) {
       setLogin(true);
     }
     console.log("running referral ui ");
-    const [referralData, setReferralData] = h({
-      referral_code: "",
-      path: ""
-    });
+    p(() => {
+      const fetch2 = async () => {
+        try {
+          const walletResponse = await fetchApi("/user-walletlogs", "post", {
+            client_id,
+            customer_id,
+            user_hash
+          });
+        } catch (error2) {
+          const checkUser = await fetchApi("/sync-external-user", "post", {
+            client_id,
+            customer_id
+          });
+          if (checkUser.status === "success") {
+            console.log("user mil gya");
+          }
+        }
+      };
+      fetch2();
+    }, []);
+    const handleShareClick = async () => {
+      var _a2;
+      if (!localStorage.getItem(`fc-whatsapp-msg-${customer_id}`)) {
+        const whatsappResp = await fetchApi("/get-referred-message", "post", {
+          client_id,
+          customer_id,
+          user_hash
+        });
+        if ((whatsappResp == null ? void 0 : whatsappResp.status) === "success") {
+          const message = (_a2 = whatsappResp == null ? void 0 : whatsappResp.data) == null ? void 0 : _a2.getReferredMessage;
+          localStorage.setItem(`fc-whatsapp-msg-${customer_id}`, message);
+        } else {
+          showError();
+        }
+      } else {
+        if (navigator.share) {
+          navigator.share({
+            title: "Invite your friend to get rewards",
+            text: localStorage.getItem(`fc-whatsapp-msg-${customer_id}`)
+          }).then(() => console.log("Successful share")).catch((error2) => console.log("Error sharing", error2));
+        } else {
+          navigator.clipboard.writeText(localStorage.getItem(`fc-whatsapp-msg-${customer_id}`));
+          setShowCopied(true);
+          setTimeout(() => {
+            setShowCopied(false);
+          }, 1e3);
+        }
+      }
+    };
+    p(() => {
+      const fetchData = async () => {
+        var _a2, _b;
+        try {
+          setLoading(true);
+          if (!localStorage.getItem(`fc-referral-code-${customer_id}`)) {
+            const resp = await fetchApi("/get-referral-code", "post", {
+              client_id,
+              customer_id,
+              user_hash
+            });
+            if ((resp == null ? void 0 : resp.status) === "success") {
+              if (!((_a2 = resp == null ? void 0 : resp.data) == null ? void 0 : _a2.path.includes("undefined"))) {
+                localStorage.setItem(`fc-referral-code-${customer_id}`, (_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.path);
+              }
+            } else {
+              showError();
+            }
+          }
+        } catch (error2) {
+          console.error("Error fetching data:", error2);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchData();
+    }, []);
+    p(() => {
+      const fetchData = async () => {
+        var _a2, _b;
+        if (!localStorage.getItem(`fc-invite-text-${customer_id}`)) {
+          const resp = await fetchApi("/get-referrer-message", "post", {
+            client_id
+          });
+          if ((resp == null ? void 0 : resp.status) === "success") {
+            localStorage.setItem(`fc-invite-text-${customer_id}`, (_a2 = resp == null ? void 0 : resp.data) == null ? void 0 : _a2.getReferrerMessage);
+            setInviteMsg((_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.getReferrerMessage);
+          } else {
+            showError();
+          }
+        } else {
+          setInviteMsg(localStorage.getItem(`fc-invite-text-${customer_id}`));
+        }
+      };
+      fetchData();
+    }, []);
     const showError = () => {
       setError(true);
       setTimeout(() => {
         setError(false);
       }, 3e3);
     };
-    p(() => {
-      const fetchReferralCode = async () => {
-        var _a, _b, _c;
-        try {
-          setLoading(true);
-          const customer_id2 = mainScript.getAttribute("data-customer-id");
-          const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
-          const client_id = mainScript.getAttribute("data-client-id");
-          const resp = await fetchApi("/get-referral-code", "post", {
-            client_id,
-            customer_id: customer_id2,
-            user_hash
-          });
-          const response = await fetchApi("/get-referral-message", "post", {
-            client_id
-          });
-          const whatsappResp = await fetchApi("/get-referred-message", "post", {
-            client_id,
-            customer_id: customer_id2,
-            user_hash
-          });
-          console.log("all referral resp", resp, response, whatsappResp);
-          if ((response == null ? void 0 : response.status) !== "success") {
-            setInvitemsg("Share with your friends to get rewards.");
-            setWhatsappmsg("Share this with WhatsApp");
-          } else {
-            setInvitemsg((_b = response == null ? void 0 : response.data) == null ? void 0 : _b.getReferralMessage);
-            setWhatsappmsg((_c = whatsappResp == null ? void 0 : whatsappResp.data) == null ? void 0 : _c.getReferredMessage);
-          }
-          setReferralData(resp == null ? void 0 : resp.data);
-        } catch (error2) {
-          showError();
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchReferralCode();
-    }, []);
     const copyReferralLinkFunc = () => {
+      console.log("referral copy func", localStorage.getItem(`fc-referral-code-${customer_id}`));
       setShowCopied(true);
-      navigator.clipboard.writeText(window.location.origin + ((referralData == null ? void 0 : referralData.path) || "/account/register"));
+      navigator.clipboard.writeText(window.location.origin + (localStorage.getItem(`fc-referral-code-${customer_id}`) || "/account/register"));
       setTimeout(() => {
         setShowCopied(false);
       }, 1e3);
+    };
+    const hanldeWhatsappClick = async () => {
+      var _a2;
+      if (localStorage.getItem(`fc-whatsapp-msg-${client_id}`)) {
+        window.open(`https://api.whatsapp.com/send?text=${localStorage.getItem(`fc-whatsapp-msg-${client_id}`)}`, "_blank");
+      } else {
+        try {
+          const whatsappResp = await fetchApi("/get-referred-message", "post", {
+            client_id,
+            customer_id,
+            user_hash
+          });
+          if ((whatsappResp == null ? void 0 : whatsappResp.status) === "success") {
+            const message = (_a2 = whatsappResp == null ? void 0 : whatsappResp.data) == null ? void 0 : _a2.getReferredMessage;
+            localStorage.setItem(`fc-whatsapp-msg-${client_id}`, message);
+            window.open(`https://api.whatsapp.com/send?text=${message}`, "_blank");
+          } else {
+            showError();
+          }
+        } catch (error2) {
+          showError();
+        }
+      }
     };
     return login ? o(k$1, {
       children: [loading ? o("div", {
@@ -581,7 +665,7 @@
           }), o("div", {
             className: "inviteAndEarnMessage",
             children: o("h4", {
-              children: invitemsg
+              children: inviteMsg
             })
           }), o("div", {
             className: "inviteEarnTextContainer",
@@ -594,7 +678,8 @@
           }), o("div", {
             className: "inviteLinkContainer",
             children: [o("p", {
-              children: `${window.location.origin}${(referralData == null ? void 0 : referralData.path) || "/account/register"}`
+              className: "ellipsis-text",
+              children: `${window.location.origin}${localStorage.getItem(`fc-referral-code-${customer_id}`) || "/account/register"}`
             }), o("img", {
               onClick: copyReferralLinkFunc,
               src: "https://media.farziengineer.co/farziwallet/copy-icon.png",
@@ -611,9 +696,8 @@
             })
           }), o("div", {
             className: "sendInvitesBtnContainer",
-            children: [o("a", {
-              href: `https://api.whatsapp.com/send?text=${whatsappmsg}`,
-              target: "_blank",
+            children: [o("button", {
+              onClick: () => hanldeWhatsappClick(),
               className: "inviteWhatsappBtn",
               children: [o("img", {
                 src: "https://media.farziengineer.co/farziwallet/whatsapp-icon.png",
@@ -621,9 +705,8 @@
               }), o("p", {
                 children: "Send on WhatsApp"
               })]
-            }), o("a", {
-              href: `sms://18005555555/?body=${whatsappmsg}`,
-              target: "_blank",
+            }), o("button", {
+              onClick: () => handleShareClick(),
               className: "inviteRoundedBtn",
               children: o("img", {
                 src: "https://media.farziengineer.co/farziwallet/share_arrow.png",
@@ -675,11 +758,8 @@
   async function renderReferralSnippet() {
     var _a, _b, _c;
     try {
-      const targetDiv = document.getElementById("MainContent");
-      const ele = targetDiv.querySelector(".fc-scratch-card-snippet-19212-target");
-      if (ele) {
-        targetDiv.removeChild(ele);
-      }
+      const targetDiv = document.getElementById("fc-wallet-referral-snippet-ui-19212");
+      targetDiv.innerHTML = "";
       let shadowTarget = document.createElement("div");
       shadowTarget.className = "fc-referral-ui-snippet-19212-target";
       shadowTarget.style.display = "block";
