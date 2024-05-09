@@ -142,7 +142,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
   },[referralPopup])
   function setTheme({ themeDetails }) {
 
-    var cssVariablesScope;
+    let cssVariablesScope;
     if(loyalty_theme === 'page'){
       cssVariablesScope = shadowRoot.querySelector(".loyaltyMainPage");
     }else{
@@ -154,13 +154,28 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
     }
     
 
-    if(loyalty_theme === 'popup' && cssVariablesScope && themeDetails?.data?.popup_position){
-      cssVariablesScope.style.left = themeDetails?.data?.popup_position?.left
-      cssVariablesScope.style.top = themeDetails?.data?.popup_position?.top
-    }
-    if(loyalty_theme === 'popup' && floatingPopupPos && themeDetails?.data?.icon_position){
-      floatingPopupPos.style.left = themeDetails?.data?.icon_position?.left
-      floatingPopupPos.style.top = themeDetails?.data?.icon_position?.top
+    if(loyalty_theme === 'popup' && floatingPopupPos){
+      if(themeDetails?.data?.icon_position === 'left'){
+        const leftOffset = themeDetails?.data?.icon_offset?.left || 0
+        const bottomOffset = themeDetails?.data?.icon_offset?.bottom || 0
+        floatingPopupPos.style.left = `calc(2% + ${leftOffset})`
+        floatingPopupPos.style.top = `calc(86% - ${bottomOffset})`
+        // popup styling
+        if(cssVariablesScope){
+          cssVariablesScope.style.left = `calc(8% + ${leftOffset})`
+          cssVariablesScope.style.top = `calc(9% - ${leftOffset})`
+        }
+      }else {
+        const leftOffset = themeDetails?.data?.icon_offset?.left || 0
+        const bottomOffset = themeDetails?.data?.icon_offset?.bottom || 0
+        floatingPopupPos.style.left = `calc(93% - ${leftOffset})`
+        floatingPopupPos.style.top = `calc(86% - ${bottomOffset})`
+        //popup styling
+        if(cssVariablesScope){
+          cssVariablesScope.style.left = `calc(65% - ${leftOffset})`
+          cssVariablesScope.style.top = `calc(9% - ${leftOffset})`
+        }
+      }
     }
     if (cssVariablesScope && themeDetails?.data?.theme_color) {
       cssVariablesScope.style.setProperty(

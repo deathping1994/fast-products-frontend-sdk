@@ -136,7 +136,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	border-radius: 100%;
-	z-index: 9999;
+	z-index: 3;
 	cursor: pointer;
 	padding: 12px;
 }
@@ -147,8 +147,6 @@ body {
 	z-index: 9999;
 	position: fixed;
 	gap: 16px;
-	/* bottom: 13%;
-	right: 7%; */
 	max-width: 360px;
 	max-height: 580px;
 	width: 85vw;
