@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = ".fc-wallet-activity-snippet-19212--root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n\n.fc-wallet-activity-snippet-19212--root a {\n	text-decoration: none;\n	color: inherit;\n}\n\n.fc-wallet-activity-snippet-19212--root {\n	width: 100%;\n}\n\n.fc-wallet-activity-snippet-19212--root .login-container {\n	display: flex;\n	justify-content: center;\n	margin: 50px;\n}\n\n.fc-wallet-activity-snippet-19212--root .login-container a {\n	background-color: #ebebeb;\n	padding: 10px 30px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container {\n	width: 95%;\n	margin: auto;\n	max-width: 1000px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-wrapper {\n	background: #ebebeb;\n	border-radius: 8px;\n	padding: 15px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-container {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n	gap: 10px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-container .total-points {\n	font-size: 42px;\n	font-weight: 600;\n}\n\n.fc-wallet-activity-snippet-19212--root .points-svg-container {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper {\n	margin-top: 36px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	margin: auto;\n	flex-direction: column;\n	gap: 10px;\n	margin: 18px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn p {\n	text-align: center;\n	color: #fff;\n	font-size: 16px;\n	background: #000;\n	border-radius: 4px;\n	padding: 8px 16px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn .circular-loader {\n	border: 3px solid #000;\n	border-left-color: transparent;\n	width: 30px;\n	height: 30px;\n	animation: spin89345 0.7s linear infinite;\n	border-radius: 50%;\n	margin: 0px 8px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .transaction-log-container {\n	margin: 14px 0px;\n	padding: 0px;\n	border: 1px solid rgb(231, 231, 231);\n	border-radius: 6px;\n	box-shadow: 1px 2px 2px rgb(231, 231, 231);\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-header {\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n	border-bottom: 1px solid rgb(231, 231, 231);\n	padding: 8px 18px;\n	font-size: 16px;\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type {\n	border-radius: 4px;\n	padding: 4px 8px;\n	font-weight: 600;\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.credited {\n	background-color: rgb(209, 255, 217);\n	color: rgb(30, 175, 109);\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.debited {\n	background-color: rgba(181, 0, 0, 0.1);\n	color: rgb(181, 0, 0);\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body {\n	padding: 8px 18px;\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body .amount {\n	font-size: 20px;\n	font-weight: 600;\n}\n\n@keyframes shimmer {\n	to {\n		background-position: -100% 0;\n	}\n}\n\n.skeletonloader {\n	margin: 10px auto;\n	border-radius: 3px;\n}\n\n.skeleton-loader-container {\n	width: 80%;\n	margin: auto;\n}\n\n@media screen and (max-width: 480px) {\n	.skeleton-loader-container {\n		width: 92%;\n	}\n}\n\n@keyframes spin89345 {\n	0% {\n		transform: rotate(0deg);\n	}\n\n	100% {\n		transform: rotate(360deg);\n	}\n}\n\n.points-svg-container{\n	margin-top: 6px;\n}";
+  const style = ".fc-wallet-activity-snippet-19212--root * {\n	padding: 0;\n	margin: 0;\n	box-sizing: border-box;\n}\n\n.fc-wallet-activity-snippet-19212--root a {\n	text-decoration: none;\n	color: inherit;\n}\n\n.fc-wallet-activity-snippet-19212--root {\n	width: 100%;\n}\n\n.fc-wallet-activity-snippet-19212--root .login-container {\n	display: flex;\n	justify-content: center;\n	margin: 50px;\n}\n\n.fc-wallet-activity-snippet-19212--root .login-container a {\n	background-color: #ebebeb;\n	padding: 10px 30px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container {\n	width: 95%;\n	margin: auto;\n	max-width: 1000px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-wrapper {\n	background: #ebebeb;\n	border-radius: 8px;\n	padding: 15px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-container {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n	gap: 10px;\n}\n\n.fc-wallet-activity-snippet-19212--root .total-points-container .total-points {\n	font-size: 42px;\n	font-weight: 600;\n}\n\n.fc-wallet-activity-snippet-19212--root .points-svg-container {\n	display: flex;\n	justify-content: left;\n	align-items: center;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper {\n	margin-top: 36px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn {\n	display: flex;\n	justify-content: center;\n	align-items: center;\n	margin: auto;\n	flex-direction: column;\n	gap: 10px;\n	margin: 18px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn p {\n	text-align: center;\n	color: #fff;\n	font-size: 16px;\n	background: #000;\n	border-radius: 4px;\n	padding: 8px 16px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .show-more-btn .circular-loader {\n	border: 3px solid #000;\n	border-left-color: transparent;\n	width: 30px;\n	height: 30px;\n	animation: spin89345 0.7s linear infinite;\n	border-radius: 50%;\n	margin: 0px 8px;\n}\n\n.fc-wallet-activity-snippet-19212--root .snippet-container .transaction-logs-wrapper .transaction-log-container {\n	margin: 14px 0px;\n	padding: 0px;\n	border: 1px solid rgb(231, 231, 231);\n	border-radius: 6px;\n	box-shadow: 1px 2px 2px rgb(231, 231, 231);\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-header {\n	display: flex;\n	justify-content: space-between;\n	align-items: center;\n	border-bottom: 1px solid rgb(231, 231, 231);\n	padding: 8px 18px;\n	font-size: 16px;\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type {\n	border-radius: 4px;\n	padding: 4px 8px;\n	font-weight: 600;\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.credited {\n	background-color: rgb(209, 255, 217);\n	color: rgb(30, 175, 109);\n}\n\n.fc-wallet-activity-snippet-19212--root .log-header .log-type.debited {\n	background-color: rgba(181, 0, 0, 0.1);\n	color: rgb(181, 0, 0);\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body {\n	padding: 8px 18px;\n}\n\n.fc-wallet-activity-snippet-19212--root .transaction-log-container .log-body .amount {\n	font-size: 20px;\n	font-weight: 600;\n}\n\n@keyframes shimmer {\n	to {\n		background-position: -100% 0;\n	}\n}\n\n.skeletonloader {\n	margin: 10px auto;\n	border-radius: 3px;\n}\n\n.skeleton-loader-container {\n	width: 80%;\n	margin: auto;\n}\n\n@media screen and (max-width: 480px) {\n	.skeleton-loader-container {\n		width: 92%;\n	}\n}\n\n@keyframes spin89345 {\n	0% {\n		transform: rotate(0deg);\n	}\n\n	100% {\n		transform: rotate(360deg);\n	}\n}\n\n.points-svg-container{\n	margin-top: 6px;\n}\n\n.points-svg-container img {\n	width: 30px;\n}";
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -466,7 +466,8 @@
   function WalletScreen({
     customerDetails,
     setUserHash,
-    themeDetailsData
+    themeDetailsData,
+    walletThemeDetailsData
   }) {
     var _a;
     const [totalWalletAmount, setTotalWalletAmount] = h(null);
@@ -477,9 +478,7 @@
     });
     const [triggerLoadMore, setTriggerLoadMore] = h(false);
     const [loadingPaginatedResults, setLoadingPaginatedResults] = h(false);
-    const mainScript = document.querySelector("#fc-wallet-activity-snippet-script-19212");
-    const wallet_name = mainScript.getAttribute("data-wallet-name");
-    const wallet_icon = mainScript.getAttribute("data-wallet-icon");
+    document.querySelector("#fc-wallet-activity-snippet-script-19212");
     const fetchWalletdetails = async ({
       customer_id,
       customer_tags,
@@ -568,15 +567,15 @@
         })]
       }) : o(k$1, {
         children: [o("h1", {
-          children: wallet_name ? wallet_name : "Wallet Points"
+          children: (walletThemeDetailsData == null ? void 0 : walletThemeDetailsData.wallet_name) ? walletThemeDetailsData == null ? void 0 : walletThemeDetailsData.wallet_name : "Wallet Points"
         }), o("div", {
           class: "total-points-wrapper",
           children: [o("div", {
             class: "total-points-container",
             children: [o("div", {
               class: "points-svg-container",
-              children: wallet_icon ? o("img", {
-                src: wallet_icon,
+              children: (walletThemeDetailsData == null ? void 0 : walletThemeDetailsData.wallet_icon) ? o("img", {
+                src: walletThemeDetailsData == null ? void 0 : walletThemeDetailsData.wallet_icon,
                 alt: "",
                 srcset: ""
               }) : o("svg", {
@@ -647,12 +646,15 @@
       })
     });
   }
-  function Main(props) {
+  function Main({
+    walletThemeDetailsData
+  }) {
     const [customerDetails, setCustomerDetails] = h({
       customerID: "",
       customerTags: "",
       clientID: ""
     });
+    console.log("walletThemeDetailsData", walletThemeDetailsData);
     const [loading, setLoading] = h(true);
     const [themeDetailsData, setThemeDetailsData] = h({});
     const getThemeDetails = async ({
@@ -723,7 +725,8 @@
           children: (customerDetails == null ? void 0 : customerDetails.customerID) ? o(WalletScreen, {
             themeDetailsData,
             customerDetails,
-            setUserHash: setCustomerDetails
+            setUserHash: setCustomerDetails,
+            walletThemeDetailsData
           }) : o(Login, {
             themeDetails: themeDetailsData
           })
@@ -738,11 +741,15 @@
       return jsonString;
     }
   };
-  function App() {
+  function App({
+    themeDetailsData
+  }) {
     return o(k$1, {
       children: [o("div", {
         class: "widget-container",
-        children: o(Main, {})
+        children: o(Main, {
+          walletThemeDetailsData: themeDetailsData
+        })
       }), o("div", {
         class: "widget-styles"
       }), o("div", {
@@ -807,7 +814,9 @@
       }
     }
     const clientCustomStyleData = (themeDetailsData == null ? void 0 : themeDetailsData.custom_css) || "";
-    B$1(o(App, {}), shadowRoot);
+    B$1(o(App, {
+      themeDetailsData
+    }), shadowRoot);
     B$1(o(AppCSS, {}), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-styles"));
     B$1(o(AppCustomCSS, {
       customStyles: clientCustomStyleData
