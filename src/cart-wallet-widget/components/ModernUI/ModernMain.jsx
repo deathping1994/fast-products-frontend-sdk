@@ -3,7 +3,7 @@ import ModernLogin from "./ModernLogin";
 const ModernMain = ({
   themeDetailsData,
   walletAppliedDetails,
-  setWalletApplied,
+  toggleUserWallet,
   walletApplied,
   customerDetails,
   loadingWalletBal,
@@ -69,7 +69,7 @@ const ModernMain = ({
             <input
               type="checkbox"
               checked={walletApplied}
-              onClick={() => setWalletApplied((prev) => !prev)}
+              onClick={() => toggleUserWallet()}
             />
             <svg viewBox="0 0 21 21">
               <polyline points="5 10.75 8.5 14.25 16 6"></polyline>

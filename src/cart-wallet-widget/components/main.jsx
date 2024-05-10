@@ -99,7 +99,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
       //already updated
     } else {
       setRefetchSummary((prev) => !prev);
-      console.log("ELSE synccart");
     }
   };
 
