@@ -36,7 +36,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   });
   const [modernUiTheme, setModernUiTheme] = useState('')
   const [cashbackAmount, setCashbackAmount] = useState(0);
-
+  const [isCartEmpty, setIsCartEmpty] = useState(false)
   const setTheme = ({themeDetailsData})=>{
     var cssVariablesScope = shadowRoot.querySelector(".widget-container");
     if (cssVariablesScope && themeDetailsData?.data?.gradient_start_color) {
@@ -54,10 +54,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
   }
 
   const loadCartSummary = async () => {
-    setLoadingWalletBal(true);
     const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
     const cartDetails = await cartRes.json();
-
+    setIsCartEmpty(cartDetails?.item_count === 0 ? true : false)
     const totalPrice = cartDetails?.total_price / 100;
     const totalDiscount = cartDetails?.total_discount / 100;
     const appliedDiscountCode =
@@ -82,23 +81,25 @@ export function Main({ themeDetailsData, shadowRoot }) {
     calculateCashback({
       totalPrice: Number(totalPrice),
     });
-    setLoadingWalletBal(false);
   };
 
   const syncCartSummary = async (walletAppliedDetails) => {
     const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
     const cartDetails = await cartRes.json();
-
     const totalPrice = cartDetails?.total_price / 100;
     const totalDiscount = cartDetails?.total_discount / 100;
-
+    window.fc_cart_details = {
+      totalPayablePrice: Number(totalPrice),
+      totalDiscount: Number(totalDiscount),
+    };
     if (
-      totalPrice === walletAppliedDetails?.totalPayablePrice &&
-      totalDiscount === walletAppliedDetails?.totalDiscount
+      totalPrice === window.fc_cart_details?.totalPayablePrice &&
+      totalDiscount === window.fc_cart_details?.totalDiscount
     ) {
       //already updated
     } else {
       setRefetchSummary((prev) => !prev);
+      console.log("ELSE synccart");
     }
   };
 
@@ -237,16 +238,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
   };
 
   return (
-    <>
-      {renderApplyCouponCodeBox ? (
-        <ApplyDiscountCode
-          setRefetchSummary={setRefetchSummary}
-          appliedDiscountCode={appliedDiscountCode}
-          appliedDiscountsList={appliedDiscountsList}
-        />
-      ) : (
-        <></>
-      )}
+    (!isCartEmpty && 
+      <>
       {!loadingCashbackDetails && cashbackAmount !== 0 && (
         <>
         {renderCashbackStrip && <div class="cashback-strip-container">
@@ -284,5 +277,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
         </>
       )}
     </>
+    )
   );
 }

@@ -164,3 +164,7 @@
 .points-svg-container{
 	margin-top: 6px;
 }
+
+.points-svg-container img {
+	width: 30px;
+}

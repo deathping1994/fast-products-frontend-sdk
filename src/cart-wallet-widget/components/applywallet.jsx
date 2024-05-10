@@ -377,7 +377,6 @@ export function ApplyWallet({
     if (userPoints !== null && checkoutTarget?.isSet) {
       toggleUserWalletApplied(!walletApplied);
     }
-    console.log("apply wallet1", refetchCartSummary);
   }, [userPoints, checkoutTarget?.isSet, refetchCartSummary]);
 
   useEffect(() => {
@@ -386,7 +385,6 @@ export function ApplyWallet({
         totalPrice: walletAppliedDetails?.totalPayablePrice,
       });
     }
-    console.log("apply wallet2");
   }, [walletAppliedDetails]);
   
   return (
