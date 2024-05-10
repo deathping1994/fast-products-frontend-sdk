@@ -100,10 +100,7 @@ export function ApplyWallet({
       setUserPoints(walletAmount);
     } catch (err) {
       setUserPoints(0);
-    }finally {
-      setLoadingWalletBal(false);
     }
-    setLoadingWalletBal(false);
   };
 
   const getWalletRemeptionLimit = async () => {
@@ -147,7 +144,7 @@ export function ApplyWallet({
           currency: cartDetails?.currency,
           totalPayablePrice: Number(totalPrice),
         });
-        setLoadingWalletBal(false);
+        setLoadingWalletBal(false)
       }
       //TEMP: reset other app discounts
       setCookie("docapp-coupon", "", 7);
@@ -251,8 +248,6 @@ export function ApplyWallet({
         }
       } catch (err) {
         console.log(err)
-      } finally {
-        setLoadingWalletBal(false);
       }
 
       if (checkoutTarget?.enable) {
@@ -265,7 +260,7 @@ export function ApplyWallet({
           currency: cartDetails?.currency,
           totalPayablePrice: Number(totalPrice) - walletPointsToApply,
         });
-        setLoadingWalletBal(false);
+        
         const appliedDiscountCode = localStorage.getItem(
           "fc-coupon-applied-code"
         );
@@ -297,6 +292,7 @@ export function ApplyWallet({
           currency: cartDetails?.currency,
           totalPayablePrice: totalFinalPrice,
         });
+        setLoadingWalletBal(false)
       } else {
         const appliedDiscountCode = localStorage.getItem(
           "fc-coupon-applied-code"
@@ -335,9 +331,9 @@ export function ApplyWallet({
           totalPayablePrice: cartDetailsUpdated?.total_price / 100,
           couponDiscountApplied: appliedDiscountCodeAmount / 100,
         });
+        setLoadingWalletBal(false)
       }
     }
-    setLoadingWalletBal(false);
     try {
       // @ts-ignore
       fc_coupon_toggle(window.fc_coupon_callback)
@@ -525,7 +521,7 @@ export function ApplyWallet({
       customerDetails={customerDetails}
       themeDetailsData={themeDetailsData}
       walletAppliedDetails={walletAppliedDetails}
-      setWalletApplied={toggleUserWallet}
+      toggleUserWallet={toggleUserWallet}
       walletApplied={walletApplied}
       loadingWalletBal={loadingWalletBal}
       walletRedemptionLimitDetails={walletRedemptionLimitDetails}
