@@ -1065,7 +1065,7 @@ body {
   const ModernMain = ({
     themeDetailsData,
     walletAppliedDetails,
-    setWalletApplied,
+    toggleUserWallet,
     walletApplied,
     customerDetails,
     loadingWalletBal,
@@ -1124,7 +1124,7 @@ body {
             children: [o("input", {
               type: "checkbox",
               checked: walletApplied,
-              onClick: () => setWalletApplied((prev) => !prev)
+              onClick: () => toggleUserWallet()
             }), o("svg", {
               viewBox: "0 0 21 21",
               children: o("polyline", {
@@ -1233,10 +1233,7 @@ body {
         setUserPoints(walletAmount);
       } catch (err) {
         setUserPoints(0);
-      } finally {
-        setLoadingWalletBal(false);
       }
-      setLoadingWalletBal(false);
     };
     const getWalletRemeptionLimit = async () => {
       var _a, _b, _c, _d;
@@ -1352,8 +1349,6 @@ body {
           }
         } catch (err) {
           console.log(err);
-        } finally {
-          setLoadingWalletBal(false);
         }
         if (checkoutTarget == null ? void 0 : checkoutTarget.enable) {
           setCookie("discount_code", walletCouponCode, 7);
@@ -1365,7 +1360,6 @@ body {
             currency: cartDetails == null ? void 0 : cartDetails.currency,
             totalPayablePrice: Number(totalPrice) - walletPointsToApply
           });
-          setLoadingWalletBal(false);
           const appliedDiscountCode = localStorage.getItem("fc-coupon-applied-code");
           const checkoutResponse = await fetch(appliedDiscountCode ? `/checkout/?discount=${walletCouponCode},${appliedDiscountCode}` : `/checkout/?discount=${walletCouponCode}`, {
             method: "POST"
@@ -1383,6 +1377,7 @@ body {
             currency: cartDetails == null ? void 0 : cartDetails.currency,
             totalPayablePrice: totalFinalPrice
           });
+          setLoadingWalletBal(false);
         } else {
           const appliedDiscountCode = localStorage.getItem("fc-coupon-applied-code");
           !renderApplyCouponCodeBox && fetch(`/discount/${walletCouponCode}`);
@@ -1408,9 +1403,9 @@ body {
             totalPayablePrice: (cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.total_price) / 100,
             couponDiscountApplied: appliedDiscountCodeAmount / 100
           });
+          setLoadingWalletBal(false);
         }
       }
-      setLoadingWalletBal(false);
       try {
         fc_coupon_toggle(window.fc_coupon_callback);
       } catch (error) {
@@ -1443,7 +1438,6 @@ body {
       if (userPoints !== null && (checkoutTarget == null ? void 0 : checkoutTarget.isSet)) {
         toggleUserWalletApplied(!walletApplied);
       }
-      console.log("apply wallet1", refetchCartSummary);
     }, [userPoints, checkoutTarget == null ? void 0 : checkoutTarget.isSet, refetchCartSummary]);
     p(() => {
       if (walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice) {
@@ -1451,7 +1445,6 @@ body {
           totalPrice: walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice
         });
       }
-      console.log("apply wallet2");
     }, [walletAppliedDetails]);
     return o(k$1, {
       children: walletUiTheme === "classic" ? o(k$1, {
@@ -1566,7 +1559,7 @@ body {
         customerDetails,
         themeDetailsData,
         walletAppliedDetails,
-        setWalletApplied: toggleUserWallet,
+        toggleUserWallet,
         walletApplied,
         loadingWalletBal,
         walletRedemptionLimitDetails
@@ -1643,73 +1636,6 @@ body {
       })
     });
   }
-  function ApplyDiscountCode({
-    setRefetchSummary,
-    appliedDiscountCode,
-    appliedDiscountsList
-  }) {
-    const [loadingWalletBal, setLoadingWalletBal] = h(false);
-    const [couponInputValue, setCouponInputValue] = h(appliedDiscountCode || "");
-    const applyCouponDiscount = async () => {
-      setLoadingWalletBal(true);
-      const isWalletAppliedCode = localStorage.getItem("fc-wallet-cart-applied") === "true" || false;
-      const walletAppliedCode = isWalletAppliedCode ? localStorage.getItem("fc-wallet-applied-code") || "" : "";
-      localStorage.setItem("fc-coupon-applied-code", couponInputValue);
-      await fetch(`/checkout/?discount=${couponInputValue},${walletAppliedCode}`, {
-        method: "POST"
-      });
-      setRefetchSummary((prev) => !prev);
-      setLoadingWalletBal(false);
-    };
-    const removeCouponDiscount = async () => {
-      setLoadingWalletBal(true);
-      const clearDiscountCode = "FC_REMOVE_CODE";
-      const isWalletAppliedCode = localStorage.getItem("fc-wallet-cart-applied") === "true" || false;
-      const walletAppliedCode = isWalletAppliedCode ? localStorage.getItem("fc-wallet-applied-code") || "" : "";
-      localStorage.removeItem("fc-coupon-applied-code");
-      await fetch(`/checkout/?discount=${clearDiscountCode},${walletAppliedCode}`, {
-        method: "POST"
-      });
-      setRefetchSummary((prev) => !prev);
-      setLoadingWalletBal(false);
-    };
-    p(() => {
-      setCouponInputValue(appliedDiscountCode);
-    }, [appliedDiscountCode]);
-    return o(k$1, {
-      children: o("div", {
-        class: "apply-code-container",
-        children: [o("div", {
-          class: "input-container",
-          children: o("input", {
-            type: "text",
-            name: "temp-discount",
-            class: "docapp-coupon-input--input",
-            placeholder: "Discount Code",
-            value: couponInputValue,
-            readonly: appliedDiscountCode ? true : false,
-            onChange: (e2) => {
-              if (appliedDiscountCode) {
-                setCouponInputValue(appliedDiscountCode);
-              } else {
-                setCouponInputValue(e2.target.value);
-              }
-            }
-          })
-        }), appliedDiscountCode ? o("div", {
-          class: "apply-btn",
-          onClick: removeCouponDiscount,
-          children: loadingWalletBal ? o(k$1, {
-            children: o(CircularLoader, {})
-          }) : "Remove"
-        }) : o("div", {
-          class: "apply-btn",
-          onClick: applyCouponDiscount,
-          children: loadingWalletBal ? o(CircularLoader, {}) : "Apply"
-        })]
-      })
-    });
-  }
   function Main({
     themeDetailsData,
     shadowRoot
@@ -1742,6 +1668,7 @@ body {
     });
     const [modernUiTheme, setModernUiTheme] = h("");
     const [cashbackAmount, setCashbackAmount] = h(0);
+    const [isCartEmpty, setIsCartEmpty] = h(false);
     const setTheme = ({
       themeDetailsData: themeDetailsData2
     }) => {
@@ -1762,9 +1689,9 @@ body {
     };
     const loadCartSummary = async () => {
       var _a, _b;
-      setLoadingWalletBal(true);
       const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
       const cartDetails = await cartRes.json();
+      setIsCartEmpty((cartDetails == null ? void 0 : cartDetails.item_count) === 0 ? true : false);
       const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100;
       const totalDiscount = (cartDetails == null ? void 0 : cartDetails.total_discount) / 100;
       const appliedDiscountCode2 = ((_b = (_a = cartDetails == null ? void 0 : cartDetails.cart_level_discount_applications) == null ? void 0 : _a.find((item) => {
@@ -1784,14 +1711,18 @@ body {
       calculateCashback({
         totalPrice: Number(totalPrice)
       });
-      setLoadingWalletBal(false);
     };
     const syncCartSummary = async (walletAppliedDetails2) => {
+      var _a, _b;
       const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
       const cartDetails = await cartRes.json();
       const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100;
       const totalDiscount = (cartDetails == null ? void 0 : cartDetails.total_discount) / 100;
-      if (totalPrice === (walletAppliedDetails2 == null ? void 0 : walletAppliedDetails2.totalPayablePrice) && totalDiscount === (walletAppliedDetails2 == null ? void 0 : walletAppliedDetails2.totalDiscount))
+      window.fc_cart_details = {
+        totalPayablePrice: Number(totalPrice),
+        totalDiscount: Number(totalDiscount)
+      };
+      if (totalPrice === ((_a = window.fc_cart_details) == null ? void 0 : _a.totalPayablePrice) && totalDiscount === ((_b = window.fc_cart_details) == null ? void 0 : _b.totalDiscount))
         ;
       else {
         setRefetchSummary((prev) => !prev);
@@ -1864,7 +1795,7 @@ body {
         });
       } else {
         setInterval(() => {
-          syncCartSummary(window.fc_cart_details || walletAppliedDetails);
+          syncCartSummary();
         }, 1e4);
         setCheckoutTarget({
           enable: false,
@@ -1916,12 +1847,8 @@ body {
         console.error("Error removing applied coupon code:", error);
       }
     };
-    return o(k$1, {
-      children: [renderApplyCouponCodeBox ? o(ApplyDiscountCode, {
-        setRefetchSummary,
-        appliedDiscountCode,
-        appliedDiscountsList
-      }) : o(k$1, {}), !loadingCashbackDetails && cashbackAmount !== 0 && o(k$1, {
+    return !isCartEmpty && o(k$1, {
+      children: [!loadingCashbackDetails && cashbackAmount !== 0 && o(k$1, {
         children: renderCashbackStrip && o("div", {
           class: "cashback-strip-container",
           children: o("p", {
