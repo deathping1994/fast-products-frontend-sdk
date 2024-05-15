@@ -41,7 +41,7 @@ export function ApplyWallet({
   calculateCashback,
   setUserHash,
   renderWalletCredit,
-  themeDetailsData
+  themeDetailsData,
 }) {
   const [userPoints, setUserPoints] = useState(null);
   const [walletApplied, setWalletApplied] = useState(
