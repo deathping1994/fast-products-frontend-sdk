@@ -58,21 +58,33 @@ export function ApplyWallet({
   const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
   const checkout_total = mainScript.getAttribute('data-checkout-total')
   const walletUiTheme = mainScript.getAttribute('wallet-theme')
-  const checkoutTotalTag = document.querySelector(`.${checkout_total}`)
-  checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(
-    walletAppliedDetails?.totalPayablePrice
-  ).toLocaleString("en-IN", {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-    style: "currency",
-    currency: "INR",
-  })}`
+  try {
+    const checkoutTotalTag = document.querySelector(`.${checkout_total}`)
+    checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(
+      walletAppliedDetails?.totalPayablePrice
+    ).toLocaleString("en-IN", {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+      style: "currency",
+      currency: "INR",
+    })}`
+  } catch (error) {
+    console.log("checkout_total error");
+  }
+  
   const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] =
     useState({
       amount: 0,
       type: null,
     });
-
+    const applyWalletAmount = (amount) => {
+      const event = new CustomEvent("wallet_amount_applied", {
+        detail: { amount }
+      });
+      window.fc_wallet_amount = amount
+      document.dispatchEvent(event);
+      // console.log("event fired")
+    };
   const getUserPoints = async () => {
     setLoadingWalletBal(true);
     try {
@@ -144,6 +156,7 @@ export function ApplyWallet({
           currency: cartDetails?.currency,
           totalPayablePrice: Number(totalPrice),
         });
+        applyWalletAmount(0)
         setLoadingWalletBal(false)
       }
       //TEMP: reset other app discounts
@@ -190,6 +203,7 @@ export function ApplyWallet({
           totalPayablePrice: Number(totalPrice),
           couponDiscountApplied: appliedDiscountCodeAmount / 100,
         });
+        applyWalletAmount(0)
         setLoadingWalletBal(false);
       }
     } else {
@@ -260,7 +274,6 @@ export function ApplyWallet({
           currency: cartDetails?.currency,
           totalPayablePrice: Number(totalPrice) - walletPointsToApply,
         });
-        
         const appliedDiscountCode = localStorage.getItem(
           "fc-coupon-applied-code"
         );
@@ -292,6 +305,7 @@ export function ApplyWallet({
           currency: cartDetails?.currency,
           totalPayablePrice: totalFinalPrice,
         });
+        applyWalletAmount(walletPointsToApply)
         setLoadingWalletBal(false)
       } else {
         const appliedDiscountCode = localStorage.getItem(
@@ -331,6 +345,7 @@ export function ApplyWallet({
           totalPayablePrice: cartDetailsUpdated?.total_price / 100,
           couponDiscountApplied: appliedDiscountCodeAmount / 100,
         });
+        applyWalletAmount(walletPointsApplied)
         setLoadingWalletBal(false)
       }
     }
@@ -347,6 +362,17 @@ export function ApplyWallet({
     200
   );
 
+  useEffect(()=>{
+    window.set_cartdrawer_wallet_amount = (element_id)=>{
+      const exposed_wallet_amt = document.getElementById(`${element_id}`)
+      const changeWalletAmt = (data)=>{
+        exposed_wallet_amt.innerHTML = data?.detail?.amount
+        // console.log("event suna", data?.detail?.amount)
+        exposed_wallet_amt.removeEventListener("wallet_amount_applied", changeWalletAmt)
+      }
+      exposed_wallet_amt.addEventListener("wallet_amount_applied", changeWalletAmt)
+    }
+  },[walletApplied])
   const fc_coupon_toggle = (callback = ()=>{})=>{
     callback()
   }
@@ -367,6 +393,13 @@ export function ApplyWallet({
   useEffect(() => {
     getUserPoints();
     getWalletRemeptionLimit();
+    const cart_wallet_amount_id = mainScript.getAttribute("data-show-wallet-amount-on-cart")
+    if(cart_wallet_amount_id){
+      document.addEventListener("wallet_amount_applied", (data) => {
+        document.getElementById(`${cart_wallet_amount_id}`).innerHTML = data.detail.amount;
+      });
+    }
+    // console.log("event listner added useeffe");
   }, []);
 
   useEffect(() => {
