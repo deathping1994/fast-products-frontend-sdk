@@ -69,7 +69,7 @@ export function ApplyWallet({
       currency: "INR",
     })}`
   } catch (error) {
-    console.log("checkout_total error");
+    // console.log("checkout_total error");
   }
   
   const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] =
@@ -369,6 +369,7 @@ export function ApplyWallet({
         exposed_wallet_amt.innerHTML = data?.detail?.amount
         // console.log("event suna", data?.detail?.amount)
         exposed_wallet_amt.removeEventListener("wallet_amount_applied", changeWalletAmt)
+        return { amount: data?.detail?.amount };
       }
       exposed_wallet_amt.addEventListener("wallet_amount_applied", changeWalletAmt)
     }
