@@ -47,11 +47,12 @@
 @media (max-width:540px) {
   #fc-retainley-wallet-btn {
     width: fit-content;
+    min-width: fit-content;
     font-size: 14px;
     padding: 3px 12px;
   }
   #fc-wallet-amt-name {
-    font-size: 10px;
+    font-size: 8px;
     transform: translate(-50%, 35%);
   }
 }
