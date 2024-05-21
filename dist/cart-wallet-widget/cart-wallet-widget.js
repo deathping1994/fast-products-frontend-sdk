@@ -1072,6 +1072,10 @@ body {
     walletRedemptionLimitDetails
   }) => {
     var _a, _b;
+    const handleCheckbox = (event) => {
+      event.stopPropagation();
+      toggleUserWallet(walletApplied);
+    };
     return o(k$1, {
       children: (customerDetails == null ? void 0 : customerDetails.customerTags) !== "" ? o("div", {
         className: "modernWalletContainer",
@@ -1124,7 +1128,7 @@ body {
             children: [o("input", {
               type: "checkbox",
               checked: walletApplied,
-              onClick: () => toggleUserWallet()
+              onChange: handleCheckbox
             }), o("svg", {
               viewBox: "0 0 21 21",
               children: o("polyline", {
@@ -1194,17 +1198,30 @@ body {
     const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
     const checkout_total = mainScript.getAttribute("data-checkout-total");
     const walletUiTheme = mainScript.getAttribute("wallet-theme");
-    const checkoutTotalTag = document.querySelector(`.${checkout_total}`);
-    checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice).toLocaleString("en-IN", {
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2,
-      style: "currency",
-      currency: "INR"
-    })}`;
+    try {
+      const checkoutTotalTag = document.querySelector(`.${checkout_total}`);
+      checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice).toLocaleString("en-IN", {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+        style: "currency",
+        currency: "INR"
+      })}`;
+    } catch (error) {
+      console.log("checkout_total error");
+    }
     const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] = h({
       amount: 0,
       type: null
     });
+    const applyWalletAmount = (amount) => {
+      const event = new CustomEvent("wallet_amount_applied", {
+        detail: {
+          amount
+        }
+      });
+      window.fc_wallet_amount = amount;
+      document.dispatchEvent(event);
+    };
     const getUserPoints = async () => {
       var _a, _b, _c, _d, _e, _f;
       setLoadingWalletBal(true);
@@ -1277,6 +1294,7 @@ body {
             currency: cartDetails == null ? void 0 : cartDetails.currency,
             totalPayablePrice: Number(totalPrice)
           });
+          applyWalletAmount(0);
           setLoadingWalletBal(false);
         }
         setCookie("docapp-coupon", "", 7);
@@ -1309,6 +1327,7 @@ body {
             totalPayablePrice: Number(totalPrice),
             couponDiscountApplied: appliedDiscountCodeAmount / 100
           });
+          applyWalletAmount(0);
           setLoadingWalletBal(false);
         }
       } else {
@@ -1377,6 +1396,7 @@ body {
             currency: cartDetails == null ? void 0 : cartDetails.currency,
             totalPayablePrice: totalFinalPrice
           });
+          applyWalletAmount(walletPointsToApply);
           setLoadingWalletBal(false);
         } else {
           const appliedDiscountCode = localStorage.getItem("fc-coupon-applied-code");
@@ -1403,6 +1423,7 @@ body {
             totalPayablePrice: (cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.total_price) / 100,
             couponDiscountApplied: appliedDiscountCodeAmount / 100
           });
+          applyWalletAmount(walletPointsApplied);
           setLoadingWalletBal(false);
         }
       }
@@ -1413,6 +1434,17 @@ body {
       }
     };
     const debouncedToggleUserWalletApplied = returnDebouncedFunc((prevWalletApplied) => toggleUserWalletApplied(prevWalletApplied), 200);
+    p(() => {
+      window.set_cartdrawer_wallet_amount = (element_id) => {
+        const exposed_wallet_amt = document.getElementById(`${element_id}`);
+        const changeWalletAmt = (data) => {
+          var _a;
+          exposed_wallet_amt.innerHTML = (_a = data == null ? void 0 : data.detail) == null ? void 0 : _a.amount;
+          exposed_wallet_amt.removeEventListener("wallet_amount_applied", changeWalletAmt);
+        };
+        exposed_wallet_amt.addEventListener("wallet_amount_applied", changeWalletAmt);
+      };
+    }, [walletApplied]);
     const fc_coupon_toggle = (callback = () => {
     }) => {
       callback();
@@ -1433,6 +1465,12 @@ body {
     p(() => {
       getUserPoints();
       getWalletRemeptionLimit();
+      const cart_wallet_amount_id = mainScript.getAttribute("data-show-wallet-amount-on-cart");
+      if (cart_wallet_amount_id) {
+        document.addEventListener("wallet_amount_applied", (data) => {
+          document.getElementById(`${cart_wallet_amount_id}`).innerHTML = data.detail.amount;
+        });
+      }
     }, []);
     p(() => {
       if (userPoints !== null && (checkoutTarget == null ? void 0 : checkoutTarget.isSet)) {
