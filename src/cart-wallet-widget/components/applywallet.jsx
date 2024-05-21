@@ -366,7 +366,14 @@ export function ApplyWallet({
     window.set_cartdrawer_wallet_amount = (element_id)=>{
       const exposed_wallet_amt = document.getElementById(`${element_id}`)
       const changeWalletAmt = (data)=>{
-        exposed_wallet_amt.innerHTML = data?.detail?.amount
+        exposed_wallet_amt.innerHTML = `${Number(
+          data.detail.amount
+        ).toLocaleString("en-IN", {
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+          style: "currency",
+          currency: "INR",
+        })}`;
         // console.log("event suna", data?.detail?.amount)
         exposed_wallet_amt.removeEventListener("wallet_amount_applied", changeWalletAmt)
         return { amount: data?.detail?.amount };
@@ -397,7 +404,14 @@ export function ApplyWallet({
     const cart_wallet_amount_id = mainScript.getAttribute("data-show-wallet-amount-on-cart")
     if(cart_wallet_amount_id){
       document.addEventListener("wallet_amount_applied", (data) => {
-        document.getElementById(`${cart_wallet_amount_id}`).innerHTML = data.detail.amount;
+        document.getElementById(`${cart_wallet_amount_id}`).innerHTML = `${Number(
+          data.detail.amount
+        ).toLocaleString("en-IN", {
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+          style: "currency",
+          currency: "INR",
+        })}`;
       });
     }
     // console.log("event listner added useeffe");
