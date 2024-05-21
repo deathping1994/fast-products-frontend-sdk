@@ -1207,7 +1207,6 @@ body {
         currency: "INR"
       })}`;
     } catch (error) {
-      console.log("checkout_total error");
     }
     const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] = h({
       amount: 0,
@@ -1438,9 +1437,12 @@ body {
       window.set_cartdrawer_wallet_amount = (element_id) => {
         const exposed_wallet_amt = document.getElementById(`${element_id}`);
         const changeWalletAmt = (data) => {
-          var _a;
+          var _a, _b;
           exposed_wallet_amt.innerHTML = (_a = data == null ? void 0 : data.detail) == null ? void 0 : _a.amount;
           exposed_wallet_amt.removeEventListener("wallet_amount_applied", changeWalletAmt);
+          return {
+            amount: (_b = data == null ? void 0 : data.detail) == null ? void 0 : _b.amount
+          };
         };
         exposed_wallet_amt.addEventListener("wallet_amount_applied", changeWalletAmt);
       };
@@ -1624,13 +1626,16 @@ body {
   }) {
     const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
     const checkout_total = mainScript.getAttribute("data-checkout-total");
-    const checkoutTotalTag = document.querySelector(`.${checkout_total}`);
-    checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice).toLocaleString("en-IN", {
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2,
-      style: "currency",
-      currency: "INR"
-    })}`;
+    try {
+      const checkoutTotalTag = document.querySelector(`.${checkout_total}`);
+      checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice).toLocaleString("en-IN", {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+        style: "currency",
+        currency: "INR"
+      })}`;
+    } catch (error) {
+    }
     return o(k$1, {
       children: o("div", {
         class: "wallet-applied-details-container",
