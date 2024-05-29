@@ -58,6 +58,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     const cartDetails = await cartRes.json();
     setIsCartEmpty(cartDetails?.item_count === 0 ? true : false)
     const totalPrice = cartDetails?.total_price / 100;
+    localStorage.setItem("totalCartPrice", `${totalPrice}`)
     const totalDiscount = cartDetails?.total_discount / 100;
     const appliedDiscountCode =
       cartDetails?.cart_level_discount_applications?.find((item) => {
