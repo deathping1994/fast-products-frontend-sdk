@@ -56,6 +56,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   const loadCartSummary = async () => {
     const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
     const cartDetails = await cartRes.json();
+    console.log("cartDetails json loadCartSummary", cartDetails);
     setIsCartEmpty(cartDetails?.item_count === 0 ? true : false)
     const totalPrice = cartDetails?.total_price / 100;
     localStorage.setItem("totalCartPrice", `${totalPrice}`)
