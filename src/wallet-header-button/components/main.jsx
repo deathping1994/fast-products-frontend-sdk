@@ -44,6 +44,8 @@ const Main = ({themeDetailsData, shadowRoot}) => {
                 ...customerDetails
               })
               setWalletAmount(`₹ ${walletResponse?.data?.data?.wallet?.wallet?.amount}`)
+            }else {
+              setWalletAmount(`₹ 0`)
             }
           } finally {
             setLoading(false)
