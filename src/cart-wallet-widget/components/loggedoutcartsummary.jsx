@@ -6,15 +6,19 @@ export function LoggedoutCartSummary({
 }) {
   const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
   const checkout_total = mainScript.getAttribute('data-checkout-total')
-  const checkoutTotalTag = document.querySelector(`.${checkout_total}`)
-  checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(
-    walletAppliedDetails?.totalPayablePrice
-  ).toLocaleString("en-IN", {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-    style: "currency",
-    currency: "INR",
-  })}`
+  try {
+    const checkoutTotalTag = document.querySelector(`.${checkout_total}`)
+    checkoutTotalTag.innerHTML = `${String.fromCharCode(160)}${Number(
+      walletAppliedDetails?.totalPayablePrice
+    ).toLocaleString("en-IN", {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+      style: "currency",
+      currency: "INR",
+    })}`
+  } catch (error) {
+    // console.log("checkout_total error");
+  }
 
   return (
     <>

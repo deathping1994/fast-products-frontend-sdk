@@ -1302,7 +1302,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	border-radius: 100%;
-	z-index: 9999;
+	z-index: 3;
 	cursor: pointer;
 	padding: 12px;
 }
@@ -1313,8 +1313,6 @@ body {
 	z-index: 9999;
 	position: fixed;
 	gap: 16px;
-	/* bottom: 13%;
-	right: 7%; */
 	max-width: 360px;
 	max-height: 580px;
 	width: 85vw;
@@ -3688,7 +3686,7 @@ body {
           onClick: handleBackBtn,
           children: "Back"
         }) : o(k$1, {
-          children: !(activePage === "coupon" || activePage === "spinwheel" || activePage === "scratchcard") && o("img", {
+          children: !(activePage === "coupon" || activePage === "spinwheel" || activePage === "scratchcard" || activePage === "referral") && o("img", {
             onClick: closeScreen,
             src: "https://media.farziengineer.co/farziwallet/cross.png",
             alt: ""
@@ -5439,7 +5437,7 @@ body {
       }) : o("div", {
         className: "referralContainer",
         children: o("div", {
-          className: "inviteAndEarnContainer",
+          className: "inviteAndEarnContainerPage",
           children: [o("div", {
             className: "inviteAndEarn",
             children: [o("img", {
@@ -5639,8 +5637,8 @@ body {
     function setTheme({
       themeDetails
     }) {
-      var _a2, _b2, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q;
-      var cssVariablesScope;
+      var _a2, _b2, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p;
+      let cssVariablesScope;
       if (loyalty_theme === "page") {
         cssVariablesScope = shadowRoot.querySelector(".loyaltyMainPage");
       } else {
@@ -5650,27 +5648,40 @@ body {
       if (loyalty_theme === "popup") {
         floatingPopupPos = shadowRoot.querySelector(".floatingPopup");
       }
-      if (loyalty_theme === "popup" && cssVariablesScope && ((_a2 = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _a2.popup_position)) {
-        cssVariablesScope.style.left = (_c = (_b2 = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _b2.popup_position) == null ? void 0 : _c.left;
-        cssVariablesScope.style.top = (_e = (_d = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _d.popup_position) == null ? void 0 : _e.top;
+      if (loyalty_theme === "popup" && floatingPopupPos) {
+        if (((_a2 = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _a2.icon_position) === "left") {
+          const leftOffset = ((_c = (_b2 = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _b2.icon_offset) == null ? void 0 : _c.left) || 0;
+          const bottomOffset = ((_e = (_d = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _d.icon_offset) == null ? void 0 : _e.bottom) || 0;
+          floatingPopupPos.style.left = `calc(2% + ${leftOffset})`;
+          floatingPopupPos.style.top = `calc(86% - ${bottomOffset})`;
+          if (cssVariablesScope) {
+            cssVariablesScope.style.left = `calc(8% + ${leftOffset})`;
+            cssVariablesScope.style.top = `calc(9% - ${leftOffset})`;
+          }
+        } else {
+          const leftOffset = ((_g = (_f = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _f.icon_offset) == null ? void 0 : _g.left) || 0;
+          const bottomOffset = ((_i = (_h = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _h.icon_offset) == null ? void 0 : _i.bottom) || 0;
+          floatingPopupPos.style.left = `calc(93% - ${leftOffset})`;
+          floatingPopupPos.style.top = `calc(86% - ${bottomOffset})`;
+          if (cssVariablesScope) {
+            cssVariablesScope.style.left = `calc(65% - ${leftOffset})`;
+            cssVariablesScope.style.top = `calc(9% - ${leftOffset})`;
+          }
+        }
       }
-      if (loyalty_theme === "popup" && floatingPopupPos && ((_f = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _f.icon_position)) {
-        floatingPopupPos.style.left = (_h = (_g = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _g.icon_position) == null ? void 0 : _h.left;
-        floatingPopupPos.style.top = (_j = (_i = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _i.icon_position) == null ? void 0 : _j.top;
-      }
-      if (cssVariablesScope && ((_k = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _k.theme_color)) {
-        cssVariablesScope.style.setProperty("--loyalty_popup_theme_background", (_l = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _l.theme_color);
-        if ((_m = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _m.coin_icon) {
-          cssVariablesScope.style.setProperty("--coin-svg-url", `url("${(_n = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _n.coin_icon}")`);
-          cssVariablesScope.style.setProperty("--coin-svg-inverted-url", `url("${(_o = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _o.coin_icon}")`);
+      if (cssVariablesScope && ((_j = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _j.theme_color)) {
+        cssVariablesScope.style.setProperty("--loyalty_popup_theme_background", (_k = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _k.theme_color);
+        if ((_l = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _l.coin_icon) {
+          cssVariablesScope.style.setProperty("--coin-svg-url", `url("${(_m = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _m.coin_icon}")`);
+          cssVariablesScope.style.setProperty("--coin-svg-inverted-url", `url("${(_n = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _n.coin_icon}")`);
         } else {
           cssVariablesScope.style.setProperty("--coin-svg-url", `url("https://media.farziengineer.co/farziwallet/coin-icon.png")`);
           cssVariablesScope.style.setProperty("--coin-svg-inverted-url", `url("https://media.farziengineer.co/farziwallet/coin-icon.png")`);
         }
       }
-      if ((_p = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _p.coin_name) {
+      if ((_o = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _o.coin_name) {
         window.fc_loyalty_vars = {
-          coin_name: (_q = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _q.coin_name
+          coin_name: (_p = themeDetails == null ? void 0 : themeDetails.data) == null ? void 0 : _p.coin_name
         };
       } else {
         window.fc_loyalty_vars = {
@@ -5741,7 +5752,7 @@ body {
           case "referral":
             setScreenDetails({
               screen: "referral",
-              screenTitle: "referral_page",
+              screenTitle: "Referral",
               active: true
             });
             break;
