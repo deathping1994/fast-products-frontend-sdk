@@ -301,7 +301,7 @@ export function ApplyWallet({
       if (checkoutTarget?.enable) {
         setCookie("discount_code", walletCouponCode, 7);
         !renderApplyCouponCodeBox && fetch(`/discount/${walletCouponCode}`);
-        if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
+        if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null) {
           localStorage.setItem("fc_refresh_cart_update_status", "false");
           console.log("==local fc_refer 2 copy");
           fc_coupon_toggle(window.fc_refresh_cart);
@@ -337,14 +337,15 @@ export function ApplyWallet({
               .getAttribute("data-checkout-payment-due-target")
           ) / 100;
 
-        setWalletAppliedDetails({
-          ...walletAppliedDetails,
-          remainingWalletBalance: Number(userPoints) - walletPointsToApply,
-          walletDiscountApplied: walletPointsToApply,
-          currency: cartDetails?.currency,
-          totalPayablePrice: totalFinalPrice,
-        });
+          setWalletAppliedDetails(prevWalletAppliedDetails => ({
+            ...prevWalletAppliedDetails,
+            remainingWalletBalance: Number(userPoints) - walletPointsToApply,
+            walletDiscountApplied: walletPointsToApply,
+            currency: cartDetails?.currency,
+            totalPayablePrice: totalFinalPrice,
+           }));
         applyWalletAmount(walletPointsToApply);
+        console.log("=a=setWalletAppliedDetails", walletAppliedDetails);
         setLoadingWalletBal(false);
       } else {
         const appliedDiscountCode = localStorage.getItem(
@@ -359,15 +360,15 @@ export function ApplyWallet({
         );
         if (checkoutResponse) {
           if (
-            localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")
+            localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null
           ) {
             localStorage.setItem("fc_refresh_cart_update_status", "false");
             console.log("==local fc_refer 3 copy");
             fc_coupon_toggle(window.fc_refresh_cart);
           }
-          console.log("walletPointsToApply 3 copy", walletPointsToApply);
+          console.log("walletPointsToApply 3 copy", walletPointsToApply, Number(userPoints) - walletPointsToApply);
         }
-        console.log("walletAppliedDetails 3 copy", walletAppliedDetails);
+        console.log("walletAppliedDetails 3 copy", walletAppliedDetails, Number(userPoints) - walletPointsToApply);
         const cartResUpdated = await fetch(`/cart.json?v=${Date.now()}`);
         const cartDetailsUpdated = await cartResUpdated.json();
         console.log("cartDetailsUpdated json copy", cartDetailsUpdated);
@@ -444,7 +445,7 @@ export function ApplyWallet({
       );
 
       !renderApplyCouponCodeBox && fetch(`/discount/${walletCouponCode}`);
-      if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
+      if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null) {
         localStorage.setItem("fc_refresh_cart_update_status", "false");
         console.log("==local fc_refer 4");
         fc_coupon_toggle(window.fc_refresh_cart);
@@ -549,7 +550,7 @@ export function ApplyWallet({
       if (checkoutTarget?.enable) {
         setCookie("discount_code", walletCouponCode, 7);
         !renderApplyCouponCodeBox && fetch(`/discount/${walletCouponCode}`);
-        if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
+        if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null) {
           localStorage.setItem("fc_refresh_cart_update_status", "false");
           console.log("==local fc_refer 5");
           fc_coupon_toggle(window.fc_refresh_cart);
@@ -599,7 +600,7 @@ export function ApplyWallet({
           "fc-coupon-applied-code"
         );
         !renderApplyCouponCodeBox && fetch(`/discount/${walletCouponCode}`);
-        if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
+        if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null) {
           localStorage.setItem("fc_refresh_cart_update_status", "false");
           console.log("==local fc_refer 6");
           fc_coupon_toggle(window.fc_refresh_cart);
@@ -642,7 +643,7 @@ export function ApplyWallet({
       }
     }
     console.log(`localStorage.getItem("fc_refresh_cart_update_status")`,localStorage.getItem("fc_refresh_cart_update_status"));
-    if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
+    if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null) {
       localStorage.setItem("fc_refresh_cart_update_status", "false");
       console.log("==local fc_refer main");
       fc_coupon_toggle(window.fc_refresh_cart);

@@ -29,7 +29,9 @@
     "start:referral-popup-snippet": "concurrently \"npm run build:referral-popup-snippet\" \"npm run serve\"",
     "build:wallet-header-button": "vite build --config vite-configs/vite.wallet-header-button.config.js --watch",
     "start:wallet-header-button": "concurrently \"npm run build:wallet-header-button\" \"npm run serve\"",
-    "build:watch": "concurrently \"npm run build:cart-drawer\" \" npm run build:cart-wallet-widget\" \" npm run build:wallet-activity-snippet\" \" npm run build:loyalty-popup\" \" npm run build:referral-ui-snippet\" \" npm run build:scratch-card-snippet\" \" npm run build:spin-wheel-snippet\" \" npm run build:gifting-coupons-snippet\" \" npm run build:referral-popup-snippet\" \"npm run build:wallet-header-button\" \"npm run build:cart-wallet-strip\""
+    "build:clensta-cart-widget": "vite build --config vite-configs/vite.clensta-cart-widget.config.js --watch",
+    "start:clensta-cart-widget": "concurrently \"npm run build:clensta-cart-widget\" \"npm run serve\"",
+    "build:watch": "concurrently \"npm run build:cart-drawer\" \" npm run build:cart-wallet-widget\" \" npm run build:wallet-activity-snippet\" \" npm run build:loyalty-popup\" \" npm run build:referral-ui-snippet\" \" npm run build:scratch-card-snippet\" \" npm run build:spin-wheel-snippet\" \" npm run build:gifting-coupons-snippet\" \" npm run build:referral-popup-snippet\" \"npm run build:wallet-header-button\" \"npm run build:cart-wallet-strip\" \"npm run build:clensta-cart-widget\""
   },
   "dependencies": {
     "concurrently": "^8.2.2",
