@@ -510,18 +510,7 @@
     background: url("https://media.farziengineer.co/farziwallet/get-cashback.png");
     background-size: 100%;
     margin-right: 8px;
-  }
-
-@media (max-width:740px) {
-  #fc-retainley-wallet-btn {
-    width: fit-content;
-    font-size: 15px;
-  }
-  #fc-wallet-amt-name {
-    font-size: 10px;
-    transform: translate(-50%, 20%);
-  }
-}`;
+  }`;
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;

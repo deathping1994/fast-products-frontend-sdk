@@ -1100,7 +1100,7 @@ body {
                 currency: "INR"
               })}`]
             }), o("p", {
-              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : `Up to ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
+              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : `Maximum ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
                 style: "currency",
@@ -1179,6 +1179,7 @@ body {
       JSON.parse(localStorage.getItem("fc-wallet-redemption-limit"));
       walletLimitAmount = Number((walletRedemptionLimitDetails2 == null ? void 0 : walletRedemptionLimitDetails2.amount) || "0");
     }
+    console.log("walletRedemptionLimitDetails2 func", walletRedemptionLimitDetails2, cartTotalPrice);
     return walletLimitAmount;
   };
   function ApplyWallet({
@@ -1228,6 +1229,7 @@ body {
       });
       window.fc_wallet_amount = amount;
       document.dispatchEvent(event);
+      console.log("event fired");
     };
     const getUserPoints = async () => {
       var _a, _b, _c, _d, _e, _f;
@@ -1260,7 +1262,7 @@ body {
       }
     };
     const getWalletRemeptionLimit = async () => {
-      var _a, _b, _c, _d, _e, _f, _g, _h;
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
       try {
         const response = await fetch(`${WALLET_API_URI}/client-wallet-limit`, {
           method: "POST",
@@ -1283,6 +1285,7 @@ body {
           amount: Number((_h = (_g = walletData == null ? void 0 : walletData.data) == null ? void 0 : _g.limit_details) == null ? void 0 : _h.amount)
         };
         localStorage.setItem("fc-wallet-redemption-limit", JSON.stringify(lmt));
+        console.log("===type", (_j = (_i = walletData == null ? void 0 : walletData.data) == null ? void 0 : _i.limit_details) == null ? void 0 : _j.type, "===amount", Number((_l = (_k = walletData == null ? void 0 : walletData.data) == null ? void 0 : _k.limit_details) == null ? void 0 : _l.amount));
       } catch (err) {
         setWalletRedemptionLimitDetails({
           type: "FIXED",
@@ -1298,6 +1301,7 @@ body {
       var _a, _b, _c, _d, _e, _f, _g, _h, _i;
       setLoadingWalletBal(true);
       if (prevWalletApplied) {
+        console.log("==if walletRedemptionLimitDetails", walletRedemptionLimitDetails);
         if (checkoutTarget == null ? void 0 : checkoutTarget.enable) {
           setCookie("discount_code", "", 7);
           const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
@@ -1326,6 +1330,7 @@ body {
         !renderApplyCouponCodeBox && fetch(`/discount/${walletCouponCode2}`);
         if (localStorage.getItem("fc_refresh_cart_update_status") === "true") {
           localStorage.setItem("fc_refresh_cart_update_status", "false");
+          console.log("==local fc_refer 1 copy");
           fc_coupon_toggle(window.fc_refresh_cart);
         }
         await fetch(`/checkout/?discount=${walletCouponCode2},${appliedDiscountCode}`, {
@@ -1353,6 +1358,7 @@ body {
           setLoadingWalletBal(false);
         }
       } else {
+        console.log("==else walletRedemptionLimitDetails", walletRedemptionLimitDetails);
         const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
         const cartDetails = await cartRes.json();
         const prevWalletAmountApplied = (_d = (_c = cartDetails == null ? void 0 : cartDetails.cart_level_discount_applications) == null ? void 0 : _c.find((item) => {
@@ -1362,11 +1368,15 @@ body {
         const alreadyAppliedWalletDiscount = prevWalletAmountApplied ? prevWalletAmountApplied / 100 : 0;
         const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100 + alreadyAppliedWalletDiscount;
         const walletPointsToApplyBeforeLimit = Math.min(Number(userPoints), Number(totalPrice));
+        console.log("totalPrice copy", totalPrice, "userPoints copy", userPoints);
+        console.log("walletPointsToApplyBeforeLimit copy", walletPointsToApplyBeforeLimit);
         const walletRedemptionLimit = calculateWalletRedemptionLimit({
           walletRedemptionLimitDetails,
           cartTotalPrice: Number(totalPrice)
         });
+        console.log("walletRedemptionLimit 1 copy", walletRedemptionLimit);
         const walletPointsToApply = walletRedemptionLimit ? Math.min(Number(walletPointsToApplyBeforeLimit), Number(walletRedemptionLimit)) : walletPointsToApplyBeforeLimit;
+        console.log("walletPointsToApply", walletPointsToApply);
         try {
           localStorage.setItem("rtly-applied-discount", `${Math.round(walletPointsToApply)}`);
           if (walletPointsToApply > 0) {
@@ -1394,8 +1404,9 @@ body {
         if (checkoutTarget == null ? void 0 : checkoutTarget.enable) {
           setCookie("discount_code", walletCouponCode, 7);
           !renderApplyCouponCodeBox && fetch(`/discount/${walletCouponCode}`);
-          if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
+          if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null) {
             localStorage.setItem("fc_refresh_cart_update_status", "false");
+            console.log("==local fc_refer 2 copy");
             fc_coupon_toggle(window.fc_refresh_cart);
           }
           setWalletAppliedDetails({
@@ -1415,14 +1426,15 @@ body {
           let updatedCheckoutContainer = document.createElement("div");
           updatedCheckoutContainer.innerHTML = updatedCheckout;
           const totalFinalPrice = Number(updatedCheckoutContainer == null ? void 0 : updatedCheckoutContainer.querySelector("[data-checkout-payment-due-target]").getAttribute("data-checkout-payment-due-target")) / 100;
-          setWalletAppliedDetails({
-            ...walletAppliedDetails,
+          setWalletAppliedDetails((prevWalletAppliedDetails) => ({
+            ...prevWalletAppliedDetails,
             remainingWalletBalance: Number(userPoints) - walletPointsToApply,
             walletDiscountApplied: walletPointsToApply,
             currency: cartDetails == null ? void 0 : cartDetails.currency,
             totalPayablePrice: totalFinalPrice
-          });
+          }));
           applyWalletAmount(walletPointsToApply);
+          console.log("=a=setWalletAppliedDetails", walletAppliedDetails);
           setLoadingWalletBal(false);
         } else {
           const appliedDiscountCode = localStorage.getItem("fc-coupon-applied-code");
@@ -1431,13 +1443,17 @@ body {
             method: "POST"
           });
           if (checkoutResponse) {
-            if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
+            if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null) {
               localStorage.setItem("fc_refresh_cart_update_status", "false");
+              console.log("==local fc_refer 3 copy");
               fc_coupon_toggle(window.fc_refresh_cart);
             }
+            console.log("walletPointsToApply 3 copy", walletPointsToApply, Number(userPoints) - walletPointsToApply);
           }
+          console.log("walletAppliedDetails 3 copy", walletAppliedDetails, Number(userPoints) - walletPointsToApply);
           const cartResUpdated = await fetch(`/cart.json?v=${Date.now()}`);
           const cartDetailsUpdated = await cartResUpdated.json();
+          console.log("cartDetailsUpdated json copy", cartDetailsUpdated);
           const walletAppliedFromUpdatedCart = (_g = (_f = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _f.find((item) => {
             var _a2;
             return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes("WALLETAPPLIED");
@@ -1469,6 +1485,7 @@ body {
           setCookie("discount_code", "", 7);
           const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
           const cartDetails = await cartRes.json();
+          console.log("cartDetails", cartDetails);
           const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100;
           localStorage.setItem("totalCartPrice", `${totalPrice}`);
           setWalletAppliedDetails({
@@ -1491,8 +1508,9 @@ body {
         const walletCouponCode2 = "WALLET_REMOVED19212";
         const appliedDiscountCode = localStorage.getItem("fc-coupon-applied-code");
         !renderApplyCouponCodeBox && fetch(`/discount/${walletCouponCode2}`);
-        if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
+        if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null) {
           localStorage.setItem("fc_refresh_cart_update_status", "false");
+          console.log("==local fc_refer 4");
           fc_coupon_toggle(window.fc_refresh_cart);
         }
         await fetch(`/checkout/?discount=${walletCouponCode2},${appliedDiscountCode}`, {
@@ -1529,11 +1547,15 @@ body {
         const alreadyAppliedWalletDiscount = prevWalletAmountApplied ? prevWalletAmountApplied / 100 : 0;
         const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100 + alreadyAppliedWalletDiscount;
         const walletPointsToApplyBeforeLimit = Math.min(Number(userPoints), Number(totalPrice));
+        console.log("totalPrice", totalPrice, "userPoints", userPoints);
+        console.log("walletPointsToApplyBeforeLimit", walletPointsToApplyBeforeLimit);
         const walletRedemptionLimit = calculateWalletRedemptionLimit({
           walletRedemptionLimitDetails,
           cartTotalPrice: Number(totalPrice)
         });
+        console.log("walletRedemptionLimit 2", walletRedemptionLimit);
         const walletPointsToApply = walletRedemptionLimit ? Math.min(Number(walletPointsToApplyBeforeLimit), Number(walletRedemptionLimit)) : walletPointsToApplyBeforeLimit;
+        console.log("walletPointsToApply", walletPointsToApply);
         try {
           localStorage.setItem("rtly-applied-discount", `${Math.round(walletPointsToApply)}`);
           if (walletPointsToApply > 0) {
@@ -1561,8 +1583,9 @@ body {
         if (checkoutTarget == null ? void 0 : checkoutTarget.enable) {
           setCookie("discount_code", walletCouponCode, 7);
           !renderApplyCouponCodeBox && fetch(`/discount/${walletCouponCode}`);
-          if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
+          if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null) {
             localStorage.setItem("fc_refresh_cart_update_status", "false");
+            console.log("==local fc_refer 5");
             fc_coupon_toggle(window.fc_refresh_cart);
           }
           setWalletAppliedDetails({
@@ -1594,8 +1617,9 @@ body {
         } else {
           const appliedDiscountCode = localStorage.getItem("fc-coupon-applied-code");
           !renderApplyCouponCodeBox && fetch(`/discount/${walletCouponCode}`);
-          if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
+          if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null) {
             localStorage.setItem("fc_refresh_cart_update_status", "false");
+            console.log("==local fc_refer 6");
             fc_coupon_toggle(window.fc_refresh_cart);
           }
           await fetch(`/checkout/?discount=${walletCouponCode},${appliedDiscountCode}`, {
@@ -1624,8 +1648,10 @@ body {
           setLoadingWalletBal(false);
         }
       }
-      if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
+      console.log(`localStorage.getItem("fc_refresh_cart_update_status")`, localStorage.getItem("fc_refresh_cart_update_status"));
+      if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status") === null) {
         localStorage.setItem("fc_refresh_cart_update_status", "false");
+        console.log("==local fc_refer main");
         fc_coupon_toggle(window.fc_refresh_cart);
       }
       try {
@@ -1639,16 +1665,17 @@ body {
       window.set_cartdrawer_wallet_amount = (element_id) => {
         const exposed_wallet_amt = document.getElementById(`${element_id}`);
         const changeWalletAmt = (data) => {
-          var _a;
+          var _a, _b;
           exposed_wallet_amt.innerHTML = `-${Number(data.detail.amount).toLocaleString("en-IN", {
             maximumFractionDigits: 2,
             minimumFractionDigits: 2,
             style: "currency",
             currency: "INR"
           })}`;
+          console.log("event suna", (_a = data == null ? void 0 : data.detail) == null ? void 0 : _a.amount);
           exposed_wallet_amt.removeEventListener("wallet_amount_applied", changeWalletAmt);
           return {
-            amount: (_a = data == null ? void 0 : data.detail) == null ? void 0 : _a.amount
+            amount: (_b = data == null ? void 0 : data.detail) == null ? void 0 : _b.amount
           };
         };
         exposed_wallet_amt.addEventListener("wallet_amount_applied", changeWalletAmt);

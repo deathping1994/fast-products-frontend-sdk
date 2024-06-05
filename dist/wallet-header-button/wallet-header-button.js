@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = ".loader {\n    border: 4px solid #f3f3f3;\n    border-top: 4px solid #acacac;\n    border-radius: 50%;\n    width: 14px;\n    height: 14px;\n    animation: spin 2s linear infinite;\n  }\n  \n  @keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n  }\n\n#fc-retainley-wallet-box {\n    position: relative;\n    width: fit-content;\n}\n\n#fc-retainley-wallet-btn {\n  background-color: #0056b2;\n  padding: 4px 20px;\n  color: #eed364;\n  border-radius: 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  max-width: 90px;\n  font-weight: bold;\n  border: 2px solid #eed364;\n  border-top: none;\n  text-decoration: none;\n}\n\n#fc-wallet-amt-name {\n  position: absolute;\n  top: -10px;\n  left: 50%;\n  width: fit-content;\n  color: white;\n  text-wrap: nowrap;\n  font-size: 12px;\n  font-weight: bold;\n  transform: translate(-50%);\n}\n";
+  const style = ".loader {\n    border: 4px solid #f3f3f3;\n    border-top: 4px solid #acacac;\n    border-radius: 50%;\n    width: 14px;\n    height: 14px;\n    animation: spin 2s linear infinite;\n  }\n  \n  @keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n  }\n\n#fc-retainley-wallet-box {\n    position: relative;\n    width: fit-content;\n}\n\n#fc-retainley-wallet-btn {\n  background-color: #0056b2;\n  padding: 4px 20px;\n  color: #eed364;\n  border-radius: 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  max-width: 90px;\n  font-weight: bold;\n  border: 2px solid #eed364;\n  border-top: none;\n  text-decoration: none;\n}\n\n#fc-wallet-amt-name {\n  position: absolute;\n  top: -10px;\n  left: 50%;\n  width: fit-content;\n  color: white;\n  text-wrap: nowrap;\n  font-size: 12px;\n  font-weight: bold;\n  transform: translate(-50%);\n}\n\n@media (max-width:540px) {\n  #fc-retainley-wallet-btn {\n    width: fit-content;\n    min-width: fit-content;\n    font-size: 14px;\n    padding: 3px 12px;\n  }\n  #fc-wallet-amt-name {\n    font-size: 8px;\n    transform: translate(-50%, 35%);\n  }\n}";
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -464,6 +464,8 @@
                 ...customerDetails
               });
               setWalletAmount(`₹ ${(_l = (_k = (_j = (_i = walletResponse == null ? void 0 : walletResponse.data) == null ? void 0 : _i.data) == null ? void 0 : _j.wallet) == null ? void 0 : _k.wallet) == null ? void 0 : _l.amount}`);
+            } else {
+              setWalletAmount(`₹ 0`);
             }
           } finally {
             setLoading(false);
