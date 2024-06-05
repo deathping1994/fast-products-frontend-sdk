@@ -249,7 +249,7 @@ export function ApplyWallet({
         Number(totalPrice)
       );
       //console.log("totalPrice copy", totalPrice, "userPoints copy", userPoints);
-      //console.log(
+      // console.log(
       //   "walletPointsToApplyBeforeLimit copy",
       //   walletPointsToApplyBeforeLimit
       // );
@@ -543,7 +543,7 @@ export function ApplyWallet({
           setWalletApplied(false);
         }
       } catch (err) {
-        //console.log(err);
+        console.log(err);
       }
 
       if (checkoutTarget?.enable) {
