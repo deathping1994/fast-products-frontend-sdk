@@ -35,9 +35,11 @@ const ModernLogin = ({ themeDetailsData, customerDetails }) => {
     };
     getWalletRemeptionLimit()
   },[])
-    const handleLogin = ()=>{
-        window.location.href = themeDetailsData?.data?.login_page || '/account/login'
-    }
+  
+  const handleLogin = () => {
+    handleKpAndShopifyLogin("/account")
+    // window.location.href = themeDetailsData?.data?.login_page || '/account/login'
+  }
   return (
     <>
       <div className="modernWalletContainer">
