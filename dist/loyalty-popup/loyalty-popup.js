@@ -4321,7 +4321,7 @@ body {
         children: [o("div", {
           children: [o("p", {
             class: "walletCardText",
-            children: ["My ", window.fc_loyalty_vars.coin_name, " Coins"]
+            children: ["My ", window.fc_loyalty_vars.coin_name]
           }), o("div", {
             class: "badgeCard",
             children: [o("img", {
