@@ -7,6 +7,7 @@ import { WALLET_API_URI } from "..";
 import ModernLogin from "./ModernUI/ModernLogin";
 
 export function Main({ themeDetailsData, shadowRoot }) {
+  const polling = themeDetailsData?.data?.polling?.toLowerCase() !== "false";
   const [customerDetails, setCustomerDetails] = useState({
     customerID: "",
     customerTags: "",
@@ -173,10 +174,12 @@ export function Main({ themeDetailsData, shadowRoot }) {
         isSet: true,
       });
     } else {
-      setInterval(() => {
-        // @ts-ignore
-        syncCartSummary(window.fc_cart_details || walletAppliedDetails);
-      }, 10000);
+      if(polling) {
+        setInterval(() => {
+          // @ts-ignore
+          syncCartSummary(window.fc_cart_details || walletAppliedDetails);
+        }, 10000);
+      }
       setCheckoutTarget({
         enable: false,
         isSet: true,
