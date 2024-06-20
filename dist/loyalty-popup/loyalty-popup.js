@@ -2390,6 +2390,12 @@ body {
     walletAmount,
     onClick
   }) => {
+    p(() => {
+      const coinName = window.fc_loyalty_vars.coin_name;
+      if (coinName) {
+        sessionStorage.setItem("coinName", coinName);
+      }
+    }, []);
     return o(k$1, {
       children: o("div", {
         onClick,
@@ -2397,7 +2403,11 @@ body {
         children: [o("div", {
           children: [o("p", {
             class: "walletCardText",
-            children: ["My ", window.fc_loyalty_vars.coin_name]
+            children: [
+              "My",
+              // @ts-ignore
+              sessionStorage.getItem("coinName") ? sessionStorage.getItem("coinName") : window.fc_loyalty_vars.coin_name
+            ]
           }), o("div", {
             class: "badgeCard",
             children: [o("img", {
@@ -4242,7 +4252,7 @@ body {
                   })
                 }), o("div", {
                   children: [o("h5", {
-                    children: ["100 ", window.fc_loyalty_vars.coin_name, " Coins = ₹100"]
+                    children: ["100 ", window.fc_loyalty_vars.coin_name, "  = ₹100"]
                   }), o("p", {
                     children: ["Use ", window.fc_loyalty_vars.coin_name, " Coins to create a custom discount coupon"]
                   })]
@@ -4321,7 +4331,7 @@ body {
         children: [o("div", {
           children: [o("p", {
             class: "walletCardText",
-            children: ["My ", window.fc_loyalty_vars.coin_name, " Coins"]
+            children: ["My ", window.fc_loyalty_vars.coin_name]
           }), o("div", {
             class: "badgeCard",
             children: [o("img", {
