@@ -36,7 +36,9 @@ const ModernLogin = ({ themeDetailsData, customerDetails }) => {
     getWalletRemeptionLimit()
   },[])
     const handleLogin = ()=>{
-        window.location.href = themeDetailsData?.data?.login_page || '/account/login'
+      if(window?.fc_custom_login)
+        window?.fc_custom_login()
+      else window.location.href = themeDetailsData?.data?.login_page || '/account/login';
     }
   return (
     <>
