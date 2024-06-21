@@ -37,8 +37,9 @@ const ModernLogin = ({ themeDetailsData, customerDetails }) => {
   },[])
   
   const handleLogin = () => {
-    handleKpAndShopifyLogin("/account")
-    // window.location.href = themeDetailsData?.data?.login_page || '/account/login'
+    if(window?.fc_custom_login)
+      window?.fc_custom_login()
+    else window.location.href = themeDetailsData?.data?.login_page || '/account/login';
   }
   return (
     <>
