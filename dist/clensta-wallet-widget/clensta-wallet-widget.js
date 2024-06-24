@@ -1208,7 +1208,11 @@ body {
       getWalletRemeptionLimit();
     }, []);
     const handleLogin = () => {
-      handleKpAndShopifyLogin("/account");
+      var _a2;
+      if (window == null ? void 0 : window.fc_custom_login)
+        window == null ? void 0 : window.fc_custom_login();
+      else
+        window.location.href = ((_a2 = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a2.login_page) || "/account/login";
     };
     return o(k$1, {
       children: o("div", {

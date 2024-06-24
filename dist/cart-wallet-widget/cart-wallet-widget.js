@@ -1030,7 +1030,10 @@ body {
     }, []);
     const handleLogin = () => {
       var _a2;
-      window.location.href = ((_a2 = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a2.login_page) || "/account/login";
+      if (window == null ? void 0 : window.fc_custom_login)
+        window == null ? void 0 : window.fc_custom_login();
+      else
+        window.location.href = ((_a2 = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a2.login_page) || "/account/login";
     };
     return o(k$1, {
       children: o("div", {
