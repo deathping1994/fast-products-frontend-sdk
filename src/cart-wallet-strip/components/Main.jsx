@@ -122,13 +122,14 @@ const Main = ({themeDetailsData, shadowRoot}) => {
         const cashback_strip = mainScript.getAttribute("data-cashback-strip");
         const wallet_credit = mainScript.getAttribute("data-wallet-credit-box");
         const walletUiTheme = mainScript.getAttribute('wallet-theme')
+        const polling = themeDetailsData?.data?.polling?.toLowerCase() !== "false";
     
         if (checkout_target) {
           setCheckoutTarget({
             enable: true,
             isSet: true,
           });
-        } else {
+        } else if(polling){
           setInterval(() => {
             // @ts-ignore
             syncCartSummary(window.fc_cart_details || walletAppliedDetails);

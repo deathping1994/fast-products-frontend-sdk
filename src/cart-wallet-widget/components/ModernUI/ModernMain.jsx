@@ -34,7 +34,7 @@ const ModernMain = ({
                 currency: "INR",
               })}`}
           </p>
-          <p>{walletRedemptionLimitDetails?.type === "CART_PERCENT" ? `${walletRedemptionLimitDetails?.amount}% of the Grand Total ` : `Maximum ${Number(walletRedemptionLimitDetails?.amount).toLocaleString("en-IN", {
+          <p>{walletRedemptionLimitDetails?.type === "CART_PERCENT" ? `${walletRedemptionLimitDetails?.amount}% of the Grand Total ` : `Up to ${Number(walletRedemptionLimitDetails?.amount).toLocaleString("en-IN", {
                       maximumFractionDigits: 2,
                       minimumFractionDigits: 2,
                       style: "currency",

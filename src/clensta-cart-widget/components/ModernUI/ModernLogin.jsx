@@ -35,11 +35,12 @@ const ModernLogin = ({ themeDetailsData, customerDetails }) => {
     };
     getWalletRemeptionLimit()
   },[])
-    const handleLogin = ()=>{
-      if(window?.fc_custom_login)
-        window?.fc_custom_login()
-      else window.location.href = themeDetailsData?.data?.login_page || '/account/login';
-    }
+  
+  const handleLogin = () => {
+    if(window?.fc_custom_login)
+      window?.fc_custom_login()
+    else window.location.href = themeDetailsData?.data?.login_page || '/account/login';
+  }
   return (
     <>
       <div className="modernWalletContainer">
