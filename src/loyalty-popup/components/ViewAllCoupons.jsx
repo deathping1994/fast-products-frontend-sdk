@@ -190,7 +190,7 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot, loyalt
                               <div>
                                   <h5>100 {window.
                       // @ts-ignore
-                                  fc_loyalty_vars.coin_name} Coins = ₹100</h5>
+                                  fc_loyalty_vars.coin_name}  = ₹100</h5>
                                   <p>Use {window.
                       // @ts-ignore
                                   fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
