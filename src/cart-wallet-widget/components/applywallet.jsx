@@ -26,11 +26,30 @@ const calculateWalletRedemptionLimit = ({
       (walletRedemptionLimitDetails2?.amount / 100) * cartTotalPrice;
   } else if (walletRedemptionLimitDetails2?.type === "FIXED") {
     walletLimitAmount = Number(walletRedemptionLimitDetails2?.amount || "0");
+  } else if (walletRedemptionLimitDetails2?.type === "VARIABLE") {
+    const amountArray = walletRedemptionLimitDetails2?.amount;
+    let discount = 0;
+
+    const sortedArray = amountArray.sort((a, b) => a?.minSubTotal - b?.minSubTotal);
+    let isPercent = false;
+
+    for (let item of sortedArray) {
+      if (cartTotalPrice >= item?.minSubTotal) {
+        if (item?.type === "PERCENT") 
+          isPercent = true;
+        else isPercent = false;
+        discount = item?.amount;
+      } else {
+        break;
+      }
+    }
+
+    walletLimitAmount = isPercent ? (discount / 100) * cartTotalPrice : Number(discount || "0");
   } else {
     const limitDet = JSON.parse(localStorage.getItem("fc-wallet-redemption-limit"))
     walletLimitAmount = Number(walletRedemptionLimitDetails2?.amount || "0");
   }
-  console.log("walletRedemptionLimitDetails2 func", walletRedemptionLimitDetails2,cartTotalPrice);
+  console.log("walletRedemptionLimitDetails2 func", walletRedemptionLimitDetails2, cartTotalPrice);
   return walletLimitAmount;
 };
 
@@ -81,9 +100,9 @@ export function ApplyWallet({
   }
 
   const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] = useState({
-      amount: 0,
-      type: null,
-    });
+    amount: 0,
+    type: null,
+  });
   const applyWalletAmount = (amount) => {
     const event = new CustomEvent("wallet_amount_applied", {
       detail: { amount },
@@ -140,10 +159,19 @@ export function ApplyWallet({
         type: walletData?.data?.limit_details?.type,
         amount: Number(walletData?.data?.limit_details?.amount),
       });
+      
       const lmt = {
         type: walletData?.data?.limit_details?.type,
         amount: Number(walletData?.data?.limit_details?.amount),
       };
+      // setWalletRedemptionLimitDetails({
+      //   type: "VARIABLE",
+      //   amount: [{ minSubTotal: 400, type: "FIXED", amount: 100 }, { minSubTotal: 800, type: "PERCENT", amount: 10 }],
+      // });
+      // const lmt = {
+      //   type: "VARIABLE",
+      //   amount: [{ minSubTotal: 400, type: "FIXED", amount: 100 }, { minSubTotal: 800, type: "PERCENT", amount: 10 }],
+      // };
       localStorage.setItem("fc-wallet-redemption-limit", JSON.stringify(lmt))
       console.log("===type", walletData?.data?.limit_details?.type, "===amount", Number(walletData?.data?.limit_details?.amount));
     } catch (err) {
@@ -260,9 +288,9 @@ export function ApplyWallet({
       console.log("walletRedemptionLimit 1 copy", walletRedemptionLimit);
       const walletPointsToApply = walletRedemptionLimit
         ? Math.min(
-            Number(walletPointsToApplyBeforeLimit),
-            Number(walletRedemptionLimit)
-          )
+          Number(walletPointsToApplyBeforeLimit),
+          Number(walletRedemptionLimit)
+        )
         : walletPointsToApplyBeforeLimit;
       console.log("walletPointsToApply", walletPointsToApply);
       try {
@@ -508,9 +536,9 @@ export function ApplyWallet({
       console.log("walletRedemptionLimit 2", walletRedemptionLimit);
       const walletPointsToApply = walletRedemptionLimit
         ? Math.min(
-            Number(walletPointsToApplyBeforeLimit),
-            Number(walletRedemptionLimit)
-          )
+          Number(walletPointsToApplyBeforeLimit),
+          Number(walletRedemptionLimit)
+        )
         : walletPointsToApplyBeforeLimit;
       console.log("walletPointsToApply", walletPointsToApply);
       try {
@@ -641,7 +669,7 @@ export function ApplyWallet({
         setLoadingWalletBal(false);
       }
     }
-    console.log(`localStorage.getItem("fc_refresh_cart_update_status")`,localStorage.getItem("fc_refresh_cart_update_status"));
+    console.log(`localStorage.getItem("fc_refresh_cart_update_status")`, localStorage.getItem("fc_refresh_cart_update_status"));
     if (localStorage.getItem("fc_refresh_cart_update_status") === "true" || localStorage.getItem("fc_refresh_cart_update_status")) {
       localStorage.setItem("fc_refresh_cart_update_status", "false");
       console.log("==local fc_refer main");
@@ -685,7 +713,7 @@ export function ApplyWallet({
       );
     };
   }, [walletApplied]);
-  const fc_coupon_toggle = (callback = () => {}) => {
+  const fc_coupon_toggle = (callback = () => { }) => {
     callback();
   };
   const toggleUserWallet = () => {
@@ -696,10 +724,9 @@ export function ApplyWallet({
         const cart_applied = localStorage.getItem("fc-wallet-cart-applied");
         localStorage.setItem(
           "rtly-applied-discount",
-          `${
-            cart_applied === "false"
-              ? "0"
-              : walletAppliedDetails?.walletDiscountApplied
+          `${cart_applied === "false"
+            ? "0"
+            : walletAppliedDetails?.walletDiscountApplied
           }`
         );
       } catch (err) {
@@ -833,7 +860,7 @@ export function ApplyWallet({
             )}
 
             {renderApplyCouponCodeBox &&
-            walletAppliedDetails?.couponDiscountApplied ? (
+              walletAppliedDetails?.couponDiscountApplied ? (
               <div class="wallet-applied-details">
                 <p>Coupon Discount</p>
                 <p class="point-details">
