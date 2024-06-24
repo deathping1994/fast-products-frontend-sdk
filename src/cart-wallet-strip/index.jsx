@@ -74,7 +74,7 @@ async function renderWalletStrip() {
       shadowRoot?.querySelector(".widget-custom-styles")
     );
   } catch (err) {
-    console.log("error", err);
+    // console.log("error", err);
   }
 }
 
