@@ -13,6 +13,12 @@ const ModernMain = ({
     event.stopPropagation();
     toggleUserWallet(walletApplied);
   };
+
+  window.uncheck = (j) => {
+    if (j == 101 && walletApplied) {
+      toggleUserWallet(walletApplied);
+    }
+  };
   return (
     <>
     {
