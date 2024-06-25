@@ -13,6 +13,16 @@ const ModernMain = ({
   const [storedWalletDetails, setStoredWalletDetails] = useState(null);
   const applyWalletLoader = themeDetailsData?.data?.apply_wallet_loader?.toLowerCase() !== "false";
 
+  const getWalletRedemptionLimitDetails = () => {
+    if (!walletRedemptionLimitDetails?.type) {
+      const storedLimitDetails = localStorage.getItem('fc-wallet-redemption-limit');
+      return storedLimitDetails ? JSON.parse(storedLimitDetails) : null;
+    }
+    return walletRedemptionLimitDetails;
+  };
+
+  const effectiveWalletRedemptionLimitDetails = getWalletRedemptionLimitDetails();
+
   useEffect(() => {
     const storedDetails = sessionStorage.getItem('walletAppliedDetails');
     if (storedDetails) {
@@ -21,7 +31,7 @@ const ModernMain = ({
       sessionStorage.setItem('walletAppliedDetails', JSON.stringify(walletAppliedDetails));
       setStoredWalletDetails(walletAppliedDetails);
     }
-  }, []);
+  }, [walletAppliedDetails]);
 
   useEffect(() => {
     if (
@@ -61,39 +71,40 @@ const ModernMain = ({
                     currency: 'INR'
                   })}`}
               </p>
-              <p>
-                {walletRedemptionLimitDetails?.type === 'CART_PERCENT'
-                  ? `${walletRedemptionLimitDetails?.amount}% of the Grand Total `
-                  : `Maximum ${Number(walletRedemptionLimitDetails?.amount).toLocaleString('en-IN', {
+              {effectiveWalletRedemptionLimitDetails?.type && (
+                <p>
+                  {effectiveWalletRedemptionLimitDetails?.type === 'CART_PERCENT'
+                    ? `${effectiveWalletRedemptionLimitDetails?.amount}% of the Grand Total`
+                    : `Maximum ${Number(effectiveWalletRedemptionLimitDetails?.amount).toLocaleString('en-IN', {
                       maximumFractionDigits: 2,
                       minimumFractionDigits: 2,
                       style: 'currency',
                       currency: 'INR'
                     })} `}
-                can be paid via{' '}
-                {themeDetailsData?.data?.coin_name}
-              </p>
+                  can be paid via {themeDetailsData?.data?.coin_name}
+                </p>
+              )}
             </div>
             <div className='modernWalletBalance'>
               <p>Balance</p>
               <p>
                 {walletApplied
                   ? Number(
-                      detailsToUse?.remainingWalletBalance.toFixed(2)
-                    ).toLocaleString('en-IN', {
-                      maximumFractionDigits: 2,
-                      minimumFractionDigits: 2,
-                      style: 'currency',
-                      currency: 'INR'
-                    })
+                    detailsToUse?.remainingWalletBalance.toFixed(2)
+                  ).toLocaleString('en-IN', {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                    style: 'currency',
+                    currency: 'INR'
+                  })
                   : Number(
-                      detailsToUse?.remainingWalletBalance.toFixed(2)
-                    ).toLocaleString('en-IN', {
-                      maximumFractionDigits: 2,
-                      minimumFractionDigits: 2,
-                      style: 'currency',
-                      currency: 'INR'
-                    })}
+                    detailsToUse?.remainingWalletBalance.toFixed(2)
+                  ).toLocaleString('en-IN', {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                    style: 'currency',
+                    currency: 'INR'
+                  })}
               </p>
             </div>
           </div>
