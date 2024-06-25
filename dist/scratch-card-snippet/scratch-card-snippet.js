@@ -1261,725 +1261,738 @@
 }
 */
 .mainPopup {
-	--loyalty_popup_theme_background: #000000;
-	--coin-svg-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23000000'/%3E%3Cpath d='M11.6003 6.28047C11.6301 6.19829 11.6845 6.12728 11.7561 6.0771C11.8277 6.02692 11.913 6 12.0004 6C12.0879 6 12.1732 6.02692 12.2448 6.0771C12.3164 6.12728 12.3708 6.19829 12.4006 6.28047L12.8076 7.39245C13.1264 8.2644 13.6316 9.05626 14.2881 9.71274C14.9446 10.3692 15.7364 10.8745 16.6084 11.1933L17.7195 11.6003C17.8017 11.6301 17.8727 11.6845 17.9229 11.7561C17.9731 11.8277 18 11.913 18 12.0004C18 12.0879 17.9731 12.1732 17.9229 12.2448C17.8727 12.3164 17.8017 12.3708 17.7195 12.4006L16.6084 12.8076C15.7364 13.1264 14.9446 13.6316 14.2881 14.2881C13.6316 14.9446 13.1264 15.7364 12.8076 16.6084L12.4006 17.7195C12.3708 17.8017 12.3164 17.8727 12.2448 17.9229C12.1732 17.9731 12.0879 18 12.0004 18C11.913 18 11.8277 17.9731 11.7561 17.9229C11.6845 17.8727 11.6301 17.8017 11.6003 17.7195L11.1933 16.6084C10.8745 15.7364 10.3692 14.9446 9.71274 14.2881C9.05626 13.6316 8.2644 13.1264 7.39245 12.8076L6.28047 12.4006C6.19829 12.3708 6.12728 12.3164 6.0771 12.2448C6.02692 12.1732 6 12.0879 6 12.0004C6 11.913 6.02692 11.8277 6.0771 11.7561C6.12728 11.6845 6.19829 11.6301 6.28047 11.6003L7.39245 11.1933C8.2644 10.8745 9.05626 10.3692 9.71274 9.71274C10.3692 9.05626 10.8745 8.2644 11.1933 7.39245L11.6003 6.28047Z' fill='white'/%3E%3C/svg%3E%0A");
-	--coin-svg-inverted-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 19 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9.5' cy='9.5' r='9.5' fill='white'/%3E%3Cpath d='M9.18353 4.97204C9.20715 4.90698 9.25022 4.85076 9.3069 4.81104C9.36358 4.77131 9.43112 4.75 9.50034 4.75C9.56955 4.75 9.63709 4.77131 9.69377 4.81104C9.75045 4.85076 9.79353 4.90698 9.81714 4.97204L10.1393 5.85236C10.3917 6.54265 10.7917 7.16954 11.3114 7.68925C11.8311 8.20896 12.458 8.60897 13.1483 8.86133L14.028 9.18353C14.093 9.20715 14.1492 9.25022 14.189 9.3069C14.2287 9.36358 14.25 9.43112 14.25 9.50034C14.25 9.56955 14.2287 9.63709 14.189 9.69377C14.1492 9.75045 14.093 9.79353 14.028 9.81714L13.1483 10.1393C12.458 10.3917 11.8311 10.7917 11.3114 11.3114C10.7917 11.8311 10.3917 12.458 10.1393 13.1483L9.81714 14.028C9.79353 14.093 9.75045 14.1492 9.69377 14.189C9.63709 14.2287 9.56955 14.25 9.50034 14.25C9.43112 14.25 9.36358 14.2287 9.3069 14.189C9.25022 14.1492 9.20715 14.093 9.18353 14.028L8.86133 13.1483C8.60897 12.458 8.20896 11.8311 7.68925 11.3114C7.16954 10.7917 6.54265 10.3917 5.85236 10.1393L4.97204 9.81714C4.90698 9.79353 4.85076 9.75045 4.81104 9.69377C4.77131 9.63709 4.75 9.56955 4.75 9.50034C4.75 9.43112 4.77131 9.36358 4.81104 9.3069C4.85076 9.25022 4.90698 9.20715 4.97204 9.18353L5.85236 8.86133C6.54265 8.60897 7.16954 8.20896 7.68925 7.68925C8.20896 7.16954 8.60897 6.54265 8.86133 5.85236L9.18353 4.97204Z' fill='%23000000'/%3E%3C/svg%3E%0A");
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	
+  --loyalty_popup_theme_background: #000000;
+  --coin-svg-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23000000'/%3E%3Cpath d='M11.6003 6.28047C11.6301 6.19829 11.6845 6.12728 11.7561 6.0771C11.8277 6.02692 11.913 6 12.0004 6C12.0879 6 12.1732 6.02692 12.2448 6.0771C12.3164 6.12728 12.3708 6.19829 12.4006 6.28047L12.8076 7.39245C13.1264 8.2644 13.6316 9.05626 14.2881 9.71274C14.9446 10.3692 15.7364 10.8745 16.6084 11.1933L17.7195 11.6003C17.8017 11.6301 17.8727 11.6845 17.9229 11.7561C17.9731 11.8277 18 11.913 18 12.0004C18 12.0879 17.9731 12.1732 17.9229 12.2448C17.8727 12.3164 17.8017 12.3708 17.7195 12.4006L16.6084 12.8076C15.7364 13.1264 14.9446 13.6316 14.2881 14.2881C13.6316 14.9446 13.1264 15.7364 12.8076 16.6084L12.4006 17.7195C12.3708 17.8017 12.3164 17.8727 12.2448 17.9229C12.1732 17.9731 12.0879 18 12.0004 18C11.913 18 11.8277 17.9731 11.7561 17.9229C11.6845 17.8727 11.6301 17.8017 11.6003 17.7195L11.1933 16.6084C10.8745 15.7364 10.3692 14.9446 9.71274 14.2881C9.05626 13.6316 8.2644 13.1264 7.39245 12.8076L6.28047 12.4006C6.19829 12.3708 6.12728 12.3164 6.0771 12.2448C6.02692 12.1732 6 12.0879 6 12.0004C6 11.913 6.02692 11.8277 6.0771 11.7561C6.12728 11.6845 6.19829 11.6301 6.28047 11.6003L7.39245 11.1933C8.2644 10.8745 9.05626 10.3692 9.71274 9.71274C10.3692 9.05626 10.8745 8.2644 11.1933 7.39245L11.6003 6.28047Z' fill='white'/%3E%3C/svg%3E%0A");
+  --coin-svg-inverted-url: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 19 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9.5' cy='9.5' r='9.5' fill='white'/%3E%3Cpath d='M9.18353 4.97204C9.20715 4.90698 9.25022 4.85076 9.3069 4.81104C9.36358 4.77131 9.43112 4.75 9.50034 4.75C9.56955 4.75 9.63709 4.77131 9.69377 4.81104C9.75045 4.85076 9.79353 4.90698 9.81714 4.97204L10.1393 5.85236C10.3917 6.54265 10.7917 7.16954 11.3114 7.68925C11.8311 8.20896 12.458 8.60897 13.1483 8.86133L14.028 9.18353C14.093 9.20715 14.1492 9.25022 14.189 9.3069C14.2287 9.36358 14.25 9.43112 14.25 9.50034C14.25 9.56955 14.2287 9.63709 14.189 9.69377C14.1492 9.75045 14.093 9.79353 14.028 9.81714L13.1483 10.1393C12.458 10.3917 11.8311 10.7917 11.3114 11.3114C10.7917 11.8311 10.3917 12.458 10.1393 13.1483L9.81714 14.028C9.79353 14.093 9.75045 14.1492 9.69377 14.189C9.63709 14.2287 9.56955 14.25 9.50034 14.25C9.43112 14.25 9.36358 14.2287 9.3069 14.189C9.25022 14.1492 9.20715 14.093 9.18353 14.028L8.86133 13.1483C8.60897 12.458 8.20896 11.8311 7.68925 11.3114C7.16954 10.7917 6.54265 10.3917 5.85236 10.1393L4.97204 9.81714C4.90698 9.79353 4.85076 9.75045 4.81104 9.69377C4.77131 9.63709 4.75 9.56955 4.75 9.50034C4.75 9.43112 4.77131 9.36358 4.81104 9.3069C4.85076 9.25022 4.90698 9.20715 4.97204 9.18353L5.85236 8.86133C6.54265 8.60897 7.16954 8.20896 7.68925 7.68925C8.20896 7.16954 8.60897 6.54265 8.86133 5.85236L9.18353 4.97204Z' fill='%23000000'/%3E%3C/svg%3E%0A");
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 @keyframes rotate {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
- @keyframes slide-in-bottom {
-	0% {
-	  -webkit-transform: translateY(calc(100%));
-		ransform: translateY(calc(100%));
-	}
-	100% {
-	  -webkit-transform: translateY(0);
-		transform: translateY(0);
-	}
+@keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(calc(100%));
+    ransform: translateY(calc(100%));
   }
-
-  @keyframes slide-in-top {
-	0% {
-	  -webkit-transform: translateY(-1000px);
-			  transform: translateY(-1000px);
-	  opacity: 0;
-	}
-	100% {
-	  -webkit-transform: translateY(0);
-			  transform: translateY(0);
-	  opacity: 1;
-	}
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
   }
-
-  @keyframes fade-in {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-  }
-  
-  
-.loader{
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	top: 0;
-	z-index: 999999;
-	background-color: rgba(255, 255, 255, 0.6);
 }
-.loaderFullHeight{
-	height: 100vh;
-	width: 100%;
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	top: 0;
-	z-index: 999999;
-	background-color: rgba(255, 255, 255, 0.6);
+
+@keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.loader {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  z-index: 999999;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.loaderFullHeight {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  z-index: 999999;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 .loading-screen {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .loading-screen p {
-	font-size: 12px;
+  font-size: 12px;
 }
 
 .spinner {
-	animation: rotate 2s linear infinite;
+  animation: rotate 2s linear infinite;
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-} 
-
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
 
 .fc-loyalty-popup-19212-root * {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .fc-loyalty-popup-19212-root a {
-	text-decoration: none;
-	color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 .fc-loyalty-popup-19212-root {
-	width: 100%;
+  width: 100%;
 }
 /* Loyality popup styles */
 
 .floatingPopup {
-    background-color: var(--loyalty_popup_theme_background, #000);
-	padding: 1rem;
-	display: none;
-	position: fixed;
-	width: 60px;
-	height: 60px;
-	justify-content: center;
-	align-items: center;
-	border-radius: 100%;
-	z-index: 3;
-	cursor: pointer;
-	padding: 12px;
+  background-color: var(--loyalty_popup_theme_background, #000);
+  padding: 1rem;
+  display: none;
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  z-index: 3;
+  cursor: pointer;
+  padding: 12px;
 }
 
 .mainPopup {
-	background-color: white;
-	scrollbar-width: none;
-	z-index: 9999;
-	position: fixed;
-	gap: 16px;
-	max-width: 360px;
-	max-height: 580px;
-	width: 85vw;
-    height: 80vh;
-	border-radius: 15px;
-	overflow-x: hidden;
-	overflow-y: scroll;
-	box-shadow: 0 0.0625em 0.0625em rgba(0,0,0,.55), 0 0.125em 0.5em rgba(0,0,0,.55), inset 0 0 0 1px hsla(0,0%,100%,.1);
+  background-color: white;
+  scrollbar-width: none;
+  z-index: 9999;
+  position: fixed;
+  gap: 16px;
+  max-width: 360px;
+  max-height: 580px;
+  width: 85vw;
+  height: 80vh;
+  border-radius: 15px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  box-shadow: 0 0.0625em 0.0625em rgba(0, 0, 0, 0.55),
+    0 0.125em 0.5em rgba(0, 0, 0, 0.55), inset 0 0 0 1px hsla(0, 0%, 100%, 0.1);
 }
 
 .mainContent {
-	display: flex;
-	flex-direction: column;
-	justify-content: start;
-	align-items: start;
-	padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  padding-bottom: 16px;
 }
 
 .header {
-	display: flex;
-	justify-content: space-between;
-  	align-items: flex-start;
-	padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px;
 }
 
 .header p {
-	color: #0c0c0c;
-    font-size: 12px;
+  color: #0c0c0c;
+  font-size: 12px;
 }
 .header h6 {
-	color: #0c0c0c;
-    font-size: 20px;
-	font-weight: 600;
+  color: #0c0c0c;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .closePopup {
-	cursor: pointer;
-	width: 30px;
-	height: 30px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
 }
 
-.logoutwalletCard, .walletCard{
-	background-color: var(--loyalty_popup_theme_background, #000);
-    padding: 12px;
-    border-radius: 16px;
-    box-shadow: none;
-    margin: 0 14px;
-    width: calc(100% - 32px);
-	display: flex;
-	justify-content: space-between;
-	position: relative;
-	align-items: center;
+.logoutwalletCard,
+.walletCard {
+  background-color: var(--loyalty_popup_theme_background, #000);
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: none;
+  margin: 0 14px;
+  width: calc(100% - 32px);
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
 }
 
 .walletCard {
-	cursor: pointer;
-	align-items: center;
+  cursor: pointer;
+  align-items: center;
 }
 
 .coinCard img {
-	width: 20px;
-	height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .coinCard {
-	background-color: #fff;
-    border-radius: 4px;
-    margin: 0 6px;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	gap: 8px;
-	cursor: pointer;
+  background-color: #fff;
+  border-radius: 4px;
+  margin: 0 6px;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
 }
 
 .coinCard h1 {
-    font-size: 18px;
-	font-weight: 600;
-	color: var(--loyalty_popup_theme_background, #000);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--loyalty_popup_theme_background, #000);
 }
 
 .badgeCard img {
-	height: 12px;
-	width: 12px;
+  height: 12px;
+  width: 12px;
 }
 
 .badgeCard p {
-	font-size: 11px;
+  font-size: 11px;
 }
 .badgeCard {
-	display: flex;
-	justify-content: left;
-	align-items: center;
-	color: white;
-	gap: 4px;
-	display: none;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  color: white;
+  gap: 4px;
+  display: none;
 }
 
 .walletCardText {
-	color: white;
-	font-size: 16px;
-	font-weight: bold;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .inviteCard {
-	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);
-    margin: 0 20px;
-    border-radius: 8px;
-    padding: 12px;
+  background: linear-gradient(
+    100.56deg,
+    #495fd9 0,
+    #5285e8 57.67%,
+    #5aa6f4 104.69%
+  );
+  margin: 0 20px;
+  border-radius: 8px;
+  padding: 12px;
 }
 
 .inviteTextSection {
-	color: white;
-	display: flex;
-	align-items: start;
-	margin-bottom: 18px;
-	gap: 8px;
+  color: white;
+  display: flex;
+  align-items: start;
+  margin-bottom: 18px;
+  gap: 8px;
 }
 
 .inviteTextContainer {
-	padding-top: 8px;
+  padding-top: 8px;
 }
 
 .inviteTextContainer h2 {
-	font-weight: 700;
-	font-size: 20px;
-	margin-bottom: 10px;
-	line-height: 16px;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 10px;
+  line-height: 16px;
 }
 
 .inviteTextContainer p {
-	font-weight: 400;
-    font-size: 12px;
-	line-height: 14px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
 }
 
 .invitebtn {
-	width: 100%;
-    background: #fff;
-    border-radius: 4px;
-    border: none;
-    padding: 8px;
-    color: #3e56d2;
-    font-weight: 700;
-    font-size: 12px;
-    text-align: center;
-    cursor: pointer;
-	line-height: normal;
-	font-family: Inter, sans-serif;
+  width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  border: none;
+  padding: 8px;
+  color: #3e56d2;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  line-height: normal;
+  font-family: Inter, sans-serif;
 }
 
 /* change here */
 
 .couponCard {
-	border-radius: 12px;
-	color: var(--loyalty_popup_theme_background, #000);
-	font-size: 14px;
-	line-height: 20px;
-	cursor: pointer;
-	width: 120px;
-	height: 100%;
+  border-radius: 12px;
+  color: var(--loyalty_popup_theme_background, #000);
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  width: 120px;
+  height: 100%;
 }
 
 .couponCardDesc {
-	padding: 8px;
-	background: #f4f4f4;
-	border-radius: 8px;
-	box-shadow: 0 -4px 10px rgba(0,0,0,.1);
-	position: relative;
-	top: -12px;
-	min-width: 120px;
-	font-size: 13px;
-	font-weight: normal;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	gap: 4px;
-	min-height: 120px;
+  padding: 8px;
+  background: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  top: -12px;
+  min-width: 120px;
+  font-size: 13px;
+  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+  min-height: 120px;
 }
 
 .couponImg {
-	border-radius: 8px 8px 0 0;
-	width: 120px;
-	max-height: 120px;
+  border-radius: 8px 8px 0 0;
+  width: 120px;
+  max-height: 120px;
 }
 
 .couponCardPrice {
-	display: flex;
-	align-items: center;
-	justify-content: start;
-	gap: 4px;
-	font-size: 14px;
-	font-weight: 400;
-	margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 8px;
 }
 
 .couponFloatingLabel {
-	position: absolute;
-	top: -10px;
-  	right: 16px;
-    background: var(--loyalty_popup_theme_background,#000);
-    color: #fff;
-    width: fit-content;
-    height: 24px;
-    text-align: center;
-    line-height: 24px;
-    font-weight: 600;
-    font-size: 12px;
-    border-radius: 4px;
-	padding: 0 4px;
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  background: var(--loyalty_popup_theme_background, #000);
+  color: #fff;
+  width: fit-content;
+  height: 24px;
+  text-align: center;
+  line-height: 24px;
+  font-weight: 600;
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 0 4px;
 }
 
 .couponText {
-	padding-top: 8px;
-	font-size: 13px;
+  padding-top: 8px;
+  font-size: 13px;
 }
 
 .couponCardPrice img {
-	width: 14px;
-	height: 14px;
+  width: 14px;
+  height: 14px;
 }
 
 /* till here */
 .couponMainContainer {
-	position: relative;
+  position: relative;
 }
 
 .viewAllCouponsContainer {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 16px;
-	padding-bottom: 6px;
-	width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  padding-bottom: 6px;
+  width: 100%;
 }
 
 .scrollBtnPrev {
-	background-color: white;
-	border-radius: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: absolute;
-	width: 30px;
-	height: 30px;
-	top: 55%;
-	left: 10%;
-	transform: translate(-50%, -50%);
-	box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+  background-color: white;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 55%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .scrollBtnPrev img {
-	rotate: 180deg;
+  rotate: 180deg;
 }
 
-.scrollBtnNext {	
-	background-color: white;
-	border-radius: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: absolute;
-	width: 30px;
-	height: 30px;
-	top: 55%;
-	left: 90%;
-	transform: translate(-50%, -50%);
-	box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+.scrollBtnNext {
+  background-color: white;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 55%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3);
 }
 
-.scrollBtnNext img, .scrollBtnPrev img {
-	width: 8px;
+.scrollBtnNext img,
+.scrollBtnPrev img {
+  width: 8px;
 }
 
 .viewAllCouponsContainer h1 {
-	font-size: 20px;
-    font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .viewAllCouponsContainer a {
-	cursor: pointer;
-    font-weight: 500;
-    font-size: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
 }
 
 .viewAllBtn {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
 }
 .gamesArenaContainer {
-	padding: 8px 16px;
+  padding: 8px 16px;
 }
 .gamesArenaContainer h1 {
-	font-size: 20px;
-    font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
 }
 .gamesArenaContainer p {
-	font-size: 12px;
-    font-weight: 500;
-	line-height: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
 }
 
 .gamesCard {
-	background-color: #efefef;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 8px;
-	padding-top: 8px;
-	padding-top: 30px;
-	border-radius: 8px;
-	position: relative;
-	bottom: 20px;
-	max-width: 130px;
-	min-width: 130px;
+  background-color: #efefef;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  padding-top: 8px;
+  padding-top: 30px;
+  border-radius: 8px;
+  position: relative;
+  bottom: 20px;
+  max-width: 130px;
+  min-width: 130px;
 }
 
 .gamesCardImg {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 2;
-	position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  position: relative;
 }
 
 .gamesCardImg img {
-	max-height: 60px;
+  max-height: 60px;
 }
 
 .coinBox {
-	background: #fff;
-	border-radius: 4px;
-	display: flex;
-	justify-content: center;
-	padding: 4px 14px;
-	align-items: center;
-	margin-bottom: 8px;
-	margin-top: 8px;
-	color: var(--loyalty_popup_theme_background, #000);
-	font-size: 14px;
-	gap: 4px;
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  padding: 4px 14px;
+  align-items: center;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  color: var(--loyalty_popup_theme_background, #000);
+  font-size: 14px;
+  gap: 4px;
 }
 
 .gamesCardBtn {
-	background: var(--loyalty_popup_theme_background, #000);
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 12px;
-    text-align: center;
-    color: #fff;
-    width: 100%;
-    padding: 8px;
-    cursor: pointer;
-	border: none;
+  background: var(--loyalty_popup_theme_background, #000);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+  border: none;
 }
 
 .gamesCardTitle {
-	font-weight: 600;
-    font-size: 12px;
-	text-align: center;
-	color: black;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  color: black;
 }
 
 .gamesCardDesc {
-	font-weight: 500;
-    font-size: 10px;
-	text-align: center;
+  font-weight: 500;
+  font-size: 10px;
+  text-align: center;
 }
 
 .gamesHorizontalList {
-	height: fit-content;
-	padding: 8px 16px;
-	display: flex;
-	gap: 16px;
-	width: 100%;
-	scrollbar-width: none;
-	overflow-x: scroll;
-	overflow-y: hidden;
+  height: fit-content;
+  padding: 8px 16px;
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  scrollbar-width: none;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 /* Invite and Earn */
 
 .inviteWhatsappBtn {
-	height: 40px;
-    width: 96%;
-    background-color: #29a71a;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	border: none;
-	cursor: pointer;
+  height: 40px;
+  width: 96%;
+  background-color: #29a71a;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
 }
 
 .inviteWhatsappBtn p {
-	font-size: 14px;
-	font-weight: 500;
-	color: white;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
 }
 
 .inviteWhatsappBtn img {
-	filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
 
 .inviteRoundedBtn {
-	width: 40px;
-    height: 40px;
-    background-color: #fff;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	border: 1px solid var(--loyalty_popup_theme_background, #000);
-	cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--loyalty_popup_theme_background, #000);
+  cursor: pointer;
 }
 
 .inviteRoundedBtn img {
-	width: 16px;
-	height: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .inviteAndEarnContainer {
-	width: 100%;
-	padding: 22px;
-	border-radius: 16px;
-	transition: all 0.5s;
-	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	
+  width: 100%;
+  padding: 22px;
+  border-radius: 16px;
+  transition: all 0.5s;
+  -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-.overlay{
-	position: absolute;
-	display: none;
-	top: 0;
-	z-index: 99;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(255, 255, 255, 0.6);
-	flex-direction: column;
-	justify-content: center;
+.overlay {
+  position: absolute;
+  display: none;
+  top: 0;
+  z-index: 99;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  flex-direction: column;
+  justify-content: center;
 }
 
 .dashedDivider {
-	border: none;
-    height: 1px;
-    background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
-    margin: 20px 0 16px 0;
+  border: none;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    #000,
+    #000 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  margin: 20px 0 16px 0;
 }
 
 .inviteEarnTextContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-weight: 400;
-    font-size: 14px;
-    color: #acacac;
-    margin: 8px 0px;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  color: #acacac;
+  margin: 8px 0px;
+  text-align: center;
 }
 
 .inviteAndEarn {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
 }
 
 .inviteAndEarn h2 {
-	font-weight: 700;
-    font-size: 30px;
+  font-weight: 700;
+  font-size: 30px;
 }
 
 .inviteAndEarnMessage h4 {
-	text-align: center;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 30px;
-    margin: 20px 0!important;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 30px;
+  margin: 20px 0 !important;
 }
 
 .inviteLinkContainer {
-	padding: 12px;
-    background: #fff;
-    border-radius: 4px;
-    border: 1px solid var(--loyalty_popup_theme_background, #000);
-    font-size: 16px;
-    font-weight: 700;
-    display: flex;
-	justify-content: space-between;
-    align-items: center;
+  padding: 12px;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid var(--loyalty_popup_theme_background, #000);
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .couponCodeContainer {
-	padding: 12px;
-    background: #fff;
-    border-radius: 4px;
-    border: 1px solid var(--loyalty_popup_theme_background, #000);;
-    font-size: 16px;
-    font-weight: 700;
-    display: flex;
-	width: 100%;
-	justify-content: center;
-    align-items: center;
-	position: relative;
+  padding: 12px;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid var(--loyalty_popup_theme_background, #000);
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .couponCodeContainer img {
-	position: absolute;
-	right: 20px;
-	cursor: pointer;
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
 }
 
 .inviteLinkContainer p {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 .inviteLinkContainer img {
-	max-width: 16px;
-	cursor: pointer;
+  max-width: 16px;
+  cursor: pointer;
 }
 
-.sendInvitesBtnContainer, .inviteWhatsappBtn {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
+.sendInvitesBtnContainer,
+.inviteWhatsappBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .closeInviteContainer {
-	display: flex;
-	justify-content: end;
-	align-items: center;
-	cursor: pointer;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  cursor: pointer;
 }
 
 .couponUnlockBtn {
-	background-color: var(--loyalty_popup_theme_background, #000);
-    color: #fff;
-    padding: 11px 0;
-    border-radius: 4px;
-    font-family: Inter,sans-serif;
-    font-weight: 700;
-    cursor: pointer;
-    width: 100%;
-    font-size: 14px;
-	border: none;
+  background-color: var(--loyalty_popup_theme_background, #000);
+  color: #fff;
+  padding: 11px 0;
+  border-radius: 4px;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px;
+  border: none;
 }
 
-
 .slide-in-bottom {
-	-webkit-animation: slide-in-bottom 0.5s ease-in-out both;
-	animation: slide-in-bottom 0.5s ease-in-out both;
+  -webkit-animation: slide-in-bottom 0.5s ease-in-out both;
+  animation: slide-in-bottom 0.5s ease-in-out both;
 }
 
 .couponOverlayContainer {
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	gap: 8px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
 }
 
 .couponOverlayContainer h2 {
-	font-size: 30px;
+  font-size: 30px;
 }
 
-.couponContainer, .easyEarnOverlayContainer {
-	background-color: white;
-	width: 100%;
-	padding: 16px;
-	border-radius: 16px;
-	box-shadow: 0 -4px 50px rgba(0,0,0,.25);
+.couponContainer,
+.easyEarnOverlayContainer {
+  background-color: white;
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 -4px 50px rgba(0, 0, 0, 0.25);
 }
 
 .showAllCouponsList {
-	display: flex;
-	justify-content: start;
-	align-items: start;
-	gap: 16px;
-	scrollbar-width: none;
-	overflow-x: scroll;
-	overflow-y: hidden;
-	padding: 0 16px;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 16px;
+  scrollbar-width: none;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 0 16px;
 }
 
 /* .pointsActivityClass {
@@ -1995,650 +2008,663 @@ body {
 } */
 
 .pointsActivityClass h4 {
-	margin-left: 22px;
-    font-size: 20px;
+  margin-left: 22px;
+  font-size: 20px;
 }
 
 .transaction-log-container {
-	margin: 24px 20px;
-    padding: 6px;
-    background: #fff;
-    border-radius: 8px;
-    border: 1px solid rgb(231, 231, 231);
-    border-radius: 6px;
-    box-shadow: 1px 2px 2px rgb(231, 231, 231);
+  margin: 24px 20px;
+  padding: 6px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid rgb(231, 231, 231);
+  border-radius: 6px;
+  box-shadow: 1px 2px 2px rgb(231, 231, 231);
 }
 
 .transaction-log-container .log-body {
-    padding: 8px 18px;
+  padding: 8px 18px;
 }
 
 .transaction-log-container .log-body .amount {
-    font-size: 18px;
-    font-weight: 600;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .transaction-log-container .log-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border-bottom: 1px solid rgb(231, 231, 231);
-	padding: 8px 18px;
-	font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(231, 231, 231);
+  padding: 8px 18px;
+  font-size: 14px;
 }
 
 .transaction-log-container .log-header .log-type {
-	border-radius: 4px;
-	padding: 4px 8px;
-	font-weight: 600;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-weight: 600;
 }
 
 .transaction-log-container .log-header .log-type.credited {
-	background-color: rgb(209, 255, 217);
-	color: rgb(30, 175, 109);
-	font-size: 12px;
+  background-color: rgb(209, 255, 217);
+  color: rgb(30, 175, 109);
+  font-size: 12px;
 }
 
 .transaction-log-container .log-header .log-type.debited {
-	background-color: rgba(181, 0, 0, 0.1);
-	color: rgb(181, 0, 0);
-	font-size: 12px;
+  background-color: rgba(181, 0, 0, 0.1);
+  color: rgb(181, 0, 0);
+  font-size: 12px;
 }
 
 .inviteAndEarnContainer {
-	background-color: white;
-	max-width: 360px;
-	max-height: 580px;
-	width: 85vw;
-	height: fit-content;
-	bottom: 2px;
-	z-index: 999;
-	background-color: white;
-	box-shadow: 3px 3px 90px 6px #ccc;
+  background-color: white;
+  max-width: 360px;
+  max-height: 580px;
+  width: 85vw;
+  height: fit-content;
+  bottom: 2px;
+  z-index: 999;
+  background-color: white;
+  box-shadow: 3px 3px 90px 6px #ccc;
 }
 
 .shareTextContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-weight: 400;
-	font-size: 14px;
-	color: #acacac;
-	text-align: center;
-	margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  color: #acacac;
+  text-align: center;
+  margin-bottom: 12px;
 }
 
 .pointsActivityHeader {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding-right: 12px;
-  	padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 12px;
+  padding-top: 12px;
 }
 
 .pointsActivityHeader img {
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .showGamesOverlay {
-	background-color: white;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	top: 0;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
 }
 
 .unlockTextContainer {
-	font-weight: 700;
-    font-size: 16px;
-    margin: 22px;
-	text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 22px;
+  text-align: center;
 }
 
 .unlockText h5 {
-	font-weight: 700;
-    font-size: 16px;
-    margin: 16px 0;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 16px 0;
 }
 
 .crossImg {
-	display: flex;
-	justify-content: end;
-	align-items: center;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 .crossImg img {
-	width: 24px;
-	height: 24px;
-	cursor: pointer;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .unlockDesc p {
-	font-weight: 500;
-	font-size: 13px;
-	line-height: 16px;
-	color: #797979;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #797979;
 }
 
 .showGamesHeader {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
 }
 
 .showGamesHeader img {
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 .showGamesHeader h2 {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 .showGamesTab {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 16px;
 }
 
 .showGamesTab h2 {
-	font-size: 18px;
+  font-size: 18px;
 }
 
 .gamesTab {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .walletCoinsBox {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: var(--loyalty_popup_theme_background, #000);
-	padding: 2px 8px;
-	border-radius: 50px;
-	gap: 4px;
-	width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--loyalty_popup_theme_background, #000);
+  padding: 2px 8px;
+  border-radius: 50px;
+  gap: 4px;
+  width: fit-content;
 }
 
 .walletCoinsBox p {
-	color: white;
-	font-size: 20px;
+  color: white;
+  font-size: 20px;
 }
 
 .walletCoinsBox img {
-	width: 16px;
-	height: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .showGamesCards {
-	background-color: white;
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	padding: 0px 16px;
-	gap: 16px;
-	overflow-y: scroll;
-	scrollbar-width: none;
-	margin-top: 8px;
+  background-color: white;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0px 16px;
+  gap: 16px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  margin-top: 8px;
 }
 
 .viewAllCoupons {
-	background-color: white;
-	width: 100%;
-	height: 100%;
+  background-color: white;
+  width: 100%;
+  height: 100%;
 }
 
 .viewAllCouponsHeader {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
 }
 
 .viewAllCouponsHeader h4 {
-	font-size: 20px;
-	font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
 }
 .viewAllCouponsHeader img {
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .viewAllCouponTabText {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .viewAllCouponTabText h4 {
-	cursor: pointer;
-	color: #959595;
+  cursor: pointer;
+  color: #959595;
 }
 
 .viewAllCouponsTab {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
 }
 
 .viewAllFeaturedComponent h3 {
-	margin-left: 16px;
+  margin-left: 16px;
 }
 .reedemfcCoins {
-	padding: 16px;
-	padding-bottom: 0;
+  padding: 16px;
+  padding-bottom: 0;
 }
 
-.reedemfcCoins h5, .exploreCoupons h5{
-	font-weight: 700;
-    font-size: 16px;
+.reedemfcCoins h5,
+.exploreCoupons h5 {
+  font-weight: 700;
+  font-size: 16px;
 }
-.reedemfcCoins p{
-	/* margin-top: 8px; */
-    font-weight: 400;
-    font-size: 12px;
-	line-height: 14px;
+.reedemfcCoins p {
+  /* margin-top: 8px; */
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
 }
-
 
 .reedemfcCoinsCard {
-	background-color: #f4f4f4;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
-	padding: 8px;
-	border-radius: 8px;
-	cursor: pointer;
-	background: linear-gradient(100.56deg,#495fd9 0,#5285e8 57.67%,#5aa6f4 104.69%);
-	color: white;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(
+    100.56deg,
+    #495fd9 0,
+    #5285e8 57.67%,
+    #5aa6f4 104.69%
+  );
+  color: white;
 }
 
 .reedemfcCoinsCardArrow {
-	filter: invert(100%);
+  filter: invert(100%);
 }
 
 .exploreCouponCard {
-	background-color: #f4f4f4;
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	padding: 8px;
-	border-radius: 8px;
-	cursor: pointer;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 .exploreCoupons {
-	padding: 16px;
+  padding: 16px;
 }
 .exploreCoupons h5 {
-	margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 .shipImgBox {
-	border-right: 1px dashed #959595;
-	padding-right: 8px;
-    margin-right: 8px
+  border-right: 1px dashed #959595;
+  padding-right: 8px;
+  margin-right: 8px;
 }
 
 .exploreCouponCardText {
-	font-weight: 700;
-    font-size: 14px;
+  font-weight: 700;
+  font-size: 14px;
 }
 
 .exploreCouponCardText img {
-	width: 12px;
-	height: 12px;
+  width: 12px;
+  height: 12px;
 }
 
 .yourCouponsCardMainContainer {
-	padding: 16px;
+  padding: 16px;
 }
 
 .yourCouponsCardContainer {
-	background-color: #f4f4f4;
-	border-radius: 8px;
-	display: flex;
-	margin-top: 16px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  display: flex;
+  margin-top: 16px;
 }
 
-.youCouponCardLeft, .youCouponCardRight {
-	padding: 16px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+.youCouponCardLeft,
+.youCouponCardRight {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .youCouponCardLeft {
-	border-right: 1px dashed #959595;
-	align-items: center;
+  border-right: 1px dashed #959595;
+  align-items: center;
 }
 
 .youCouponCardRight {
-	align-items: start;
+  align-items: start;
 }
 
 .youCouponCardLeft h5 {
-	font-size: 24px;
+  font-size: 24px;
 }
 
 .youCouponCardLeft p {
-	font-size: 14px;
+  font-size: 14px;
 }
 
-
-.youCouponCardRight h4, .yourCouponCode {
-	font-weight: bold;
-	font-size: 13px;
-	color: var(--loyalty_popup_theme_background, #000);
+.youCouponCardRight h4,
+.yourCouponCode {
+  font-weight: bold;
+  font-size: 13px;
+  color: var(--loyalty_popup_theme_background, #000);
 }
 
 .youCouponCardRight p {
-	color: #acacac;
-	font-size: 12px;
+  color: #acacac;
+  font-size: 12px;
 }
 
 .yourCouponsActiveTab {
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	gap: 30px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 30px;
 }
 
 .yourCouponsActiveTab div {
-	background: #d9d9d9;
-    border-radius: 8px;
-    padding: 8px;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
+  background: #d9d9d9;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .couponNotFound {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
 }
 
-.couponNotFound p{
-	font-weight: 400;
-    font-size: 12px;
+.couponNotFound p {
+  font-weight: 400;
+  font-size: 12px;
 }
 
 .couponNotFound h4 {
-	font-weight: 700;
-    font-size: 20px;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .redeemCoinBox {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .redeemHeading h3 {
-	font-weight: 700;
-    font-size: 14px;
+  font-weight: 700;
+  font-size: 14px;
 }
 
 .redeemText p {
-	font-weight: 400;
-    font-size: 14px;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .redeemCoinMainContainer {
-	width: 100%;
-	height: 100%;
-    background-color: #ffffff8c;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff8c;
 }
 
 .redeemCoinContainer {
-	background-color: white;
-	position: absolute;
-	padding: 16px;
-	width: 100%;
-	height: fit-content;
-	bottom: 0px;
-	border-radius: 16px;
-	box-shadow: 0 -4px 50px rgba(0,0,0,.25);
-	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	
+  background-color: white;
+  position: absolute;
+  padding: 16px;
+  width: 100%;
+  height: fit-content;
+  bottom: 0px;
+  border-radius: 16px;
+  box-shadow: 0 -4px 50px rgba(0, 0, 0, 0.25);
+  -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .redeemCloseContainer {
-	display: flex;
-	justify-content: end;
-	align-items: center;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 .redeemVoucherMain {
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	gap: 16px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 16px;
 }
 
 .redeemVoucherMain h2 {
-	font-weight: 700;
-    font-size: 30px;
+  font-weight: 700;
+  font-size: 30px;
 }
 .redeemRangeContainer {
-	padding: 0px 32px;
+  padding: 0px 32px;
 }
 
 .redeemRangeContainer p {
-	text-align: center;
+  text-align: center;
 }
 
-.redeemRangeContainer, .redeemRangeContainer input {
-	width: 100%;
+.redeemRangeContainer,
+.redeemRangeContainer input {
+  width: 100%;
 }
 
 .redeemRangeContainer input {
-	accent-color: #959595;
+  accent-color: #959595;
 }
 
 .screenContainer {
-	background-color: white;
+  background-color: white;
 }
 
 .screenHeader {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
 }
 
 .screenHeader h2 {
-	font-weight: 700;
-    font-size: 20px;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .screenHeader img {
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .walletCoinContainer {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .walletCoinContainer h4 {
-	font-weight: 700;
-    font-size: 20px
+  font-weight: 700;
+  font-size: 20px;
 }
 
-
 .spinWheelBottom h4 {
-	font-weight: 700;
-	font-size: 16px;
-	text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
 }
 
 .spinWheelBottom hr {
-	width: 100%;
-	border: none;
-	height: 1px;
-	background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
+  width: 100%;
+  border: none;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    #000,
+    #000 6px,
+    transparent 6px,
+    transparent 12px
+  );
 }
 
 .spinWheelBottom {
-	padding: 16px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
-  	margin: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: auto;
 }
 
 #fw-chart-spin-wheel svg {
-	transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 .lockedIcon {
-	position: absolute;
-	z-index: 2;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-	
+
 .lockedIcon img {
-	height: 160px;
-	width: 160px;
+  height: 160px;
+  width: 160px;
 }
 
 .spinWinContainer {
-	position: absolute;
-    width: 100%;
-	height: 100%;
-    overflow: hidden;
-    transition: height .5s ease;
-    top: 0;
-    left: 0;
-    background: #ffffff7d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	z-index: 2;
-	animation-name: movedown;
-	animation-duration: 1s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: height 0.5s ease;
+  top: 0;
+  left: 0;
+  background: #ffffff7d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  animation-name: movedown;
+  animation-duration: 1s;
 }
 
 .spinWinPopup {
-	background-color: var(--loyalty_popup_theme_background, #000);
-    color: #fff;
-    padding: 30px 25px;
-    box-shadow: 0 -4px 24px rgba(0,0,0,.12);
-    border-radius: 12px;
-    max-width: 90%;
-	display: flex;
-	flex-direction: column;
-    justify-content: center;
-    align-items: center;
-	gap: 8px;
-	-webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  background-color: var(--loyalty_popup_theme_background, #000);
+  color: #fff;
+  padding: 30px 25px;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  -webkit-animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .spinWinPopup h3 {
-	font-size: 18px;
-    text-align: center;
+  font-size: 18px;
+  text-align: center;
 }
 .spinWinPopup h3 {
-	font-size: 20px;
-    text-align: center;
+  font-size: 20px;
+  text-align: center;
 }
 .spinWinPopup p {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 .playagainbtn {
-	width: 100%;
-    background: #fff;
-    color: var(--loyalty_popup_theme_background, #000);;
-    font-family: Inter;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-	border: none;
+  width: 100%;
+  background: #fff;
+  color: var(--loyalty_popup_theme_background, #000);
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
 }
 
 .closebtn {
-	color: #fff;
-    background: var(--loyalty_popup_theme_background, #000);;
-    border: 0;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 5px;
-    margin: 10px;
-    cursor: pointer;
+  color: #fff;
+  background: var(--loyalty_popup_theme_background, #000);
+  border: 0;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px;
+  margin: 10px;
+  cursor: pointer;
 }
 
 .scratchCardDiv {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .scratchCardDiv canvas {
-	z-index: 2;
-	border-radius: 8px;
-	cursor: grabbing;
+  z-index: 2;
+  border-radius: 8px;
+  cursor: grabbing;
 }
 
 .scratchCardDiv h4 {
-	position: absolute;
-	top: 45%;
+  position: absolute;
+  top: 45%;
 }
 
 .scratchCardDiv img {
-	position: absolute;
-	z-index: 3;
+  position: absolute;
+  z-index: 3;
 }
 
 #sparkImg {
-	position: absolute;
-	width: 60px;
-	top: 32px;
-	left: 35%;
-	clip-path: inset(0 0 44% 0);
-	transform: translate(-50%);
+  position: absolute;
+  width: 60px;
+  top: 32px;
+  left: 35%;
+  clip-path: inset(0 0 44% 0);
+  transform: translate(-50%);
 }
 
 #sparkImg2 {
-	position: absolute;
-	top: 22px;
-	width: 30px;
-	left: 50%;
-	transform: translate(-100%);
+  position: absolute;
+  top: 22px;
+  width: 30px;
+  left: 50%;
+  transform: translate(-100%);
 }
 .copied {
-	background-color: green;
+  background-color: green;
   padding: 8px;
   position: absolute;
   top: 50%;
@@ -2649,572 +2675,592 @@ body {
   font-size: 14px;
 }
 
-.coinIcon { 
-    background-image: var(--coin-svg-url);
-	width: 20px;
-	height: 20px;
-	background-size: 100% 100%;
+.coinIcon {
+  background-image: var(--coin-svg-url);
+  width: 20px;
+  height: 20px;
+  background-size: 100% 100%;
 }
 
 .logoutWalletCard {
-	background-color: var(--loyalty_popup_theme_background, #000);
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-    padding: 12px;
-    border-radius: 16px;
-    box-shadow: none;
-    margin: 0 14px;
-    width: auto;
+  background-color: var(--loyalty_popup_theme_background, #000);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: none;
+  margin: 0 14px;
+  width: auto;
 }
 .walletLogoutBtn {
-	background-color: #fff;
-    border-radius: 4px;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	gap: 4px;
-	cursor: pointer;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
 }
 
 .logoutWallerCardHeading {
-	color: white;
+  color: white;
 }
 
 .logoutWalletCard p {
-	color: var(--loyalty_popup_theme_background, #000);
-	font-size: 20px;
-	font-weight: 600;
+  color: var(--loyalty_popup_theme_background, #000);
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .exploreCouponText {
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	gap: 4px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 4px;
 }
 
 .exploreCouponText div {
-	width: 16px;
-	height: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .alert {
-	position: absolute;
-	bottom: 50%;
-	left: 50%;
-	z-index: 999;
-	background: #160b0b;
-	color: #f4c7c7;
-	font-weight: 400;
-	font-size: 14px;
-	border-radius: 4px;
-	padding: 8px 22px;
-	transition: 0.5s all ease;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transform: translate(-50%, -50%);
-	width: 80%;
-	animation-name: fade-in;
-	animation-duration: 0.5s;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  z-index: 999;
+  background: #160b0b;
+  color: #f4c7c7;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 8px 22px;
+  transition: 0.5s all ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  animation-name: fade-in;
+  animation-duration: 0.5s;
 }
 
 .alert svg.fw-wallet-alert-popup-error {
-	width: 22px;
-	height: 22px;
-	fill: rgb(244, 67, 54);
-	margin-right: 8px;
+  width: 22px;
+  height: 22px;
+  fill: rgb(244, 67, 54);
+  margin-right: 8px;
 }
 
 .referralPopupContainer {
-	background-color: var(--loyalty_popup_theme_background, #000);
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	max-width: 500px;
-	min-height: fit-content;
-	padding: 16px;
-	border-radius: 16px;
-	z-index: 999;
-	animation-name: fade-in;
-	animation-duration: 1s;
-	margin: 18px;
-	-webkit-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 50px -13px rgba(0,0,0,0.75);
+  background-color: var(--loyalty_popup_theme_background, #000);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  min-height: fit-content;
+  padding: 16px;
+  border-radius: 16px;
+  z-index: 999;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  margin: 18px;
+  -webkit-box-shadow: 0px 0px 116px -13px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 116px -13px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 50px -13px rgba(0, 0, 0, 0.75);
 }
 
 .referralPopupContainer img {
-	width: 28px;
-	height: 28px;
-	position: absolute;
-	top: 14px;
-	right: 14px;
-	background-color: white;
-	border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: white;
+  border-radius: 8px;
 }
 .referralPopupContainer h2 {
-	font-size: 28px;
-	color: white;
+  font-size: 28px;
+  color: white;
 }
 
 .referralPopupContainer p {
-	font-size: 16px;
-	text-align: center;
-	color: white;
+  font-size: 16px;
+  text-align: center;
+  color: white;
 }
 .referralPopupContainer span {
-	color: gold;
+  color: gold;
 }
 
 .easyEarnTitleBox {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .easyEarnTitleBox a {
-	cursor: pointer;
-	font-weight: 500;
-	font-size: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
 }
 
 .easyEarnScreenContainer {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
-	padding: 2rem;
-	row-gap: 0;
-	column-gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem;
+  row-gap: 0;
+  column-gap: 2rem;
 }
 
 .easyEarnScreenDesc {
-	font-size: 14px;
-	margin-left: 16px;
+  font-size: 14px;
+  margin-left: 16px;
 }
 
 .easyEarnCardBtn {
-	background-color: gray;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 12px;
-    text-align: center;
-    color: #fff;
-    width: 100%;
-    padding: 8px;
-    cursor: pointer;
-	border: none;
+  background-color: gray;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+  border: none;
 }
 
 .coinContainer {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
 }
 
 .easyEarnMainContainer {
-	position: relative;
+  position: relative;
 }
 
 .easyEarnOverlayContainer {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .easyEarnCoinBox {
-	background-color: #EFEDED;
-	border-radius: 4px;
-	display: flex;
-	justify-content: center;
-	padding: 4px 14px;
-	align-items: center;
-	margin-bottom: 8px;
-	margin-top: 8px;
-	color: var(--loyalty_popup_theme_background, #000);
-	font-size: 14px;
-	gap: 4px;
+  background-color: #efeded;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  padding: 4px 14px;
+  align-items: center;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  color: var(--loyalty_popup_theme_background, #000);
+  font-size: 14px;
+  gap: 4px;
 }
 
 #watermarkContainer {
-	color: white;
-	background-color: black;
-	font-size: 12px;
-	text-align: end;
-	padding: 4px 16px;
-	margin-top: 16px;
+  color: white;
+  background-color: black;
+  font-size: 12px;
+  text-align: end;
+  padding: 4px 16px;
+  margin-top: 16px;
 }
 
 #watermarkContainer:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .loyaltyMainPage {
-	position: relative;
-	margin: 0px 15%;
-	scrollbar-width: none;
+  position: relative;
+  margin: 0px 15%;
+  scrollbar-width: none;
 }
 
 #fw-chart-spin-wheel {
-	display: flex;
-	justify-content: center;
-	position: relative;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 
 .ellipsis-text {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: 100%;
-	padding-right: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  padding-right: 4px;
 }
 
 .screenHeaderBackBtn {
-	background-color: #efefef;
-	border: none;
-	padding: 8px 16px;
-	border-radius: 4px;
-	cursor: pointer;
+  background-color: #efefef;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 @media (min-width: 350px) {
-	.loyaltyMainPage {
-		margin: 0 10%;
-	}
-	.loyaltyMainPage .spinWheelBottom {
-		max-width: 75%;
-	}
-  
-	.loyaltyMainPage #watermarkContainer {
-	  border-radius: 4px;
-	  margin: 16px 16px 0 16px;
-	}
-  
-	.loyaltyMainPage .gamesCardTitle {
-	  font-size: 14px;
-	}
-  
-	.loyaltyMainPage .gamesCardDesc {
-	  font-size: 12px;
-	}
-  
-	.loyaltyMainPage .inviteTextContainer p {
-	  font-size: 16px;
-	}
-  
-	.loyaltyMainPage .gamesArenaContainer h1, .loyaltyMainPage .viewAllCouponsContainer h1, .loyaltyMainPage .inviteTextContainer {
-	  font-size: 24px;
-	}
-  
-	.loyaltyMainPage .gamesArenaContainer p {
-	  font-size: 14px;
-	}
-  
-	.loyaltyMainPage .leftHeader p {
-	  font-size: 14px;
-	}
-  
-	.loyaltyMainPage .leftHeader h6 {
-	  font-size: 22px;
-	}
-  
-	.loyaltyMainPage .spinner {
-	  animation: rotate 2s linear infinite;
-	}
-  
-	.loyaltyMainPage .inviteAndEarnContainer {
-	  padding: 22px;
-	  border-radius: 16px;
-	  transition: all 0.5s;
-	  animation: none;
-	  box-shadow: none;
-	  max-width: 100%;
-	  box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
-	}
-  
-	.loyaltyMainPage .inviteEarnTextContainer {
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  font-weight: 400;
-	  font-size: 14px;
-	  color: #acacac;
-	  margin: 8px 0px;
-	  text-align: center;
-	}
-  
-	.loyaltyMainPage .inviteAndEarn {
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  gap: 16px;
-	}
-  
-	.loyaltyMainPage .inviteAndEarn h2 {
-	  font-weight: 700;
-	  font-size: 30px;
-	}
-  
-	.loyaltyMainPage .inviteAndEarnMessage h4 {
-	  text-align: center;
-	  font-weight: 500;
-	  font-size: 20px;
-	  line-height: 30px;
-	  margin: 20px 0 !important;
-	}
-  
-	.loyaltyMainPage .inviteLinkContainer {
-	  padding: 10px 12px;
-	  background: #fff;
-	  border-radius: 4px;
-	  border: 1px solid var(--loyalty_popup_theme_background, #000);
-	  font-size: 16px;
-	  font-weight: 700;
-	  display: flex;
-	  justify-content: space-between;
-	  align-items: center;
-	}
-  
-	.loyaltyMainPage .couponCodeContainer {
-	  padding: 12px;
-	  background: #fff;
-	  border-radius: 4px;
-	  border: 1px solid var(--loyalty_popup_theme_background, #000);
-	  font-size: 16px;
-	  font-weight: 700;
-	  display: flex;
-	  width: 100%;
-	  justify-content: center;
-	  align-items: center;
-	  position: relative;
-	}
-  
-	.loyaltyMainPage .couponCodeContainer img {
-	  position: absolute;
-	  right: 20px;
-	  cursor: pointer;
-	}
-  
-	.loyaltyMainPage .inviteLinkContainer p {
-	  font-size: 14px;
-	}
-  
-	.loyaltyMainPage .inviteLinkContainer img {
-	  max-width: 16px;
-	  cursor: pointer;
-	}
-  
-	.loyaltyMainPage .sendInvitesBtnContainer, .inviteWhatsappBtn {
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  gap: 8px;
-	  text-decoration: none;
-	}
-  
-	.loyaltyMainPage .inviteWhatsappBtn {
-	  height: 40px;
-	  width: 96%;
-	  background-color: #29a71a;
-	  border-radius: 4px;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  border: none;
-	  cursor: pointer;
-	}
-  
-	.inviteWhatsappBtn p {
-	  font-weight: 500;
-	  color: white;
-	}
-  
-	.inviteWhatsappBtn img {
-	  filter: brightness(0) invert(1);
-	}
-  
-	.loyaltyMainPage .inviteRoundedBtn {
-	  width: 40px;
-	  height: 40px;
-	  background-color: #fff;
-	  border-radius: 8px;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  cursor: pointer;
-	  border: 1px solid var(--loyalty_popup_theme_background, #000);
-	}
-  
-	.loyaltyMainPage .inviteRoundedBtn img {
-	  width: 16px;
-	  height: 16px;
-	}
-  
-	.loyaltyMainPage .alert {
-	  position: absolute;
-	  bottom: 50%;
-	  left: 50%;
-	  z-index: 999;
-	  background: #160b0b;
-	  color: #f4c7c7;
-	  font-weight: 400;
-	  font-size: 14px;
-	  border-radius: 4px;
-	  padding: 8px 22px;
-	  transition: 0.5s all ease;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  transform: translate(-50%, -50%);
-	  width: fit-content;
-	  animation-name: fade-in;
-	  animation-duration: 0.5s;
-	}
-  
-	.loyaltyMainPage .alert svg.fw-wallet-alert-popup-error {
-	  width: 22px;
-	  height: 22px;
-	  fill: rgb(244, 67, 54);
-	  margin-right: 8px;
-	}
-  
-	.loyaltyMainPage .shareTextContainer {
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  font-weight: 400;
-	  font-size: 14px;
-	  color: #acacac;
-	  text-align: center;
-	  margin-bottom: 12px;
-	}
-  
-	.loyaltyMainPage .dashedDivider {
-	  border: none;
-	  height: 1px;
-	  background: repeating-linear-gradient(90deg, #000, #000 6px, transparent 6px, transparent 12px);
-	  margin: 20px 0 16px 0;
-	}
-  
-	.loyaltyMainPage .referralContainer {
-	  width: 100%;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	}
-  
-	.loyaltyMainPage .copied {
-	  background-color: green;
-	  padding: 8px;
-	  position: absolute;
-	  top: 55%;
-	  left: 48%;
-	  border-radius: 12px;
-	  color: white;
-	  font-weight: bold;
-	  font-size: 14px;
-	}
-  
-	.loyaltyMainPage .loader {
-	  height: 100%;
-	  width: 100%;
-	  display: flex;
-	  flex-direction: column;
-	  justify-content: center;
-	  align-items: center;
-	  z-index: 999999;
-	  background-color: rgba(255, 255, 255, 0.6);
-	}
-  
-	.loyaltyMainPage .loading-screen {
-	  padding-top: 16px;
-	  display: flex;
-	  flex-direction: column;
-	  justify-content: center;
-	  align-items: center;
-	}
-  
-	.loyaltyMainPage .loginbtn {
-	  background-color: #efefef;
-	  text-decoration: none;
-	  color: black;
-	  padding: 12px;
-	  border-radius: 8px;
-	  display: block;
-      width: fit-content;
-	}
-  
-	.loyaltyMainPage #couponOverlayId {
-	  width: 80%;
-	}
-  
-	.loyaltyMainPage .unlockCouponContainer {
-	  display: flex;
-	  justify-content: center;
-	}
-  
-	.loyaltyMainPage .redeemCoinContainer {
-	  width: 80%;
-	}
-  
-	.loyaltyMainPage .redeemCoinMainContainer {
-	  display: flex;
-	  justify-content: center;
-	}
-  
-	.loyaltyMainPage .lockedIcon img {
-	  width: 130px;
-	  height: 130px;
-	}
-	.loyaltyMainPage .lockedIcon {
-		transform: translate(-42%, -40%);
-	}
-	.loyaltyMainPage .loginBtnWrapper {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-	}
-	.loyaltyMainPage .overlayContainer {
-		display: flex;
-		justify-content: center;
-	}
-	.loyaltyMainPage .loader {
-		position: relative;
-	}
+  .loyaltyMainPage {
+    margin: 0 10%;
+  }
+  .loyaltyMainPage .spinWheelBottom {
+    max-width: 75%;
+  }
+
+  .loyaltyMainPage #watermarkContainer {
+    border-radius: 4px;
+    margin: 16px 16px 0 16px;
+  }
+
+  .loyaltyMainPage .gamesCardTitle {
+    font-size: 14px;
+  }
+
+  .loyaltyMainPage .gamesCardDesc {
+    font-size: 12px;
+  }
+
+  .loyaltyMainPage .inviteTextContainer p {
+    font-size: 16px;
+  }
+
+  .loyaltyMainPage .gamesArenaContainer h1,
+  .loyaltyMainPage .viewAllCouponsContainer h1,
+  .loyaltyMainPage .inviteTextContainer {
+    font-size: 24px;
+  }
+
+  .loyaltyMainPage .gamesArenaContainer p {
+    font-size: 14px;
+  }
+
+  .loyaltyMainPage .leftHeader p {
+    font-size: 14px;
+  }
+
+  .loyaltyMainPage .leftHeader h6 {
+    font-size: 22px;
+  }
+
+  .loyaltyMainPage .spinner {
+    animation: rotate 2s linear infinite;
+  }
+
+  .loyaltyMainPage .inviteAndEarnContainer {
+    padding: 22px;
+    border-radius: 16px;
+    transition: all 0.5s;
+    animation: none;
+    box-shadow: none;
+    max-width: 100%;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .loyaltyMainPage .inviteEarnTextContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    color: #acacac;
+    margin: 8px 0px;
+    text-align: center;
+  }
+
+  .loyaltyMainPage .inviteAndEarn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .loyaltyMainPage .inviteAndEarn h2 {
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  .loyaltyMainPage .inviteAndEarnMessage h4 {
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    margin: 20px 0 !important;
+  }
+
+  .loyaltyMainPage .inviteLinkContainer {
+    padding: 10px 12px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid var(--loyalty_popup_theme_background, #000);
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .loyaltyMainPage .couponCodeContainer {
+    padding: 12px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid var(--loyalty_popup_theme_background, #000);
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .loyaltyMainPage .couponCodeContainer img {
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  .loyaltyMainPage .inviteLinkContainer p {
+    font-size: 14px;
+  }
+
+  .loyaltyMainPage .inviteLinkContainer img {
+    max-width: 16px;
+    cursor: pointer;
+  }
+
+  .loyaltyMainPage .sendInvitesBtnContainer,
+  .inviteWhatsappBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+
+  .loyaltyMainPage .inviteWhatsappBtn {
+    height: 40px;
+    width: 96%;
+    background-color: #29a71a;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+  }
+
+  .inviteWhatsappBtn p {
+    font-weight: 500;
+    color: white;
+  }
+
+  .inviteWhatsappBtn img {
+    filter: brightness(0) invert(1);
+  }
+
+  .loyaltyMainPage .inviteRoundedBtn {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid var(--loyalty_popup_theme_background, #000);
+  }
+
+  .loyaltyMainPage .inviteRoundedBtn img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .loyaltyMainPage .alert {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    z-index: 999;
+    background: #160b0b;
+    color: #f4c7c7;
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 8px 22px;
+    transition: 0.5s all ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    animation-name: fade-in;
+    animation-duration: 0.5s;
+  }
+
+  .loyaltyMainPage .alert svg.fw-wallet-alert-popup-error {
+    width: 22px;
+    height: 22px;
+    fill: rgb(244, 67, 54);
+    margin-right: 8px;
+  }
+
+  .loyaltyMainPage .shareTextContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    color: #acacac;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .loyaltyMainPage .dashedDivider {
+    border: none;
+    height: 1px;
+    background: repeating-linear-gradient(
+      90deg,
+      #000,
+      #000 6px,
+      transparent 6px,
+      transparent 12px
+    );
+    margin: 20px 0 16px 0;
+  }
+
+  .loyaltyMainPage .referralContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loyaltyMainPage .copied {
+    background-color: green;
+    padding: 8px;
+    position: absolute;
+    top: 55%;
+    left: 48%;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .loyaltyMainPage .loader {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .loyaltyMainPage .loading-screen {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loyaltyMainPage .loginbtn {
+    background-color: #efefef;
+    text-decoration: none;
+    color: black;
+    padding: 12px;
+    border-radius: 8px;
+    display: block;
+    width: fit-content;
+  }
+
+  .loyaltyMainPage #couponOverlayId {
+    width: 80%;
+  }
+
+  .loyaltyMainPage .unlockCouponContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .loyaltyMainPage .redeemCoinContainer {
+    width: 80%;
+  }
+
+  .loyaltyMainPage .redeemCoinMainContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .loyaltyMainPage .lockedIcon img {
+    width: 130px;
+    height: 130px;
+  }
+  .loyaltyMainPage .lockedIcon {
+    transform: translate(-42%, -40%);
+  }
+  .loyaltyMainPage .loginBtnWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .loyaltyMainPage .overlayContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .loyaltyMainPage .loader {
+    position: relative;
+  }
 }
 
 @media (min-width: 634px) {
-	.loyaltyMainPage .inviteAndEarnContainer {
-		width: 80%;
-		box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
-	}
-	.loyaltyMainPage .spinWheelBottom {
-		max-width: 40%;
-	}
-	.loyaltyMainPage .reedemfcCoins, .loyaltyMainPage .exploreCoupons {
-		width: 100%;
-	}
+  .loyaltyMainPage .inviteAndEarnContainer {
+    width: 80%;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3);
+  }
+  .loyaltyMainPage .spinWheelBottom {
+    max-width: 40%;
+  }
+  .loyaltyMainPage .reedemfcCoins,
+  .loyaltyMainPage .exploreCoupons {
+    width: 100%;
+  }
 }
 
-@media (min-width:810px) {
-	.loyaltyMainPage .couponWrapper {
-		display: flex;
-	}
-	.loyaltyMainPage .redeemCoinContainer {
-		width: 65%;
-	}
-}`;
+@media (min-width: 810px) {
+  .loyaltyMainPage .couponWrapper {
+    display: flex;
+  }
+  .loyaltyMainPage .redeemCoinContainer {
+    width: 65%;
+  }
+}
+
+.screenHeaderBackBtn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.6rem;
+  margin-top: 7px;
+  color: rgb(91, 91, 91);
+  font-weight: 700;
+}
+`;
   const WalletCard = ({
     walletAmount,
     onClick
@@ -3222,7 +3268,7 @@ body {
     p(() => {
       const coinName = window.fc_loyalty_vars.coin_name;
       if (coinName) {
-        sessionStorage.setItem("coinName", coinName);
+        localStorage.setItem("coinName", coinName);
       }
     }, []);
     return o(k$1, {
@@ -3234,8 +3280,9 @@ body {
             class: "walletCardText",
             children: [
               "My",
+              " ",
               // @ts-ignore
-              sessionStorage.getItem("coinName") ? sessionStorage.getItem("coinName") : window.fc_loyalty_vars.coin_name
+              localStorage.getItem("coinName") ? localStorage.getItem("coinName") : window.fc_loyalty_vars.coin_name
             ]
           }), o("div", {
             class: "badgeCard",
@@ -3763,10 +3810,10 @@ body {
           onClick: handleBackBtn,
           children: "Back"
         }) : o(k$1, {
-          children: !(activePage === "coupon" || activePage === "spinwheel" || activePage === "scratchcard" || activePage === "referral") && o("img", {
+          children: !(activePage === "coupon" || activePage === "spinwheel" || activePage === "scratchcard" || activePage === "referral") && o("p", {
+            class: "screenHeaderBackBtn",
             onClick: closeScreen,
-            src: "https://media.farziengineer.co/farziwallet/cross.png",
-            alt: ""
+            children: "Back"
           })
         })]
       })
@@ -7043,7 +7090,9 @@ body {
               gameDesc: game.description,
               cardImage: game.image,
               btnText: "Scratch",
-              gamePrice: game.amount
+              gamePrice: game.amount,
+              isLoggedIn: login,
+              handleLogin: setLogin
             }, idx))
           })
         })), activeTab === "yourcoupons" && o(YourCoupons, {
