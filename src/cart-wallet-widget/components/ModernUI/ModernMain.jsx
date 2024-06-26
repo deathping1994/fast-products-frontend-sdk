@@ -1,3 +1,4 @@
+import {useState} from "preact/hooks";
 import ModernLogin from "./ModernLogin";
 
 const ModernMain = ({
@@ -19,6 +20,18 @@ const ModernMain = ({
       toggleUserWallet(walletApplied);
     }
   };
+
+  const [isWalletApplied,setIsWalletApplied]=useState(walletAppliedDetails.walletDiscountApplied==0 ?false:true)
+
+// When a coupon is already applied then our coupon don't gets applied with other coupon so in that case the below function will uncheck the checkbox
+ function checkForCheckbox(){
+    if( walletAppliedDetails.walletDiscountApplied==0){
+      setIsWalletApplied(false)
+    }else{
+      setIsWalletApplied(true)
+    }
+  }  
+  checkForCheckbox()
   return (
     <>
       {
@@ -84,49 +97,50 @@ const ModernMain = ({
               </p>
 
             </div>
-            <div className="modernWalletBalance">
-              <p>Balance</p>
-              <p>
-                {walletApplied
-                  ? Number(
-                    walletAppliedDetails?.remainingWalletBalance.toFixed(2)
-                  ).toLocaleString("en-IN", {
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                    style: "currency",
-                    currency: "INR",
-                  })
-                  : Number(
-                    walletAppliedDetails?.remainingWalletBalance.toFixed(2)
-                  ).toLocaleString("en-IN", {
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                    style: "currency",
-                    currency: "INR",
-                  })}
-              </p>
-            </div>
-          </div>
-          <div className='modernWalletCheckboxContainer'>
-            {!loadingWalletBal ?
-              <div className="modern-checkbox bounce">
-                <input
-                  type="checkbox"
-                  checked={walletApplied}
-                  onChange={handleCheckbox}
-                />
-                <svg viewBox="0 0 21 21">
-                  <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
-                </svg>
-              </div> :
-              <div class="spinner-container">
-                <div class="spinner"></div>
-                <img src="https://media.farziengineer.co/farziwallet/wallet_icon.svg" alt="Wallet Icon" class="spinner-image" />
-              </div>}
-          </div>
+            
+        <div className="modernWalletBalance">
+          <p>Balance</p>
+          <p>
+            {walletApplied
+              ? Number(
+                  walletAppliedDetails?.remainingWalletBalance.toFixed(2)
+                ).toLocaleString("en-IN", {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                  style: "currency",
+                  currency: "INR",
+                })
+              : Number(
+                  walletAppliedDetails?.remainingWalletBalance.toFixed(2)
+                ).toLocaleString("en-IN", {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                  style: "currency",
+                  currency: "INR",
+                })}
+          </p>
         </div>
-          : <ModernLogin themeDetailsData={themeDetailsData} customerDetails={customerDetails} />
-      }
+      </div>
+      <div className='modernWalletCheckboxContainer'>
+      {!loadingWalletBal ?
+          <div className="modern-checkbox bounce">
+            <input
+              type="checkbox"
+              checked={isWalletApplied}
+              onChange={handleCheckbox}
+            />
+            <svg viewBox="0 0 21 21">
+              <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
+            </svg>
+          </div>: 
+      <div class="spinner-container">
+      <div class="spinner"></div>
+      <img src="https://media.farziengineer.co/farziwallet/wallet_icon.svg" alt="Wallet Icon" class="spinner-image"/>
+    </div>}
+    </div>
+    </div>
+    : <ModernLogin themeDetailsData={themeDetailsData} customerDetails={customerDetails}/> 
+    }
     </>
   );
 };
