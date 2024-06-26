@@ -27,10 +27,10 @@ const calculateWalletRedemptionLimit = ({
   } else if (walletRedemptionLimitDetails2?.type === "FIXED") {
     walletLimitAmount = Number(walletRedemptionLimitDetails2?.amount || "0");
   } else if (walletRedemptionLimitDetails2?.type === "VARIABLE") {
-    const amountArray = walletRedemptionLimitDetails2?.amount;
+    const conditionArray = walletRedemptionLimitDetails2?.condition;
     let discount = 0;
 
-    const sortedArray = amountArray.sort((a, b) => a?.minSubTotal - b?.minSubTotal);
+    const sortedArray = conditionArray.sort((a, b) => a?.minSubTotal - b?.minSubTotal);
     let isPercent = false;
 
     for (let item of sortedArray) {
@@ -38,7 +38,7 @@ const calculateWalletRedemptionLimit = ({
         if (item?.type === "PERCENT") 
           isPercent = true;
         else isPercent = false;
-        discount = item?.amount;
+        discount = item?.discount;
       } else {
         break;
       }
@@ -102,6 +102,7 @@ export function ApplyWallet({
   const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] = useState({
     amount: 0,
     type: null,
+    condition: null,
   });
   const applyWalletAmount = (amount) => {
     const event = new CustomEvent("wallet_amount_applied", {
@@ -158,11 +159,13 @@ export function ApplyWallet({
       setWalletRedemptionLimitDetails({
         type: walletData?.data?.limit_details?.type,
         amount: Number(walletData?.data?.limit_details?.amount),
+        condition: walletData?.data?.limit_details?.condition
       });
       
       const lmt = {
         type: walletData?.data?.limit_details?.type,
         amount: Number(walletData?.data?.limit_details?.amount),
+        condition: walletData?.data?.limit_details?.condition
       };
       // setWalletRedemptionLimitDetails({
       //   type: "VARIABLE",
@@ -178,10 +181,12 @@ export function ApplyWallet({
       setWalletRedemptionLimitDetails({
         type: "FIXED",
         amount: 0,
+        condition: null,
       });
       localStorage.setItem("fc-wallet-redemption-limit", JSON.stringify({
         type: "FIXED",
         amount: 0,
+        condition: null,
       }))
     }
   };
@@ -291,7 +296,7 @@ export function ApplyWallet({
           Number(walletPointsToApplyBeforeLimit),
           Number(walletRedemptionLimit)
         )
-        : walletPointsToApplyBeforeLimit;
+        : 0;
       //console.log("walletPointsToApply", walletPointsToApply);
       try {
         localStorage.setItem(
@@ -539,7 +544,7 @@ export function ApplyWallet({
           Number(walletPointsToApplyBeforeLimit),
           Number(walletRedemptionLimit)
         )
-        : walletPointsToApplyBeforeLimit;
+        : 0;
       //console.log("walletPointsToApply", walletPointsToApply);
       try {
         localStorage.setItem(
