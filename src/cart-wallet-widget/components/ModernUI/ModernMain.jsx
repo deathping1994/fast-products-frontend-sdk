@@ -1,3 +1,4 @@
+import {useState} from "preact/hooks";
 import ModernLogin from "./ModernLogin";
 
 const ModernMain = ({
@@ -19,6 +20,19 @@ const ModernMain = ({
       toggleUserWallet(walletApplied);
     }
   };
+
+  const [isWalletApplied,setIsWalletApplied]=useState(walletAppliedDetails.walletDiscountApplied==0 ?false:true)
+
+// When a coupon is already applied then our coupon don't gets applied with other coupon so in that case the below function will uncheck the checkbox
+ function checkForCheckbox(){
+    if( walletAppliedDetails.walletDiscountApplied==0){
+      setIsWalletApplied(false)
+    }else{
+      setIsWalletApplied(true)
+    }
+  }  
+  checkForCheckbox()
+
   return (
     <>
     {
@@ -77,7 +91,7 @@ const ModernMain = ({
           <div className="modern-checkbox bounce">
             <input
               type="checkbox"
-              checked={walletApplied}
+              checked={isWalletApplied}
               onChange={handleCheckbox}
             />
             <svg viewBox="0 0 21 21">
