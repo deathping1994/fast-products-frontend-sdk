@@ -32,37 +32,72 @@ const ModernMain = ({
     }
   }  
   checkForCheckbox()
-
   return (
     <>
-    {
-      customerDetails?.customerTags !== "" ? <div className="modernWalletContainer">
-      <div className="modernWalletIcon">
-        <div className="wallet_icon"></div>
-      </div>
-      <div className="modernWalletMidContainer">
-        <div className="modernWalletMidSection">
-          <p>
-            {themeDetailsData?.data?.coin_name}
-            {walletApplied && 
-              ` Applied : ${Number(
-                walletAppliedDetails.walletDiscountApplied.toFixed(2)
-              ).toLocaleString("en-IN", {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-                style: "currency",
-                currency: "INR",
-              })}`}
-          </p>
-          <p>{walletRedemptionLimitDetails?.type === "CART_PERCENT" ? `${walletRedemptionLimitDetails?.amount}% of the Grand Total ` : `Maximum ${Number(walletRedemptionLimitDetails?.amount).toLocaleString("en-IN", {
+      {
+        customerDetails?.customerTags !== "" ? <div className="modernWalletContainer">
+          <div className="modernWalletIcon">
+            <div className="wallet_icon"></div>
+          </div>
+          <div className="modernWalletMidContainer">
+            <div className="modernWalletMidSection">
+              <p>
+                {themeDetailsData?.data?.coin_name}
+                {walletApplied &&
+                  ` Applied : ${Number(
+                    walletAppliedDetails.walletDiscountApplied.toFixed(2)
+                  ).toLocaleString("en-IN", {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                    style: "currency",
+                    currency: "INR",
+                  })}`}
+              </p>
+              <p>
+                {walletRedemptionLimitDetails?.type === "CART_PERCENT" ? (
+                  `${walletRedemptionLimitDetails?.amount}% of the Grand Total `
+                ) : walletRedemptionLimitDetails?.type === "CART_LIMIT" ? (
+                  (() => {
+                    const conditionArray = walletRedemptionLimitDetails?.condition;
+                    let discount = 0;
+                    const payablePrice = walletAppliedDetails?.totalPayablePrice + walletAppliedDetails?.walletDiscountApplied;
+              
+                    const sortedArray = conditionArray.sort((a, b) => a?.minSubTotal - b?.minSubTotal);
+                    let isPercent = false;
+              
+                    for (let item of sortedArray) {
+                      if (payablePrice >= item?.minSubTotal) {
+                        if (item?.type === "PERCENT") 
+                          isPercent = true;  
+                        else isPercent = false;
+                        discount = item?.discount;
+                      } else {
+                        break;
+                      }
+                    }
+
+                    if(isPercent)
+                      return (`${discount}% of the Grand Total `);
+                    return (`Maximum ${discount.toLocaleString("en-IN", {
                       maximumFractionDigits: 2,
                       minimumFractionDigits: 2,
                       style: "currency",
                       currency: "INR",
-                    })} `}
-             can be paid via{" "+themeDetailsData?.data?.coin_name}
-          </p>
-        </div>
+                    })} `);
+                  })()
+                ) :(
+                  `Maximum ${Number(walletRedemptionLimitDetails?.amount).toLocaleString("en-IN", {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                    style: "currency",
+                    currency: "INR",
+                  })} `
+                )}
+                can be paid via{" " + themeDetailsData?.data?.coin_name}
+              </p>
+
+            </div>
+            
         <div className="modernWalletBalance">
           <p>Balance</p>
           <p>

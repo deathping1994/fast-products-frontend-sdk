@@ -510,18 +510,7 @@
     background: url("https://media.farziengineer.co/farziwallet/get-cashback.png");
     background-size: 100%;
     margin-right: 8px;
-  }
-
-@media (max-width:740px) {
-  #fc-retainley-wallet-btn {
-    width: fit-content;
-    font-size: 15px;
-  }
-  #fc-wallet-amt-name {
-    font-size: 10px;
-    transform: translate(-50%, 20%);
-  }
-}`;
+  }`;
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -759,7 +748,7 @@
       setLoadingCashbackDetails(false);
     };
     p(() => {
-      var _a;
+      var _a, _b, _c;
       const mainScript = document.querySelector("#fc-wallet-cart-strip-script-19212");
       const customer_id = mainScript.getAttribute("data-customer-id");
       const customer_tags = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
@@ -769,12 +758,13 @@
       mainScript.getAttribute("data-cashback-strip");
       mainScript.getAttribute("data-wallet-credit-box");
       mainScript.getAttribute("wallet-theme");
+      const polling = ((_c = (_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.polling) == null ? void 0 : _c.toLowerCase()) !== "false";
       if (checkout_target) {
         setCheckoutTarget({
           enable: true,
           isSet: true
         });
-      } else {
+      } else if (polling) {
         setInterval(() => {
           syncCartSummary();
         }, 1e4);
@@ -886,7 +876,6 @@
         customStyles: clientCustomStyleData
       }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
     } catch (err) {
-      console.log("error", err);
     }
   }
   function checkWalletStrip() {
