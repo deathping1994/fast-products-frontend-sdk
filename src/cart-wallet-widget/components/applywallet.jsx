@@ -26,7 +26,7 @@ const calculateWalletRedemptionLimit = ({
       (walletRedemptionLimitDetails2?.amount / 100) * cartTotalPrice;
   } else if (walletRedemptionLimitDetails2?.type === "FIXED") {
     walletLimitAmount = Number(walletRedemptionLimitDetails2?.amount || "0");
-  } else if (walletRedemptionLimitDetails2?.type === "VARIABLE") {
+  } else if (walletRedemptionLimitDetails2?.type === "CART_LIMIT") {
     const conditionArray = walletRedemptionLimitDetails2?.condition;
     let discount = 0;
 
