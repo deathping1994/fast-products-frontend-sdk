@@ -37,21 +37,21 @@ const ModernMain = ({
               <p>
                 {walletRedemptionLimitDetails?.type === "CART_PERCENT" ? (
                   `${walletRedemptionLimitDetails?.amount}% of the Grand Total `
-                ) : walletRedemptionLimitDetails?.type === "VARIABLE" ? (
+                ) : walletRedemptionLimitDetails?.type === "CART_LIMIT" ? (
                   (() => {
-                    const amountArray = walletRedemptionLimitDetails?.amount;
+                    const conditionArray = walletRedemptionLimitDetails?.condition;
                     let discount = 0;
                     const payablePrice = walletAppliedDetails?.totalPayablePrice + walletAppliedDetails?.walletDiscountApplied;
               
-                    const sortedArray = amountArray.sort((a, b) => a?.minSubTotal - b?.minSubTotal);
+                    const sortedArray = conditionArray.sort((a, b) => a?.minSubTotal - b?.minSubTotal);
                     let isPercent = false;
               
                     for (let item of sortedArray) {
                       if (payablePrice >= item?.minSubTotal) {
                         if (item?.type === "PERCENT") 
-                          isPercent = true;
+                          isPercent = true;  
                         else isPercent = false;
-                        discount = item?.amount;
+                        discount = item?.discount;
                       } else {
                         break;
                       }
