@@ -29,6 +29,7 @@ const calculateWalletRedemptionLimit = ({
   } else if (walletRedemptionLimitDetails2?.type === "CART_LIMIT") {
     const conditionArray = walletRedemptionLimitDetails2?.condition;
     let discount = 0;
+    let limit;
 
     const sortedArray = conditionArray.sort((a, b) => a?.minSubTotal - b?.minSubTotal);
     let isPercent = false;
@@ -39,12 +40,13 @@ const calculateWalletRedemptionLimit = ({
           isPercent = true;
         else isPercent = false;
         discount = item?.discount;
+        limit = item?.limit
       } else {
         break;
       }
     }
 
-    walletLimitAmount = isPercent ? (discount / 100) * cartTotalPrice : Number(discount || "0");
+    walletLimitAmount = isPercent ? Math.min((discount / 100) * cartTotalPrice, limit) : Number(discount || "0");
   } else {
     const limitDet = JSON.parse(localStorage.getItem("fc-wallet-redemption-limit"))
     walletLimitAmount = Number(walletRedemptionLimitDetails2?.amount || "0");
