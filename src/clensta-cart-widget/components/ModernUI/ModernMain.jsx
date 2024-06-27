@@ -74,7 +74,7 @@ const ModernMain = ({
               {effectiveWalletRedemptionLimitDetails?.type && (
                 <p>
                   {effectiveWalletRedemptionLimitDetails?.type === 'CART_PERCENT'
-                    ? `${effectiveWalletRedemptionLimitDetails?.amount}% of the Grand Total`
+                    ? `${effectiveWalletRedemptionLimitDetails?.amount}% of the Grand Total `
                     : `Maximum ${Number(effectiveWalletRedemptionLimitDetails?.amount).toLocaleString('en-IN', {
                       maximumFractionDigits: 2,
                       minimumFractionDigits: 2,
