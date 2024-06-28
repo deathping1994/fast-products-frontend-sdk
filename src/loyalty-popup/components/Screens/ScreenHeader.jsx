@@ -15,11 +15,13 @@ const ScreenHeader = ({
           </button>
         ) : (
           <>
-            {!(activePage === 'coupon' || activePage === 'spinwheel' || activePage === 'scratchcard' || activePage === 'referral') && <img
-              onClick={closeScreen}
-              src="https://media.farziengineer.co/farziwallet/cross.png"
-              alt=""
-            />}
+            {!(
+              activePage === "coupon" || activePage === "spinwheel" || activePage === "scratchcard" || activePage === "referral"
+            ) && (
+              <p class="screenHeaderBackBtn" onClick={closeScreen}>
+                {"Back"}
+              </p>
+            )}
           </>
         )}
       </div>

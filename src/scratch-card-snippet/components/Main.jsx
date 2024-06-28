@@ -187,6 +187,8 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
                 cardImage={game.image}
                 btnText={"Scratch"}
                 gamePrice={game.amount}
+                isLoggedIn={login}
+                handleLogin={setLogin}
               />
             ))}
           </div>

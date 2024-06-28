@@ -748,7 +748,7 @@
       setLoadingCashbackDetails(false);
     };
     p(() => {
-      var _a;
+      var _a, _b, _c;
       const mainScript = document.querySelector("#fc-wallet-cart-strip-script-19212");
       const customer_id = mainScript.getAttribute("data-customer-id");
       const customer_tags = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
@@ -758,12 +758,13 @@
       mainScript.getAttribute("data-cashback-strip");
       mainScript.getAttribute("data-wallet-credit-box");
       mainScript.getAttribute("wallet-theme");
+      const polling = ((_c = (_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.polling) == null ? void 0 : _c.toLowerCase()) !== "false";
       if (checkout_target) {
         setCheckoutTarget({
           enable: true,
           isSet: true
         });
-      } else {
+      } else if (polling) {
         setInterval(() => {
           syncCartSummary();
         }, 1e4);
@@ -875,7 +876,6 @@
         customStyles: clientCustomStyleData
       }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
     } catch (err) {
-      console.log("error", err);
     }
   }
   function checkWalletStrip() {
