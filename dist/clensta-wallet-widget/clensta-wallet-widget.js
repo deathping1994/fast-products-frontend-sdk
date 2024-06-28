@@ -1260,14 +1260,6 @@ body {
     var _a, _b, _c, _d;
     const [storedWalletDetails, setStoredWalletDetails] = h(null);
     const applyWalletLoader = ((_b = (_a = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a.apply_wallet_loader) == null ? void 0 : _b.toLowerCase()) !== "false";
-    const getWalletRedemptionLimitDetails = () => {
-      if (!(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type)) {
-        const storedLimitDetails = localStorage.getItem("fc-wallet-redemption-limit");
-        return storedLimitDetails ? JSON.parse(storedLimitDetails) : null;
-      }
-      return walletRedemptionLimitDetails;
-    };
-    const effectiveWalletRedemptionLimitDetails = getWalletRedemptionLimitDetails();
     p(() => {
       const storedDetails = sessionStorage.getItem("walletAppliedDetails");
       if (storedDetails) {
@@ -1276,7 +1268,7 @@ body {
         sessionStorage.setItem("walletAppliedDetails", JSON.stringify(walletAppliedDetails));
         setStoredWalletDetails(walletAppliedDetails);
       }
-    }, [walletAppliedDetails]);
+    }, []);
     p(() => {
       if (walletAppliedDetails.walletDiscountApplied !== 0 || walletAppliedDetails.remainingWalletBalance !== 0) {
         sessionStorage.setItem("walletAppliedDetails", JSON.stringify(walletAppliedDetails));
@@ -1307,13 +1299,13 @@ body {
                 style: "currency",
                 currency: "INR"
               })}`]
-            }), (effectiveWalletRedemptionLimitDetails == null ? void 0 : effectiveWalletRedemptionLimitDetails.type) && o("p", {
-              children: [(effectiveWalletRedemptionLimitDetails == null ? void 0 : effectiveWalletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${effectiveWalletRedemptionLimitDetails == null ? void 0 : effectiveWalletRedemptionLimitDetails.amount}% of the Grand Total` : `Maximum ${Number(effectiveWalletRedemptionLimitDetails == null ? void 0 : effectiveWalletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
+            }), o("p", {
+              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : `Maximum ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
                 style: "currency",
                 currency: "INR"
-              })} `, "can be paid via ", (_d = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _d.coin_name]
+              })} `, "can be paid via", " ", (_d = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _d.coin_name]
             })]
           }), o("div", {
             className: "modernWalletBalance",
@@ -2427,6 +2419,7 @@ body {
         customStyles: clientCustomStyleData
       }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
     } catch (err) {
+      console.log("error", err);
     }
   }
   window.fc_loyalty_render_wallet_box = renderWalletBox;
