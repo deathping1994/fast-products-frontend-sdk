@@ -32,7 +32,6 @@ const ModernMain = ({
     }
   }  
   checkForCheckbox()
-  console.log("yelowwww")
   return (
     <>
       {
