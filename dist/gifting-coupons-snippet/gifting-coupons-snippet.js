@@ -4186,7 +4186,7 @@ body {
             children: [o("div", {
               class: "reedemfcCoins",
               children: [o("h3", {
-                children: ["Redeem ", window.fc_loyalty_vars.coin_name, " Coins"]
+                children: ["Redeem ", window.fc_loyalty_vars.coin_name, " "]
               }), o("div", {
                 onClick: () => changeOverlay("redeem"),
                 class: "reedemfcCoinsCard",
@@ -4199,7 +4199,7 @@ body {
                   children: [o("h5", {
                     children: ["100 ", window.fc_loyalty_vars.coin_name, "  = ₹100"]
                   }), o("p", {
-                    children: ["Use ", window.fc_loyalty_vars.coin_name, " Coins to create a custom discount coupon"]
+                    children: ["Use ", window.fc_loyalty_vars.coin_name, " to create a custom discount coupon"]
                   })]
                 }), o("div", {
                   children: o("img", {
@@ -6015,7 +6015,7 @@ body {
           }), o("div", {
             class: "unlockTextContainer",
             children: o("h4", {
-              children: !isCouponUnlocked ? `Unlock for ${couponData == null ? void 0 : couponData.amount} ${window.fc_loyalty_vars.coin_name} Coins` : "Use this code at checkout"
+              children: !isCouponUnlocked ? `Unlock for ${couponData == null ? void 0 : couponData.amount} ${window.fc_loyalty_vars.coin_name}` : "Use this code at checkout"
             })
           }), !isCouponUnlocked && o("div", {
             children: !loading && o("button", {

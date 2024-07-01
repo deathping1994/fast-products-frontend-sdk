@@ -484,7 +484,7 @@
         id: "fc-retainley-wallet-btn",
         children: loading ? o("div", {
           className: "loader"
-        }) : walletAmount
+        }) : walletAmount || "Login"
       }), o("span", {
         id: "fc-wallet-amt-name",
         children: (_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.coin_name
