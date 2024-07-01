@@ -86,7 +86,7 @@ const ModernMain = ({
                     })} `);
                   })()
                 ) :(
-                  `Maximum ${Number(walletRedemptionLimitDetails?.amount).toLocaleString("en-IN", {
+                  ` ${Number(walletRedemptionLimitDetails?.amount).toLocaleString("en-IN", {
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
                     style: "currency",
