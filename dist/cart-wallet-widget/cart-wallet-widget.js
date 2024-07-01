@@ -1142,7 +1142,7 @@ body {
                   style: "currency",
                   currency: "INR"
                 })} `;
-              })() : `Maximum ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
+              })() : ` ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
                 style: "currency",
@@ -1990,6 +1990,7 @@ body {
     const [modernUiTheme, setModernUiTheme] = h("");
     const [cashbackAmount, setCashbackAmount] = h(0);
     const [isCartEmpty, setIsCartEmpty] = h(false);
+    const [cartTotalAmt, setCartTotalAmt] = h(0);
     const setTheme = ({
       themeDetailsData: themeDetailsData2
     }) => {
@@ -2015,6 +2016,7 @@ body {
       setIsCartEmpty((cartDetails == null ? void 0 : cartDetails.item_count) === 0 ? true : false);
       const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100;
       localStorage.setItem("totalCartPrice", `${totalPrice}`);
+      setCartTotalAmt(totalPrice);
       const totalDiscount = (cartDetails == null ? void 0 : cartDetails.total_discount) / 100;
       const appliedDiscountCode2 = ((_b = (_a = cartDetails == null ? void 0 : cartDetails.cart_level_discount_applications) == null ? void 0 : _a.find((item) => {
         return item.type === "discount_code" && !item.title.includes("WALLETAPPLIED");
@@ -2053,25 +2055,28 @@ body {
     const getCashbackDetails = async ({
       customerID,
       customerTags,
-      clientID
+      clientID,
+      cartAmount
     }) => {
-      var _a, _b, _c, _d;
+      var _a, _b, _c;
       setLoadingCashbackDetails(true);
-      const cashbackRes = await fetch(`${WALLET_API_URI}/loyalty/cashback-detail`, {
+      const cashbackRes = await fetch(`${WALLET_API_URI}/get-order-cashback`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
           customer_id: customerID,
-          user_hash: customerTags,
+          coupon: "",
+          order_amount: cartAmount,
           client_id: clientID
         })
       });
       const cashbackResDetails = await cashbackRes.json();
+      setCashbackAmount(Number((_a = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _a.cashbackAmount));
       setCashbackDetails({
-        type: (_b = (_a = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _a.cashback_data) == null ? void 0 : _b.type,
-        amount: Number((_d = (_c = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _c.cashback_data) == null ? void 0 : _d.amount)
+        type: (_b = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _b.cashbackType,
+        amount: Number((_c = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _c.cashbackAmount)
       });
       setLoadingCashbackDetails(false);
     };
@@ -2082,10 +2087,8 @@ body {
       if ((cashbackDetails == null ? void 0 : cashbackDetails.type) === "percent") {
         const cartAmount = (_a = window.fc_cart_details) == null ? void 0 : _a.totalPayablePrice;
         const finalAmount = (cashbackDetails == null ? void 0 : cashbackDetails.amount) / 100 * (totalPrice || cartAmount);
-        setCashbackAmount(finalAmount);
         return finalAmount;
       } else {
-        setCashbackAmount(cashbackDetails == null ? void 0 : cashbackDetails.amount);
         return cashbackDetails == null ? void 0 : cashbackDetails.amount;
       }
     };
@@ -2132,12 +2135,13 @@ body {
       getCashbackDetails({
         customerID: customer_id,
         customerTags: customer_tags,
-        clientID: client_id
+        clientID: client_id,
+        cartAmount: cartTotalAmt
       });
       setTheme({
         themeDetailsData
       });
-    }, []);
+    }, [cartTotalAmt]);
     p(() => {
       loadCartSummary();
     }, [refetchCartSummary, cashbackDetails == null ? void 0 : cashbackDetails.type]);
