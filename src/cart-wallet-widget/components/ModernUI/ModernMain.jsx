@@ -78,7 +78,7 @@ const ModernMain = ({
 
                     if(isPercent)
                       return (`${discount}% of the Grand Total `);
-                    return (`Maximum ${discount.toLocaleString("en-IN", {
+                    return (`${discount.toLocaleString("en-IN", {
                       maximumFractionDigits: 2,
                       minimumFractionDigits: 2,
                       style: "currency",
