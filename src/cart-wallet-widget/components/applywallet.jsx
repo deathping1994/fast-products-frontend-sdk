@@ -272,7 +272,7 @@ export function ApplyWallet({
       const cartDetails = await cartRes.json();
       const prevWalletAmountApplied =
         cartDetails?.cart_level_discount_applications?.find((item) => {
-          return item?.title?.includes("WALLETAPPLIED");
+          return item?.title?.includes(window?.fc_coin_prefix || "WALLETAPPLIED");
         })?.total_allocated_amount;
       const alreadyAppliedWalletDiscount = prevWalletAmountApplied
         ? prevWalletAmountApplied / 100
@@ -409,7 +409,7 @@ export function ApplyWallet({
 
         const walletAppliedFromUpdatedCart =
           cartDetailsUpdated?.cart_level_discount_applications?.find((item) => {
-            return item?.title?.includes("WALLETAPPLIED");
+            return item?.title?.includes(window?.fc_coin_prefix || "WALLETAPPLIED");
           })?.total_allocated_amount;
 
         const walletPointsApplied = walletAppliedFromUpdatedCart
@@ -520,7 +520,7 @@ export function ApplyWallet({
       const cartDetails = await cartRes.json();
       const prevWalletAmountApplied =
         cartDetails?.cart_level_discount_applications?.find((item) => {
-          return item?.title?.includes("WALLETAPPLIED");
+          return item?.title?.includes(window?.fc_coin_prefix || "WALLETAPPLIED");
         })?.total_allocated_amount;
       const alreadyAppliedWalletDiscount = prevWalletAmountApplied
         ? prevWalletAmountApplied / 100
@@ -650,7 +650,7 @@ export function ApplyWallet({
 
         const walletAppliedFromUpdatedCart =
           cartDetailsUpdated?.cart_level_discount_applications?.find((item) => {
-            return item?.title?.includes("WALLETAPPLIED");
+            return item?.title?.includes(window?.fc_coin_prefix || "WALLETAPPLIED");
           })?.total_allocated_amount;
 
         const walletPointsApplied = walletAppliedFromUpdatedCart
