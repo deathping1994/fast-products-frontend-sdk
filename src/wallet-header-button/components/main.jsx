@@ -61,7 +61,7 @@ const Main = ({themeDetailsData, shadowRoot}) => {
   return (
     showBtnAtLogout === 'true' && (
       <div id="fc-retainley-wallet-box">
-          <a href={walletAmount === "Login" ? (themeDetailsData?.data?.login_page || '/account/login') : redirectURL} id="fc-retainley-wallet-btn">{loading ? <div className="loader"></div> : walletAmount}</a>
+          <a href={walletAmount === "Login" ? (themeDetailsData?.data?.login_page || '/account/login') : redirectURL} id="fc-retainley-wallet-btn">{loading ? <div className="loader"></div> : walletAmount || "Login"}</a>
           <span id="fc-wallet-amt-name">{themeDetailsData?.data?.coin_name}</span>
       </div>
     )

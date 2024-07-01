@@ -876,7 +876,6 @@
         customStyles: clientCustomStyleData
       }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
     } catch (err) {
-      console.log("error", err);
     }
   }
   function checkWalletStrip() {

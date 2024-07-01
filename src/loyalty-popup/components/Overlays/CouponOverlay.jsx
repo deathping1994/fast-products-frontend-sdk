@@ -79,7 +79,7 @@ const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount
                 <div class="unlockTextContainer">
                     <h4>{!isCouponUnlocked ? `Unlock for ${couponData?.amount} ${window.
 // @ts-ignore
-                    fc_loyalty_vars.coin_name} Coins` : "Use this code at checkout"}</h4>
+                    fc_loyalty_vars.coin_name}` : "Use this code at checkout"}</h4>
                 </div>
                 
                 {!isCouponUnlocked && <div>

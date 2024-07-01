@@ -4,7 +4,7 @@ const WalletCard = ({ walletAmount, onClick }) => {
   useEffect(() => {
     const coinName = window.fc_loyalty_vars.coin_name;
     if (coinName) {
-      sessionStorage.setItem("coinName", coinName);
+      localStorage.setItem("coinName", coinName);
     }
   }, []);
   return (
@@ -12,11 +12,11 @@ const WalletCard = ({ walletAmount, onClick }) => {
       <div onClick={onClick} class="walletCard">
         <div>
           <p class="walletCardText">
-            My
+            My{" "}
             {
               // @ts-ignore
-              sessionStorage.getItem("coinName")
-                ? sessionStorage.getItem("coinName")
+              localStorage.getItem("coinName")
+                ? localStorage.getItem("coinName")
                 : window.fc_loyalty_vars.coin_name
             }
           </p>

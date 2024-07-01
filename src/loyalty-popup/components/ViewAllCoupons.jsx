@@ -182,7 +182,7 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot, loyalt
                       <div class="reedemfcCoins">
                           <h3>Redeem {window.
                       // @ts-ignore
-                          fc_loyalty_vars.coin_name} Coins</h3>
+                          fc_loyalty_vars.coin_name} </h3>
                           <div onClick={()=> changeOverlay("redeem")} class="reedemfcCoinsCard">
                               <div>
                                   <img src="https://media.farziengineer.co/farziwallet/rupee-icon.png" alt="" />
@@ -193,7 +193,7 @@ const ViewAllCoupons = ({couponCardResponse, customerDetails, shadowRoot, loyalt
                                   fc_loyalty_vars.coin_name}  = ₹100</h5>
                                   <p>Use {window.
                       // @ts-ignore
-                                  fc_loyalty_vars.coin_name} Coins to create a custom discount coupon</p>
+                                  fc_loyalty_vars.coin_name} to create a custom discount coupon</p>
                               </div>
                               <div>
                                   <img class='reedemfcCoinsCardArrow' src="https://media.farziengineer.co/farziwallet/arrow.png" alt="" />

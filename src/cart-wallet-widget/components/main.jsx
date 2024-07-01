@@ -2,7 +2,6 @@ import { useEffect, useState } from "preact/hooks";
 import { ApplyWallet } from "./applywallet";
 import { Login } from "./login";
 import { LoggedoutCartSummary } from "./loggedoutcartsummary";
-import { ApplyDiscountCode } from "./applydiscountcode";
 import { WALLET_API_URI } from "..";
 import ModernLogin from "./ModernUI/ModernLogin";
 
@@ -37,6 +36,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   const [modernUiTheme, setModernUiTheme] = useState('')
   const [cashbackAmount, setCashbackAmount] = useState(0);
   const [isCartEmpty, setIsCartEmpty] = useState(false)
+  const[cartTotalAmt,setCartTotalAmt]=useState(0)
   const setTheme = ({themeDetailsData})=>{
     var cssVariablesScope = shadowRoot.querySelector(".widget-container");
     if (cssVariablesScope && themeDetailsData?.data?.gradient_start_color) {
@@ -60,6 +60,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     setIsCartEmpty(cartDetails?.item_count === 0 ? true : false)
     const totalPrice = cartDetails?.total_price / 100;
     localStorage.setItem("totalCartPrice", `${totalPrice}`)
+    setCartTotalAmt(totalPrice)
     const totalDiscount = cartDetails?.total_discount / 100;
     const appliedDiscountCode =
       cartDetails?.cart_level_discount_applications?.find((item) => {
@@ -89,6 +90,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
     const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
     const cartDetails = await cartRes.json();
     const totalPrice = cartDetails?.total_price / 100;
+ 
     const totalDiscount = cartDetails?.total_discount / 100;
     window.fc_cart_details = {
       totalPayablePrice: Number(totalPrice),
@@ -104,10 +106,10 @@ export function Main({ themeDetailsData, shadowRoot }) {
     }
   };
 
-  const getCashbackDetails = async ({ customerID, customerTags, clientID }) => {
+  const getCashbackDetails = async ({ customerID, customerTags, clientID,cartAmount }) => {
     setLoadingCashbackDetails(true);
     const cashbackRes = await fetch(
-      `${WALLET_API_URI}/loyalty/cashback-detail`,
+      `${WALLET_API_URI}/get-order-cashback`,
       {
         method: "POST",
         headers: {
@@ -115,15 +117,17 @@ export function Main({ themeDetailsData, shadowRoot }) {
         },
         body: JSON.stringify({
           customer_id: customerID,
-          user_hash: customerTags,
+          coupon:"",
+          order_amount:cartAmount,
           client_id: clientID,
         }),
       }
     );
     const cashbackResDetails = await cashbackRes.json();
+    setCashbackAmount(Number(cashbackResDetails?.data?.cashbackAmount))
     setCashbackDetails({
-      type: cashbackResDetails?.data?.cashback_data?.type,
-      amount: Number(cashbackResDetails?.data?.cashback_data?.amount),
+      type: cashbackResDetails?.data?.cashbackType,
+      amount: Number(cashbackResDetails?.data?.cashbackAmount),
     });
 
     setLoadingCashbackDetails(false);
@@ -135,10 +139,9 @@ export function Main({ themeDetailsData, shadowRoot }) {
       const cartAmount = window.fc_cart_details?.totalPayablePrice;
       const finalAmount =
         (cashbackDetails?.amount / 100) * (totalPrice || cartAmount);
-      setCashbackAmount(finalAmount);
+      // setCashbackAmount(finalAmount);
       return finalAmount;
     } else {
-      setCashbackAmount(cashbackDetails?.amount);
       return cashbackDetails?.amount;
     }
   };
@@ -189,13 +192,15 @@ export function Main({ themeDetailsData, shadowRoot }) {
       clientID: client_id,
     });
 
-    getCashbackDetails({
-      customerID: customer_id,
-      customerTags: customer_tags,
-      clientID: client_id,
-    });
+      getCashbackDetails({
+        customerID: customer_id,
+        customerTags: customer_tags,
+        clientID: client_id,
+        cartAmount:cartTotalAmt
+      });
+
     setTheme({themeDetailsData})
-  }, []);
+  }, [cartTotalAmt]);
 
   useEffect(() => {
     loadCartSummary();
