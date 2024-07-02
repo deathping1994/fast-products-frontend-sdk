@@ -40,15 +40,18 @@ const ModernMain = ({
 // When a coupon is already applied then our coupon don't gets applied with other coupon so in that case the below function will uncheck the checkbox
  function checkForCheckbox(){
     if( walletAppliedDetails.walletDiscountApplied==0){
-      debouncedcall()
+      if(window.fc_callFuncOnRefresh){
+        debouncedcall()
+      }
       setIsWalletApplied(false)
     }else{
-      debouncedcall()
+      if(window.fc_callFuncOnRefresh){
+        debouncedcall()
+      }
       setIsWalletApplied(true)
     }
   }  
   checkForCheckbox()
-  console.log("bebo amin");
   return (
     <>
       {
