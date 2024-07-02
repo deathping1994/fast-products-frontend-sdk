@@ -98,7 +98,7 @@ export function ApplyWallet({
       currency: "INR",
     })}`;
   } catch (error) {
-    console.log("checkout_total error");
+    // console.log("checkout_total error");
   }
 
   const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] = useState({
