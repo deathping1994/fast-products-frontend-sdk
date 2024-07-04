@@ -238,7 +238,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
       const styles = document.createElement("style");
       styles.innerHTML = `
           .fc-no-scroll {
-              overflow: hidden;
+              // overflow: hidden;
           }
       `;
       document.body.appendChild(styles);
@@ -675,6 +675,8 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
     }
   };
 
+  console.log("bholaaa")
+
   return (
     <>
       <Referral />
@@ -686,9 +688,10 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
         width={30}
         height={30}
         alt="gift icon"
-      />}
+        />}
       {(!referralPopup && visibilty) && (
         <>
+        
           <div className={loyalty_theme === 'page'? 'loyaltyMainPage' : 'mainPopup'}>
             {screenDetails?.active ? (
               <Screen
@@ -847,6 +850,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
             
             {error?.error && <Alert message={error?.msg}/>}
           </div>
+       
         </>
       )}
       {(referralPopup && customer_id) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
