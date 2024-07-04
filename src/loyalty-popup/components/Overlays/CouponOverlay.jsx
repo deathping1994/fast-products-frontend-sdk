@@ -4,7 +4,7 @@ import Loading from "../Utils/Loading"
 import fetchApi from "../Utils/FetchApi"
 import Alert from "../Utils/Alert"
 
-const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount, isLoggedIn, handleLogin}) => {
+const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount, isLoggedIn, handleLogin, voucherDetails}) => {
     const [couponCode, setCouponCode] = useState("")
     const [isCouponUnlocked, setIsCouponUnlocked] = useState(false)
     const [showCopied, setShowCopied] = useState(false);
@@ -35,11 +35,15 @@ const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount
     const fetchCouponCode = async ()=>{
         try {
             setLoading(true)
+            const voucher_category = voucherDetails?.voucherCategory;
+            const category_id = voucherDetails?.categoryId;
             // console.log("coupon Overlay couponData", couponData);
             const response = await fetchApi('/get-code', 'post',
             {
                 ...customerDetails,
                 couponAmount: couponData?.amount,
+                voucher_category,
+                category_id
             })
             if(response?.status !== "success"){
                 // console.log("failed overlay");
