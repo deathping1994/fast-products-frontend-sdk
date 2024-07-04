@@ -675,7 +675,6 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
     }
   };
 
-  console.log("bholaaa")
 
   return (
     <>
