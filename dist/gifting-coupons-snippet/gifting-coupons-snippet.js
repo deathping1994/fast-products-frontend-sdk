@@ -5923,7 +5923,8 @@ body {
     customerDetails,
     updateWalletAmount,
     isLoggedIn,
-    handleLogin
+    handleLogin,
+    voucherDetails
   }) => {
     const [couponCode, setCouponCode] = h("");
     const [isCouponUnlocked, setIsCouponUnlocked] = h(false);
@@ -5956,9 +5957,13 @@ body {
       var _a;
       try {
         setLoading(true);
+        const voucher_category = voucherDetails == null ? void 0 : voucherDetails.voucherCategory;
+        const category_id = voucherDetails == null ? void 0 : voucherDetails.categoryId;
         const response = await fetchApi("/get-code", "post", {
           ...customerDetails,
-          couponAmount: couponData == null ? void 0 : couponData.amount
+          couponAmount: couponData == null ? void 0 : couponData.amount,
+          voucher_category,
+          category_id
         });
         if ((response == null ? void 0 : response.status) !== "success") {
           showError(response == null ? void 0 : response.error);
@@ -6177,6 +6182,10 @@ body {
     const [couponIdx, setCouponIdx] = h(0);
     const [loading, setLoading] = h(false);
     const [walletAmount, setWalletAmount] = h(0);
+    const [voucherDetails, setVoucherDetails] = h({
+      voucherCategory: "",
+      categoryId: ""
+    });
     const [customerDetails, setCustomerDetails] = h({
       client_id: "",
       customer_id: "",
@@ -6305,7 +6314,10 @@ body {
           updateWalletAmount: fetchWalletAmount,
           customerDetails,
           couponData: couponCardResponse[couponIdx],
-          onClick: closeOverlay
+          onClick: closeOverlay,
+          isLoggedIn: login,
+          handleLogin: setLogin,
+          voucherDetails
         });
       }
       if (overlayname === "explore") {
@@ -6313,7 +6325,10 @@ body {
           updateWalletAmount: fetchWalletAmount,
           customerDetails,
           couponData: exploreCoupon[exploreCouponIdx],
-          onClick: closeOverlay
+          onClick: closeOverlay,
+          isLoggedIn: login,
+          handleLogin: setLogin,
+          voucherDetails: {}
         });
       }
       if (overlayname === "redeem") {
@@ -6324,7 +6339,11 @@ body {
         });
       }
     };
-    const handleAndShowCouponOverlay = (idx) => {
+    const handleAndShowCouponOverlay = (idx, category, id) => {
+      setVoucherDetails({
+        voucherCategory: category,
+        categoryId: id
+      });
       changeOverlay("coupon");
       setCouponIdx(idx);
     };
@@ -6402,10 +6421,17 @@ body {
             }), o("div", {
               class: "showAllCouponsList",
               children: couponCardResponse.map((card, index) => o(CouponCard$1, {
-                onClick: () => handleAndShowCouponOverlay(index),
-                couponPrice: card.amount,
-                couponDesc: card.title,
-                couponImgLink: card.image
+                onClick: () => {
+                  const imgUrl = card.image;
+                  const imgUrlObj = new URL(imgUrl);
+                  const params = new URLSearchParams(imgUrlObj.search);
+                  const category = params.get("type");
+                  const id = params.get("id");
+                  handleAndShowCouponOverlay(index, category, id);
+                },
+                couponPrice: card == null ? void 0 : card.amount,
+                couponDesc: card == null ? void 0 : card.title,
+                couponImgLink: card == null ? void 0 : card.image
               }, index))
             })]
           }), o("div", {

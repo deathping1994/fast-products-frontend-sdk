@@ -3368,7 +3368,8 @@ body {
     customerDetails,
     updateWalletAmount,
     isLoggedIn,
-    handleLogin
+    handleLogin,
+    voucherDetails
   }) => {
     const [couponCode, setCouponCode] = h("");
     const [isCouponUnlocked, setIsCouponUnlocked] = h(false);
@@ -3401,9 +3402,13 @@ body {
       var _a;
       try {
         setLoading(true);
+        const voucher_category = voucherDetails == null ? void 0 : voucherDetails.voucherCategory;
+        const category_id = voucherDetails == null ? void 0 : voucherDetails.categoryId;
         const response = await fetchApi("/get-code", "post", {
           ...customerDetails,
-          couponAmount: couponData == null ? void 0 : couponData.amount
+          couponAmount: couponData == null ? void 0 : couponData.amount,
+          voucher_category,
+          category_id
         });
         if ((response == null ? void 0 : response.status) !== "success") {
           showError(response == null ? void 0 : response.error);
