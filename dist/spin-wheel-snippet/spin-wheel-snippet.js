@@ -3184,11 +3184,15 @@ body {
     walletAmount,
     onClick
   }) => {
+    const [coinName, setCoinName] = h(localStorage.getItem("coinName"));
     p(() => {
-      const coinName = window.fc_loyalty_vars.coin_name;
-      if (coinName) {
-        localStorage.setItem("coinName", coinName);
-      }
+      setTimeout(() => {
+        const coinName2 = window.fc_loyalty_vars.coin_name;
+        if (coinName2) {
+          localStorage.setItem("coinName", coinName2);
+          setCoinName(coinName2);
+        }
+      }, 500);
     }, []);
     return o(k$1, {
       children: o("div", {
@@ -3197,12 +3201,7 @@ body {
         children: [o("div", {
           children: [o("p", {
             class: "walletCardText",
-            children: [
-              "My",
-              " ",
-              // @ts-ignore
-              localStorage.getItem("coinName") ? localStorage.getItem("coinName") : window.fc_loyalty_vars.coin_name
-            ]
+            children: ["My", " ", coinName]
           }), o("div", {
             class: "badgeCard",
             children: [o("img", {

@@ -480,8 +480,9 @@
     return showBtnAtLogout === "true" && o("div", {
       id: "fc-retainley-wallet-box",
       children: [o("a", {
-        href: walletAmount === "Login" ? ((_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.login_page) || "/account/login" : redirectURL,
+        href: walletAmount === "Login" ? typeof window.fc_custom_login === "function" ? "javascript:void(0);" : ((_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.login_page) || "/account/login" : redirectURL,
         id: "fc-retainley-wallet-btn",
+        onClick: walletAmount === "Login" && typeof window.fc_custom_login === "function" ? () => window.fc_custom_login() : null,
         children: loading ? o("div", {
           className: "loader"
         }) : walletAmount || "Login"

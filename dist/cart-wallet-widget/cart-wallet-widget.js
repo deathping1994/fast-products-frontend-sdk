@@ -1050,7 +1050,7 @@ body {
             children: [o("p", {
               children: (_a = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a.coin_name
             }), o("p", {
-              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : `Maximum ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
+              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : `${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
                 style: "currency",
@@ -1069,6 +1069,19 @@ body {
       })
     });
   };
+  function debounceCallTheFunction(func, delay) {
+    let timerId;
+    return function(...args) {
+      const context = this;
+      clearTimeout(timerId);
+      timerId = setTimeout(() => {
+        func.apply(context, args);
+      }, delay);
+    };
+  }
+  const debouncedcall = debounceCallTheFunction(() => {
+    window.fc_callFuncOnRefresh();
+  }, 1e3);
   const ModernMain = ({
     themeDetailsData,
     walletAppliedDetails,
@@ -1091,8 +1104,14 @@ body {
     const [isWalletApplied, setIsWalletApplied] = h(walletAppliedDetails.walletDiscountApplied == 0 ? false : true);
     function checkForCheckbox() {
       if (walletAppliedDetails.walletDiscountApplied == 0) {
+        if (window.fc_callFuncOnRefresh) {
+          debouncedcall();
+        }
         setIsWalletApplied(false);
       } else {
+        if (window.fc_callFuncOnRefresh) {
+          debouncedcall();
+        }
         setIsWalletApplied(true);
       }
     }
@@ -1136,7 +1155,7 @@ body {
                 }
                 if (isPercent)
                   return `${discount}% of the Grand Total `;
-                return `Maximum ${discount.toLocaleString("en-IN", {
+                return `${discount.toLocaleString("en-IN", {
                   maximumFractionDigits: 2,
                   minimumFractionDigits: 2,
                   style: "currency",
@@ -1275,7 +1294,6 @@ body {
         currency: "INR"
       })}`;
     } catch (error) {
-      console.log("checkout_total error");
     }
     const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] = h({
       amount: 0,
@@ -1423,7 +1441,7 @@ body {
         const cartDetails = await cartRes.json();
         const prevWalletAmountApplied = (_d = (_c = cartDetails == null ? void 0 : cartDetails.cart_level_discount_applications) == null ? void 0 : _c.find((item) => {
           var _a2;
-          return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes("WALLETAPPLIED");
+          return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes((window == null ? void 0 : window.fc_coin_prefix) || "WALLETAPPLIED");
         })) == null ? void 0 : _d.total_allocated_amount;
         const alreadyAppliedWalletDiscount = prevWalletAmountApplied ? prevWalletAmountApplied / 100 : 0;
         const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100 + alreadyAppliedWalletDiscount;
@@ -1506,7 +1524,7 @@ body {
           const cartDetailsUpdated = await cartResUpdated.json();
           const walletAppliedFromUpdatedCart = (_g = (_f = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _f.find((item) => {
             var _a2;
-            return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes("WALLETAPPLIED");
+            return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes((window == null ? void 0 : window.fc_coin_prefix) || "WALLETAPPLIED");
           })) == null ? void 0 : _g.total_allocated_amount;
           const walletPointsApplied = walletAppliedFromUpdatedCart ? walletAppliedFromUpdatedCart / 100 : 0;
           const appliedDiscountCodeAmount = (_i = (_h = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _h.find((item) => {
@@ -1590,7 +1608,7 @@ body {
         const cartDetails = await cartRes.json();
         const prevWalletAmountApplied = (_d = (_c = cartDetails == null ? void 0 : cartDetails.cart_level_discount_applications) == null ? void 0 : _c.find((item) => {
           var _a2;
-          return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes("WALLETAPPLIED");
+          return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes((window == null ? void 0 : window.fc_coin_prefix) || "WALLETAPPLIED");
         })) == null ? void 0 : _d.total_allocated_amount;
         const alreadyAppliedWalletDiscount = prevWalletAmountApplied ? prevWalletAmountApplied / 100 : 0;
         const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100 + alreadyAppliedWalletDiscount;
@@ -1671,7 +1689,7 @@ body {
           const cartDetailsUpdated = await cartResUpdated.json();
           const walletAppliedFromUpdatedCart = (_g = (_f = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _f.find((item) => {
             var _a2;
-            return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes("WALLETAPPLIED");
+            return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes((window == null ? void 0 : window.fc_coin_prefix) || "WALLETAPPLIED");
           })) == null ? void 0 : _g.total_allocated_amount;
           const walletPointsApplied = walletAppliedFromUpdatedCart ? walletAppliedFromUpdatedCart / 100 : 0;
           const appliedDiscountCodeAmount = (_i = (_h = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _h.find((item) => {
