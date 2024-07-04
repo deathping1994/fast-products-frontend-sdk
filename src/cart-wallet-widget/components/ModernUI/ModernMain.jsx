@@ -1,6 +1,20 @@
 import {useState} from "preact/hooks";
 import ModernLogin from "./ModernLogin";
 
+// this function will take a function and will debounce call the function with delay provided.
+function debounceCallTheFunction(func, delay) {
+  let timerId;
+  return function(...args) {
+      const context = this;
+      clearTimeout(timerId);
+      timerId = setTimeout(() => {
+          func.apply(context, args);
+      }, delay);
+  };
+}
+// we are creating a global function that can be called from anywhere and it will take a function and will call it every time the cart is refreshed. We are debouncing that function as there are too many rerenders so for performance prospective.
+const debouncedcall = debounceCallTheFunction(()=>{window.fc_callFuncOnRefresh()}, 1000);
+
 const ModernMain = ({
   themeDetailsData,
   walletAppliedDetails,
@@ -26,8 +40,14 @@ const ModernMain = ({
 // When a coupon is already applied then our coupon don't gets applied with other coupon so in that case the below function will uncheck the checkbox
  function checkForCheckbox(){
     if( walletAppliedDetails.walletDiscountApplied==0){
+      if(window.fc_callFuncOnRefresh){
+        debouncedcall()
+      }
       setIsWalletApplied(false)
     }else{
+      if(window.fc_callFuncOnRefresh){
+        debouncedcall()
+      }
       setIsWalletApplied(true)
     }
   }  
@@ -78,7 +98,7 @@ const ModernMain = ({
 
                     if(isPercent)
                       return (`${discount}% of the Grand Total `);
-                    return (`Maximum ${discount.toLocaleString("en-IN", {
+                    return (`${discount.toLocaleString("en-IN", {
                       maximumFractionDigits: 2,
                       minimumFractionDigits: 2,
                       style: "currency",
@@ -86,7 +106,7 @@ const ModernMain = ({
                     })} `);
                   })()
                 ) :(
-                  `Maximum ${Number(walletRedemptionLimitDetails?.amount).toLocaleString("en-IN", {
+                  ` ${Number(walletRedemptionLimitDetails?.amount).toLocaleString("en-IN", {
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
                     style: "currency",
