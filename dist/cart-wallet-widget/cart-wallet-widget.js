@@ -1050,7 +1050,7 @@ body {
             children: [o("p", {
               children: (_a = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a.coin_name
             }), o("p", {
-              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : `Maximum ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
+              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : `${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
                 style: "currency",
@@ -1069,6 +1069,19 @@ body {
       })
     });
   };
+  function debounceCallTheFunction(func, delay) {
+    let timerId;
+    return function(...args) {
+      const context = this;
+      clearTimeout(timerId);
+      timerId = setTimeout(() => {
+        func.apply(context, args);
+      }, delay);
+    };
+  }
+  const debouncedcall = debounceCallTheFunction(() => {
+    window.fc_callFuncOnRefresh();
+  }, 1e3);
   const ModernMain = ({
     themeDetailsData,
     walletAppliedDetails,
@@ -1083,6 +1096,26 @@ body {
       event.stopPropagation();
       toggleUserWallet(walletApplied);
     };
+    window.uncheck = (j2) => {
+      if (j2 == 101 && walletApplied) {
+        toggleUserWallet(walletApplied);
+      }
+    };
+    const [isWalletApplied, setIsWalletApplied] = h(walletAppliedDetails.walletDiscountApplied == 0 ? false : true);
+    function checkForCheckbox() {
+      if (walletAppliedDetails.walletDiscountApplied == 0) {
+        if (window.fc_callFuncOnRefresh) {
+          debouncedcall();
+        }
+        setIsWalletApplied(false);
+      } else {
+        if (window.fc_callFuncOnRefresh) {
+          debouncedcall();
+        }
+        setIsWalletApplied(true);
+      }
+    }
+    checkForCheckbox();
     return o(k$1, {
       children: (customerDetails == null ? void 0 : customerDetails.customerTags) !== "" ? o("div", {
         className: "modernWalletContainer",
@@ -1103,7 +1136,32 @@ body {
                 currency: "INR"
               })}`]
             }), o("p", {
-              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : `Up to ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
+              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : (walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_LIMIT" ? (() => {
+                const conditionArray = walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.condition;
+                let discount = 0;
+                const payablePrice = (walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice) + (walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied);
+                const sortedArray = conditionArray.sort((a2, b2) => (a2 == null ? void 0 : a2.minSubTotal) - (b2 == null ? void 0 : b2.minSubTotal));
+                let isPercent = false;
+                for (let item of sortedArray) {
+                  if (payablePrice >= (item == null ? void 0 : item.minSubTotal)) {
+                    if ((item == null ? void 0 : item.type) === "PERCENT")
+                      isPercent = true;
+                    else
+                      isPercent = false;
+                    discount = item == null ? void 0 : item.discount;
+                  } else {
+                    break;
+                  }
+                }
+                if (isPercent)
+                  return `${discount}% of the Grand Total `;
+                return `${discount.toLocaleString("en-IN", {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                  style: "currency",
+                  currency: "INR"
+                })} `;
+              })() : ` ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
                 style: "currency",
@@ -1134,7 +1192,7 @@ body {
             className: "modern-checkbox bounce",
             children: [o("input", {
               type: "checkbox",
-              checked: walletApplied,
+              checked: isWalletApplied,
               onChange: handleCheckbox
             }), o("svg", {
               viewBox: "0 0 21 21",
@@ -1178,6 +1236,25 @@ body {
       walletLimitAmount = (walletRedemptionLimitDetails2 == null ? void 0 : walletRedemptionLimitDetails2.amount) / 100 * cartTotalPrice;
     } else if ((walletRedemptionLimitDetails2 == null ? void 0 : walletRedemptionLimitDetails2.type) === "FIXED") {
       walletLimitAmount = Number((walletRedemptionLimitDetails2 == null ? void 0 : walletRedemptionLimitDetails2.amount) || "0");
+    } else if ((walletRedemptionLimitDetails2 == null ? void 0 : walletRedemptionLimitDetails2.type) === "CART_LIMIT") {
+      const conditionArray = walletRedemptionLimitDetails2 == null ? void 0 : walletRedemptionLimitDetails2.condition;
+      let discount = 0;
+      let limit;
+      const sortedArray = conditionArray.sort((a2, b2) => (a2 == null ? void 0 : a2.minSubTotal) - (b2 == null ? void 0 : b2.minSubTotal));
+      let isPercent = false;
+      for (let item of sortedArray) {
+        if (cartTotalPrice >= (item == null ? void 0 : item.minSubTotal)) {
+          if ((item == null ? void 0 : item.type) === "PERCENT")
+            isPercent = true;
+          else
+            isPercent = false;
+          discount = item == null ? void 0 : item.discount;
+          limit = item == null ? void 0 : item.limit;
+        } else {
+          break;
+        }
+      }
+      walletLimitAmount = isPercent ? Math.min(discount / 100 * cartTotalPrice, limit) : Number(discount || "0");
     } else {
       JSON.parse(localStorage.getItem("fc-wallet-redemption-limit"));
       walletLimitAmount = Number((walletRedemptionLimitDetails2 == null ? void 0 : walletRedemptionLimitDetails2.amount) || "0");
@@ -1217,11 +1294,11 @@ body {
         currency: "INR"
       })}`;
     } catch (error) {
-      console.log("checkout_total error");
     }
     const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] = h({
       amount: 0,
-      type: null
+      type: null,
+      condition: null
     });
     const applyWalletAmount = (amount) => {
       const event = new CustomEvent("wallet_amount_applied", {
@@ -1263,7 +1340,7 @@ body {
       }
     };
     const getWalletRemeptionLimit = async () => {
-      var _a, _b, _c, _d, _e, _f, _g, _h;
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
       try {
         const response = await fetch(`${WALLET_API_URI}/client-wallet-limit`, {
           method: "POST",
@@ -1279,21 +1356,25 @@ body {
         let walletData = await response.json();
         setWalletRedemptionLimitDetails({
           type: (_b = (_a = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a.limit_details) == null ? void 0 : _b.type,
-          amount: Number((_d = (_c = walletData == null ? void 0 : walletData.data) == null ? void 0 : _c.limit_details) == null ? void 0 : _d.amount)
+          amount: Number((_d = (_c = walletData == null ? void 0 : walletData.data) == null ? void 0 : _c.limit_details) == null ? void 0 : _d.amount),
+          condition: (_f = (_e = walletData == null ? void 0 : walletData.data) == null ? void 0 : _e.limit_details) == null ? void 0 : _f.condition
         });
         const lmt = {
-          type: (_f = (_e = walletData == null ? void 0 : walletData.data) == null ? void 0 : _e.limit_details) == null ? void 0 : _f.type,
-          amount: Number((_h = (_g = walletData == null ? void 0 : walletData.data) == null ? void 0 : _g.limit_details) == null ? void 0 : _h.amount)
+          type: (_h = (_g = walletData == null ? void 0 : walletData.data) == null ? void 0 : _g.limit_details) == null ? void 0 : _h.type,
+          amount: Number((_j = (_i = walletData == null ? void 0 : walletData.data) == null ? void 0 : _i.limit_details) == null ? void 0 : _j.amount),
+          condition: (_l = (_k = walletData == null ? void 0 : walletData.data) == null ? void 0 : _k.limit_details) == null ? void 0 : _l.condition
         };
         localStorage.setItem("fc-wallet-redemption-limit", JSON.stringify(lmt));
       } catch (err) {
         setWalletRedemptionLimitDetails({
           type: "FIXED",
-          amount: 0
+          amount: 0,
+          condition: null
         });
         localStorage.setItem("fc-wallet-redemption-limit", JSON.stringify({
           type: "FIXED",
-          amount: 0
+          amount: 0,
+          condition: null
         }));
       }
     };
@@ -1360,7 +1441,7 @@ body {
         const cartDetails = await cartRes.json();
         const prevWalletAmountApplied = (_d = (_c = cartDetails == null ? void 0 : cartDetails.cart_level_discount_applications) == null ? void 0 : _c.find((item) => {
           var _a2;
-          return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes("WALLETAPPLIED");
+          return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes((window == null ? void 0 : window.fc_coin_prefix) || "WALLETAPPLIED");
         })) == null ? void 0 : _d.total_allocated_amount;
         const alreadyAppliedWalletDiscount = prevWalletAmountApplied ? prevWalletAmountApplied / 100 : 0;
         const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100 + alreadyAppliedWalletDiscount;
@@ -1369,7 +1450,7 @@ body {
           walletRedemptionLimitDetails,
           cartTotalPrice: Number(totalPrice)
         });
-        const walletPointsToApply = walletRedemptionLimit ? Math.min(Number(walletPointsToApplyBeforeLimit), Number(walletRedemptionLimit)) : walletPointsToApplyBeforeLimit;
+        const walletPointsToApply = walletRedemptionLimit ? Math.min(Number(walletPointsToApplyBeforeLimit), Number(walletRedemptionLimit)) : 0;
         try {
           localStorage.setItem("rtly-applied-discount", `${Math.round(walletPointsToApply)}`);
           if (walletPointsToApply > 0) {
@@ -1443,7 +1524,7 @@ body {
           const cartDetailsUpdated = await cartResUpdated.json();
           const walletAppliedFromUpdatedCart = (_g = (_f = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _f.find((item) => {
             var _a2;
-            return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes("WALLETAPPLIED");
+            return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes((window == null ? void 0 : window.fc_coin_prefix) || "WALLETAPPLIED");
           })) == null ? void 0 : _g.total_allocated_amount;
           const walletPointsApplied = walletAppliedFromUpdatedCart ? walletAppliedFromUpdatedCart / 100 : 0;
           const appliedDiscountCodeAmount = (_i = (_h = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _h.find((item) => {
@@ -1527,7 +1608,7 @@ body {
         const cartDetails = await cartRes.json();
         const prevWalletAmountApplied = (_d = (_c = cartDetails == null ? void 0 : cartDetails.cart_level_discount_applications) == null ? void 0 : _c.find((item) => {
           var _a2;
-          return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes("WALLETAPPLIED");
+          return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes((window == null ? void 0 : window.fc_coin_prefix) || "WALLETAPPLIED");
         })) == null ? void 0 : _d.total_allocated_amount;
         const alreadyAppliedWalletDiscount = prevWalletAmountApplied ? prevWalletAmountApplied / 100 : 0;
         const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100 + alreadyAppliedWalletDiscount;
@@ -1536,7 +1617,7 @@ body {
           walletRedemptionLimitDetails,
           cartTotalPrice: Number(totalPrice)
         });
-        const walletPointsToApply = walletRedemptionLimit ? Math.min(Number(walletPointsToApplyBeforeLimit), Number(walletRedemptionLimit)) : walletPointsToApplyBeforeLimit;
+        const walletPointsToApply = walletRedemptionLimit ? Math.min(Number(walletPointsToApplyBeforeLimit), Number(walletRedemptionLimit)) : 0;
         try {
           localStorage.setItem("rtly-applied-discount", `${Math.round(walletPointsToApply)}`);
           if (walletPointsToApply > 0) {
@@ -1608,7 +1689,7 @@ body {
           const cartDetailsUpdated = await cartResUpdated.json();
           const walletAppliedFromUpdatedCart = (_g = (_f = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _f.find((item) => {
             var _a2;
-            return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes("WALLETAPPLIED");
+            return (_a2 = item == null ? void 0 : item.title) == null ? void 0 : _a2.includes((window == null ? void 0 : window.fc_coin_prefix) || "WALLETAPPLIED");
           })) == null ? void 0 : _g.total_allocated_amount;
           const walletPointsApplied = walletAppliedFromUpdatedCart ? walletAppliedFromUpdatedCart / 100 : 0;
           const appliedDiscountCodeAmount = (_i = (_h = cartDetailsUpdated == null ? void 0 : cartDetailsUpdated.cart_level_discount_applications) == null ? void 0 : _h.find((item) => {
@@ -1927,6 +2008,7 @@ body {
     const [modernUiTheme, setModernUiTheme] = h("");
     const [cashbackAmount, setCashbackAmount] = h(0);
     const [isCartEmpty, setIsCartEmpty] = h(false);
+    const [cartTotalAmt, setCartTotalAmt] = h(0);
     const setTheme = ({
       themeDetailsData: themeDetailsData2
     }) => {
@@ -1952,6 +2034,7 @@ body {
       setIsCartEmpty((cartDetails == null ? void 0 : cartDetails.item_count) === 0 ? true : false);
       const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100;
       localStorage.setItem("totalCartPrice", `${totalPrice}`);
+      setCartTotalAmt(totalPrice);
       const totalDiscount = (cartDetails == null ? void 0 : cartDetails.total_discount) / 100;
       const appliedDiscountCode2 = ((_b = (_a = cartDetails == null ? void 0 : cartDetails.cart_level_discount_applications) == null ? void 0 : _a.find((item) => {
         return item.type === "discount_code" && !item.title.includes("WALLETAPPLIED");
@@ -1990,25 +2073,28 @@ body {
     const getCashbackDetails = async ({
       customerID,
       customerTags,
-      clientID
+      clientID,
+      cartAmount
     }) => {
-      var _a, _b, _c, _d;
+      var _a, _b, _c;
       setLoadingCashbackDetails(true);
-      const cashbackRes = await fetch(`${WALLET_API_URI}/loyalty/cashback-detail`, {
+      const cashbackRes = await fetch(`${WALLET_API_URI}/get-order-cashback`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
           customer_id: customerID,
-          user_hash: customerTags,
+          coupon: "",
+          order_amount: cartAmount,
           client_id: clientID
         })
       });
       const cashbackResDetails = await cashbackRes.json();
+      setCashbackAmount(Number((_a = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _a.cashbackAmount));
       setCashbackDetails({
-        type: (_b = (_a = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _a.cashback_data) == null ? void 0 : _b.type,
-        amount: Number((_d = (_c = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _c.cashback_data) == null ? void 0 : _d.amount)
+        type: (_b = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _b.cashbackType,
+        amount: Number((_c = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _c.cashbackAmount)
       });
       setLoadingCashbackDetails(false);
     };
@@ -2019,10 +2105,8 @@ body {
       if ((cashbackDetails == null ? void 0 : cashbackDetails.type) === "percent") {
         const cartAmount = (_a = window.fc_cart_details) == null ? void 0 : _a.totalPayablePrice;
         const finalAmount = (cashbackDetails == null ? void 0 : cashbackDetails.amount) / 100 * (totalPrice || cartAmount);
-        setCashbackAmount(finalAmount);
         return finalAmount;
       } else {
-        setCashbackAmount(cashbackDetails == null ? void 0 : cashbackDetails.amount);
         return cashbackDetails == null ? void 0 : cashbackDetails.amount;
       }
     };
@@ -2069,12 +2153,13 @@ body {
       getCashbackDetails({
         customerID: customer_id,
         customerTags: customer_tags,
-        clientID: client_id
+        clientID: client_id,
+        cartAmount: cartTotalAmt
       });
       setTheme({
         themeDetailsData
       });
-    }, []);
+    }, [cartTotalAmt]);
     p(() => {
       loadCartSummary();
     }, [refetchCartSummary, cashbackDetails == null ? void 0 : cashbackDetails.type]);

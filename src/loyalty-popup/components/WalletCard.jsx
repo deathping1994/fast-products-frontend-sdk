@@ -1,24 +1,23 @@
-import { useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 const WalletCard = ({ walletAmount, onClick }) => {
+  const [coinName,setCoinName]=useState(localStorage.getItem("coinName"))
   useEffect(() => {
-    const coinName = window.fc_loyalty_vars.coin_name;
-    if (coinName) {
-      sessionStorage.setItem("coinName", coinName);
-    }
+    setTimeout(() => {
+      const coinName = window.fc_loyalty_vars.coin_name;
+      if (coinName) {
+        localStorage.setItem("coinName",coinName)
+        setCoinName(coinName)
+      } 
+    }, 500);
   }, []);
   return (
     <>
       <div onClick={onClick} class="walletCard">
         <div>
           <p class="walletCardText">
-            My
-            {
-              // @ts-ignore
-              sessionStorage.getItem("coinName")
-                ? sessionStorage.getItem("coinName")
-                : window.fc_loyalty_vars.coin_name
-            }
+            My{" "}
+            {coinName}
           </p>
           <div class="badgeCard">
             <img
