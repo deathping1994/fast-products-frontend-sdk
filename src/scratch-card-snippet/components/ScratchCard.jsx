@@ -22,6 +22,7 @@
       const fetchWalletAmount = async ()=>{
         const amountResp = await fetchApi("/user-wallet-amount", 'post', {...customerDetails})
         setWalletAmount(amountResp?.data?.userWallet?.amount)
+        window.setHeaderButtonAmount(amountResp?.data?.userWallet?.amount)
       }
       fetchWalletAmount()
     },[showWinPopup])
