@@ -19,6 +19,10 @@ const Main = ({shadowRoot, themeDetailsData}) => {
     const [couponIdx, setCouponIdx] = useState(0)
     const [loading, setLoading] = useState(false);
     const [walletAmount, setWalletAmount] = useState(0);
+    const [voucherDetails, setVoucherDetails] = useState({
+      voucherCategory: "",
+      categoryId:""
+    });
     const [customerDetails, setCustomerDetails] = useState({
         client_id:"",
         customer_id:"",
@@ -143,16 +147,17 @@ const Main = ({shadowRoot, themeDetailsData}) => {
 
       const handleOverlay = (overlayname) => {
         if (overlayname === "coupon") {
-          return <CouponOverlay updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={couponCardResponse[couponIdx]} onClick={closeOverlay} />;
+          return <CouponOverlay updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={couponCardResponse[couponIdx]} onClick={closeOverlay} isLoggedIn={login} handleLogin={setLogin} voucherDetails={voucherDetails}/>
         }
         if(overlayname === "explore"){
-          return <CouponOverlay updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={exploreCoupon[exploreCouponIdx]} onClick={closeOverlay}/>
+          return <CouponOverlay updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} couponData={exploreCoupon[exploreCouponIdx]} onClick={closeOverlay} isLoggedIn={login} handleLogin={setLogin} voucherDetails={{}}/>
         }
         if(overlayname === "redeem"){
           return <RedeemCoin updateWalletAmount={fetchWalletAmount} customerDetails={customerDetails} closePopup={closeOverlay}/>
         }
       };
-      const handleAndShowCouponOverlay = (idx)=>{
+      const handleAndShowCouponOverlay = (idx, category, id)=>{
+        setVoucherDetails({voucherCategory: category, categoryId: id});
         changeOverlay('coupon')
         setCouponIdx(idx)
       }
@@ -224,11 +229,18 @@ const Main = ({shadowRoot, themeDetailsData}) => {
 
                         {couponCardResponse.map((card, index)=>(
                             <CouponCard
-                                onClick={()=> handleAndShowCouponOverlay(index)}
+                                onClick={()=> {
+                                  const imgUrl = card.image;
+                                  const imgUrlObj = new URL(imgUrl);
+                                  const params = new URLSearchParams(imgUrlObj.search);
+                                  const category = params.get('type');
+                                  const id = params.get('id');
+                                  handleAndShowCouponOverlay(index, category, id)
+                                }}
                                 key={index}
-                                couponPrice={card.amount}
-                                couponDesc={card.title}
-                                couponImgLink={card.image}
+                                couponPrice={card?.amount}
+                                couponDesc={card?.title}
+                                couponImgLink={card?.image}
                             />
                             ))}
                         </div>

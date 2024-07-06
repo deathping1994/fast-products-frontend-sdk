@@ -67,8 +67,24 @@ function (amt) {
   return (
     showBtnAtLogout === 'true' && (
       <div id="fc-retainley-wallet-box">
-          <a href={walletAmount === "Login" ? (themeDetailsData?.data?.login_page || '/account/login') : redirectURL} id="fc-retainley-wallet-btn">{loading ? <div className="loader"></div> : walletAmount || "Login"}</a>
-          <span id="fc-wallet-amt-name">{themeDetailsData?.data?.coin_name}</span>
+        <a
+          href={
+            walletAmount === "Login"
+              ? (typeof window.fc_custom_login === 'function'
+                ? 'javascript:void(0);'
+                : (themeDetailsData?.data?.login_page || '/account/login'))
+              : redirectURL
+          }
+          id="fc-retainley-wallet-btn"
+          onClick={
+            walletAmount === "Login" && typeof window.fc_custom_login === 'function'
+              ? () => window.fc_custom_login()
+              : null
+          }
+        >
+          {loading ? <div className="loader"></div> : walletAmount || "Login"}
+        </a>
+        <span id="fc-wallet-amt-name">{themeDetailsData?.data?.coin_name}</span>
       </div>
     )
   )
