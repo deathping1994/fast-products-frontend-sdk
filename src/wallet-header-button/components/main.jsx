@@ -8,7 +8,6 @@ const Main = ({themeDetailsData, shadowRoot}) => {
     const client_id = mainScript.getAttribute("data-client-id");
     const showAtLogout = mainScript.getAttribute("data-show-at-logout")
     const redirectURL = mainScript.getAttribute("data-redirect-url")
-
     const [walletAmount, setWalletAmount] = useState("")
     const [loading, setLoading] = useState(false);
     const [showBtnAtLogout, setShowBtnAtLogout] = useState('false')
@@ -57,6 +56,13 @@ const Main = ({themeDetailsData, shadowRoot}) => {
         setWalletAmount("Login")
       }
     },[customer_id])
+
+// this is a global function by which we'll be able to modify the header button ka amount from anywhere
+window.setHeaderButtonAmount = 
+function (amt) {
+  setWalletAmount(amt)
+}
+
 
   return (
     showBtnAtLogout === 'true' && (
