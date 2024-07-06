@@ -120,6 +120,8 @@ const SpinWheel = ({ shadowRoot, spinWheelAmount, showSpinGameScreen, customerDe
     const fetchWalletAmount = async ()=>{
       const amountResp = await fetchApi("/user-wallet-amount", 'post', {...customerDetails})
       setWalletAmount(amountResp?.data?.userWallet?.amount)
+      // also updating on main header btn. 
+      window.setHeaderButtonAmount(amountResp?.data?.userWallet?.amount)
     }
     fetchWalletAmount()
   },[showWinPopup])
