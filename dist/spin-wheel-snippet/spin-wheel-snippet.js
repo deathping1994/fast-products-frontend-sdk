@@ -3184,11 +3184,15 @@ body {
     walletAmount,
     onClick
   }) => {
+    const [coinName, setCoinName] = h(localStorage.getItem("coinName"));
     p(() => {
-      const coinName = window.fc_loyalty_vars.coin_name;
-      if (coinName) {
-        localStorage.setItem("coinName", coinName);
-      }
+      setTimeout(() => {
+        const coinName2 = window.fc_loyalty_vars.coin_name;
+        if (coinName2) {
+          localStorage.setItem("coinName", coinName2);
+          setCoinName(coinName2);
+        }
+      }, 500);
     }, []);
     return o(k$1, {
       children: o("div", {
@@ -3197,12 +3201,7 @@ body {
         children: [o("div", {
           children: [o("p", {
             class: "walletCardText",
-            children: [
-              "My",
-              " ",
-              // @ts-ignore
-              localStorage.getItem("coinName") ? localStorage.getItem("coinName") : window.fc_loyalty_vars.coin_name
-            ]
+            children: ["My", " ", coinName]
           }), o("div", {
             class: "badgeCard",
             children: [o("img", {
@@ -3369,7 +3368,8 @@ body {
     customerDetails,
     updateWalletAmount,
     isLoggedIn,
-    handleLogin
+    handleLogin,
+    voucherDetails
   }) => {
     const [couponCode, setCouponCode] = h("");
     const [isCouponUnlocked, setIsCouponUnlocked] = h(false);
@@ -3402,9 +3402,13 @@ body {
       var _a;
       try {
         setLoading(true);
+        const voucher_category = voucherDetails == null ? void 0 : voucherDetails.voucherCategory;
+        const category_id = voucherDetails == null ? void 0 : voucherDetails.categoryId;
         const response = await fetchApi("/get-code", "post", {
           ...customerDetails,
-          couponAmount: couponData == null ? void 0 : couponData.amount
+          couponAmount: couponData == null ? void 0 : couponData.amount,
+          voucher_category,
+          category_id
         });
         if ((response == null ? void 0 : response.status) !== "success") {
           showError(response == null ? void 0 : response.error);
@@ -3460,7 +3464,7 @@ body {
           }), o("div", {
             class: "unlockTextContainer",
             children: o("h4", {
-              children: !isCouponUnlocked ? `Unlock for ${couponData == null ? void 0 : couponData.amount} ${window.fc_loyalty_vars.coin_name} Coins` : "Use this code at checkout"
+              children: !isCouponUnlocked ? `Unlock for ${couponData == null ? void 0 : couponData.amount} ${window.fc_loyalty_vars.coin_name}` : "Use this code at checkout"
             })
           }), !isCouponUnlocked && o("div", {
             children: !loading && o("button", {
@@ -4858,7 +4862,7 @@ body {
             children: [o("div", {
               class: "reedemfcCoins",
               children: [o("h3", {
-                children: ["Redeem ", window.fc_loyalty_vars.coin_name, " Coins"]
+                children: ["Redeem ", window.fc_loyalty_vars.coin_name, " "]
               }), o("div", {
                 onClick: () => changeOverlay("redeem"),
                 class: "reedemfcCoinsCard",
@@ -4871,7 +4875,7 @@ body {
                   children: [o("h5", {
                     children: ["100 ", window.fc_loyalty_vars.coin_name, "  = ₹100"]
                   }), o("p", {
-                    children: ["Use ", window.fc_loyalty_vars.coin_name, " Coins to create a custom discount coupon"]
+                    children: ["Use ", window.fc_loyalty_vars.coin_name, " to create a custom discount coupon"]
                   })]
                 }), o("div", {
                   children: o("img", {
