@@ -22,7 +22,7 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     const client_id = mainScript.getAttribute("data-client-id");
     const customer_id = mainScript.getAttribute("data-customer-id");
     const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
-    console.log({ client_id, customer_id, user_hash });
+    // console.log({ client_id, customer_id, user_hash });
     setCustomerDetails({ client_id, customer_id, user_hash });
     if(customer_id){
       setLogin(true)
