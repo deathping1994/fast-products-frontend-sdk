@@ -196,9 +196,8 @@ export function Main({ themeDetailsData, shadowRoot }) {
         customerID: customer_id,
         customerTags: customer_tags,
         clientID: client_id,
-        cartAmount:cartTotalAmt
+        cartAmount: localStorage.getItem("totalCartPrice")
       });
-
     setTheme({themeDetailsData})
   }, [cartTotalAmt]);
 
