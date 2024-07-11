@@ -5770,7 +5770,7 @@ body {
         const styles = document.createElement("style");
         styles.innerHTML = `
           .fc-no-scroll {
-              overflow: hidden;
+              // overflow: hidden;
           }
       `;
         document.body.appendChild(styles);
@@ -6669,11 +6669,12 @@ body {
     };
     p(() => {
       const fetchWalletAmount = async () => {
-        var _a, _b;
+        var _a, _b, _c, _d;
         const amountResp = await fetchApi$1("/user-wallet-amount", "post", {
           ...customerDetails
         });
         setWalletAmount((_b = (_a = amountResp == null ? void 0 : amountResp.data) == null ? void 0 : _a.userWallet) == null ? void 0 : _b.amount);
+        window.setHeaderButtonAmount((_d = (_c = amountResp == null ? void 0 : amountResp.data) == null ? void 0 : _c.userWallet) == null ? void 0 : _d.amount);
       };
       fetchWalletAmount();
     }, [showWinPopup]);

@@ -477,6 +477,9 @@
         setWalletAmount("Login");
       }
     }, [customer_id]);
+    window.setHeaderButtonAmount = function(amt) {
+      setWalletAmount(amt);
+    };
     return showBtnAtLogout === "true" && o("div", {
       id: "fc-retainley-wallet-box",
       children: [o("a", {

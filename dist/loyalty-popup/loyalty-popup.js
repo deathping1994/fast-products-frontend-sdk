@@ -5293,7 +5293,7 @@ body {
         const styles = document.createElement("style");
         styles.innerHTML = `
           .fc-no-scroll {
-              overflow: hidden;
+              // overflow: hidden;
           }
       `;
         document.body.appendChild(styles);
