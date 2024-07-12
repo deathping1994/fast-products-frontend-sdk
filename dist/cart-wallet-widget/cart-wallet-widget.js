@@ -2150,12 +2150,14 @@ body {
         customerTags: customer_tags || sessionStorage.getItem("fc_wallet_user_hash") || "",
         clientID: client_id
       });
-      getCashbackDetails({
-        customerID: customer_id,
-        customerTags: customer_tags,
-        clientID: client_id,
-        cartAmount: cartTotalAmt
-      });
+      if (cartTotalAmt != 0) {
+        getCashbackDetails({
+          customerID: customer_id,
+          customerTags: customer_tags,
+          clientID: client_id,
+          cartAmount: cartTotalAmt
+        });
+      }
       setTheme({
         themeDetailsData
       });
