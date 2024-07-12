@@ -26,6 +26,10 @@ const ModernMain = ({
 }) => {
   const handleCheckbox = (event) => {
     event.stopPropagation();
+    if(walletApplied==true){
+      // means user has removed our coupon so we are updating amount on strip
+      updateStripAmount(localStorage.getItem("totalCartPrice"))
+    }
     toggleUserWallet(walletApplied);
   };
 
