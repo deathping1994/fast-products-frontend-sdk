@@ -547,7 +547,8 @@ export function ApplyWallet({
           Number(walletRedemptionLimit)
         )
         : 0;
-      //console.log("walletPointsToApply", walletPointsToApply);
+      //updating the amount on strip if user checks our checkBox.[Don't remove Below function call at any cost.]
+      updateStripAmount(totalPrice-walletPointsToApply)
       try {
         localStorage.setItem(
           "rtly-applied-discount",
