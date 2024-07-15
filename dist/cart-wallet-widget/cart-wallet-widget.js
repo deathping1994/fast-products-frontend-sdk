@@ -1094,6 +1094,9 @@ body {
     var _a, _b;
     const handleCheckbox = (event) => {
       event.stopPropagation();
+      if (walletApplied == true) {
+        updateStripAmount(localStorage.getItem("totalCartPrice"));
+      }
       toggleUserWallet(walletApplied);
     };
     window.uncheck = (j2) => {
@@ -1618,6 +1621,7 @@ body {
           cartTotalPrice: Number(totalPrice)
         });
         const walletPointsToApply = walletRedemptionLimit ? Math.min(Number(walletPointsToApplyBeforeLimit), Number(walletRedemptionLimit)) : 0;
+        updateStripAmount(totalPrice - walletPointsToApply);
         try {
           localStorage.setItem("rtly-applied-discount", `${Math.round(walletPointsToApply)}`);
           if (walletPointsToApply > 0) {
@@ -2109,6 +2113,19 @@ body {
       } else {
         return cashbackDetails == null ? void 0 : cashbackDetails.amount;
       }
+    };
+    window.updateStripAmount = (amount) => {
+      var _a;
+      const mainScript = document.querySelector("#fc-wallet-cart-widget-script-19212");
+      const customer_id = mainScript.getAttribute("data-customer-id");
+      const customer_tags = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
+      const client_id = mainScript.getAttribute("data-client-id");
+      getCashbackDetails({
+        customerID: customer_id,
+        customerTags: customer_tags,
+        clientID: client_id,
+        cartAmount: amount
+      });
     };
     p(() => {
       var _a;
