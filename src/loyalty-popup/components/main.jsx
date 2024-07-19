@@ -50,6 +50,10 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
     user_hash: "",
     client_id: "",
   });
+  const [voucherDetails, setVoucherDetails] = useState({
+    voucherCategory: "",
+    categoryId:""
+  });
   const [singleSpinWheel, setSingleSpinWheel] = useState({
     title: "",
     description: "",
@@ -383,7 +387,8 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
     }
     fetchWalletAmount()
   },[screenDetails, overlayVisible])
-  const btnClick = (idx) => {
+  const btnClick = (idx, category, id) => {
+    setVoucherDetails({voucherCategory: category, categoryId: id});
     changeOverlay("coupon");
     setCouponCardIdx(idx);
   };
@@ -456,6 +461,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
           customerDetails={customerDetails}
           couponData={featuredCoupons[couponCardIdx]}
           onClick={closeOverlay}
+          voucherDetails={voucherDetails}
         />
       );
     }
@@ -744,7 +750,14 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
                   <div class="showAllCouponsList" ref={sliderRef}>
                     {featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => (
                         <CouponCard
-                          onClick={() => btnClick(index)}
+                          onClick={() => {
+                            const imgUrl = card.image;
+                            const imgUrlObj = new URL(imgUrl);
+                            const params = new URLSearchParams(imgUrlObj.search);
+                            const category = params.get('type');
+                            const id = params.get('id');
+                            btnClick(index, category, id);
+                          }}
                           key={index}
                           couponPrice={card.amount}
                           couponDesc={card.title}
