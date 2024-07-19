@@ -2700,7 +2700,10 @@ body {
           children: [o("div", {
             class: "crossImg",
             children: o("img", {
-              onClick,
+              onClick: () => {
+                setIsCouponUnlocked(false);
+                onClick();
+              },
               src: "https://media.farziengineer.co/farziwallet/cross.png",
               alt: ""
             })
@@ -5123,6 +5126,10 @@ body {
       user_hash: "",
       client_id: ""
     });
+    const [voucherDetails, setVoucherDetails] = h({
+      voucherCategory: "",
+      categoryId: ""
+    });
     const [singleSpinWheel, setSingleSpinWheel] = h({
       title: "",
       description: "",
@@ -5293,7 +5300,7 @@ body {
         const styles = document.createElement("style");
         styles.innerHTML = `
           .fc-no-scroll {
-              overflow: hidden;
+              // overflow: hidden;
           }
       `;
         document.body.appendChild(styles);
@@ -5451,7 +5458,11 @@ body {
       };
       fetchWalletAmount2();
     }, [screenDetails, overlayVisible]);
-    const btnClick = (idx) => {
+    const btnClick = (idx, category, id) => {
+      setVoucherDetails({
+        voucherCategory: category,
+        categoryId: id
+      });
       changeOverlay("coupon");
       setCouponCardIdx(idx);
     };
@@ -5519,7 +5530,8 @@ body {
           updateWalletAmount: fetchWalletAmount,
           customerDetails,
           couponData: featuredCoupons[couponCardIdx],
-          onClick: closeOverlay
+          onClick: closeOverlay,
+          voucherDetails
         });
       }
       if (overlayname === "invite_and_earn") {
@@ -5789,7 +5801,14 @@ body {
                 class: "showAllCouponsList",
                 ref: sliderRef,
                 children: [featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => o(CouponCard, {
-                  onClick: () => btnClick(index),
+                  onClick: () => {
+                    const imgUrl = card.image;
+                    const imgUrlObj = new URL(imgUrl);
+                    const params = new URLSearchParams(imgUrlObj.search);
+                    const category = params.get("type");
+                    const id = params.get("id");
+                    btnClick(index, category, id);
+                  },
                   couponPrice: card.amount,
                   couponDesc: card.title,
                   couponImgLink: card.image
