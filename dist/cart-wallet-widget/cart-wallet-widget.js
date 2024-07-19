@@ -997,11 +997,19 @@ body {
     var _a, _b;
     const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] = h({
       amount: 0,
-      type: null
+      type: null,
+      condition: null
+    });
+    const [walletAppliedDetails, setWalletAppliedDetails] = h({
+      remainingWalletBalance: 0,
+      walletDiscountApplied: 0,
+      currency: null,
+      totalPayablePrice: 0,
+      couponDiscountApplied: 0
     });
     p(() => {
       const getWalletRemeptionLimit = async () => {
-        var _a2, _b2, _c, _d;
+        var _a2, _b2, _c, _d, _e, _f;
         try {
           const response = await fetch(`${WALLET_API_URI}/client-wallet-limit`, {
             method: "POST",
@@ -1017,12 +1025,25 @@ body {
           let walletData = await response.json();
           setWalletRedemptionLimitDetails({
             type: (_b2 = (_a2 = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a2.limit_details) == null ? void 0 : _b2.type,
-            amount: Number((_d = (_c = walletData == null ? void 0 : walletData.data) == null ? void 0 : _c.limit_details) == null ? void 0 : _d.amount)
+            amount: Number((_d = (_c = walletData == null ? void 0 : walletData.data) == null ? void 0 : _c.limit_details) == null ? void 0 : _d.amount),
+            condition: (_f = (_e = walletData == null ? void 0 : walletData.data) == null ? void 0 : _e.limit_details) == null ? void 0 : _f.condition
+          });
+          const cartRes = await fetch(`/cart.json?v=${Date.now()}`);
+          const cartDetails = await cartRes.json();
+          const totalPrice = (cartDetails == null ? void 0 : cartDetails.total_price) / 100;
+          localStorage.setItem("totalCartPrice", `${totalPrice}`);
+          setWalletAppliedDetails({
+            ...walletAppliedDetails,
+            remainingWalletBalance: 0,
+            walletDiscountApplied: 0,
+            currency: cartDetails == null ? void 0 : cartDetails.currency,
+            totalPayablePrice: Number(totalPrice)
           });
         } catch (err) {
           setWalletRedemptionLimitDetails({
             type: "FIXED",
-            amount: 0
+            amount: 0,
+            condition: null
           });
         }
       };
@@ -1050,7 +1071,32 @@ body {
             children: [o("p", {
               children: (_a = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a.coin_name
             }), o("p", {
-              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : `${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
+              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : (walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_LIMIT" ? (() => {
+                const conditionArray = walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.condition;
+                let discount = 0;
+                const payablePrice = (walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice) + (walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied);
+                const sortedArray = conditionArray.sort((a2, b2) => (a2 == null ? void 0 : a2.minSubTotal) - (b2 == null ? void 0 : b2.minSubTotal));
+                let isPercent = false;
+                for (let item of sortedArray) {
+                  if (payablePrice >= (item == null ? void 0 : item.minSubTotal)) {
+                    if ((item == null ? void 0 : item.type) === "PERCENT")
+                      isPercent = true;
+                    else
+                      isPercent = false;
+                    discount = item == null ? void 0 : item.discount;
+                  } else {
+                    break;
+                  }
+                }
+                if (isPercent)
+                  return `${discount}% of the Grand Total `;
+                return `${discount.toLocaleString("en-IN", {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                  style: "currency",
+                  currency: "INR"
+                })} `;
+              })() : ` ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
                 style: "currency",
