@@ -74,7 +74,10 @@ async function renderWalletBox() {
       shadowRoot?.querySelector(".widget-custom-styles")
     );
   } catch (err) {
-    console.log("error", err);
+      // We'll not log the error if the div with id is not available.
+      if(err.message !="Cannot set properties of null (setting 'innerHTML')"){
+        console.log(err);
+      }
   }
 }
 
