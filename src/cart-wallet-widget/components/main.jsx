@@ -170,7 +170,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
     const customer_tags = mainScript.getAttribute("data-customer-tag")?.trim() ;
     const client_id = mainScript.getAttribute("data-client-id");
 
-    const checkout_target = mainScript.getAttribute("data-checkout-target");
     const coupon_code_box = mainScript.getAttribute("data-coupon-code-box");
     const cashback_strip = mainScript.getAttribute("data-cashback-strip");
     const wallet_credit = mainScript.getAttribute("data-wallet-credit-box");
@@ -184,22 +183,6 @@ export function Main({ themeDetailsData, shadowRoot }) {
     }
     if(wallet_credit === "true"){
       setRenderWalletCredit(true)
-    }
-
-    if (checkout_target) {
-      setCheckoutTarget({
-        enable: true,
-        isSet: true,
-      });
-    } else {
-      setInterval(() => {
-        // @ts-ignore
-        syncCartSummary(window.fc_cart_details || walletAppliedDetails);
-      }, 10000);
-      setCheckoutTarget({
-        enable: false,
-        isSet: true,
-      });
     }
 
     setCustomerDetails({
@@ -218,6 +201,27 @@ if(cartTotalAmt !=0){
 
     setTheme({themeDetailsData})
   }, [cartTotalAmt]);
+
+  useEffect(()=>{
+    let interval;
+    if(!window.state){
+     interval= setInterval(() => {
+        // @ts-ignore
+        syncCartSummary(window.fc_cart_details || walletAppliedDetails);
+      }, 20000);
+      window.state=true;
+    }
+      setCheckoutTarget({
+        enable: false,
+        isSet: true,
+      });
+
+    return () => {
+      clearInterval(interval);
+      window.state=false;
+    };
+  },[])
+
 
   useEffect(() => {
     loadCartSummary();
