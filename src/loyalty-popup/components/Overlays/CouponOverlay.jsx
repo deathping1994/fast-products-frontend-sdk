@@ -19,10 +19,10 @@ const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount
             msg:msg
         })
         setTimeout(()=>{
-          setError({
-            error:false,
-            msg:""
-        })
+            setError({
+                error:false,
+                msg:""
+            })
         },3000)
     }
     const copyReferralLinkFunc = ()=>{
@@ -37,9 +37,8 @@ const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount
             setLoading(true)
             const voucher_category = voucherDetails?.voucherCategory;
             const category_id = voucherDetails?.categoryId;
-            // console.log("coupon Overlay couponData", couponData);
             const response = await fetchApi('/get-code', 'post',
-            {
+                {
                 ...customerDetails,
                 couponAmount: couponData?.amount,
                 voucher_category,
@@ -59,46 +58,50 @@ const CouponOverlay = ({couponData, onClick, customerDetails, updateWalletAmount
             setLoading(false)
         }
     }
-  return (
-      loading ? <div className="loader"><Loading/></div> :
-      <>
-        <div class="unlockCouponContainer slide-in-bottom">
-            <div class="couponContainer" id="couponOverlayId">
-                <div class="crossImg">
-                    <img onClick={onClick} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
+    return (
+        loading ? <div className="loader"><Loading/></div> :
+            <>
+                <div class="unlockCouponContainer slide-in-bottom">
+                    <div class="couponContainer" id="couponOverlayId">
+                        <div class="crossImg">
+                            <img onClick={()=>{
+                                setIsCouponUnlocked(false);
+                                onClick();
+                            }}
+                            src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
+                        </div>
+                        <div class="couponOverlayContainer">
+                            <img src="https://media.farziengineer.co/farziwallet/voucher-icon.png" alt="" />
+                            <h2>{couponData?.heading}</h2>
+                        </div>
+                        <div class="unlockText">
+                            <h5>{couponData?.title}</h5>
+                        </div>
+                        <div class="unlockDesc">
+                            <p>{couponData?.description}</p>
+                        </div>
+                        <div>
+                            <hr class="dashedDivider" />
+                        </div>
+                        <div class="unlockTextContainer">
+                            <h4>{!isCouponUnlocked ? `Unlock for ${couponData?.amount} ${window.
+                                // @ts-ignore
+                                fc_loyalty_vars.coin_name}` : "Use this code at checkout"}</h4>
+                        </div>
+
+                        {!isCouponUnlocked && <div>
+                            {!loading && <button onClick={isLoggedIn ? fetchCouponCode : handleLogin} class="couponUnlockBtn">Tap to Unlock</button>}
+                        </div>}
+                        {isCouponUnlocked && <div class="couponCodeContainer">
+                            <p>{couponCode}</p>
+                            <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
+                        </div>}
+                    </div>
                 </div>
-                <div class="couponOverlayContainer">
-                    <img src="https://media.farziengineer.co/farziwallet/voucher-icon.png" alt="" />
-                    <h2>{couponData?.heading}</h2>
-                </div>
-                <div class="unlockText">
-                    <h5>{couponData?.title}</h5>
-                </div>
-                <div class="unlockDesc">
-                    <p>{couponData?.description}</p>
-                </div>
-                <div>
-                    <hr class="dashedDivider" />
-                </div>
-                <div class="unlockTextContainer">
-                    <h4>{!isCouponUnlocked ? `Unlock for ${couponData?.amount} ${window.
-// @ts-ignore
-                    fc_loyalty_vars.coin_name}` : "Use this code at checkout"}</h4>
-                </div>
-                
-                {!isCouponUnlocked && <div>
-                    {!loading && <button onClick={isLoggedIn ? fetchCouponCode : handleLogin} class="couponUnlockBtn">Tap to Unlock</button>}
-                </div>}
-                {isCouponUnlocked && <div class="couponCodeContainer">
-                    <p>{couponCode}</p>
-                    <img onClick={copyReferralLinkFunc} src="https://media.farziengineer.co/farziwallet/copy-icon.png" alt="" />
-                </div>}
-            </div> 
-        </div>
-        {error.error && <Alert message={error?.msg}/>}
-        {showCopied && <div class="copied">copied</div>}
-    </>
-  )
+                {error.error && <Alert message={error?.msg}/>}
+                {showCopied && <div class="copied">copied</div>}
+            </>
+    )
 }
 
 export default CouponOverlay
