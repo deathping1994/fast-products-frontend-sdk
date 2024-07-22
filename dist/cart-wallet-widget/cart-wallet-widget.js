@@ -2179,7 +2179,6 @@ body {
       const customer_id = mainScript.getAttribute("data-customer-id");
       const customer_tags = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
       const client_id = mainScript.getAttribute("data-client-id");
-      const checkout_target = mainScript.getAttribute("data-checkout-target");
       const coupon_code_box = mainScript.getAttribute("data-coupon-code-box");
       const cashback_strip = mainScript.getAttribute("data-cashback-strip");
       const wallet_credit = mainScript.getAttribute("data-wallet-credit-box");
@@ -2193,20 +2192,6 @@ body {
       }
       if (wallet_credit === "true") {
         setRenderWalletCredit(true);
-      }
-      if (checkout_target) {
-        setCheckoutTarget({
-          enable: true,
-          isSet: true
-        });
-      } else {
-        setInterval(() => {
-          syncCartSummary();
-        }, 1e4);
-        setCheckoutTarget({
-          enable: false,
-          isSet: true
-        });
       }
       setCustomerDetails({
         customerID: customer_id,
@@ -2225,6 +2210,23 @@ body {
         themeDetailsData
       });
     }, [cartTotalAmt]);
+    p(() => {
+      let interval;
+      if (!window.state) {
+        interval = setInterval(() => {
+          syncCartSummary();
+        }, 2e4);
+        window.state = true;
+      }
+      setCheckoutTarget({
+        enable: false,
+        isSet: true
+      });
+      return () => {
+        clearInterval(interval);
+        window.state = false;
+      };
+    }, []);
     p(() => {
       loadCartSummary();
     }, [refetchCartSummary, cashbackDetails == null ? void 0 : cashbackDetails.type]);
@@ -2368,7 +2370,9 @@ body {
         customStyles: clientCustomStyleData
       }), shadowRoot == null ? void 0 : shadowRoot.querySelector(".widget-custom-styles"));
     } catch (err) {
-      console.log("error", err);
+      if (err.message != "Cannot set properties of null (setting 'innerHTML')") {
+        console.log(err);
+      }
     }
   }
   window.fc_loyalty_render_wallet_box = renderWalletBox;
