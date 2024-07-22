@@ -408,7 +408,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
       mainPopup = shadowRoot.querySelector('.mainPopup')
     }
     const scrolledTop = mainPopup.scrollTop
-    console.log("scrolledTop", scrolledTop);
+    // console.log("scrolledTop", scrolledTop);
     if(loyalty_theme === 'popup'){
       mainPopup.style.overflowY = "hidden";
     }
@@ -680,9 +680,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
       setNextBtn(true);
     }
   };
-
-
-  return (
+ return (   
     <>
       <Referral />
       {loyalty_theme === 'popup' && <img
@@ -696,8 +694,12 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
         />}
       {(!referralPopup && visibilty) && (
         <>
-        
-          <div className={loyalty_theme === 'page'? 'loyaltyMainPage' : 'mainPopup'}>
+          <div onClick={()=>{ if (visibilty) setVisibility(false)}} className={visibilty ? "popup-parent":""}>
+          <div onClick={(e) => {e.stopPropagation();
+          // preventing event bubbling for popup.
+          return null;
+            }}
+          className={loyalty_theme === 'page'? 'loyaltyMainPage' : 'mainPopup'}>
             {screenDetails?.active ? (
               <Screen
                 loyalty_theme={loyalty_theme}
@@ -862,10 +864,11 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
             
             {error?.error && <Alert message={error?.msg}/>}
           </div>
-       
+          </div>
         </>
       )}
       {(referralPopup && customer_id) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
+   
     </>
   );
 }
