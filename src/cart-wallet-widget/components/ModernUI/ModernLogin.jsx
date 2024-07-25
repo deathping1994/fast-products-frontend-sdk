@@ -61,6 +61,41 @@ const ModernLogin = ({ themeDetailsData, customerDetails }) => {
       window?.fc_custom_login()
     else window.location.href = themeDetailsData?.data?.login_page || '/account/login';
   }
+
+  const [msg,setMsg]=useState(`Save more on Your Cart!`)
+
+  const setWalletMsg=()=>{
+    if(walletRedemptionLimitDetails.type && walletAppliedDetails.currency){
+      if(walletRedemptionLimitDetails?.type === "CART_PERCENT"){
+      setMsg( `${walletRedemptionLimitDetails?.amount}% of the Cart Total can be paid via ${" " + themeDetailsData?.data?.coin_name} `)
+      }
+      else if(walletRedemptionLimitDetails?.type === "CART_LIMIT" ){
+        const conditionArray = walletRedemptionLimitDetails?.condition;
+        const payablePrice = walletAppliedDetails?.totalPayablePrice + walletAppliedDetails?.walletDiscountApplied;
+        const sortedArray = conditionArray.sort((a, b) => a?.minSubTotal - b?.minSubTotal);
+        if(payablePrice> sortedArray[0].minSubTotal){
+        for (let i = sortedArray.length - 1; i >= 0; i--) {
+          const { discount,minSubTotal} = sortedArray[i];
+          if (payablePrice >= minSubTotal) {
+              setMsg(`${discount}₹ can be paid via ${themeDetailsData?.data?.coin_name}`)
+              break;
+          }
+      }
+    }else{
+  setMsg(`${sortedArray[0].discount} ${themeDetailsData?.data?.coin_name} can be used on a minimum order of ${sortedArray[0].minSubTotal}₹`)
+    }
+      }
+      else{
+       setMsg(` ${ Number(walletRedemptionLimitDetails?.amount || 0).toLocaleString("en-IN", {
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+          style: "currency",
+          currency: "INR",
+        })} can be paid via ${" " + themeDetailsData?.data?.coin_name }`)
+      }
+    }}
+
+    setWalletMsg()
   return (
     <>
       <div className="modernWalletContainer">
@@ -70,47 +105,8 @@ const ModernLogin = ({ themeDetailsData, customerDetails }) => {
         <div className="modernWalletMidContainer">
           <div className="modernWalletMidSection">
             <p>{themeDetailsData?.data?.coin_name}</p>
-            <p>{walletRedemptionLimitDetails?.type === "CART_PERCENT" ? (
-              `${walletRedemptionLimitDetails?.amount}% of the Grand Total `
-            ) : walletRedemptionLimitDetails?.type === "CART_LIMIT" ? (
-              (() => {
-                const conditionArray = walletRedemptionLimitDetails?.condition;
-                let discount = 0;
-                const payablePrice = walletAppliedDetails?.totalPayablePrice + walletAppliedDetails?.walletDiscountApplied;
-
-                const sortedArray = conditionArray.sort((a, b) => a?.minSubTotal - b?.minSubTotal);
-                let isPercent = false;
-
-                for (let item of sortedArray) {
-                  if (payablePrice >= item?.minSubTotal) {
-                    if (item?.type === "PERCENT")
-                      isPercent = true;
-                    else isPercent = false;
-                    discount = item?.discount;
-                  } else {
-                    break;
-                  }
-                }
-
-                if (isPercent)
-                  return (`${discount}% of the Grand Total `);
-                return (`${discount.toLocaleString("en-IN", {
-                  maximumFractionDigits: 2,
-                  minimumFractionDigits: 2,
-                  style: "currency",
-                  currency: "INR",
-                })} `);
-              })()
-            ) : (
-              ` ${Number(walletRedemptionLimitDetails?.amount).toLocaleString("en-IN", {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-                style: "currency",
-                currency: "INR",
-              })} `
-            )}
-              can be paid via{" " + themeDetailsData?.data?.coin_name}
-            </p>
+          
+            <p>{msg}</p>
           </div>
         </div>
         <div className='modernLoginBox'>
