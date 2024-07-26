@@ -87,6 +87,6 @@ async function renderReferralPopup() {
 }
 
 // @ts-ignore
-window.fc_loyalty_render_wallet_box = renderReferralPopup; //Exposing for external use
+window.fc_loyalty_render_referralPopup = renderReferralPopup; //Exposing for external use
 renderReferralPopup(); // Calling on first load
 

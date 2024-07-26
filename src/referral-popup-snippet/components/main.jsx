@@ -9,7 +9,6 @@ const main = ({themeDetailsData, shadowRoot}) => {
   const [referralPopup, setReferralPopup] = useState(false)
   const [referedAmount, setReferedAmount] = useState(0)
   useEffect(() => {
-    (function storeReferHash() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const referHash = urlSearchParams.get("fc_refer_hash");
         if (referHash) {
@@ -19,27 +18,13 @@ const main = ({themeDetailsData, shadowRoot}) => {
                 console.log("error in storeReferHash", error);
             }
         }
-    })();
-  }, [])
-  async function redeemReferHash({ client_id, customer_id }) {
-    const fc_refer_hash = localStorage.getItem("fc_refer_hash");
-    if (fc_refer_hash) {
-      setTimeout(async () => {
+    }
+  , [])
+  async function redeemReferHash({ client_id, customer_id,fc_refer_hash }) {
         try {
-          const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
-          if(!localStorage.getItem(`fc-referral-code-${customer_id}`)){
-            try {
-              const resp = await fetchApi("/get-referral-code", "post", {client_id, customer_id, user_hash})
-              if(resp?.status === "success"){
-                if(!resp?.data?.path.includes('undefined')){
-                  localStorage.setItem(`fc-referral-code-${customer_id}`, resp?.data?.path)
-                }
-              }
-            } catch (error) {
-              console.log("error in referral code");
-            }
-          }
-          
+          // storing time for current API call
+          const currentDate=new Date().toISOString()
+          localStorage.setItem("referralApiTime",currentDate)
           const response = await fetchApi('/redeem-referral-code', 'post', {
             client_id: client_id,
             customer_id: customer_id,
@@ -55,11 +40,32 @@ const main = ({themeDetailsData, shadowRoot}) => {
         } catch (err) {
           console.log("error in redeemReferHash", err);
         }
-      }, 2000);
+  }
+
+
+  useEffect(()=>{
+    const fc_refer_hash = localStorage.getItem("fc_refer_hash");
+    // sabse pehle ye dekho ki customer id aur refer-hash hai ki nahin
+    if(customer_id && fc_refer_hash){
+      // check karo ki pehle API call hui hai ki nahin 
+      const storedApiCallTime=localStorage.getItem("referralApiTime")
+    if (storedApiCallTime) {
+      // means referal wali api ek baari chal chuki hai
+      const storedDate = new Date(storedApiCallTime);
+      const currentDate=new Date()
+      const differenceInMilliseconds = Math.abs(storedDate - currentDate);
+      const differenceInSeconds = differenceInMilliseconds / 1000;
+     
+      // agar calls me difference 60 sec ke upar hoga toh call kara do api warna nahin.
+      if(differenceInSeconds>60){
+        redeemReferHash({client_id, customer_id,fc_refer_hash})
+      }
+
+    }else{
+      // matlab API call nahin hui hai toh chala do
+      redeemReferHash({client_id, customer_id,fc_refer_hash})
     }
   }
-  useEffect(()=>{
-    redeemReferHash({client_id, customer_id})
   },[referralPopup])
 
   const handleCloseReferralPopup = () => {
@@ -69,10 +75,12 @@ const main = ({themeDetailsData, shadowRoot}) => {
   return (
     <>
       {(referralPopup && customer_id) && 
+        <div class="referralPopupParent">
         <div class="referralPopupContainer">
             <img onClick={handleCloseReferralPopup} src="https://media.farziengineer.co/farziwallet/cross.png" alt="" />
             <h2>Welcome to {clientName}</h2>
             <p>You have received {referedAmount} points into your {clientName} wallet for signing up with us.</p>
+        </div>
         </div>
       }
     </>
