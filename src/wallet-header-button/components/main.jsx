@@ -58,6 +58,12 @@ const Main = ({ themeDetailsData, shadowRoot }) => {
     }
   }, [customer_id])
 
+  // this is a global function by which we'll be able to modify the header button ka amount from anywhere
+window.setHeaderButtonAmount = 
+function (amt) {
+  setWalletAmount(amt)
+}
+
   return (
     showBtnAtLogout === 'true' && (
       <div id="fc-retainley-wallet-box">

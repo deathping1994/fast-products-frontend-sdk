@@ -1285,7 +1285,7 @@ body {
 }
 
 .fc-loyalty-popup-19212-root {
-  width: 100%;
+  /* width: 100%; */
 }
 /* Loyality popup styles */
 
@@ -1303,7 +1303,17 @@ body {
   cursor: pointer;
   padding: 12px;
 }
-
+.popup-parent{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; 
+  z-index: 999999999999;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 .mainPopup {
   background-color: white;
   scrollbar-width: none;
@@ -3435,7 +3445,10 @@ body {
           children: [o("div", {
             class: "crossImg",
             children: o("img", {
-              onClick,
+              onClick: () => {
+                setIsCouponUnlocked(false);
+                onClick();
+              },
               src: "https://media.farziengineer.co/farziwallet/cross.png",
               alt: ""
             })
@@ -5600,6 +5613,10 @@ body {
       user_hash: "",
       client_id: ""
     });
+    const [voucherDetails, setVoucherDetails] = h({
+      voucherCategory: "",
+      categoryId: ""
+    });
     const [singleSpinWheel, setSingleSpinWheel] = h({
       title: "",
       description: "",
@@ -5770,7 +5787,7 @@ body {
         const styles = document.createElement("style");
         styles.innerHTML = `
           .fc-no-scroll {
-              overflow: hidden;
+              // overflow: hidden;
           }
       `;
         document.body.appendChild(styles);
@@ -5928,7 +5945,11 @@ body {
       };
       fetchWalletAmount2();
     }, [screenDetails, overlayVisible]);
-    const btnClick = (idx) => {
+    const btnClick = (idx, category, id) => {
+      setVoucherDetails({
+        voucherCategory: category,
+        categoryId: id
+      });
       changeOverlay("coupon");
       setCouponCardIdx(idx);
     };
@@ -5947,7 +5968,6 @@ body {
         mainPopup = shadowRoot.querySelector(".mainPopup");
       }
       const scrolledTop = mainPopup.scrollTop;
-      console.log("scrolledTop", scrolledTop);
       if (loyalty_theme === "popup") {
         mainPopup.style.overflowY = "hidden";
       }
@@ -5996,7 +6016,8 @@ body {
           updateWalletAmount: fetchWalletAmount,
           customerDetails,
           couponData: featuredCoupons[couponCardIdx],
-          onClick: closeOverlay
+          onClick: closeOverlay,
+          voucherDetails
         });
       }
       if (overlayname === "invite_and_earn") {
@@ -6207,186 +6228,204 @@ body {
         alt: "gift icon"
       }), !referralPopup && visibilty && o(k$1, {
         children: o("div", {
-          className: loyalty_theme === "page" ? "loyaltyMainPage" : "mainPopup",
-          children: [(screenDetails == null ? void 0 : screenDetails.active) ? o(Screen, {
-            loyalty_theme,
-            closeScreen,
-            screenTitle: (screenDetails == null ? void 0 : screenDetails.screenTitle) || "screentitle",
-            content: getScreenComponent(screenDetails == null ? void 0 : screenDetails.screen),
-            isLoggedIn,
-            loginURL: (_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.login_page,
-            handleScreenComponent,
-            activePage,
-            screenDetails
-          }) : loading ? o("div", {
-            className: "loader",
-            children: o(Loading, {})
-          }) : o(k$1, {
-            children: [o("div", {
-              class: "header",
+          onClick: () => {
+            if (visibilty)
+              setVisibility(false);
+          },
+          className: visibilty ? "popup-parent" : "",
+          children: o("div", {
+            onClick: (e2) => {
+              e2.stopPropagation();
+              return null;
+            },
+            className: loyalty_theme === "page" ? "loyaltyMainPage" : "mainPopup",
+            children: [(screenDetails == null ? void 0 : screenDetails.active) ? o(Screen, {
+              loyalty_theme,
+              closeScreen,
+              screenTitle: (screenDetails == null ? void 0 : screenDetails.screenTitle) || "screentitle",
+              content: getScreenComponent(screenDetails == null ? void 0 : screenDetails.screen),
+              isLoggedIn,
+              loginURL: (_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.login_page,
+              handleScreenComponent,
+              activePage,
+              screenDetails
+            }) : loading ? o("div", {
+              className: "loader",
+              children: o(Loading, {})
+            }) : o(k$1, {
               children: [o("div", {
-                class: "leftHeader",
-                children: [o("p", {
-                  children: "Welcome to"
-                }), o("h6", {
-                  children: client_name
+                class: "header",
+                children: [o("div", {
+                  class: "leftHeader",
+                  children: [o("p", {
+                    children: "Welcome to"
+                  }), o("h6", {
+                    children: client_name
+                  })]
+                }), o("div", {
+                  class: "rightHeader",
+                  children: loyalty_theme === "popup" && o("img", {
+                    class: "closePopup",
+                    onClick: handleViewPopup,
+                    src: "https://media.farziengineer.co/farziwallet/cross.png",
+                    alt: ""
+                  })
+                })]
+              }), isLoggedIn ? o(WalletCard, {
+                walletAmount,
+                onClick: () => handleScreenComponent("transaction_log", "Points activity")
+              }) : o(Logout, {
+                handleLogin
+              }), o("div", {
+                class: "couponMainContainer",
+                children: [o("div", {
+                  class: "viewAllCouponsContainer",
+                  children: [o("h1", {
+                    children: "Redeem with Coupons"
+                  }), o("div", {
+                    class: "viewAllBtn",
+                    children: [o("a", {
+                      onClick: isLoggedIn ? () => handleScreenComponent("show_all_coupons", "Coupons") : handleLogin,
+                      children: "View All"
+                    }), o("img", {
+                      width: 6,
+                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                      alt: ""
+                    })]
+                  })]
+                }), o("div", {
+                  class: "showAllCouponsList",
+                  ref: sliderRef,
+                  children: [featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => o(CouponCard, {
+                    onClick: () => {
+                      const imgUrl = card.image;
+                      const imgUrlObj = new URL(imgUrl);
+                      const params = new URLSearchParams(imgUrlObj.search);
+                      const category = params.get("type");
+                      const id = params.get("id");
+                      btnClick(index, category, id);
+                    },
+                    couponPrice: card.amount,
+                    couponDesc: card.title,
+                    couponImgLink: card.image
+                  }, index)), featuredCoupons.length > (loyalty_theme === "popup" ? 2 : 10) && o(k$1, {
+                    children: [prevBtn && o("div", {
+                      className: "scrollBtnPrev",
+                      onClick: scrollLeft,
+                      children: o("img", {
+                        src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                        alt: ""
+                      })
+                    }), nextBtn && o("div", {
+                      className: "scrollBtnNext",
+                      onClick: scrollRight,
+                      children: o("img", {
+                        src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                        alt: ""
+                      })
+                    })]
+                  })]
                 })]
               }), o("div", {
-                class: "rightHeader",
-                children: loyalty_theme === "popup" && o("img", {
-                  class: "closePopup",
-                  onClick: handleViewPopup,
-                  src: "https://media.farziengineer.co/farziwallet/cross.png",
-                  alt: ""
+                className: "easyEarnMainContainer",
+                children: [o("div", {
+                  class: "gamesArenaContainer",
+                  children: [o("div", {
+                    className: "easyEarnTitleBox",
+                    children: [o("h1", {
+                      children: "Easy Earn"
+                    }), o("a", {
+                      onClick: () => handleScreenComponent("easy_earn", "Easy Earn"),
+                      children: "View All"
+                    })]
+                  }), o("p", {
+                    children: "Earn Reward just by inputting your details"
+                  })]
+                }), o("div", {
+                  class: "gamesHorizontalList",
+                  ref: easyEarnSliderRef,
+                  children: [easyEarnData.map((game, index) => o(EasyEarnCard, {
+                    btnClick: () => isLoggedIn && changeOverlay("easy_earn"),
+                    gameTitle: game.gameTitle,
+                    gameDesc: game.gameDesc,
+                    cardImage: game.cardImage,
+                    gamePrice: game.gamePrice,
+                    btnText: game.btnText,
+                    isLoggedIn,
+                    handleLogin
+                  }, index)), featuredCoupons.length > (loyalty_theme === "popup" ? 2 : 10) && o(k$1, {
+                    children: [easyEarnPrevBtn && o("div", {
+                      className: "scrollBtnPrev",
+                      onClick: easyEarnScrollLeft,
+                      children: o("img", {
+                        src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                        alt: ""
+                      })
+                    }), easyEarnNextBtn && o("div", {
+                      className: "scrollBtnNext",
+                      onClick: easyEarnScrollRight,
+                      children: o("img", {
+                        src: "https://media.farziengineer.co/farziwallet/arrow.png",
+                        alt: ""
+                      })
+                    })]
+                  })]
+                })]
+              }), o("div", {
+                children: [o("div", {
+                  class: "gamesArenaContainer",
+                  children: [o("h1", {
+                    children: "Games Arena"
+                  }), o("p", {
+                    children: ["Play games to win ", window.fc_loyalty_vars.coin_name, " ", "coins, coupons & rewards"]
+                  })]
+                }), o("div", {
+                  class: "gamesHorizontalList",
+                  children: [o(GamesCard, {
+                    btnClick: () => isLoggedIn && handleScreenComponent("show_spin_wheel", "Wheel of Fortune"),
+                    gameTitle: (singleSpinWheel == null ? void 0 : singleSpinWheel.title) || "Spin and Win",
+                    gameDesc: (singleSpinWheel == null ? void 0 : singleSpinWheel.description) || "Spin and win coins",
+                    cardImage: (singleSpinWheel == null ? void 0 : singleSpinWheel.image) || "https://media.farziengineer.co/farziwallet/spin-wheel.png",
+                    gamePrice: (singleSpinWheel == null ? void 0 : singleSpinWheel.amount) || "10",
+                    btnText: (singleSpinWheel == null ? void 0 : singleSpinWheel.btnText) || "Explore",
+                    isLoggedIn,
+                    handleLogin
+                  }), o(GamesCard, {
+                    btnClick: () => isLoggedIn && handleScreenComponent("show_scratch_card", "Scratch Card"),
+                    gameTitle: (singleScratchCard == null ? void 0 : singleScratchCard.title) || "Scratch and Win",
+                    gameDesc: (singleScratchCard == null ? void 0 : singleScratchCard.description) || "Scratch and win coins",
+                    cardImage: (singleScratchCard == null ? void 0 : singleScratchCard.image) || "https://media.farziengineer.co/farziwallet/scratch-card.png",
+                    gamePrice: (singleScratchCard == null ? void 0 : singleScratchCard.amount) || "10",
+                    btnText: (singleScratchCard == null ? void 0 : singleScratchCard.btnText) || "Explore",
+                    isLoggedIn,
+                    handleLogin
+                  })]
+                }), o(InviteCard, {
+                  isLoggedIn,
+                  handleLogin,
+                  client_id,
+                  customer_id,
+                  onClick: () => changeOverlay("invite_and_earn")
+                })]
+              }), o("p", {
+                id: "watermarkContainer",
+                children: o("a", {
+                  href: "https://retainley.com/",
+                  target: "_blank",
+                  children: "Powered by Retainley"
                 })
               })]
-            }), isLoggedIn ? o(WalletCard, {
-              walletAmount,
-              onClick: () => handleScreenComponent("transaction_log", "Points activity")
-            }) : o(Logout, {
-              handleLogin
             }), o("div", {
-              class: "couponMainContainer",
-              children: [o("div", {
-                class: "viewAllCouponsContainer",
-                children: [o("h1", {
-                  children: "Redeem with Coupons"
-                }), o("div", {
-                  class: "viewAllBtn",
-                  children: [o("a", {
-                    onClick: isLoggedIn ? () => handleScreenComponent("show_all_coupons", "Coupons") : handleLogin,
-                    children: "View All"
-                  }), o("img", {
-                    width: 6,
-                    src: "https://media.farziengineer.co/farziwallet/arrow.png",
-                    alt: ""
-                  })]
-                })]
-              }), o("div", {
-                class: "showAllCouponsList",
-                ref: sliderRef,
-                children: [featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => o(CouponCard, {
-                  onClick: () => btnClick(index),
-                  couponPrice: card.amount,
-                  couponDesc: card.title,
-                  couponImgLink: card.image
-                }, index)), featuredCoupons.length > (loyalty_theme === "popup" ? 2 : 10) && o(k$1, {
-                  children: [prevBtn && o("div", {
-                    className: "scrollBtnPrev",
-                    onClick: scrollLeft,
-                    children: o("img", {
-                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
-                      alt: ""
-                    })
-                  }), nextBtn && o("div", {
-                    className: "scrollBtnNext",
-                    onClick: scrollRight,
-                    children: o("img", {
-                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
-                      alt: ""
-                    })
-                  })]
-                })]
-              })]
-            }), o("div", {
-              className: "easyEarnMainContainer",
-              children: [o("div", {
-                class: "gamesArenaContainer",
-                children: [o("div", {
-                  className: "easyEarnTitleBox",
-                  children: [o("h1", {
-                    children: "Easy Earn"
-                  }), o("a", {
-                    onClick: () => handleScreenComponent("easy_earn", "Easy Earn"),
-                    children: "View All"
-                  })]
-                }), o("p", {
-                  children: "Earn Reward just by inputting your details"
-                })]
-              }), o("div", {
-                class: "gamesHorizontalList",
-                ref: easyEarnSliderRef,
-                children: [easyEarnData.map((game, index) => o(EasyEarnCard, {
-                  btnClick: () => isLoggedIn && changeOverlay("easy_earn"),
-                  gameTitle: game.gameTitle,
-                  gameDesc: game.gameDesc,
-                  cardImage: game.cardImage,
-                  gamePrice: game.gamePrice,
-                  btnText: game.btnText,
-                  isLoggedIn,
-                  handleLogin
-                }, index)), featuredCoupons.length > (loyalty_theme === "popup" ? 2 : 10) && o(k$1, {
-                  children: [easyEarnPrevBtn && o("div", {
-                    className: "scrollBtnPrev",
-                    onClick: easyEarnScrollLeft,
-                    children: o("img", {
-                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
-                      alt: ""
-                    })
-                  }), easyEarnNextBtn && o("div", {
-                    className: "scrollBtnNext",
-                    onClick: easyEarnScrollRight,
-                    children: o("img", {
-                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
-                      alt: ""
-                    })
-                  })]
-                })]
-              })]
-            }), o("div", {
-              children: [o("div", {
-                class: "gamesArenaContainer",
-                children: [o("h1", {
-                  children: "Games Arena"
-                }), o("p", {
-                  children: ["Play games to win ", window.fc_loyalty_vars.coin_name, " ", "coins, coupons & rewards"]
-                })]
-              }), o("div", {
-                class: "gamesHorizontalList",
-                children: [o(GamesCard, {
-                  btnClick: () => isLoggedIn && handleScreenComponent("show_spin_wheel", "Wheel of Fortune"),
-                  gameTitle: (singleSpinWheel == null ? void 0 : singleSpinWheel.title) || "Spin and Win",
-                  gameDesc: (singleSpinWheel == null ? void 0 : singleSpinWheel.description) || "Spin and win coins",
-                  cardImage: (singleSpinWheel == null ? void 0 : singleSpinWheel.image) || "https://media.farziengineer.co/farziwallet/spin-wheel.png",
-                  gamePrice: (singleSpinWheel == null ? void 0 : singleSpinWheel.amount) || "10",
-                  btnText: (singleSpinWheel == null ? void 0 : singleSpinWheel.btnText) || "Explore",
-                  isLoggedIn,
-                  handleLogin
-                }), o(GamesCard, {
-                  btnClick: () => isLoggedIn && handleScreenComponent("show_scratch_card", "Scratch Card"),
-                  gameTitle: (singleScratchCard == null ? void 0 : singleScratchCard.title) || "Scratch and Win",
-                  gameDesc: (singleScratchCard == null ? void 0 : singleScratchCard.description) || "Scratch and win coins",
-                  cardImage: (singleScratchCard == null ? void 0 : singleScratchCard.image) || "https://media.farziengineer.co/farziwallet/scratch-card.png",
-                  gamePrice: (singleScratchCard == null ? void 0 : singleScratchCard.amount) || "10",
-                  btnText: (singleScratchCard == null ? void 0 : singleScratchCard.btnText) || "Explore",
-                  isLoggedIn,
-                  handleLogin
-                })]
-              }), o(InviteCard, {
-                isLoggedIn,
-                handleLogin,
-                client_id,
-                customer_id,
-                onClick: () => changeOverlay("invite_and_earn")
-              })]
-            }), o("p", {
-              id: "watermarkContainer",
-              children: o("a", {
-                href: "https://retainley.com/",
-                target: "_blank",
-                children: "Powered by Retainley"
-              })
+              class: "overlay",
+              children: (overlayVisible == null ? void 0 : overlayVisible.active) ? o(k$1, {
+                children: o(Overlay, {
+                  content: handleOverlay(overlayVisible == null ? void 0 : overlayVisible.overlay)
+                })
+              }) : o(k$1, {})
+            }), (error == null ? void 0 : error.error) && o(Alert, {
+              message: error == null ? void 0 : error.msg
             })]
-          }), o("div", {
-            class: "overlay",
-            children: (overlayVisible == null ? void 0 : overlayVisible.active) ? o(k$1, {
-              children: o(Overlay, {
-                content: handleOverlay(overlayVisible == null ? void 0 : overlayVisible.overlay)
-              })
-            }) : o(k$1, {})
-          }), (error == null ? void 0 : error.error) && o(Alert, {
-            message: error == null ? void 0 : error.msg
-          })]
+          })
         })
       }), referralPopup && customer_id && o(ReferralPopup, {
         referedAmount,
@@ -6669,11 +6708,12 @@ body {
     };
     p(() => {
       const fetchWalletAmount = async () => {
-        var _a, _b;
+        var _a, _b, _c, _d;
         const amountResp = await fetchApi$1("/user-wallet-amount", "post", {
           ...customerDetails
         });
         setWalletAmount((_b = (_a = amountResp == null ? void 0 : amountResp.data) == null ? void 0 : _a.userWallet) == null ? void 0 : _b.amount);
+        window.setHeaderButtonAmount((_d = (_c = amountResp == null ? void 0 : amountResp.data) == null ? void 0 : _c.userWallet) == null ? void 0 : _d.amount);
       };
       fetchWalletAmount();
     }, [showWinPopup]);

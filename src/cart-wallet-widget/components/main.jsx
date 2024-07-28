@@ -146,6 +146,22 @@ export function Main({ themeDetailsData, shadowRoot }) {
     }
   };
 
+  // this Below, a gloBal function is created so that if someone clicks on our checkBox, the total cart amount will oBviously update so amount on strip should also Be updated.
+   window.updateStripAmount=(amount)=>{
+    const mainScript = document.querySelector(
+      "#fc-wallet-cart-widget-script-19212"
+    );
+    const customer_id = mainScript.getAttribute("data-customer-id");
+    const customer_tags = mainScript.getAttribute("data-customer-tag")?.trim() ;
+    const client_id = mainScript.getAttribute("data-client-id");
+    getCashbackDetails({
+      customerID: customer_id,
+      customerTags: customer_tags,
+      clientID: client_id,
+      cartAmount:amount
+    })
+   }
+
   useEffect(() => {
     const mainScript = document.querySelector(
       "#fc-wallet-cart-widget-script-19212"
@@ -174,13 +190,14 @@ export function Main({ themeDetailsData, shadowRoot }) {
       customerTags: customer_tags || sessionStorage.getItem("fc_wallet_user_hash") || '',
       clientID: client_id,
     });
-
-      getCashbackDetails({
-        customerID: customer_id,
-        customerTags: customer_tags,
-        clientID: client_id,
-        cartAmount:cartTotalAmt
-      });
+if(cartTotalAmt !=0){
+  getCashbackDetails({
+    customerID: customer_id,
+    customerTags: customer_tags,
+    clientID: client_id,
+    cartAmount:cartTotalAmt
+  })
+}
 
     setTheme({themeDetailsData})
   }, [cartTotalAmt]);
