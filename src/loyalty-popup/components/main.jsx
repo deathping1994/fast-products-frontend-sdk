@@ -18,7 +18,7 @@ import Loading from "./Utils/Loading";
 import Referral from "./Referral";
 import Logout from "./Logout";
 import Alert from "./Utils/Alert";
-import ReferralPopup from "./ReferralPopup";
+// import ReferralPopup from "./ReferralPopup";
 import EasyEarn from "./EasyEarn";
 import EasyEarnCard from "./EasyEarnCard";
 import EasyEarnOverlay from "./Overlays/EasyEarnOverlay";
@@ -31,7 +31,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
   const client_name = mainScript.getAttribute("client-name")
   const activePage = mainScript.getAttribute("data-active-page")
   const [visibilty, setVisibility] = useState(false);
-  const [referralPopup, setReferralPopup] = useState(false)
+  // const [referralPopup, setReferralPopup] = useState(false)
   const [referedAmount, setReferedAmount] = useState(0)
   const [walletAmount, setWalletAmount] = useState(0);
   const [walletLogs, setWalletLogs] = useState([]);
@@ -85,10 +85,10 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
       window.location.href = themeDetailsData?.data?.login_page
     }
   }
-  const handleCloseReferralPopup = () => {
-    setReferralPopup(false)
-    location.reload()
-  }
+  // const handleCloseReferralPopup = () => {
+  //   setReferralPopup(false)
+  //   location.reload()
+  // }
   const showError = (msg)=>{
     setError({
       error:true,
@@ -105,41 +105,41 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
     // console.log("func scr card===", amount);
     setScratchCardAmount(amount);
   };
-  async function redeemReferHash({ client_id, customer_id }) {
-    const fc_refer_hash = localStorage.getItem("fc_refer_hash");
-    if (fc_refer_hash) {
-      setTimeout(async () => {
-        try {
-          const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
-          if(!localStorage.getItem(`fc-referral-code-${customer_id}`)){
-            try {
-              const resp = await fetchApi("/get-referral-code", "post", {client_id, customer_id, user_hash})
-              if(resp?.status === "success"){
-                localStorage.setItem(`fc-referral-code-${customer_id}`, resp?.data?.path)
-              }
-            } catch (error) {
-              console.log("error", error);
-            }
-          }
+  // async function redeemReferHash({ client_id, customer_id }) {
+  //   const fc_refer_hash = localStorage.getItem("fc_refer_hash");
+  //   if (fc_refer_hash) {
+  //     setTimeout(async () => {
+  //       try {
+  //         const user_hash = mainScript.getAttribute("data-customer-tag")?.trim();
+  //         if(!localStorage.getItem(`fc-referral-code-${customer_id}`)){
+  //           try {
+  //             const resp = await fetchApi("/get-referral-code", "post", {client_id, customer_id, user_hash})
+  //             if(resp?.status === "success"){
+  //               localStorage.setItem(`fc-referral-code-${customer_id}`, resp?.data?.path)
+  //             }
+  //           } catch (error) {
+  //             console.log("error", error);
+  //           }
+  //         }
           
-          const response = await fetchApi('/redeem-referral-code', 'post', {
-            client_id: client_id,
-            customer_id: customer_id,
-            refer_hash: fc_refer_hash
-          });
+  //         const response = await fetchApi('/redeem-referral-code', 'post', {
+  //           client_id: client_id,
+  //           customer_id: customer_id,
+  //           refer_hash: fc_refer_hash
+  //         });
   
-          if (response?.status === 'success') {
-            setReferralPopup(true);
-            setReferedAmount(response?.data?.referredReward);
-            localStorage.removeItem("fc_refer_hash");
-            return;
-          }
-        } catch (err) {
-          console.log("error in redeemReferHash", err);
-        }
-      }, 2000);
-    }
-  }  
+  //         if (response?.status === 'success') {
+  //           setReferralPopup(true);
+  //           setReferedAmount(response?.data?.referredReward);
+  //           localStorage.removeItem("fc_refer_hash");
+  //           return;
+  //         }
+  //       } catch (err) {
+  //         console.log("error in redeemReferHash", err);
+  //       }
+  //     }, 2000);
+  //   }
+  // }  
 
   // useEffect(()=>{
   //   redeemReferHash({client_id, customer_id})
@@ -295,7 +295,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
           });
       }
     }
-    console.log("screenDetails", activePage);
+    // console.log("screenDetails", activePage);
   }, []);
 
   useEffect(() => {
@@ -329,7 +329,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
 
       fetchData();
     }
-  }, [customerDetails, screenDetails?.screen, referralPopup]);
+  }, [customerDetails, screenDetails?.screen]);
 
   useEffect(()=>{
 
@@ -481,7 +481,6 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
   };
 
   useEffect(() => {
-    if(!referralPopup){
       if(loyalty_theme !== 'page'){
         if (visibilty) {
           document.body.classList.add("fc-no-scroll");
@@ -489,7 +488,6 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
           document.body.classList.remove("fc-no-scroll");
         }
       }
-    }
   }, [visibilty]);
 
   const showPlayGameScreen = () => {
@@ -692,7 +690,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
         height={30}
         alt="gift icon"
         />}
-      {(!referralPopup && visibilty) && (
+      {( visibilty) && (
         <>
           <div onClick={()=>{ if (visibilty) setVisibility(false)}} className={visibilty ? "popup-parent":""}>
           <div onClick={(e) => {e.stopPropagation();
@@ -867,7 +865,7 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
           </div>
         </>
       )}
-      {(referralPopup && customer_id) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>}
+      {/* {(referralPopup && customer_id) && <ReferralPopup referedAmount={referedAmount} closeReferralPopup={handleCloseReferralPopup}/>} */}
    
     </>
   );
