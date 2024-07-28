@@ -141,9 +141,9 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
     }
   }  
 
-  useEffect(()=>{
-    redeemReferHash({client_id, customer_id})
-  },[referralPopup])
+  // useEffect(()=>{
+  //   redeemReferHash({client_id, customer_id})
+  // },[referralPopup])
   function setTheme({ themeDetails }) {
 
     let cssVariablesScope;
