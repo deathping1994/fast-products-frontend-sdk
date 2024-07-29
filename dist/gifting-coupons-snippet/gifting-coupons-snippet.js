@@ -627,7 +627,7 @@ body {
 }
 
 .fc-loyalty-popup-19212-root {
-  width: 100%;
+  /* width: 100%; */
 }
 /* Loyality popup styles */
 
@@ -645,7 +645,17 @@ body {
   cursor: pointer;
   padding: 12px;
 }
-
+.popup-parent{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; 
+  z-index: 999999999999;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 .mainPopup {
   background-color: white;
   scrollbar-width: none;
@@ -5371,7 +5381,6 @@ body {
         mainPopup = shadowRoot.querySelector(".mainPopup");
       }
       const scrolledTop = mainPopup.scrollTop;
-      console.log("scrolledTop", scrolledTop);
       if (loyalty_theme === "popup") {
         mainPopup.style.overflowY = "hidden";
       }
@@ -5691,14 +5700,7 @@ body {
                 class: "showAllCouponsList",
                 ref: sliderRef,
                 children: [featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => o(CouponCard, {
-                  onClick: () => {
-                    const imgUrl = card.image;
-                    const imgUrlObj = new URL(imgUrl);
-                    const params = new URLSearchParams(imgUrlObj.search);
-                    const category = params.get("type");
-                    const id = params.get("id");
-                    btnClick(index, category, id);
-                  },
+                  onClick: () => btnClick(index),
                   couponPrice: card.amount,
                   couponDesc: card.title,
                   couponImgLink: card.image
