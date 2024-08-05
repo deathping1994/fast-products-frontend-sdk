@@ -273,7 +273,7 @@
   }, b$1.prototype.render = k$1, i$1 = [], r$1 = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f$1 = function(n2, l2) {
     return n2.__v.__b - l2.__v.__b;
   }, x.__r = 0;
-  const style = ".fc-referral-popup-19212-root h2, p{\n	margin: 0;\n}\n\n.referralPopupContainer {\n	background-color: var(--loyalty_popup_theme_background, #000);\n	display: flex;\n	flex-direction: column;\n	justify-content: center;\n	align-items: center;\n	position: absolute;\n	top: 50%;\n	left: 50%;\n	transform: translate(-50%, -50%);\n	max-width: 500px;\n	min-height: fit-content;\n	padding: 16px;\n	border-radius: 16px;\n	z-index: 999;\n	animation-name: fade-in;\n	animation-duration: 1s;\n	margin: 18px;\n	-webkit-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);\n	-moz-box-shadow: 0px 0px 116px -13px rgba(0,0,0,0.75);\n	box-shadow: 0px 0px 50px -13px rgba(0,0,0,0.75);\n}\n\n.referralPopupContainer img {\n	width: 28px;\n	height: 28px;\n	position: absolute;\n	top: 14px;\n	right: 14px;\n	background-color: white;\n	border-radius: 8px;\n}\n.referralPopupContainer h2 {\n	font-size: 28px;\n	color: white;\n}\n\n.referralPopupContainer p {\n	font-size: 16px;\n	text-align: center;\n	color: white;\n}\n.referralPopupContainer span {\n	color: gold;\n}";
+  const style = ".fc-referral-popup-19212-root h2,\np {\n  margin: 0;\n}\n\n.referralPopupContainer {\n  background-color: black;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  max-width: 500px;\n  min-width: 250px;\n  padding: 25px 30px 30px 30px;\n  border-radius: 10px;\n  z-index: 999;\n  width: 70%;\n  position: relative;\n}\n\n.referralPopupContainer img {\n  width: 28px;\n  height: 28px;\n  position: absolute;\n  top: 14px;\n  right: 14px;\n  background-color: white;\n  border-radius: 8px;\n}\n.referralPopupContainer h2 {\n  margin-top: 30px;\n  font-size: 28px;\n  color: white;\n}\n\n.referralPopupContainer p {\n  font-size: 16px;\n  text-align: center;\n  color: white;\n  margin-top: 20px;\n  z-index: 10;\n  position: relative;\n}\n.referralPopupContainer span {\n  color: gold;\n}\n\n.referralPopupParent {\n  background-color: #00000090;\n  position: fixed;\n  z-index: 9;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  display: grid;\n  place-items: center;\n}\n";
   var t, r, u, i, o$1 = 0, f = [], c = [], e = l$1.__b, a = l$1.__r, v = l$1.diffed, l = l$1.__c, m = l$1.unmount;
   function d(t2, u2) {
     l$1.__h && l$1.__h(r, t2, o$1 || u2), o$1 = 0;
@@ -428,66 +428,64 @@
     const [referralPopup, setReferralPopup] = h(false);
     const [referedAmount, setReferedAmount] = h(0);
     p(() => {
-      (function storeReferHash() {
-        const urlSearchParams = new URLSearchParams(window.location.search);
-        const referHash = urlSearchParams.get("fc_refer_hash");
-        if (referHash) {
-          try {
-            localStorage.setItem("fc_refer_hash", referHash);
-          } catch (error) {
-            console.log("error in storeReferHash", error);
-          }
+      const urlSearchParams = new URLSearchParams(window.location.search);
+      const referHash = urlSearchParams.get("fc_refer_hash");
+      if (referHash) {
+        try {
+          localStorage.setItem("fc_refer_hash", referHash);
+        } catch (error) {
+          console.log("error in storeReferHash", error);
         }
-      })();
+      }
     }, []);
     async function redeemReferHash({
       client_id: client_id2,
-      customer_id: customer_id2
+      customer_id: customer_id2,
+      fc_refer_hash
     }) {
-      const fc_refer_hash = localStorage.getItem("fc_refer_hash");
-      if (fc_refer_hash) {
-        setTimeout(async () => {
-          var _a, _b, _c, _d;
-          try {
-            const user_hash = (_a = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a.trim();
-            if (!localStorage.getItem(`fc-referral-code-${customer_id2}`)) {
-              try {
-                const resp = await fetchApi("/get-referral-code", "post", {
-                  client_id: client_id2,
-                  customer_id: customer_id2,
-                  user_hash
-                });
-                if ((resp == null ? void 0 : resp.status) === "success") {
-                  if (!((_b = resp == null ? void 0 : resp.data) == null ? void 0 : _b.path.includes("undefined"))) {
-                    localStorage.setItem(`fc-referral-code-${customer_id2}`, (_c = resp == null ? void 0 : resp.data) == null ? void 0 : _c.path);
-                  }
-                }
-              } catch (error) {
-                console.log("error in referral code");
-              }
-            }
-            const response = await fetchApi("/redeem-referral-code", "post", {
-              client_id: client_id2,
-              customer_id: customer_id2,
-              refer_hash: fc_refer_hash
-            });
-            if ((response == null ? void 0 : response.status) === "success") {
-              setReferralPopup(true);
-              setReferedAmount((_d = response == null ? void 0 : response.data) == null ? void 0 : _d.referredReward);
-              localStorage.removeItem("fc_refer_hash");
-              return;
-            }
-          } catch (err) {
-            console.log("error in redeemReferHash", err);
-          }
-        }, 2e3);
+      var _a;
+      try {
+        const currentDate = (/* @__PURE__ */ new Date()).toISOString();
+        localStorage.setItem("referralApiTime", currentDate);
+        const response = await fetchApi("/redeem-referral-code", "post", {
+          client_id: client_id2,
+          customer_id: customer_id2,
+          refer_hash: fc_refer_hash
+        });
+        if ((response == null ? void 0 : response.status) === "success") {
+          setReferralPopup(true);
+          setReferedAmount((_a = response == null ? void 0 : response.data) == null ? void 0 : _a.referredReward);
+          localStorage.removeItem("fc_refer_hash");
+          return;
+        }
+      } catch (err) {
+        console.log("error in redeemReferHash", err);
       }
     }
     p(() => {
-      redeemReferHash({
-        client_id,
-        customer_id
-      });
+      const fc_refer_hash = localStorage.getItem("fc_refer_hash");
+      if (customer_id && fc_refer_hash) {
+        const storedApiCallTime = localStorage.getItem("referralApiTime");
+        if (storedApiCallTime) {
+          const storedDate = new Date(storedApiCallTime);
+          const currentDate = /* @__PURE__ */ new Date();
+          const differenceInMilliseconds = Math.abs(storedDate - currentDate);
+          const differenceInSeconds = differenceInMilliseconds / 1e3;
+          if (differenceInSeconds > 60) {
+            redeemReferHash({
+              client_id,
+              customer_id,
+              fc_refer_hash
+            });
+          }
+        } else {
+          redeemReferHash({
+            client_id,
+            customer_id,
+            fc_refer_hash
+          });
+        }
+      }
     }, [referralPopup]);
     const handleCloseReferralPopup = () => {
       setReferralPopup(false);
@@ -495,16 +493,19 @@
     };
     return o(k$1, {
       children: referralPopup && customer_id && o("div", {
-        class: "referralPopupContainer",
-        children: [o("img", {
-          onClick: handleCloseReferralPopup,
-          src: "https://media.farziengineer.co/farziwallet/cross.png",
-          alt: ""
-        }), o("h2", {
-          children: ["Welcome to ", clientName]
-        }), o("p", {
-          children: ["You have received ", referedAmount, " points into your ", clientName, " wallet for signing up with us."]
-        })]
+        class: "referralPopupParent",
+        children: o("div", {
+          class: "referralPopupContainer",
+          children: [o("img", {
+            onClick: handleCloseReferralPopup,
+            src: "https://media.farziengineer.co/farziwallet/cross.png",
+            alt: ""
+          }), o("h2", {
+            children: ["Welcome to ", clientName]
+          }), o("p", {
+            children: ["You have received ", referedAmount, " points into your ", clientName, " wallet for signing up with us."]
+          })]
+        })
       })
     });
   };
@@ -590,6 +591,6 @@
       console.log("error", err);
     }
   }
-  window.fc_loyalty_render_wallet_box = renderReferralPopup;
+  window.fc_loyalty_render_referralPopup = renderReferralPopup;
   renderReferralPopup();
 })();

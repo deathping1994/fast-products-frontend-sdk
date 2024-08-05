@@ -518,7 +518,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
+  font-size: 13px;
+  @media (min-width:768px) {
+    font-size: 14px;
+  }
 }
 .fc-wallet-cart-widget-19212-root .cashback-strip-container p span {
   font-weight: 600;
@@ -994,7 +997,7 @@ body {
     themeDetailsData,
     customerDetails
   }) => {
-    var _a, _b;
+    var _a;
     const [walletRedemptionLimitDetails, setWalletRedemptionLimitDetails] = h({
       amount: 0,
       type: null,
@@ -1009,7 +1012,7 @@ body {
     });
     p(() => {
       const getWalletRemeptionLimit = async () => {
-        var _a2, _b2, _c, _d, _e, _f;
+        var _a2, _b, _c, _d, _e, _f;
         try {
           const response = await fetch(`${WALLET_API_URI}/client-wallet-limit`, {
             method: "POST",
@@ -1024,7 +1027,7 @@ body {
           });
           let walletData = await response.json();
           setWalletRedemptionLimitDetails({
-            type: (_b2 = (_a2 = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a2.limit_details) == null ? void 0 : _b2.type,
+            type: (_b = (_a2 = walletData == null ? void 0 : walletData.data) == null ? void 0 : _a2.limit_details) == null ? void 0 : _b.type,
             amount: Number((_d = (_c = walletData == null ? void 0 : walletData.data) == null ? void 0 : _c.limit_details) == null ? void 0 : _d.amount),
             condition: (_f = (_e = walletData == null ? void 0 : walletData.data) == null ? void 0 : _e.limit_details) == null ? void 0 : _f.condition
           });
@@ -1056,6 +1059,41 @@ body {
       else
         window.location.href = ((_a2 = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a2.login_page) || "/account/login";
     };
+    const [msg, setMsg] = h(`Save more on Your Cart!`);
+    const setWalletMsg = () => {
+      var _a2, _b, _c, _d;
+      if (walletRedemptionLimitDetails.type && walletAppliedDetails.currency) {
+        if ((walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT") {
+          setMsg(`${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Cart Total can be paid via ${" " + ((_a2 = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a2.coin_name)} `);
+        } else if ((walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_LIMIT") {
+          const conditionArray = walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.condition;
+          const payablePrice = (walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice) + (walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied);
+          const sortedArray = conditionArray.sort((a2, b2) => (a2 == null ? void 0 : a2.minSubTotal) - (b2 == null ? void 0 : b2.minSubTotal));
+          if (payablePrice > sortedArray[0].minSubTotal) {
+            for (let i2 = sortedArray.length - 1; i2 >= 0; i2--) {
+              const {
+                discount,
+                minSubTotal
+              } = sortedArray[i2];
+              if (payablePrice >= minSubTotal) {
+                setMsg(`${discount}₹ can be paid via ${(_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.coin_name}`);
+                break;
+              }
+            }
+          } else {
+            setMsg(`${sortedArray[0].discount} ${(_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.coin_name} can be used on a minimum order of ${sortedArray[0].minSubTotal}₹`);
+          }
+        } else {
+          setMsg(` ${Number((walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount) || 0).toLocaleString("en-IN", {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2,
+            style: "currency",
+            currency: "INR"
+          })} can be paid via ${" " + ((_d = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _d.coin_name)}`);
+        }
+      }
+    };
+    setWalletMsg();
     return o(k$1, {
       children: o("div", {
         className: "modernWalletContainer",
@@ -1071,37 +1109,7 @@ body {
             children: [o("p", {
               children: (_a = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a.coin_name
             }), o("p", {
-              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : (walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_LIMIT" ? (() => {
-                const conditionArray = walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.condition;
-                let discount = 0;
-                const payablePrice = (walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice) + (walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied);
-                const sortedArray = conditionArray.sort((a2, b2) => (a2 == null ? void 0 : a2.minSubTotal) - (b2 == null ? void 0 : b2.minSubTotal));
-                let isPercent = false;
-                for (let item of sortedArray) {
-                  if (payablePrice >= (item == null ? void 0 : item.minSubTotal)) {
-                    if ((item == null ? void 0 : item.type) === "PERCENT")
-                      isPercent = true;
-                    else
-                      isPercent = false;
-                    discount = item == null ? void 0 : item.discount;
-                  } else {
-                    break;
-                  }
-                }
-                if (isPercent)
-                  return `${discount}% of the Grand Total `;
-                return `${discount.toLocaleString("en-IN", {
-                  maximumFractionDigits: 2,
-                  minimumFractionDigits: 2,
-                  style: "currency",
-                  currency: "INR"
-                })} `;
-              })() : ` ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-                style: "currency",
-                currency: "INR"
-              })} `, "can be paid via", " " + ((_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.coin_name)]
+              children: msg
             })]
           })
         }), o("div", {
@@ -1137,7 +1145,7 @@ body {
     loadingWalletBal,
     walletRedemptionLimitDetails
   }) => {
-    var _a, _b;
+    var _a;
     const handleCheckbox = (event) => {
       event.stopPropagation();
       if (walletApplied == true) {
@@ -1165,6 +1173,44 @@ body {
       }
     }
     checkForCheckbox();
+    const [msg, setMsg] = h(`Save more on Your Cart!`);
+    const setWalletMsg = () => {
+      var _a2, _b, _c, _d;
+      if (walletRedemptionLimitDetails.type && walletAppliedDetails.currency) {
+        if ((walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT") {
+          setMsg(`${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Cart Total can be paid via ${" " + ((_a2 = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a2.coin_name)} `);
+        } else if ((walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_LIMIT") {
+          const conditionArray = walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.condition;
+          const payablePrice = (walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice) + (walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied);
+          const sortedArray = conditionArray.sort((a2, b2) => (a2 == null ? void 0 : a2.minSubTotal) - (b2 == null ? void 0 : b2.minSubTotal));
+          if (payablePrice > sortedArray[0].minSubTotal) {
+            for (let i2 = sortedArray.length - 1; i2 >= 0; i2--) {
+              const {
+                discount,
+                minSubTotal
+              } = sortedArray[i2];
+              if (payablePrice >= minSubTotal) {
+                setMsg(`${discount}₹ can be paid via ${(_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.coin_name}`);
+                break;
+              }
+            }
+          } else {
+            setMsg(`${sortedArray[0].discount} ${(_c = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _c.coin_name} can be used on a minimum order of ${sortedArray[0].minSubTotal}₹`);
+          }
+        } else {
+          debounceCallTheFunction(setMsg(` ${Number((walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount) || 0).toLocaleString("en-IN", {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2,
+            style: "currency",
+            currency: "INR"
+          })} can be paid via ${" " + ((_d = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _d.coin_name)}`), 500);
+        }
+      }
+    };
+    const debouncedcall2 = debounceCallTheFunction(() => {
+      setWalletMsg();
+    }, 500);
+    debouncedcall2();
     return o(k$1, {
       children: (customerDetails == null ? void 0 : customerDetails.customerTags) !== "" ? o("div", {
         className: "modernWalletContainer",
@@ -1185,37 +1231,7 @@ body {
                 currency: "INR"
               })}`]
             }), o("p", {
-              children: [(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_PERCENT" ? `${walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount}% of the Grand Total ` : (walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.type) === "CART_LIMIT" ? (() => {
-                const conditionArray = walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.condition;
-                let discount = 0;
-                const payablePrice = (walletAppliedDetails == null ? void 0 : walletAppliedDetails.totalPayablePrice) + (walletAppliedDetails == null ? void 0 : walletAppliedDetails.walletDiscountApplied);
-                const sortedArray = conditionArray.sort((a2, b2) => (a2 == null ? void 0 : a2.minSubTotal) - (b2 == null ? void 0 : b2.minSubTotal));
-                let isPercent = false;
-                for (let item of sortedArray) {
-                  if (payablePrice >= (item == null ? void 0 : item.minSubTotal)) {
-                    if ((item == null ? void 0 : item.type) === "PERCENT")
-                      isPercent = true;
-                    else
-                      isPercent = false;
-                    discount = item == null ? void 0 : item.discount;
-                  } else {
-                    break;
-                  }
-                }
-                if (isPercent)
-                  return `${discount}% of the Grand Total `;
-                return `${discount.toLocaleString("en-IN", {
-                  maximumFractionDigits: 2,
-                  minimumFractionDigits: 2,
-                  style: "currency",
-                  currency: "INR"
-                })} `;
-              })() : ` ${Number(walletRedemptionLimitDetails == null ? void 0 : walletRedemptionLimitDetails.amount).toLocaleString("en-IN", {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-                style: "currency",
-                currency: "INR"
-              })} `, "can be paid via", " " + ((_b = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _b.coin_name)]
+              children: msg
             })]
           }), o("div", {
             className: "modernWalletBalance",
@@ -2059,6 +2075,7 @@ body {
     const [cashbackAmount, setCashbackAmount] = h(0);
     const [isCartEmpty, setIsCartEmpty] = h(false);
     const [cartTotalAmt, setCartTotalAmt] = h(0);
+    const [applicableOn, setApplicableOn] = h("");
     const setTheme = ({
       themeDetailsData: themeDetailsData2
     }) => {
@@ -2126,7 +2143,7 @@ body {
       clientID,
       cartAmount
     }) => {
-      var _a, _b, _c;
+      var _a, _b, _c, _d;
       setLoadingCashbackDetails(true);
       const cashbackRes = await fetch(`${WALLET_API_URI}/get-order-cashback`, {
         method: "POST",
@@ -2141,10 +2158,11 @@ body {
         })
       });
       const cashbackResDetails = await cashbackRes.json();
-      setCashbackAmount(Number((_a = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _a.cashbackAmount));
+      setApplicableOn((_a = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _a.applicableOn);
+      setCashbackAmount(Number((_b = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _b.cashbackAmount));
       setCashbackDetails({
-        type: (_b = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _b.cashbackType,
-        amount: Number((_c = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _c.cashbackAmount)
+        type: (_c = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _c.cashbackType,
+        amount: Number((_d = cashbackResDetails == null ? void 0 : cashbackResDetails.data) == null ? void 0 : _d.cashbackAmount)
       });
       setLoadingCashbackDetails(false);
     };
@@ -2262,11 +2280,19 @@ body {
       children: [!loadingCashbackDetails && cashbackAmount !== 0 && o(k$1, {
         children: renderCashbackStrip && o("div", {
           class: "cashback-strip-container",
-          children: o("p", {
+          children: [applicableOn == "PREPAID_ORDERS" && o("p", {
             children: ["You'll get ", o("span", {
               children: ["Rs. ", parseFloat(`${cashbackAmount}`).toFixed(2), " cashback"]
-            }), " with this order"]
-          })
+            }), " on prepaid order."]
+          }), applicableOn == "COD_ORDERS" && o("p", {
+            children: ["You'll get ", o("span", {
+              children: ["Rs. ", parseFloat(`${cashbackAmount}`).toFixed(2), " cashback"]
+            }), " on COD order."]
+          }), applicableOn == "ALL_ORDERS" && o("p", {
+            children: ["You'll get ", o("span", {
+              children: ["Rs. ", parseFloat(`${cashbackAmount}`).toFixed(2), " cashback"]
+            }), " with this order."]
+          })]
         })
       }), (customerDetails == null ? void 0 : customerDetails.customerID) ? o("div", {
         children: o(ApplyWallet, {

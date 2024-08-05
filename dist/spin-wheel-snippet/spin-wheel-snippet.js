@@ -4995,27 +4995,6 @@ body {
       })
     });
   };
-  const ReferralPopup = ({
-    referedAmount,
-    closeReferralPopup
-  }) => {
-    const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
-    const clientName = mainScript.getAttribute("client-name");
-    return o(k$1, {
-      children: o("div", {
-        class: "referralPopupContainer",
-        children: [o("img", {
-          onClick: closeReferralPopup,
-          src: "https://media.farziengineer.co/farziwallet/cross.png",
-          alt: ""
-        }), o("h2", {
-          children: ["Welcome to ", clientName]
-        }), o("p", {
-          children: ["You have received ", referedAmount, " points into your ", clientName, " wallet for signing up with us."]
-        })]
-      })
-    });
-  };
   function g(n2, t2) {
     for (var e2 in t2)
       n2[e2] = t2[e2];
@@ -5594,8 +5573,7 @@ body {
     const client_name = mainScript.getAttribute("client-name");
     const activePage = mainScript.getAttribute("data-active-page");
     const [visibilty, setVisibility] = h(false);
-    const [referralPopup, setReferralPopup] = h(false);
-    const [referedAmount, setReferedAmount] = h(0);
+    h(0);
     const [walletAmount, setWalletAmount] = h(0);
     const [walletLogs, setWalletLogs] = h([]);
     const [spinWheelAmount, setSpinWheelAmount] = h(0);
@@ -5646,10 +5624,6 @@ body {
         window.location.href = (_a2 = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a2.login_page;
       }
     };
-    const handleCloseReferralPopup = () => {
-      setReferralPopup(false);
-      location.reload();
-    };
     const showError = (msg) => {
       setError({
         error: true,
@@ -5665,53 +5639,6 @@ body {
     const funcScratchCardAmount = (amount) => {
       setScratchCardAmount(amount);
     };
-    async function redeemReferHash({
-      client_id: client_id2,
-      customer_id: customer_id2
-    }) {
-      const fc_refer_hash = localStorage.getItem("fc_refer_hash");
-      if (fc_refer_hash) {
-        setTimeout(async () => {
-          var _a2, _b2, _c;
-          try {
-            const user_hash = (_a2 = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a2.trim();
-            if (!localStorage.getItem(`fc-referral-code-${customer_id2}`)) {
-              try {
-                const resp = await fetchApi("/get-referral-code", "post", {
-                  client_id: client_id2,
-                  customer_id: customer_id2,
-                  user_hash
-                });
-                if ((resp == null ? void 0 : resp.status) === "success") {
-                  localStorage.setItem(`fc-referral-code-${customer_id2}`, (_b2 = resp == null ? void 0 : resp.data) == null ? void 0 : _b2.path);
-                }
-              } catch (error2) {
-                console.log("error", error2);
-              }
-            }
-            const response = await fetchApi("/redeem-referral-code", "post", {
-              client_id: client_id2,
-              customer_id: customer_id2,
-              refer_hash: fc_refer_hash
-            });
-            if ((response == null ? void 0 : response.status) === "success") {
-              setReferralPopup(true);
-              setReferedAmount((_c = response == null ? void 0 : response.data) == null ? void 0 : _c.referredReward);
-              localStorage.removeItem("fc_refer_hash");
-              return;
-            }
-          } catch (err) {
-            console.log("error in redeemReferHash", err);
-          }
-        }, 2e3);
-      }
-    }
-    p(() => {
-      redeemReferHash({
-        client_id,
-        customer_id
-      });
-    }, [referralPopup]);
     function setTheme({
       themeDetails
     }) {
@@ -5842,7 +5769,6 @@ body {
             });
         }
       }
-      console.log("screenDetails", activePage);
     }, []);
     p(() => {
       if ((customerDetails == null ? void 0 : customerDetails.customer_id) !== "") {
@@ -5874,7 +5800,7 @@ body {
         };
         fetchData();
       }
-    }, [customerDetails, screenDetails == null ? void 0 : screenDetails.screen, referralPopup]);
+    }, [customerDetails, screenDetails == null ? void 0 : screenDetails.screen]);
     p(() => {
       const fetch2 = async () => {
         if (localStorage.getItem(`fc-coupon-card-${client_id}`)) {
@@ -6037,13 +5963,11 @@ body {
       }
     };
     p(() => {
-      if (!referralPopup) {
-        if (loyalty_theme !== "page") {
-          if (visibilty) {
-            document.body.classList.add("fc-no-scroll");
-          } else {
-            document.body.classList.remove("fc-no-scroll");
-          }
+      if (loyalty_theme !== "page") {
+        if (visibilty) {
+          document.body.classList.add("fc-no-scroll");
+        } else {
+          document.body.classList.remove("fc-no-scroll");
         }
       }
     }, [visibilty]);
@@ -6226,7 +6150,7 @@ body {
         width: 30,
         height: 30,
         alt: "gift icon"
-      }), !referralPopup && visibilty && o(k$1, {
+      }), visibilty && o(k$1, {
         children: o("div", {
           onClick: () => {
             if (visibilty)
@@ -6427,9 +6351,6 @@ body {
             })]
           })
         })
-      }), referralPopup && customer_id && o(ReferralPopup, {
-        referedAmount,
-        closeReferralPopup: handleCloseReferralPopup
       })]
     });
   }

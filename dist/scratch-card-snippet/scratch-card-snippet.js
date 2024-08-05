@@ -4606,27 +4606,6 @@ body {
       })
     });
   };
-  const ReferralPopup = ({
-    referedAmount,
-    closeReferralPopup
-  }) => {
-    const mainScript = document.querySelector("#fc-loyalty-popup-script-19212");
-    const clientName = mainScript.getAttribute("client-name");
-    return o(k$1, {
-      children: o("div", {
-        class: "referralPopupContainer",
-        children: [o("img", {
-          onClick: closeReferralPopup,
-          src: "https://media.farziengineer.co/farziwallet/cross.png",
-          alt: ""
-        }), o("h2", {
-          children: ["Welcome to ", clientName]
-        }), o("p", {
-          children: ["You have received ", referedAmount, " points into your ", clientName, " wallet for signing up with us."]
-        })]
-      })
-    });
-  };
   function g(n2, t2) {
     for (var e2 in t2)
       n2[e2] = t2[e2];
@@ -5205,8 +5184,7 @@ body {
     const client_name = mainScript.getAttribute("client-name");
     const activePage = mainScript.getAttribute("data-active-page");
     const [visibilty, setVisibility] = h(false);
-    const [referralPopup, setReferralPopup] = h(false);
-    const [referedAmount, setReferedAmount] = h(0);
+    h(0);
     const [walletAmount, setWalletAmount] = h(0);
     const [walletLogs, setWalletLogs] = h([]);
     const [spinWheelAmount, setSpinWheelAmount] = h(0);
@@ -5257,10 +5235,6 @@ body {
         window.location.href = (_a2 = themeDetailsData == null ? void 0 : themeDetailsData.data) == null ? void 0 : _a2.login_page;
       }
     };
-    const handleCloseReferralPopup = () => {
-      setReferralPopup(false);
-      location.reload();
-    };
     const showError = (msg) => {
       setError({
         error: true,
@@ -5276,53 +5250,6 @@ body {
     const funcScratchCardAmount = (amount) => {
       setScratchCardAmount(amount);
     };
-    async function redeemReferHash({
-      client_id: client_id2,
-      customer_id: customer_id2
-    }) {
-      const fc_refer_hash = localStorage.getItem("fc_refer_hash");
-      if (fc_refer_hash) {
-        setTimeout(async () => {
-          var _a2, _b2, _c;
-          try {
-            const user_hash = (_a2 = mainScript.getAttribute("data-customer-tag")) == null ? void 0 : _a2.trim();
-            if (!localStorage.getItem(`fc-referral-code-${customer_id2}`)) {
-              try {
-                const resp = await fetchApi("/get-referral-code", "post", {
-                  client_id: client_id2,
-                  customer_id: customer_id2,
-                  user_hash
-                });
-                if ((resp == null ? void 0 : resp.status) === "success") {
-                  localStorage.setItem(`fc-referral-code-${customer_id2}`, (_b2 = resp == null ? void 0 : resp.data) == null ? void 0 : _b2.path);
-                }
-              } catch (error2) {
-                console.log("error", error2);
-              }
-            }
-            const response = await fetchApi("/redeem-referral-code", "post", {
-              client_id: client_id2,
-              customer_id: customer_id2,
-              refer_hash: fc_refer_hash
-            });
-            if ((response == null ? void 0 : response.status) === "success") {
-              setReferralPopup(true);
-              setReferedAmount((_c = response == null ? void 0 : response.data) == null ? void 0 : _c.referredReward);
-              localStorage.removeItem("fc_refer_hash");
-              return;
-            }
-          } catch (err) {
-            console.log("error in redeemReferHash", err);
-          }
-        }, 2e3);
-      }
-    }
-    p(() => {
-      redeemReferHash({
-        client_id,
-        customer_id
-      });
-    }, [referralPopup]);
     function setTheme({
       themeDetails
     }) {
@@ -5453,7 +5380,6 @@ body {
             });
         }
       }
-      console.log("screenDetails", activePage);
     }, []);
     p(() => {
       if ((customerDetails == null ? void 0 : customerDetails.customer_id) !== "") {
@@ -5485,7 +5411,7 @@ body {
         };
         fetchData();
       }
-    }, [customerDetails, screenDetails == null ? void 0 : screenDetails.screen, referralPopup]);
+    }, [customerDetails, screenDetails == null ? void 0 : screenDetails.screen]);
     p(() => {
       const fetch2 = async () => {
         if (localStorage.getItem(`fc-coupon-card-${client_id}`)) {
@@ -5648,13 +5574,11 @@ body {
       }
     };
     p(() => {
-      if (!referralPopup) {
-        if (loyalty_theme !== "page") {
-          if (visibilty) {
-            document.body.classList.add("fc-no-scroll");
-          } else {
-            document.body.classList.remove("fc-no-scroll");
-          }
+      if (loyalty_theme !== "page") {
+        if (visibilty) {
+          document.body.classList.add("fc-no-scroll");
+        } else {
+          document.body.classList.remove("fc-no-scroll");
         }
       }
     }, [visibilty]);
@@ -5837,7 +5761,7 @@ body {
         width: 30,
         height: 30,
         alt: "gift icon"
-      }), !referralPopup && visibilty && o(k$1, {
+      }), visibilty && o(k$1, {
         children: o("div", {
           onClick: () => {
             if (visibilty)
@@ -6027,143 +5951,6 @@ body {
                 })
               })]
             }), o("div", {
-              class: "couponMainContainer",
-              children: [o("div", {
-                class: "viewAllCouponsContainer",
-                children: [o("h1", {
-                  children: "Redeem with Coupons"
-                }), o("div", {
-                  class: "viewAllBtn",
-                  children: [o("a", {
-                    onClick: isLoggedIn ? () => handleScreenComponent("show_all_coupons", "Coupons") : handleLogin,
-                    children: "View All"
-                  }), o("img", {
-                    width: 6,
-                    src: "https://media.farziengineer.co/farziwallet/arrow.png",
-                    alt: ""
-                  })]
-                })]
-              }), o("div", {
-                class: "showAllCouponsList",
-                ref: sliderRef,
-                children: [featuredCoupons.length !== 0 && featuredCoupons.map((card, index) => o(CouponCard, {
-                  onClick: () => {
-                    const imgUrl = card.image;
-                    const imgUrlObj = new URL(imgUrl);
-                    const params = new URLSearchParams(imgUrlObj.search);
-                    const category = params.get("type");
-                    const id = params.get("id");
-                    btnClick(index, category, id);
-                  },
-                  couponPrice: card.amount,
-                  couponDesc: card.title,
-                  couponImgLink: card.image
-                }, index)), featuredCoupons.length > (loyalty_theme === "popup" ? 2 : 10) && o(k$1, {
-                  children: [prevBtn && o("div", {
-                    className: "scrollBtnPrev",
-                    onClick: scrollLeft,
-                    children: o("img", {
-                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
-                      alt: ""
-                    })
-                  }), nextBtn && o("div", {
-                    className: "scrollBtnNext",
-                    onClick: scrollRight,
-                    children: o("img", {
-                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
-                      alt: ""
-                    })
-                  })]
-                })]
-              })]
-            }), o("div", {
-              className: "easyEarnMainContainer",
-              children: [o("div", {
-                class: "gamesArenaContainer",
-                children: [o("div", {
-                  className: "easyEarnTitleBox",
-                  children: [o("h1", {
-                    children: "Easy Earn"
-                  }), o("a", {
-                    onClick: () => handleScreenComponent("easy_earn", "Easy Earn"),
-                    children: "View All"
-                  })]
-                }), o("p", {
-                  children: "Earn Reward just by inputting your details"
-                })]
-              }), o("div", {
-                class: "gamesHorizontalList",
-                ref: easyEarnSliderRef,
-                children: [easyEarnData.map((game, index) => o(EasyEarnCard, {
-                  btnClick: () => isLoggedIn && changeOverlay("easy_earn"),
-                  gameTitle: game.gameTitle,
-                  gameDesc: game.gameDesc,
-                  cardImage: game.cardImage,
-                  gamePrice: game.gamePrice,
-                  btnText: game.btnText,
-                  isLoggedIn,
-                  handleLogin
-                }, index)), featuredCoupons.length > (loyalty_theme === "popup" ? 2 : 10) && o(k$1, {
-                  children: [easyEarnPrevBtn && o("div", {
-                    className: "scrollBtnPrev",
-                    onClick: easyEarnScrollLeft,
-                    children: o("img", {
-                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
-                      alt: ""
-                    })
-                  }), easyEarnNextBtn && o("div", {
-                    className: "scrollBtnNext",
-                    onClick: easyEarnScrollRight,
-                    children: o("img", {
-                      src: "https://media.farziengineer.co/farziwallet/arrow.png",
-                      alt: ""
-                    })
-                  })]
-                })]
-              })]
-            }), o("div", {
-              children: [o("div", {
-                class: "gamesArenaContainer",
-                children: [o("h1", {
-                  children: "Games Arena"
-                }), o("p", {
-                  children: ["Play games to win ", window.fc_loyalty_vars.coin_name, " ", "coins, coupons & rewards"]
-                })]
-              }), o("div", {
-                class: "gamesHorizontalList",
-                children: [o(GamesCard, {
-                  btnClick: () => isLoggedIn && handleScreenComponent("show_spin_wheel", "Wheel of Fortune"),
-                  gameTitle: (singleSpinWheel == null ? void 0 : singleSpinWheel.title) || "Spin and Win",
-                  gameDesc: (singleSpinWheel == null ? void 0 : singleSpinWheel.description) || "Spin and win coins",
-                  cardImage: (singleSpinWheel == null ? void 0 : singleSpinWheel.image) || "https://media.farziengineer.co/farziwallet/spin-wheel.png",
-                  gamePrice: (singleSpinWheel == null ? void 0 : singleSpinWheel.amount) || "10",
-                  btnText: (singleSpinWheel == null ? void 0 : singleSpinWheel.btnText) || "Explore",
-                  isLoggedIn,
-                  handleLogin
-                }), o(GamesCard, {
-                  btnClick: () => isLoggedIn && handleScreenComponent("show_scratch_card", "Scratch Card"),
-                  gameTitle: (singleScratchCard == null ? void 0 : singleScratchCard.title) || "Scratch and Win",
-                  gameDesc: (singleScratchCard == null ? void 0 : singleScratchCard.description) || "Scratch and win coins",
-                  cardImage: (singleScratchCard == null ? void 0 : singleScratchCard.image) || "https://media.farziengineer.co/farziwallet/scratch-card.png",
-                  gamePrice: (singleScratchCard == null ? void 0 : singleScratchCard.amount) || "10",
-                  btnText: (singleScratchCard == null ? void 0 : singleScratchCard.btnText) || "Explore",
-                  isLoggedIn,
-                  handleLogin
-                })]
-              }), o(InviteCard, {
-                isLoggedIn,
-                handleLogin,
-                client_id,
-                customer_id,
-                onClick: () => changeOverlay("invite_and_earn")
-              })]
-            }), o("p", {
-              id: "watermarkContainer",
-              children: o("a", {
-                href: "https://retainley.com/",
-                target: "_blank",
-                children: "Powered by Retainley"
-              })
               class: "overlay",
               children: (overlayVisible == null ? void 0 : overlayVisible.active) ? o(k$1, {
                 children: o(Overlay, {
@@ -6175,9 +5962,6 @@ body {
             })]
           })
         })
-      }), referralPopup && customer_id && o(ReferralPopup, {
-        referedAmount,
-        closeReferralPopup: handleCloseReferralPopup
       })]
     });
   }
