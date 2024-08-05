@@ -243,7 +243,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
+  font-size: 13px;
+  @media (min-width:768px) {
+    font-size: 14px;
+  }
 }
 .fc-wallet-cart-widget-19212-root .cashback-strip-container p span {
   font-weight: 600;

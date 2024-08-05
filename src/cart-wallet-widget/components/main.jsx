@@ -37,6 +37,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
   const [cashbackAmount, setCashbackAmount] = useState(0);
   const [isCartEmpty, setIsCartEmpty] = useState(false)
   const[cartTotalAmt,setCartTotalAmt]=useState(0)
+  const [applicableOn,setApplicableOn]=useState("")
   const setTheme = ({themeDetailsData})=>{
     var cssVariablesScope = shadowRoot.querySelector(".widget-container");
     if (cssVariablesScope && themeDetailsData?.data?.gradient_start_color) {
@@ -124,6 +125,7 @@ export function Main({ themeDetailsData, shadowRoot }) {
       }
     );
     const cashbackResDetails = await cashbackRes.json();
+    setApplicableOn(cashbackResDetails?.data?.applicableOn)
     setCashbackAmount(Number(cashbackResDetails?.data?.cashbackAmount))
     setCashbackDetails({
       type: cashbackResDetails?.data?.cashbackType,
@@ -270,10 +272,25 @@ if(cartTotalAmt !=0){
       {!loadingCashbackDetails && cashbackAmount !== 0 && (
         <>
         {renderCashbackStrip && <div class="cashback-strip-container">
+          {  applicableOn =="PREPAID_ORDERS"  &&
           <p>
             You'll get&nbsp;<span>Rs. {parseFloat(`${cashbackAmount}`).toFixed(2)} cashback</span>
-            &nbsp;with this order
-          </p>
+            &nbsp;on prepaid order.
+          </p>}
+
+          {  applicableOn =="COD_ORDERS"  &&
+          <p>
+            You'll get&nbsp;<span>Rs. {parseFloat(`${cashbackAmount}`).toFixed(2)} cashback</span>
+            &nbsp;on COD order.
+          </p>}
+
+          {  applicableOn =="ALL_ORDERS"  &&
+          <p>
+            You'll get&nbsp;<span>Rs. {parseFloat(`${cashbackAmount}`).toFixed(2)} cashback</span>
+            &nbsp;with this order.
+          </p>}
+
+
         </div>}
         </>
       )}
