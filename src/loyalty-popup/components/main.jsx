@@ -82,7 +82,13 @@ export function Main({ themeDetailsData, shadowRoot, loyalty_theme }) {
 
   const handleLogin = ()=>{
     if(!isLoggedIn){
-      window.location.href = themeDetailsData?.data?.login_page
+      if (window?.fc_custom_login){
+        window?.fc_custom_login()
+      }
+      else{
+        window.location.href = themeDetailsData?.data?.login_page || '/account/login';
+      } 
+      // window.location.href = themeDetailsData?.data?.login_page
     }
   }
   // const handleCloseReferralPopup = () => {
